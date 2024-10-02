@@ -1,7 +1,7 @@
 <div align="center">
   <h1>💡 Idea</h1>
   <a href="https://www.npmjs.com/package/@stackpress/idea"><img src="https://img.shields.io/npm/v/@stackpress/idea.svg?style=flat" /></a>
-  <a href="https://github.com/stackpress/idea/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" /></a>
+  <a href="https://github.com/stackpress/idea/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://github.com/stackpress/idea/commits/main/"><img src="https://img.shields.io/github/last-commit/stackpress/idea" /></a>
   <a href="https://github.com/stackpress/idea/actions"><img src="https://img.shields.io/github/actions/workflow/status/stackpress/idea/test.yml" /></a>
   <a href="https://github.com/stackpress/idea/blob/main/docs/contribute.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
