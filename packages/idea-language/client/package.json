@@ -2,7 +2,7 @@
 	"name": "idea-language-client",
 	"description": "Implementation of idea language server in node.",
 	"author": "Chris <chris@incept.asia>",
-	"license": "MIT",
+  "license": "Apache-2.0",
 	"version": "0.1.8",
 	"publisher": "stackpress",
 	"repository": {

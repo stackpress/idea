@@ -3,7 +3,7 @@
 	"displayName": "Idea",
 	"description": "Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .idea files.",
 	"version": "0.1.8",
-	"license": "MIT",
+  "license": "Apache-2.0",
 	"icon": "idea.png",
 	"repository": {
 		"type": "git",

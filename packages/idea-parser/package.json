@@ -1,7 +1,7 @@
 {
   "name": "@stackpress/idea-parser",
   "version": "0.1.8",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "description": "Parses ideas to AST and readable JSON.",
   "author": "Chris <chris@incept.asia>",
   "homepage": "https://github.com/stackpress/idea",
