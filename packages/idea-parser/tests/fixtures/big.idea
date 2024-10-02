@@ -1,0 +1,325 @@
+plugin "./in/make-enums" {
+  ts true
+  output "./out/enums.ts"
+}
+
+//--------------------------------------------------------------------//
+// User System
+
+//A profile can be a person, organization, or any other type of entity.
+//Profiles can be authenticated or added from various sources. That's 
+//why we call it profile instead of user and company indicating it's 
+//just a general information of an entity.
+
+model Profile @label("Profile" "Profiles") @suggested("[name]") @icon("user") {
+  id          String   @label("ID") 
+                       @id @generated @default("cuid()")
+                       @list.char({ hellip false length 8 })
+  
+  name        String   @label("Name") 
+                       @searchable
+                       @field.text
+                       @is.required("Name is required")
+                       @list.detail @view.text
+
+  image       String?  @label("Image") 
+                       @field.url
+                       @list.image({ width 20 height 20 }) 
+                       @view.image({ width 100 height 100 })
+  
+  description String?  @label("Description") 
+                       @field.textarea
+                       @list.none @view.text
+  
+  type        String?  @label("Type") 
+                       @default("person") 
+                       @filterable
+                       @field.text
+                       @list.lowercase @view.lowercase
+  
+  roles       String[] @label("Roles") 
+                       @field.textlist
+                       @list.hide
+                       @view.tags
+  
+  tags        String[] @label("Tags") 
+                       @field.tags
+                       @list.hide
+                       @view.tags
+  
+  references  Hash?    @label("References") 
+                       @field.metadata
+                       @list.hide
+                       @view.metadata
+  
+  active      Boolean  @label("Active") 
+                       @generated @active @default(true) 
+                       @list.hide @view.yesno
+  
+  created     Datetime @label("Created") 
+                       @generated @created @spanable @sortable @default("now()") 
+                       @list.date("m d, Y h:iA") 
+                       @view.date("m d, Y h:iA")
+  
+  updated     Datetime @label("Updated") 
+                       @generated @updated @spanable @sortable @default("now()")
+                       @list.date("m d, Y h:iA") 
+                       @view.date("m d, Y h:iA")
+  
+  auth        Auth?        @label("Auth")
+  connections Connection[] @label("Connections")
+  memberships Connection[] @label("Memberships")
+  files       File[]       @label("Files")
+  addresses   Address[]    @label("Addresses") @default("[]")
+}
+
+//Auth is used to authenticate a profile and create a session.
+model Auth @label("Auth" "Auths") @suggested("[username]") @icon("lock") {
+  id        String   @label("ID") 
+                     @id @generated @default("cuid()")
+                     @list.char({ hellip false length 8 })
+  
+  profileId String   @label("Profile") 
+                     @filterable 
+                     @field.relation("Profile" "id") 
+                     @is.required("Profile is required") 
+                     @list.relation("Profile")
+                     @view.relation("Profile")
+                     
+  username  String   @label("Username")
+                     @unique @searchable @filterable
+                     @field.text
+                     @is.required("Username is required") 
+                     @is.cge(5 "Should more than 5 characters")
+                     @list.detail @view.text
+  
+  email     String?  @label("Email Address")
+                     @unique @searchable @filterable
+                     @field.email
+                     @is.email("Should be a valid email address")
+                     @list.text @view.email
+  
+  phone     String?  @label("Phone Number")
+                     @unique @searchable @filterable
+                     @field.text
+                     @is.pattern("/^\+[0-9]{0,3} [0-9]+$/" "Should be a valid phone number")
+                     @list.text @view.phone
+  
+  password  String   @label("Password") 
+                     @field.password
+                     @is.required("Password is required")
+  
+  twofa     String?  @label("2FA") 
+                     @field.text
+  
+  verified  Int      @label("Verified") 
+                     @generated @default(0) //0=unverified, 1=email, 2=phone, 3=both
+  
+  lastLogin Datetime @label("Last Logged In") 
+                     @generated @default("now()")
+                     @list.date("m d, Y h:iA") 
+                     @view.date("m d, Y h:iA")
+  
+  active    Boolean  @label("Active") 
+                     @generated @active @default(true) 
+                     @list.yesno @view.yesno
+  
+  created   Datetime @label("Created") 
+                     @generated @created @spanable @sortable @default("now()") 
+                     @list.date("m d, Y h:iA") 
+                     @view.date("m d, Y h:iA")
+  
+  updated   Datetime @label("Updated") 
+                     @generated @updated @spanable @sortable @default("now()")
+                     @list.date("m d, Y h:iA") 
+                     @view.date("m d, Y h:iA")
+  
+  profile   Profile  @relation({ local "profileId" foreign "id" })
+}
+
+//--------------------------------------------------------------------//
+// Connection System
+
+//A connection is a list of connections between profiles
+// ie. company, network, group, organization, etc.
+// to do a company setup, make a company profile, then add members to it.
+
+enum Roles {
+  OWNER "owner"
+  MODERATOR "moderator"
+  MEMBER "member"
+}
+
+model Connection @label("Connection" "Connections") @suggested("[owner.name] - [member.name]") @icon("users") {
+  ownerId  String   @label("Owner")
+                    @id @relation("Profile" "id") 
+                    @is.required("Owner is required")
+  
+  memberId String   @label("Member")
+                    @id @relation("Profile" "id") 
+                    @is.required("Member is required")
+  
+  role     Roles   @label("Role")
+                    @default("MEMBER")
+                    @field.text
+  
+  tags     String[] @label("Tags") 
+                    @field.tags
+                    @list.hide
+                    @view.tags
+  
+  active   Boolean  @label("Active") 
+                    @generated @active @default(true) 
+                    @list.yesno @view.yesno
+  
+  created  Datetime @label("Created") 
+                    @generated @created @spanable @sortable @default("now()") 
+                    @list.date("m d, Y h:iA") 
+                    @view.date("m d, Y h:iA")
+  
+  updated  Datetime @label("Updated") 
+                    @generated @updated @spanable @sortable @default("now()")
+                    @list.date("m d, Y h:iA") 
+                    @view.date("m d, Y h:iA")
+
+  owner    Profile  @relation({ name "connections" local "ownerId" foreign "id" })
+  member   Profile  @relation({ name "memberships" local "memberId" foreign "id" })
+}
+
+//--------------------------------------------------------------------//
+// File System
+
+model File @label("File" "Files") @suggested("[name]") @icon("file") {
+  //FIELDS:
+  id        String   @label("ID")
+                     @id @generated @default("cuid()")
+                     @list.char({ hellip false length 8 })
+  
+  profileId String   @label("Profile") @filterable 
+                     @field.relation("Profile" "id") 
+                     @is.required("Profile is required")
+  
+  name      String   @label("Name") 
+                     @searchable
+                     @field.text
+                     @is.required("Name is required")
+                     @list.detail @view.text
+  
+  url       String   @label("URL")
+                     @searchable
+                     @field.url
+                     @is.required("URL is required")
+                     @view.link
+  
+  tags      String[] @label("Tags") 
+                     @field.tags
+                     @list.hide
+                     @view.tags
+  
+  active    Boolean  @label("Active") 
+                     @generated @active @default(true) 
+                     @list.yesno @view.yesno
+  
+  created   Datetime @label("Created") 
+                     @generated @created @spanable @sortable @default("now()") 
+                     @list.date("m d, Y h:iA") 
+                     @view.date("m d, Y h:iA")
+  
+  updated   Datetime @label("Updated") 
+                     @generated @updated @spanable @sortable @default("now()")
+                     @list.date("m d, Y h:iA") 
+                     @view.date("m d, Y h:iA")
+  
+  profile   Profile  @relation({ local "profileId" foreign "id" })
+}
+
+//--------------------------------------------------------------------//
+// Address System
+
+type Address @label("Address" "Addresses") @suggested("[name]") @icon("map-marker") {
+  name         String   @label("Name") 
+                        @field.text
+                        @is.required("Name is required")
+                        @list.detail @view.text
+  
+  contact      Contact  @label("Contact")
+
+  email        String?  @label("Contact Email Address") 
+                        @field.email
+                        @is.email("Should be a valid email address")
+                        @view.email
+  
+  phone        String?  @label("Contact Phone Number") 
+                        @field.text
+                        @is.pattern("/^\+[0-9]{0,3} [0-9]+$/" "Should be a valid phone number")
+                        @view.phone
+  
+  unit         String?  @label("Unit Number")
+                        @field.text
+                        @list.text @view.text
+  
+  building     String?  @label("Building Name")
+                        @field.text
+                        @list.text @view.text
+  
+  street       String   @label("Street Address")
+                        @field.text
+                        @is.required("Street is required")
+                        @list.text @view.text
+  
+  neighborhood String?  @label("Neighborhood")
+                        @field.text
+                        @list.text @view.text
+  
+  city         String   @label("City")
+                        @filterable
+                        @field.text
+                        @is.required("City is required")
+                        @list.text @view.text
+  
+  state        String?  @label("State")
+                        @filterable
+                        @field.text
+                        @list.text @view.text
+  
+  region       String?  @label("Region")
+                        @filterable
+                        @field.text
+                        @list.text @view.text
+  
+  country      String   @label("Country")
+                        @filterable
+                        @field.country
+                        @is.required("Country is required")
+                        @list.text @view.text
+  
+  postal       String   @label("Postal Code")
+                        @filterable
+                        @field.text
+                        @is.required("Postal Code is required")
+                        @list.text @view.text
+
+  notes        String?  @label("Notes")
+                        @field.textarea
+                        @view.text
+  
+  latitude     Float?   @label("Latitude")
+  longitude    Float?   @label("Longitude")
+}
+
+type Contact @label("Contact" "Contacts") @suggested("[name]") @icon("map-marker") {
+  name         String   @label("Name") 
+                        @field.text
+                        @is.required("Name is required")
+                        @list.detail @view.text
+  
+  email        String?  @label("Email Address") 
+                        @field.email
+                        @is.email("Should be a valid email address")
+                        @view.email
+  
+  phone        String?  @label("Phone Number") 
+                        @field.text
+                        @is.pattern("/^\+[0-9]{0,3} [0-9]+$/" "Should be a valid phone number")
+                        @view.phone
+}

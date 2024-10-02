@@ -1,0 +1,22 @@
+{
+	"name": "idea-language-client",
+	"description": "Implementation of idea language server in node.",
+	"author": "Chris <chris@incept.asia>",
+	"license": "MIT",
+	"version": "0.1.8",
+	"publisher": "stackpress",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/stackpress/idea"
+	},
+	"engines": {
+		"vscode": "^1.75.0"
+	},
+	"dependencies": {
+		"vscode-languageclient": "8.1.0"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.75.1",
+		"@vscode/test-electron": "2.3.4"
+	}
+}

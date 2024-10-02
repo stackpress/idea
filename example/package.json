@@ -1,0 +1,16 @@
+{
+  "name": "with-node",
+  "version": "0.1.8",
+  "private": true,
+  "scripts": {
+    "transform": "idea",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "22.7.4",
+    "@stackpress/idea": "0.1.8",
+    "ts-morph": "22.0.0",
+    "ts-node": "10.9.1",
+    "typescript": "5.6.2"
+  }
+}

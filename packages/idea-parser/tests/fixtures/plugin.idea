@@ -1,0 +1,4 @@
+plugin "./custom-plugin" {
+  provider "custom-client-js"
+  previewFeatures ["fullTextSearch"]
+}

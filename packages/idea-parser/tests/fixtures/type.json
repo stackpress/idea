@@ -1,0 +1,654 @@
+{
+  "type": "VariableDeclaration",
+  "kind": "type",
+  "start": 0,
+  "end": 324,
+  "declarations": [
+    {
+      "type": "VariableDeclarator",
+      "start": 0,
+      "end": 324,
+      "id": {
+        "type": "Identifier",
+        "start": 5,
+        "end": 12,
+        "name": "Address"
+      },
+      "init": {
+        "type": "ObjectExpression",
+        "start": 0,
+        "end": 324,
+        "properties": [
+          {
+            "type": "Property",
+            "kind": "init",
+            "start": 0,
+            "end": 324,
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 0,
+              "end": 4,
+              "name": "attributes"
+            },
+            "value": {
+              "type": "ObjectExpression",
+              "start": 0,
+              "end": 4,
+              "properties": [
+                {
+                  "type": "Property",
+                  "kind": "init",
+                  "start": 13,
+                  "end": 42,
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 13,
+                    "end": 19,
+                    "name": "label"
+                  },
+                  "value": {
+                    "type": "ArrayExpression",
+                    "start": 13,
+                    "end": 42,
+                    "elements": [
+                      {
+                        "type": "Literal",
+                        "start": 20,
+                        "end": 29,
+                        "value": "Address",
+                        "raw": "'Address'"
+                      },
+                      {
+                        "type": "Literal",
+                        "start": 30,
+                        "end": 41,
+                        "value": "Addresses",
+                        "raw": "'Addresses'"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Property",
+            "kind": "init",
+            "start": 0,
+            "end": 324,
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 0,
+              "end": 4,
+              "name": "columns"
+            },
+            "value": {
+              "type": "ObjectExpression",
+              "start": 0,
+              "end": 4,
+              "properties": [
+                {
+                  "type": "Property",
+                  "kind": "init",
+                  "start": 47,
+                  "end": 110,
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 47,
+                    "end": 53,
+                    "name": "street"
+                  },
+                  "value": {
+                    "type": "ObjectExpression",
+                    "start": 55,
+                    "end": 110,
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 55,
+                        "end": 61,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 55,
+                          "end": 61,
+                          "name": "type"
+                        },
+                        "value": {
+                          "type": "Literal",
+                          "start": 55,
+                          "end": 61,
+                          "value": "String",
+                          "raw": "\"String\""
+                        }
+                      },
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 55,
+                        "end": 110,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 55,
+                          "end": 61,
+                          "name": "attributes"
+                        },
+                        "value": {
+                          "type": "ObjectExpression",
+                          "start": 55,
+                          "end": 61,
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 65,
+                              "end": 83,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 65,
+                                "end": 77,
+                                "name": "field.input"
+                              },
+                              "value": {
+                                "type": "ArrayExpression",
+                                "start": 65,
+                                "end": 83,
+                                "elements": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 78,
+                                    "end": 82,
+                                    "name": "Text"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 84,
+                              "end": 96,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 84,
+                                "end": 96,
+                                "name": "is.required"
+                              },
+                              "value": {
+                                "type": "Literal",
+                                "start": 84,
+                                "end": 96,
+                                "value": true,
+                                "raw": "true"
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 97,
+                              "end": 107,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 97,
+                                "end": 107,
+                                "name": "list.hide"
+                              },
+                              "value": {
+                                "type": "Literal",
+                                "start": 97,
+                                "end": 107,
+                                "value": true,
+                                "raw": "true"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "Property",
+                  "kind": "init",
+                  "start": 110,
+                  "end": 162,
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 110,
+                    "end": 114,
+                    "name": "city"
+                  },
+                  "value": {
+                    "type": "ObjectExpression",
+                    "start": 118,
+                    "end": 162,
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 118,
+                        "end": 125,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 118,
+                          "end": 125,
+                          "name": "type"
+                        },
+                        "value": {
+                          "type": "Literal",
+                          "start": 118,
+                          "end": 125,
+                          "value": "String?",
+                          "raw": "\"String?\""
+                        }
+                      },
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 118,
+                        "end": 162,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 118,
+                          "end": 125,
+                          "name": "attributes"
+                        },
+                        "value": {
+                          "type": "ObjectExpression",
+                          "start": 118,
+                          "end": 125,
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 128,
+                              "end": 146,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 128,
+                                "end": 140,
+                                "name": "field.input"
+                              },
+                              "value": {
+                                "type": "ArrayExpression",
+                                "start": 128,
+                                "end": 146,
+                                "elements": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 141,
+                                    "end": 145,
+                                    "name": "Text"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 147,
+                              "end": 159,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 147,
+                                "end": 159,
+                                "name": "is.required"
+                              },
+                              "value": {
+                                "type": "Literal",
+                                "start": 147,
+                                "end": 159,
+                                "value": true,
+                                "raw": "true"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "Property",
+                  "kind": "init",
+                  "start": 162,
+                  "end": 273,
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 162,
+                    "end": 169,
+                    "name": "country"
+                  },
+                  "value": {
+                    "type": "ObjectExpression",
+                    "start": 170,
+                    "end": 273,
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 170,
+                        "end": 176,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 170,
+                          "end": 176,
+                          "name": "type"
+                        },
+                        "value": {
+                          "type": "Literal",
+                          "start": 170,
+                          "end": 176,
+                          "value": "String",
+                          "raw": "\"String\""
+                        }
+                      },
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 170,
+                        "end": 273,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 170,
+                          "end": 176,
+                          "name": "attributes"
+                        },
+                        "value": {
+                          "type": "ObjectExpression",
+                          "start": 170,
+                          "end": 176,
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 180,
+                              "end": 204,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 180,
+                                "end": 193,
+                                "name": "field.select"
+                              },
+                              "value": {
+                                "type": "ArrayExpression",
+                                "start": 180,
+                                "end": 204,
+                                "elements": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 194,
+                                    "end": 203,
+                                    "name": "Countries"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 205,
+                              "end": 226,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 205,
+                                "end": 215,
+                                "name": "is.option"
+                              },
+                              "value": {
+                                "type": "ArrayExpression",
+                                "start": 205,
+                                "end": 226,
+                                "elements": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 216,
+                                    "end": 225,
+                                    "name": "Countries"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 227,
+                              "end": 248,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 227,
+                                "end": 237,
+                                "name": "list.text"
+                              },
+                              "value": {
+                                "type": "ArrayExpression",
+                                "start": 227,
+                                "end": 248,
+                                "elements": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 238,
+                                    "end": 247,
+                                    "name": "Uppercase"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 249,
+                              "end": 270,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 249,
+                                "end": 259,
+                                "name": "view.text"
+                              },
+                              "value": {
+                                "type": "ArrayExpression",
+                                "start": 249,
+                                "end": 270,
+                                "elements": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 260,
+                                    "end": 269,
+                                    "name": "Uppercase"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "Property",
+                  "kind": "init",
+                  "start": 273,
+                  "end": 323,
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 273,
+                    "end": 279,
+                    "name": "postal"
+                  },
+                  "value": {
+                    "type": "ObjectExpression",
+                    "start": 281,
+                    "end": 323,
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 281,
+                        "end": 287,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 281,
+                          "end": 287,
+                          "name": "type"
+                        },
+                        "value": {
+                          "type": "Literal",
+                          "start": 281,
+                          "end": 287,
+                          "value": "String",
+                          "raw": "\"String\""
+                        }
+                      },
+                      {
+                        "type": "Property",
+                        "kind": "init",
+                        "start": 281,
+                        "end": 323,
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 281,
+                          "end": 287,
+                          "name": "attributes"
+                        },
+                        "value": {
+                          "type": "ObjectExpression",
+                          "start": 281,
+                          "end": 287,
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 291,
+                              "end": 309,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 291,
+                                "end": 303,
+                                "name": "field.input"
+                              },
+                              "value": {
+                                "type": "ArrayExpression",
+                                "start": 291,
+                                "end": 309,
+                                "elements": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 304,
+                                    "end": 308,
+                                    "name": "Text"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "kind": "init",
+                              "start": 310,
+                              "end": 322,
+                              "method": false,
+                              "shorthand": false,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 310,
+                                "end": 322,
+                                "name": "is.required"
+                              },
+                              "value": {
+                                "type": "Literal",
+                                "start": 310,
+                                "end": 322,
+                                "value": true,
+                                "raw": "true"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

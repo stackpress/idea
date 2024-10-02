@@ -1,0 +1,34 @@
+{
+  "name": "@stackpress/idea-parser",
+  "version": "0.1.8",
+  "license": "MIT",
+  "description": "Parses ideas to AST and readable JSON.",
+  "author": "Chris <chris@incept.asia>",
+  "homepage": "https://github.com/stackpress/idea",
+  "bugs": "https://github.com/stackpress/idea/issues",
+  "repository": "stackpress/idea",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "npm run build:tsc && npm run build:files",
+    "build:tsc": "tsc",
+    "build:files": "cp ./README.md ./dist/ && cp ./package.json ./dist/ && cp ./LICENSE ./dist/",
+    "test": "nyc cross-env DATABASE_URL=test ts-mocha tests/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/chai": "4.3.5",
+    "@types/deep-equal-in-any-order": "1.0.1",
+    "@types/expect": "24.3.0",
+    "@types/mocha": "10.0.1",
+    "@types/node": "22.7.4",
+    "chai": "4.3.7",
+    "cross-env": "7.0.3",
+    "deep-equal-in-any-order": "",
+    "mocha": "10.2.0",
+    "nyc": "15.1.0",
+    "ts-mocha": "10.0.0",
+    "ts-morph": "22.0.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.6.2"
+  }
+}

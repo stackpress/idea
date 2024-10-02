@@ -1,0 +1,230 @@
+{
+  "type": "VariableDeclaration",
+  "kind": "prop",
+  "start": 0,
+  "end": 179,
+  "declarations": [
+    {
+      "type": "VariableDeclarator",
+      "start": 5,
+      "end": 179,
+      "id": {
+        "type": "Identifier",
+        "name": "Sample",
+        "start": 5,
+        "end": 11
+      },
+      "init": {
+        "type": "ObjectExpression",
+        "start": 12,
+        "end": 179,
+        "properties": [
+          {
+            "type": "Property",
+            "start": 16,
+            "end": 27,
+            "key": {
+              "type": "Identifier",
+              "start": 16,
+              "end": 20,
+              "name": "type"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 21,
+              "end": 27,
+              "value": "text",
+              "raw": "'text'"
+            }
+          },
+          {
+            "type": "Property",
+            "start": 30,
+            "end": 152,
+            "key": {
+              "type": "Identifier",
+              "start": 30,
+              "end": 37,
+              "name": "options"
+            },
+            "value": {
+              "type": "ArrayExpression",
+              "start": 38,
+              "end": 152,
+              "elements": [
+                {
+                  "type": "ObjectExpression",
+                  "start": 44,
+                  "end": 80,
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "start": 46,
+                      "end": 67,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 46,
+                        "end": 51,
+                        "name": "label"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 52,
+                        "end": 67,
+                        "value": "United States",
+                        "raw": "'United States'"
+                      }
+                    },
+                    {
+                      "type": "Property",
+                      "start": 68,
+                      "end": 78,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 68,
+                        "end": 73,
+                        "name": "value"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 74,
+                        "end": 78,
+                        "value": "US",
+                        "raw": "'US'"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "ObjectExpression",
+                  "start": 85,
+                  "end": 114,
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "start": 87,
+                      "end": 101,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 87,
+                        "end": 92,
+                        "name": "label"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 93,
+                        "end": 101,
+                        "value": "Mexico",
+                        "raw": "'Mexico'"
+                      }
+                    },
+                    {
+                      "type": "Property",
+                      "start": 102,
+                      "end": 112,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 102,
+                        "end": 107,
+                        "name": "value"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 108,
+                        "end": 112,
+                        "value": "MX",
+                        "raw": "'MX'"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "ObjectExpression",
+                  "start": 119,
+                  "end": 148,
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "start": 121,
+                      "end": 135,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 121,
+                        "end": 126,
+                        "name": "label"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 127,
+                        "end": 135,
+                        "value": "Canada",
+                        "raw": "'Canada'"
+                      }
+                    },
+                    {
+                      "type": "Property",
+                      "start": 136,
+                      "end": 146,
+                      "key": {
+                        "type": "Identifier",
+                        "start": 136,
+                        "end": 141,
+                        "name": "value"
+                      },
+                      "value": {
+                        "type": "Literal",
+                        "start": 142,
+                        "end": 146,
+                        "value": "CA",
+                        "raw": "'CA'"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "type": "Property",
+            "start": 155,
+            "end": 177,
+            "key": {
+              "type": "Identifier",
+              "start": 155,
+              "end": 160,
+              "name": "sizes"
+            },
+            "value": {
+              "type": "ArrayExpression",
+              "start": 161,
+              "end": 177,
+              "elements": [
+                {
+                  "type": "Literal",
+                  "start": 162,
+                  "end": 166,
+                  "value": "xl",
+                  "raw": "'xl'"
+                },
+                {
+                  "type": "Literal",
+                  "start": 167,
+                  "end": 171,
+                  "value": "sm",
+                  "raw": "'sm'"
+                },
+                {
+                  "type": "Literal",
+                  "start": 172,
+                  "end": 176,
+                  "value": "md",
+                  "raw": "'md'"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

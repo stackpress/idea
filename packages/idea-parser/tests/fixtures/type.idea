@@ -1,0 +1,6 @@
+type Address @label("Address" "Addresses") {
+  street  String    @field.input(Text) @is.required @list.hide
+  city    String?   @field.input(Text) @is.required
+  country String    @field.select(Countries) @is.option(Countries) @list.text(Uppercase) @view.text(Uppercase)
+  postal  String    @field.input(Text) @is.required
+}

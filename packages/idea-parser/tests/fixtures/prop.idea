@@ -1,0 +1,10 @@
+prop Sample {
+  type "text"
+  options [
+    { label "United States" value "US" }
+    { label "Mexico" value "MX" }
+    { label "Canada" value "CA" }
+  ]
+  sizes ["xl" "sm" "md"]
+}
+

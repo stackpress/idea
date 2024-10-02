@@ -1,0 +1,54 @@
+plugin "./dist/make-enums" {
+  ts true
+  output "./src/enums.ts"
+}
+
+enum Roles {
+  ADMIN   "ADMIN"
+  MANAGER "MANAGER"
+  USER    "USER"
+}
+
+prop RoleProps {
+  options [
+    { label "Admin" value "ADMIN" }
+    { label "Manager" value "MANAGER" }
+    { label "User" value "USER" }
+  ]
+}
+
+type Address @label("Address" "Addresses") {
+  street  String    @field.text @list.hide
+  city    String?   @field.text
+  country String    @field.country @list.uppercase @view.uppercase
+  postal  String    @field.text
+}
+
+model User @label("User" "Users") {
+  id        String   @label("ID")         @db.char(21) @id @default("cuid()")
+  username  String   @label("Username")   @db.varchar(255) @unique @searchable             @field.text
+  companyId String?  @label("Company")    @db.char(21) @relation("Company" "id" "name")    @field.modelcomplete("Company" "id" "name") 
+  name      String   @label("Name")       @db.varchar(255) @searchable                     @field.text
+  role      Roles    @label("Role")       @db.varchar(255) @default("USER") @filterable    @field.select(RoleProps) @list.lowercase @view.lowercase
+  active    Boolean  @label("Active")     @default(true) @filterable                       @field.switch @list.yesno @view.yesno
+  lastLogin Datetime @label("Last Login") @default("now()")                                @list.date
+  created   Datetime @label("Created")    @default("now()") @filterable @sortable          @list.date
+  updated   Datetime @label("Updated")    @default("now()") @updated @filterable @sortable @list.date
+}
+
+model Company @label("Company" "Companies") {
+  id         String   @label("ID")         @db.char(21) @id @default("cuid()")
+  name       String   @label("Name")       @db.varchar(255) @unique @searchable             @field.text
+  country    String   @label("Country")    @db.char(2) @filterable                          @field.country
+  address    Address  @label("Address")                                                     @field.fieldset("Address" false) @list.hide @view.table
+  contact    String?  @label("Contact")    @db.varchar(255)                                 @field.text
+  email      String?  @label("Email")      @db.varchar(255)                                 @field.email @list.email @view.email
+  phone      String?  @label("Phone")      @db.varchar(255)                                 @field.phone @list.phone @view.phone
+  files      String[] @label("Files")                                                       @field.filelist @list.hide @view.line
+  references Hash?    @label("References")                                                  @field.metadata @list.hide @view.metadata
+  supplier   Boolean  @label("Supplier")   @default(false)                                  @field.switch @list.yesno @view.yesno
+  approved   Boolean  @label("Approved")   @default(false)                                  @field.switch @list.yesno @view.yesno
+  active     Boolean  @label("Active")     @default(true) @filterable                       @field.switch @list.yesno @view.yesno
+  created    Datetime @label("Created")    @default("now()") @filterable @sortable          @list.date
+  updated    Datetime @label("Updated")    @default("now()") @updated @filterable @sortable @list.date
+}

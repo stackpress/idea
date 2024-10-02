@@ -1,0 +1,27 @@
+{
+  "name": "@stackpress/idea",
+  "version": "0.1.8",
+  "license": "MIT",
+  "description": "An open source schema file standard and generator",
+  "author": "Chris <chris@incept.asia>",
+  "homepage": "https://github.com/stackpress/idea",
+  "bugs": "https://github.com/stackpress/idea/issues",
+  "repository": "stackpress/idea",
+  "bin": {
+    "idea": "./bin.js"
+  },
+  "scripts": {
+    "build": "npm run build:tsc && npm run build:files",
+    "build:tsc": "tsc",
+    "build:files": "cp ./README.md ./dist/ && cp ./package.json ./dist/ && cp ./LICENSE ./dist/"
+  },
+  "dependencies": {
+    "@stackpress/idea-parser": "0.1.8",
+    "@stackpress/idea-transformer": "0.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "22.7.4",
+    "ts-node": "10.9.1",
+    "typescript": "5.6.2"
+  }
+}
