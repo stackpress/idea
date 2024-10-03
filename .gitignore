@@ -145,3 +145,4 @@ example/src/enums.ts
 packages/idea-language/client/package-lock.json
 packages/idea-language/server/package-lock.json
 packages/idea-transformer/tests/out
+.DS_Store
