@@ -11,7 +11,7 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/stackpress/idea/blob/main/docs/transform.md">Transform an Idea</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://marketplace.visualstudio.com/items?itemName=ossph.idea-langugage">Code Extension</a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=stackpress.idea-schema">Code Extension</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/stackpress/idea/blob/main/docs/plugins.md">Plugins</a>
   <br />

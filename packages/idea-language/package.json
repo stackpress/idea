@@ -1,6 +1,6 @@
 {
-	"name": "idea-langugage",
-	"displayName": "Idea",
+	"name": "idea-schema",
+	"displayName": "Idea Schema",
 	"description": "Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .idea files.",
 	"version": "0.1.8",
   "license": "Apache-2.0",
