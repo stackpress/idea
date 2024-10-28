@@ -5,8 +5,8 @@ import type {
   DeclarationToken 
 } from '../types';
 
-import Exception from '../types/Exception';
-import Lexer from '../types/Lexer';
+import Exception from '../Exception';
+import Lexer from '../Lexer';
 
 import AbstractTree from './AbstractTree';
 import EnumTree from './EnumTree';

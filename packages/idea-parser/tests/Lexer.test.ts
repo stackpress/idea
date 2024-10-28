@@ -7,8 +7,8 @@ import type {
 
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import Lexer from '../src/types/Lexer';
-import Compiler from '../src/types/Compiler';
+import Lexer from '../src/Lexer';
+import Compiler from '../src/Compiler';
 import definitions, { data } from '../src/definitions';
 
 describe('Lexer/Compiler', () => {

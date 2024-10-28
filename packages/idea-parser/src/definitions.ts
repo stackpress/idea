@@ -25,7 +25,7 @@ const definitions: Record<string, Reader> = {
   ),
   'note': (code, index) => reader(
     '_Note', 
-    /^\/\*(?:(?!\*\/).)+\*\/$/s, 
+    /^\/\*(?:(?!\*\/).)+\*\/$/g, 
     code, 
     index
   ),

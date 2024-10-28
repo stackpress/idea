@@ -5,7 +5,7 @@ import type {
   ObjectToken 
 } from '../types';
 
-import Lexer from '../types/Lexer';
+import Lexer from '../Lexer';
 import { scan } from '../definitions';
 
 import AbstractTree from './AbstractTree';

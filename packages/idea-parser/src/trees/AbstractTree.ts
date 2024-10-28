@@ -1,7 +1,7 @@
 //types
 import type { DeclarationToken } from '../types';
 
-import Lexer from '../types/Lexer';
+import Lexer from '../Lexer';
 
 import definitions from '../definitions';
 

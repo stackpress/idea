@@ -1,5 +1,5 @@
 //types
-import type { Definition, Reader, Parser, Token } from '../types';
+import type { Definition, Reader, Parser, Token } from './types';
 
 import Exception from './Exception';
 

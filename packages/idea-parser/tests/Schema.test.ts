@@ -3,7 +3,7 @@ import { describe, it } from 'mocha';
 import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
 import SchemaTree from '../src/trees/SchemaTree';
-import Compiler from '../src/types/Compiler';
+import Compiler from '../src/Compiler';
 
 use(deepEqualInAnyOrder);
 

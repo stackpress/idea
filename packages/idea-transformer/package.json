@@ -1,6 +1,6 @@
 {
   "name": "@stackpress/idea-transformer",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "license": "Apache-2.0",
   "description": "A programmatical command line interface used by projects and that calls on external transformers to make relevant code",
   "author": "Chris <chris@incept.asia>",
@@ -9,14 +9,20 @@
   "repository": "stackpress/idea",
   "main": "index.js",
   "types": "index.d.ts",
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts",
+    "LICENSE",
+    "README.md",
+    "tsconfig.json"
+  ],
   "scripts": {
-    "build": "npm run build:tsc && npm run build:files",
-    "build:tsc": "tsc",
-    "build:files": "cp ./README.md ./dist/ && cp ./package.json ./dist/ && cp ./LICENSE ./dist/",
+    "build": "tsc",
     "test": "nyc ts-mocha tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/idea-parser": "0.1.9"
+    "@stackpress/idea-parser": "0.1.10"
   },
   "devDependencies": {
     "@types/chai": "4.3.5",
@@ -27,7 +33,7 @@
     "mocha": "10.2.0",
     "nyc": "15.1.0",
     "ts-mocha": "10.0.0",
-    "ts-morph": "22.0.0",
+    "ts-morph": "23.0.0",
     "ts-node": "10.9.2",
     "typescript": "5.6.2"
   }

@@ -6,7 +6,7 @@ import type {
   DeclarationToken 
 } from '../types';
 
-import Lexer from '../types/Lexer';
+import Lexer from '../Lexer';
 import { scalar, scan } from '../definitions';
 
 import AbstractTree from './AbstractTree';

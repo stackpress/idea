@@ -1,7 +1,7 @@
 //models
 import { DeclarationToken, IdentifierToken, PropertyToken } from '../types';
 
-import Lexer from '../types/Lexer';
+import Lexer from '../Lexer';
 import TypeTree from './TypeTree';
 
 import { scan } from '../definitions';

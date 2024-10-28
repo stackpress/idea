@@ -6,7 +6,7 @@ import type {
   PropertyToken 
 } from '../types';
 
-import Lexer from '../types/Lexer';
+import Lexer from '../Lexer';
 import { data, scan } from '../definitions';
 
 import AbstractTree from './AbstractTree';

@@ -18,7 +18,7 @@ import type {
   IdentifierToken, 
   DeclarationToken,
   FinalSchemaConfig
-} from '../types';
+} from './types';
 
 import Exception from './Exception';
 
