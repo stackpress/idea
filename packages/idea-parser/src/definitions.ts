@@ -25,7 +25,9 @@ const definitions: Record<string, Reader> = {
   ),
   'note': (code, index) => reader(
     '_Note', 
-    /^\/\*(?:(?!\*\/).)+\*\/$/g, 
+    //@ts-ignore - This regular expression flag is only 
+    //available when targeting 'es2018' or later.
+    /^\/\*(?:(?!\*\/).)+\*\/$/s, 
     code, 
     index
   ),
