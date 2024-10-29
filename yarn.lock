@@ -305,10 +305,10 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
-"@stackpress/types@0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@stackpress/types/-/types-0.1.3.tgz#9ec4e76c02d2ecd33298ed28e2c1aafb622fe59d"
-  integrity sha512-UKcA1bk0xFaCLZG+PpoGU9WpsgMor/0M0cgId8I7lIDoWYwXfjiwn68wPncy+5qwQzedeX0pXUNrdv7VQDsJhw==
+"@stackpress/types@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@stackpress/types/-/types-0.1.4.tgz#f391171ed2377bf9ad06895158df67a2a64ece9a"
+  integrity sha512-0tyTDqvPFnE7HackC4kshNxLsc4JRAiZy8BdI/oan8AzWTFYWvl2Yh5GFDGDffWs/pmPuQjdIOuBf6TLpalhGQ==
 
 "@ts-morph/common@~0.24.0":
   version "0.24.0"
