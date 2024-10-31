@@ -22,6 +22,7 @@
     "test": "nyc ts-mocha tests/*.test.ts"
   },
   "dependencies": {
+    "@stackpress/types": "0.1.7",
     "@stackpress/idea-parser": "0.1.14"
   },
   "devDependencies": {

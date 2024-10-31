@@ -22,7 +22,7 @@
     "test": "nyc cross-env DATABASE_URL=test ts-mocha tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/types": "0.1.5"
+    "@stackpress/types": "0.1.7"
   },
   "devDependencies": {
     "@types/chai": "4.3.5",
