@@ -13,7 +13,7 @@
     "build:transformer": "yarn --cwd packages/idea-transformer build",
     "build:idea": "yarn --cwd packages/idea build",
     "build:example": "yarn --cwd example build",
-    "transform": "yarn --cwd example transform -i ./my.idea",
+    "transform": "yarn --cwd example transform",
     "test": "yarn test:parser && yarn test:transformer",
     "test:parser": "yarn --cwd packages/idea-parser test",
     "test:transformer": "yarn --cwd packages/idea-transformer test"

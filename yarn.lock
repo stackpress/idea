@@ -438,10 +438,10 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
-"@stackpress/types@0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@stackpress/types/-/types-0.1.7.tgz#e8191d44f32efbe73076254cabca382ad76ad5d3"
-  integrity sha512-zOkGJnLEH1YwtUIxMA4rZ/WDveDn29mvIvwefbLFTfBIAp/s+caZ0kfUCyg4sY6zTuDJXuZ0X6/oxqbiA/CHjw==
+"@stackpress/types@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@stackpress/types/-/types-0.1.9.tgz#ddabb187bd8a847cefc903dd4ebce92df5f40824"
+  integrity sha512-aRZvxCfnF6ocjsltLPoEB7op+BKG6iNuuROfZXD0Qded6p9ZQ35VBtRkKlcpar19TH1m0QpKQ0119AaKDGXrBA==
   dependencies:
     "@inquirer/prompts" "7.0.1"
 

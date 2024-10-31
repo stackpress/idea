@@ -1,6 +1,7 @@
 //types
 import { PluginProps } from './Transformer';
 //others
+import Terminal from '@stackpress/types/dist/Terminal';
 import Transformer from './Transformer';
 import Loader from './Loader';
 
@@ -8,25 +9,11 @@ export type CLIProps = { cli: Terminal };
 export type TerminalTransformer = Transformer<CLIProps>
 export type PluginWithCLIProps = PluginProps<CLIProps>;
 
-export default class Terminal {
+export default class IdeaTerminal extends Terminal {
   // brand to prefix in all logs
   public static brand: string = '[IDEA]';
   // you can use a custom extension
   public static extension: string = 'idea';
-
-  /**
-   * Outputs an error log 
-   */
-  public static error(message: string, variables: string[] = []) {
-    this.output(message, variables, '\x1b[31m%s\x1b[0m');
-  }
-
-  /**
-   * Outputs an info log 
-   */
-  public static info(message: string, variables: string[] = []) {
-    this.output(message, variables, '\x1b[34m%s\x1b[0m');
-  }
 
   /**
    * Outputs a log 
@@ -174,99 +161,29 @@ export default class Terminal {
     return params;
   }
 
-  /**
-   * Outputs a success log 
-   */
-  public static success(message: string, variables: string[] = []) {
-    this.output(message, variables, '\x1b[32m%s\x1b[0m');
-  }
-
-  /**
-   * Outputs a system log 
-   */
-  public static system(message: string, variables: string[] = []) {
-    this.output(message, variables, '\x1b[35m%s\x1b[0m');
-  }
-
-  /**
-   * Outputs a warning log 
-   */
-  public static warning(message: string, variables: string[] = []) {
-    this.output(message, variables, '\x1b[33m%s\x1b[0m');
-  }
-
   //access to static methods from the instance
-  protected _terminal: typeof Terminal;
-  //current working directory
-  protected _cwd: string;
-  //cached cli args
-  protected _args: string[];
-  //cached terminal params (parsed argv)
-  protected _params: Record<string, any>|null = null;
+  public readonly terminal: typeof IdeaTerminal;
   //transformer
   protected _transformer: TerminalTransformer;
-
-  /**
-   * Returns current working directory
-   */
-  public get cwd() {
-    return this._cwd;
-  }
-
-  /**
-   * Creates the loader instance
-   */
-  public get params() {
-    if (!this._params) {
-      this._params = this.terminal.params(...this._args);
-    }
-    return this._params;
-  }
-
-  /**
-   * Returns the static terminal interface
-   */
-  public get terminal() {
-    return this._terminal;
-  }
 
   /**
    * Preloads the input and output settings
    */
   constructor(args: string[], cwd = Loader.cwd()) {
-    //set current working directory
-    this._cwd = cwd;
-    //set cli args
-    this._args = args;
-    this._terminal = this.constructor as typeof Terminal;
+    super(args, cwd);
+    this.terminal = this.constructor as typeof IdeaTerminal;
     //get io from commandline
     const input = Loader.absolute(
       //get the idea location from the cli
       this.expect(
         [ 'input', 'i' ], 
-        `${cwd}/schema.${this._terminal.extension}`
+        `${cwd}/schema.${this.terminal.extension}`
       ), 
       cwd
     );
     this._transformer = new Transformer<CLIProps>(input, cwd);
-  }
-
-  /**
-   * Retrieves the first value found from the given flag/s in cli
-   */
-  public expect(flags: string[], defaults: any) {
-    for (const flag of flags) {
-      if (this.params[flag]) {
-        return this.params[flag];
-      }
-    }
-    return defaults;
-  }
-
-  /**
-   * Runs the cli
-   */
-  public run() {
-    this._transformer.transform({ cli: this });
+    this.on('transform', _ => {
+      this._transformer.transform({ cli: this });
+    });
   }
 }

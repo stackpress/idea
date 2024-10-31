@@ -75,7 +75,7 @@ use "./another.idea"
 To execute an idea, you just need to run the following command.
 
 ```bash
-$ npx idea -i my.idea
+$ npx idea transform -i my.idea
 ```
 
 Learn more:

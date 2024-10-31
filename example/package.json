@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "transform": "idea",
+    "transform": "idea transform -i ./my.idea",
     "build": "tsc"
   },
   "devDependencies": {
     "@types/node": "22.7.4",
-    "@stackpress/idea": "0.1.14",
+    "@stackpress/idea": "0.1.15",
     "ts-morph": "23.0.0",
     "ts-node": "10.9.1",
     "typescript": "5.6.2"
