@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@stackpress/idea-parser": "0.1.17",
-    "@stackpress/types": "0.1.12"
+    "@stackpress/types": "0.1.15"
   },
   "devDependencies": {
     "@types/chai": "4.3.5",
