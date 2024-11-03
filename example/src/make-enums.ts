@@ -2,7 +2,6 @@ import type { PluginWithCLIProps, EnumConfig } from '@stackpress/idea';
 
 import path from 'path';
 import { Project, IndentationText } from 'ts-morph';
-import { Loader } from '@stackpress/idea';
 
 export default function generate({ config, schema, cli }: PluginWithCLIProps) {
   // 1. Config
@@ -14,7 +13,7 @@ export default function generate({ config, schema, cli }: PluginWithCLIProps) {
   const lang = config.lang || 'ts';
   // 2. Project
   //find the absolute path from the output config
-  const destination = Loader.absolute(config.output as string);
+  const destination = cli.transformer.loader.absolute(config.output as string);
   //output directory from the destination
   const dirname = path.dirname(destination);
   //file name from the destination

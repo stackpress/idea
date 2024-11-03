@@ -14,7 +14,7 @@ export default class IdeaTerminal extends Terminal {
   //@ts-ignore - Types of construct signatures are incompatible.
   public readonly terminal: typeof IdeaTerminal;
   //transformer
-  protected _transformer: Transformer<CLIProps>;
+  public readonly transformer: Transformer<CLIProps>;
 
   /**
    * Preloads the input and output settings
@@ -27,9 +27,9 @@ export default class IdeaTerminal extends Terminal {
       [ 'input', 'i' ], 
       `${this.cwd}/schema.${this.terminal.extension}`
     );
-    this._transformer = new Transformer<CLIProps>(input, options);
+    this.transformer = new Transformer<CLIProps>(input, options);
     this.on('transform', _ => {
-      this._transformer.transform({ cli: this });
+      this.transformer.transform({ cli: this });
     });
   }
 }
