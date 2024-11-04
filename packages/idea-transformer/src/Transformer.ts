@@ -14,7 +14,7 @@ export default class Transformer<T extends Record<string, unknown>> {
   //cached input file
   public readonly input: string;
   //cached schema
-  protected _schema: SchemaConfig|null = null;
+  protected _schema?: SchemaConfig;
 
   /**
    * Tries to load the schema file
