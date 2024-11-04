@@ -438,10 +438,40 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
+"@stackpress/idea-parser@0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@stackpress/idea-parser/-/idea-parser-0.1.20.tgz#359215964a6931bb26c74f7aab1cc2093e7109f0"
+  integrity sha512-3Z1GMr69wjd6Zo3uRBhAQEYpwjizWX32iTkIqADMdZ408T2nCd6AvZ34Cvjg8C16oCZfptUAwlGK0oi26YuY4A==
+  dependencies:
+    "@stackpress/types" "0.1.18"
+
+"@stackpress/idea-transformer@0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@stackpress/idea-transformer/-/idea-transformer-0.1.20.tgz#0271f70a8f735fcf8bbaf672e51ac54c70773713"
+  integrity sha512-gKin5rRaC5wOnuh+PMyIA0I6mGZz4ESjLycwaWX5JrDpT0umEEYVZcmsC1YMsfbhZm7oQTk36tYkZUsktWyiCw==
+  dependencies:
+    "@stackpress/idea-parser" "0.1.20"
+    "@stackpress/types" "0.1.18"
+
+"@stackpress/idea@0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@stackpress/idea/-/idea-0.1.20.tgz#5044ad6e9a8dfcc0cebebf493222896bf98f41a1"
+  integrity sha512-CJCyFfpSNT8f+b4djRu8OfYSst5InKauvPE938O6AyFKN0ByHWGA/rNN6E7jjpEwFzHz+BaGeHeb2ECAzK8rbg==
+  dependencies:
+    "@stackpress/idea-parser" "0.1.20"
+    "@stackpress/idea-transformer" "0.1.20"
+
 "@stackpress/types@0.1.18":
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/@stackpress/types/-/types-0.1.18.tgz#fa88fb546adbd142fab1ec67c7ee437252117083"
   integrity sha512-DJfO3bhnFpx6OLlSlJy7j75mbcQMJCj1XQJKkvZ+9RPx8hi9RiJZMNHSbhWWAhqRRlyHsSsAZlODkChT3u91qQ==
+  dependencies:
+    "@inquirer/prompts" "7.0.1"
+
+"@stackpress/types@0.1.21":
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/@stackpress/types/-/types-0.1.21.tgz#92c32cb2b887bb86a7540281b9d84693c9f83362"
+  integrity sha512-QdX0zxviHK7W2il2qIxztXOsAuk62XaWCCmV95ZMFT16hiBXpV2Hdx6LNWV2NZRac3GzXLMjE/vRydoSuZs9bw==
   dependencies:
     "@inquirer/prompts" "7.0.1"
 
