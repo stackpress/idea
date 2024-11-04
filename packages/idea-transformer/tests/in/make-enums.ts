@@ -1,10 +1,11 @@
 //types
-import type { EnumConfig } from '@stackpress/idea';
+import type { EnumConfig } from '@stackpress/idea-parser/dist/types';
 import type { PluginProps } from '../../src';
 //others
 import path from 'path';
 import { Project, IndentationText } from 'ts-morph';
-import { Loader, Exception } from '../../src';
+import Exception from '@stackpress/idea-parser/dist/Exception';
+
 
 // plugin "./make-enums" {
 //   ts true
@@ -21,7 +22,7 @@ export default function generate({ config, schema, cwd }: PluginProps<{}>) {
   const lang = config.lang || 'ts';
   // 2. Project
   //find the absolute path from the output config
-  const destination = Loader.absolute(config.output as string, cwd);
+  const destination = path.resolve(cwd, config.output as string);
   //output directory from the destination
   const dirname = path.dirname(destination);
   //file name from the destination

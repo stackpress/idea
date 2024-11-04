@@ -1,5 +1,5 @@
 plugin "./in/make-enums" {
-  ts true
+  lang "ts"
   output "./out/enums.ts"
 }
 

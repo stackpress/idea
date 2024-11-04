@@ -8,7 +8,7 @@ import { parse, Exception } from '@stackpress/idea-parser';
 import FileLoader from '@stackpress/types/dist/filesystem/FileLoader';
 import NodeFS from '@stackpress/types/dist/filesystem/NodeFS';
 
-export default class Transformer<T extends {}> {
+export default class Transformer<T extends Record<string, unknown>> {
   //current working directory
   public readonly loader: FileLoader;
   //cached input file
@@ -65,7 +65,7 @@ export default class Transformer<T extends {}> {
   /**
    * Preloads the input
    */
-  constructor(input: string, options: TransformerOptions) {
+  constructor(input: string, options: TransformerOptions = {}) {
     this.loader = new FileLoader(options.fs || new NodeFS(), options.cwd);
     this.input = this.loader.absolute(input);
   }

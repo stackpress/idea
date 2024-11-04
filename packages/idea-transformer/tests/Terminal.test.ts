@@ -10,7 +10,7 @@ const cwd = __dirname;
 
 describe('Terminal Tests', () => {
   it('Should run cli', () => {
-    const terminal = new Terminal(['-i', './schema.idea'], cwd);
+    const terminal = new Terminal(['transform', '-i', './schema.idea'], { cwd });
     expect(terminal.cwd).to.equal(cwd);
     terminal.run();
     const out = path.join(cwd, 'out/enums.ts');

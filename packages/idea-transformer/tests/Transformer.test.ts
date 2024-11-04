@@ -4,16 +4,14 @@ import path from 'path';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 //for testing
-import Loader from '../src/Loader';
 import Transformer from '../src/Transformer';
-import makeEnums from './in/make-enums';
 //resusable variables
 const cwd = __dirname;
-const idea = Loader.absolute('./schema.idea', cwd);
+const idea = path.resolve(cwd, 'schema.idea');
 
 describe('Transformer Tests', () => {
   it('Should get processed schema', () => {
-    const transformer = new Transformer(idea, cwd);
+    const transformer = new Transformer(idea, { cwd });
     const actual = transformer.schema;
     const output = actual.plugin?.['./in/make-enums'].output;
     expect(output).to.equal('./out/enums.ts');
@@ -28,7 +26,7 @@ describe('Transformer Tests', () => {
   }).timeout(20000);
 
   it('Should make enums', () => {
-    const transformer = new Transformer<{}>(idea, cwd);
+    const transformer = new Transformer(idea, { cwd });
     transformer.transform();
     const out = path.join(cwd, 'out/enums.ts');
     const exists = fs.existsSync(out);
