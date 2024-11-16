@@ -99,6 +99,7 @@ export default class Compiler {
   static model(token: DeclarationToken, references: UseReferences = false) {
     //ex. Foobar
     const name = token.declarations[0].id?.name;
+    const mutable = token.mutable !== false;
     const value: Record<string, any> = {};
     token.declarations[0].init.properties.forEach(property => {
       value[property.key.name] = this.data(property.value, references);
@@ -130,7 +131,7 @@ export default class Compiler {
     }
     value.columns = columns;
 
-    return [ name, { name, ...value } ] as [ string, ModelConfig ];
+    return [ name, { name, mutable, ...value } ] as [ string, ModelConfig ];
   }
 
   /**
@@ -260,6 +261,7 @@ export default class Compiler {
     }
     //ex. Foobar
     const name = token.declarations[0].id.name;
+    const mutable = token.mutable !== false;
     const value: Record<string, any> = {};
     token.declarations[0].init.properties.forEach(property => {
       value[property.key.name] = this.data(property.value, references);
@@ -291,7 +293,7 @@ export default class Compiler {
     }
     value.columns = columns;
 
-    return [ name, { name, ...value } ] as [ string, TypeConfig ];
+    return [ name, { name, mutable, ...value } ] as [ string, TypeConfig ];
   }
 
   /**

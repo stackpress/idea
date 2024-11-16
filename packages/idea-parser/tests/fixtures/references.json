@@ -62,6 +62,7 @@
   "type": {
     "Address": {
       "name": "Address",
+      "mutable": true,
       "attributes": {
         "label": [
           "Address",
@@ -132,6 +133,7 @@
   "model": {
     "User": {
       "name": "User",
+      "mutable": false,
       "attributes": {
         "label": [
           "User",

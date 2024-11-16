@@ -122,6 +122,7 @@ export type ColumnConfig = {
 
 export type TypeConfig = {
   name: string,
+  mutable: boolean,
   attributes: Record<string, Data>,
   columns: ColumnConfig[]
 };

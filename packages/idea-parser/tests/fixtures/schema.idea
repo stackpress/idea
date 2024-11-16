@@ -34,7 +34,7 @@ type Address @label("Address" "Addresses") {
   postal  String    @field.input(Text) @is.required
 }
 
-model User @label("User" "Users") {
+model User! @label("User" "Users") {
   id       String       @label("ID")         @id @default("nanoid(20)")
   username String       @label("Username")   @searchable @field.input(Text) @is.required
   password String       @label("Password")   @field.password @is.clt(80) @is.cgt(8) @is.required @list.hide @view.hide
