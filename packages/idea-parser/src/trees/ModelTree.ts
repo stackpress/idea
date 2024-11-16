@@ -35,6 +35,8 @@ export default class ModelTree extends TypeTree {
     this._lexer.expect('whitespace');
     //model Foobar
     const id = this._lexer.expect<IdentifierToken>('CapitalIdentifier');
+    //model Foobar!
+    const final = this._lexer.optional('!');
     this._lexer.expect('whitespace');
     const properties: PropertyToken[] = [];
     //model Foobar @id("foo" "bar")
@@ -62,6 +64,7 @@ export default class ModelTree extends TypeTree {
     return {
       type: 'VariableDeclaration',
       kind: 'model',
+      mutable: !Boolean(final),
       start: type.start,
       end: this._lexer.index,
       declarations: [{

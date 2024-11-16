@@ -13,4 +13,10 @@ describe('Type Tree', () => {
     //console.log(JSON.stringify(actual, null, 2));
     expect(actual).to.deep.equalInAnyOrder(expected);
   });
+  it('Should be immutable', async () => {
+    const actual = TypeTree.parse(fs.readFileSync(`${__dirname}/fixtures/mutable.idea`, 'utf8'));
+    const expected = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/mutable.json`, 'utf8'));
+    //console.log(JSON.stringify(actual, null, 2));
+    expect(actual).to.deep.equalInAnyOrder(expected);
+  });
 });

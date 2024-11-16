@@ -73,6 +73,12 @@ const definitions: Record<string, Reader> = {
     code, 
     index
   ),
+  '!': (code, index) => scan(
+    '_Final', 
+    /^!/, 
+    code, 
+    index
+  ),
   'Null': (code: string, index: number) => {
     return code.substring(index, index + 4) === 'null' 
       ? { 

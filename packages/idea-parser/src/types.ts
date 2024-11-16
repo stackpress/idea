@@ -33,6 +33,7 @@ export type SchemaToken = {
 export type DeclarationToken = {
   type: 'VariableDeclaration';
   kind: string;
+  mutable?: boolean;
   start: number;
   end: number;
   declarations: [ DeclaratorToken ];

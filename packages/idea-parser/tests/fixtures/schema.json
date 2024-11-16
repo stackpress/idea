@@ -675,6 +675,7 @@
     {
       "type": "VariableDeclaration",
       "kind": "type",
+      "mutable": true,
       "start": 540,
       "end": 864,
       "declarations": [
@@ -1329,6 +1330,7 @@
     {
       "type": "VariableDeclaration",
       "kind": "model",
+      "mutable": true,
       "start": 866,
       "end": 2136,
       "declarations": [

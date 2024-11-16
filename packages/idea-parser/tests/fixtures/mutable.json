@@ -1,14 +1,14 @@
 {
   "type": "VariableDeclaration",
   "kind": "type",
-  "mutable": true,
+  "mutable": false,
   "start": 0,
-  "end": 324,
+  "end": 325,
   "declarations": [
     {
       "type": "VariableDeclarator",
       "start": 0,
-      "end": 324,
+      "end": 325,
       "id": {
         "type": "Identifier",
         "start": 5,
@@ -18,13 +18,13 @@
       "init": {
         "type": "ObjectExpression",
         "start": 0,
-        "end": 324,
+        "end": 325,
         "properties": [
           {
             "type": "Property",
             "kind": "init",
             "start": 0,
-            "end": 324,
+            "end": 325,
             "method": false,
             "shorthand": false,
             "computed": false,
@@ -42,33 +42,33 @@
                 {
                   "type": "Property",
                   "kind": "init",
-                  "start": 13,
-                  "end": 42,
+                  "start": 14,
+                  "end": 43,
                   "method": false,
                   "shorthand": false,
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 13,
-                    "end": 19,
+                    "start": 14,
+                    "end": 20,
                     "name": "label"
                   },
                   "value": {
                     "type": "ArrayExpression",
-                    "start": 13,
-                    "end": 42,
+                    "start": 14,
+                    "end": 43,
                     "elements": [
                       {
                         "type": "Literal",
-                        "start": 20,
-                        "end": 29,
+                        "start": 21,
+                        "end": 30,
                         "value": "Address",
                         "raw": "'Address'"
                       },
                       {
                         "type": "Literal",
-                        "start": 30,
-                        "end": 41,
+                        "start": 31,
+                        "end": 42,
                         "value": "Addresses",
                         "raw": "'Addresses'"
                       }
@@ -82,7 +82,7 @@
             "type": "Property",
             "kind": "init",
             "start": 0,
-            "end": 324,
+            "end": 325,
             "method": false,
             "shorthand": false,
             "computed": false,
@@ -100,40 +100,40 @@
                 {
                   "type": "Property",
                   "kind": "init",
-                  "start": 47,
-                  "end": 110,
+                  "start": 48,
+                  "end": 111,
                   "method": false,
                   "shorthand": false,
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 47,
-                    "end": 53,
+                    "start": 48,
+                    "end": 54,
                     "name": "street"
                   },
                   "value": {
                     "type": "ObjectExpression",
-                    "start": 55,
-                    "end": 110,
+                    "start": 56,
+                    "end": 111,
                     "properties": [
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 55,
-                        "end": 61,
+                        "start": 56,
+                        "end": 62,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 55,
-                          "end": 61,
+                          "start": 56,
+                          "end": 62,
                           "name": "type"
                         },
                         "value": {
                           "type": "Literal",
-                          "start": 55,
-                          "end": 61,
+                          "start": 56,
+                          "end": 62,
                           "value": "String",
                           "raw": "\"String\""
                         }
@@ -141,45 +141,45 @@
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 55,
-                        "end": 110,
+                        "start": 56,
+                        "end": 111,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 55,
-                          "end": 61,
+                          "start": 56,
+                          "end": 62,
                           "name": "attributes"
                         },
                         "value": {
                           "type": "ObjectExpression",
-                          "start": 55,
-                          "end": 61,
+                          "start": 56,
+                          "end": 62,
                           "properties": [
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 65,
-                              "end": 83,
+                              "start": 66,
+                              "end": 84,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 65,
-                                "end": 77,
+                                "start": 66,
+                                "end": 78,
                                 "name": "field.input"
                               },
                               "value": {
                                 "type": "ArrayExpression",
-                                "start": 65,
-                                "end": 83,
+                                "start": 66,
+                                "end": 84,
                                 "elements": [
                                   {
                                     "type": "Identifier",
-                                    "start": 78,
-                                    "end": 82,
+                                    "start": 79,
+                                    "end": 83,
                                     "name": "Text"
                                   }
                                 ]
@@ -188,21 +188,21 @@
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 84,
-                              "end": 96,
+                              "start": 85,
+                              "end": 97,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 84,
-                                "end": 96,
+                                "start": 85,
+                                "end": 97,
                                 "name": "is.required"
                               },
                               "value": {
                                 "type": "Literal",
-                                "start": 84,
-                                "end": 96,
+                                "start": 85,
+                                "end": 97,
                                 "value": true,
                                 "raw": "true"
                               }
@@ -210,21 +210,21 @@
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 97,
-                              "end": 107,
+                              "start": 98,
+                              "end": 108,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 97,
-                                "end": 107,
+                                "start": 98,
+                                "end": 108,
                                 "name": "list.hide"
                               },
                               "value": {
                                 "type": "Literal",
-                                "start": 97,
-                                "end": 107,
+                                "start": 98,
+                                "end": 108,
                                 "value": true,
                                 "raw": "true"
                               }
@@ -238,40 +238,40 @@
                 {
                   "type": "Property",
                   "kind": "init",
-                  "start": 110,
-                  "end": 162,
+                  "start": 111,
+                  "end": 163,
                   "method": false,
                   "shorthand": false,
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 110,
-                    "end": 114,
+                    "start": 111,
+                    "end": 115,
                     "name": "city"
                   },
                   "value": {
                     "type": "ObjectExpression",
-                    "start": 118,
-                    "end": 162,
+                    "start": 119,
+                    "end": 163,
                     "properties": [
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 118,
-                        "end": 125,
+                        "start": 119,
+                        "end": 126,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 118,
-                          "end": 125,
+                          "start": 119,
+                          "end": 126,
                           "name": "type"
                         },
                         "value": {
                           "type": "Literal",
-                          "start": 118,
-                          "end": 125,
+                          "start": 119,
+                          "end": 126,
                           "value": "String?",
                           "raw": "\"String?\""
                         }
@@ -279,45 +279,45 @@
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 118,
-                        "end": 162,
+                        "start": 119,
+                        "end": 163,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 118,
-                          "end": 125,
+                          "start": 119,
+                          "end": 126,
                           "name": "attributes"
                         },
                         "value": {
                           "type": "ObjectExpression",
-                          "start": 118,
-                          "end": 125,
+                          "start": 119,
+                          "end": 126,
                           "properties": [
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 128,
-                              "end": 146,
+                              "start": 129,
+                              "end": 147,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 128,
-                                "end": 140,
+                                "start": 129,
+                                "end": 141,
                                 "name": "field.input"
                               },
                               "value": {
                                 "type": "ArrayExpression",
-                                "start": 128,
-                                "end": 146,
+                                "start": 129,
+                                "end": 147,
                                 "elements": [
                                   {
                                     "type": "Identifier",
-                                    "start": 141,
-                                    "end": 145,
+                                    "start": 142,
+                                    "end": 146,
                                     "name": "Text"
                                   }
                                 ]
@@ -326,21 +326,21 @@
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 147,
-                              "end": 159,
+                              "start": 148,
+                              "end": 160,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 147,
-                                "end": 159,
+                                "start": 148,
+                                "end": 160,
                                 "name": "is.required"
                               },
                               "value": {
                                 "type": "Literal",
-                                "start": 147,
-                                "end": 159,
+                                "start": 148,
+                                "end": 160,
                                 "value": true,
                                 "raw": "true"
                               }
@@ -354,40 +354,40 @@
                 {
                   "type": "Property",
                   "kind": "init",
-                  "start": 162,
-                  "end": 273,
+                  "start": 163,
+                  "end": 274,
                   "method": false,
                   "shorthand": false,
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 162,
-                    "end": 169,
+                    "start": 163,
+                    "end": 170,
                     "name": "country"
                   },
                   "value": {
                     "type": "ObjectExpression",
-                    "start": 170,
-                    "end": 273,
+                    "start": 171,
+                    "end": 274,
                     "properties": [
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 170,
-                        "end": 176,
+                        "start": 171,
+                        "end": 177,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 170,
-                          "end": 176,
+                          "start": 171,
+                          "end": 177,
                           "name": "type"
                         },
                         "value": {
                           "type": "Literal",
-                          "start": 170,
-                          "end": 176,
+                          "start": 171,
+                          "end": 177,
                           "value": "String",
                           "raw": "\"String\""
                         }
@@ -395,45 +395,45 @@
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 170,
-                        "end": 273,
+                        "start": 171,
+                        "end": 274,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 170,
-                          "end": 176,
+                          "start": 171,
+                          "end": 177,
                           "name": "attributes"
                         },
                         "value": {
                           "type": "ObjectExpression",
-                          "start": 170,
-                          "end": 176,
+                          "start": 171,
+                          "end": 177,
                           "properties": [
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 180,
-                              "end": 204,
+                              "start": 181,
+                              "end": 205,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 180,
-                                "end": 193,
+                                "start": 181,
+                                "end": 194,
                                 "name": "field.select"
                               },
                               "value": {
                                 "type": "ArrayExpression",
-                                "start": 180,
-                                "end": 204,
+                                "start": 181,
+                                "end": 205,
                                 "elements": [
                                   {
                                     "type": "Identifier",
-                                    "start": 194,
-                                    "end": 203,
+                                    "start": 195,
+                                    "end": 204,
                                     "name": "Countries"
                                   }
                                 ]
@@ -442,26 +442,26 @@
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 205,
-                              "end": 226,
+                              "start": 206,
+                              "end": 227,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 205,
-                                "end": 215,
+                                "start": 206,
+                                "end": 216,
                                 "name": "is.option"
                               },
                               "value": {
                                 "type": "ArrayExpression",
-                                "start": 205,
-                                "end": 226,
+                                "start": 206,
+                                "end": 227,
                                 "elements": [
                                   {
                                     "type": "Identifier",
-                                    "start": 216,
-                                    "end": 225,
+                                    "start": 217,
+                                    "end": 226,
                                     "name": "Countries"
                                   }
                                 ]
@@ -470,26 +470,26 @@
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 227,
-                              "end": 248,
+                              "start": 228,
+                              "end": 249,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 227,
-                                "end": 237,
+                                "start": 228,
+                                "end": 238,
                                 "name": "list.text"
                               },
                               "value": {
                                 "type": "ArrayExpression",
-                                "start": 227,
-                                "end": 248,
+                                "start": 228,
+                                "end": 249,
                                 "elements": [
                                   {
                                     "type": "Identifier",
-                                    "start": 238,
-                                    "end": 247,
+                                    "start": 239,
+                                    "end": 248,
                                     "name": "Uppercase"
                                   }
                                 ]
@@ -498,26 +498,26 @@
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 249,
-                              "end": 270,
+                              "start": 250,
+                              "end": 271,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 249,
-                                "end": 259,
+                                "start": 250,
+                                "end": 260,
                                 "name": "view.text"
                               },
                               "value": {
                                 "type": "ArrayExpression",
-                                "start": 249,
-                                "end": 270,
+                                "start": 250,
+                                "end": 271,
                                 "elements": [
                                   {
                                     "type": "Identifier",
-                                    "start": 260,
-                                    "end": 269,
+                                    "start": 261,
+                                    "end": 270,
                                     "name": "Uppercase"
                                   }
                                 ]
@@ -532,40 +532,40 @@
                 {
                   "type": "Property",
                   "kind": "init",
-                  "start": 273,
-                  "end": 323,
+                  "start": 274,
+                  "end": 324,
                   "method": false,
                   "shorthand": false,
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 273,
-                    "end": 279,
+                    "start": 274,
+                    "end": 280,
                     "name": "postal"
                   },
                   "value": {
                     "type": "ObjectExpression",
-                    "start": 281,
-                    "end": 323,
+                    "start": 282,
+                    "end": 324,
                     "properties": [
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 281,
-                        "end": 287,
+                        "start": 282,
+                        "end": 288,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 281,
-                          "end": 287,
+                          "start": 282,
+                          "end": 288,
                           "name": "type"
                         },
                         "value": {
                           "type": "Literal",
-                          "start": 281,
-                          "end": 287,
+                          "start": 282,
+                          "end": 288,
                           "value": "String",
                           "raw": "\"String\""
                         }
@@ -573,45 +573,45 @@
                       {
                         "type": "Property",
                         "kind": "init",
-                        "start": 281,
-                        "end": 323,
+                        "start": 282,
+                        "end": 324,
                         "method": false,
                         "shorthand": false,
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 281,
-                          "end": 287,
+                          "start": 282,
+                          "end": 288,
                           "name": "attributes"
                         },
                         "value": {
                           "type": "ObjectExpression",
-                          "start": 281,
-                          "end": 287,
+                          "start": 282,
+                          "end": 288,
                           "properties": [
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 291,
-                              "end": 309,
+                              "start": 292,
+                              "end": 310,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 291,
-                                "end": 303,
+                                "start": 292,
+                                "end": 304,
                                 "name": "field.input"
                               },
                               "value": {
                                 "type": "ArrayExpression",
-                                "start": 291,
-                                "end": 309,
+                                "start": 292,
+                                "end": 310,
                                 "elements": [
                                   {
                                     "type": "Identifier",
-                                    "start": 304,
-                                    "end": 308,
+                                    "start": 305,
+                                    "end": 309,
                                     "name": "Text"
                                   }
                                 ]
@@ -620,21 +620,21 @@
                             {
                               "type": "Property",
                               "kind": "init",
-                              "start": 310,
-                              "end": 322,
+                              "start": 311,
+                              "end": 323,
                               "method": false,
                               "shorthand": false,
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 310,
-                                "end": 322,
+                                "start": 311,
+                                "end": 323,
                                 "name": "is.required"
                               },
                               "value": {
                                 "type": "Literal",
-                                "start": 310,
-                                "end": 322,
+                                "start": 311,
+                                "end": 323,
                                 "value": true,
                                 "raw": "true"
                               }

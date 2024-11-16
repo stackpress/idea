@@ -189,6 +189,8 @@ export default class TypeTree extends AbstractTree<DeclarationToken> {
     this._lexer.expect('whitespace');
     //type Foobar
     const id = this._lexer.expect<IdentifierToken>('CapitalIdentifier');
+    //type Foobar!
+    const final = this._lexer.optional('!');
     this._lexer.expect('whitespace');
     const properties: PropertyToken[] = [];
     //type Foobar @id("foo" "bar")
@@ -216,6 +218,7 @@ export default class TypeTree extends AbstractTree<DeclarationToken> {
     return {
       type: 'VariableDeclaration',
       kind: 'type',
+      mutable: !Boolean(final),
       start: type.start,
       end: this._lexer.index,
       declarations: [{
