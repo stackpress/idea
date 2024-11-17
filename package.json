@@ -1,9 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "packages/idea-parser",
-    "packages/idea-transformer",
-    "packages/idea",
+    "packages/*",
     "example"
   ],
   "scripts": {
