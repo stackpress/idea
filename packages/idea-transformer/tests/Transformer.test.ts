@@ -23,6 +23,14 @@ describe('Transformer Tests', () => {
     expect(actual.type && 'Contact' in actual.type).to.be.true;
     expect(actual.enum && 'Roles' in actual.enum).to.be.true;
     expect(actual.prop && 'Config' in actual.prop).to.be.true;
+    //merge checks
+    expect(actual.model?.Profile?.columns[0].name).to.equal('id');
+    expect(actual.model?.Profile?.columns[1].name).to.equal('addresses'); 
+    expect(actual.model?.Profile?.columns[2].attributes.label?.[0]).to.equal('Full Name');
+    //final checks
+    expect(
+      actual.model?.File?.columns.find(c => c.name === 'references')
+    ).to.be.undefined; 
   }).timeout(20000);
 
   it('Should make enums', () => {

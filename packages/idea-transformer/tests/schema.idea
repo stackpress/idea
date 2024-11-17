@@ -14,11 +14,7 @@ use "./another.idea"
 //just a general information of an entity.
 
 model Profile @label("Profile" "Profiles") @suggested("[name]") @icon("user") {
-  id          String   @label("ID") 
-                       @id @generated @default("cuid()")
-                       @list.char({ hellip false length 8 })
-  
-  name        String   @label("Name") 
+  name        String   @label("Full Name") 
                        @searchable
                        @field.text
                        @is.required("Name is required")
@@ -72,7 +68,6 @@ model Profile @label("Profile" "Profiles") @suggested("[name]") @icon("user") {
   connections Connection[] @label("Connections")
   memberships Connection[] @label("Memberships")
   files       File[]       @label("Files")
-  addresses   Address[]    @label("Addresses") @default("[]")
 }
 
 //Auth is used to authenticate a profile and create a session.
@@ -185,7 +180,7 @@ model Connection @label("Connection" "Connections") @suggested("[owner.name] - [
 //--------------------------------------------------------------------//
 // File System
 
-model File @label("File" "Files") @suggested("[name]") @icon("file") {
+model File! @label("File" "Files") @suggested("[name]") @icon("file") {
   //FIELDS:
   id        String   @label("ID")
                      @id @generated @default("cuid()")

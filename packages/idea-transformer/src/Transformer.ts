@@ -1,5 +1,5 @@
 //types
-import type { SchemaConfig } from '@stackpress/idea-parser';
+import type { SchemaConfig, TypeConfig } from '@stackpress/idea-parser';
 import type { TransformerOptions } from './types';
 //others
 import fs from 'fs';
@@ -36,20 +36,50 @@ export default class Transformer<T extends Record<string, unknown>> {
             cwd: dirname, 
             fs: this.loader.fs 
           });
-          const parent = transformer.schema;
+          const child = transformer.schema;
           //soft merge the object values of enum, 
           //type, model from parent to schema
-          if (parent.prop) {
-            schema.prop = { ...parent.prop, ...schema.prop };
+          if (child.prop) {
+            schema.prop = { ...child.prop, ...schema.prop };
           }
-          if (parent.enum) {
-            schema.enum = { ...parent.enum, ...schema.enum };
+          if (child.enum) {
+            schema.enum = { ...child.enum, ...schema.enum };
           }
-          if (parent.type) {
-            schema.type = { ...parent.type, ...schema.type };
+          if (child.type) {
+            //make sure there is a schema type
+            schema.type = schema.type || {};
+            //loop through child types
+            for (const [ name, type ] of Object.entries(child.type)) {
+              const parent = schema.type[name];
+              //if type from child doesn't exist in schema (parent)
+              if (!parent) {
+                //add it to schema (parent)
+                schema.type[name] = type;
+                continue;
+              //if parent isnt final
+              } else if (parent.mutable) {
+                //soft merge type into parent
+                this._merge(parent, type);
+              }
+            }
           }
-          if (parent.model) {
-            schema.model = { ...parent.model, ...schema.model };
+          if (child.model) {
+            //make sure there is a schema model
+            schema.model = schema.model || {};
+            //loop through child types
+            for (const [ name, model ] of Object.entries(child.model)) {
+              const parent = schema.model[name];
+              //if type from child doesn't exist in schema (parent)
+              if (!parent) {
+                //add it to schema (parent)
+                schema.model[name] = model;
+                continue;
+              //if parent isnt final
+              } else if (parent.mutable) {
+                //soft merge type into parent
+                this._merge(parent, model);
+              }
+            }
           }
         });
       }
@@ -102,5 +132,33 @@ export default class Transformer<T extends Record<string, unknown>> {
       }
       //dont do anything else if it's not a function
     }
+  }
+
+  /**
+   * Merges the child type with the parent type.
+   * This is the logic for use() directive in schema files.
+   */
+  protected _merge(parent: TypeConfig, child: TypeConfig) {
+    //type exists in schema (parent)
+    //let's soft merge the attributes and columns
+    const { attributes = {}, columns = [] } = child;
+    //merge child attributes with schema attributes
+    //where schema attributes take precedence
+    parent.attributes = { 
+      ...attributes, 
+      ...parent.attributes 
+    };
+    //merge child columns with schema columns
+    //where schema columns take precedence
+    columns.reverse().forEach(column => {
+      //find the same column in parent and if not found, 
+      if (parent.columns.findIndex(
+        c => c.name === column.name
+      ) === -1) {
+        //add it
+        parent.columns.unshift(column);
+      }
+      //it exists in the parent, so parent takes precedence...
+    });
   }
 }

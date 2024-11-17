@@ -109,3 +109,49 @@ model Profile @label("Profile" "Profiles") @suggested("[name]") @icon("user") {
 
   addresses   Address[]    @label("Addresses") @default("[]")
 }
+
+//--------------------------------------------------------------------//
+// File System
+
+model File @label("File" "Files") @suggested("[name]") @icon("file") {
+  //FIELDS:
+  id        String   @label("ID")
+                     @id @generated @default("cuid()")
+                     @list.char({ hellip false length 8 })
+  
+  name      String   @label("Name") 
+                     @searchable
+                     @field.text
+                     @is.required("Name is required")
+                     @list.detail @view.text
+  
+  url       String   @label("URL")
+                     @searchable
+                     @field.url
+                     @is.required("URL is required")
+                     @view.link
+  
+  tags      String[] @label("Tags") 
+                     @field.tags
+                     @list.hide
+                     @view.tags
+  
+  references  Hash?  @label("References") 
+                     @field.metadata
+                     @list.hide
+                     @view.metadata
+  
+  active    Boolean  @label("Active") 
+                     @generated @active @default(true) 
+                     @list.yesno @view.yesno
+  
+  created   Datetime @label("Created") 
+                     @generated @created @spanable @sortable @default("now()") 
+                     @list.date("m d, Y h:iA") 
+                     @view.date("m d, Y h:iA")
+  
+  updated   Datetime @label("Updated") 
+                     @generated @updated @spanable @sortable @default("now()")
+                     @list.date("m d, Y h:iA") 
+                     @view.date("m d, Y h:iA")
+}
