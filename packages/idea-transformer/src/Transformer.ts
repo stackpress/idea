@@ -95,17 +95,19 @@ export default class Transformer<T extends Record<string, unknown>> {
   /**
    * Preloads the input
    */
-  constructor(input: string, options: TransformerOptions = {}) {
-    this.loader = new FileLoader(options.fs || new NodeFS(), options.cwd);
+  // Allow custom dependency injection through a constructor
+  constructor(input: string, options: TransformerOptions = {}, loader?: FileLoader, fs?: NodeFS) {
+    this.loader = loader || new FileLoader(fs || new NodeFS(), options.cwd);
     this.input = this.loader.absolute(input);
   }
 
   /**
    * Transform all plugins
-   */
+   */  
   public transform(extras?: T) {
     //if no plugins defined throw error
-    if (!this.schema.plugin) {
+    // Add a validation step to ensure the plugin entries have correct types and properties
+    if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
       throw Exception.for('No plugins defined in schema file');
     }
     //loop through plugins
@@ -139,26 +141,34 @@ export default class Transformer<T extends Record<string, unknown>> {
    * This is the logic for use() directive in schema files.
    */
   protected _merge(parent: TypeConfig, child: TypeConfig) {
-    //type exists in schema (parent)
-    //let's soft merge the attributes and columns
-    const { attributes = {}, columns = [] } = child;
-    //merge child attributes with schema attributes
-    //where schema attributes take precedence
-    parent.attributes = { 
-      ...attributes, 
-      ...parent.attributes 
-    };
+
+    // Ensure that 'columns' are defined as arrays
+    parent.columns = parent.columns || [];
+    child.columns = child.columns || [];
+
+    // Ensure that merging only occurs if types and columns are valid object
+    if (typeof child.attributes === 'object' && child.attributes !== null && child.attributes !== undefined) {
+      parent.attributes = {
+        ...child.attributes,
+        ...parent.attributes,
+      };
+    }
+
     //merge child columns with schema columns
     //where schema columns take precedence
-    columns.reverse().forEach(column => {
+    child.columns.reverse().forEach(column => {
+      const existingColumn = parent.columns.find(c => c.name === column.name)
       //find the same column in parent and if not found, 
-      if (parent.columns.findIndex(
-        c => c.name === column.name
-      ) === -1) {
+      if (!existingColumn) {
         //add it
         parent.columns.unshift(column);
+      } else {
+        // Deep merge attributes within the column if they exist
+        existingColumn.attributes = {
+          ...column.attributes,
+          ...existingColumn.attributes,
+        };
       }
-      //it exists in the parent, so parent takes precedence...
     });
   }
 }
