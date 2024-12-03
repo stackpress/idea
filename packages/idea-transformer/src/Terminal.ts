@@ -1,10 +1,10 @@
 //types
 import type { CLIProps, TerminalOptions } from './types';
 //others
-import Terminal from '@stackpress/types/dist/Terminal';
+import EventTerminal from '@stackpress/types/dist/event/EventTerminal';
 import Transformer from './Transformer';
 
-export default class IdeaTerminal extends Terminal {
+export default class IdeaTerminal extends EventTerminal {
   // brand to prefix in all logs
   public static brand: string = '[IDEA]';
   // you can use a custom extension

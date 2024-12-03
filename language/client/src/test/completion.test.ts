@@ -8,7 +8,7 @@
 import { getDocUri, activate } from './helper';
 
 suite('Should do completion', () => {
-	const docUri = getDocUri('bad.idea');
+	const docUri = getDocUri('schema.idea');
 
 	test('Completes JS/TS in idea file', async () => {
 		await activate(docUri);

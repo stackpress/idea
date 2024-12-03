@@ -2,11 +2,11 @@
 import type { SchemaConfig, TypeConfig } from '@stackpress/idea-parser';
 import type { TransformerOptions } from './types';
 //others
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { parse, Exception } from '@stackpress/idea-parser';
-import FileLoader from '@stackpress/types/dist/filesystem/FileLoader';
-import NodeFS from '@stackpress/types/dist/filesystem/NodeFS';
+import FileLoader from '@stackpress/types/dist/system/FileLoader';
+import NodeFS from '@stackpress/types/dist/system/NodeFS';
 
 export default class Transformer<T extends Record<string, unknown>> {
   //current working directory
