@@ -25,12 +25,12 @@ describe('Transformer Tests', () => {
     expect(actual.prop && 'Config' in actual.prop).to.be.true;
     //merge checks
     expect(actual.model?.Profile?.columns[0].name).to.equal('id');
-    expect(actual.model?.Profile?.columns[1].name).to.equal('addresses'); 
+    expect(actual.model?.Profile?.columns[1].name).to.equal('addresses');
     expect(actual.model?.Profile?.columns[2].attributes.label?.[0]).to.equal('Full Name');
     //final checks
     expect(
       actual.model?.File?.columns.find(c => c.name === 'references')
-    ).to.be.undefined; 
+    ).to.be.undefined;
   }).timeout(20000);
 
   it('Should make enums', () => {
@@ -43,4 +43,29 @@ describe('Transformer Tests', () => {
       fs.unlinkSync(out);
     }
   }).timeout(20000);
+
+
+  /*
+ * UNIT TEST TO COVER THE UNCOVERED LINES
+ */
+
+  // LINE 26
+  it('Should throw an error if the input file does not exist', () => {
+    const nonExistentPath = path.resolve(cwd, 'nonexistent.idea');
+    const transformer = new Transformer(nonExistentPath, { cwd });
+    expect(() => transformer.schema).to.throw(`Input file ${nonExistentPath} does not exist`);
+  });
+
+  // lINE 109
+  it('Should throw an error if no plugins are defined in the schema file', () => {
+    // Create a schema with no plugins
+    const transformer = new Transformer(idea, { cwd });
+    // Temporarily set the schema.plugins to undefined or an empty object to simulate the missing plugins
+    transformer['_schema'] = {
+      ...transformer['_schema'],
+      plugin: undefined,
+    };
+    expect(() => transformer.transform()).to.throw('No plugins defined in schema file');
+  });
+
 });
