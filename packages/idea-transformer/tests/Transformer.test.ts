@@ -5,6 +5,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 //for testing
 import Transformer from '../src/Transformer';
+import { TypeConfig } from '@stackpress/idea-parser';
 //resusable variables
 const cwd = __dirname;
 const idea = path.resolve(cwd, 'schema.idea');
@@ -67,5 +68,22 @@ describe('Transformer Tests', () => {
     };
     expect(() => transformer.transform()).to.throw('No plugins defined in schema file');
   });
+
+
+  /*
+  * ADD MORE UNIT TEST TO ACHIEVE 85%
+  */
+
+  it('Should merge child attributes into parent attributes', () => {
+    const transformer = new Transformer(idea, { cwd });
+    const parentType = { attributes: { name: 'parent' } };
+    const childType = { attributes: { name: 'child' } };
+    transformer['_merge'](parentType as unknown as TypeConfig, childType as unknown as TypeConfig);
+    expect(parentType.attributes).to.deep.equal({ name: 'parent' });
+  });
+
+
+
+
 
 });
