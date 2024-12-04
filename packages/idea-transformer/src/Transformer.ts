@@ -57,8 +57,11 @@ export default class Transformer<T extends Record<string, unknown>> {
                 schema.type[name] = type;
                 continue;
                 //if parent isnt final
-              } else if (parent.mutable) {
-                //soft merge type into parent
+              }
+              //I remove the else to make the code easier to read and
+              //understand and to check separete the condition separately
+              if (parent.mutable ) {
+                //soft merge type ito parent
                 this._merge(parent, type);
               }
             }
@@ -70,8 +73,8 @@ export default class Transformer<T extends Record<string, unknown>> {
             for (const [name, model] of Object.entries(child.model)) {
               const parent = schema.model[name];
               //if type from child doesn't exist in schema (parent)
-              // I add !parent.mutable before adding to schema will 
-              // make sure that the parent is also mutable
+              //I add !parent.mutable to make sure before adding to 
+              //schema will make sure that parent is mutable
               if (!parent || !parent.mutable) {
                 //add it to schema (parent)
                 schema.model[name] = model;
