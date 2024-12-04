@@ -105,8 +105,6 @@ export default class Transformer<T extends Record<string, unknown>> {
    * Transform all plugins
    */  
   public transform(extras?: T) {
-    //if no plugins defined throw error
-    // Add a validation step to ensure the plugin entries have correct types and properties
     //I use the logical Operator OR to combine the two conditions since the first condition is missing and the second condtion is not an object
     //The typeof this.schema.plugin !== 'object' is to ensure that if the plugin is exist, it must be an object
     //It is for error handling it's either the condition is true can throw the exception error or if it not true will stop the test or the program
@@ -144,12 +142,9 @@ export default class Transformer<T extends Record<string, unknown>> {
    * This is the logic for use() directive in schema files.
    */
   protected _merge(parent: TypeConfig, child: TypeConfig) {
-
-    // Ensure that 'columns' are defined as arrays
     //To ensure that the column of both the parent and child objects is initialized as an array if it is undefined or null.
     parent.columns = parent.columns || [];
     child.columns = child.columns || [];
-    // Ensure that merging only occurs if types and columns are valid object
     //To merge the attributes of the child object into the parent obbject's and also 
     //ensure that the attributes of child are only merged if they are valid, not null and not undefined.  
     if (typeof child.attributes === 'object' && child.attributes !== null && child.attributes !== undefined) {
@@ -158,8 +153,6 @@ export default class Transformer<T extends Record<string, unknown>> {
         ...parent.attributes,
       };
     }
-    //merge child columns with schema columns
-    //where schema columns take precedence
     //So if the column of the child is doensn't exist in the parent, it will added to the start of the parent's column
     //If the column already exists in the parent, their attributes are merged with the child.
     child.columns.reverse().forEach(column => {
