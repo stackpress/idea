@@ -59,7 +59,7 @@ export default class Transformer<T extends Record<string, unknown>> {
                 //if parent isnt final
               }
               //I remove the else to make the code easier to read and
-              //understand and to check separete the condition separately
+              //understand and to check separete the condition
               if (parent.mutable ) {
                 //soft merge type ito parent
                 this._merge(parent, type);
