@@ -72,7 +72,7 @@ export default class Transformer<T extends Record<string, unknown>> {
             for (const [ name, model ] of Object.entries(child.model)) {
               const parent = schema.model[name];
               //if type from child doesn't exist in schema (parent)
-              // If no parent or  parent not is mutable, add the model 
+              // If no parent or parent is not mutable, add the model 
               // to the schema (parent)
               if (!parent || !parent.mutable) {
                 //add it to schema (parent)
@@ -109,8 +109,8 @@ export default class Transformer<T extends Record<string, unknown>> {
    * Transform all plugins
    */
   public transform(extras?: T) {
-    // Ensure the plugin exists and is an object if the
-    // conditions aren't met to prevent errors.
+    // Ensure the plugin not exists or is not object if the
+    // conditions are true will throw an error.
     if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
       throw Exception.for('No plugins defined in schema file');
     }
