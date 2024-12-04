@@ -81,8 +81,4 @@ describe('Transformer Tests', () => {
     transformer['_merge'](parentType as unknown as TypeConfig, childType as unknown as TypeConfig);
     expect(parentType.attributes).to.deep.equal({ name: 'parent' });
   });
-
-  
-
-
 });
