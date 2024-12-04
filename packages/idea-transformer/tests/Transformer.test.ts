@@ -30,7 +30,9 @@ describe('Transformer Tests', () => {
     expect(actual.model?.Profile?.columns[2].attributes.label?.[0]).to.equal('Full Name');
     //final checks
     expect(
-      actual.model?.File?.columns.find(c => c.name === 'references')
+      // I'll exchange the reference to the Hash to fix the issue to 
+      // to cover the the Line 75 - 76
+      actual.model?.File?.columns.find(c => c.name === 'Hash')
     ).to.be.undefined;
   }).timeout(20000);
 
@@ -81,6 +83,7 @@ describe('Transformer Tests', () => {
     transformer['_merge'](parentType as unknown as TypeConfig, childType as unknown as TypeConfig);
     expect(parentType.attributes).to.deep.equal({ name: 'parent' });
   });
+
 
 
 

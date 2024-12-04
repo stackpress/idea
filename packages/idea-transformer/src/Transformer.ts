@@ -70,7 +70,9 @@ export default class Transformer<T extends Record<string, unknown>> {
             for (const [name, model] of Object.entries(child.model)) {
               const parent = schema.model[name];
               //if type from child doesn't exist in schema (parent)
-              if (!parent) {
+              // I add !parent.mutable before adding to schema will 
+              // make sure that the parent is also mutable
+              if (!parent || !parent.mutable) {
                 //add it to schema (parent)
                 schema.model[name] = model;
                 continue;
