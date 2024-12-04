@@ -58,8 +58,7 @@ export default class Transformer<T extends Record<string, unknown>> {
                 continue;
                 //if parent isnt final
               }
-              //I remove the else to make the code easier to read and
-              //understand and to check separete the condition
+              // If the parent is mutable, perform a soft merge 
               if (parent.mutable ) {
                 //soft merge type ito parent
                 this._merge(parent, type);
@@ -70,11 +69,11 @@ export default class Transformer<T extends Record<string, unknown>> {
             //make sure there is a schema model
             schema.model = schema.model || {};
             //loop through child types
-            for (const [name, model] of Object.entries(child.model)) {
+            for (const [ name, model ] of Object.entries(child.model)) {
               const parent = schema.model[name];
               //if type from child doesn't exist in schema (parent)
-              //I add !parent.mutable to make sure before adding to 
-              //schema will make sure that parent is mutable
+              // If no parent or  parent not is mutable, add the model 
+              // to the schema (parent)
               if (!parent || !parent.mutable) {
                 //add it to schema (parent)
                 schema.model[name] = model;
@@ -110,12 +109,8 @@ export default class Transformer<T extends Record<string, unknown>> {
    * Transform all plugins
    */
   public transform(extras?: T) {
-    // The first condition is for missing 
-    // The second condtion is forr not an oject
-    // I use to logical Operator OR to combine the 2 condition
-    // Ensure that the plugin is exist its must be an object
-    // It is for error handling it's either the condition is true
-    // it can throw exception or if its not true will stop the tests
+    // Ensure the plugin exists and is an object if the
+    // conditions aren't met to prevent errors.
     if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
       throw Exception.for('No plugins defined in schema file');
     }
