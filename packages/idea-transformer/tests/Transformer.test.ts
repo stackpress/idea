@@ -82,7 +82,13 @@ describe('Transformer Tests', () => {
     expect(parentType.attributes).to.deep.equal({ name: 'parent' });
   });
 
-
+  it('Should soft merge if the parent is mutable', () => {
+    const transformer = new Transformer(idea, { cwd });
+    const parentType = { mutable: true, attributes: { name: 'parent' } };
+    const childType = { attributes: { name: 'child' } };
+    transformer['_merge'](parentType as unknown as TypeConfig, childType as unknown as TypeConfig);
+    expect(parentType.attributes).to.deep.equal({ name: 'parent' });
+  })
 
 
 

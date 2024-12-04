@@ -94,15 +94,12 @@ export default class Transformer<T extends Record<string, unknown>> {
 
   /**
    * Preloads the input
-   */
-  // Allow custom dependency injection through a constructor
+  */
   constructor(input: string, options: TransformerOptions = {}) {
-    /*
-    * The Transformer can use a custom loader if given or it can be default FileLoader with NodeFS and cwd
-    */
-    this.loader = options.loader || new FileLoader(options.fs || new NodeFS(), options.cwd);
+    this.loader = new FileLoader(options.fs || new NodeFS(), options.cwd);
     this.input = this.loader.absolute(input);
   }
+
 
   /**
    * Transform all plugins
