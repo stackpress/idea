@@ -57,7 +57,7 @@ export default class Transformer<T extends Record<string, unknown>> {
                 schema.type[name] = type;
                 continue;
                 //if parent isnt final
-              } else if (parent.mutable || child) {
+              } else if (parent.mutable) {
                 //soft merge type into parent
                 this._merge(parent, type);
               }
