@@ -52,14 +52,14 @@ export default class Transformer<T extends Record<string, unknown>> {
             for (const [name, type] of Object.entries(child.type)) {
               const parent = schema.type[name];
               //if type from child doesn't exist in schema (parent)
-              if (!parent) {
+              //or if no parent or parent is not mutable
+              if (!parent || !parent.mutable) {
                 //add it to schema (parent)
                 schema.type[name] = type;
                 continue;
-                //if parent isnt final
               }
-              // If the parent is mutable, perform a soft merge 
-              if (parent.mutable ) {
+              //if the parent is mutable
+              if (parent.mutable) {
                 //soft merge type ito parent
                 this._merge(parent, type);
               }
@@ -72,14 +72,14 @@ export default class Transformer<T extends Record<string, unknown>> {
             for (const [ name, model ] of Object.entries(child.model)) {
               const parent = schema.model[name];
               //if type from child doesn't exist in schema (parent)
-              // If no parent or parent is not mutable, add the model 
-              // to the schema (parent)
+              //or if no parent or parent is not mutable
               if (!parent || !parent.mutable) {
                 //add it to schema (parent)
                 schema.model[name] = model;
                 continue;
-                //if parent isnt final
-              } else if (parent.mutable) {
+              } 
+              //if the parent is mutable
+              if (parent.mutable) {
                 //soft merge type into parent
                 this._merge(parent, model);
               }
@@ -103,7 +103,6 @@ export default class Transformer<T extends Record<string, unknown>> {
     this.loader = new FileLoader(options.fs || new NodeFS(), options.cwd);
     this.input = this.loader.absolute(input);
   }
-
 
   /**
    * Transform all plugins
@@ -145,37 +144,43 @@ export default class Transformer<T extends Record<string, unknown>> {
    * This is the logic for use() directive in schema files.
    */
   protected _merge(parent: TypeConfig, child: TypeConfig) {
-    //To ensure that the column of both the parent and child objects is 
-    //initialized as an array if it is undefined or null.
-    parent.columns = parent.columns || [];
-    child.columns = child.columns || [];
-    // Merge the attributes of the child into parent 
-    // and also ensure that the attributes of child is only merged if 
-    // they are valid, not null and not undefined 
-    if (typeof child.attributes === 'object'
-      && child.attributes !== null
-      && child.attributes !== undefined) {
-      parent.attributes = {
-        ...child.attributes,
-        ...parent.attributes,
-      };
-    }
-    // The column of the child is densn't exist in the parent,It will 
-    // add to the start of the parent column. If the column already
-    // exist in the parent, make a merged with the parent and child
-    child.columns.reverse().forEach(column => {
-      const existingColumn = parent.columns.find(c => c.name === column.name)
-      //find the same column in parent and if not found, 
-      if (!existingColumn) {
-        //add it
-        parent.columns.unshift(column);
+    //merge the attributes if there are child attributes
+    if (child.attributes) {
+      //if the parent doesn't have attributes but the child does,
+      if (!parent.attributes) {
+        //set the attributes of the parent to the child
+        parent.attributes = child.attributes;
       } else {
-        // Deep merge attributes within the column if they exist
-        existingColumn.attributes = {
-          ...column.attributes,
-          ...existingColumn.attributes,
+        //merge the attributes of the child into parent
+        parent.attributes = {
+          ...child.attributes,
+          ...parent.attributes
         };
       }
+    }
+    //make sure we are dealing with arrays
+    const parentColumns = parent.columns || [];
+    const childColumns = child.columns || [];
+    //if the column of the child is doesn't exist in the parent,  
+    //it will add to the start of the parent column. If the column 
+    //already exist in the parent, make a merged with the parent 
+    //and child...
+    childColumns.reverse().forEach(childColumn => {
+      //find the same column in parent 
+      const parentColumn = parentColumns.find(
+        parentColumn => parentColumn.name === childColumn.name
+      );
+      //and if not found
+      if (!parentColumn) {
+        //make sure there are parent columns
+        if (!Array.isArray(parent.columns)) {
+          parent.columns = [];
+        }
+        //now add it
+        parent.columns.unshift(childColumn);
+      }
+      //it exists in the parent, so parent takes precedence...
+      //don't merge column attributes, because columns cannot be final.
     });
   }
 }
