@@ -108,8 +108,8 @@ export default class Transformer<T extends Record<string, unknown>> {
    * Transform all plugins
    */
   public transform(extras?: T) {
-    // Ensure the plugin not exists or is not object if the
-    // conditions are true will throw an error.
+    //ensure the plugin not exists or is not object 
+    //if the conditions are true will throw an error.
     if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
       throw Exception.for('No plugins defined in schema file');
     }
@@ -180,7 +180,8 @@ export default class Transformer<T extends Record<string, unknown>> {
         parent.columns.unshift(childColumn);
       }
       //it exists in the parent, so parent takes precedence...
-      //don't merge column attributes, because columns cannot be final.
+      //don't merge column attributes, because no functionality for 
+      //finality in columns exist yet.
     });
   }
 }
