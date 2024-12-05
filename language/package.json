@@ -2,7 +2,7 @@
 	"name": "idea-schema",
 	"displayName": "Idea Schema",
 	"description": "Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .idea files.",
-	"version": "0.3.6",
+	"version": "0.3.10",
   "license": "Apache-2.0",
 	"icon": "idea.png",
 	"repository": {
@@ -74,7 +74,7 @@
 		"test": "sh ./scripts/e2e.sh"
 	},
 	"dependencies": {
-		"@stackpress/idea-parser": "0.3.6"
+		"@stackpress/idea-parser": "0.3.10"
 	},
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",

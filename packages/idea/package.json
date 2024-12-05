@@ -1,6 +1,6 @@
 {
   "name": "@stackpress/idea",
-  "version": "0.3.6",
+  "version": "0.3.10",
   "license": "Apache-2.0",
   "description": "An open source schema file standard and generator",
   "author": "Chris <chris@incept.asia>",
@@ -25,8 +25,8 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@stackpress/idea-parser": "0.3.6",
-    "@stackpress/idea-transformer": "0.3.6"
+    "@stackpress/idea-parser": "0.3.10",
+    "@stackpress/idea-transformer": "0.3.10"
   },
   "devDependencies": {
     "@types/node": "22.9.3",

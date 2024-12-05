@@ -3,7 +3,7 @@
 	"description": "Implementation of idea language server in node.",
 	"author": "Chris <chris@incept.asia>",
   "license": "Apache-2.0",
-	"version": "0.3.6",
+	"version": "0.3.10",
 	"publisher": "stackpress",
 	"repository": {
 		"type": "git",
