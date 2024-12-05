@@ -32,9 +32,9 @@ export default class Transformer<T extends Record<string, unknown>> {
         schema.use.forEach((file: string) => {
           const absolute = this.loader.absolute(file);
           const dirname = path.dirname(absolute);
-          const transformer = new Transformer(absolute, { 
-            cwd: dirname, 
-            fs: this.loader.fs 
+          const transformer = new Transformer(absolute, {
+            cwd: dirname,
+            fs: this.loader.fs
           });
           const child = transformer.schema;
           //soft merge the object values of enum, 
@@ -49,16 +49,18 @@ export default class Transformer<T extends Record<string, unknown>> {
             //make sure there is a schema type
             schema.type = schema.type || {};
             //loop through child types
-            for (const [ name, type ] of Object.entries(child.type)) {
+            for (const [name, type] of Object.entries(child.type)) {
               const parent = schema.type[name];
               //if type from child doesn't exist in schema (parent)
               if (!parent) {
                 //add it to schema (parent)
                 schema.type[name] = type;
                 continue;
-              //if parent isnt final
-              } else if (parent.mutable) {
-                //soft merge type into parent
+                //if parent isnt final
+              }
+              // If the parent is mutable, perform a soft merge 
+              if (parent.mutable ) {
+                //soft merge type ito parent
                 this._merge(parent, type);
               }
             }
@@ -70,11 +72,13 @@ export default class Transformer<T extends Record<string, unknown>> {
             for (const [ name, model ] of Object.entries(child.model)) {
               const parent = schema.model[name];
               //if type from child doesn't exist in schema (parent)
-              if (!parent) {
+              // If no parent or parent is not mutable, add the model 
+              // to the schema (parent)
+              if (!parent || !parent.mutable) {
                 //add it to schema (parent)
                 schema.model[name] = model;
                 continue;
-              //if parent isnt final
+                //if parent isnt final
               } else if (parent.mutable) {
                 //soft merge type into parent
                 this._merge(parent, model);
@@ -94,18 +98,20 @@ export default class Transformer<T extends Record<string, unknown>> {
 
   /**
    * Preloads the input
-   */
+  */
   constructor(input: string, options: TransformerOptions = {}) {
     this.loader = new FileLoader(options.fs || new NodeFS(), options.cwd);
     this.input = this.loader.absolute(input);
   }
 
+
   /**
    * Transform all plugins
    */
   public transform(extras?: T) {
-    //if no plugins defined throw error
-    if (!this.schema.plugin) {
+    // Ensure the plugin not exists or is not object if the
+    // conditions are true will throw an error.
+    if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
       throw Exception.for('No plugins defined in schema file');
     }
     //loop through plugins
@@ -123,11 +129,11 @@ export default class Transformer<T extends Record<string, unknown>> {
       //check if it's a function
       if (typeof callback === 'function') {
         //call the callback
-        callback({ 
-          ...extras, 
-          config, 
-          schema: this.schema, 
-          cwd: this.loader.cwd 
+        callback({
+          ...extras,
+          config,
+          schema: this.schema,
+          cwd: this.loader.cwd
         });
       }
       //dont do anything else if it's not a function
@@ -139,26 +145,37 @@ export default class Transformer<T extends Record<string, unknown>> {
    * This is the logic for use() directive in schema files.
    */
   protected _merge(parent: TypeConfig, child: TypeConfig) {
-    //type exists in schema (parent)
-    //let's soft merge the attributes and columns
-    const { attributes = {}, columns = [] } = child;
-    //merge child attributes with schema attributes
-    //where schema attributes take precedence
-    parent.attributes = { 
-      ...attributes, 
-      ...parent.attributes 
-    };
-    //merge child columns with schema columns
-    //where schema columns take precedence
-    columns.reverse().forEach(column => {
+    //To ensure that the column of both the parent and child objects is 
+    //initialized as an array if it is undefined or null.
+    parent.columns = parent.columns || [];
+    child.columns = child.columns || [];
+    // Merge the attributes of the child into parent 
+    // and also ensure that the attributes of child is only merged if 
+    // they are valid, not null and not undefined 
+    if (typeof child.attributes === 'object'
+      && child.attributes !== null
+      && child.attributes !== undefined) {
+      parent.attributes = {
+        ...child.attributes,
+        ...parent.attributes,
+      };
+    }
+    // The column of the child is densn't exist in the parent,It will 
+    // add to the start of the parent column. If the column already
+    // exist in the parent, make a merged with the parent and child
+    child.columns.reverse().forEach(column => {
+      const existingColumn = parent.columns.find(c => c.name === column.name)
       //find the same column in parent and if not found, 
-      if (parent.columns.findIndex(
-        c => c.name === column.name
-      ) === -1) {
+      if (!existingColumn) {
         //add it
         parent.columns.unshift(column);
+      } else {
+        // Deep merge attributes within the column if they exist
+        existingColumn.attributes = {
+          ...column.attributes,
+          ...existingColumn.attributes,
+        };
       }
-      //it exists in the parent, so parent takes precedence...
     });
   }
 }

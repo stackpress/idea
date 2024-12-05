@@ -20,4 +20,17 @@ describe('Terminal Tests', () => {
       fs.unlinkSync(out);
     }
   }).timeout(20000);
+
+  /*
+  * UNIT TEST TO COVER THE UNCOVERED LINES
+  */
+
+  // Line 22
+  it('Should use default options when options parameter is omitted', () => {
+    const args = ['transform', '-i', './schema.idea'];
+    const terminal = new Terminal(args);
+    expect(terminal.cwd).to.equal(process.cwd());
+  });
+
+
 });
