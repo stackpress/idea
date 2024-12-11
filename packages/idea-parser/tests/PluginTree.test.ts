@@ -28,4 +28,18 @@ describe('Plugin Tree', () => {
     //console.log(JSON.stringify(actual, null, 2));
     expect(actual).to.deep.equalInAnyOrder(expected);
   });
+
+  // Line 36
+  it('Should throw an error when the input code is an empty string', () => {
+    expect(() => {
+      const lexerMock = {
+        expect: (tokenType: string) => { throw new Error('Unexpected end of input'); },
+        load: () => {}
+      };
+      const pluginTree = new PluginTree();
+      (pluginTree as any)._lexer = lexerMock; 
+      pluginTree.parse('');
+    }).to.throw(Error, 'Unexpected end of input');
+  });
+  
 });

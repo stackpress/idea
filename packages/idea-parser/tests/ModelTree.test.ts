@@ -28,4 +28,25 @@ describe('Model Tree', () => {
     //console.log(JSON.stringify(actual, null, 2));
     expect(actual).to.deep.equalInAnyOrder(expected);
   });
+
+  // Line 37
+  it('Should throw an error if the lexer does not return an IdentifierToken when expecting CapitalIdentifier', () => {
+    const lexerMock = {
+      expect: (tokenType: string) => {
+        if (tokenType === 'CapitalIdentifier') {
+          throw new Error('Expected CapitalIdentifier but got something else');
+        }
+      },
+      load: () => {}
+    };
+  
+    const modelTree = new ModelTree();
+    modelTree['_lexer'] = lexerMock as any;
+  
+    expect(() => modelTree.parse('model foobar')).to.throw('Expected CapitalIdentifier but got something else');
+  });
+
+
+
+
 });
