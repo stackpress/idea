@@ -5,6 +5,11 @@ import deepEqualInAnyOrder from 'deep-equal-in-any-order';
 import EnumTree from '../src/trees/EnumTree';
 
 use(deepEqualInAnyOrder);
+
+/*
+* The cleanAST function is used to remove start and end
+* properties from ASTs for comparison.
+*/
 const cleanAST = (node: any) => {
   if (typeof node === 'object' && node !== null) {
     const { start, end, ...rest } = node;
