@@ -4,6 +4,7 @@ import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
 import SchemaTree from '../src/trees/SchemaTree';
 import Compiler from '../src/Compiler';
+import Exception from '../src/Exception';
 
 use(deepEqualInAnyOrder);
 const cleanAST = (node: any) => {
@@ -35,5 +36,13 @@ describe('Schema Tree', () => {
     //console.log(JSON.stringify(Compiler.final(actual), null, 2));
     const final = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/final.json`, 'utf8'));
     expect(Compiler.final(actual)).to.deep.equalInAnyOrder(final);
+  });
+
+
+  // Line 81 - 86 
+  it('Should throw an exception when there is an unexpected token at the end of the code', () => {
+  const codeWithUnexpectedToken = 'enum TestEnum { VALUE1, VALUE2, } unexpectedToken';
+  
+  expect(() => SchemaTree.parse(codeWithUnexpectedToken)).to.throw(Exception, /Unexpected token ,/);
   });
 });

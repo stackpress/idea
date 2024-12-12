@@ -37,4 +37,37 @@ describe('Type Tree', () => {
     //console.log(JSON.stringify(actual, null, 2));
     expect(actual).to.deep.equalInAnyOrder(expected);
   });
+
+
+  // Line 39 - 40
+  it('Should correctly identify "typeword" token at the start of the input string', () => {
+    const lexerMock = {
+      define: (name: string, callback: Function) => {
+        if (name === 'TypeWord') {
+          const result = callback('type Example', 0);
+          expect(result).to.deep.equal({
+            type: '_TypeWord',
+            start: 0,
+            end: 4,
+            value: 'type',
+            raw: 'type'
+          });
+        }
+      }
+    };
+    TypeTree.definitions(lexerMock as any);
+  });
+
+  // Line 55
+  it('Should throw an error when the input code is an empty string', () => {
+    expect(() => {
+      const lexerMock = {
+        expect: (tokenType: string) => { throw new Error('Unexpected end of input'); },
+        load: () => { }
+      };
+      const typeTree = new TypeTree();
+      (typeTree as any)._lexer = lexerMock;
+      typeTree.parse('');
+    }).to.throw(Error, 'Unexpected end of input');
+  });
 });
