@@ -28,4 +28,20 @@ describe('Enum Tree', () => {
     //console.log(JSON.stringify(actual, null, 2));
     expect(actual).to.deep.equalInAnyOrder(expected);
   });
+
+  // Line 37
+  it('Should throw an error when the input is an empty string', () => {
+    expect(() => {
+      const lexerMock = {
+        expect: (tokenType: string) => { throw new Error('Unexpected end of input'); },
+        load: () => {}
+      };
+      const enumTree = new EnumTree();
+      (enumTree as any)._lexer = lexerMock;
+      enumTree.parse('');
+    }).to.throw(Error, 'Unexpected end of input');
+  });
+
+
+
 });
