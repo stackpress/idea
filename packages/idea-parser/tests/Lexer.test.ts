@@ -2,7 +2,8 @@ import type {
   LiteralToken, 
   ObjectToken, 
   ArrayToken, 
-  UnknownToken 
+  UnknownToken, 
+  Token
 } from '../src/types';
 
 import { describe, it } from 'mocha';
@@ -254,4 +255,51 @@ describe('Lexer/Compiler', () => {
       expect(token.end).to.equal(45);
     })();
   });
+
+  // Line 18
+  it('Should handle an empty input string and return an appropriate token', () => {
+    const lexer = new Lexer();
+    lexer.load('');
+    const token = lexer.read();
+    expect(token).to.be.undefined;
+  });
+
+  // Line 58
+  it('Should throw an exception for an unknown definition key', () => {
+    const lexer = new Lexer();
+    expect(() => lexer.expect('unknownKey')).to.throw('Unknown definition unknownKey');
+  });
+
+  // Line 117
+  it('Should handle the case when keys parameter is explicitly passed as undefined', () => {
+  const lexer = new Lexer();
+  lexer.define('literal', (code, start) => {
+    if (code.startsWith('42', start)) {
+      return { type: 'Literal', value: 42, start, end: start + 2 } as Token;
+    }
+    return undefined;
+  });
+  lexer.load('42');
+  const token = lexer.match('42', 0, undefined);
+  expect(token).to.deep.equal({ type: 'Literal', value: 42, start: 0, end: 2 });
+  });
+
+  // Line 121
+  it('Should throw an exception when a key is missing from the dictionary', () => {
+    const lexer = new Lexer();
+    lexer.load('some code');
+    expect(() => lexer.match('some code', 0, ['missingKey'])).to.throw('Unknown definition missingKey');
+  });
+
+  // Line 174
+  it('Should return an empty string when start and end are the same', () => {
+    const lexer = new Lexer();
+    lexer.load('some code');
+    const result = lexer.substring(5, 5);
+    expect(result).to.equal('');
+  });
+
+
+
+
 });
