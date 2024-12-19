@@ -107,7 +107,7 @@ export default class Transformer<T extends Record<string, unknown>> {
   /**
    * Transform all plugins
    */
-  public transform(extras?: T) {
+  public async transform(extras?: T) {
     //ensure the plugin not exists or is not object 
     //if the conditions are true will throw an error.
     if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
@@ -128,7 +128,7 @@ export default class Transformer<T extends Record<string, unknown>> {
       //check if it's a function
       if (typeof callback === 'function') {
         //call the callback
-        callback({
+        await callback({
           ...extras,
           config,
           schema: this.schema,

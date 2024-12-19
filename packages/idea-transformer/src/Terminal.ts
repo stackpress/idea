@@ -28,8 +28,8 @@ export default class IdeaTerminal extends EventTerminal {
       `${this.cwd}/schema.${this.terminal.extension}`
     );
     this.transformer = new Transformer<CLIProps>(input, options);
-    this.on('transform', _ => {
-      this.transformer.transform({ cli: this });
+    this.on('transform', async _ => {
+      await this.transformer.transform({ cli: this });
     });
   }
 }

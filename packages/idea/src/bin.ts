@@ -1,3 +1,9 @@
 #!/usr/bin/env node
 import { Terminal } from '@stackpress/idea-transformer';
-new Terminal(process.argv.slice(2)).run();
+
+async function main() {
+  const terminal = new Terminal(process.argv.slice(2));
+  await terminal.run();
+}
+
+main().catch(console.error);

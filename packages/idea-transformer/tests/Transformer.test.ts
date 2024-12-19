@@ -37,9 +37,9 @@ describe('Transformer Tests', () => {
     ).to.be.undefined;
   }).timeout(20000);
 
-  it('Should make enums', () => {
+  it('Should make enums', async () => {
     const transformer = new Transformer(idea, { cwd });
-    transformer.transform();
+    await transformer.transform();
     const out = path.join(cwd, 'out/enums.ts');
     const exists = fs.existsSync(out);
     expect(exists).to.be.true;
@@ -61,7 +61,7 @@ describe('Transformer Tests', () => {
   });
 
   // lINE 109
-  it('Should throw an error if no plugins are defined in the schema file', () => {
+  it('Should throw an error if no plugins are defined in the schema file', async () => {
     // Create a schema with no plugins
     const transformer = new Transformer(idea, { cwd });
     // Temporarily set the schema.plugins to undefined or an empty object to simulate the missing plugins
@@ -69,7 +69,14 @@ describe('Transformer Tests', () => {
       ...transformer['_schema'],
       plugin: undefined,
     };
-    expect(() => transformer.transform()).to.throw('No plugins defined in schema file');
+    let trigger = 0;
+    try {
+      await transformer.transform()
+    } catch(e) {
+      expect(e.message).to.equal('No plugins defined in schema file');
+      trigger = 1;
+    }
+    expect(trigger).to.equal(1);
   });
 
 

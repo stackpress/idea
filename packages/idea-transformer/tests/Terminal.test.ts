@@ -9,10 +9,10 @@ import Terminal from '../src/Terminal';
 const cwd = __dirname;
 
 describe('Terminal Tests', () => {
-  it('Should run cli', () => {
+  it('Should run cli', async () => {
     const terminal = new Terminal(['transform', '-i', './schema.idea'], { cwd });
     expect(terminal.cwd).to.equal(cwd);
-    terminal.run();
+    await terminal.run();
     const out = path.join(cwd, 'out/enums.ts');
     const exists = fs.existsSync(out);
     expect(exists).to.be.true;
