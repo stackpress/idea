@@ -14,8 +14,6 @@ jobs:
       - name: Building Code
         run: yarn build
       - name: Run Tests
-        run: yarn test
-      - name: Make Report
         run: yarn report
       - name: Coveralls
         uses: coverallsapp/github-action@v2
