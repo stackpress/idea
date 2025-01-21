@@ -340,10 +340,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@stackpress/types@0.3.17":
-  version "0.3.17"
-  resolved "https://registry.yarnpkg.com/@stackpress/types/-/types-0.3.17.tgz#58c462e8edf07f72454215e8ffea6354b87b8be2"
-  integrity sha512-t3FMr+dgESRbXTQ4LCsqA4lyiW5PBDGhNZUIRiMfAJ3gSm4UWw9w+VMj0B/DI8zEwcK4hSMafMwebzIGE283fQ==
+"@stackpress/lib@0.3.21":
+  version "0.3.21"
+  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.3.21.tgz#348e71282b6b293c4c5af2fd8232a32df3249de8"
+  integrity sha512-J4H/yv8T9RLAMn20KmPwRU1SvNxWuBpYEFpQDy28jeCPhRh57DnVsxv7pGgC++3T9eSCq/i2XXFpeNTwZWrmfw==
   dependencies:
     "@inquirer/prompts" "7.1.0"
 
@@ -1260,6 +1260,11 @@ mkdirp@^0.5.1:
   integrity sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==
   dependencies:
     minimist "^1.2.6"
+
+mocha-lcov-reporter@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/mocha-lcov-reporter/-/mocha-lcov-reporter-1.3.0.tgz#469bdef4f8afc9a116056f079df6182d0afb0384"
+  integrity sha512-/5zI2tW4lq/ft8MGpYQ1nIH6yePPtIzdGeUEwFMKfMRdLfAQ1QW2c68eEJop32tNdN5srHa/E2TzB+erm3YMYA==
 
 mocha@10.8.2:
   version "10.8.2"

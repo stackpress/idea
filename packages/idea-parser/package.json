@@ -1,12 +1,23 @@
 {
   "name": "@stackpress/idea-parser",
-  "version": "0.3.17",
+  "version": "0.3.21",
   "license": "Apache-2.0",
   "description": "Parses ideas to AST and readable JSON.",
   "author": "Chris <chris@incept.asia>",
   "homepage": "https://github.com/stackpress/idea",
   "bugs": "https://github.com/stackpress/idea/issues",
   "repository": "stackpress/idea",
+  "keywords": [
+    "ts",
+    "typescript",
+    "generator",
+    "CLI",
+    "ORM",
+    "AI",
+    "graphql",
+    "idea",
+    "stackpress"
+  ],
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,10 +29,10 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "nyc cross-env DATABASE_URL=test ts-mocha tests/*.test.ts"
+    "test": "cross-env DATABASE_URL=test ts-mocha tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/types": "0.3.17"
+    "@stackpress/lib": "0.3.21"
   },
   "devDependencies": {
     "@types/chai": "4.3.20",
@@ -32,7 +43,6 @@
     "cross-env": "7.0.3",
     "deep-equal-in-any-order": "1.1.20",
     "mocha": "10.8.2",
-    "nyc": "17.1.0",
     "ts-mocha": "10.0.0",
     "ts-node": "10.9.2",
     "typescript": "5.7.2"

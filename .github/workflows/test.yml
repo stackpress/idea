@@ -1,5 +1,5 @@
 name: Idea Test Suite
-on: [push]
+on: ["push", "pull_request"]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -11,7 +11,13 @@ jobs:
           node-version: '20.x'
       - name: Install dependencies
         run: yarn
-      - name: Building code
+      - name: Building Code
         run: yarn build
-      - name: Run tests
+      - name: Run Tests
         run: yarn test
+      - name: Make Report
+        run: yarn report
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,12 +1,23 @@
 {
   "name": "@stackpress/idea-transformer",
-  "version": "0.3.17",
+  "version": "0.3.21",
   "license": "Apache-2.0",
   "description": "A programmatical command line interface used by projects and that calls on external transformers to make relevant code",
   "author": "Chris <chris@incept.asia>",
   "homepage": "https://github.com/stackpress/idea",
   "bugs": "https://github.com/stackpress/idea/issues",
   "repository": "stackpress/idea",
+  "keywords": [
+    "ts",
+    "typescript",
+    "generator",
+    "CLI",
+    "ORM",
+    "AI",
+    "graphql",
+    "idea",
+    "stackpress"
+  ],
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
@@ -18,11 +29,11 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "nyc ts-mocha tests/*.test.ts"
+    "test": "ts-mocha tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/idea-parser": "0.3.17",
-    "@stackpress/types": "0.3.17"
+    "@stackpress/idea-parser": "0.3.21",
+    "@stackpress/lib": "0.3.21"
   },
   "devDependencies": {
     "@types/chai": "4.3.20",
@@ -30,7 +41,6 @@
     "@types/node": "22.9.3",
     "chai": "4.5.0",
     "mocha": "10.8.2",
-    "nyc": "17.1.0",
     "ts-mocha": "10.0.0",
     "ts-morph": "24.0.0",
     "ts-node": "10.9.2",
