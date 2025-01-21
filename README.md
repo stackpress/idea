@@ -4,6 +4,7 @@
   <a href="https://github.com/stackpress/idea/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://github.com/stackpress/idea/commits/main/"><img src="https://img.shields.io/github/last-commit/stackpress/idea" /></a>
   <a href="https://github.com/stackpress/idea/actions"><img src="https://img.shields.io/github/actions/workflow/status/stackpress/idea/test.yml" /></a>
+  <a href="https://coveralls.io/github/stackpress/idea?branch=main"><img src="https://coveralls.io/repos/github/stackpress/idea/badge.svg?branch=main" /></a>
   <a href="https://github.com/stackpress/idea/blob/main/docs/contribute.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <br />
   <br />
@@ -140,6 +141,6 @@ $ npx idea -i my.idea
 
 Learn more:
 
- - [Form an Idea](//github.com/stackpress/idea/blob/main/docs/schema.md)
- - [Transform an Idea](//github.com/stackpress/idea/blob/main/docs/transform.md)
- - [Plugins](//github.com/stackpress/idea/blob/main/docs/plugins.md)
+ - [Form an Idea](https://github.com/stackpress/idea/blob/main/docs/schema.md)
+ - [Transform an Idea](https://github.com/stackpress/idea/blob/main/docs/transform.md)
+ - [Plugins](https://github.com/stackpress/idea/blob/main/docs/plugins.md)
