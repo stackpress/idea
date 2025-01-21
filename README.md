@@ -61,6 +61,8 @@ to build scalable and flexible software solutions quickly.
  - **Scalability**: As your needs grow, the system is designed to 
    scale seamlessly. You can add more ideas or adjust existing ones 
    with minimal effort.
+ - **Documentation**: Generate documentation and tech specs based on 
+   your idea file.
  - **Error Reduction**: By automating the code generation, we reduce 
    the chance of human error, ensuring more reliable and stable 
    software.
