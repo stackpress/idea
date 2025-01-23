@@ -340,10 +340,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@stackpress/lib@0.3.23":
-  version "0.3.23"
-  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.3.23.tgz#c1582d7541e680fc5a9074ef073708cf505f0db3"
-  integrity sha512-xoDXludlovLAIhmmd/QRm+kFfNTaBDWpla0RIYabVxdXXVMzgGtD1SxgfsC9XIAfSxs8y6IltPEWOcnk6I/HOA==
+"@stackpress/lib@0.3.24":
+  version "0.3.24"
+  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.3.24.tgz#ff891888e0a1ca46e25a27412c0161c911bbc79c"
+  integrity sha512-pRiqM8Z76Cc93zxWMLGRvy/Bs7mPaVuQm0qX8wFwhd0nehA+LCeZ4ByBTXTw2x2O2Uq9V7q1H+yrpaeGHKALTQ==
   dependencies:
     "@inquirer/prompts" "7.1.0"
 
