@@ -131,7 +131,7 @@ const definitions: Record<string, Reader> = {
     };
   },
   'Float': (code, start) => {
-    const match = code.slice(start).match(/^\d+\.\d+/);
+    const match = code.slice(start).match(/^-?\d+\.\d+/);
     if (match !== null && match.index === 0) {
       const end = start + match[0].length;
       const value = code.substring(start, end);
@@ -147,7 +147,7 @@ const definitions: Record<string, Reader> = {
     return undefined;
   },
   'Integer': (code, start) => {
-    const match = code.slice(start).match(/^[0-9]+/);
+    const match = code.slice(start).match(/^-?[0-9]+/);
     if (match !== null && match.index === 0) {
       const end = start + match[0].length;
       const value = code.substring(start, end);
