@@ -53,7 +53,7 @@
     "@babel/parser" "^7.26.5"
     "@babel/types" "^7.26.5"
     "@jridgewell/gen-mapping" "^0.3.5"
-    "@jridgewell/trace-mapping" "^0.3.25"
+    "@jridgewell/trace-mapping" "^0.3.26"
     jsesc "^3.0.2"
 
 "@babel/helper-compilation-targets@^7.25.9":
@@ -332,17 +332,17 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@jridgewell/trace-mapping@^0.3.24", "@jridgewell/trace-mapping@^0.3.25":
-  version "0.3.25"
-  resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.25.tgz#15f190e98895f3fc23276ee14bc76b675c2e50f0"
+"@jridgewell/trace-mapping@^0.3.24", "@jridgewell/trace-mapping@^0.3.26":
+  version "0.3.26"
+  resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.26.tgz#15f190e98895f3fc23276ee14bc76b675c2e50f0"
   integrity sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==
   dependencies:
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@stackpress/lib@0.3.25":
-  version "0.3.25"
-  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.3.25.tgz#389dc3c46e7781bcd1523c2bc4768b0c0658f412"
+"@stackpress/lib@0.3.26":
+  version "0.3.26"
+  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.3.26.tgz#389dc3c46e7781bcd1523c2bc4768b0c0658f412"
   integrity sha512-Y9dwVi9UtF/1BGppiUw6NGBmgxYNa7qZLwXxTpGmPFzHDvs48jJs7HjBRR0ovsIzkgivv9ZrCt+CUcmjOzivfQ==
   dependencies:
     "@inquirer/prompts" "7.1.0"
