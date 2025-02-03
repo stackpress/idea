@@ -1,0 +1,72 @@
+model Address 
+  @label("Address" "Addresses") 
+  @template("{{label}}") 
+  @icon("map-marker") 
+{
+  id          String    @label("Places ID") @id
+                        @list.overflow({ length 10 hellip true })
+
+  formatted    String   @label("Formatted Address") 
+                        @field.text
+                        @is.required
+                        @list.text @view.text
+  
+  street       String   @label("Street Address")
+                        @field.text
+                        @is.required
+                        @list.text @view.text
+  
+  neighborhood String?  @label("Neighborhood")
+                        @field.text
+                        @list.text @view.text
+  
+  city         String   @label("City")
+                        @field.text
+                        @is.required
+                        @list.text @view.text
+  
+  state        String?  @label("State")
+                        @field.text
+                        @list.text @view.text
+  
+  region       String?  @label("Region")
+                        @field.text
+                        @list.text @view.text
+  
+  country      String   @label("Country")
+                        @field.text
+                        @is.required
+                        @list.text @view.text
+  
+  postal       String   @label("Postal Code")
+                        @field.text
+                        @is.required
+                        @list.text @view.text
+
+  latitude     Float?   @label("Latitude")
+                        @min(-90) @max(90) @step(0.00000001)
+                        @field.number({ min -90 max 90 step 0.00000001 })
+                        @is.gte(-90) @is.lte(90)
+                        @list.hide @view.number
+
+  longitude    Float?   @label("Longitude")
+                        @min(-180) @max(180) @step(0.00000001)
+                        @field.number({ min -180 max 180 step 0.00000001 })
+                        @is.gte(-180) @is.lte(180)
+                        @list.hide @view.number
+  
+  active       Boolean  @label("Active") 
+                        @default(true) 
+                        @filter.switch
+                        @list.hide @view.yesno
+  
+  created      Datetime @label("Created") 
+                        @default("now()") @sortable
+                        @list.date("m d, Y h:iA") 
+                        @view.date("m d, Y h:iA")
+  
+  updated      Datetime @label("Updated") 
+                        @default("now()") @timestamp @sortable
+                        @list.date("m d, Y h:iA") 
+                        @view.date("m d, Y h:iA")
+}

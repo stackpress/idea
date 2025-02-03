@@ -51,7 +51,13 @@ describe('Model Tree', () => {
     expect(() => modelTree.parse('model foobar')).to.throw('Expected CapitalIdentifier but got something else');
   });
 
-
-
-
+  it('Should parse negative values', async () => {
+    const actualRaw = ModelTree.parse(fs.readFileSync(`${__dirname}/fixtures/address.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/address.json`, 'utf8'));
+    
+    const actual = cleanAST(actualRaw);
+    const expected = cleanAST(expectedRaw);
+    
+    expect(actual).to.deep.equalInAnyOrder(expected);
+  });
 });
