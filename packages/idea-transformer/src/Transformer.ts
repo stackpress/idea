@@ -25,14 +25,14 @@ export default class Transformer<T extends Record<string, unknown>> {
       if (!fs.existsSync(this.input)) {
         throw Exception.for('Input file %s does not exist', this.input);
       }
-      //  read input file
+      //read input file
       const content = fs.readFileSync(this.input, 'utf8');
-
-      // parse schema
+      //parse schema
       const schema: SchemaConfig = path.extname(this.input) === '.json'
-        ? JSON.parse(content)        // parse directly
-        : parse(content);           // parse as normal
-
+      //parse directly
+      ? JSON.parse(content)
+      //parse as normal       
+      : parse(content);           
       //look for use
       if (Array.isArray(schema.use)) {
         schema.use.forEach((file: string) => {
@@ -45,13 +45,13 @@ export default class Transformer<T extends Record<string, unknown>> {
           const child = transformer.schema;
           //soft merge the object values of enum, 
           //type, model from parent to schema
-          if (child?.prop) {
-            schema.prop = { ...child?.prop, ...schema.prop };
+          if (child.prop) {
+            schema.prop = { ...child.prop, ...schema.prop };
           }
-          if (child?.enum) {
-            schema.enum = { ...child?.enum, ...schema.enum };
+          if (child.enum) {
+            schema.enum = { ...child.enum, ...schema.enum };
           }
-          if (child?.type) {
+          if (child.type) {
             //make sure there is a schema type
             schema.type = schema.type || {};
             //loop through child types
@@ -71,11 +71,11 @@ export default class Transformer<T extends Record<string, unknown>> {
               }
             }
           }
-          if (child?.model) {
+          if (child.model) {
             //make sure there is a schema model
             schema.model = schema.model || {};
             //loop through child types
-            for (const [ name, model ] of Object.entries(child?.model)) {
+            for (const [ name, model ] of Object.entries(child.model)) {
               const parent = schema.model[name];
               //if type from child doesn't exist in schema (parent)
               //or if no parent or parent is not mutable
@@ -116,15 +116,15 @@ export default class Transformer<T extends Record<string, unknown>> {
   public async transform(extras?: T) {
     //ensure the plugin not exists or is not object 
     //if the conditions are true will throw an error.
-    if (!this.schema?.plugin || typeof this.schema?.plugin !== 'object') {
+    if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
       throw Exception.for('No plugins defined in schema file');
     }
     //loop through plugins
-    for (const plugin in this.schema?.plugin) {
+    for (const plugin in this.schema.plugin) {
       //determine the module path
       const module = this.loader.absolute(plugin);
       //get the plugin config
-      const config = this.schema?.plugin[plugin] as Record<string, any>;
+      const config = this.schema.plugin[plugin] as Record<string, any>;
       //load the callback
       let callback = this.loader.require(module);
       //check for default
