@@ -21,6 +21,17 @@ describe('Terminal Tests', () => {
     }
   }).timeout(20000);
 
+  it('Should run cli using json file', async () => {
+    const terminal = new Terminal(['transform', '-i', './schema.json'], { cwd });
+    expect(terminal.cwd).to.equal(cwd);
+    await terminal.run();
+    const out = path.join(cwd, 'out/enums.ts');
+    const exists = fs.existsSync(out);
+    expect(exists).to.be.true;
+    if (exists) {
+      fs.unlinkSync(out);
+    }
+  }).timeout(20000);
   /*
   * UNIT TEST TO COVER THE UNCOVERED LINES
   */
