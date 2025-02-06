@@ -29,10 +29,10 @@ export default class Transformer<T extends Record<string, unknown>> {
       const content = fs.readFileSync(this.input, 'utf8');
       //parse schema
       const schema: SchemaConfig = path.extname(this.input) === '.json'
-      //parse directly
-      ? JSON.parse(content)
-      //parse as normal       
-      : parse(content);           
+        //parse directly
+        ? JSON.parse(content)
+        //parse as normal
+        : parse(content);
       //look for use
       if (Array.isArray(schema.use)) {
         schema.use.forEach((file: string) => {
