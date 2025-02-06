@@ -25,8 +25,14 @@ export default class Transformer<T extends Record<string, unknown>> {
       if (!fs.existsSync(this.input)) {
         throw Exception.for('Input file %s does not exist', this.input);
       }
+      //read input file
+      const content = fs.readFileSync(this.input, 'utf8');
       //parse schema
-      const schema = parse(fs.readFileSync(this.input, 'utf8'));
+      const schema: SchemaConfig = path.extname(this.input) === '.json'
+      //parse directly
+      ? JSON.parse(content)
+      //parse as normal       
+      : parse(content);           
       //look for use
       if (Array.isArray(schema.use)) {
         schema.use.forEach((file: string) => {

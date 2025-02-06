@@ -1,0 +1,896 @@
+{
+  "plugin": {
+    "./in/make-enums": {
+      "lang": "ts",
+      "output": "./out/enums.ts"
+    }
+  },
+  "model": {
+    "Profile": {
+      "name": "Profile",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "Profile",
+          "Profiles"
+        ],
+        "suggested": [
+          "[name]"
+        ],
+        "icon": [
+          "user"
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "name",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Full Name"
+            ],
+            "searchable": true,
+            "field.text": true,
+            "is.required": [
+              "Name is required"
+            ],
+            "list.detail": true,
+            "view.text": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "image",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Image"
+            ],
+            "field.url": true,
+            "list.image": [
+              {
+                "width": 20,
+                "height": 20
+              }
+            ],
+            "view.image": [
+              {
+                "width": 100,
+                "height": 100
+              }
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "description",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Description"
+            ],
+            "field.textarea": true,
+            "list.none": true,
+            "view.text": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "type",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Type"
+            ],
+            "default": [
+              "person"
+            ],
+            "filterable": true,
+            "field.text": true,
+            "list.lowercase": true,
+            "view.lowercase": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "roles",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Roles"
+            ],
+            "field.textlist": true,
+            "list.hide": true,
+            "view.tags": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "tags",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Tags"
+            ],
+            "field.tags": true,
+            "list.hide": true,
+            "view.tags": true
+          }
+        },
+        {
+          "type": "Hash",
+          "name": "references",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "References"
+            ],
+            "field.metadata": true,
+            "list.hide": true,
+            "view.metadata": true
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "generated": true,
+            "active": true,
+            "default": [
+              true
+            ],
+            "list.hide": true,
+            "view.yesno": true
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "generated": true,
+            "created": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "generated": true,
+            "updated": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Auth",
+          "name": "auth",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Auth"
+            ]
+          }
+        },
+        {
+          "type": "Connection",
+          "name": "connections",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Connections"
+            ]
+          }
+        },
+        {
+          "type": "Connection",
+          "name": "memberships",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Memberships"
+            ]
+          }
+        },
+        {
+          "type": "File",
+          "name": "files",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Files"
+            ]
+          }
+        }
+      ]
+    },
+    "Auth": {
+      "name": "Auth",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "Auth",
+          "Auths"
+        ],
+        "suggested": [
+          "[username]"
+        ],
+        "icon": [
+          "lock"
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "id",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "ID"
+            ],
+            "id": true,
+            "generated": true,
+            "default": [
+              "cuid()"
+            ],
+            "list.char": [
+              {
+                "hellip": false,
+                "length": 8
+              }
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "profileId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Profile"
+            ],
+            "filterable": true,
+            "field.relation": [
+              "Profile",
+              "id"
+            ],
+            "is.required": [
+              "Profile is required"
+            ],
+            "list.relation": [
+              "Profile"
+            ],
+            "view.relation": [
+              "Profile"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "username",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Username"
+            ],
+            "unique": true,
+            "searchable": true,
+            "filterable": true,
+            "field.text": true,
+            "is.required": [
+              "Username is required"
+            ],
+            "is.cge": [
+              5,
+              "Should more than 5 characters"
+            ],
+            "list.detail": true,
+            "view.text": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "email",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Email Address"
+            ],
+            "unique": true,
+            "searchable": true,
+            "filterable": true,
+            "field.email": true,
+            "is.email": [
+              "Should be a valid email address"
+            ],
+            "list.text": true,
+            "view.email": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "phone",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Phone Number"
+            ],
+            "unique": true,
+            "searchable": true,
+            "filterable": true,
+            "field.text": true,
+            "is.pattern": [
+              "/^\\+[0-9]{0,3} [0-9]+$/",
+              "Should be a valid phone number"
+            ],
+            "list.text": true,
+            "view.phone": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "password",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Password"
+            ],
+            "field.password": true,
+            "is.required": [
+              "Password is required"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "twofa",
+          "required": false,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "2FA"
+            ],
+            "field.text": true
+          }
+        },
+        {
+          "type": "Int",
+          "name": "verified",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Verified"
+            ],
+            "generated": true,
+            "default": [
+              0
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "lastLogin",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Last Logged In"
+            ],
+            "generated": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "generated": true,
+            "active": true,
+            "default": [
+              true
+            ],
+            "list.yesno": true,
+            "view.yesno": true
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "generated": true,
+            "created": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "generated": true,
+            "updated": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Profile",
+          "name": "profile",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "local": "profileId",
+                "foreign": "id"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "Connection": {
+      "name": "Connection",
+      "mutable": true,
+      "attributes": {
+        "label": [
+          "Connection",
+          "Connections"
+        ],
+        "suggested": [
+          "[owner.name] - [member.name]"
+        ],
+        "icon": [
+          "users"
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "ownerId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Owner"
+            ],
+            "id": true,
+            "relation": [
+              "Profile",
+              "id"
+            ],
+            "is.required": [
+              "Owner is required"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "memberId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Member"
+            ],
+            "id": true,
+            "relation": [
+              "Profile",
+              "id"
+            ],
+            "is.required": [
+              "Member is required"
+            ]
+          }
+        },
+        {
+          "type": "Roles",
+          "name": "role",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Role"
+            ],
+            "default": [
+              "MEMBER"
+            ],
+            "field.text": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "tags",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Tags"
+            ],
+            "field.tags": true,
+            "list.hide": true,
+            "view.tags": true
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "generated": true,
+            "active": true,
+            "default": [
+              true
+            ],
+            "list.yesno": true,
+            "view.yesno": true
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "generated": true,
+            "created": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "generated": true,
+            "updated": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Profile",
+          "name": "owner",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "name": "connections",
+                "local": "ownerId",
+                "foreign": "id"
+              }
+            ]
+          }
+        },
+        {
+          "type": "Profile",
+          "name": "member",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "name": "memberships",
+                "local": "memberId",
+                "foreign": "id"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "File": {
+      "name": "File",
+      "mutable": false,
+      "attributes": {
+        "label": [
+          "File",
+          "Files"
+        ],
+        "suggested": [
+          "[name]"
+        ],
+        "icon": [
+          "file"
+        ]
+      },
+      "columns": [
+        {
+          "type": "String",
+          "name": "id",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "ID"
+            ],
+            "id": true,
+            "generated": true,
+            "default": [
+              "cuid()"
+            ],
+            "list.char": [
+              {
+                "hellip": false,
+                "length": 8
+              }
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "profileId",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Profile"
+            ],
+            "filterable": true,
+            "field.relation": [
+              "Profile",
+              "id"
+            ],
+            "is.required": [
+              "Profile is required"
+            ]
+          }
+        },
+        {
+          "type": "String",
+          "name": "name",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Name"
+            ],
+            "searchable": true,
+            "field.text": true,
+            "is.required": [
+              "Name is required"
+            ],
+            "list.detail": true,
+            "view.text": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "url",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "URL"
+            ],
+            "searchable": true,
+            "field.url": true,
+            "is.required": [
+              "URL is required"
+            ],
+            "view.link": true
+          }
+        },
+        {
+          "type": "String",
+          "name": "tags",
+          "required": true,
+          "multiple": true,
+          "attributes": {
+            "label": [
+              "Tags"
+            ],
+            "field.tags": true,
+            "list.hide": true,
+            "view.tags": true
+          }
+        },
+        {
+          "type": "Boolean",
+          "name": "active",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Active"
+            ],
+            "generated": true,
+            "active": true,
+            "default": [
+              true
+            ],
+            "list.yesno": true,
+            "view.yesno": true
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "created",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Created"
+            ],
+            "generated": true,
+            "created": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Datetime",
+          "name": "updated",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "label": [
+              "Updated"
+            ],
+            "generated": true,
+            "updated": true,
+            "spanable": true,
+            "sortable": true,
+            "default": [
+              "now()"
+            ],
+            "list.date": [
+              "m d, Y h:iA"
+            ],
+            "view.date": [
+              "m d, Y h:iA"
+            ]
+          }
+        },
+        {
+          "type": "Profile",
+          "name": "profile",
+          "required": true,
+          "multiple": false,
+          "attributes": {
+            "relation": [
+              {
+                "local": "profileId",
+                "foreign": "id"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
