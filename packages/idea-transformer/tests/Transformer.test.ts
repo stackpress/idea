@@ -9,6 +9,7 @@ import { TypeConfig } from '@stackpress/idea-parser';
 //resusable variables
 const cwd = __dirname;
 const idea = path.resolve(cwd, 'schema.idea');
+const use = path.resolve(cwd, 'use.idea');
 
 describe('Transformer Tests', () => {
   it('Should get processed schema', () => {
@@ -92,7 +93,13 @@ describe('Transformer Tests', () => {
     expect(parentType.attributes).to.deep.equal({ name: 'parent' });
   });
 
-
+  it('Should allow use json file into an idea file', () => {
+    const transformerIdea = new Transformer(idea, { cwd });
+    const transformerJson = new Transformer(use, { cwd });
+    const useIdea = transformerIdea.schema.use;
+    const useJson = transformerJson.schema.use;
+    expect(useJson).to.deep.equal(useIdea);
+  });
 
 
 });
