@@ -96,8 +96,10 @@ describe('Transformer Tests', () => {
   it('Should allow use json file into an idea file', () => {
     const transformerIdea = new Transformer(idea, { cwd });
     const transformerJson = new Transformer(use, { cwd });
-    const useIdea = transformerIdea.schema.use;
-    const useJson = transformerJson.schema.use;
+    // get the final schemas
+    const useIdea = transformerIdea.schema;
+    const useJson = transformerJson.schema;
+    // check if the merged json file is deeply equal to merged idea file
     expect(useJson).to.deep.equal(useIdea);
   });
 
