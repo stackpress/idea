@@ -1,10 +1,10 @@
 //types
-import type { EnumConfig } from '@stackpress/idea-parser/dist/types';
+import type { EnumConfig } from '@stackpress/idea-parser/types';
 import type { PluginProps } from '../../src';
 //others
 import path from 'path';
 import { Project, IndentationText } from 'ts-morph';
-import Exception from '@stackpress/idea-parser/dist/Exception';
+import Exception from '@stackpress/idea-parser/Exception';
 
 
 // plugin "./make-enums" {

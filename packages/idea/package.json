@@ -1,6 +1,7 @@
 {
+  "type": "module",
   "name": "@stackpress/idea",
-  "version": "0.4.6",
+  "version": "0.4.10",
   "license": "Apache-2.0",
   "description": "An open source schema file standard and generator",
   "author": "Chris <chris@incept.asia>",
@@ -18,25 +19,47 @@
     "idea",
     "stackpress"
   ],
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js"
+    },
+    "./bin": {
+      "require": "./cjs/bin.js",
+      "import": "./esm/bin.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "index": [ "./cjs/index.d.ts"]
+    }
+  },
   "files": [
-    "dist",
+    "cjs",
+    "esm",
     "bin.js",
-    "index.js",
-    "index.d.ts",
     "LICENSE",
     "README.md"
   ],
   "bin": {
-    "idea": "./bin.js"
+    "idea": "./cjs/bin.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "yarn build:tsc && yarn build:pkg",
+    "build:pkg": "yarn build:pkg:cjs && yarn build:pkg:esm",
+    "build:pkg:cjs": "echo '{\"type\": \"commonjs\"}' > cjs/package.json",
+    "build:pkg:esm": "echo '{\"type\": \"module\"}' > esm/package.json",
+    "build:tsc": "yarn build:tsc:cjs && yarn build:tsc:esm",
+    "build:tsc:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:tsc:esm": "tsc -p ./tsconfig.esm.json",
+    "test": "ts-mocha -p ./tsconfig.cjs.json tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/idea-parser": "0.4.6",
-    "@stackpress/idea-transformer": "0.4.6"
+    "@stackpress/idea-parser": "0.4.10",
+    "@stackpress/idea-transformer": "0.4.10"
   },
   "devDependencies": {
     "@types/node": "22.9.3",

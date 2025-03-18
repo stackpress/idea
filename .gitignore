@@ -141,6 +141,8 @@ cockroach-data
 
 #custom
 archives
+esm/
+cjs/
 example/src/enums.ts
 packages/idea-language/client/package-lock.json
 packages/idea-language/server/package-lock.json

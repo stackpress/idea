@@ -1,6 +1,7 @@
 {
+  "type": "module",
   "name": "@stackpress/idea-transformer",
-  "version": "0.4.6",
+  "version": "0.4.10",
   "license": "Apache-2.0",
   "description": "A programmatical command line interface used by projects and that calls on external transformers to make relevant code",
   "author": "Chris <chris@incept.asia>",
@@ -18,22 +19,54 @@
     "idea",
     "stackpress"
   ],
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js"
+    },
+    "./types": {
+      "require": "./cjs/types.js",
+      "import": "./esm/types.js"
+    },
+    "./Terminal": {
+      "require": "./cjs/Terminal.js",
+      "import": "./esm/Terminal.js"
+    },
+    "./Transformer": {
+      "require": "./cjs/Transformer.js",
+      "import": "./esm/Transformer.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "index": [ "./cjs/index.d.ts"],
+      "types": [ "./cjs/types.d.ts" ],
+      "Terminal": [ "./cjs/Terminal.d.ts" ],
+      "Transformer": [ "./cjs/Transformer.d.ts" ]
+    }
+  },
   "files": [
-    "dist",
-    "index.js",
-    "index.d.ts",
+    "cjs",
+    "esm",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "ts-mocha tests/*.test.ts"
+    "build": "yarn build:tsc && yarn build:pkg",
+    "build:pkg": "yarn build:pkg:cjs && yarn build:pkg:esm",
+    "build:pkg:cjs": "echo '{\"type\": \"commonjs\"}' > cjs/package.json",
+    "build:pkg:esm": "echo '{\"type\": \"module\"}' > esm/package.json",
+    "build:tsc": "yarn build:tsc:cjs && yarn build:tsc:esm",
+    "build:tsc:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:tsc:esm": "tsc -p ./tsconfig.esm.json",
+    "test": "ts-mocha -p ./tsconfig.cjs.json tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/idea-parser": "0.4.6",
-    "@stackpress/lib": "0.4.6"
+    "@stackpress/idea-parser": "0.4.10",
+    "@stackpress/lib": "0.4.10"
   },
   "devDependencies": {
     "@types/chai": "4.3.20",

@@ -1,5 +1,8 @@
-import type { FileSystem } from '@stackpress/lib/dist/types';
-import type { PluginConfig, SchemaConfig } from '@stackpress/idea-parser';
+import type { FileSystem } from '@stackpress/lib/types';
+import type { 
+  PluginConfig, 
+  SchemaConfig 
+} from '@stackpress/idea-parser/types';
 import type Terminal from './Terminal';
 
 //--------------------------------------------------------------------//

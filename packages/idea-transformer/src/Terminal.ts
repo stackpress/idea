@@ -1,7 +1,7 @@
 //types
 import type { CLIProps, TerminalOptions } from './types';
 //others
-import EventTerminal from '@stackpress/lib/dist/event/EventTerminal';
+import EventTerminal from '@stackpress/lib/EventTerminal';
 import Transformer from './Transformer';
 
 export default class IdeaTerminal extends EventTerminal {

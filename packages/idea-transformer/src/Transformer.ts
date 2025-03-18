@@ -5,8 +5,8 @@ import type { TransformerOptions } from './types';
 import fs from 'node:fs';
 import path from 'node:path';
 import { parse, Exception } from '@stackpress/idea-parser';
-import FileLoader from '@stackpress/lib/dist/system/FileLoader';
-import NodeFS from '@stackpress/lib/dist/system/NodeFS';
+import FileLoader from '@stackpress/lib/FileLoader';
+import NodeFS from '@stackpress/lib/NodeFS';
 
 export default class Transformer<T extends Record<string, unknown>> {
   //current working directory
