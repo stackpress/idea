@@ -12,9 +12,9 @@ const idea = path.resolve(cwd, 'schema.idea');
 const use = path.resolve(cwd, 'use.idea');
 
 describe('Transformer Tests', () => {
-  it('Should get processed schema', () => {
-    const transformer = new Transformer(idea, { cwd });
-    const actual = transformer.schema;
+  it('Should get processed schema', async () => {
+    const transformer = await Transformer.load(idea, { cwd });
+    const actual = await transformer.schema();
     const output = actual.plugin?.['./in/make-enums'].output;
     expect(output).to.equal('./out/enums.ts');
     expect(actual.model && 'Profile' in actual.model).to.be.true;
@@ -39,7 +39,7 @@ describe('Transformer Tests', () => {
   }).timeout(20000);
 
   it('Should make enums', async () => {
-    const transformer = new Transformer(idea, { cwd });
+    const transformer = await Transformer.load(idea, { cwd });
     await transformer.transform();
     const out = path.join(cwd, 'out/enums.ts');
     const exists = fs.existsSync(out);
@@ -55,16 +55,23 @@ describe('Transformer Tests', () => {
  */
 
   // LINE 26
-  it('Should throw an error if the input file does not exist', () => {
+  it('Should throw an error if the input file does not exist', async () => {
     const nonExistentPath = path.resolve(cwd, 'nonexistent.idea');
-    const transformer = new Transformer(nonExistentPath, { cwd });
-    expect(() => transformer.schema).to.throw(`Input file ${nonExistentPath} does not exist`);
+    const transformer = await Transformer.load(nonExistentPath, { cwd });
+    let trigger = 0;
+    try {
+      await transformer.schema()
+    } catch(e) {
+      expect(e.message).to.equal(`Input file ${nonExistentPath} does not exist`);
+      trigger = 1;
+    }
+    expect(trigger).to.equal(1);
   });
 
   // lINE 109
   it('Should throw an error if no plugins are defined in the schema file', async () => {
     // Create a schema with no plugins
-    const transformer = new Transformer(idea, { cwd });
+    const transformer = await Transformer.load(idea, { cwd });
     // Temporarily set the schema.plugins to undefined or an empty object to simulate the missing plugins
     transformer['_schema'] = {
       ...transformer['_schema'],
@@ -85,17 +92,17 @@ describe('Transformer Tests', () => {
   * ADD MORE UNIT TEST TO ACHIEVE 85%
   */
 
-  it('Should merge child attributes into parent attributes', () => {
-    const transformer = new Transformer(idea, { cwd });
+  it('Should merge child attributes into parent attributes', async () => {
+    const transformer = await Transformer.load(idea, { cwd });
     const parentType = { attributes: { name: 'parent' } };
     const childType = { attributes: { name: 'child' } };
     transformer['_merge'](parentType as unknown as TypeConfig, childType as unknown as TypeConfig);
     expect(parentType.attributes).to.deep.equal({ name: 'parent' });
   });
 
-  it('Should allow use json file into an idea file', () => {
-    const transformerIdea = new Transformer(idea, { cwd });
-    const transformerJson = new Transformer(use, { cwd });
+  it('Should allow use json file into an idea file', async () => {
+    const transformerIdea = await Transformer.load(idea, { cwd });
+    const transformerJson = await Transformer.load(use, { cwd });
     // Get the final schemas
     const useIdea = transformerIdea.schema;
     const useJson = transformerJson.schema;

@@ -114,7 +114,7 @@
     "test": "DATABASE_URL=test ts-mocha -p ./tsconfig.cjs.json tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/lib": "0.4.10"
+    "@stackpress/lib": "0.5.1"
   },
   "devDependencies": {
     "@types/chai": "4.3.20",

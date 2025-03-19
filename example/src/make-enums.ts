@@ -3,7 +3,7 @@ import type { PluginWithCLIProps, EnumConfig } from '@stackpress/idea';
 import path from 'path';
 import { Project, IndentationText } from 'ts-morph';
 
-export default function generate({ config, schema, cli }: PluginWithCLIProps) {
+export default async function generate({ config, schema, cli }: PluginWithCLIProps) {
   // 1. Config
   //we need to know where to put this code...
   if (!config.output) {
@@ -13,7 +13,7 @@ export default function generate({ config, schema, cli }: PluginWithCLIProps) {
   const lang = config.lang || 'ts';
   // 2. Project
   //find the absolute path from the output config
-  const destination = cli.transformer.loader.absolute(config.output as string);
+  const destination = await cli.transformer.loader.absolute(config.output as string);
   //output directory from the destination
   const dirname = path.dirname(destination);
   //file name from the destination

@@ -1,14 +1,28 @@
 //types
 import type { SchemaConfig, TypeConfig } from '@stackpress/idea-parser';
-import type { TransformerOptions } from './types';
+import type { FileLoaderOptions } from './types';
 //others
-import fs from 'node:fs';
 import path from 'node:path';
 import { parse, Exception } from '@stackpress/idea-parser';
 import FileLoader from '@stackpress/lib/FileLoader';
 import NodeFS from '@stackpress/lib/NodeFS';
 
 export default class Transformer<T extends Record<string, unknown>> {
+  /**
+   * Transformer factory loader
+   */
+  public static async load<T extends Record<string, unknown>>(
+    input: string, 
+    options: FileLoaderOptions = {}
+  ) {
+    const loader = new FileLoader(
+      options.fs || new NodeFS(), 
+      options.cwd
+    );
+    input = await loader.absolute(input);
+    return new Transformer<T>(input, loader);
+  } 
+
   //current working directory
   public readonly loader: FileLoader;
   //cached input file
@@ -17,16 +31,24 @@ export default class Transformer<T extends Record<string, unknown>> {
   protected _schema?: SchemaConfig;
 
   /**
+   * Preloads the input
+  */
+  constructor(input: string, loader: FileLoader) {
+    this.input = input;
+    this.loader = loader;
+  }
+
+  /**
    * Tries to load the schema file
    */
-  get schema() {
+  public async schema() {
     if (!this._schema) {
       //check if input file exists
-      if (!fs.existsSync(this.input)) {
+      if (!(await this.loader.fs.exists(this.input))) {
         throw Exception.for('Input file %s does not exist', this.input);
       }
       //read input file
-      const content = fs.readFileSync(this.input, 'utf8');
+      const content = await this.loader.fs.readFile(this.input, 'utf8');
       //parse schema
       const schema: SchemaConfig = path.extname(this.input) === '.json'
         //parse directly
@@ -35,14 +57,14 @@ export default class Transformer<T extends Record<string, unknown>> {
         : parse(content);
       //look for use
       if (Array.isArray(schema.use)) {
-        schema.use.forEach((file: string) => {
-          const absolute = this.loader.absolute(file);
+        for (const file of schema.use) {
+          const absolute = await this.loader.absolute(file);
           const dirname = path.dirname(absolute);
-          const transformer = new Transformer(absolute, {
+          const transformer = await Transformer.load<T>(absolute, {
             cwd: dirname,
             fs: this.loader.fs
           });
-          const child = transformer.schema;
+          const child = await transformer.schema();
           //soft merge the object values of enum, 
           //type, model from parent to schema
           if (child.prop) {
@@ -91,7 +113,7 @@ export default class Transformer<T extends Record<string, unknown>> {
               }
             }
           }
-        });
+        }
       }
       //finalize schema
       delete schema.use;
@@ -103,34 +125,23 @@ export default class Transformer<T extends Record<string, unknown>> {
   }
 
   /**
-   * Preloads the input
-  */
-  constructor(input: string, options: TransformerOptions = {}) {
-    this.loader = new FileLoader(options.fs || new NodeFS(), options.cwd);
-    this.input = this.loader.absolute(input);
-  }
-
-  /**
    * Transform all plugins
    */
   public async transform(extras?: T) {
+    const schema = await this.schema();
     //ensure the plugin not exists or is not object 
     //if the conditions are true will throw an error.
-    if (!this.schema.plugin || typeof this.schema.plugin !== 'object') {
+    if (!schema.plugin || typeof schema.plugin !== 'object') {
       throw Exception.for('No plugins defined in schema file');
     }
     //loop through plugins
-    for (const plugin in this.schema.plugin) {
+    for (const plugin in schema.plugin) {
       //determine the module path
-      const module = this.loader.absolute(plugin);
+      const module = await this.loader.absolute(plugin);
       //get the plugin config
-      const config = this.schema.plugin[plugin] as Record<string, any>;
+      const config = schema.plugin[plugin] as Record<string, any>;
       //load the callback
-      let callback = this.loader.require(module);
-      //check for default
-      if (callback.default) {
-        callback = callback.default;
-      }
+      const callback = await this.loader.import<Function>(module, true);
       //check if it's a function
       if (typeof callback === 'function') {
         //call the callback

@@ -10,7 +10,8 @@ const cwd = __dirname;
 
 describe('Terminal Tests', () => {
   it('Should run cli', async () => {
-    const terminal = new Terminal(['transform', '-i', './schema.idea'], { cwd });
+    const argv = ['transform', '-i', './schema.idea'];
+    const terminal = await Terminal.load(argv, { cwd });
     expect(terminal.cwd).to.equal(cwd);
     await terminal.run();
     const out = path.join(cwd, 'out/enums.ts');
@@ -22,7 +23,8 @@ describe('Terminal Tests', () => {
   }).timeout(20000);
 
   it('Should run cli using json file', async () => {
-    const terminal = new Terminal(['transform', '-i', './schema.json'], { cwd });
+    const argv = ['transform', '-i', './schema.idea'];
+    const terminal = await Terminal.load(argv, { cwd });
     expect(terminal.cwd).to.equal(cwd);
     await terminal.run();
     const out = path.join(cwd, 'out/enums.ts');
@@ -37,11 +39,9 @@ describe('Terminal Tests', () => {
   */
 
   // Line 22
-  it('Should use default options when options parameter is omitted', () => {
-    const args = ['transform', '-i', './schema.idea'];
-    const terminal = new Terminal(args);
-    expect(terminal.cwd).to.equal(process.cwd());
+  it('Should use default options when options parameter is omitted', async () => {
+    const argv = ['transform', '-i', './schema.idea'];
+    const terminal = await Terminal.load(argv, { cwd });
+    expect(terminal.cwd).to.equal(__dirname);
   });
-
-
 });
