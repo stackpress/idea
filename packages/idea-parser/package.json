@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@stackpress/idea-parser",
-  "version": "0.4.10",
+  "version": "0.5.1",
   "license": "Apache-2.0",
   "description": "Parses ideas to AST and readable JSON.",
   "author": "Chris <chris@incept.asia>",
