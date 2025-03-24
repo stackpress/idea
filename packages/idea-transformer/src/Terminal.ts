@@ -23,13 +23,6 @@ export default class IdeaTerminal extends Terminal {
   public readonly extname: string;
 
   /**
-   * Returns the control brand
-   */
-  public get brand() {
-    return this.controls.brand;
-  }
-
-  /**
    * Preloads the input and output settings
    */
   constructor(

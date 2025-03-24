@@ -339,10 +339,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@stackpress/lib@0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.5.3.tgz#d2196750d420bab8330e90b26404d8de7dfc38a4"
-  integrity sha512-XqM0kil30mViMw8eXWopLmnmZwFMXjKBYZCXGkFp53CLa8CFtYWON+wXdHW+wMJKz8DfnIsPpi7gxNwDgVoEhw==
+"@stackpress/lib@0.5.4":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.5.4.tgz#2aa72ddf59007d9ee1d47341479b60dafae1b460"
+  integrity sha512-rXKr9MGCJ6Ym0H9Z4SeoY9jEkiOFEjK8J/8hsZOkvPK1eLqkBHPlKq8CRuBC+auCULb2PIr59fOKRvnO2dhdIg==
   dependencies:
     "@inquirer/prompts" "7.1.0"
     cookie "1.0.2"
