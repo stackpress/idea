@@ -1,53 +1,54 @@
 //types
-import type { CLIProps, FileLoaderOptions } from './types';
+import type { CLIProps, TerminalOptions } from './types';
 //others
-import EventTerminal from '@stackpress/lib/EventTerminal';
+import Terminal, { terminalControls } from '@stackpress/lib/Terminal';
 import Transformer from './Transformer';
 
-export default class IdeaTerminal extends EventTerminal {
-  // brand to prefix in all logs
-  public static brand: string = '[IDEA]';
-  // you can use a custom extension
-  public static extension: string = 'idea';
+export { terminalControls };
 
+export default class IdeaTerminal extends Terminal {
   /**
    * Terminal factory loader
    */
   public static async load(
     args: string[], 
-    options: FileLoaderOptions = {}
+    options: TerminalOptions = {}
   ) {
-    const cwd = options.cwd || process.cwd();
-    //set flags
-    const flags = [ 'input', 'i' ];
-    //fetermine filepath
-    const filepath = `${cwd}/schema.${this.extension}`;
-    //get io from commandline
-    const input = this.expect(args, flags, filepath);
-    //make a transformer
-    const transformer = await Transformer.load<CLIProps>(input, options);
-    return new IdeaTerminal(args, transformer, cwd);
+    return new IdeaTerminal(args, options);
   }
 
-  //access to static methods from the instance
-  //@ts-ignore - Types of construct signatures are incompatible.
-  public readonly terminal: typeof IdeaTerminal;
-  //transformer
-  public readonly transformer: Transformer<CLIProps>;
+  //current working directory
+  public readonly cwd: string;
+  //the idea file extension
+  public readonly extname: string;
+
+  /**
+   * Returns the control brand
+   */
+  public get brand() {
+    return this.controls.brand;
+  }
 
   /**
    * Preloads the input and output settings
    */
   constructor(
     args: string[], 
-    transformer: Transformer<CLIProps>, 
-    cwd = process.cwd()
+    options: TerminalOptions = {}
   ) {
-    super(args, cwd);
-    this.terminal = this.constructor as typeof IdeaTerminal;
-    this.transformer = transformer;
+    super(args, options.brand || '[IDEA]');
+    this.cwd = options.cwd || process.cwd();
+    this.extname = options.extname || '.idea';
     this.on('transform', async _ => {
-      await this.transformer.transform({ cli: this });
+      //set flags
+      const flags = [ 'input', 'i' ];
+      //fetermine filepath
+      const filepath = `${this.cwd}/schema${this.extname}`;
+      //get io from commandline
+      const input = this.expect(flags, filepath);
+      //make a transformer
+      const transformer = await Transformer.load<CLIProps>(input, options);
+      await transformer.transform({ cli: this });
     });
   }
 }

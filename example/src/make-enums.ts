@@ -1,19 +1,23 @@
-import type { PluginWithCLIProps, EnumConfig } from '@stackpress/idea';
+import { 
+  type EnumConfig,
+  type PluginWithCLIProps
+} from '@stackpress/idea';
 
 import path from 'path';
 import { Project, IndentationText } from 'ts-morph';
 
-export default async function generate({ config, schema, cli }: PluginWithCLIProps) {
+export default async function generate(props: PluginWithCLIProps) {
+  const { cli, schema, transformer, config } = props;
   // 1. Config
   //we need to know where to put this code...
   if (!config.output) {
-    return cli.terminal.error('No output directory specified');
+    return cli.controls.error('No output directory specified');
   }
   //code in typescript or javascript?
   const lang = config.lang || 'ts';
   // 2. Project
   //find the absolute path from the output config
-  const destination = await cli.transformer.loader.absolute(config.output as string);
+  const destination = await transformer.loader.absolute(config.output as string);
   //output directory from the destination
   const dirname = path.dirname(destination);
   //file name from the destination

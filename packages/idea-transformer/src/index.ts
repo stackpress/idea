@@ -1,6 +1,6 @@
 export type * from './types';
 
 import Transformer from './Transformer';
-import Terminal from './Terminal';
+import Terminal, { terminalControls } from './Terminal';
 
-export { Transformer, Terminal };
+export { Transformer, Terminal, terminalControls };

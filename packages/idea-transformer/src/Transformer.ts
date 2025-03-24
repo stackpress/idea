@@ -147,6 +147,7 @@ export default class Transformer<T extends Record<string, unknown>> {
         //call the callback
         await callback({
           ...extras,
+          transformer: this,
           config,
           schema,
           cwd: this.loader.cwd
