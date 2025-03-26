@@ -142,7 +142,12 @@ export default class Transformer<T extends Record<string, unknown>> {
     //loop through plugins
     for (const plugin in schema.plugin) {
       //determine the module path
-      const module = await this.loader.absolute(plugin);
+      const module = await this.loader.resolveFile(
+        plugin, 
+        [ '.js' ], 
+        this.loader.cwd, 
+        true
+      ) as string;
       //get the plugin config
       const config = schema.plugin[plugin] as Record<string, any>;
       //load the callback
