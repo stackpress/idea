@@ -144,7 +144,7 @@ export default class Transformer<T extends Record<string, unknown>> {
       //determine the module path
       const module = await this.loader.resolveFile(
         plugin, 
-        [ '.js' ], 
+        [ '.js', '.cjs', '.mjs', '.ts', '.mts' ], 
         this.loader.cwd, 
         true
       ) as string;
