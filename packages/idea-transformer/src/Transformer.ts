@@ -58,7 +58,12 @@ export default class Transformer<T extends Record<string, unknown>> {
       //look for use
       if (Array.isArray(schema.use)) {
         for (const file of schema.use) {
-          const absolute = await this.loader.absolute(file);
+          const absolute = await this.loader.resolveFile(
+            file, 
+            [ '.js' ], 
+            this.loader.cwd, 
+            true
+          ) as string;
           const dirname = path.dirname(absolute);
           const transformer = await Transformer.load<T>(absolute, {
             cwd: dirname,
