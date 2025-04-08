@@ -1,3 +1,32 @@
+export type {
+  Reader,
+  Definition,
+  UnknownToken,
+  ImportToken,
+  SchemaToken,
+  DeclarationToken,
+  DeclaratorToken,
+  IdentifierToken,
+  ObjectToken,
+  PropertyToken,
+  ArrayToken,
+  LiteralToken,
+  Token,
+  DataToken,
+  UseReferences,
+  Scalar,
+  Data,
+  Parser,
+  EnumConfig,
+  PluginConfig,
+  PropConfig,
+  ColumnConfig,
+  TypeConfig,
+  ModelConfig,
+  FinalSchemaConfig,
+  SchemaConfig
+} from './types';
+
 import AbstractTree from './trees/AbstractTree';
 import EnumTree from './trees/EnumTree';
 import PropTree from './trees/PropTree';
@@ -9,7 +38,6 @@ import Exception from './Exception';
 import Lexer from './Lexer';
 import Compiler from './Compiler';
 
-export type * from './types';
 export { 
   Exception, 
   Lexer, 
