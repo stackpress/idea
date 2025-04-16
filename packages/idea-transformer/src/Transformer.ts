@@ -1,6 +1,6 @@
 //types
 import type { SchemaConfig, TypeConfig } from '@stackpress/idea-parser';
-import type { FileLoaderOptions } from './types';
+import type { FileLoaderOptions } from './types.js';
 //others
 import path from 'node:path';
 import { parse, Exception } from '@stackpress/idea-parser';

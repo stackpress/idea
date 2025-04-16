@@ -3,12 +3,12 @@ import type {
   LiteralToken, 
   DeclarationToken, 
   ObjectToken 
-} from '../types';
+} from '../types.js';
 
-import Lexer from '../Lexer';
-import { scan } from '../definitions';
+import Lexer from '../Lexer.js';
+import { scan } from '../definitions.js';
 
-import AbstractTree from './AbstractTree';
+import AbstractTree from './AbstractTree.js';
 
 export default class PluginTree extends AbstractTree<DeclarationToken> {
   //the language used

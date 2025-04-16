@@ -4,12 +4,12 @@ import type {
   IdentifierToken, 
   LiteralToken, 
   PropertyToken 
-} from '../types';
+} from '../types.js';
 
-import Lexer from '../Lexer';
-import { data, scan } from '../definitions';
+import Lexer from '../Lexer.js';
+import { data, scan } from '../definitions.js';
 
-import AbstractTree from './AbstractTree';
+import AbstractTree from './AbstractTree.js';
 
 export default class TypeTree extends AbstractTree<DeclarationToken> {
   static data = [ ...data, 'CapitalIdentifier' ];

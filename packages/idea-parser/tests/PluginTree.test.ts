@@ -2,6 +2,8 @@ import fs from 'fs';
 import { describe, it } from 'mocha';
 import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import PluginTree from '../src/trees/PluginTree';
 
 use(deepEqualInAnyOrder);
@@ -25,8 +27,8 @@ const cleanAST = (node: any) => {
 
 describe('Plugin Tree', () => {
   it('Should parse Plugin', async () => {
-    const actualRaw = PluginTree.parse(fs.readFileSync(`${__dirname}/fixtures/plugin.idea`, 'utf8'));
-    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/plugin.json`, 'utf8'));
+    const actualRaw = PluginTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/plugin.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/plugin.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const expected = cleanAST(expectedRaw);

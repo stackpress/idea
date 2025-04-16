@@ -2,6 +2,8 @@ import fs from 'fs';
 import { describe, it } from 'mocha';
 import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import SchemaTree from '../src/trees/SchemaTree';
 import Compiler from '../src/Compiler';
 import Exception from '../src/Exception';
@@ -27,8 +29,8 @@ const cleanAST = (node: any) => {
 
 describe('Schema Tree', () => {
   it('Should parse Schema', async () => {
-    const actualRaw = SchemaTree.parse(fs.readFileSync(`${__dirname}/fixtures/schema.idea`, 'utf8'));
-    const schemaRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/schema.json`, 'utf8'));
+    const actualRaw = SchemaTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/schema.idea`, 'utf8'));
+    const schemaRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/schema.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const schema = cleanAST(schemaRaw);
@@ -36,10 +38,10 @@ describe('Schema Tree', () => {
     expect(actual).to.deep.equalInAnyOrder(schema);
 
     //console.log(JSON.stringify(Compiler.schema(actual), null, 2));
-    const references = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/references.json`, 'utf8'));
+    const references = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/references.json`, 'utf8'));
     expect(Compiler.schema(actual)).to.deep.equalInAnyOrder(references);
     //console.log(JSON.stringify(Compiler.final(actual), null, 2));
-    const final = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/final.json`, 'utf8'));
+    const final = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/final.json`, 'utf8'));
     expect(Compiler.final(actual)).to.deep.equalInAnyOrder(final);
   });
 

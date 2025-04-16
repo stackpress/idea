@@ -2,6 +2,8 @@ import fs from 'fs';
 import { describe, it } from 'mocha';
 import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import TypeTree from '../src/trees/TypeTree';
 
 use(deepEqualInAnyOrder);
@@ -25,8 +27,8 @@ const cleanAST = (node: any) => {
 
 describe('Type Tree', () => {
   it('Should parse Type', async () => {
-    const actualRaw = TypeTree.parse(fs.readFileSync(`${__dirname}/fixtures/type.idea`, 'utf8'));
-    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/type.json`, 'utf8'));
+    const actualRaw = TypeTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/type.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/type.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const expected = cleanAST(expectedRaw);
@@ -34,8 +36,8 @@ describe('Type Tree', () => {
     expect(actual).to.deep.equalInAnyOrder(expected);
   });
   it('Should be immutable', async () => {
-    const actualRaw = TypeTree.parse(fs.readFileSync(`${__dirname}/fixtures/mutable.idea`, 'utf8'));
-    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/mutable.json`, 'utf8'));
+    const actualRaw = TypeTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/mutable.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/mutable.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const expected = cleanAST(expectedRaw);

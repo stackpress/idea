@@ -1,7 +1,7 @@
 //types
-import type { Definition, Reader, Parser, Token } from './types';
+import type { Definition, Reader, Parser, Token } from './types.js';
 
-import Exception from './Exception';
+import Exception from './Exception.js';
 
 export default class Lexer implements Parser {
   //the code to parse

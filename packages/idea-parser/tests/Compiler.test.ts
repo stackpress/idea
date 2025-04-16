@@ -1,6 +1,8 @@
 import { describe, it } from 'mocha';
 import { expect, use } from 'chai';
-import Compiler from '../../idea-parser/src/Compiler'
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
+import Compiler from '../src/Compiler';
 import { 
     DataToken, 
     DeclarationToken, 

@@ -3,18 +3,18 @@ import type {
   SchemaToken, 
   ImportToken, 
   DeclarationToken 
-} from '../types';
+} from '../types.js';
 
-import Exception from '../Exception';
-import Lexer from '../Lexer';
+import Exception from '../Exception.js';
+import Lexer from '../Lexer.js';
 
-import AbstractTree from './AbstractTree';
-import EnumTree from './EnumTree';
-import PropTree from './PropTree';
-import TypeTree from './TypeTree';
-import ModelTree from './ModelTree';
-import PluginTree from './PluginTree';
-import UseTree from './UseTree';
+import AbstractTree from './AbstractTree.js';
+import EnumTree from './EnumTree.js';
+import PropTree from './PropTree.js';
+import TypeTree from './TypeTree.js';
+import ModelTree from './ModelTree.js';
+import PluginTree from './PluginTree.js';
+import UseTree from './UseTree.js';
 
 type BodyToken = DeclarationToken|ImportToken;
 

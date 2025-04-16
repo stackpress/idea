@@ -3,11 +3,12 @@ import fs from 'fs';
 import path from 'path';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-//for testing
-import Transformer from '../src/Transformer';
 import { TypeConfig } from '@stackpress/idea-parser';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
+import Transformer from '../src/Transformer';
 //resusable variables
-const cwd = __dirname;
+const cwd = import.meta.dirname;
 const idea = path.resolve(cwd, 'schema.idea');
 const use = path.resolve(cwd, 'use.idea');
 

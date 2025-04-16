@@ -4,9 +4,9 @@ export type {
   TerminalOptions,
   PluginProps,
   PluginWithCLIProps
-} from './types';
+} from './types.js';
 
-import Transformer from './Transformer';
-import Terminal, { terminalControls } from './Terminal';
+import Transformer from './Transformer.js';
+import Terminal, { terminalControls } from './Terminal.js';
 
 export { Transformer, Terminal, terminalControls };

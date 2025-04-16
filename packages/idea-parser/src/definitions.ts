@@ -3,7 +3,8 @@ import type {
   DataToken, 
   UnknownToken, 
   IdentifierToken 
-} from './types';
+} from './types.js';
+
 const definitions: Record<string, Reader> = {
   'line': (code, index) => reader(
     '_Line', 

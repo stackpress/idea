@@ -1,6 +1,8 @@
 import fs from 'fs';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import PropTree from '../src/trees/PropTree';
 
 
@@ -23,8 +25,8 @@ const cleanAST = (node: any) => {
 
 describe('Prop Tree', () => {
   it('Should parse Prop', async () => {
-    const actualRaw = PropTree.parse(fs.readFileSync(`${__dirname}/fixtures/prop.idea`, 'utf8'));
-    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/prop.json`, 'utf8'));
+    const actualRaw = PropTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/prop.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/prop.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const expected = cleanAST(expectedRaw);

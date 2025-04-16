@@ -1,10 +1,14 @@
 //models
-import { DeclarationToken, IdentifierToken, PropertyToken } from '../types';
+import { 
+  DeclarationToken, 
+  IdentifierToken, 
+  PropertyToken 
+} from '../types.js';
 
-import Lexer from '../Lexer';
-import TypeTree from './TypeTree';
+import Lexer from '../Lexer.js';
+import TypeTree from './TypeTree.js';
 
-import { scan } from '../definitions';
+import { scan } from '../definitions.js';
 
 export default class ModelTree extends TypeTree {
   //the language used

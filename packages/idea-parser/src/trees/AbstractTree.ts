@@ -1,9 +1,9 @@
 //types
-import type { DeclarationToken } from '../types';
+import type { DeclarationToken } from '../types.js';
 
-import Lexer from '../Lexer';
+import Lexer from '../Lexer.js';
 
-import definitions from '../definitions';
+import definitions from '../definitions.js';
 
 export default abstract class AbstractTree<T = DeclarationToken> {
   //the language used

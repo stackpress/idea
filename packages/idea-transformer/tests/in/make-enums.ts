@@ -29,7 +29,8 @@ export default function generate({ config, schema, cwd }: PluginProps<{}>) {
   const filename = path.basename(destination);
   //start a ts-morph project
   const project = new Project({
-    tsConfigFilePath: path.resolve(__dirname, 'tsconfig.json'),
+    //@ts-ignore
+    tsConfigFilePath: path.resolve(import.meta.dirname, 'tsconfig.json'),
     skipAddingFilesFromTsConfig: true,
     compilerOptions: {
       outDir: dirname,

@@ -25,18 +25,18 @@ export type {
   ModelConfig,
   FinalSchemaConfig,
   SchemaConfig
-} from './types';
+} from './types.js';
 
-import AbstractTree from './trees/AbstractTree';
-import EnumTree from './trees/EnumTree';
-import PropTree from './trees/PropTree';
-import TypeTree from './trees/TypeTree';
-import ModelTree from './trees/ModelTree';
-import SchemaTree from './trees/SchemaTree';
-import PluginTree from './trees/PluginTree';
-import Exception from './Exception';
-import Lexer from './Lexer';
-import Compiler from './Compiler';
+import AbstractTree from './trees/AbstractTree.js';
+import EnumTree from './trees/EnumTree.js';
+import PropTree from './trees/PropTree.js';
+import TypeTree from './trees/TypeTree.js';
+import ModelTree from './trees/ModelTree.js';
+import SchemaTree from './trees/SchemaTree.js';
+import PluginTree from './trees/PluginTree.js';
+import Exception from './Exception.js';
+import Lexer from './Lexer.js';
+import Compiler from './Compiler.js';
 
 export { 
   Exception, 

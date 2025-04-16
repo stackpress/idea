@@ -1,8 +1,8 @@
 //types
-import type { CLIProps, TerminalOptions } from './types';
+import type { CLIProps, TerminalOptions } from './types.js';
 //others
 import Terminal, { terminalControls } from '@stackpress/lib/Terminal';
-import Transformer from './Transformer';
+import Transformer from './Transformer.js';
 
 export { terminalControls };
 

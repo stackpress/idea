@@ -2,6 +2,8 @@ import fs from 'fs';
 import { describe, it } from 'mocha';
 import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import EnumTree from '../src/trees/EnumTree';
 
 use(deepEqualInAnyOrder);
@@ -25,8 +27,8 @@ const cleanAST = (node: any) => {
 
 describe('Enum Tree', () => {
   it('Should parse Enums', async () => {
-    const actualRaw = EnumTree.parse(fs.readFileSync(`${__dirname}/fixtures/enum.idea`, 'utf8'));
-    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/enum.json`, 'utf8'));
+    const actualRaw = EnumTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/enum.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/enum.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const expected = cleanAST(expectedRaw);

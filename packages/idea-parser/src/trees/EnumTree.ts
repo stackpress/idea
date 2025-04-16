@@ -4,12 +4,12 @@ import type {
   PropertyToken, 
   IdentifierToken,
   DeclarationToken 
-} from '../types';
+} from '../types.js';
 
-import Lexer from '../Lexer';
-import { scalar, scan } from '../definitions';
+import Lexer from '../Lexer.js';
+import { scalar, scan } from '../definitions.js';
 
-import AbstractTree from './AbstractTree';
+import AbstractTree from './AbstractTree.js';
 
 export default class EnumTree extends AbstractTree<DeclarationToken> {
   //the language used

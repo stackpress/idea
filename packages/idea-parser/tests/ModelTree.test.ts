@@ -2,6 +2,8 @@ import fs from 'fs';
 import { describe, it } from 'mocha';
 import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import ModelTree from '../src/trees/ModelTree';
 
 use(deepEqualInAnyOrder);
@@ -25,8 +27,8 @@ const cleanAST = (node: any) => {
 
 describe('Model Tree', () => {
   it('Should parse Model', async () => {
-    const actualRaw = ModelTree.parse(fs.readFileSync(`${__dirname}/fixtures/model.idea`, 'utf8'));
-    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/model.json`, 'utf8'));
+    const actualRaw = ModelTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/model.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/model.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const expected = cleanAST(expectedRaw);
@@ -52,8 +54,8 @@ describe('Model Tree', () => {
   });
 
   it('Should parse negative values', async () => {
-    const actualRaw = ModelTree.parse(fs.readFileSync(`${__dirname}/fixtures/address.idea`, 'utf8'));
-    const expectedRaw = JSON.parse(fs.readFileSync(`${__dirname}/fixtures/address.json`, 'utf8'));
+    const actualRaw = ModelTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/address.idea`, 'utf8'));
+    const expectedRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/address.json`, 'utf8'));
     
     const actual = cleanAST(actualRaw);
     const expected = cleanAST(expectedRaw);

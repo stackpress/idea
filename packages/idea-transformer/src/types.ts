@@ -3,8 +3,8 @@ import type {
   PluginConfig, 
   SchemaConfig 
 } from '@stackpress/idea-parser/types';
-import type Terminal from './Terminal';
-import type Transformer from './Transformer';
+import type Terminal from './Terminal.js';
+import type Transformer from './Transformer.js';
 
 //--------------------------------------------------------------------//
 // Terminal Types

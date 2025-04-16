@@ -18,9 +18,9 @@ import type {
   IdentifierToken, 
   DeclarationToken,
   FinalSchemaConfig
-} from './types';
+} from './types.js';
 
-import Exception from './Exception';
+import Exception from './Exception.js';
 
 export default class Compiler {
   /**

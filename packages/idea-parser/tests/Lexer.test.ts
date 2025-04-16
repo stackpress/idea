@@ -1,3 +1,7 @@
+import { describe, it } from 'mocha';
+import { expect } from 'chai';
+//NOTE: no extensions in tests because it's excluded in tsconfig.json and
+//we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import type { 
   LiteralToken, 
   ObjectToken, 
@@ -5,9 +9,6 @@ import type {
   UnknownToken, 
   Token
 } from '../src/types';
-
-import { describe, it } from 'mocha';
-import { expect } from 'chai';
 import Lexer from '../src/Lexer';
 import Compiler from '../src/Compiler';
 import definitions, { data } from '../src/definitions';
