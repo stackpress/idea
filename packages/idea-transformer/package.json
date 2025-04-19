@@ -11,6 +11,8 @@
   "keywords": [
     "ts",
     "typescript",
+    "cjs",
+    "esm",
     "generator",
     "CLI",
     "ORM",
