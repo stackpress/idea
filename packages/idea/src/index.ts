@@ -53,5 +53,5 @@ export {
 export {
   Transformer, 
   Terminal, 
-  terminalControls
+  control
 } from '@stackpress/idea-transformer';

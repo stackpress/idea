@@ -7,6 +7,6 @@ export type {
 } from './types.js';
 
 import Transformer from './Transformer.js';
-import Terminal, { terminalControls } from './Terminal.js';
+import Terminal, { control } from './Terminal.js';
 
-export { Transformer, Terminal, terminalControls };
+export { Transformer, Terminal, control };

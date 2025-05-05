@@ -1,10 +1,10 @@
 //types
 import type { CLIProps, TerminalOptions } from './types.js';
 //others
-import Terminal, { terminalControls } from '@stackpress/lib/Terminal';
+import Terminal, { control } from '@stackpress/lib/Terminal';
 import Transformer from './Transformer.js';
 
-export { terminalControls };
+export { control };
 
 export default class IdeaTerminal extends Terminal {
   /**

@@ -11,7 +11,7 @@ export default async function generate(props: PluginWithCLIProps) {
   // 1. Config
   //we need to know where to put this code...
   if (!config.output) {
-    return cli.controls.error('No output directory specified');
+    return cli.control.error('No output directory specified');
   }
   //code in typescript or javascript?
   const lang = config.lang || 'ts';
