@@ -11,13 +11,15 @@
     "build:transformer": "yarn --cwd packages/idea-transformer build",
     "build:idea": "yarn --cwd packages/idea build",
     "build:example": "yarn --cwd example build",
-    "report": "nyc yarn test && nyc report -r lcov",
+    "report": "yarn report:env nyc yarn test && nyc report -r lcov",
+    "report:env": "NODE_OPTIONS=\"--disable-warning=ExperimentalWarning --experimental-loader @istanbuljs/esm-loader-hook\"",
     "transform": "yarn --cwd example transform",
     "test": "yarn test:parser && yarn test:transformer",
     "test:parser": "yarn --cwd packages/idea-parser test",
     "test:transformer": "yarn --cwd packages/idea-transformer test"
   },
   "devDependencies": {
+    "@istanbuljs/esm-loader-hook": "0.3.0",
     "nyc": "17.1.0"
   }
 }
