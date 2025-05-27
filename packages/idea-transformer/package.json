@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@stackpress/idea-transformer",
-  "version": "0.5.22",
+  "version": "0.5.23",
   "license": "Apache-2.0",
   "description": "A programmatical command line interface used by projects and that calls on external transformers to make relevant code",
   "author": "Chris <chris@incept.asia>",
@@ -67,8 +67,8 @@
     "test": "ts-mocha -r tsx tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/idea-parser": "0.5.22",
-    "@stackpress/lib": "0.5.22"
+    "@stackpress/idea-parser": "0.5.23",
+    "@stackpress/lib": "0.5.23"
   },
   "devDependencies": {
     "@types/chai": "4.3.20",
