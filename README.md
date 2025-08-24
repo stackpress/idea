@@ -249,16 +249,16 @@ Check the generated files in your output directories!
 
 This documentation is organized into several sections:
 
-### 📋 [Specifications](https://github.com/stackpress/idea/blob/main/docs/docs/Specifications.md)
+### 📋 [Specifications](https://github.com/stackpress/idea/blob/main/docs/Specifications.md)
 Complete reference for the `.idea` file format syntax, data types, and schema structure.
 
-### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/docs/parser/)
+### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/parser/)
 Technical documentation for the parser library that processes `.idea` files.
 
-### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/docs/transformer/)
+### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/transformer/)
 Documentation for the transformer library that executes plugins and generates code.
 
-### 🔌 [Plugin Development](https://github.com/stackpress/idea/blob/main/docs/docs/plugins/)
+### 🔌 [Plugin Development](https://github.com/stackpress/idea/blob/main/docs/plugins/)
 Comprehensive guides for creating custom plugins, including tutorials for:
 - Database schema generators
 - Form generators
