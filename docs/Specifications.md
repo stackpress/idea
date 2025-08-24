@@ -1,4 +1,4 @@
-# .idea File Format Specification
+# Idea File Format Specification
 
 A comprehensive guide to the `.idea` schema file format for defining application data structures, relationships, and code generation configurations.
 
