@@ -407,7 +407,7 @@ function validateConfig(config: any): asserts config is TypeScriptConfig {
 
 Add the TypeScript plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/typescript-interfaces.js" {
   output "./generated/types.ts"
   namespace "MyApp"
@@ -437,7 +437,7 @@ plugin "./plugins/typescript-interfaces.js" {
 
 ### Basic Schema
 
-```ts
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"

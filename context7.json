@@ -1,0 +1,10 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Idea",
+  "description": "A meta language to express and transform your ideas to reality.",
+  "folders": [ ".context", "example", "packages" ],
+  "excludeFolders": [ "docs" ],
+  "excludeFiles": [],
+  "rules": [],
+  "previousVersions": []
+}

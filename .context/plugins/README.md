@@ -760,7 +760,7 @@ const description = attributes.description || '';
 
 To use any of these plugins in your schema file:
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/mysql-tables-plugin.js" {
   output "./database/tables.sql"

@@ -970,7 +970,7 @@ function getRadioLabelClasses(theme: string): string {
 
 To use this plugin in your schema file:
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/html-form-plugin.js" {
   output "./forms/user-form.html"

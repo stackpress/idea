@@ -584,7 +584,7 @@ function validateConfig(config: any): asserts config is TestDataConfig {
 
 Add the Test Data plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/test-data.js" {
   output "./generated/test-data.ts"
   format "typescript"
@@ -620,7 +620,7 @@ plugin "./plugins/test-data.js" {
 
 ### Basic Schema
 
-```ts
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"

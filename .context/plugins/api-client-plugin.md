@@ -680,7 +680,7 @@ function validateConfig(config: any): asserts config is APIClientConfig {
 
 Add the API Client plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/api-client.js" {
   output "./generated/api-client.ts"
   clientType "rest"
@@ -713,7 +713,7 @@ plugin "./plugins/api-client.js" {
 
 ### Basic Schema
 
-```ts
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"

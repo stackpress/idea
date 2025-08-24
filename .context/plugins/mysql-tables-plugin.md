@@ -350,7 +350,7 @@ function generateForeignKey(column: any, options: any): string | null {
 
 To use this plugin in your schema file:
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/mysql-tables-plugin.js" {
   output "./database/tables.sql"

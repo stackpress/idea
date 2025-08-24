@@ -74,7 +74,7 @@ The `.idea` file format uses a simplified syntax that eliminates the need for tr
 
 **Equivalent .idea syntax:**
 
-```ts
+```idea
 // Object structure
 { foo "bar" bar "foo" }
 
@@ -94,7 +94,7 @@ The `.idea` file format uses a simplified syntax that eliminates the need for tr
 
 ### Data Type Representation
 
-```ts
+```idea
 // Strings - always use double quotes
 name "John Doe"
 description "A comprehensive user management system"
@@ -128,7 +128,7 @@ profile {
 
 Comments in `.idea` files use the standard `//` syntax:
 
-```ts
+```idea
 // This is a single-line comment
 model User {
   id String @id // Inline comment
@@ -153,7 +153,7 @@ Enums define a set of named constants with associated values, perfect for repres
 
 #### Syntax
 
-```ts
+```idea
 enum EnumName {
   KEY1 "Display Value 1"
   KEY2 "Display Value 2"
@@ -169,7 +169,7 @@ enum EnumName {
 
 #### Example
 
-```ts
+```idea
 enum UserRole {
   ADMIN "Administrator"
   MODERATOR "Moderator"
@@ -229,7 +229,7 @@ Props are reusable property configurations that define common field behaviors, v
 
 #### Syntax
 
-```ts
+```idea
 prop PropName {
   property "value"
   nested {
@@ -246,7 +246,7 @@ prop PropName {
 
 #### Example
 
-```ts
+```idea
 prop Email {
   type "email"
   format "email"
@@ -294,7 +294,7 @@ prop Currency {
 
 Props are referenced using the `@field` attribute:
 
-```ts
+```idea
 model User {
   email String @field.input(Email)
   password String @field.input(Password)
@@ -307,7 +307,7 @@ Types define custom data structures with multiple columns, similar to objects or
 
 #### Syntax
 
-```ts
+```idea
 type TypeName {
   columnName DataType @attribute1 @attribute2
   anotherColumn DataType @attribute
@@ -323,7 +323,7 @@ type TypeName {
 
 #### Example
 
-```ts
+```idea
 type Address {
   street String @required @field.input(Text)
   city String @required @field.input(Text)
@@ -358,7 +358,7 @@ type Money {
 
 Types are used as column data types:
 
-```ts
+```idea
 model Company {
   name String @required
   address Address @required
@@ -373,7 +373,7 @@ Models represent the core entities in your application, typically corresponding 
 
 #### Syntax
 
-```ts
+```idea
 model ModelName {
   columnName DataType @attribute1 @attribute2
   relationColumn RelatedModel @relation
@@ -396,7 +396,7 @@ model ModelName! {  // Mutable model
 
 By default, when importing schemas with `use` directives, models with the same name are automatically merged. The `!` suffix prevents this behavior:
 
-```ts
+```idea
 // base-schema.idea
 model User {
   id String @id
@@ -422,7 +422,7 @@ model User! {
 
 #### Example
 
-```ts
+```idea
 model User! {
   id String @id @default("nanoid()")
   email String @unique @required @field.input(Email)
@@ -486,7 +486,7 @@ Attributes provide metadata and configuration for columns, types, and models. Th
 
 Attributes always start with the at symbol (`@`) followed by letters, numbers, and periods. They can be expressed in several forms:
 
-```ts
+```idea
 // Simple boolean attribute (sets value to true)
 @filterable
 
@@ -509,7 +509,7 @@ Attributes always start with the at symbol (`@`) followed by letters, numbers, a
 
 Attributes can hold different types of values:
 
-```ts
+```idea
 // Boolean (implicit true)
 @required
 @unique
@@ -544,7 +544,7 @@ Attributes can hold different types of values:
 
 Attributes can be applied to different schema elements:
 
-```ts
+```idea
 // Model-level attributes
 model User @table("users") @index(["email" "created"]) {
   // Column-level attributes
@@ -577,7 +577,7 @@ Columns define the individual fields within models and types, specifying their d
 
 #### Optional and Array Types
 
-```ts
+```idea
 model User {
   name String          // Required string
   bio String?          // Optional string
@@ -589,7 +589,7 @@ model User {
 
 #### Nested Objects
 
-```ts
+```idea
 model User {
   profile {
     firstName String
@@ -610,7 +610,7 @@ model User {
 
 A complete `.idea` schema file can contain multiple elements organized in a specific structure:
 
-```ts
+```idea
 // 1. Plugin declarations
 plugin "./plugins/generate-types.js" {
   output "./generated/types.ts"
@@ -671,7 +671,7 @@ The `use` directive imports definitions from other `.idea` files, enabling modul
 
 #### Syntax
 
-```ts
+```idea
 use "package/to/schema.idea"
 use "./relative/path/schema.idea"
 use "../parent/directory/schema.idea"
@@ -687,7 +687,7 @@ use "../parent/directory/schema.idea"
 
 **shared/common.idea:**
 
-```ts
+```idea
 // Common types used across multiple schemas
 type Address {
   street String @required
@@ -711,7 +711,7 @@ prop Email {
 
 **user/user-schema.idea:**
 
-```ts
+```idea
 // Import common definitions
 use "../shared/common.idea"
 
@@ -732,7 +732,7 @@ model User {
 
 **Result after merging:**
 
-```ts
+```idea
 // The Status enum now contains all values
 enum Status {
   ACTIVE "Active"           // From common.idea
@@ -747,7 +747,7 @@ enum Status {
 When you want to prevent automatic merging and keep definitions separate, use the `!` suffix:
 
 **base-schema.idea:**
-```ts
+```idea
 enum UserRole {
   USER "Regular User"
   ADMIN "Administrator"
@@ -756,7 +756,7 @@ enum UserRole {
 
 **extended-schema.idea:**
 
-```ts
+```idea
 use "./base-schema.idea"
 
 // This will NOT merge with the imported UserRole
@@ -778,7 +778,7 @@ enum UserRole! {
 
 #### Best Practices
 
-```ts
+```idea
 // ✅ Good - organize by domain
 use "./shared/common-types.idea"
 use "./auth/user-types.idea"
@@ -800,7 +800,7 @@ The `plugin` directive configures code generation plugins that process your sche
 
 #### Syntax
 
-```ts
+```idea
 plugin "path/to/plugin.js" {
   configKey "configValue"
   nestedConfig {
@@ -818,7 +818,7 @@ plugin "path/to/plugin.js" {
 
 #### Example
 
-```ts
+```idea
 // TypeScript interface generation
 plugin "./plugins/typescript-generator.js" {
   output "./src/types/schema.ts"
@@ -891,7 +891,7 @@ plugin "./plugins/form-generator.js" {
 
 Common configuration patterns across different plugin types:
 
-```ts
+```idea
 plugin "./plugins/my-plugin.js" {
   // Output configuration
   output "./generated/output.ts"
@@ -929,7 +929,7 @@ plugin "./plugins/my-plugin.js" {
 
 You can configure multiple plugins to generate different outputs from the same schema:
 
-```ts
+```idea
 // Generate TypeScript types
 plugin "./plugins/typescript.js" {
   output "./src/types/index.ts"
@@ -1038,7 +1038,7 @@ The plugin system enables extensible code generation from your schema definition
 
 ### Plugin Declaration
 
-```ts
+```idea
 plugin "./path/to/plugin.js" {
   output "./generated/output.ts"
   format "typescript"
@@ -1081,7 +1081,7 @@ export default async function myPlugin(props: PluginProps<{}>) {
 
 ### E-commerce Application Schema
 
-```ts
+```idea
 // E-commerce application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/schema.ts"
@@ -1257,7 +1257,7 @@ model OrderItem {
 
 ### Blog Application Schema
 
-```ts
+```idea
 // Blog application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/blog.ts"
@@ -1388,7 +1388,7 @@ model Comment {
 ### 1. Schema Organization
 
 **Use Descriptive Names**
-```ts
+```idea
 // ✅ Good
 enum UserAccountStatus {
   ACTIVE "Active Account"
@@ -1405,7 +1405,7 @@ enum Status {
 ```
 
 **Group Related Elements**
-```ts
+```idea
 // User-related enums
 enum UserRole { /* ... */ }
 enum UserStatus { /* ... */ }
@@ -1420,7 +1420,7 @@ model UserSession { /* ... */ }
 ```
 
 **Use Consistent Naming Conventions**
-```ts
+```idea
 // Models: PascalCase
 model UserAccount { /* ... */ }
 
@@ -1442,7 +1442,7 @@ model User {
 
 **Define Custom Types for Complex Data**
 
-```ts
+```idea
 type Money {
   amount Number @required @min(0)
   currency String @default("USD")
@@ -1461,7 +1461,7 @@ model Product {
 
 **Use Enums for Fixed Sets of Values**
 
-```ts
+```idea
 // ✅ Good - type-safe and self-documenting
 enum Priority {
   LOW "Low Priority"
@@ -1484,7 +1484,7 @@ model Task {
 
 **Use Appropriate Validation Attributes**
 
-```ts
+```idea
 model User {
   email String @required @unique @pattern("^[^\s@]+@[^\s@]+\.[^\s@]+$")
   age Number @min(13) @max(120)
@@ -1496,7 +1496,7 @@ model User {
 
 **Provide Meaningful Defaults**
 
-```ts
+```idea
 model User {
   role UserRole @default("USER")
   active Boolean @default(true)
@@ -1515,7 +1515,7 @@ model User {
 
 **Use Clear Relationship Patterns**
 
-```ts
+```idea
 // One-to-many relationship
 model User {
   id String @id
@@ -1549,7 +1549,7 @@ model PostTag {
 
 **Organize Plugins by Purpose**
 
-```ts
+```idea
 // Type generation
 plugin "./plugins/typescript-generator.js" {
   output "./src/types/schema.ts"
@@ -1588,7 +1588,7 @@ plugin "./plugins/form-generator.js" {
 
 **Solution:**
 
-```ts
+```idea
 // ❌ Invalid - missing quotes around enum values
 enum Status {
   ACTIVE Active
@@ -1610,7 +1610,7 @@ enum Status {
 
 **Solution:**
 
-```ts
+```idea
 // ❌ Invalid - empty model
 model User {
 }
@@ -1630,7 +1630,7 @@ model User {
 
 **Solution:**
 
-```ts
+```idea
 // ❌ Invalid - duplicate model names
 model User {
   id String @id
@@ -1658,7 +1658,7 @@ model UserProfile {
 
 **Solution:**
 
-```ts
+```idea
 // ❌ Invalid - EmailInput prop not defined
 model User {
   email String @field.input(EmailInput)
@@ -1683,7 +1683,7 @@ model User {
 
 **Solution:**
 
-```ts
+```idea
 // ❌ Invalid - Boolean can't have @minLength
 model User {
   active Boolean @minLength(5)
@@ -1723,7 +1723,7 @@ export default async function myPlugin(props: PluginProps<{}>) {
 
 **2. Validate Schema Before Processing**
 
-```ts
+```idea
 // Always validate required fields
 model User {
   id String @id @required
@@ -1741,7 +1741,7 @@ model Product {
 
 **3. Use Consistent Patterns**
 
-```ts
+```idea
 // Consistent ID patterns
 model User {
   id String @id @default("nanoid()")

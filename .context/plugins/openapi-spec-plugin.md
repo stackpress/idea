@@ -296,7 +296,7 @@ function addValidationRules(property: any, attributes: any): void {
 
 ### Schema Configuration
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec.json"
@@ -858,7 +858,7 @@ function generateHTMLDocumentation(spec: any): string {
 
 ### Basic Usage
 
-```ts
+```idea
 // schema.idea
 enum UserRole {
   ADMIN "admin"
@@ -894,7 +894,7 @@ plugin "./plugins/openapi-spec.js" {
 
 ### Advanced Configuration
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec"

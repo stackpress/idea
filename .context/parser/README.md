@@ -262,7 +262,7 @@ try {
 
 Ensure your schema follows the expected structure:
 
-```ts
+```idea
 // Good: Proper model structure
 model User {
   id String @id
@@ -279,7 +279,7 @@ model User {
 
 Choose descriptive names for your schema elements:
 
-```ts
+```idea
 // Good
 enum UserStatus { ACTIVE "Active" SUSPENDED "Suspended" }
 prop EmailInput { type "email" format "email" }

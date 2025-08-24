@@ -332,7 +332,7 @@ function generateSubscriptions(models: Record<string, any>): string {
 
 Add the GraphQL plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/graphql-schema.js" {
   output "./generated/schema.graphql"
   includeQueries true
@@ -362,7 +362,7 @@ plugin "./plugins/graphql-schema.js" {
 
 ### Basic Schema
 
-```ts
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"

@@ -292,7 +292,7 @@ await transformer.transform(); // Plugin is silently skipped if not a function
 
 ### Schema Organization
 
-```ts
+```idea
 // Organize schemas hierarchically
 // shared/base.idea - Common types and enums
 // modules/user.idea - User-specific models

@@ -523,7 +523,7 @@ function validateConfig(config: any): asserts config is ZodConfig {
 
 Add the Zod validation plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/zod-validation.js" {
   output "./generated/validation.ts"
   generateTypes true
@@ -559,7 +559,7 @@ plugin "./plugins/zod-validation.js" {
 
 ### Basic Schema
 
-```ts
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"
