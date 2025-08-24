@@ -292,10 +292,9 @@ With the plugin system, you can generate:
 
 Ready to transform your development workflow? 
 
-1. **Read the [Specifications](https://github.com/stackpress/idea/blob/main/docs/docs/Specifications.md)** to understand the syntax
-2. **Explore [Plugin Tutorials](https://github.com/stackpress/idea/blob/main/docs/docs/plugins/)** to see what's possible
-3. **Join the Community** to share your creations
-4. **Build Something Amazing** with the power of declarative development
+1. **Read the [Specifications](https://github.com/stackpress/idea/blob/main/docs/Specifications.md)** to understand the syntax
+2. **Explore [Plugin Tutorials](https://github.com/stackpress/idea/blob/main/docs/plugins/)** to see what's possible
+3. **Build Something Amazing** with the power of declarative development
 
 The future of application development is declarative, type-safe, and automated. Welcome to the `.idea` revolution! 🚀
 
