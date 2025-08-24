@@ -249,16 +249,16 @@ Check the generated files in your output directories!
 
 This documentation is organized into several sections:
 
-### 📋 [Specifications](./docs/Specifications.md)
+### 📋 [Specifications](https://github.com/stackpress/idea/blob/main/docs/docs/Specifications.md)
 Complete reference for the `.idea` file format syntax, data types, and schema structure.
 
-### 🔧 [Parser Documentation](./docs/parser/)
+### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/docs/parser/)
 Technical documentation for the parser library that processes `.idea` files.
 
-### 🔄 [Transformer Documentation](./docs/transformer/)
+### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/docs/transformer/)
 Documentation for the transformer library that executes plugins and generates code.
 
-### 🔌 [Plugin Development](./docs/plugins/)
+### 🔌 [Plugin Development](https://github.com/stackpress/idea/blob/main/docs/docs/plugins/)
 Comprehensive guides for creating custom plugins, including tutorials for:
 - Database schema generators
 - Form generators
@@ -292,8 +292,8 @@ With the plugin system, you can generate:
 
 Ready to transform your development workflow? 
 
-1. **Read the [Specifications](./docs/Specifications.md)** to understand the syntax
-2. **Explore [Plugin Tutorials](./docs/plugins/)** to see what's possible
+1. **Read the [Specifications](https://github.com/stackpress/idea/blob/main/docs/docs/Specifications.md)** to understand the syntax
+2. **Explore [Plugin Tutorials](https://github.com/stackpress/idea/blob/main/docs/docs/plugins/)** to see what's possible
 3. **Join the Community** to share your creations
 4. **Build Something Amazing** with the power of declarative development
 
