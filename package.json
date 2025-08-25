@@ -5,18 +5,15 @@
     "example"
   ],
   "scripts": {
-    "build": "yarn build:parser && yarn build:transformer && yarn build:idea && yarn build:example",
-    "build:parser": "yarn --cwd packages/idea-parser build",
-    "build:language": "yarn --cwd packages/idea-language build",
-    "build:transformer": "yarn --cwd packages/idea-transformer build",
-    "build:idea": "yarn --cwd packages/idea build",
-    "build:example": "yarn --cwd example build",
-    "report": "yarn report:env nyc yarn test && nyc report -r lcov",
-    "report:env": "NODE_OPTIONS=\"--disable-warning=ExperimentalWarning --experimental-loader @istanbuljs/esm-loader-hook\"",
+    "idea": "yarn --cwd packages/idea",
+    "parser": "yarn --cwd packages/idea-parser",
+    "transformer": "yarn --cwd packages/idea-transformer",
+    "example": "yarn --cwd example",
+    "build": "yarn parser build && yarn transformer build && yarn idea build && yarn example build",
     "transform": "yarn --cwd example transform",
-    "test": "yarn test:parser && yarn test:transformer",
-    "test:parser": "yarn --cwd packages/idea-parser test",
-    "test:transformer": "yarn --cwd packages/idea-transformer test"
+    "test": "yarn parser test && yarn transformer test",
+    "report": "yarn report:env nyc yarn test && nyc report -r lcov",
+    "report:env": "NODE_OPTIONS=\"--disable-warning=ExperimentalWarning --experimental-loader @istanbuljs/esm-loader-hook\""
   },
   "devDependencies": {
     "@istanbuljs/esm-loader-hook": "0.3.0",

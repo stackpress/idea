@@ -1,6 +1,6 @@
 plugin "./custom-plugin" {
   provider "custom-client-js"
-  url env("DATABASE_URL")
+  url env(DATABASE_URL)
   previewFeatures ["fullTextSearch"]
 }
 

@@ -6,8 +6,13 @@
   "description": "Parses ideas to AST and readable JSON.",
   "author": "Chris <chris@incept.asia>",
   "homepage": "https://github.com/stackpress/idea",
-  "bugs": "https://github.com/stackpress/idea/issues",
-  "repository": "stackpress/idea",
+  "bugs": {
+    "url": "https://github.com/stackpress/idea/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackpress/idea.git"
+  },
   "keywords": [
     "ts",
     "typescript",
@@ -21,104 +26,57 @@
     "idea",
     "stackpress"
   ],
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "types": "./cjs/index.d.ts",
+  "main": "cjs/index.cjs",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
   "exports": {
     ".": {
-      "require": "./cjs/index.js",
-      "import": "./esm/index.js"
-    },
-    "./types": {
-      "require": "./cjs/types.js",
-      "import": "./esm/types.js"
-    },
-    "./definitions": {
-      "require": "./cjs/definitions.js",
-      "import": "./esm/definitions.js"
-    },
-    "./Compiler": {
-      "require": "./cjs/Compiler.js",
-      "import": "./esm/Compiler.js"
-    },
-    "./Exception": {
-      "require": "./cjs/Exception.js",
-      "import": "./esm/Exception.js"
-    },
-    "./Lexer": {
-      "require": "./cjs/Lexer.js",
-      "import": "./esm/Lexer.js"
-    },
-    "./AbstractTree": {
-      "require": "./cjs/tree/AbstractTree.js",
-      "import": "./esm/tree/AbstractTree.js"
-    },
-    "./EnumTree": {
-      "require": "./cjs/tree/EnumTree.js",
-      "import": "./esm/tree/EnumTree.js"
-    },
-    "./ModelTree": {
-      "require": "./cjs/tree/ModelTree.js",
-      "import": "./esm/tree/ModelTree.js"
-    },
-    "./PluginTree": {
-      "require": "./cjs/tree/PluginTree.js",
-      "import": "./esm/tree/PluginTree.js"
-    },
-    "./PropTree": {
-      "require": "./cjs/tree/PropTree.js",
-      "import": "./esm/tree/PropTree.js"
-    },
-    "./SchemaTree": {
-      "require": "./cjs/tree/SchemaTree.js",
-      "import": "./esm/tree/SchemaTree.js"
-    },
-    "./TypeTree": {
-      "require": "./cjs/tree/TypeTree.js",
-      "import": "./esm/tree/TypeTree.js"
-    },
-    "./UseTree": {
-      "require": "./cjs/tree/UseTree.js",
-      "import": "./esm/tree/UseTree.js"
+      "import": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": "./cjs/index.cjs.d.ts",
+        "default": "./cjs/index.cjs"
+      }
     }
   },
-  "typesVersions": {
-    "*": {
-      "index": [ "./cjs/index.d.ts"],
-      "types": [ "./cjs/types.d.ts" ],
-      "Compiler": [ "./cjs/Compiler.d.ts" ],
-      "Exception": [ "./cjs/Exception.d.ts" ],
-      "Lexer": [ "./cjs/Lexer.d.ts" ],
-      "AbstractTree": [ "./cjs/tree/AbstractTree.d.ts" ],
-      "EnumTree": [ "./cjs/tree/EnumTree.d.ts" ],
-      "ModelTree": [ "./cjs/tree/ModelTree.d.ts" ],
-      "PluginTree": [  "./cjs/tree/PluginTree.d.ts" ],
-      "PropTree": [ "./cjs/tree/PropTree.d.ts" ],
-      "SchemaTree": [ "./cjs/tree/SchemaTree.d.ts" ],
-      "TypeTree": [ "./cjs/tree/TypeTree.d.ts" ],
-      "UseTree": [ "./cjs/tree/UseTree.d.ts" ]
+  "ava": {
+    "timeout": "3m"
+  },
+  "napi": {
+    "name": "idea-parser",
+    "triples": {
+      "defaults": true,
+      "additional": [
+        "x86_64-pc-windows-msvc",
+        "i686-pc-windows-msvc",
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin",
+        "x86_64-unknown-linux-gnu",
+        "x86_64-unknown-linux-musl",
+        "aarch64-unknown-linux-gnu",
+        "i686-unknown-linux-gnu",
+        "armv7-unknown-linux-gnueabihf",
+        "aarch64-linux-android",
+        "x86_64-unknown-freebsd"
+      ]
     }
   },
-  "files": [
-    "cjs",
-    "esm",
-    "LICENSE",
-    "README.md"
-  ],
   "scripts": {
-    "build": "yarn build:tsc && yarn build:pkg",
-    "build:pkg": "yarn build:pkg:cjs && yarn build:pkg:esm",
-    "build:pkg:cjs": "echo '{\"type\": \"commonjs\"}' > cjs/package.json",
-    "build:pkg:esm": "echo '{\"type\": \"module\"}' > esm/package.json",
-    "build:tsc": "yarn build:tsc:cjs && yarn build:tsc:esm",
-    "build:tsc:cjs": "tsc -p ./tsconfig.cjs.json",
-    "build:tsc:esm": "tsc -p ./tsconfig.esm.json",
-    "test": "DATABASE_URL=test ts-mocha -r tsx tests/*.test.ts"
-  },
-  "dependencies": {
-    "@stackpress/lib": "0.6.2"
+    "build": "yarn build:rs && build:ts",
+    "build:rs": "napi build --platform --release",
+    "build:ts": "npx tsc -p tsconfig.esm.json && npx tsc -p tsconfig.cjs.json",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "postinstall": "node scripts/install.cjs",
+    "test": "yarn test:rs && yarn test:ts",
+    "test:rs": "cargo test",
+    "test:ts": "ts-mocha -r tsx tests/*.test.ts",
+    "version": "napi version"
   },
   "devDependencies": {
+    "@napi-rs/cli": "^2.18.0",
     "@types/chai": "4.3.20",
     "@types/deep-equal-in-any-order": "1.0.3",
     "@types/mocha": "10.0.10",

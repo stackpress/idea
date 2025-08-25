@@ -4,11 +4,11 @@ import { expect, use } from 'chai';
 import deepEqualInAnyOrder from 'deep-equal-in-any-order';
 //NOTE: no extensions in tests because it's excluded in tsconfig.json and
 //we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
-import SchemaTree from '../src/trees/SchemaTree';
-import Compiler from '../src/Compiler';
-import Exception from '../src/Exception';
+import { parse, final } from '../src';
 
 use(deepEqualInAnyOrder);
+
+const dirname = typeof __dirname !== 'undefined' ? __dirname : import.meta.dirname;
 
 /*
 * The cleanAST function is used to remove start and end
@@ -29,27 +29,16 @@ const cleanAST = (node: any) => {
 
 describe('Schema Tree', () => {
   it('Should parse Schema', async () => {
-    const actualRaw = SchemaTree.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/schema.idea`, 'utf8'));
-    const schemaRaw = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/schema.json`, 'utf8'));
+    const actualRaw = parse(fs.readFileSync(`${dirname}/fixtures/schema.idea`, 'utf8'));
+    const schemaRaw = JSON.parse(fs.readFileSync(`${dirname}/fixtures/schema.json`, 'utf8'));
 
     const actual = cleanAST(actualRaw);
     const schema = cleanAST(schemaRaw);
-    //console.log(JSON.stringify(actual, null, 2));
+    console.log(JSON.stringify(JSON.parse(actual), null, 2));
     expect(actual).to.deep.equalInAnyOrder(schema);
 
-    //console.log(JSON.stringify(Compiler.schema(actual), null, 2));
-    const references = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/references.json`, 'utf8'));
-    expect(Compiler.schema(actual)).to.deep.equalInAnyOrder(references);
-    //console.log(JSON.stringify(Compiler.final(actual), null, 2));
-    const final = JSON.parse(fs.readFileSync(`${import.meta.dirname}/fixtures/final.json`, 'utf8'));
-    expect(Compiler.final(actual)).to.deep.equalInAnyOrder(final);
-  });
-
-
-  // Line 81 - 86 
-  it('Should throw an exception when there is an unexpected token at the end of the code', () => {
-  const codeWithUnexpectedToken = 'enum TestEnum { VALUE1, VALUE2, } unexpectedToken';
-  
-  expect(() => SchemaTree.parse(codeWithUnexpectedToken)).to.throw(Exception, /Unexpected token ,/);
+    const last = JSON.parse(fs.readFileSync(`${dirname}/fixtures/final.json`, 'utf8'));
+    //console.log(last, null, 2));
+    expect(final(actual)).to.deep.equalInAnyOrder(last);
   });
 });

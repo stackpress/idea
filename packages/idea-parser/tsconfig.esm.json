@@ -4,6 +4,6 @@
     "moduleResolution": "node",
     "outDir": "esm/"
   },
-  "include": [ "src/**/*.ts" ],
+  "include": [ "src/index.ts" ],
   "exclude": [ "esm", "cjs", "node_modules", "tests" ]
 }

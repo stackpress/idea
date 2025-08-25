@@ -150,3 +150,8 @@ packages/idea-transformer/tests/out
 .DS_Store
 
 .clinerules
+old/
+
+#rust
+target/
+**/*.rs.bk
