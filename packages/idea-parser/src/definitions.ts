@@ -305,37 +305,25 @@ export function reader(
   code: string, 
   index: number
 ): UnknownToken | undefined {
-  let value = '';
-  let matched = false;
-  const start = index;
-  while (index < code.length) {
-    //get the character (and increment index afterwards)
-    const char = code.charAt(index++);
-    if (!regexp.test(value + char)) {
-      //if we never had a match
-      if (!matched) {
-        //add character to value anyways
-        value += char;
-        //let it keep parsing
-        continue;
-      }
-      //if we do not have a value
-      if (value.length === 0) {
-        return undefined;
-      }
-      //return where we ended
-      return { type, start, end: index - 1, value, raw: value };
-    }
-    //add character to value
-    value += char;
-    //remember last match
-    matched = true;
+  //slice the code from the index so it only works with a substring
+  const slice = code.slice(index);
+
+  //ensures regex matches from the beginning
+  const anchored = new RegExp(regexp.source, regexp.flags.replace('g', ''));
+
+  const match = anchored.exec(slice);
+  if (!match || match.index !== 0) {
+    return undefined;
   }
-  //no more code...
-  //did it end with a match?
-  return matched && value.length
-    ? { type, start, end: index, value, raw: value }
-    : undefined;
+
+  const value = match[0];
+  return {
+    type,
+    start: index,
+    end: index + value.length,
+    value,
+    raw: value
+  };
 }
 
 export function identifier(
