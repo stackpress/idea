@@ -15,6 +15,15 @@ import type {
 } from '@stackpress/idea-parser';
 ```
 
+ 1. [Core Token Types](#1-core-token-types)
+ 2. [Declaration Tokens](#2-declaration-tokens)
+ 3. [Union Types](#3-union-types)
+ 4. [Parser Interface](#4-parser-interface)
+ 5. [Reference Types](#5-reference-types)
+ 6. [Usage Examples](#6-usage-examples)
+ 7. [Token Validation](#7-token-validation)
+ 8. [Integration with AST](#8-integration-with-ast)
+
 ## 1. Core Token Types
 
 The following types define the fundamental token structures used throughout the parsing system.

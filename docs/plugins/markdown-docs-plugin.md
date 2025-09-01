@@ -459,7 +459,7 @@ function generateModelExamples(modelName: string, model: any, schema: any, optio
   
   // Generate schema definition example
   content += '##### Schema Definition\n\n';
-  content += '```ts\n';
+  content += '```idea\n';
   content += generateSchemaExample(modelName, model);
   content += '\n```\n\n';
   
@@ -654,7 +654,7 @@ function generateEnumDocumentation(enumName: string, enumDef: any, options: any)
   // Generate examples
   if (options.includeExamples) {
     content += '#### Example\n\n';
-    content += '```ts\n';
+    content += '```idea\n';
     content += `enum ${enumName} {\n`;
     for (const [key, value] of Object.entries(enumDef)) {
       content += `  ${key} "${value}"\n`;
@@ -701,7 +701,7 @@ function generatePropDocumentation(propName: string, propDef: any, options: any)
   // Generate examples
   if (options.includeExamples) {
     content += '#### Example\n\n';
-    content += '```ts\n';
+    content += '```idea\n';
     content += `prop ${propName} {\n`;
     for (const [key, value] of Object.entries(propDef)) {
       const valueStr = typeof value === 'string' ? `"${value}"` : JSON.stringify(value);
@@ -846,7 +846,7 @@ function generatePropsFile(props: any, options: any): string {
 
 To use this plugin in your schema file:
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/markdown-docs-plugin.js" {
   output "./docs/schema.md"
@@ -1019,7 +1019,7 @@ Models represent the main data structures in your application.
 
 ##### Schema Definition
 
-```ts
+```idea
 model User! {
   id String @id @default("nanoid()")
   email String @unique @default("USER")
@@ -1073,7 +1073,7 @@ Enums define sets of named constants with associated values.
 
 #### Example
 
-```ts
+```idea
 enum UserRole {
   ADMIN "Administrator"
   USER "Regular User"
@@ -1104,7 +1104,7 @@ Props define reusable property configurations for form fields and validation.
 
 #### Example
 
-```ts
+```idea
 prop Email {
   type "email"
   placeholder "Enter your email address"

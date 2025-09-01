@@ -1,8 +1,6 @@
 # Terminal
 
-## 1. Terminal
-
-A command-line interface for processing schema files and executing transformations through terminal commands.
+A command-line interface for processing schema files and executing transformations through terminal commands. The Terminal class provides a comprehensive CLI interface for the idea-transformer library, enabling developers to process schema files and execute transformations from the command line.
 
 ```typescript
 import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -11,7 +9,22 @@ const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
 await terminal.run();
 ```
 
-### 1.1. Overview
+ 1. [Overview](#1-overview)
+ 2. [Loading a Terminal Instance](#2-loading-a-terminal-instance)
+ 3. [Properties](#3-properties)
+ 4. [Running Terminal Commands](#4-running-terminal-commands)
+ 5. [Usage Examples](#5-usage-examples)
+ 6. [Command-Line Integration](#6-command-line-integration)
+ 7. [Default Behavior](#7-default-behavior)
+ 8. [Error Handling](#8-error-handling)
+ 9. [Advanced Usage](#9-advanced-usage)
+ 10. [Integration with Build Tools](#10-integration-with-build-tools)
+ 11. [Testing](#11-testing)
+ 12. [Best Practices](#12-best-practices)
+
+## 1. Overview
+
+The Terminal class provides a command-line interface for processing schema files and executing transformations. This section outlines the core capabilities and features of the Terminal class, which extends the base Terminal functionality to provide schema-specific command-line operations.
 
 The `Terminal` class (exported as `IdeaTerminal`) extends the base Terminal class from `@stackpress/lib` to provide command-line functionality for the idea-transformer library. It handles:
 
@@ -20,11 +33,9 @@ The `Terminal` class (exported as `IdeaTerminal`) extends the base Terminal clas
 - Integration with the Transformer class for processing
 - Configurable working directories and file extensions
 
-### 1.2. Static Methods
+## 2. Loading a Terminal Instance
 
-The following methods can be accessed directly from the Terminal class.
-
-#### 1.2.1. Loading a Terminal Instance
+The load method creates a new Terminal instance from command-line arguments and optional configuration. This is the primary way to create a terminal instance for processing schema files from the command line.
 
 The following example shows how to create a new Terminal instance from command-line arguments.
 
@@ -54,7 +65,11 @@ const terminal = await Terminal.load(args, {
 
 A promise that resolves to a new Terminal instance configured with the specified arguments and options.
 
-### 1.3. Properties
+## 3. Properties
+
+The properties section describes the instance variables available on Terminal objects. These properties provide access to configuration details and runtime information needed for command-line operations.
+
+**Properties**
 
 The following properties are available when instantiating a Terminal.
 
@@ -63,11 +78,9 @@ The following properties are available when instantiating a Terminal.
 | `cwd` | `string` | Current working directory for file operations |
 | `extname` | `string` | Default file extension for schema files (default: '.idea') |
 
-### 1.4. Methods
+## 4. Running Terminal Commands
 
-The following methods are available when instantiating a Terminal.
-
-#### 1.4.1. Running Terminal Commands
+The run method executes the configured terminal command and processes the specified schema file. This method handles the complete workflow from command parsing to schema transformation execution.
 
 The Terminal automatically sets up event handlers for processing commands. The main command supported is `transform`.
 
@@ -89,9 +102,13 @@ transform --input <schema-file> [--i <schema-file>]
 |------|-------|-------------|
 | `--input` | `--i` | Path to the schema file to process |
 
-## 2. Usage Examples
+## 5. Usage Examples
 
-### 2.1. Basic Command Execution
+This section provides practical examples of how to use the Terminal class in various scenarios. These examples demonstrate common patterns and use cases for command-line schema processing.
+
+### 5.1. Basic Command Execution
+
+Basic command execution demonstrates the fundamental workflow for processing schema files through the Terminal interface. This example shows the simplest way to transform a schema file using command-line arguments.
 
 ```typescript
 import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -102,7 +119,9 @@ const terminal = await Terminal.load(args);
 await terminal.run();
 ```
 
-### 2.2. Using Short Flag Syntax
+### 5.2. Using Short Flag Syntax
+
+Short flag syntax provides convenient aliases for common command-line options. This example shows how to use abbreviated flags to make command-line usage more efficient.
 
 ```typescript
 // Using the short flag alias
@@ -111,7 +130,9 @@ const terminal = await Terminal.load(args);
 await terminal.run();
 ```
 
-### 2.3. Custom Working Directory
+### 5.3. Custom Working Directory
+
+Custom working directory configuration allows you to specify where the Terminal should operate. This is useful when processing schema files from different locations or when integrating with build systems.
 
 ```typescript
 // Set custom working directory
@@ -121,7 +142,9 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 await terminal.run();
 ```
 
-### 2.4. Custom File Extension
+### 5.4. Custom File Extension
+
+Custom file extension support enables the Terminal to work with schema files that use non-standard extensions. This flexibility allows integration with different naming conventions and file organization strategies.
 
 ```typescript
 // Use custom file extension
@@ -131,7 +154,9 @@ const terminal = await Terminal.load(['transform', '--i', './schema.custom'], {
 await terminal.run();
 ```
 
-### 2.5. Custom Brand/Label
+### 5.5. Custom Brand/Label
+
+Custom brand configuration allows you to customize the Terminal's display name and branding. This is useful when building custom CLI tools based on the idea-transformer library.
 
 ```typescript
 // Use custom terminal brand
@@ -141,9 +166,13 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 await terminal.run();
 ```
 
-## 3. Command-Line Integration
+## 6. Command-Line Integration
 
-### 3.1. Direct Command-Line Usage
+This section demonstrates how to integrate the Terminal class with actual command-line environments and build systems. These examples show practical applications for creating CLI tools and automating schema processing.
+
+### 6.1. Direct Command-Line Usage
+
+Direct command-line usage shows how to invoke the Terminal functionality from shell commands. This section provides examples of the actual command syntax and available options.
 
 ```bash
 ## Basic usage
@@ -156,7 +185,9 @@ node cli.js transform --i ./schema.idea
 cd /path/to/project && node cli.js transform --i ./schema.idea
 ```
 
-### 3.2. CLI Script Example
+### 6.2. CLI Script Example
+
+CLI script examples demonstrate how to create executable scripts that use the Terminal class. This pattern is useful for creating standalone CLI tools and integrating with package managers.
 
 ```typescript
 #!/usr/bin/env node
@@ -179,7 +210,9 @@ async function main() {
 main();
 ```
 
-### 3.3. Package.json Integration
+### 6.3. Package.json Integration
+
+Package.json integration shows how to configure npm scripts and binary commands using the Terminal class. This enables seamless integration with Node.js project workflows and package distribution.
 
 ```json
 {
@@ -194,9 +227,13 @@ main();
 }
 ```
 
-## 4. Default Behavior
+## 7. Default Behavior
 
-### 4.1. File Path Resolution
+This section explains the default behavior and conventions used by the Terminal class. Understanding these defaults helps developers predict how the Terminal will behave in different scenarios and configure it appropriately.
+
+### 7.1. File Path Resolution
+
+File path resolution describes how the Terminal determines which schema file to process when no explicit path is provided. This automatic resolution simplifies common use cases while maintaining flexibility.
 
 When no input file is specified, the terminal uses a default path:
 
@@ -206,7 +243,9 @@ const defaultPath = `${terminal.cwd}/schema${terminal.extname}`;
 // Example: "/current/directory/schema.idea"
 ```
 
-### 4.2. Flag Processing
+### 7.2. Flag Processing
+
+Flag processing explains how the Terminal parses and prioritizes command-line flags. Understanding this order of precedence helps developers use the most appropriate flag syntax for their needs.
 
 The terminal processes the following flags in order of preference:
 
@@ -223,9 +262,13 @@ The terminal processes the following flags in order of preference:
 ['transform']
 ```
 
-## 5. Error Handling
+## 8. Error Handling
 
-### 5.1. Missing Schema File
+This section covers common error conditions that can occur when using the Terminal class. Understanding these error scenarios helps developers implement proper error handling and provide better user experiences.
+
+### 8.1. Missing Schema File
+
+Missing schema file errors occur when the specified schema file doesn't exist or isn't accessible. This section shows how these errors are reported and how to handle them appropriately in CLI applications.
 
 ```typescript
 try {
@@ -236,7 +279,9 @@ try {
 }
 ```
 
-### 5.2. Invalid Command
+### 8.2. Invalid Command
+
+Invalid command errors occur when unsupported commands are passed to the Terminal. This section explains how the Terminal handles unknown commands and provides guidance for error recovery.
 
 ```typescript
 try {
@@ -247,7 +292,9 @@ try {
 }
 ```
 
-### 5.3. Plugin Errors
+### 8.3. Plugin Errors
+
+Plugin errors can occur during the transformation process when plugins fail to execute properly. This section covers how to handle and debug plugin-related issues in CLI environments.
 
 ```typescript
 // If plugins fail during transformation
@@ -259,9 +306,13 @@ try {
 }
 ```
 
-## 6. Advanced Usage
+## 9. Advanced Usage
 
-### 6.1. Custom Event Handlers
+This section covers advanced patterns and techniques for using the Terminal class in complex scenarios. These examples demonstrate sophisticated use cases and integration patterns for power users.
+
+### 9.1. Custom Event Handlers
+
+Custom event handlers allow you to extend the Terminal's functionality with additional commands and behaviors. This pattern enables building specialized CLI tools with custom functionality.
 
 ```typescript
 import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -277,7 +328,9 @@ terminal.on('custom-command', async (event) => {
 await terminal.run();
 ```
 
-### 6.2. Programmatic CLI Building
+### 9.2. Programmatic CLI Building
+
+Programmatic CLI building demonstrates how to construct command-line arguments dynamically in code. This approach is useful for building tools that generate CLI commands based on configuration or user input.
 
 ```typescript
 // Build CLI arguments programmatically
@@ -296,7 +349,9 @@ const terminal = await Terminal.load(args);
 await terminal.run();
 ```
 
-### 6.3. Batch Processing
+### 9.3. Batch Processing
+
+Batch processing shows how to use the Terminal class to process multiple schema files in sequence. This pattern is essential for build systems and automation tools that need to handle multiple schemas.
 
 ```typescript
 import { glob } from 'glob';
@@ -318,7 +373,9 @@ async function processAllSchemas(pattern: string) {
 await processAllSchemas('./schemas/**/*.idea');
 ```
 
-### 6.4. Environment-Based Configuration
+### 9.4. Environment-Based Configuration
+
+Environment-based configuration demonstrates how to use environment variables to configure Terminal behavior. This approach enables flexible deployment and configuration management across different environments.
 
 ```typescript
 const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
@@ -330,9 +387,13 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 await terminal.run();
 ```
 
-## 7. Integration with Build Tools
+## 10. Integration with Build Tools
 
-### 7.1. Webpack Plugin
+This section demonstrates how to integrate the Terminal class with popular build tools and development workflows. These examples show practical applications for automating schema processing in development and deployment pipelines.
+
+### 10.1. Webpack Plugin
+
+Webpack plugin integration shows how to incorporate schema transformation into Webpack build processes. This enables automatic schema processing as part of the application build pipeline.
 
 ```typescript
 class SchemaTransformPlugin {
@@ -354,7 +415,9 @@ class SchemaTransformPlugin {
 }
 ```
 
-### 7.2. Gulp Task
+### 10.2. Gulp Task
+
+Gulp task integration demonstrates how to create Gulp tasks that use the Terminal class for schema processing. This pattern is useful for projects that use Gulp as their primary build tool.
 
 ```typescript
 import gulp from 'gulp';
@@ -366,7 +429,9 @@ gulp.task('transform-schema', async () => {
 });
 ```
 
-### 7.3. NPM Scripts
+### 10.3. NPM Scripts
+
+NPM scripts integration shows how to configure package.json scripts that use the Terminal class. This approach enables easy schema processing through standard npm commands and supports development workflows.
 
 ```json
 {
@@ -378,9 +443,13 @@ gulp.task('transform-schema', async () => {
 }
 ```
 
-## 8. Testing
+## 11. Testing
 
-### 8.1. Unit Testing
+This section covers testing strategies and patterns for applications that use the Terminal class. These examples demonstrate how to write effective tests for CLI functionality and ensure reliable schema processing.
+
+### 11.1. Unit Testing
+
+Unit testing examples show how to test Terminal functionality in isolation. These tests verify that the Terminal class behaves correctly with different command-line arguments and configuration options.
 
 ```typescript
 import { expect } from 'chai';
@@ -410,7 +479,9 @@ describe('Terminal Tests', () => {
 });
 ```
 
-### 8.2. Integration Testing
+### 11.2. Integration Testing
+
+Integration testing demonstrates how to test the complete workflow from command-line input to generated output files. These tests ensure that the entire transformation pipeline works correctly in realistic scenarios.
 
 ```typescript
 import fs from 'fs';
@@ -440,9 +511,13 @@ describe('Terminal Integration', () => {
 });
 ```
 
-## 9. Best Practices
+## 12. Best Practices
 
-### 9.1. Error Handling
+This section outlines recommended approaches for using the Terminal class effectively. Following these practices helps ensure reliable, maintainable, and user-friendly CLI applications.
+
+### 12.1. Error Handling
+
+Error handling best practices ensure that CLI applications provide clear feedback when issues occur. This section demonstrates patterns for implementing robust error handling and user-friendly error messages.
 
 ```typescript
 // Always wrap terminal execution in try-catch
@@ -458,7 +533,9 @@ async function safeTransform(schemaFile: string) {
 }
 ```
 
-### 9.2. Configuration Management
+### 12.2. Configuration Management
+
+Configuration management best practices help maintain clean, reusable configuration patterns. This section provides guidance on organizing configuration options and providing sensible defaults.
 
 ```typescript
 // Use configuration objects for reusable settings
@@ -473,7 +550,9 @@ async function createTerminal(args: string[], config = defaultConfig) {
 }
 ```
 
-### 9.3. Logging and Debugging
+### 12.3. Logging and Debugging
+
+Logging and debugging practices help developers troubleshoot issues and understand Terminal behavior. This section demonstrates effective logging strategies and debugging techniques for CLI applications.
 
 ```typescript
 // Add logging for better debugging

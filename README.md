@@ -121,7 +121,7 @@ Automatically generate:
 
 Here's how a simple e-commerce schema transforms into a full application:
 
-```typescript
+```idea
 // schema.idea
 enum UserRole {
   ADMIN "Administrator"
@@ -222,7 +222,7 @@ $ npm i -D @stackpress/idea
 
 Create a `schema.idea` file:
 
-```typescript
+```idea
 model User {
   id String @id @default("nanoid()")
   name String @required
@@ -252,10 +252,10 @@ This documentation is organized into several sections:
 ### 📋 [Specifications](https://github.com/stackpress/idea/blob/main/docs/Specifications.md)
 Complete reference for the `.idea` file format syntax, data types, and schema structure.
 
-### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/parser/)
+### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/api/parser/)
 Technical documentation for the parser library that processes `.idea` files.
 
-### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/transformer/)
+### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/api/transformer/)
 Documentation for the transformer library that executes plugins and generates code.
 
 ### 🔌 [Plugin Development](https://github.com/stackpress/idea/blob/main/docs/plugins/)

@@ -6,6 +6,14 @@ The Lexer class implements the Parser interface and provides tokenization and pa
 import { Lexer } from '@stackpress/idea-parser';
 ```
 
+ 1. [Properties](#1-properties)
+ 2. [Methods](#2-methods)
+ 3. [Parsing Complex Data Structures](#3-parsing-complex-data-structures)
+ 4. [Error Handling](#4-error-handling)
+ 5. [Predefined Token Definitions](#5-predefined-token-definitions)
+ 6. [Usage with AST](#6-usage-with-ast)
+ 7. [Advanced Usage Patterns](#7-advanced-usage-patterns)
+
 ## 1. Properties
 
 The following properties are available when instantiating a Lexer.
@@ -387,6 +395,8 @@ The Lexer can parse complex nested data structures using the predefined token de
 
 ### 3.1. Parsing Objects
 
+The following examples demonstrate how to parse object literals using the Lexer. Objects in the schema language use key-value pairs without colons, where keys are identifiers and values can be any data type.
+
 ```typescript
 import { Lexer } from '@stackpress/idea-parser';
 import { Compiler } from '@stackpress/idea-parser';
@@ -436,6 +446,8 @@ console.log(objectArray[1].value); // 'Canada'
 
 ### 3.3. Parsing Comments
 
+The following examples show how to parse different types of comments in the schema language. Comments can be either single-line comments starting with `//` or multi-line block comments enclosed in `/* */`.
+
 ```typescript
 // Parse block comments
 lexer.load('/* some comment */');
@@ -462,7 +474,7 @@ console.log(multilineToken.value); // Contains newlines and nested //
 
 The Lexer provides detailed error information when parsing fails:
 
-### 4.1. Unknown Definitions
+**Unknown Definitions**
 
 ```typescript
 const lexer = new Lexer();
@@ -482,7 +494,8 @@ try {
 }
 ```
 
-### 4.2. Unexpected Tokens
+**Unexpected Tokens**
+
 
 ```typescript
 import { Exception } from '@stackpress/idea-parser';
@@ -506,7 +519,7 @@ try {
 
 The library comes with comprehensive predefined token definitions:
 
-### 5.1. Literals
+**Literals**
 
 - **`Null`**: Matches `null` keyword
 - **`Boolean`**: Matches `true` and `false`
@@ -515,7 +528,7 @@ The library comes with comprehensive predefined token definitions:
 - **`Integer`**: Matches whole numbers `42`, `-10`
 - **`Environment`**: Matches environment variables `env("VAR_NAME")`
 
-### 5.2. Identifiers
+**Identifiers**
 
 - **`AnyIdentifier`**: Matches any valid identifier `[a-z_][a-z0-9_]*`
 - **`UpperIdentifier`**: Matches uppercase identifiers `[A-Z_][A-Z0-9_]*`
@@ -524,14 +537,14 @@ The library comes with comprehensive predefined token definitions:
 - **`LowerIdentifier`**: Matches lowercase identifiers `[a-z_][a-z0-9_]*`
 - **`AttributeIdentifier`**: Matches attribute identifiers `@field.input`
 
-### 5.3. Structural
+**Structural**
 
 - **`Array`**: Matches array expressions `[ ... ]`
 - **`Object`**: Matches object expressions `{ ... }`
 - **`{`, `}`, `[`, `]`, `(`, `)`**: Bracket and brace tokens
 - **`!`**: Final modifier token
 
-### 5.4. Whitespace and Comments
+**Whitespace and Comments**
 
 - **`whitespace`**: Matches any whitespace `\s+`
 - **`space`**: Matches spaces only
@@ -539,7 +552,7 @@ The library comes with comprehensive predefined token definitions:
 - **`note`**: Matches block comments `/* ... */`
 - **`comment`**: Matches line comments `// ...`
 
-### 5.5. Data Groups
+**Data Groups**
 
 - **`scalar`**: Array of scalar types `['Null', 'Boolean', 'String', 'Float', 'Integer', 'Environment']`
 - **`data`**: Array of all data types `[...scalar, 'Object', 'Array']`
@@ -563,7 +576,11 @@ const result = enumTree.enum(); // Parse enum using configured lexer
 
 ## 7. Advanced Usage Patterns
 
+The following patterns demonstrate advanced techniques for using the Lexer in complex parsing scenarios. These patterns are useful for implementing sophisticated parsing logic and error recovery mechanisms.
+
 ### 7.1. Backtracking with Clone
+
+Backtracking allows you to save the lexer's state and restore it if parsing fails. This is useful for trying alternative parsing strategies without losing your position in the code.
 
 ```typescript
 // Save current state for potential backtracking
@@ -581,6 +598,8 @@ try {
 ```
 
 ### 7.2. Conditional Parsing
+
+Conditional parsing allows you to make parsing decisions based on lookahead tokens. This technique is useful for parsing languages with context-sensitive grammar rules.
 
 ```typescript
 // Parse different types based on lookahead

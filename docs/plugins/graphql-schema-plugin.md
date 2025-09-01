@@ -2,34 +2,40 @@
 
 This tutorial demonstrates how to create a plugin that generates GraphQL type definitions from `.idea` schema files. The plugin will transform your schema models, types, and enums into proper GraphQL schema definitions.
 
-1. [Overview](#overview)
-2. [Prerequisites](#prerequisites)
-3. [Plugin Structure](#plugin-structure)
-4. [Implementation](#implementation)
-5. [Schema Configuration](#schema-configuration)
-6. [Usage Examples](#usage-examples)
-7. [Advanced Features](#advanced-features)
-8. [Best Practices](#best-practices)
-9. [Troubleshooting](#troubleshooting)
+ 1. [Overview](#1-overview)
+ 2. [Prerequisites](#2-prerequisites)
+ 3. [Plugin Structure](#3-plugin-structure)
+ 4. [Implementation](#4-implementation)
+ 5. [Schema Configuration](#5-schema-configuration)
+ 6. [Usage Examples](#6-usage-examples)
+ 7. [Advanced Features](#7-advanced-features)
+ 8. [Best Practices](#8-best-practices)
+ 9. [Troubleshooting](#9-troubleshooting)
 
 ## 1. Overview
 
-GraphQL is a query language and runtime for APIs that provides a complete and understandable description of the data in your API. This plugin generates GraphQL type definitions from your `.idea` schema, including:
+GraphQL is a query language and runtime for APIs that provides a complete and understandable description of the data in your API. This plugin transforms your `.idea` schema definitions into comprehensive GraphQL type definitions that enable type-safe API development with excellent tooling support.
 
-- **Types**: GraphQL object types from schema models
-- **Inputs**: GraphQL input types for mutations
-- **Enums**: GraphQL enum types from schema enums
-- **Scalars**: Custom scalar types when needed
-- **Queries and Mutations**: Basic CRUD operations
+This plugin generates GraphQL type definitions from your `.idea` schema, including:
+
+ - **Types**: GraphQL object types from schema models
+ - **Inputs**: GraphQL input types for mutations
+ - **Enums**: GraphQL enum types from schema enums
+ - **Scalars**: Custom scalar types when needed
+ - **Queries and Mutations**: Basic CRUD operations
 
 ## 2. Prerequisites
 
-- Node.js 16+ and npm/yarn
-- Basic understanding of GraphQL
-- Familiarity with the `@stackpress/idea-transformer` library
-- Understanding of `.idea` schema format
+Before implementing the GraphQL schema generator plugin, ensure you have the necessary development environment and knowledge. This section covers the essential requirements for successful plugin creation and GraphQL integration.
+
+ - Node.js 16+ and npm/yarn
+ - Basic understanding of GraphQL
+ - Familiarity with the `@stackpress/idea-transformer` library
+ - Understanding of `.idea` schema format
 
 ## 3. Plugin Structure
+
+The plugin structure defines the core architecture and configuration interface for the GraphQL schema generator. This includes the main plugin function, configuration types, and the overall organization of the generated GraphQL schema definitions.
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -56,7 +62,12 @@ export default async function generateGraphQLSchema(
 
 ## 4. Implementation
 
+The implementation section covers the core plugin function and supporting utilities that handle GraphQL schema generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.
+
 ### 4.1. Core Plugin Function
+
+The core plugin function serves as the main entry point for GraphQL schema generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.
+
 
 ```typescript
 export default async function generateGraphQLSchema(
@@ -124,6 +135,8 @@ export default async function generateGraphQLSchema(
 
 ### 4.2. Type Mapping Functions
 
+Type mapping functions handle the conversion of `.idea` schema types to their GraphQL equivalents. These functions ensure proper type safety and handle complex scenarios like arrays, required fields, and custom scalar types.
+
 ```typescript
 function mapSchemaTypeToGraphQL(schemaType: string, customScalars: Record<string, string> = {}): string {
   // Check for custom scalar mappings first
@@ -163,6 +176,8 @@ function formatFieldType(column: any, customScalars: Record<string, string> = {}
 ```
 
 ### 4.3. Schema Generation Functions
+
+Schema generation functions create specific parts of the GraphQL schema including custom scalars, enums, types, input types, and root operation types. These functions handle proper GraphQL syntax construction and type relationships.
 
 ```typescript
 function generateCustomScalars(customScalars: Record<string, string>): string {
@@ -328,9 +343,11 @@ function generateSubscriptions(models: Record<string, any>): string {
 
 ## 5. Schema Configuration
 
+Schema configuration demonstrates how to integrate the GraphQL schema generator into your `.idea` schema files. This section covers plugin configuration options and their effects on the generated GraphQL schema definitions.
+
 Add the GraphQL plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/graphql-schema.js" {
   output "./generated/schema.graphql"
   includeQueries true
@@ -345,7 +362,9 @@ plugin "./plugins/graphql-schema.js" {
 }
 ```
 
-### 5.1. Configuration Options
+**Configuration Options**
+
+Configuration options control how GraphQL schema definitions are generated, including operation types, input generation, and custom scalar handling. Understanding these options helps you customize the plugin to meet your specific GraphQL requirements.
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -358,9 +377,14 @@ plugin "./plugins/graphql-schema.js" {
 
 ## 6. Usage Examples
 
+Usage examples demonstrate practical applications of the GraphQL schema generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated GraphQL schemas integrate into development workflows.
+
 ### 6.1. Basic Schema
 
-```ts
+A basic schema example shows the fundamental structure needed to generate GraphQL type definitions. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces comprehensive GraphQL schemas.
+
+
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"
@@ -384,6 +408,8 @@ plugin "./plugins/graphql-schema.js" {
 ```
 
 ### 6.2. Generated Output
+
+The generated output demonstrates the GraphQL schema produced by the plugin from the basic schema example. This shows how schema definitions are transformed into proper GraphQL type definitions with full type safety and operation support.
 
 ```graphql
 # Custom Scalars
@@ -439,7 +465,12 @@ type Mutation {
 
 ## 7. Advanced Features
 
+Advanced features extend the basic GraphQL schema generation with sophisticated type handling, relationship management, directive support, and custom scalar types. These features enable production-ready GraphQL schemas that handle complex requirements.
+
 ### 7.1. Custom Scalar Types
+
+Custom scalar types allow you to define specialized data types that map to specific validation or formatting requirements. This feature enables the creation of domain-specific types that enhance type safety and API clarity.
+
 
 ```typescript
 // In your plugin configuration
@@ -452,6 +483,8 @@ customScalars: {
 ```
 
 ### 7.2. Relationship Handling
+
+Relationship handling manages references between different types and models in your schema. This ensures that type relationships are properly represented in the generated GraphQL schema with correct type references and nullability handling.
 
 ```typescript
 function handleRelationships(column: any, models: Record<string, any>): string {
@@ -476,6 +509,8 @@ function handleRelationships(column: any, models: Record<string, any>): string {
 
 ### 7.3. Directive Support
 
+Directive support enables the addition of GraphQL directives to fields and types, providing metadata and behavior hints for GraphQL servers and tools. This feature enhances schema expressiveness and enables advanced GraphQL features.
+
 ```typescript
 function generateDirectives(column: any): string {
   const directives: string[] = [];
@@ -494,7 +529,12 @@ function generateDirectives(column: any): string {
 
 ## 8. Best Practices
 
+Best practices ensure your generated GraphQL schemas are maintainable, performant, and follow GraphQL conventions. These guidelines cover type safety, error handling, configuration validation, and performance optimization.
+
 ### 8.1. Type Safety
+
+Type safety is crucial for preventing runtime errors and ensuring reliable GraphQL schema generation. Always validate input data and use proper TypeScript types throughout the plugin implementation to ensure consistent output.
+
 
 ```typescript
 interface GraphQLColumn {
@@ -515,6 +555,8 @@ function validateColumn(column: any): column is GraphQLColumn {
 ```
 
 ### 8.2. Error Handling
+
+Proper error handling ensures that schema generation failures provide clear, actionable feedback to developers. Implement comprehensive error handling patterns and meaningful error messages to improve the debugging experience.
 
 ```typescript
 function generateTypes(models: Record<string, any>): string {
@@ -539,6 +581,8 @@ function generateTypes(models: Record<string, any>): string {
 
 ### 8.3. Configuration Validation
 
+Configuration validation ensures that plugin settings are correct and complete before schema generation begins. This prevents runtime errors and provides early feedback about configuration issues.
+
 ```typescript
 function validateConfig(config: any): asserts config is GraphQLConfig {
   if (!config.output || typeof config.output !== 'string') {
@@ -551,7 +595,9 @@ function validateConfig(config: any): asserts config is GraphQLConfig {
 }
 ```
 
-### 4. Performance Optimization
+### 8.4. Performance Optimization
+
+Performance optimization techniques help maintain reasonable generation times when working with large schemas. Implement caching strategies and efficient algorithms to ensure the plugin scales well with complex type hierarchies.
 
 ```typescript
 // Cache type mappings
@@ -571,11 +617,18 @@ function getCachedType(schemaType: string, customScalars: Record<string, string>
 }
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+This section addresses common issues encountered when generating GraphQL schemas and provides solutions for debugging and resolving problems. Understanding these troubleshooting techniques helps ensure reliable schema generation.
 
-1. **Invalid GraphQL Names**
+### 9.1. Common Issues
+
+Common issues include invalid GraphQL identifiers, circular dependencies, and missing required fields. These problems typically arise from schema complexity or naming conflicts that can be resolved with proper validation and sanitization.
+
+#### 9.1.1. Invalid GraphQL Names
+
+Invalid GraphQL names occur when schema identifiers contain characters that are not valid in GraphQL. The plugin should validate and sanitize names to ensure they conform to GraphQL naming conventions.
+
    ```typescript
    function sanitizeGraphQLName(name: string): string {
      // GraphQL names must match /^[_A-Za-z][_0-9A-Za-z]*$/
@@ -583,8 +636,11 @@ function getCachedType(schemaType: string, customScalars: Record<string, string>
    }
    ```
 
-2. **Circular Dependencies**
-   ```typescript
+#### 9.1.2. Circular Dependencies
+
+Circular dependencies can cause infinite loops during generation or invalid GraphQL schemas. Detecting and handling these scenarios is essential for robust schema generation, especially with complex type relationships.
+
+```typescript
    function detectCircularDependencies(models: Record<string, any>): string[] {
      const visited = new Set<string>();
      const recursionStack = new Set<string>();
@@ -596,8 +652,11 @@ function getCachedType(schemaType: string, customScalars: Record<string, string>
    }
    ```
 
-3. **Missing Required Fields**
-   ```typescript
+#### 9.1.3. Missing Required Fields
+
+Missing required fields can result in invalid GraphQL types that fail validation. Ensure all models have proper field definitions and handle edge cases where schema definitions might be incomplete.
+
+```typescript
    function validateRequiredFields(model: any): void {
      if (!model.columns || model.columns.length === 0) {
        throw new Error(`Model must have at least one column`);
@@ -605,9 +664,14 @@ function getCachedType(schemaType: string, customScalars: Record<string, string>
    }
    ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
 
-1. **Enable Verbose Logging**
+Debugging tips help identify and resolve issues during GraphQL schema generation. These techniques provide visibility into the generation process and help diagnose problems with schema logic or output formatting.
+
+#### 9.2.1. Enable Verbose Logging
+
+Verbose logging provides detailed information about the schema generation process, helping identify where issues occur and what data is being processed at each step.
+
    ```typescript
    const DEBUG = process.env.DEBUG === 'true';
    
@@ -618,8 +682,11 @@ function getCachedType(schemaType: string, customScalars: Record<string, string>
    }
    ```
 
-2. **Validate Generated Schema**
-   ```typescript
+#### 9.2.2. Validate Generated Schema
+
+Validating the generated GraphQL schema ensures that the output is syntactically correct and will work with GraphQL servers and tools. This validation step catches generation errors before deployment.
+
+```typescript
    import { buildSchema } from 'graphql';
    
    function validateGeneratedSchema(schemaContent: string): void {

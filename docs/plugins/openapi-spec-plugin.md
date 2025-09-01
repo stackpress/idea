@@ -2,39 +2,47 @@
 
 This tutorial demonstrates how to create a plugin for `@stackpress/idea-transformer` that generates OpenAPI 3.0 specifications from `.idea` schema files. The plugin will create comprehensive API documentation with endpoints, schemas, and validation rules.
 
-1. [Overview](#overview)
-2. [Basic Implementation](#basic-implementation)
-3. [Configuration Options](#configuration-options)
-4. [Schema Processing](#schema-processing)
-5. [Advanced Features](#advanced-features)
-6. [Usage Examples](#usage-examples)
-7. [Best Practices](#best-practices)
-8. [Troubleshooting](#troubleshooting)
+ 1. [Overview](#1-overview)
+ 2. [Basic Implementation](#2-basic-implementation)
+ 3. [Configuration Options](#3-configuration-options)
+ 4. [Schema Processing](#4-schema-processing)
+ 5. [Advanced Features](#5-advanced-features)
+ 6. [Usage Examples](#6-usage-examples)
+ 7. [Best Practices](#7-best-practices)
+ 8. [Troubleshooting](#8-troubleshooting)
 
 ## 1. Overview
 
-OpenAPI (formerly Swagger) specifications provide a standard way to document REST APIs. This plugin will:
+OpenAPI (formerly Swagger) specifications provide a standard way to document REST APIs. This plugin transforms your `.idea` schema definitions into comprehensive API documentation that follows industry standards and integrates seamlessly with existing API development workflows.
 
-- Generate OpenAPI 3.0 compliant specifications
-- Create schemas from idea models and types
-- Generate CRUD endpoints for models
-- Include validation rules and examples
-- Support custom endpoints and operations
-- Generate security schemes and authentication
+This plugin will:
 
-### 1.1. What You'll Learn
+ - Generate OpenAPI 3.0 compliant specifications
+ - Create schemas from idea models and types
+ - Generate CRUD endpoints for models
+ - Include validation rules and examples
+ - Support custom endpoints and operations
+ - Generate security schemes and authentication
 
-- Processing idea schemas for API documentation
-- OpenAPI 3.0 specification structure
-- Schema generation and validation
-- Endpoint documentation patterns
-- Security and authentication schemes
+**What You'll Learn**
+
+This section outlines the key concepts and skills you'll acquire through this tutorial. Understanding these fundamentals will enable you to create robust API documentation that serves both developers and automated tooling.
+
+ - Processing idea schemas for API documentation
+ - OpenAPI 3.0 specification structure
+ - Schema generation and validation
+ - Endpoint documentation patterns
+ - Security and authentication schemes
 
 ## 2. Basic Implementation
+
+The basic implementation provides the foundation for generating OpenAPI specifications from `.idea` schema files. This section covers the core plugin structure, configuration interface, and essential generation functions needed to create functional API documentation.
 
 Let's start with a basic OpenAPI specification generator:
 
 ### 2.1. Plugin Structure
+
+The plugin structure defines the main entry point and configuration interface for the OpenAPI generator. This includes type definitions for configuration options, the primary plugin function, and the core specification generation logic.
 
 ```typescript
 // plugins/openapi-spec.ts
@@ -157,6 +165,8 @@ function generateSpecification(schema: any, config: OpenAPIConfig) {
 ```
 
 ### 2.2. Schema Generation
+
+Schema generation transforms `.idea` model and type definitions into OpenAPI-compliant schema objects. This process includes mapping data types, handling validation rules, and creating proper JSON Schema structures that integrate with OpenAPI tooling.
 
 ```typescript
 function generateModelSchema(model: any): any {
@@ -292,9 +302,9 @@ function addValidationRules(property: any, attributes: any): void {
 
 ## 3. Configuration Options
 
-### 3.1. Schema Configuration
+Configuration options control how the OpenAPI specification is generated, including output formats, API metadata, server definitions, and security schemes. Proper configuration ensures the generated documentation meets your specific requirements and integrates with your development workflow.
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec.json"
@@ -390,7 +400,8 @@ plugin "./plugins/openapi-spec.js" {
 
 ## 4. Schema Processing
 
-### 4.1. Enhanced Schema Generation
+Schema processing handles the transformation of `.idea` definitions into OpenAPI components and endpoints. This includes generating security schemes, creating CRUD endpoints for models, and handling complex schema relationships and validations.
+
 
 ```typescript
 function generateSecuritySchemes(spec: any, security: any): void {
@@ -624,9 +635,10 @@ function generateCRUDEndpoints(spec: any, modelName: string, model: any): void {
 }
 ```
 
-## 5. Advanced Features
+## 5. Multiple Output Formats
 
-### 5.1. Multiple Output Formats
+Multiple output formats allow you to generate OpenAPI specifications in JSON, YAML, and HTML formats. This flexibility ensures compatibility with different tools and enables both machine-readable specifications and human-friendly documentation.
+
 
 ```typescript
 interface AdvancedOpenAPIConfig extends OpenAPIConfig {
@@ -854,9 +866,14 @@ function generateHTMLDocumentation(spec: any): string {
 
 ## 6. Usage Examples
 
+Usage examples demonstrate practical applications of the OpenAPI generator plugin with real-world scenarios. These examples show how to configure the plugin for different use cases and integrate the generated documentation into your development workflow.
+
 ### 6.1. Basic Usage
 
-```ts
+Basic usage examples show the fundamental configuration needed to generate OpenAPI specifications from simple `.idea` schemas. This includes model definitions, plugin configuration, and the resulting API documentation structure.
+
+
+```idea
 // schema.idea
 enum UserRole {
   ADMIN "admin"
@@ -892,7 +909,9 @@ plugin "./plugins/openapi-spec.js" {
 
 ### 6.2. Advanced Configuration
 
-```ts
+Advanced configuration demonstrates comprehensive plugin setup with multiple output formats, detailed API metadata, custom endpoints, and security schemes. This example shows how to create production-ready API documentation with full feature coverage.
+
+```idea
 // schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec"
@@ -1030,6 +1049,8 @@ plugin "./plugins/openapi-spec.js" {
 
 ### 6.3. CLI Integration
 
+CLI integration shows how to incorporate the OpenAPI generator into your development workflow using command-line tools. This includes generating specifications, serving documentation locally, and integrating with API development tools.
+
 ```bash
 # Generate OpenAPI specification
 npm run transform
@@ -1047,7 +1068,12 @@ npx swagger-codegen generate -i docs/api-spec.json -l python -o ./sdk/python
 
 ## 7. Best Practices
 
+Best practices ensure your generated OpenAPI specifications are comprehensive, maintainable, and follow industry standards. These guidelines cover documentation quality, error handling, security implementation, and validation strategies.
+
 ### 7.1. Comprehensive Documentation
+
+Comprehensive documentation practices ensure your API specifications provide clear, detailed information for both human readers and automated tools. This includes proper descriptions, examples, and consistent formatting throughout the specification.
+
 
 ```typescript
 // Always include detailed descriptions
@@ -1093,6 +1119,8 @@ function generatePropertyDescription(column: any): string {
 ```
 
 ### 7.2. Consistent Error Responses
+
+Consistent error responses provide standardized error handling across your API endpoints. This approach ensures predictable error formats that client applications can handle reliably, improving the overall developer experience.
 
 ```typescript
 function generateErrorResponses(): any {
@@ -1175,6 +1203,8 @@ function generateErrorResponses(): any {
 
 ### 7.3. Security Best Practices
 
+Security best practices ensure your API documentation properly represents authentication and authorization requirements. This includes applying appropriate security schemes to endpoints and documenting access control patterns.
+
 ```typescript
 function addSecurityToEndpoints(spec: any): void {
   // Add security requirements to all endpoints
@@ -1207,6 +1237,8 @@ function isPublicEndpoint(path: string, method: string): boolean {
 ```
 
 ### 7.4. Validation and Testing
+
+Validation and testing practices ensure your generated OpenAPI specifications are accurate and functional. This includes adding validation examples, testing request/response formats, and verifying specification compliance.
 
 ```typescript
 function addValidationExamples(spec: any): void {
@@ -1275,9 +1307,16 @@ function generateInvalidExample(schema: any): any {
 
 ## 8. Troubleshooting
 
+This section addresses common issues encountered when generating OpenAPI specifications and provides solutions for debugging and resolving problems. Understanding these troubleshooting techniques helps ensure reliable specification generation.
+
 ### 8.1. Common Issues
 
+Common issues include schema reference errors, validation failures, and performance problems with large specifications. These problems typically arise from circular references, invalid configurations, or missing dependencies.
+
 #### 8.1.1. Schema Reference Errors
+
+Schema reference errors occur when the generator encounters circular dependencies or invalid references between schema components. These issues can break the specification generation process and require careful handling of schema relationships.
+
 
 ```typescript
 // Problem: Circular references in schemas
@@ -1317,6 +1356,8 @@ function handleCircularReferences(spec: any): void {
 ```
 
 #### 8.1.2. Invalid OpenAPI Format
+
+Invalid OpenAPI format errors occur when the generated specification doesn't conform to OpenAPI standards. These validation failures can prevent the specification from working with OpenAPI tools and require comprehensive validation during generation.
 
 ```typescript
 // Problem: Generated spec doesn't validate
@@ -1370,6 +1411,8 @@ function validateOpenAPISpec(spec: any): void {
 
 #### 8.1.3. Missing Dependencies
 
+Missing dependencies can cause the plugin to fail during execution or limit available features. Ensuring all required packages are installed and properly configured is essential for reliable operation.
+
 ```bash
 # Install required dependencies
 npm install --save-dev yaml swagger-ui-dist
@@ -1382,6 +1425,8 @@ npm install --save-dev @openapitools/openapi-generator-cli
 ```
 
 #### 8.1.4. Performance Issues
+
+Performance issues can occur when generating specifications for large schemas with many models and complex relationships. Optimization techniques help maintain reasonable generation times and manageable output file sizes.
 
 ```typescript
 // Problem: Large schemas cause performance issues
@@ -1426,6 +1471,8 @@ function optimizeSchema(spec: any): any {
 ```
 
 ### 8.2. Debug Mode
+
+Debug mode provides detailed logging and diagnostic information during specification generation. This feature helps identify issues, understand the generation process, and optimize plugin configuration for better results.
 
 ```typescript
 interface DebugOpenAPIConfig extends AdvancedOpenAPIConfig {
@@ -1487,21 +1534,21 @@ export default async function generateOpenAPISpecWithDebug(
 
 This OpenAPI Specification Generator plugin provides a comprehensive solution for generating API documentation from `.idea` schema files. Key features include:
 
-- **Complete OpenAPI 3.0 Support**: Generates fully compliant specifications
-- **Automatic CRUD Endpoints**: Creates standard REST endpoints for models
-- **Security Integration**: Supports multiple authentication schemes
-- **Multiple Output Formats**: JSON, YAML, and HTML documentation
-- **Validation and Examples**: Includes request/response examples and validation
-- **Extensible Configuration**: Highly customizable for different use cases
+ - **Complete OpenAPI 3.0 Support**: Generates fully compliant specifications
+ - **Automatic CRUD Endpoints**: Creates standard REST endpoints for models
+ - **Security Integration**: Supports multiple authentication schemes
+ - **Multiple Output Formats**: JSON, YAML, and HTML documentation
+ - **Validation and Examples**: Includes request/response examples and validation
+ - **Extensible Configuration**: Highly customizable for different use cases
 
 The plugin follows TypeScript best practices and provides comprehensive error handling, making it suitable for production use in API development workflows.
 
 ### Next Steps
 
-1. **Extend Schema Mapping**: Add support for more complex schema relationships
-2. **Custom Templates**: Implement custom documentation templates
-3. **Integration Testing**: Add automated testing for generated specifications
-4. **Performance Optimization**: Implement caching and incremental generation
-5. **Plugin Ecosystem**: Create complementary plugins for API testing and client generation
+ 1. **Extend Schema Mapping**: Add support for more complex schema relationships
+ 2. **Custom Templates**: Implement custom documentation templates
+ 3. **Integration Testing**: Add automated testing for generated specifications
+ 4. **Performance Optimization**: Implement caching and incremental generation
+ 5. **Plugin Ecosystem**: Create complementary plugins for API testing and client generation
 
 This tutorial provides a solid foundation for generating professional API documentation that can be used with tools like Swagger UI, Postman, and various code generators.

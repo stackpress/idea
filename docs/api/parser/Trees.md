@@ -14,11 +14,26 @@ import {
 } from '@stackpress/idea-parser';
 ```
 
+ 1. [SchemaTree](#1-schematree)
+ 2. [EnumTree](#2-enumtree)
+ 3. [ModelTree](#3-modeltree)
+ 4. [TypeTree](#4-typetree)
+ 5. [PropTree](#5-proptree)
+ 6. [PluginTree](#6-plugintree)
+ 7. [UseTree](#7-usetree)
+ 8. [Usage Patterns](#8-usage-patterns)
+ 9. [Error Handling](#9-error-handling)
+ 10. [Integration with Main Functions](#10-integration-with-main-functions)
+ 11. [Performance Considerations](#11-performance-considerations)
+ 12. [Test-Driven Examples](#12-test-driven-examples)
+
 ## 1. SchemaTree
 
 Parses complete schema files containing multiple declarations.
 
 ### 1.1. Static Methods
+
+The static methods provide convenient ways to configure lexers and parse complete schema files without needing to instantiate the SchemaTree class directly.
 
 #### 1.1.1. Setting Up Schema Definitions
 
@@ -88,6 +103,8 @@ A SchemaToken representing the entire parsed schema.
 
 ### 1.2. Methods
 
+The instance methods allow for more granular control over the parsing process, including custom starting positions and reusing configured lexer instances.
+
 #### 1.2.1. Parsing Schema Content
 
 The following example shows how to parse schema content with custom starting position.
@@ -118,6 +135,8 @@ A SchemaToken containing all parsed declarations.
 Parses enum declarations into AST tokens.
 
 ### 2.1. Static Methods
+
+The static methods provide convenient ways to configure lexers and parse enum declarations without needing to instantiate the EnumTree class directly.
 
 #### 2.1.1. Setting Up Enum Definitions
 
@@ -166,6 +185,8 @@ A DeclarationToken representing the parsed enum.
 
 ### 2.2. Methods
 
+The instance methods allow for more granular control over the enum parsing process, including parsing individual enum structures and properties.
+
 #### 2.2.1. Parsing Enum Structure
 
 The following example shows how to parse the enum structure.
@@ -205,6 +226,8 @@ Parses model declarations (extends TypeTree for shared functionality).
 
 ### 3.1. Static Methods
 
+The static methods provide convenient ways to parse model declarations directly without needing to instantiate the ModelTree class.
+
 #### 3.1.1. Parsing Model Declarations
 
 The following example shows how to parse model declarations based on the test fixtures.
@@ -242,6 +265,8 @@ A DeclarationToken representing the parsed model.
 
 ### 3.2. Methods
 
+The instance methods allow for more granular control over the model parsing process, including parsing model structures and their properties.
+
 #### 3.2.1. Parsing Model Structure
 
 The following example shows how to parse the model structure.
@@ -264,6 +289,8 @@ A DeclarationToken representing the model structure.
 Parses type declarations.
 
 ### 4.1. Static Methods
+
+The static methods provide convenient ways to parse type declarations directly without needing to instantiate the TypeTree class.
 
 #### 4.1.1. Parsing Type Declarations
 
@@ -297,6 +324,8 @@ console.log(ast.declarations[0].id.name); // 'Address'
 A DeclarationToken representing the parsed type.
 
 ### 4.2. Methods
+
+The instance methods allow for more granular control over the type parsing process, including parsing type structures, properties, and parameters.
 
 #### 4.2.1. Parsing Type Structure
 
@@ -351,6 +380,8 @@ Parses prop (property configuration) declarations.
 
 ### 5.1. Static Methods
 
+The static methods provide convenient ways to parse prop declarations directly without needing to instantiate the PropTree class.
+
 #### 5.1.1. Parsing Prop Declarations
 
 The following example shows how to parse prop declarations.
@@ -383,6 +414,8 @@ A DeclarationToken representing the parsed prop.
 
 ### 5.2. Methods
 
+The instance methods allow for more granular control over the prop parsing process, including parsing prop structures and their configurations.
+
 #### 5.2.1. Parsing Prop Structure
 
 The following example shows how to parse the prop structure.
@@ -405,6 +438,8 @@ A DeclarationToken representing the prop configuration.
 Parses plugin declarations.
 
 ### 6.1. Static Methods
+
+The static methods provide convenient ways to parse plugin declarations directly without needing to instantiate the PluginTree class.
 
 #### 6.1.1. Parsing Plugin Declarations
 
@@ -437,6 +472,8 @@ A DeclarationToken representing the parsed plugin.
 
 ### 6.2. Methods
 
+The instance methods allow for more granular control over the plugin parsing process, including parsing plugin structures and their configurations.
+
 #### 6.2.1. Parsing Plugin Structure
 
 The following example shows how to parse the plugin structure.
@@ -459,6 +496,8 @@ A DeclarationToken representing the plugin configuration.
 Parses use (import) declarations.
 
 ### 7.1. Static Methods
+
+The static methods provide convenient ways to parse use (import) declarations directly without needing to instantiate the UseTree class.
 
 #### 7.1.1. Parsing Use Declarations
 
@@ -487,6 +526,8 @@ An ImportToken representing the parsed use statement.
 
 ### 7.2. Methods
 
+The instance methods allow for more granular control over the use statement parsing process, including parsing import structures and their sources.
+
 #### 7.2.1. Parsing Use Structure
 
 The following example shows how to parse the use structure.
@@ -506,7 +547,11 @@ An ImportToken representing the import statement.
 
 ## 8. Usage Patterns
 
+This section demonstrates common patterns for using the AST classes in real-world scenarios, including parsing individual components, integration with the compiler, and creating custom AST classes.
+
 ### 8.1. Parsing Individual Components
+
+The following examples show how to parse individual schema components using their respective AST classes for targeted parsing operations.
 
 ```typescript
 import { EnumTree, ModelTree, TypeTree } from '@stackpress/idea-parser';
@@ -532,6 +577,8 @@ const typeAST = TypeTree.parse(`type Address {
 ```
 
 ### 8.2. Using with Compiler
+
+The following examples show how AST classes integrate with the Compiler to transform parsed ASTs into usable configuration objects.
 
 ```typescript
 import { EnumTree, Compiler } from '@stackpress/idea-parser';
@@ -594,7 +641,7 @@ class CustomTree extends AbstractTree<DeclarationToken> {
 
 AST classes provide detailed error information when parsing fails:
 
-### 9.1. Syntax Errors
+**Syntax Errors**
 
 ```typescript
 import { SchemaTree, Exception } from '@stackpress/idea-parser';
@@ -610,7 +657,7 @@ try {
 }
 ```
 
-### 9.2. Unexpected Tokens
+**Unexpected Tokens**
 
 ```typescript
 try {
@@ -621,7 +668,7 @@ try {
 }
 ```
 
-### 9.3. Empty Input Handling
+**Empty Input Handling**
 
 ```typescript
 import { EnumTree } from '@stackpress/idea-parser';
@@ -634,7 +681,7 @@ try {
 }
 ```
 
-### 9.4. Invalid Identifiers
+**Invalid Identifiers**
 
 ```typescript
 import { ModelTree } from '@stackpress/idea-parser';
@@ -667,6 +714,8 @@ export function final(code: string) {
 ```
 
 ## 11. Performance Considerations
+
+This section covers optimization techniques and best practices for using AST classes efficiently, including lexer reuse and cloning strategies for better performance.
 
 ### 11.1. Lexer Reuse
 
@@ -709,7 +758,7 @@ try {
 
 Based on the test fixtures, here are real-world examples:
 
-### 12.1. Enum with Multiple Values
+**Enum with Multiple Values**
 
 ```typescript
 const enumCode = `enum Roles {
@@ -722,7 +771,7 @@ const ast = EnumTree.parse(enumCode);
 // Produces a complete AST with all three enum values
 ```
 
-### 12.2. Complex Model with Attributes
+**Complex Model with Attributes**
 
 ```typescript
 const modelCode = `model User @label("User" "Users") {

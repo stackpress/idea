@@ -2,24 +2,39 @@
 
 This tutorial will guide you through creating a plugin that generates MySQL `CREATE TABLE` statements from a processed `.idea` schema.
 
+ 1. [Overview](#1-overview)
+ 2. [Prerequisites](#2-prerequisites)
+ 3. [Understanding the Schema Structure](#3-understanding-the-schema-structure)
+ 4. [Create the Plugin Structure](#4-create-the-plugin-structure)
+ 5. [Implement Type Mapping](#5-implement-type-mapping)
+ 6. [Generate SQL Statements](#6-generate-sql-statements)
+ 7. [Usage in Schema](#7-usage-in-schema)
+ 8. [Generated Output](#8-generated-output)
+ 9. [Error Handling and Best Practices](#9-error-handling-and-best-practices)
+
 ## 1. Overview
 
 The MySQL Tables Plugin will:
-- Parse schema models and their columns
-- Map schema types to MySQL data types
-- Generate SQL `CREATE TABLE` statements
-- Handle primary keys, foreign keys, and indexes
-- Output SQL files that can be executed to create database tables
+
+ - Parse schema models and their columns
+ - Map schema types to MySQL data types
+ - Generate SQL `CREATE TABLE` statements
+ - Handle primary keys, foreign keys, and indexes
+ - Output SQL files that can be executed to create database tables
 
 ## 2. Prerequisites
 
-- Basic understanding of TypeScript/JavaScript
-- Familiarity with MySQL and SQL syntax
-- Understanding of the `idea-transformer` plugin system
+Before creating this plugin, you should have the following knowledge and tools:
+
+ - Basic understanding of TypeScript/JavaScript
+ - Familiarity with MySQL and SQL syntax
+ - Understanding of the `idea-transformer` plugin system
 
 ## 3. Understanding the Schema Structure
 
-Before creating the plugin, let's understand what a processed schema looks like:
+Before creating the plugin, let's understand what a processed schema looks like. The schema structure contains models, enums, and other configuration data that our plugin will process.
+
+**Example Schema Structure**
 
 ```typescript
 // Example processed schema
@@ -73,7 +88,9 @@ Before creating the plugin, let's understand what a processed schema looks like:
 
 ## 4. Create the Plugin Structure
 
-Create a new file `mysql-tables-plugin.js`:
+Create a new file `mysql-tables-plugin.js`. This will be the main entry point for our plugin that handles configuration validation and orchestrates the SQL generation process.
+
+**Basic Plugin Structure**
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -121,7 +138,9 @@ export default async function mysqlTablesPlugin(
 
 ## 5. Implement Type Mapping
 
-Create a function to map schema types to MySQL types:
+Create a function to map schema types to MySQL types. This function handles the conversion between idea schema types and their corresponding MySQL data types.
+
+**Type Mapping Function**
 
 ```typescript
 function mapSchemaTypeToMySQL(column: any): string {
@@ -200,9 +219,41 @@ function mapSchemaTypeToMySQL(column: any): string {
 
 ## 6. Generate SQL Statements
 
-Implement the main SQL generation function:
+Implement the main SQL generation function. This section contains the core logic for creating MySQL CREATE TABLE statements from the processed schema.
+
+### 6.1. Main SQL Generation
 
 ```typescript
+function generateSQL(schema: any, options: any): string {
+  let sql = '';
+  
+  // Add header comment
+  sql += `-- Generated MySQL Tables\n`;
+  sql += `-- Database: ${options.database}\n`;
+  sql += `-- Generated at: ${new Date().toISOString()}\n\n`;
+  
+  // Create database if specified
+  if (options.database) {
+    sql += `CREATE DATABASE IF NOT EXISTS \`${options.database}\`;\n`;
+    sql += `USE \`${options.database}\`;\n\n`;
+  }
+  
+  // Generate tables for each model
+  if (schema.model) {
+    for (const [modelName, model] of Object.entries(schema.model)) {
+      sql += generateTableSQL(modelName, model, options);
+      sql += '\n';
+    }
+  }
+  
+  return sql;
+}
+```
+
+### 6.2. Table SQL Generation
+
+```typescript
+function generateTableSQL(tableName: string, model: any, options: any): string {
 function generateSQL(schema: any, options: any): string {
   let sql = '';
   
@@ -279,7 +330,11 @@ function generateTableSQL(tableName: string, model: any, options: any): string {
   
   return sql;
 }
+```
 
+### 6.3. Column Definition Generation
+
+```typescript
 function generateColumnDefinition(column: any, options: any): any {
   const { name, required, attributes = {} } = column;
   const mysqlType = mapSchemaTypeToMySQL(column);
@@ -330,7 +385,11 @@ function generateColumnDefinition(column: any, options: any): any {
     foreignKey: generateForeignKey(column, options)
   };
 }
+```
 
+### 6.4. Foreign Key Generation
+
+```typescript
 function generateForeignKey(column: any, options: any): string | null {
   const { name, type, attributes = {} } = column;
   
@@ -348,9 +407,11 @@ function generateForeignKey(column: any, options: any): string | null {
 
 ## 7. Usage in Schema
 
-To use this plugin in your schema file:
+To use this plugin in your schema file, add the plugin declaration with appropriate configuration options.
 
-```ts
+**Schema Configuration**
+
+```idea
 // schema.idea
 plugin "./plugins/mysql-tables-plugin.js" {
   output "./database/tables.sql"
@@ -379,7 +440,9 @@ enum UserRole {
 
 ## 8. Generated Output
 
-The plugin will generate SQL like this:
+The plugin will generate SQL like this. The output includes proper MySQL syntax with constraints, indexes, and foreign keys.
+
+**Example Generated SQL**
 
 ```sql
 -- Generated MySQL Tables
@@ -406,7 +469,9 @@ CREATE TABLE `User` (
 
 ## 9. Error Handling and Best Practices
 
-Add proper error handling and validation:
+Add proper error handling and validation to make your plugin robust and user-friendly.
+
+### 9.1. Enhanced Error Handling
 
 ```typescript
 export default async function mysqlTablesPlugin(props: PluginProps<{}>) {
@@ -441,6 +506,9 @@ export default async function mysqlTablesPlugin(props: PluginProps<{}>) {
   }
 }
 
+### 9.2. Configuration Validation
+
+```typescript
 function validateConfig(config: any): void {
   if (!config.output) {
     throw new Error('MySQL Tables Plugin requires "output" configuration');
@@ -452,13 +520,14 @@ function validateConfig(config: any): void {
 }
 ```
 
-## Conclusion
+## 10. Conclusion
 
 This MySQL Tables Plugin demonstrates how to:
-- Parse schema models and columns
-- Map schema types to database-specific types
-- Generate SQL DDL statements
-- Handle constraints, indexes, and foreign keys
-- Provide proper error handling and validation
+
+ - Parse schema models and columns
+ - Map schema types to database-specific types
+ - Generate SQL DDL statements
+ - Handle constraints, indexes, and foreign keys
+ - Provide proper error handling and validation
 
 The plugin is flexible and can be extended to support additional MySQL features like partitioning, triggers, or stored procedures.

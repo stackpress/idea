@@ -2,35 +2,41 @@
 
 This tutorial demonstrates how to create a plugin that generates TypeScript interfaces and types from `.idea` schema files. The plugin will transform your schema models, types, and enums into proper TypeScript definitions with full type safety.
 
-1. [Overview](#overview)
-2. [Prerequisites](#prerequisites)
-3. [Plugin Structure](#plugin-structure)
-4. [Implementation](#implementation)
-5. [Schema Configuration](#schema-configuration)
-6. [Usage Examples](#usage-examples)
-7. [Advanced Features](#advanced-features)
-8. [Best Practices](#best-practices)
-9. [Troubleshooting](#troubleshooting)
+ 1. [Overview](#1-overview)
+ 2. [Prerequisites](#2-prerequisites)
+ 3. [Plugin Structure](#3-plugin-structure)
+ 4. [Implementation](#4-implementation)
+ 5. [Schema Configuration](#5-schema-configuration)
+ 6. [Usage Examples](#6-usage-examples)
+ 7. [Advanced Features](#7-advanced-features)
+ 8. [Best Practices](#8-best-practices)
+ 9. [Troubleshooting](#9-troubleshooting)
 
 ## 1. Overview
 
-TypeScript interfaces provide compile-time type checking and excellent IDE support. This plugin generates TypeScript definitions from your `.idea` schema, including:
+TypeScript interfaces provide compile-time type checking and excellent IDE support. This plugin transforms your `.idea` schema definitions into comprehensive TypeScript type definitions that integrate seamlessly with your development workflow and provide robust type safety throughout your application.
 
-- **Interfaces**: TypeScript interfaces from schema models
-- **Types**: Type aliases from schema types
-- **Enums**: TypeScript enums from schema enums
-- **Utility Types**: Helper types for common operations
-- **Namespace Support**: Organized type definitions
+This plugin generates TypeScript definitions from your `.idea` schema, including:
+
+ - **Interfaces**: TypeScript interfaces from schema models
+ - **Types**: Type aliases from schema types
+ - **Enums**: TypeScript enums from schema enums
+ - **Utility Types**: Helper types for common operations
+ - **Namespace Support**: Organized type definitions
 
 ## 2. Prerequisites
 
-- Node.js 16+ and npm/yarn
-- TypeScript 4.0+
-- Basic understanding of TypeScript
-- Familiarity with the `@stackpress/idea-transformer` library
-- Understanding of `.idea` schema format
+Before implementing the TypeScript interface generator plugin, ensure you have the necessary development environment and knowledge. This section covers the essential requirements for successful plugin creation and TypeScript integration.
+
+ - Node.js 16+ and npm/yarn
+ - TypeScript 4.0+
+ - Basic understanding of TypeScript
+ - Familiarity with the `@stackpress/idea-transformer` library
+ - Understanding of `.idea` schema format
 
 ## 3. Plugin Structure
+
+The plugin structure defines the core architecture and configuration interface for the TypeScript interface generator. This includes the main plugin function, configuration types, and the overall organization of the generated TypeScript code.
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -59,7 +65,12 @@ export default async function generateTypeScriptInterfaces(
 
 ## 4. Implementation
 
+The implementation section covers the core plugin function and supporting utilities that handle TypeScript interface generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.
+
 ### 4.1. Core Plugin Function
+
+The core plugin function serves as the main entry point for TypeScript interface generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.
+
 
 ```typescript
 export default async function generateTypeScriptInterfaces(
@@ -118,6 +129,8 @@ export default async function generateTypeScriptInterfaces(
 
 ### 4.2. Type Mapping Functions
 
+Type mapping functions handle the conversion of `.idea` schema types to their TypeScript equivalents. These functions ensure proper type safety and handle complex scenarios like nullable types, arrays, and custom type references.
+
 ```typescript
 function mapSchemaTypeToTypeScript(
   schemaType: string, 
@@ -172,6 +185,8 @@ function formatPropertyType(
 ```
 
 ### 4.3. Generation Functions
+
+Generation functions create specific parts of the TypeScript output including enums, interfaces, and utility types. These functions handle formatting, documentation generation, and proper TypeScript syntax construction.
 
 ```typescript
 function generateFileHeader(): string {
@@ -385,6 +400,8 @@ ${content.split('\n').map(line => line ? `  ${line}` : line).join('\n')}
 
 ### 4.4. Validation Functions
 
+Validation functions ensure that the plugin configuration is correct and that the generated TypeScript code meets quality standards. These functions catch configuration errors early and prevent invalid output generation.
+
 ```typescript
 function validateConfig(config: any): asserts config is TypeScriptConfig {
   if (!config.output || typeof config.output !== 'string') {
@@ -403,9 +420,11 @@ function validateConfig(config: any): asserts config is TypeScriptConfig {
 
 ## 5. Schema Configuration
 
+Schema configuration demonstrates how to integrate the TypeScript interface generator into your `.idea` schema files. This section covers plugin configuration options and their effects on the generated TypeScript output.
+
 Add the TypeScript plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/typescript-interfaces.js" {
   output "./generated/types.ts"
   namespace "MyApp"
@@ -418,7 +437,9 @@ plugin "./plugins/typescript-interfaces.js" {
 }
 ```
 
-### 5.1. Configuration Options
+**Configuration Options**
+
+Configuration options control how TypeScript interfaces are generated, including output formatting, type handling, and feature enablement. Understanding these options helps you customize the plugin to meet your specific project requirements.
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -433,9 +454,14 @@ plugin "./plugins/typescript-interfaces.js" {
 
 ## 6. Usage Examples
 
+Usage examples demonstrate practical applications of the TypeScript interface generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated TypeScript code integrates into development workflows.
+
 ### 6.1. Basic Schema
 
-```ts
+A basic schema example shows the fundamental structure needed to generate TypeScript interfaces. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces clean, type-safe TypeScript code.
+
+
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"
@@ -467,6 +493,8 @@ plugin "./plugins/typescript-interfaces.js" {
 ```
 
 ### 6.2. Generated Output
+
+The generated output demonstrates the TypeScript code produced by the plugin from the basic schema example. This shows how schema definitions are transformed into proper TypeScript interfaces with full type safety and documentation.
 
 ```typescript
 /**
@@ -527,7 +555,12 @@ export type UserKeys = keyof User;
 
 ## 7. Advanced Features
 
+Advanced features extend the basic TypeScript interface generation with sophisticated organization, multiple enum types, relationship handling, and generic type support. These features enable production-ready TypeScript definitions that handle complex scenarios.
+
 ### 7.1. Namespace Support
+
+Namespace support allows you to organize generated types within TypeScript namespaces, preventing naming conflicts and providing better code organization. This feature is particularly useful for large projects with multiple schema files.
+
 
 ```typescript
 // With namespace configuration
@@ -551,6 +584,8 @@ export namespace MyApp {
 
 ### 7.2. Different Enum Types
 
+Different enum types provide flexibility in how enumerations are represented in TypeScript. The plugin supports standard enums, union types, and const assertions, each with different runtime characteristics and use cases.
+
 ```typescript
 // Standard enum (default)
 enumType: "enum"
@@ -573,6 +608,8 @@ export type UserRole = typeof UserRole[keyof typeof UserRole];
 ```
 
 ### 7.3. Relationship Handling
+
+Relationship handling manages references between different types and models in your schema. This ensures that type relationships are properly represented in the generated TypeScript code with correct type references and nullability handling.
 
 ```typescript
 function handleRelationships(
@@ -600,6 +637,8 @@ function handleRelationships(
 ```
 
 ### 7.4. Generic Type Support
+
+Generic type support enables the generation of reusable type definitions that work with multiple data types. This includes common patterns like paginated responses and API response wrappers that enhance type safety across your application.
 
 ```typescript
 function generateGenericTypes(
@@ -630,7 +669,12 @@ function generateGenericTypes(
 
 ## 8. Best Practices
 
+Best practices ensure your generated TypeScript interfaces are maintainable, reliable, and follow industry standards. These guidelines cover type safety, naming conventions, documentation generation, and performance optimization.
+
 ### 8.1. Type Safety
+
+Type safety is crucial for preventing runtime errors and improving developer experience. Always validate input data and use proper TypeScript types throughout the plugin implementation to ensure reliable code generation.
+
 
 ```typescript
 interface TypeScriptColumn {
@@ -653,6 +697,8 @@ function validateColumn(column: any): column is TypeScriptColumn {
 
 ### 8.2. Naming Conventions
 
+Naming conventions ensure that generated TypeScript identifiers are valid and follow established patterns. Proper naming improves code readability and prevents conflicts with reserved keywords or invalid characters.
+
 ```typescript
 function sanitizeTypeName(name: string): string {
   // Ensure TypeScript-valid names
@@ -671,6 +717,8 @@ function toPascalCase(str: string): string {
 ```
 
 ### 8.3. Documentation Generation
+
+Documentation generation creates comprehensive JSDoc comments that provide context and examples for the generated types. This improves the developer experience by providing inline documentation in IDEs and code editors.
 
 ```typescript
 function generateJSDocComment(
@@ -704,6 +752,8 @@ function generateJSDocComment(
 
 ### 8.4. Performance Optimization
 
+Performance optimization techniques help maintain reasonable generation times when working with large schemas. Caching strategies and efficient algorithms ensure the plugin scales well with complex type hierarchies.
+
 ```typescript
 // Cache type mappings
 const typeCache = new Map<string, string>();
@@ -727,9 +777,16 @@ function getCachedTypeMapping(
 
 ## 9. Troubleshooting
 
+This section addresses common issues encountered when generating TypeScript interfaces and provides solutions for debugging and resolving problems. Understanding these troubleshooting techniques helps ensure reliable interface generation.
+
 ### 9.1. Common Issues
 
-1. **Invalid TypeScript Names**
+Common issues include invalid TypeScript identifiers, circular type references, and missing dependencies. These problems typically arise from schema complexity or configuration mismatches that can be resolved with proper validation and error handling.
+
+#### 9.1.1. Invalid TypeScript Names
+
+Invalid TypeScript names occur when schema identifiers contain characters that are not valid in TypeScript. The plugin should validate and sanitize names to ensure they conform to TypeScript identifier rules.
+
    ```typescript
    function validateTypeName(name: string): void {
      if (!/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(name)) {
@@ -738,8 +795,11 @@ function getCachedTypeMapping(
    }
    ```
 
-2. **Circular Type References**
-   ```typescript
+#### 9.1.2. Circular Type References
+
+Circular type references can cause infinite loops during generation or compilation errors in the generated TypeScript code. Detecting and handling these scenarios is essential for robust type generation.
+
+```typescript
    function detectCircularReferences(
      types: Record<string, any>
    ): string[] {
@@ -771,8 +831,11 @@ function getCachedTypeMapping(
    }
    ```
 
-3. **Missing Type Dependencies**
-   ```typescript
+#### 9.1.3. Missing Type Dependencies
+
+Missing type dependencies occur when a type references another type that doesn't exist in the schema. Validating type dependencies ensures all references are resolvable and prevents compilation errors.
+
+```typescript
    function validateTypeDependencies(
      schema: any
    ): void {
@@ -788,7 +851,12 @@ function getCachedTypeMapping(
 
 ### 9.2. Debugging Tips
 
-1. **Enable Verbose Output**
+Debugging tips help identify and resolve issues during TypeScript interface generation. These techniques provide visibility into the generation process and help diagnose problems with schema processing or output generation.
+
+#### 9.2.1. Enable Verbose Output
+
+Verbose output provides detailed logging during the generation process, helping identify where issues occur and what data is being processed at each step.
+
    ```typescript
    const VERBOSE = process.env.TS_PLUGIN_VERBOSE === 'true';
    
@@ -799,8 +867,11 @@ function getCachedTypeMapping(
    }
    ```
 
-2. **Validate Generated TypeScript**
-   ```typescript
+#### 9.2.2. Validate Generated TypeScript
+
+Validating generated TypeScript ensures that the output is syntactically correct and will compile successfully. This validation step catches generation errors before the code is used in development.
+
+```typescript
    import { transpile, ScriptTarget } from 'typescript';
    
    function validateGeneratedTypeScript(content: string): void {
