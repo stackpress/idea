@@ -2,8 +2,6 @@
 
 This tutorial demonstrates how to create a plugin for `@stackpress/idea-transformer` that generates OpenAPI 3.0 specifications from `.idea` schema files. The plugin will create comprehensive API documentation with endpoints, schemas, and validation rules.
 
-## Table of Contents
-
 1. [Overview](#overview)
 2. [Basic Implementation](#basic-implementation)
 3. [Configuration Options](#configuration-options)
@@ -13,7 +11,7 @@ This tutorial demonstrates how to create a plugin for `@stackpress/idea-transfor
 7. [Best Practices](#best-practices)
 8. [Troubleshooting](#troubleshooting)
 
-## Overview
+## 1. Overview
 
 OpenAPI (formerly Swagger) specifications provide a standard way to document REST APIs. This plugin will:
 
@@ -24,7 +22,7 @@ OpenAPI (formerly Swagger) specifications provide a standard way to document RES
 - Support custom endpoints and operations
 - Generate security schemes and authentication
 
-### What You'll Learn
+### 1.1. What You'll Learn
 
 - Processing idea schemas for API documentation
 - OpenAPI 3.0 specification structure
@@ -32,11 +30,11 @@ OpenAPI (formerly Swagger) specifications provide a standard way to document RES
 - Endpoint documentation patterns
 - Security and authentication schemes
 
-## Basic Implementation
+## 2. Basic Implementation
 
 Let's start with a basic OpenAPI specification generator:
 
-### Plugin Structure
+### 2.1. Plugin Structure
 
 ```typescript
 // plugins/openapi-spec.ts
@@ -158,7 +156,7 @@ function generateSpecification(schema: any, config: OpenAPIConfig) {
 }
 ```
 
-### Schema Generation
+### 2.2. Schema Generation
 
 ```typescript
 function generateModelSchema(model: any): any {
@@ -292,9 +290,9 @@ function addValidationRules(property: any, attributes: any): void {
 }
 ```
 
-## Configuration Options
+## 3. Configuration Options
 
-### Schema Configuration
+### 3.1. Schema Configuration
 
 ```ts
 // schema.idea
@@ -390,9 +388,9 @@ plugin "./plugins/openapi-spec.js" {
 }
 ```
 
-## Schema Processing
+## 4. Schema Processing
 
-### Enhanced Schema Generation
+### 4.1. Enhanced Schema Generation
 
 ```typescript
 function generateSecuritySchemes(spec: any, security: any): void {
@@ -626,9 +624,9 @@ function generateCRUDEndpoints(spec: any, modelName: string, model: any): void {
 }
 ```
 
-## Advanced Features
+## 5. Advanced Features
 
-### Multiple Output Formats
+### 5.1. Multiple Output Formats
 
 ```typescript
 interface AdvancedOpenAPIConfig extends OpenAPIConfig {
@@ -854,9 +852,9 @@ function generateHTMLDocumentation(spec: any): string {
 }
 ```
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Usage
+### 6.1. Basic Usage
 
 ```ts
 // schema.idea
@@ -892,7 +890,7 @@ plugin "./plugins/openapi-spec.js" {
 }
 ```
 
-### Advanced Configuration
+### 6.2. Advanced Configuration
 
 ```ts
 // schema.idea
@@ -1030,7 +1028,7 @@ plugin "./plugins/openapi-spec.js" {
 }
 ```
 
-### CLI Integration
+### 6.3. CLI Integration
 
 ```bash
 # Generate OpenAPI specification
@@ -1047,9 +1045,9 @@ npx swagger-codegen generate -i docs/api-spec.json -l typescript-fetch -o ./sdk/
 npx swagger-codegen generate -i docs/api-spec.json -l python -o ./sdk/python
 ```
 
-## Best Practices
+## 7. Best Practices
 
-### 1. Comprehensive Documentation
+### 7.1. Comprehensive Documentation
 
 ```typescript
 // Always include detailed descriptions
@@ -1094,7 +1092,7 @@ function generatePropertyDescription(column: any): string {
 }
 ```
 
-### 2. Consistent Error Responses
+### 7.2. Consistent Error Responses
 
 ```typescript
 function generateErrorResponses(): any {
@@ -1175,7 +1173,7 @@ function generateErrorResponses(): any {
 }
 ```
 
-### 3. Security Best Practices
+### 7.3. Security Best Practices
 
 ```typescript
 function addSecurityToEndpoints(spec: any): void {
@@ -1208,7 +1206,7 @@ function isPublicEndpoint(path: string, method: string): boolean {
 }
 ```
 
-### 4. Validation and Testing
+### 7.4. Validation and Testing
 
 ```typescript
 function addValidationExamples(spec: any): void {
@@ -1275,11 +1273,11 @@ function generateInvalidExample(schema: any): any {
 }
 ```
 
-## Troubleshooting
+## 8. Troubleshooting
 
-### Common Issues
+### 8.1. Common Issues
 
-#### 1. Schema Reference Errors
+#### 8.1.1. Schema Reference Errors
 
 ```typescript
 // Problem: Circular references in schemas
@@ -1318,7 +1316,7 @@ function handleCircularReferences(spec: any): void {
 }
 ```
 
-#### 2. Invalid OpenAPI Format
+#### 8.1.2. Invalid OpenAPI Format
 
 ```typescript
 // Problem: Generated spec doesn't validate
@@ -1370,7 +1368,7 @@ function validateOpenAPISpec(spec: any): void {
 }
 ```
 
-#### 3. Missing Dependencies
+#### 8.1.3. Missing Dependencies
 
 ```bash
 # Install required dependencies
@@ -1383,7 +1381,7 @@ npm install --save-dev swagger-parser
 npm install --save-dev @openapitools/openapi-generator-cli
 ```
 
-#### 4. Performance Issues
+#### 8.1.4. Performance Issues
 
 ```typescript
 // Problem: Large schemas cause performance issues
@@ -1427,7 +1425,7 @@ function optimizeSchema(spec: any): any {
 }
 ```
 
-### Debug Mode
+### 8.2. Debug Mode
 
 ```typescript
 interface DebugOpenAPIConfig extends AdvancedOpenAPIConfig {

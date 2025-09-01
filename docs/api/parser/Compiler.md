@@ -6,11 +6,11 @@ The Compiler class provides static methods for converting Abstract Syntax Tree (
 import { Compiler } from '@stackpress/idea-parser';
 ```
 
-## Static Methods
+## 1. Static Methods
 
 The following methods can be accessed directly from the Compiler class.
 
-### Converting Array Tokens
+### 1.1. Converting Array Tokens
 
 The following example shows how to compile array tokens into actual arrays.
 
@@ -42,7 +42,7 @@ console.log(result); // ['value1', 'value2', 'value3']
 
 An array containing the compiled elements.
 
-### Converting Data Tokens
+### 1.2. Converting Data Tokens
 
 The following example shows how to compile various data tokens into their actual values.
 
@@ -76,7 +76,7 @@ console.log(objectResult); // { name: 'John' }
 
 The compiled data value based on the token type.
 
-### Converting Enum Declarations
+### 1.3. Converting Enum Declarations
 
 The following example shows how to compile enum declarations into JSON configurations.
 
@@ -112,7 +112,7 @@ console.log(config); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }
 
 A tuple containing the enum name and its configuration object.
 
-### Converting Schema to Final JSON
+### 1.4. Converting Schema to Final JSON
 
 The following example shows how to compile a schema token into a final JSON configuration.
 
@@ -135,7 +135,7 @@ console.log(finalSchema);
 
 A `FinalSchemaConfig` object with references resolved and removed.
 
-### Converting Identifier Tokens
+### 1.5. Converting Identifier Tokens
 
 The following example shows how to resolve identifier tokens to their actual values.
 
@@ -170,7 +170,7 @@ try {
 
 The resolved value from references, a template string, or throws an error.
 
-### Converting Literal Tokens
+### 1.6. Converting Literal Tokens
 
 The following example shows how to extract values from literal tokens.
 
@@ -197,7 +197,7 @@ console.log(booleanLiteral); // true
 
 The literal value (string, number, boolean, etc.).
 
-### Converting Model Declarations
+### 1.7. Converting Model Declarations
 
 The following example shows how to compile model declarations into JSON configurations.
 
@@ -252,7 +252,7 @@ console.log(config.columns); // Array of column configurations
 
 A tuple containing the model name and its configuration object.
 
-### Converting Object Tokens
+### 1.8. Converting Object Tokens
 
 The following example shows how to compile object tokens into actual objects.
 
@@ -283,7 +283,7 @@ console.log(result); // { name: 'John', age: 30 }
 
 An object with compiled key-value pairs.
 
-### Converting Plugin Declarations
+### 1.9. Converting Plugin Declarations
 
 The following example shows how to compile plugin declarations into JSON configurations.
 
@@ -318,7 +318,7 @@ console.log(config); // { provider: 'postgresql' }
 
 A tuple containing the plugin name and its configuration object.
 
-### Converting Prop Declarations
+### 1.10. Converting Prop Declarations
 
 The following example shows how to compile prop declarations into JSON configurations.
 
@@ -355,7 +355,7 @@ console.log(config); // { type: 'text', format: 'lowercase' }
 
 A tuple containing the prop name and its configuration object.
 
-### Converting Schema Declarations
+### 1.11. Converting Schema Declarations
 
 The following example shows how to compile complete schema tokens into JSON configurations.
 
@@ -384,7 +384,7 @@ console.log(finalizedConfig);
 
 A `SchemaConfig` object containing all compiled declarations.
 
-### Converting Type Declarations
+### 1.12. Converting Type Declarations
 
 The following example shows how to compile type declarations into JSON configurations.
 
@@ -438,7 +438,7 @@ console.log(config.columns); // Array of column configurations
 
 A tuple containing the type name and its configuration object.
 
-### Converting Use Declarations
+### 1.13. Converting Use Declarations
 
 The following example shows how to compile use (import) declarations.
 
@@ -465,11 +465,11 @@ console.log(importPath); // './another.idea'
 
 The import path as a string.
 
-## Error Handling
+## 2. Error Handling
 
 The Compiler class throws `Exception` errors for various invalid conditions:
 
-### Invalid Token Types
+### 2.1. Invalid Token Types
 
 ```typescript
 // Throws: "Invalid data token type"
@@ -494,7 +494,7 @@ Compiler.type({ kind: 'notAType' });
 Compiler.use({ type: 'NotAnImportDeclaration' });
 ```
 
-### Missing Required Properties
+### 2.2. Missing Required Properties
 
 ```typescript
 // Throws: "Expecting a columns property"
@@ -507,31 +507,31 @@ Compiler.model({
 });
 ```
 
-### Unknown References
+### 2.3. Unknown References
 
 ```typescript
 // Throws: "Unknown reference MyProp"
 Compiler.identifier({ name: 'MyProp' }, {});
 ```
 
-### Duplicate Declarations
+### 2.4. Duplicate Declarations
 
 ```typescript
 // Throws: "Duplicate MyEnum" when compiling schema with duplicate names
 Compiler.schema(schemaWithDuplicates);
 ```
 
-## Type Processing
+## 3. Type Processing
 
 The Compiler automatically processes type information for models and types:
 
-### Type Modifiers
+### 3.1. Type Modifiers
 
 - **Optional types**: `String?` → `{ type: 'String', required: false }`
 - **Array types**: `String[]` → `{ type: 'String', multiple: true }`
 - **Combined**: `String[]?` → `{ type: 'String', required: false, multiple: true }`
 
-### Column Configuration
+### 3.2. Column Configuration
 
 Models and types are converted from object format to array format to preserve column order:
 
@@ -553,7 +553,7 @@ Models and types are converted from object format to array format to preserve co
 }
 ```
 
-## Usage with AST
+## 3.3. Usage with AST
 
 The Compiler is typically used in conjunction with AST classes:
 

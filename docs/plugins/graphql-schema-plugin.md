@@ -2,8 +2,6 @@
 
 This tutorial demonstrates how to create a plugin that generates GraphQL type definitions from `.idea` schema files. The plugin will transform your schema models, types, and enums into proper GraphQL schema definitions.
 
-## Table of Contents
-
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Plugin Structure](#plugin-structure)
@@ -14,7 +12,7 @@ This tutorial demonstrates how to create a plugin that generates GraphQL type de
 8. [Best Practices](#best-practices)
 9. [Troubleshooting](#troubleshooting)
 
-## Overview
+## 1. Overview
 
 GraphQL is a query language and runtime for APIs that provides a complete and understandable description of the data in your API. This plugin generates GraphQL type definitions from your `.idea` schema, including:
 
@@ -24,14 +22,14 @@ GraphQL is a query language and runtime for APIs that provides a complete and un
 - **Scalars**: Custom scalar types when needed
 - **Queries and Mutations**: Basic CRUD operations
 
-## Prerequisites
+## 2. Prerequisites
 
 - Node.js 16+ and npm/yarn
 - Basic understanding of GraphQL
 - Familiarity with the `@stackpress/idea-transformer` library
 - Understanding of `.idea` schema format
 
-## Plugin Structure
+## 3. Plugin Structure
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -56,9 +54,9 @@ export default async function generateGraphQLSchema(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+### 4.1. Core Plugin Function
 
 ```typescript
 export default async function generateGraphQLSchema(
@@ -124,7 +122,7 @@ export default async function generateGraphQLSchema(
 }
 ```
 
-### Type Mapping Functions
+### 4.2. Type Mapping Functions
 
 ```typescript
 function mapSchemaTypeToGraphQL(schemaType: string, customScalars: Record<string, string> = {}): string {
@@ -164,7 +162,7 @@ function formatFieldType(column: any, customScalars: Record<string, string> = {}
 }
 ```
 
-### Schema Generation Functions
+### 4.3. Schema Generation Functions
 
 ```typescript
 function generateCustomScalars(customScalars: Record<string, string>): string {
@@ -328,7 +326,7 @@ function generateSubscriptions(models: Record<string, any>): string {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
 
 Add the GraphQL plugin to your `.idea` schema file:
 
@@ -347,7 +345,7 @@ plugin "./plugins/graphql-schema.js" {
 }
 ```
 
-### Configuration Options
+### 5.1. Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -358,9 +356,9 @@ plugin "./plugins/graphql-schema.js" {
 | `generateInputTypes` | `boolean` | `true` | Generate input types for mutations |
 | `customScalars` | `object` | `{}` | Custom scalar type mappings |
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Schema
+### 6.1. Basic Schema
 
 ```ts
 enum UserRole {
@@ -385,7 +383,7 @@ plugin "./plugins/graphql-schema.js" {
 }
 ```
 
-### Generated Output
+### 6.2. Generated Output
 
 ```graphql
 # Custom Scalars
@@ -439,9 +437,9 @@ type Mutation {
 }
 ```
 
-## Advanced Features
+## 7. Advanced Features
 
-### Custom Scalar Types
+### 7.1. Custom Scalar Types
 
 ```typescript
 // In your plugin configuration
@@ -453,7 +451,7 @@ customScalars: {
 }
 ```
 
-### Relationship Handling
+### 7.2. Relationship Handling
 
 ```typescript
 function handleRelationships(column: any, models: Record<string, any>): string {
@@ -476,7 +474,7 @@ function handleRelationships(column: any, models: Record<string, any>): string {
 }
 ```
 
-### Directive Support
+### 7.3. Directive Support
 
 ```typescript
 function generateDirectives(column: any): string {
@@ -494,9 +492,9 @@ function generateDirectives(column: any): string {
 }
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Type Safety
+### 8.1. Type Safety
 
 ```typescript
 interface GraphQLColumn {
@@ -516,7 +514,7 @@ function validateColumn(column: any): column is GraphQLColumn {
 }
 ```
 
-### 2. Error Handling
+### 8.2. Error Handling
 
 ```typescript
 function generateTypes(models: Record<string, any>): string {
@@ -539,7 +537,7 @@ function generateTypes(models: Record<string, any>): string {
 }
 ```
 
-### 3. Configuration Validation
+### 8.3. Configuration Validation
 
 ```typescript
 function validateConfig(config: any): asserts config is GraphQLConfig {

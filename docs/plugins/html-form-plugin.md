@@ -2,7 +2,7 @@
 
 This tutorial will guide you through creating a plugin that generates HTML forms from a processed `.idea` schema.
 
-## Overview
+## 1. Overview
 
 The HTML Form Plugin will:
 - Parse schema models and their columns
@@ -11,13 +11,13 @@ The HTML Form Plugin will:
 - Create responsive, accessible forms with proper styling
 - Support different form layouts and themes
 
-## Prerequisites
+## 2. Prerequisites
 
 - Basic understanding of TypeScript/JavaScript
 - Familiarity with HTML forms and CSS
 - Understanding of the `idea-transformer` plugin system
 
-## Step 1: Understanding the Schema Structure
+## 3. Understanding the Schema Structure
 
 Before creating the plugin, let's understand how schema attributes map to form elements:
 
@@ -85,7 +85,7 @@ Before creating the plugin, let's understand how schema attributes map to form e
 }
 ```
 
-## Step 2: Create the Plugin Structure
+## 4. Create the Plugin Structure
 
 Create a new file `html-form-plugin.js`:
 
@@ -139,7 +139,7 @@ export default async function htmlFormPlugin(
 }
 ```
 
-## Step 3: Implement Form Element Generation
+## 5. Implement Form Element Generation
 
 Create functions to generate different form elements:
 
@@ -430,7 +430,7 @@ function autoGenerateElement(column: any, schema: any, options: any): string {
 }
 ```
 
-## Step 4: Implement Form Layout and Styling
+## 6. Implement Form Layout and Styling
 
 Create functions for different themes and layouts:
 
@@ -581,7 +581,7 @@ function getFileClasses(theme: string): string {
 }
 ```
 
-## Step 5: Generate Complete HTML Document
+## 7. Generate Complete HTML Document
 
 Implement the main HTML generation function:
 
@@ -966,7 +966,7 @@ function getRadioLabelClasses(theme: string): string {
 }
 ```
 
-## Step 6: Usage in Schema
+## 8. Usage in Schema
 
 To use this plugin in your schema file:
 
@@ -1000,7 +1000,7 @@ enum UserRole {
 }
 ```
 
-## Step 7: Generated Output
+## 9. Generated Output
 
 The plugin will generate HTML like this:
 
@@ -1122,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </html>
 ```
 
-## Step 8: Error Handling and Best Practices
+## 10. Error Handling and Best Practices
 
 Add proper error handling and validation:
 

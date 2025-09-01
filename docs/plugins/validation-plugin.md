@@ -2,8 +2,6 @@
 
 This tutorial demonstrates how to create a plugin that generates Zod validation schemas from `.idea` schema files. The plugin will transform your schema models into type-safe validation schemas with comprehensive validation rules.
 
-## Table of Contents
-
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Plugin Structure](#plugin-structure)
@@ -14,7 +12,7 @@ This tutorial demonstrates how to create a plugin that generates Zod validation 
 8. [Best Practices](#best-practices)
 9. [Troubleshooting](#troubleshooting)
 
-## Overview
+## 1. Overview
 
 Zod is a TypeScript-first schema validation library that provides runtime type checking and validation. This plugin generates Zod schemas from your `.idea` schema, including:
 
@@ -24,7 +22,7 @@ Zod is a TypeScript-first schema validation library that provides runtime type c
 - **Error Messages**: Customizable validation error messages
 - **Nested Validation**: Support for nested objects and arrays
 
-## Prerequisites
+## 2. Prerequisites
 
 - Node.js 16+ and npm/yarn
 - TypeScript 4.0+
@@ -33,7 +31,7 @@ Zod is a TypeScript-first schema validation library that provides runtime type c
 - Familiarity with the `@stackpress/idea-transformer` library
 - Understanding of `.idea` schema format
 
-## Plugin Structure
+## 3. Plugin Structure
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -59,9 +57,9 @@ export default async function generateZodSchemas(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+### 4.1. Core Plugin Function
 
 ```typescript
 export default async function generateZodSchemas(
@@ -115,7 +113,7 @@ export default async function generateZodSchemas(
 }
 ```
 
-### Generation Functions
+### 4.2. Generation Functions
 
 ```typescript
 function generateFileHeader(): string {
@@ -519,7 +517,7 @@ function validateConfig(config: any): asserts config is ZodConfig {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
 
 Add the Zod validation plugin to your `.idea` schema file:
 
@@ -543,7 +541,7 @@ plugin "./plugins/zod-validation.js" {
 }
 ```
 
-### Configuration Options
+### 5.1. Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -555,9 +553,9 @@ plugin "./plugins/zod-validation.js" {
 | `strictMode` | `boolean` | `false` | Use strict object validation |
 | `exportStyle` | `'named'\|'default'\|'namespace'` | `'named'` | Export style for schemas |
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Schema
+### 6.1. Basic Schema
 
 ```ts
 enum UserRole {
@@ -583,7 +581,7 @@ plugin "./plugins/zod-validation.js" {
 }
 ```
 
-### Generated Validation Usage
+### 6.2. Generated Validation Usage
 
 ```typescript
 import { 
@@ -634,7 +632,7 @@ const userData = {
 const validUser = validateCreateUser(userData);
 ```
 
-### Form Validation Example
+### 6.3. Form Validation Example
 
 ```typescript
 import { CreateUserSchema } from './validation';
@@ -681,9 +679,9 @@ function UserForm() {
 }
 ```
 
-## Advanced Features
+## 7. Advanced Features
 
-### Custom Validators
+### 7.1. Custom Validators
 
 ```typescript
 // In plugin configuration
@@ -696,7 +694,7 @@ customValidators: {
 }
 ```
 
-### Conditional Validation
+### 7.2. Conditional Validation
 
 ```typescript
 // Generated schema with conditional validation
@@ -717,7 +715,7 @@ export const UserSchema = z.object({
 });
 ```
 
-### Transform and Preprocess
+### 7.3. Transform and Preprocess
 
 ```typescript
 // Add transforms to generated schemas
@@ -739,7 +737,7 @@ function addTransforms(schema: string, column: any): string {
 }
 ```
 
-### Async Validation
+### 7.4. Async Validation
 
 ```typescript
 // Generate async validation schemas
@@ -764,9 +762,9 @@ const validateUserAsync = async (data: unknown) => {
 };
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Error Handling
+### 8.1. Error Handling
 
 ```typescript
 // Centralized validation error handling
@@ -800,7 +798,7 @@ function validateWithErrorHandling<T>(schema: z.ZodSchema<T>, data: unknown): T 
 }
 ```
 
-### 2. Schema Composition
+### 8.2. Schema Composition
 
 ```typescript
 // Compose schemas for reusability
@@ -822,7 +820,7 @@ const PostSchema = BaseEntitySchema.extend({
 });
 ```
 
-### 3. Type Guards
+### 8.3. Type Guards
 
 ```typescript
 // Generate type guards from schemas
@@ -843,7 +841,7 @@ function processUserData(data: unknown) {
 }
 ```
 
-### 4. API Integration
+### 8.4. API Integration
 
 ```typescript
 // Middleware for API validation
@@ -875,9 +873,9 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
 });
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+### 9.1. Common Issues
 
 1. **Circular Dependencies**
    ```typescript
@@ -923,7 +921,7 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
    );
    ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
 
 1. **Schema Testing**
    ```typescript

@@ -2,7 +2,7 @@
 
 This tutorial will guide you through creating a plugin that generates MySQL `CREATE TABLE` statements from a processed `.idea` schema.
 
-## Overview
+## 1. Overview
 
 The MySQL Tables Plugin will:
 - Parse schema models and their columns
@@ -11,13 +11,13 @@ The MySQL Tables Plugin will:
 - Handle primary keys, foreign keys, and indexes
 - Output SQL files that can be executed to create database tables
 
-## Prerequisites
+## 2. Prerequisites
 
 - Basic understanding of TypeScript/JavaScript
 - Familiarity with MySQL and SQL syntax
 - Understanding of the `idea-transformer` plugin system
 
-## Step 1: Understanding the Schema Structure
+## 3. Understanding the Schema Structure
 
 Before creating the plugin, let's understand what a processed schema looks like:
 
@@ -71,7 +71,7 @@ Before creating the plugin, let's understand what a processed schema looks like:
 }
 ```
 
-## Step 2: Create the Plugin Structure
+## 4. Create the Plugin Structure
 
 Create a new file `mysql-tables-plugin.js`:
 
@@ -119,7 +119,7 @@ export default async function mysqlTablesPlugin(
 }
 ```
 
-## Step 3: Implement Type Mapping
+## 5. Implement Type Mapping
 
 Create a function to map schema types to MySQL types:
 
@@ -198,7 +198,7 @@ function mapSchemaTypeToMySQL(column: any): string {
 }
 ```
 
-## Step 4: Generate SQL Statements
+## 6. Generate SQL Statements
 
 Implement the main SQL generation function:
 
@@ -346,7 +346,7 @@ function generateForeignKey(column: any, options: any): string | null {
 }
 ```
 
-## Step 5: Usage in Schema
+## 7. Usage in Schema
 
 To use this plugin in your schema file:
 
@@ -377,7 +377,7 @@ enum UserRole {
 }
 ```
 
-## Step 6: Generated Output
+## 8. Generated Output
 
 The plugin will generate SQL like this:
 
@@ -404,7 +404,7 @@ CREATE TABLE `User` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 ```
 
-## Step 7: Error Handling and Best Practices
+## 9. Error Handling and Best Practices
 
 Add proper error handling and validation:
 

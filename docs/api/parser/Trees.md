@@ -14,13 +14,13 @@ import {
 } from '@stackpress/idea-parser';
 ```
 
-## SchemaTree
+## 1. SchemaTree
 
 Parses complete schema files containing multiple declarations.
 
-### Static Methods
+### 1.1. Static Methods
 
-#### Setting Up Schema Definitions
+#### 1.1.1. Setting Up Schema Definitions
 
 The following example shows how to configure a lexer for schema parsing.
 
@@ -44,7 +44,7 @@ SchemaTree.definitions(lexer);
 
 The configured lexer instance.
 
-#### Parsing Complete Schemas
+#### 1.1.2. Parsing Complete Schemas
 
 The following example shows how to parse a complete schema file.
 
@@ -86,9 +86,9 @@ console.log(ast.body.length); // 4 (plugin, enum, prop, model)
 
 A SchemaToken representing the entire parsed schema.
 
-### Methods
+### 1.2. Methods
 
-#### Parsing Schema Content
+#### 1.2.1. Parsing Schema Content
 
 The following example shows how to parse schema content with custom starting position.
 
@@ -113,13 +113,13 @@ console.log(result.body[0].kind); // 'enum'
 
 A SchemaToken containing all parsed declarations.
 
-## EnumTree
+## 2. EnumTree
 
 Parses enum declarations into AST tokens.
 
-### Static Methods
+### 2.1. Static Methods
 
-#### Setting Up Enum Definitions
+#### 2.1.1. Setting Up Enum Definitions
 
 The following example shows how to configure a lexer for enum parsing.
 
@@ -132,7 +132,7 @@ EnumTree.definitions(lexer);
 // Adds 'EnumWord' token definition for 'enum' keyword
 ```
 
-#### Parsing Enum Declarations
+#### 2.1.2. Parsing Enum Declarations
 
 The following example shows how to parse enum declarations based on the test fixtures.
 
@@ -164,9 +164,9 @@ console.log(ast.declarations[0].init.properties[0].value.value); // 'Admin'
 
 A DeclarationToken representing the parsed enum.
 
-### Methods
+### 2.2. Methods
 
-#### Parsing Enum Structure
+#### 2.2.1. Parsing Enum Structure
 
 The following example shows how to parse the enum structure.
 
@@ -184,7 +184,7 @@ console.log(enumToken.declarations[0].init.properties[0].value.value); // 'Activ
 
 A DeclarationToken representing the enum structure.
 
-#### Parsing Enum Properties
+#### 2.2.2. Parsing Enum Properties
 
 The following example shows how individual enum properties are parsed.
 
@@ -199,13 +199,13 @@ console.log(property.value.value); // e.g., 'Admin'
 
 A PropertyToken representing a single enum key-value pair.
 
-## ModelTree
+## 3. ModelTree
 
 Parses model declarations (extends TypeTree for shared functionality).
 
-### Static Methods
+### 3.1. Static Methods
 
-#### Parsing Model Declarations
+#### 3.1.1. Parsing Model Declarations
 
 The following example shows how to parse model declarations based on the test fixtures.
 
@@ -240,9 +240,9 @@ console.log(ast.declarations[0].id.name); // 'User'
 
 A DeclarationToken representing the parsed model.
 
-### Methods
+### 3.2. Methods
 
-#### Parsing Model Structure
+#### 3.2.1. Parsing Model Structure
 
 The following example shows how to parse the model structure.
 
@@ -259,13 +259,13 @@ console.log(modelToken.mutable); // false (immutable due to '!')
 
 A DeclarationToken representing the model structure.
 
-## TypeTree
+## 4. TypeTree
 
 Parses type declarations.
 
-### Static Methods
+### 4.1. Static Methods
 
-#### Parsing Type Declarations
+#### 4.1.1. Parsing Type Declarations
 
 The following example shows how to parse type declarations.
 
@@ -296,9 +296,9 @@ console.log(ast.declarations[0].id.name); // 'Address'
 
 A DeclarationToken representing the parsed type.
 
-### Methods
+### 4.2. Methods
 
-#### Parsing Type Structure
+#### 4.2.1. Parsing Type Structure
 
 The following example shows how to parse the type structure.
 
@@ -315,7 +315,7 @@ console.log(typeToken.mutable); // true (default for types)
 
 A DeclarationToken representing the type structure.
 
-#### Parsing Type Properties
+#### 4.2.2. Parsing Type Properties
 
 The following example shows how type properties (columns) are parsed.
 
@@ -330,7 +330,7 @@ console.log(property.value); // Object containing type and attributes
 
 A PropertyToken representing a type column definition.
 
-#### Parsing Type Parameters
+#### 4.2.3. Parsing Type Parameters
 
 The following example shows how type parameters are parsed.
 
@@ -345,13 +345,13 @@ console.log(parameter.value); // Parameter type/constraint
 
 A PropertyToken representing a type parameter.
 
-## PropTree
+## 5. PropTree
 
 Parses prop (property configuration) declarations.
 
-### Static Methods
+### 5.1. Static Methods
 
-#### Parsing Prop Declarations
+#### 5.1.1. Parsing Prop Declarations
 
 The following example shows how to parse prop declarations.
 
@@ -381,9 +381,9 @@ console.log(ast.declarations[0].id.name); // 'EmailInput'
 
 A DeclarationToken representing the parsed prop.
 
-### Methods
+### 5.2. Methods
 
-#### Parsing Prop Structure
+#### 5.2.1. Parsing Prop Structure
 
 The following example shows how to parse the prop structure.
 
@@ -400,13 +400,13 @@ console.log(propToken.declarations[0].id.name); // 'Text'
 
 A DeclarationToken representing the prop configuration.
 
-## PluginTree
+## 6. PluginTree
 
 Parses plugin declarations.
 
-### Static Methods
+### 6.1. Static Methods
 
-#### Parsing Plugin Declarations
+#### 6.1.1. Parsing Plugin Declarations
 
 The following example shows how to parse plugin declarations.
 
@@ -435,9 +435,9 @@ console.log(ast.declarations[0].id.name); // './database-plugin'
 
 A DeclarationToken representing the parsed plugin.
 
-### Methods
+### 6.2. Methods
 
-#### Parsing Plugin Structure
+#### 6.2.1. Parsing Plugin Structure
 
 The following example shows how to parse the plugin structure.
 
@@ -454,13 +454,13 @@ console.log(pluginToken.declarations[0].id.name); // './custom'
 
 A DeclarationToken representing the plugin configuration.
 
-## UseTree
+## 7. UseTree
 
 Parses use (import) declarations.
 
-### Static Methods
+### 7.1. Static Methods
 
-#### Parsing Use Declarations
+#### 7.1.1. Parsing Use Declarations
 
 The following example shows how to parse use declarations.
 
@@ -485,9 +485,9 @@ console.log(ast.source.value); // './shared/types.idea'
 
 An ImportToken representing the parsed use statement.
 
-### Methods
+### 7.2. Methods
 
-#### Parsing Use Structure
+#### 7.2.1. Parsing Use Structure
 
 The following example shows how to parse the use structure.
 
@@ -504,9 +504,9 @@ console.log(useToken.source.value); // './another.idea'
 
 An ImportToken representing the import statement.
 
-## Usage Patterns
+## 8. Usage Patterns
 
-### Parsing Individual Components
+### 8.1. Parsing Individual Components
 
 ```typescript
 import { EnumTree, ModelTree, TypeTree } from '@stackpress/idea-parser';
@@ -531,7 +531,7 @@ const typeAST = TypeTree.parse(`type Address {
 }`);
 ```
 
-### Using with Compiler
+### 8.2. Using with Compiler
 
 ```typescript
 import { EnumTree, Compiler } from '@stackpress/idea-parser';
@@ -547,7 +547,7 @@ console.log(enumName); // 'Status'
 console.log(enumConfig); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }
 ```
 
-### Custom AST Classes
+### 8.3. Custom AST Classes
 
 You can extend AbstractTree to create custom parsers:
 
@@ -590,11 +590,11 @@ class CustomTree extends AbstractTree<DeclarationToken> {
 }
 ```
 
-## Error Handling
+## 9. Error Handling
 
 AST classes provide detailed error information when parsing fails:
 
-### Syntax Errors
+### 9.1. Syntax Errors
 
 ```typescript
 import { SchemaTree, Exception } from '@stackpress/idea-parser';
@@ -610,7 +610,7 @@ try {
 }
 ```
 
-### Unexpected Tokens
+### 9.2. Unexpected Tokens
 
 ```typescript
 try {
@@ -621,7 +621,7 @@ try {
 }
 ```
 
-### Empty Input Handling
+### 9.3. Empty Input Handling
 
 ```typescript
 import { EnumTree } from '@stackpress/idea-parser';
@@ -634,7 +634,7 @@ try {
 }
 ```
 
-### Invalid Identifiers
+### 9.4. Invalid Identifiers
 
 ```typescript
 import { ModelTree } from '@stackpress/idea-parser';
@@ -647,7 +647,7 @@ try {
 }
 ```
 
-## Integration with Main Functions
+## 10. Integration with Main Functions
 
 AST classes are used internally by the main `parse` and `final` functions:
 
@@ -666,9 +666,9 @@ export function final(code: string) {
 }
 ```
 
-## Performance Considerations
+## 11. Performance Considerations
 
-### Lexer Reuse
+### 11.1. Lexer Reuse
 
 AST classes can share lexer instances for better performance:
 
@@ -687,7 +687,7 @@ const result2 = tree.parse(code2);
 const result3 = tree.parse(code3);
 ```
 
-### Cloning for Backtracking
+### 11.2. Cloning for Backtracking
 
 AST classes use lexer cloning for safe parsing attempts:
 
@@ -705,11 +705,11 @@ try {
 }
 ```
 
-## Test-Driven Examples
+## 12. Test-Driven Examples
 
 Based on the test fixtures, here are real-world examples:
 
-### Enum with Multiple Values
+### 12.1. Enum with Multiple Values
 
 ```typescript
 const enumCode = `enum Roles {
@@ -722,7 +722,7 @@ const ast = EnumTree.parse(enumCode);
 // Produces a complete AST with all three enum values
 ```
 
-### Complex Model with Attributes
+### 12.2. Complex Model with Attributes
 
 ```typescript
 const modelCode = `model User @label("User" "Users") {

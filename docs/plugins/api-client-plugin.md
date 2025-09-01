@@ -2,8 +2,6 @@
 
 This tutorial demonstrates how to create a plugin that generates REST and GraphQL API clients from `.idea` schema files. The plugin will transform your schema models into type-safe API client libraries with full CRUD operations.
 
-## Table of Contents
-
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Plugin Structure](#plugin-structure)
@@ -14,7 +12,7 @@ This tutorial demonstrates how to create a plugin that generates REST and GraphQ
 8. [Best Practices](#best-practices)
 9. [Troubleshooting](#troubleshooting)
 
-## Overview
+## 1. Overview
 
 API clients provide a convenient interface for interacting with backend services. This plugin generates type-safe API clients from your `.idea` schema, including:
 
@@ -25,7 +23,7 @@ API clients provide a convenient interface for interacting with backend services
 - **Authentication**: Built-in auth handling
 - **Error Handling**: Comprehensive error management
 
-## Prerequisites
+## 2. Prerequisites
 
 - Node.js 16+ and npm/yarn
 - TypeScript 4.0+
@@ -33,7 +31,7 @@ API clients provide a convenient interface for interacting with backend services
 - Familiarity with the `@stackpress/idea-transformer` library
 - Understanding of `.idea` schema format
 
-## Plugin Structure
+## 3. Plugin Structure
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -63,9 +61,9 @@ export default async function generateAPIClient(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+### 4.1. Core Plugin Function
 
 ```typescript
 export default async function generateAPIClient(
@@ -120,7 +118,7 @@ export default async function generateAPIClient(
 }
 ```
 
-### Generation Functions
+### 4.2. Generation Functions
 
 ```typescript
 function generateFileHeader(config: APIClientConfig): string {
@@ -676,7 +674,7 @@ function validateConfig(config: any): asserts config is APIClientConfig {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
 
 Add the API Client plugin to your `.idea` schema file:
 
@@ -696,7 +694,7 @@ plugin "./plugins/api-client.js" {
 }
 ```
 
-### Configuration Options
+### 5.1. Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -709,9 +707,9 @@ plugin "./plugins/api-client.js" {
 | `includeValidation` | `boolean` | `false` | Include request validation |
 | `errorHandling` | `'throw'\|'return'\|'callback'` | `'return'` | Error handling strategy |
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Schema
+### 6.1. Basic Schema
 
 ```ts
 enum UserRole {
@@ -747,7 +745,7 @@ plugin "./plugins/api-client.js" {
 }
 ```
 
-### Generated Client Usage
+### 6.2. Generated Client Usage
 
 ```typescript
 import APIClient from './api-client';
@@ -800,9 +798,9 @@ async function example() {
 }
 ```
 
-## Advanced Features
+## 7. Advanced Features
 
-### Authentication Strategies
+### 7.1. Authentication Strategies
 
 ```typescript
 // Bearer token authentication
@@ -830,7 +828,7 @@ authentication: {
 }
 ```
 
-### Error Handling Strategies
+### 7.2. Error Handling Strategies
 
 ```typescript
 // Return errors in response (default)
@@ -855,7 +853,7 @@ const response = await client.user.getById('123', {
 });
 ```
 
-### Request Cancellation
+### 7.3. Request Cancellation
 
 ```typescript
 // Using AbortController for request cancellation
@@ -869,7 +867,7 @@ const response = await client.user.getAll({}, {
 controller.abort();
 ```
 
-### Custom Headers
+### 7.4. Custom Headers
 
 ```typescript
 // Add custom headers to requests
@@ -881,9 +879,9 @@ const response = await client.user.getById('123', {
 });
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Type Safety
+### 8.1. Type Safety
 
 ```typescript
 // Always use generated types
@@ -903,7 +901,7 @@ function handleUserResponse(response: APIResponse<User>) {
 }
 ```
 
-### 2. Error Handling
+### 8.2. Error Handling
 
 ```typescript
 // Centralized error handling
@@ -928,7 +926,7 @@ const response = await client.user.create(userData);
 APIErrorHandler.handle(response);
 ```
 
-### 3. Request Interceptors
+### 8.3. Request Interceptors
 
 ```typescript
 // Extend base client for custom behavior
@@ -949,7 +947,7 @@ class CustomAPIClient extends APIClient {
 }
 ```
 
-### 4. Caching Strategy
+### 8.4. Caching Strategy
 
 ```typescript
 // Simple in-memory cache
@@ -978,9 +976,9 @@ class CachedAPIClient extends APIClient {
 }
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+### 9.1. Common Issues
 
 1. **CORS Errors**
    ```typescript
@@ -1030,7 +1028,7 @@ class CachedAPIClient extends APIClient {
    }
    ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
 
 1. **Enable Request Logging**
    ```typescript

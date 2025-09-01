@@ -2,16 +2,14 @@
 
 A TypeScript library for parsing `.idea` schema files into Abstract Syntax Trees (AST) and converting them to readable JSON configurations. This library is designed to help developers work with schema definitions in a structured and type-safe manner.
 
-## Table of Contents
+- [1. Installation](#1-installation)
+- [2. Quick Start](#2-quick-start)
+- [3. Core Concepts](#3-core-concepts)
+- [4. API Reference](#4-api-reference)
+- [5. Examples](#5-examples)
+- [6. Best Practices](#6-best-practices)
 
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Core Concepts](#core-concepts)
-- [API Reference](#api-reference)
-- [Examples](#examples)
-- [Best Practices](#best-practices)
-
-## Installation
+## 1. Installation
 
 Install the package using npm:
 
@@ -19,11 +17,11 @@ Install the package using npm:
 npm install @stackpress/idea-parser
 ```
 
-## Quick Start
+## 2. Quick Start
 
 The library provides two main functions for parsing schema files:
 
-### Basic Usage
+### 2.1. Basic Usage
 
 ```typescript
 import { parse, final } from '@stackpress/idea-parser';
@@ -49,14 +47,14 @@ const parsedSchema = parse(schemaCode);
 const finalSchema = final(schemaCode);
 ```
 
-### Difference Between `parse` and `final`
+### 2.2. Difference Between `parse` and `final`
 
 - **`parse(code: string)`**: Converts schema code to JSON while preserving prop and use references
 - **`final(code: string)`**: Like `parse` but removes prop and use references for a clean final output
 
-## Core Concepts
+## 3. Core Concepts
 
-### Schema Structure
+### 3.1. Schema Structure
 
 An `.idea` schema file can contain several types of declarations:
 
@@ -67,7 +65,7 @@ An `.idea` schema file can contain several types of declarations:
 5. **Types**: Custom type definitions with columns
 6. **Models**: Database model definitions
 
-### Processing Flow
+### 3.2. Processing Flow
 
 The library follows this processing flow:
 
@@ -80,11 +78,11 @@ Raw Schema Code → SchemaTree → Compiler → JSON Output
 3. **Compiler**: Converts AST tokens into structured JSON
 4. **JSON Output**: Final configuration object
 
-## API Reference
+## 4. API Reference
 
-### Main Functions
+### 4.1. Main Functions
 
-#### `parse(code: string)`
+#### 4.1.1. `parse(code: string)`
 
 Converts schema code into a JSON representation with references preserved.
 
@@ -109,7 +107,7 @@ console.log(result);
 // Output includes prop references: { prop: { Text: { type: "text" } }, ... }
 ```
 
-#### `final(code: string)`
+#### 4.1.2. `final(code: string)`
 
 Converts schema code into a clean JSON representation with references resolved and removed.
 
@@ -135,7 +133,7 @@ console.log(result);
 // No 'prop' section in output
 ```
 
-### Core Classes
+### 4.2. Core Classes
 
 - **[Compiler](./Compiler.md)**: Static methods for converting AST tokens to JSON
 - **[Lexer](./Lexer.md)**: Tokenization and parsing utilities
@@ -143,7 +141,7 @@ console.log(result);
 - **[Syntax Trees](./Trees.md)**: Individual parsers for different schema elements
 - **[Tokens](./Tokens.md)**: AST token structures and type definitions
 
-### Exception Handling
+### 4.3. Exception Handling
 
 The library uses a custom `Exception` class that extends the standard Exception class for better error reporting.
 
@@ -159,9 +157,9 @@ try {
 }
 ```
 
-## Examples
+## 5. Examples
 
-### Complete Schema Example
+### 5.1. Complete Schema Example
 
 ```typescript
 import { final } from '@stackpress/idea-parser';
@@ -204,7 +202,7 @@ const result = final(schemaCode);
 console.log(JSON.stringify(result, null, 2));
 ```
 
-### Working with Individual Components
+### 5.2. Working with Individual Components
 
 ```typescript
 import { Compiler, EnumTree, ModelTree } from '@stackpress/idea-parser';
@@ -220,9 +218,9 @@ const modelAST = ModelTree.parse(modelCode);
 const [modelName, modelConfig] = Compiler.model(modelAST);
 ```
 
-## Best Practices
+## 6. Best Practices
 
-### 1. Use Type Safety
+### 6.1. Use Type Safety
 
 The library is built with TypeScript and provides comprehensive type definitions:
 
@@ -232,7 +230,7 @@ import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
 const schema: SchemaConfig = parse(code);
 ```
 
-### 2. Handle Errors Gracefully
+### 6.2. Handle Errors Gracefully
 
 Always wrap parsing operations in try-catch blocks:
 
@@ -253,12 +251,12 @@ try {
 }
 ```
 
-### 3. Choose the Right Function
+### 6.3. Choose the Right Function
 
 - Use `parse()` when you need to preserve references for further processing
 - Use `final()` when you want a clean output for final consumption
 
-### 4. Validate Schema Structure
+### 6.4. Validate Schema Structure
 
 Ensure your schema follows the expected structure:
 
@@ -275,7 +273,7 @@ model User {
 }
 ```
 
-### 5. Use Meaningful Names
+### 6.5. Use Meaningful Names
 
 Choose descriptive names for your schema elements:
 
@@ -289,35 +287,35 @@ enum Status { A "Active" S "Suspended" }
 prop Input { type "email" }
 ```
 
-## Error Handling
+## 7. Error Handling
 
 Common errors and their solutions:
 
-### Invalid Schema Structure
+### 7.1. Invalid Schema Structure
 ```
 Error: "Invalid Schema"
 ```
 **Solution**: Ensure your schema follows the correct syntax and structure.
 
-### Missing Required Properties
+### 7.2. Missing Required Properties
 ```
 Error: "Expecting a columns property"
 ```
 **Solution**: Models and types must have a columns definition.
 
-### Duplicate Declarations
+### 7.3. Duplicate Declarations
 ```
 Error: "Duplicate [name]"
 ```
 **Solution**: Each declaration name must be unique within the schema.
 
-### Unknown References
+### 7.4. Unknown References
 ```
 Error: "Unknown reference [name]"
 ```
 **Solution**: Ensure all referenced props and types are defined before use.
 
-## Next Steps
+## 8. Next Steps
 
 - [Lexer API Reference](./Lexer.md)
 - [Compiler API Reference](./Compiler.md)

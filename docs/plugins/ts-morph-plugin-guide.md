@@ -2,8 +2,6 @@
 
 This guide demonstrates how to create powerful code generation plugins using `ts-morph`, a TypeScript library that provides an easier way to programmatically navigate and manipulate TypeScript and JavaScript code. We'll walk through creating a complete plugin that generates TypeScript interfaces from schema definitions.
 
-## Table of Contents
-
 1. [Introduction](#introduction)
 2. [Prerequisites](#prerequisites)
 3. [Setting Up the Project](#setting-up-the-project)
@@ -15,7 +13,7 @@ This guide demonstrates how to create powerful code generation plugins using `ts
 9. [Troubleshooting](#troubleshooting)
 10. [References](#references)
 
-## Introduction
+## 1. Introduction
 
 `ts-morph` is a powerful TypeScript library that wraps the TypeScript Compiler API, making it much easier to work with TypeScript Abstract Syntax Trees (AST). Unlike string-based code generation, `ts-morph` provides:
 
@@ -25,7 +23,7 @@ This guide demonstrates how to create powerful code generation plugins using `ts
 - **AST navigation**: Easy traversal and modification of code structures
 - **Validation**: Automatic syntax validation of generated code
 
-### Why Use ts-morph for Plugins?
+### 1.1. Why Use ts-morph for Plugins?
 
 Traditional code generation often involves:
 - Concatenating strings to build code
@@ -39,7 +37,7 @@ With `ts-morph`, you can:
 - Generate properly formatted, syntactically correct code
 - Easily modify existing code structures
 
-## Prerequisites
+## 2. Prerequisites
 
 Before starting, ensure you have:
 
@@ -48,7 +46,7 @@ Before starting, ensure you have:
 - Basic understanding of Abstract Syntax Trees (AST)
 - Familiarity with TypeScript interfaces, classes, and modules
 
-### Installation
+### 2.1. Installation
 
 Install `ts-morph` in your project:
 
@@ -63,7 +61,7 @@ yarn add --dev ts-morph
 deno add ts-morph@jsr:@ts-morph/ts-morph
 ```
 
-## Setting Up the Project
+## 3. Setting Up the Project
 
 Let's create a new TypeScript project for our plugin:
 
@@ -114,11 +112,11 @@ ts-morph-plugin-tutorial/
 └── tsconfig.json
 ```
 
-## Understanding ts-morph Basics
+## 4. Understanding ts-morph Basics
 
 Before creating our plugin, let's understand the core concepts of `ts-morph`:
 
-### Project and Source Files
+### 4.1. Project and Source Files
 
 ```typescript
 import { Project } from "ts-morph";
@@ -152,7 +150,7 @@ console.log(sourceFile.getFullText());
 // }
 ```
 
-### Adding Different Constructs
+### 4.2. Adding Different Constructs
 
 ```typescript
 // Add imports
@@ -211,7 +209,7 @@ sourceFile.addEnum({
 });
 ```
 
-### Exporting a Class
+### 4.3. Exporting a Class
 
 A simple example of how to create a new TypeScript file 
 with a class and a method using `ts-morph` looks like the following
@@ -253,7 +251,7 @@ You can use `isExported` or `isDefaultExport` to `export` or
 `export default` respectively. Also `statements` can be a string or an 
 array of strings (`string[]`),
 
-### Exporting a Function
+### 4.4. Exporting a Function
 
 Similar to adding a method to a class, you can use `addFunction` to add 
 a function at the source file level. An example of how to use 
@@ -299,7 +297,7 @@ export async function myFunction(param1: string, param2: number): void {
 }
 ```
 
-### Exporting a Const
+### 4.5. Exporting a Const
 
 To export a constant in `ts-morph`, you can utilize the 
 `addVariableStatement` method on a `SourceFile` object. This method 
@@ -326,7 +324,7 @@ source file.
 export const foo = 'bar';
 ```
 
-### Exporting an Object
+### 4.6. Exporting an Object
 
 To generate an export statement that directly exports multiple imported 
 entities in a single line using `ts-morph`, you don't need to declare 
@@ -341,7 +339,7 @@ source.addExportDeclaration({
 });
 ```
 
-### Exporting Types
+### 4.7. Exporting Types
 
 To export a single type, you can use the addTypeAlias or addInterface 
 method *(depending on whether you are defining an alias or an interface)*, 
@@ -402,7 +400,7 @@ export interface ExampleInterface {
 }
 ```
 
-### Importing Values
+### 4.8. Importing Values
 
 To import a set of values from a module in `ts-morph`, you can use the 
 `addImportDeclaration` method on a `SourceFile` object. This method 
@@ -445,7 +443,7 @@ import type {
 } from 'next';
 ```
 
-### Importing Defaults
+### 4.9. Importing Defaults
 
 To import a a default from a module in `ts-morph`, you can also use 
 the `addImportDeclaration` method.
@@ -463,7 +461,7 @@ This would create the following code.
 import React from 'react';
 ```
 
-### Working with Existing Code
+### 4.10. Working with Existing Code
 
 ```typescript
 // Load existing files
@@ -492,11 +490,11 @@ if (userInterface) {
 }
 ```
 
-## Creating Your First Plugin
+## 5. Creating Your First Plugin
 
 Let's create a plugin that generates TypeScript interfaces from JSON schema definitions. This will demonstrate the core concepts of using `ts-morph` for code generation.
 
-### Define the Plugin Interface
+### 5.1. Define the Plugin Interface
 
 First, let's define the types for our plugin:
 
@@ -528,7 +526,7 @@ export interface PluginConfig {
 }
 ```
 
-### Core Plugin Implementation
+### 5.2. Core Plugin Implementation
 
 ```typescript
 // src/plugin.ts
@@ -775,7 +773,7 @@ export class TypeScriptInterfaceGenerator {
 }
 ```
 
-### Plugin Entry Point
+### 5.3. Plugin Entry Point
 
 ```typescript
 // src/index.ts
@@ -804,7 +802,7 @@ if (require.main === module) {
 }
 ```
 
-### Example Usage
+### 5.4. Example Usage
 
 Create an example schema file:
 
@@ -1002,9 +1000,9 @@ export type PostKeys = keyof Post;
 export type AnyModel = User | Post;
 ```
 
-## Advanced ts-morph Features
+## 6. Advanced ts-morph Features
 
-### Working with Decorators
+### 6.1. Working with Decorators
 
 ```typescript
 // Add a class with decorators
@@ -1045,7 +1043,7 @@ sourceFile.addClass({
 });
 ```
 
-### Generating Complex Types
+### 6.2. Generating Complex Types
 
 ```typescript
 // Generate mapped types
@@ -1069,7 +1067,7 @@ sourceFile.addTypeAlias({
 });
 ```
 
-### Working with Modules
+### 6.3. Working with Modules
 
 ```typescript
 // Add module declaration
@@ -1098,7 +1096,7 @@ sourceFile.addModule({
 });
 ```
 
-### Manipulating Existing Code
+### 6.4. Manipulating Existing Code
 
 ```typescript
 // Find and modify existing interfaces
@@ -1126,7 +1124,7 @@ const deprecatedMethod = sourceFile.getFunction("oldFunction");
 deprecatedMethod?.remove();
 ```
 
-## Testing Your Plugin
+## 7. Testing Your Plugin
 
 Create comprehensive tests for your plugin:
 
@@ -1258,9 +1256,9 @@ Run tests:
 npm test
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Type Safety
+### 8.1. Type Safety
 
 Always use TypeScript interfaces for your plugin configuration and data structures:
 
@@ -1288,7 +1286,7 @@ function validateOptions(options: unknown): asserts options is PluginOptions {
 }
 ```
 
-### 2. Error Handling
+### 8.2. Error Handling
 
 Implement comprehensive error handling:
 
@@ -1329,7 +1327,7 @@ async function safeGenerate(config: PluginConfig): Promise<void> {
 }
 ```
 
-### 3. Performance Optimization
+### 8.3. Performance Optimization
 
 For large schemas, optimize performance:
 
@@ -1366,7 +1364,7 @@ class OptimizedGenerator {
 }
 ```
 
-### 4. Code Organization
+### 8.4. Code Organization
 
 Structure your plugin code for maintainability:
 
@@ -1406,7 +1404,7 @@ export class MainPlugin {
 }
 ```
 
-### 5. Documentation Generation
+### 8.5. Documentation Generation
 
 Add comprehensive JSDoc comments:
 
@@ -1437,11 +1435,11 @@ function generateJSDocComment(
 }
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+### 9.1. Common Issues
 
-#### 1. Invalid TypeScript Syntax
+#### 9.1.1. Invalid TypeScript Syntax
 
 ```typescript
 function validateGeneratedCode(sourceFile: SourceFile): void {
@@ -1459,7 +1457,7 @@ function validateGeneratedCode(sourceFile: SourceFile): void {
 }
 ```
 
-#### 2. Circular Type References
+#### 9.1.2. Circular Type References
 
 ```typescript
 function detectCircularReferences(schemas: Schema[]): string[] {
@@ -1515,7 +1513,7 @@ function detectCircularReferences(schemas: Schema[]): string[] {
 }
 ```
 
-#### 3. Memory Issues with Large Schemas
+#### 9.1.3. Memory Issues with Large Schemas
 
 ```typescript
 class StreamingGenerator {
@@ -1541,9 +1539,9 @@ class StreamingGenerator {
 }
 ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
 
-#### 1. Enable Verbose Logging
+#### 9.2.1. Enable Verbose Logging
 
 ```typescript
 const DEBUG = process.env.DEBUG === 'true';
@@ -1559,7 +1557,7 @@ debugLog('Processing schema', schema);
 debugLog('Generated interface', interfaceDeclaration.getText());
 ```
 
-#### 2. Save Intermediate Results
+#### 9.2.2. Save Intermediate Results
 
 ```typescript
 async function saveIntermediateResults(
@@ -1574,7 +1572,7 @@ async function saveIntermediateResults(
 }
 ```
 
-#### 3. Validate Each Step
+#### 9.2.3. Validate Each Step
 
 ```typescript
 function validateStep(
@@ -1594,21 +1592,21 @@ function validateStep(
 }
 ```
 
-## References
+## 10. References
 
-### Official Documentation
+### 10.1. Official Documentation
 
 - **ts-morph Documentation**: [https://ts-morph.com/](https://ts-morph.com/)
 - **TypeScript Compiler API**: [https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API)
 - **TypeScript AST Viewer**: [https://ts-ast-viewer.com/](https://ts-ast-viewer.com/)
 
-### Useful Resources
+### 10.2. Useful Resources
 
 - **ts-morph GitHub Repository**: [https://github.com/dsherret/ts-morph](https://github.com/dsherret/ts-morph)
 - **TypeScript Handbook**: [https://www.typescriptlang.org/docs/](https://www.typescriptlang.org/docs/)
 - **AST Explorer**: [https://astexplorer.net/](https://astexplorer.net/)
 
-### Community Examples
+### 10.3. Community Examples
 
 - **ts-morph Examples**: [https://github.com/dsherret/ts-morph/tree/latest/packages/ts-morph/scripts](https://github.com/dsherret/ts-morph/tree/latest/packages/ts-morph/scripts)
 - **Code Generation Patterns**: [https://github.com/topics/code-generation](https://github.com/topics/code-generation)

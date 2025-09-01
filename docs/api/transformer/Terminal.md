@@ -1,4 +1,6 @@
-## Terminal
+# Terminal
+
+## 1. Terminal
 
 A command-line interface for processing schema files and executing transformations through terminal commands.
 
@@ -9,7 +11,7 @@ const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
 await terminal.run();
 ```
 
-### Overview
+### 1.1. Overview
 
 The `Terminal` class (exported as `IdeaTerminal`) extends the base Terminal class from `@stackpress/lib` to provide command-line functionality for the idea-transformer library. It handles:
 
@@ -18,11 +20,11 @@ The `Terminal` class (exported as `IdeaTerminal`) extends the base Terminal clas
 - Integration with the Transformer class for processing
 - Configurable working directories and file extensions
 
-### Static Methods
+### 1.2. Static Methods
 
 The following methods can be accessed directly from the Terminal class.
 
-#### Loading a Terminal Instance
+#### 1.2.1. Loading a Terminal Instance
 
 The following example shows how to create a new Terminal instance from command-line arguments.
 
@@ -52,7 +54,7 @@ const terminal = await Terminal.load(args, {
 
 A promise that resolves to a new Terminal instance configured with the specified arguments and options.
 
-### Properties
+### 1.3. Properties
 
 The following properties are available when instantiating a Terminal.
 
@@ -61,11 +63,11 @@ The following properties are available when instantiating a Terminal.
 | `cwd` | `string` | Current working directory for file operations |
 | `extname` | `string` | Default file extension for schema files (default: '.idea') |
 
-### Methods
+### 1.4. Methods
 
 The following methods are available when instantiating a Terminal.
 
-#### Running Terminal Commands
+#### 1.4.1. Running Terminal Commands
 
 The Terminal automatically sets up event handlers for processing commands. The main command supported is `transform`.
 
@@ -87,9 +89,9 @@ transform --input <schema-file> [--i <schema-file>]
 |------|-------|-------------|
 | `--input` | `--i` | Path to the schema file to process |
 
-### Usage Examples
+## 2. Usage Examples
 
-#### Basic Command Execution
+### 2.1. Basic Command Execution
 
 ```typescript
 import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -100,7 +102,7 @@ const terminal = await Terminal.load(args);
 await terminal.run();
 ```
 
-#### Using Short Flag Syntax
+### 2.2. Using Short Flag Syntax
 
 ```typescript
 // Using the short flag alias
@@ -109,7 +111,7 @@ const terminal = await Terminal.load(args);
 await terminal.run();
 ```
 
-#### Custom Working Directory
+### 2.3. Custom Working Directory
 
 ```typescript
 // Set custom working directory
@@ -119,7 +121,7 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 await terminal.run();
 ```
 
-#### Custom File Extension
+### 2.4. Custom File Extension
 
 ```typescript
 // Use custom file extension
@@ -129,7 +131,7 @@ const terminal = await Terminal.load(['transform', '--i', './schema.custom'], {
 await terminal.run();
 ```
 
-#### Custom Brand/Label
+### 2.5. Custom Brand/Label
 
 ```typescript
 // Use custom terminal brand
@@ -139,9 +141,9 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 await terminal.run();
 ```
 
-### Command-Line Integration
+## 3. Command-Line Integration
 
-#### Direct Command-Line Usage
+### 3.1. Direct Command-Line Usage
 
 ```bash
 ## Basic usage
@@ -154,7 +156,7 @@ node cli.js transform --i ./schema.idea
 cd /path/to/project && node cli.js transform --i ./schema.idea
 ```
 
-#### CLI Script Example
+### 3.2. CLI Script Example
 
 ```typescript
 #!/usr/bin/env node
@@ -177,7 +179,7 @@ async function main() {
 main();
 ```
 
-#### Package.json Integration
+### 3.3. Package.json Integration
 
 ```json
 {
@@ -192,9 +194,9 @@ main();
 }
 ```
 
-### Default Behavior
+## 4. Default Behavior
 
-#### File Path Resolution
+### 4.1. File Path Resolution
 
 When no input file is specified, the terminal uses a default path:
 
@@ -204,7 +206,7 @@ const defaultPath = `${terminal.cwd}/schema${terminal.extname}`;
 // Example: "/current/directory/schema.idea"
 ```
 
-#### Flag Processing
+### 4.2. Flag Processing
 
 The terminal processes the following flags in order of preference:
 
@@ -221,9 +223,9 @@ The terminal processes the following flags in order of preference:
 ['transform']
 ```
 
-### Error Handling
+## 5. Error Handling
 
-#### Missing Schema File
+### 5.1. Missing Schema File
 
 ```typescript
 try {
@@ -234,7 +236,7 @@ try {
 }
 ```
 
-#### Invalid Command
+### 5.2. Invalid Command
 
 ```typescript
 try {
@@ -245,7 +247,7 @@ try {
 }
 ```
 
-#### Plugin Errors
+### 5.3. Plugin Errors
 
 ```typescript
 // If plugins fail during transformation
@@ -257,9 +259,9 @@ try {
 }
 ```
 
-### Advanced Usage
+## 6. Advanced Usage
 
-#### Custom Event Handlers
+### 6.1. Custom Event Handlers
 
 ```typescript
 import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -275,7 +277,7 @@ terminal.on('custom-command', async (event) => {
 await terminal.run();
 ```
 
-#### Programmatic CLI Building
+### 6.2. Programmatic CLI Building
 
 ```typescript
 // Build CLI arguments programmatically
@@ -294,7 +296,7 @@ const terminal = await Terminal.load(args);
 await terminal.run();
 ```
 
-#### Batch Processing
+### 6.3. Batch Processing
 
 ```typescript
 import { glob } from 'glob';
@@ -316,7 +318,7 @@ async function processAllSchemas(pattern: string) {
 await processAllSchemas('./schemas/**/*.idea');
 ```
 
-#### Environment-Based Configuration
+### 6.4. Environment-Based Configuration
 
 ```typescript
 const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
@@ -328,9 +330,9 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 await terminal.run();
 ```
 
-### Integration with Build Tools
+## 7. Integration with Build Tools
 
-#### Webpack Plugin
+### 7.1. Webpack Plugin
 
 ```typescript
 class SchemaTransformPlugin {
@@ -352,7 +354,7 @@ class SchemaTransformPlugin {
 }
 ```
 
-#### Gulp Task
+### 7.2. Gulp Task
 
 ```typescript
 import gulp from 'gulp';
@@ -364,7 +366,7 @@ gulp.task('transform-schema', async () => {
 });
 ```
 
-#### NPM Scripts
+### 7.3. NPM Scripts
 
 ```json
 {
@@ -376,9 +378,9 @@ gulp.task('transform-schema', async () => {
 }
 ```
 
-### Testing
+## 8. Testing
 
-#### Unit Testing
+### 8.1. Unit Testing
 
 ```typescript
 import { expect } from 'chai';
@@ -408,7 +410,7 @@ describe('Terminal Tests', () => {
 });
 ```
 
-#### Integration Testing
+### 8.2. Integration Testing
 
 ```typescript
 import fs from 'fs';
@@ -438,9 +440,9 @@ describe('Terminal Integration', () => {
 });
 ```
 
-### Best Practices
+## 9. Best Practices
 
-#### Error Handling
+### 9.1. Error Handling
 
 ```typescript
 // Always wrap terminal execution in try-catch
@@ -456,7 +458,7 @@ async function safeTransform(schemaFile: string) {
 }
 ```
 
-#### Configuration Management
+### 9.2. Configuration Management
 
 ```typescript
 // Use configuration objects for reusable settings
@@ -471,7 +473,7 @@ async function createTerminal(args: string[], config = defaultConfig) {
 }
 ```
 
-#### Logging and Debugging
+### 9.3. Logging and Debugging
 
 ```typescript
 // Add logging for better debugging

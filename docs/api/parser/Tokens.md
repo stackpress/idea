@@ -15,11 +15,11 @@ import type {
 } from '@stackpress/idea-parser';
 ```
 
-## Core Token Types
+## 1. Core Token Types
 
 The following types define the fundamental token structures used throughout the parsing system.
 
-### UnknownToken
+### 1.1. UnknownToken
 
 Base token structure for unrecognized or generic tokens during parsing.
 
@@ -47,7 +47,7 @@ const unknownToken: UnknownToken = {
 
 Used as a fallback for tokens that don't match specific patterns and as a base structure for other token types.
 
-### IdentifierToken
+### 1.2. IdentifierToken
 
 Represents identifiers such as variable names, type names, and property keys.
 
@@ -97,7 +97,7 @@ Used throughout the parser for:
 }
 ```
 
-### LiteralToken
+### 1.3. LiteralToken
 
 Represents literal values such as strings, numbers, booleans, and null.
 
@@ -150,7 +150,7 @@ Used for all scalar values in schema definitions:
 }
 ```
 
-### ObjectToken
+### 1.4. ObjectToken
 
 Represents object expressions containing key-value pairs.
 
@@ -196,7 +196,7 @@ Used for:
 
 The enum fixture shows an ObjectToken containing three PropertyTokens for ADMIN, MANAGER, and USER enum values.
 
-### ArrayToken
+### 1.5. ArrayToken
 
 Represents array expressions containing ordered elements.
 
@@ -228,7 +228,7 @@ Used for:
 - Plugin feature lists: `previewFeatures ["fullTextSearch", "metrics"]`
 - Attribute arrays: `@is.oneOf(["admin", "user", "guest"])`
 
-### PropertyToken
+### 1.6. PropertyToken
 
 Represents key-value pairs within object expressions.
 
@@ -283,11 +283,11 @@ Used within ObjectTokens for:
 
 From the enum fixture, each enum value is represented as a PropertyToken with an IdentifierToken key and LiteralToken value.
 
-## Declaration Tokens
+## 2. Declaration Tokens
 
 The following types represent top-level declarations in schema files.
 
-### DeclarationToken
+### 2.1. DeclarationToken
 
 Represents variable declarations for enums, props, types, models, and plugins.
 
@@ -336,7 +336,7 @@ Used by all tree parsers (EnumTree, PropTree, TypeTree, ModelTree, PluginTree) t
 
 The enum fixture shows a complete DeclarationToken with kind 'enum' containing the Roles enum definition.
 
-### DeclaratorToken
+### 2.2. DeclaratorToken
 
 Represents the declarator part of a variable declaration, containing the identifier and initialization.
 
@@ -374,7 +374,7 @@ const declaratorToken: DeclaratorToken = {
 
 Used within DeclarationTokens to separate the declaration name from its body. The `id` contains the name (e.g., "Roles", "User") and `init` contains the definition object.
 
-### ImportToken
+### 2.3. ImportToken
 
 Represents use statements for importing other schema files.
 
@@ -408,7 +408,7 @@ const importToken: ImportToken = {
 
 Used by UseTree to represent `use "./path/to/file.idea"` statements. The Compiler extracts the source path for dependency resolution.
 
-### SchemaToken
+### 2.4. SchemaToken
 
 Represents the complete parsed schema file containing all declarations and imports.
 
@@ -453,11 +453,11 @@ const schemaToken: SchemaToken = {
 
 Used by SchemaTree as the root token representing the entire parsed schema file. The Compiler processes the body array to generate the final schema configuration.
 
-## Union Types
+## 3. Union Types
 
 The following types provide flexible token handling for different contexts.
 
-### Token
+### 3.1. Token
 
 Union type for all possible token types that can be returned by readers.
 
@@ -469,7 +469,7 @@ type Token = DataToken | UnknownToken;
 
 Used as the return type for lexer operations and reader functions. Allows handling both recognized data tokens and unknown tokens.
 
-### DataToken
+### 3.2. DataToken
 
 Union type for tokens representing data values.
 
@@ -481,11 +481,11 @@ type DataToken = IdentifierToken | LiteralToken | ObjectToken | ArrayToken;
 
 Used throughout the Compiler for processing data values. These tokens can be converted to actual JavaScript values using `Compiler.data()`.
 
-## Parser Interface
+## 4. Parser Interface
 
 The following types define the parser interface and reader functions.
 
-### Reader
+### 4.1. Reader
 
 Function type for token readers that attempt to parse specific patterns.
 
@@ -513,7 +513,7 @@ Token object if pattern matches, undefined otherwise.
 
 Used to define token recognition patterns in the definitions system. Each token type has a corresponding reader function.
 
-### Definition
+### 4.2. Definition
 
 Pairs a token key with its reader function for lexer registration.
 
@@ -535,7 +535,7 @@ type Definition = {
 
 Used by the Lexer to register and manage token definitions. The key identifies the token type, and the reader attempts to parse it.
 
-### Parser
+### 4.3. Parser
 
 Interface defining the contract for parser implementations.
 
@@ -559,11 +559,11 @@ interface Parser {
 
 Implemented by the Lexer class to provide consistent parsing operations across all tree parsers.
 
-## Reference Types
+## 5. Reference Types
 
 The following types handle reference resolution and data processing.
 
-### UseReferences
+### 5.1. UseReferences
 
 Type for managing prop and type references during compilation.
 
@@ -578,7 +578,7 @@ Used by the Compiler to resolve identifier references:
 - `Record<string, any>`: Resolve identifiers to actual values
 - Empty object `{}`: Throw error for unknown references
 
-### Scalar
+### 5.2. Scalar
 
 Union type for primitive values that can be stored in schema configurations.
 
@@ -590,7 +590,7 @@ type Scalar = string | number | null | boolean;
 
 Used in enum configurations and other places where only primitive values are allowed.
 
-### Data
+### 5.3. Data
 
 Recursive type for nested data structures in schema configurations.
 
@@ -602,9 +602,9 @@ type Data = Scalar | Data[] | { [key: string]: Data };
 
 Used throughout the system for representing complex nested data structures in plugin configurations, attributes, and other schema elements.
 
-## Usage Examples
+## 6. Usage Examples
 
-### Parsing and Token Generation
+### 6.1. Parsing and Token Generation
 
 ```typescript
 import { EnumTree } from '@stackpress/idea-parser';
@@ -621,7 +621,7 @@ console.log(enumToken.kind); // 'enum'
 console.log(enumToken.declarations[0].id.name); // 'Roles'
 ```
 
-### Token Processing with Compiler
+### 6.2. Token Processing with Compiler
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -632,7 +632,7 @@ console.log(enumName); // 'Roles'
 console.log(enumConfig); // { ADMIN: 'Admin', MANAGER: 'Manager', USER: 'User' }
 ```
 
-### Working with Complex Tokens
+### 6.3. Working with Complex Tokens
 
 ```typescript
 // ObjectToken processing
@@ -659,7 +659,7 @@ const compiled = Compiler.object(objectToken);
 console.log(compiled); // { type: 'text' }
 ```
 
-### Error Handling with Tokens
+### 6.4. Error Handling with Tokens
 
 ```typescript
 import { Exception } from '@stackpress/idea-parser';
@@ -674,7 +674,7 @@ try {
 }
 ```
 
-## Token Validation
+## 7. Token Validation
 
 Tokens include position information for error reporting and validation:
 
@@ -691,7 +691,7 @@ const token: IdentifierToken = {
 const errorRange = { start: token.start, end: token.end };
 ```
 
-## Integration with AST
+## 8. Integration with AST
 
 AST classes generate specific token types:
 

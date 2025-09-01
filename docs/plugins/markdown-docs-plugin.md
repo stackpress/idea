@@ -2,7 +2,7 @@
 
 This tutorial will guide you through creating a plugin that generates comprehensive markdown documentation from a processed `.idea` schema.
 
-## Overview
+## 1. Overview
 
 The Markdown Documentation Plugin will:
 - Parse schema models, types, enums, and props
@@ -11,13 +11,13 @@ The Markdown Documentation Plugin will:
 - Create navigation and cross-references
 - Support different documentation formats and styles
 
-## Prerequisites
+## 2. Prerequisites
 
 - Basic understanding of TypeScript/JavaScript
 - Familiarity with Markdown syntax
 - Understanding of the `idea-transformer` plugin system
 
-## Step 1: Understanding the Schema Structure
+## 3. Understanding the Schema Structure
 
 Before creating the plugin, let's understand what documentation we can generate from a schema:
 
@@ -88,7 +88,7 @@ Before creating the plugin, let's understand what documentation we can generate 
 }
 ```
 
-## Step 2: Create the Plugin Structure
+## 4. Create the Plugin Structure
 
 Create a new file `markdown-docs-plugin.js`:
 
@@ -141,7 +141,7 @@ export default async function markdownDocsPlugin(
 }
 ```
 
-## Step 3: Implement Documentation Generation
+## 5. Implement Documentation Generation
 
 Create functions to generate different sections of documentation:
 
@@ -303,7 +303,7 @@ function generateTableOfContents(schema: any, options: any): string {
 }
 ```
 
-## Step 4: Generate Models Documentation
+## 6. Generate Models Documentation
 
 Implement model documentation generation:
 
@@ -571,7 +571,7 @@ function generateSchemaExample(modelName: string, model: any): string {
 }
 ```
 
-## Step 5: Generate Types, Enums, and Props Documentation
+## 7. Generate Types, Enums, and Props Documentation
 
 Implement documentation for other schema elements:
 
@@ -719,7 +719,7 @@ function generatePropDocumentation(propName: string, propDef: any, options: any)
 }
 ```
 
-## Step 6: Utility Functions
+## 8. Utility Functions
 
 Implement helper functions for formatting and generation:
 
@@ -842,7 +842,7 @@ function generatePropsFile(props: any, options: any): string {
 }
 ```
 
-## Step 7: Usage in Schema
+## 9. Usage in Schema
 
 To use this plugin in your schema file:
 
@@ -891,11 +891,11 @@ prop Email {
 }
 ```
 
-## Step 8: Generated Output
+## 10. Generated Output
 
 The plugin will generate markdown documentation like this:
 
-```markdown
+````markdown
 # My Application Schema
 
 API Reference documentation for the schema definitions.
@@ -1124,9 +1124,9 @@ model User {
 ## Support
 
 For questions or issues, please refer to the project documentation or contact the development team.
-```
+````
 
-## Step 9: Error Handling and Best Practices
+## 11. Error Handling and Best Practices
 
 Add proper error handling and validation:
 
@@ -1206,7 +1206,7 @@ function validateConfig(config: any): void {
 }
 ```
 
-## Step 10: Advanced Features
+## 12. Advanced Features
 
 Add support for advanced documentation features:
 

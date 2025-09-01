@@ -2,8 +2,6 @@
 
 This tutorial demonstrates how to create a plugin that generates mock data and test fixtures from `.idea` schema files. The plugin will transform your schema models into realistic test data for development, testing, and prototyping.
 
-## Table of Contents
-
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Plugin Structure](#plugin-structure)
@@ -14,7 +12,7 @@ This tutorial demonstrates how to create a plugin that generates mock data and t
 8. [Best Practices](#best-practices)
 9. [Troubleshooting](#troubleshooting)
 
-## Overview
+## 1. Overview
 
 Test data generation is crucial for development and testing workflows. This plugin generates realistic mock data from your `.idea` schema, including:
 
@@ -24,7 +22,7 @@ Test data generation is crucial for development and testing workflows. This plug
 - **Relationships**: Proper handling of model relationships
 - **Customization**: Custom data generators and constraints
 
-## Prerequisites
+## 2. Prerequisites
 
 - Node.js 16+ and npm/yarn
 - TypeScript 4.0+
@@ -33,7 +31,7 @@ Test data generation is crucial for development and testing workflows. This plug
 - Familiarity with the `@stackpress/idea-transformer` library
 - Understanding of `.idea` schema format
 
-## Plugin Structure
+## 3. Plugin Structure
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -61,9 +59,9 @@ export default async function generateTestData(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+### 4.1. Core Plugin Function
 
 ```typescript
 export default async function generateTestData(
@@ -114,7 +112,7 @@ export default async function generateTestData(
 }
 ```
 
-### Generation Functions
+### 4.2. Generation Functions
 
 ```typescript
 function generateFileHeader(config: TestDataConfig): string {
@@ -580,7 +578,7 @@ function validateConfig(config: any): asserts config is TestDataConfig {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
 
 Add the Test Data plugin to your `.idea` schema file:
 
@@ -602,7 +600,7 @@ plugin "./plugins/test-data.js" {
 }
 ```
 
-### Configuration Options
+### 5.1. Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -616,9 +614,9 @@ plugin "./plugins/test-data.js" {
 | `customGenerators` | `object` | `{}` | Custom data generators for specific types |
 | `relationships` | `boolean` | `false` | Handle model relationships |
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Schema
+### 6.1. Basic Schema
 
 ```ts
 enum UserRole {
@@ -655,7 +653,7 @@ plugin "./plugins/test-data.js" {
 }
 ```
 
-### Generated Test Data Usage
+### 6.2. Generated Test Data Usage
 
 ```typescript
 import { 
@@ -704,7 +702,7 @@ describe('User Service', () => {
 });
 ```
 
-### Database Seeding
+### 6.3. Database Seeding
 
 ```typescript
 import { testData } from './test-data';
@@ -731,7 +729,7 @@ async function seedDatabase() {
 seedDatabase().catch(console.error);
 ```
 
-### API Testing
+### 6.4. API Testing
 
 ```typescript
 import { userFixtures, generateUser } from './test-data';
@@ -766,9 +764,9 @@ describe('User API', () => {
 });
 ```
 
-## Advanced Features
+## 7. Advanced Features
 
-### Relationship Handling
+### 7.1. Relationship Handling
 
 ```typescript
 // Generate related data
@@ -792,7 +790,7 @@ function generateNormalizedData() {
 }
 ```
 
-### Custom Data Patterns
+### 7.2. Custom Data Patterns
 
 ```typescript
 // Generate data following specific patterns
@@ -828,7 +826,7 @@ function generateTimeSeriesData(days: number = 30) {
 }
 ```
 
-### Performance Testing Data
+### 7.3. Performance Testing Data
 
 ```typescript
 // Generate large datasets for performance testing
@@ -854,7 +852,7 @@ function generateLargeDataset(size: number = 10000) {
 }
 ```
 
-### Localized Data
+### 7.4. Localized Data
 
 ```typescript
 // Generate localized test data
@@ -886,9 +884,9 @@ function generateMultiLocaleData() {
 }
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Consistent Data Generation
+### 8.1. Consistent Data Generation
 
 ```typescript
 // Use seeds for reproducible tests
@@ -903,7 +901,7 @@ const testScenarios = {
 };
 ```
 
-### 2. Data Validation
+### 8.2. Data Validation
 
 ```typescript
 // Validate generated data
@@ -927,7 +925,7 @@ describe('Data Generators', () => {
 });
 ```
 
-### 3. Memory Management
+### 8.3. Memory Management
 
 ```typescript
 // Generate data in chunks for large datasets
@@ -944,7 +942,7 @@ for (const chunk of generateUserChunks(100000, 1000)) {
 }
 ```
 
-### 4. Test Environment Setup
+### 8.4. Test Environment Setup
 
 ```typescript
 // Setup test environment with fresh data
@@ -961,9 +959,9 @@ beforeEach(async () => {
 });
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+### 9.1. Common Issues
 
 1. **Memory Issues with Large Datasets**
    ```typescript
@@ -1010,7 +1008,7 @@ beforeEach(async () => {
    }
    ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
 
 1. **Validate Generated Data**
    ```typescript

@@ -6,13 +6,13 @@ The Exception class extends the Exception class from `@stackpress/lib` to provid
 import { Exception } from '@stackpress/idea-parser';
 ```
 
-## Overview
+## 1. Overview
 
 Exception is a specialized error class that extends the base Exception class with additional functionality for parser-specific error handling. It automatically includes position information when parsing fails, making it easier to identify and fix syntax errors in schema files.
 
-## Usage Examples
+## 2. Usage Examples
 
-### Basic Error Handling
+### 2.1. Basic Error Handling
 
 ```typescript
 import { parse, Exception } from '@stackpress/idea-parser';
@@ -28,7 +28,7 @@ try {
 }
 ```
 
-### Position Information
+### 2.2. Position Information
 
 Exception includes position information to help locate errors in the source code:
 
@@ -50,9 +50,9 @@ try {
 }
 ```
 
-### Common Error Scenarios
+### 2.3. Common Error Scenarios
 
-#### Syntax Errors
+#### 2.3.1. Syntax Errors
 
 ```typescript
 try {
@@ -62,7 +62,7 @@ try {
 }
 ```
 
-#### Invalid Token Types
+#### 2.3.2. Invalid Token Types
 
 ```typescript
 try {
@@ -72,7 +72,7 @@ try {
 }
 ```
 
-#### Unknown References
+#### 2.3.3. Unknown References
 
 ```typescript
 try {
@@ -82,7 +82,7 @@ try {
 }
 ```
 
-#### Duplicate Declarations
+#### 2.3.4. Duplicate Declarations
 
 ```typescript
 try {
@@ -95,7 +95,7 @@ try {
 }
 ```
 
-## Integration with AST
+## 3. Integration with AST
 
 All AST classes throw Exception when parsing fails:
 
@@ -118,7 +118,7 @@ try {
 }
 ```
 
-## Error Recovery
+## 4. Error Recovery
 
 While Exception indicates parsing failure, you can implement error recovery strategies:
 
@@ -138,7 +138,7 @@ function parseWithFallback(code: string, fallbackCode?: string) {
 }
 ```
 
-## Language Server Integration
+## 5. Language Server Integration
 
 Exception's position information makes it ideal for language server implementations:
 
@@ -168,7 +168,7 @@ function validateSchema(code: string) {
 }
 ```
 
-## Inherited Features
+## 6. Inherited Features
 
 Since Exception extends the base Exception class from `@stackpress/lib`, it inherits all the enhanced error handling features:
 
@@ -180,9 +180,9 @@ Since Exception extends the base Exception class from `@stackpress/lib`, it inhe
 
 For more details on the base Exception functionality, refer to the [@stackpress/lib Exception documentation](https://github.com/stackpress/lib#exception).
 
-## Best Practices
+## 7. Best Practices
 
-### Always Check Error Type
+### 7.1. Always Check Error Type
 
 ```typescript
 try {
@@ -198,7 +198,7 @@ try {
 }
 ```
 
-### Use Position Information
+### 7.2. Use Position Information
 
 ```typescript
 function highlightError(code: string, error: Exception) {
@@ -222,7 +222,7 @@ function highlightError(code: string, error: Exception) {
 }
 ```
 
-### Provide Helpful Error Messages
+### 7.3. Provide Helpful Error Messages
 
 ```typescript
 function parseWithContext(code: string, filename?: string) {

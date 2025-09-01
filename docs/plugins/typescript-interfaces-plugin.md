@@ -2,8 +2,6 @@
 
 This tutorial demonstrates how to create a plugin that generates TypeScript interfaces and types from `.idea` schema files. The plugin will transform your schema models, types, and enums into proper TypeScript definitions with full type safety.
 
-## Table of Contents
-
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Plugin Structure](#plugin-structure)
@@ -14,7 +12,7 @@ This tutorial demonstrates how to create a plugin that generates TypeScript inte
 8. [Best Practices](#best-practices)
 9. [Troubleshooting](#troubleshooting)
 
-## Overview
+## 1. Overview
 
 TypeScript interfaces provide compile-time type checking and excellent IDE support. This plugin generates TypeScript definitions from your `.idea` schema, including:
 
@@ -24,7 +22,7 @@ TypeScript interfaces provide compile-time type checking and excellent IDE suppo
 - **Utility Types**: Helper types for common operations
 - **Namespace Support**: Organized type definitions
 
-## Prerequisites
+## 2. Prerequisites
 
 - Node.js 16+ and npm/yarn
 - TypeScript 4.0+
@@ -32,7 +30,7 @@ TypeScript interfaces provide compile-time type checking and excellent IDE suppo
 - Familiarity with the `@stackpress/idea-transformer` library
 - Understanding of `.idea` schema format
 
-## Plugin Structure
+## 3. Plugin Structure
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -59,9 +57,9 @@ export default async function generateTypeScriptInterfaces(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+### 4.1. Core Plugin Function
 
 ```typescript
 export default async function generateTypeScriptInterfaces(
@@ -118,7 +116,7 @@ export default async function generateTypeScriptInterfaces(
 }
 ```
 
-### Type Mapping Functions
+### 4.2. Type Mapping Functions
 
 ```typescript
 function mapSchemaTypeToTypeScript(
@@ -173,7 +171,7 @@ function formatPropertyType(
 }
 ```
 
-### Generation Functions
+### 4.3. Generation Functions
 
 ```typescript
 function generateFileHeader(): string {
@@ -385,7 +383,7 @@ ${content.split('\n').map(line => line ? `  ${line}` : line).join('\n')}
 }
 ```
 
-### Validation Functions
+### 4.4. Validation Functions
 
 ```typescript
 function validateConfig(config: any): asserts config is TypeScriptConfig {
@@ -403,7 +401,7 @@ function validateConfig(config: any): asserts config is TypeScriptConfig {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
 
 Add the TypeScript plugin to your `.idea` schema file:
 
@@ -420,7 +418,7 @@ plugin "./plugins/typescript-interfaces.js" {
 }
 ```
 
-### Configuration Options
+### 5.1. Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -433,9 +431,9 @@ plugin "./plugins/typescript-interfaces.js" {
 | `generateEnums` | `boolean` | `true` | Generate enum definitions |
 | `enumType` | `'enum'\|'union'\|'const'` | `'enum'` | Enum generation style |
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Schema
+### 6.1. Basic Schema
 
 ```ts
 enum UserRole {
@@ -468,7 +466,7 @@ plugin "./plugins/typescript-interfaces.js" {
 }
 ```
 
-### Generated Output
+### 6.2. Generated Output
 
 ```typescript
 /**
@@ -527,9 +525,9 @@ export type AnyModel = User;
 export type UserKeys = keyof User;
 ```
 
-## Advanced Features
+## 7. Advanced Features
 
-### Namespace Support
+### 7.1. Namespace Support
 
 ```typescript
 // With namespace configuration
@@ -551,7 +549,7 @@ export namespace MyApp {
 }
 ```
 
-### Different Enum Types
+### 7.2. Different Enum Types
 
 ```typescript
 // Standard enum (default)
@@ -574,7 +572,7 @@ export const UserRole = {
 export type UserRole = typeof UserRole[keyof typeof UserRole];
 ```
 
-### Relationship Handling
+### 7.3. Relationship Handling
 
 ```typescript
 function handleRelationships(
@@ -601,7 +599,7 @@ function handleRelationships(
 }
 ```
 
-### Generic Type Support
+### 7.4. Generic Type Support
 
 ```typescript
 function generateGenericTypes(
@@ -630,9 +628,9 @@ function generateGenericTypes(
 }
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Type Safety
+### 8.1. Type Safety
 
 ```typescript
 interface TypeScriptColumn {
@@ -653,7 +651,7 @@ function validateColumn(column: any): column is TypeScriptColumn {
 }
 ```
 
-### 2. Naming Conventions
+### 8.2. Naming Conventions
 
 ```typescript
 function sanitizeTypeName(name: string): string {
@@ -672,7 +670,7 @@ function toPascalCase(str: string): string {
 }
 ```
 
-### 3. Documentation Generation
+### 8.3. Documentation Generation
 
 ```typescript
 function generateJSDocComment(
@@ -704,7 +702,7 @@ function generateJSDocComment(
 }
 ```
 
-### 4. Performance Optimization
+### 8.4. Performance Optimization
 
 ```typescript
 // Cache type mappings
@@ -727,9 +725,9 @@ function getCachedTypeMapping(
 }
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+### 9.1. Common Issues
 
 1. **Invalid TypeScript Names**
    ```typescript
@@ -788,7 +786,7 @@ function getCachedTypeMapping(
    }
    ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
 
 1. **Enable Verbose Output**
    ```typescript
