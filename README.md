@@ -19,6 +19,24 @@
 
 > A meta language to express and transform your ideas to reality. 
 
+```ts
+model Product {
+  title String 
+  @unique @is.required @form.text @view.title 
+  
+  detail Text 
+  @anything @is.possible(true)
+  
+  coolness Integer
+  @is.gt(0) @is.lte(100) @default(100)
+}
+
+plugin "./to-database" { url "postgress://" }
+plugin "./to-backend" { with "nestjs" }
+plugin "./to-frontend" { with "nextjs" }
+plugin "./to-docs" { path "/api" }
+```
+
 ## What is .idea?
 
 The `.idea` file format is a declarative schema definition language designed to simplify application development by providing a **single source of truth** for data structures, relationships, and code generation. It enables developers to define their application's data model once and generate multiple outputs including database schemas, TypeScript interfaces, API documentation, forms, and more.
@@ -44,27 +62,6 @@ The plugin system allows custom code generation for any target technology. Creat
 
 ### 🤖 AI-to-Code Bridge
 Perfect for AI-driven development workflows. Describe your data model to an AI, get a `.idea` schema, and instantly generate production-ready code across your entire stack.
-
-## Who Should Use This?
-
-### 👨‍💻 Junior Developers
-- **Easy-to-understand syntax** with comprehensive examples
-- **Rapid prototyping** without deep framework knowledge
-- **Learn best practices** through generated code patterns
-- **Focus on business logic** instead of boilerplate
-
-### 👩‍💻 Senior Developers
-- **Powerful features** for complex applications
-- **Extensible plugin system** for custom requirements
-- **Cross-platform code generation** for polyglot architectures
-- **Maintain consistency** across large codebases
-
-### 👔 CTOs & Technical Leaders
-- **Reduce development time** by 60-80% for common tasks
-- **Improve code consistency** across teams and projects
-- **Lower maintenance costs** with synchronized schemas
-- **Accelerate time-to-market** for new features
-- **Enable rapid experimentation** and prototyping
 
 ## The Plugin Ecosystem
 
@@ -121,7 +118,7 @@ Automatically generate:
 
 Here's how a simple e-commerce schema transforms into a full application:
 
-```idea
+```js
 // schema.idea
 enum UserRole {
   ADMIN "Administrator"
@@ -130,38 +127,38 @@ enum UserRole {
 }
 
 type Address {
-  street String @required
-  city String @required
+  street  String @required
+  city    String @required
   country String @default("US")
 }
 
 model User {
-  id String @id @default("nanoid()")
-  email String @unique @required @field.input(Email)
-  name String @required @field.input(Text)
-  role UserRole @default("CUSTOMER")
+  id    String     @id @default("nanoid()")
+  email String     @unique @required @field.input(Email)
+  name  String     @required @field.input(Text)
+  role  UserRole   @default("CUSTOMER")
   address Address?
-  orders Order[] @relation(Order.userId)
-  created Date @default("now()")
+  orders Order[]   @relation(Order.userId)
+  created Date     @default("now()")
 }
 
 model Product {
-  id String @id @default("nanoid()")
-  name String @required @field.input(Text)
-  price Number @required @field.input(Currency)
-  description String @field.textarea
-  category String @field.select
-  inStock Boolean @default(true)
+  id          String  @id @default("nanoid()")
+  name        String  @required @field.input(Text)
+  price       Number  @required @field.input(Currency)
+  description String  @field.textarea
+  category    String  @field.select
+  inStock     Boolean @default(true)
 }
 
 model Order {
-  id String @id @default("nanoid()")
-  userId String @relation(User.id)
-  user User @relation(User, userId)
-  items OrderItem[] @relation(OrderItem.orderId)
-  total Number @required
+  id String          @id @default("nanoid()")
+  userId String      @relation(User.id)
+  user User          @relation(User, userId)
+  items OrderItem[]  @relation(OrderItem.orderId)
+  total Number       @required
   status OrderStatus @default("PENDING")
-  created Date @default("now()")
+  created Date       @default("now()")
 }
 
 // Plugin configurations
@@ -222,7 +219,7 @@ $ npm i -D @stackpress/idea
 
 Create a `schema.idea` file:
 
-```idea
+```js
 model User {
   id String @id @default("nanoid()")
   name String @required
@@ -252,12 +249,6 @@ This documentation is organized into several sections:
 ### 📋 [Specifications](https://github.com/stackpress/idea/blob/main/docs/Specifications.md)
 Complete reference for the `.idea` file format syntax, data types, and schema structure.
 
-### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/api/parser/)
-Technical documentation for the parser library that processes `.idea` files.
-
-### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/api/transformer/)
-Documentation for the transformer library that executes plugins and generates code.
-
 ### 🔌 [Plugin Development](https://github.com/stackpress/idea/blob/main/docs/plugins/)
 Comprehensive guides for creating custom plugins, including tutorials for:
 - Database schema generators
@@ -265,6 +256,12 @@ Comprehensive guides for creating custom plugins, including tutorials for:
 - API documentation generators
 - TypeScript interface generators
 - And many more...
+
+### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/api/parser/)
+API documentation for the parser library that processes `.idea` files.
+
+### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/api/transformer/)
+API documentation for the transformer library that executes plugins and generates code.
 
 ## The Future of Development
 
