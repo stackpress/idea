@@ -8,7 +8,7 @@ jobs:
         if: github.event.pull_request.head.repo.full_name == github.repository
         uses: wow-actions/auto-comment@v1.1.2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
           issuesOpened: |
             👋 @{{ author }}
             Thank you for raising an issue! Please make sure you have given as much context as possible. Screenshots are appreciated!
