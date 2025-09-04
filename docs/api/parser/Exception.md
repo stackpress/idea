@@ -6,13 +6,23 @@ The Exception class extends the Exception class from `@stackpress/lib` to provid
 import { Exception } from '@stackpress/idea-parser';
 ```
 
-## Overview
+ 1. [Overview](#1-overview)
+ 2. [Usage Examples](#2-usage-examples)
+ 3. [Integration with AST](#3-integration-with-ast)
+ 4. [Error Recovery](#4-error-recovery)
+ 5. [Language Server Integration](#5-language-server-integration)
+ 6. [Inherited Features](#6-inherited-features)
+ 7. [Best Practices](#7-best-practices)
+
+## 1. Overview
 
 Exception is a specialized error class that extends the base Exception class with additional functionality for parser-specific error handling. It automatically includes position information when parsing fails, making it easier to identify and fix syntax errors in schema files.
 
-## Usage Examples
+## 2. Usage Examples
 
-### Basic Error Handling
+The following examples demonstrates how to use exceptions.
+
+### 2.1. Basic Error Handling
 
 ```typescript
 import { parse, Exception } from '@stackpress/idea-parser';
@@ -28,7 +38,7 @@ try {
 }
 ```
 
-### Position Information
+### 2.2. Position Information
 
 Exception includes position information to help locate errors in the source code:
 
@@ -50,9 +60,13 @@ try {
 }
 ```
 
-### Common Error Scenarios
+### 2.3. Common Error Scenarios
 
-#### Syntax Errors
+The following examples demonstrate common error scenarios that can occur during parsing. Each scenario shows the type of error that triggers an Exception and how to handle it appropriately.
+
+#### 2.3.1. Syntax Errors
+
+Syntax errors occur when the parser encounters invalid syntax in the schema code. These are the most common type of parsing errors and typically involve missing brackets, braces, or other structural elements.
 
 ```typescript
 try {
@@ -62,7 +76,9 @@ try {
 }
 ```
 
-#### Invalid Token Types
+#### 2.3.2. Invalid Token Types
+
+Invalid token type errors occur when the parser encounters tokens that don't match the expected grammar rules. This commonly happens with incorrect capitalization or using reserved keywords incorrectly.
 
 ```typescript
 try {
@@ -72,7 +88,9 @@ try {
 }
 ```
 
-#### Unknown References
+#### 2.3.3. Unknown References
+
+Unknown reference errors occur when the parser encounters references to types, properties, or other identifiers that haven't been defined in the schema. This typically happens when referencing custom types or properties that don't exist.
 
 ```typescript
 try {
@@ -82,7 +100,9 @@ try {
 }
 ```
 
-#### Duplicate Declarations
+#### 2.3.4. Duplicate Declarations
+
+Duplicate declaration errors occur when the same identifier is declared multiple times within the same scope. This prevents ambiguity in the schema and ensures each type, enum, or model has a unique name.
 
 ```typescript
 try {
@@ -95,7 +115,7 @@ try {
 }
 ```
 
-## Integration with AST
+## 3. Integration with AST
 
 All AST classes throw Exception when parsing fails:
 
@@ -118,7 +138,7 @@ try {
 }
 ```
 
-## Error Recovery
+## 4. Error Recovery
 
 While Exception indicates parsing failure, you can implement error recovery strategies:
 
@@ -138,7 +158,7 @@ function parseWithFallback(code: string, fallbackCode?: string) {
 }
 ```
 
-## Language Server Integration
+## 5. Language Server Integration
 
 Exception's position information makes it ideal for language server implementations:
 
@@ -168,7 +188,7 @@ function validateSchema(code: string) {
 }
 ```
 
-## Inherited Features
+## 6. Inherited Features
 
 Since Exception extends the base Exception class from `@stackpress/lib`, it inherits all the enhanced error handling features:
 
@@ -180,9 +200,13 @@ Since Exception extends the base Exception class from `@stackpress/lib`, it inhe
 
 For more details on the base Exception functionality, refer to the [@stackpress/lib Exception documentation](https://github.com/stackpress/lib#exception).
 
-## Best Practices
+## 7. Best Practices
 
-### Always Check Error Type
+The following best practices help ensure robust error handling when working with the Exception class. These guidelines promote consistent error handling patterns and improve debugging capabilities.
+
+### 7.1. Always Check Error Type
+
+Always check if an error is an instance of Exception before accessing parser-specific properties. This ensures your code can handle both parser errors and other types of errors gracefully.
 
 ```typescript
 try {
@@ -198,7 +222,9 @@ try {
 }
 ```
 
-### Use Position Information
+### 7.2. Use Position Information
+
+Leverage the position information provided by Exception to create helpful error displays and debugging tools. This information is particularly useful for IDE integrations and syntax highlighting.
 
 ```typescript
 function highlightError(code: string, error: Exception) {
@@ -222,7 +248,9 @@ function highlightError(code: string, error: Exception) {
 }
 ```
 
-### Provide Helpful Error Messages
+### 7.3. Provide Helpful Error Messages
+
+Enhance error messages with additional context such as file names, line numbers, or suggestions for fixing the error. This makes debugging easier and improves the developer experience.
 
 ```typescript
 function parseWithContext(code: string, filename?: string) {

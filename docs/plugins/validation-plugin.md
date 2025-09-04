@@ -2,38 +2,42 @@
 
 This tutorial demonstrates how to create a plugin that generates Zod validation schemas from `.idea` schema files. The plugin will transform your schema models into type-safe validation schemas with comprehensive validation rules.
 
-## Table of Contents
+ 1. [Overview](#1-overview)
+ 2. [Prerequisites](#2-prerequisites)
+ 3. [Plugin Structure](#3-plugin-structure)
+ 4. [Implementation](#4-implementation)
+ 5. [Schema Configuration](#5-schema-configuration)
+ 6. [Usage Examples](#6-usage-examples)
+ 7. [Advanced Features](#7-advanced-features)
+ 8. [Best Practices](#8-best-practices)
+ 9. [Troubleshooting](#9-troubleshooting)
 
-1. [Overview](#overview)
-2. [Prerequisites](#prerequisites)
-3. [Plugin Structure](#plugin-structure)
-4. [Implementation](#implementation)
-5. [Schema Configuration](#schema-configuration)
-6. [Usage Examples](#usage-examples)
-7. [Advanced Features](#advanced-features)
-8. [Best Practices](#best-practices)
-9. [Troubleshooting](#troubleshooting)
+## 1. Overview
 
-## Overview
+Zod is a TypeScript-first schema validation library that provides runtime type checking and validation. This plugin transforms your `.idea` schema definitions into comprehensive Zod validation schemas that provide robust runtime validation with excellent TypeScript integration.
 
-Zod is a TypeScript-first schema validation library that provides runtime type checking and validation. This plugin generates Zod schemas from your `.idea` schema, including:
+This plugin generates Zod schemas from your `.idea` schema, including:
 
-- **Schema Validation**: Zod schemas for all models and types
-- **Type Inference**: TypeScript types inferred from Zod schemas
-- **Custom Validators**: Support for custom validation rules
-- **Error Messages**: Customizable validation error messages
-- **Nested Validation**: Support for nested objects and arrays
+ - **Schema Validation**: Zod schemas for all models and types
+ - **Type Inference**: TypeScript types inferred from Zod schemas
+ - **Custom Validators**: Support for custom validation rules
+ - **Error Messages**: Customizable validation error messages
+ - **Nested Validation**: Support for nested objects and arrays
 
-## Prerequisites
+## 2. Prerequisites
 
-- Node.js 16+ and npm/yarn
-- TypeScript 4.0+
-- Zod 3.0+
-- Basic understanding of validation concepts
-- Familiarity with the `@stackpress/idea-transformer` library
-- Understanding of `.idea` schema format
+Before implementing the Zod validation schema generator plugin, ensure you have the necessary development environment and knowledge. This section covers the essential requirements for successful plugin creation and Zod integration.
 
-## Plugin Structure
+ - Node.js 16+ and npm/yarn
+ - TypeScript 4.0+
+ - Zod 3.0+
+ - Basic understanding of validation concepts
+ - Familiarity with the `@stackpress/idea-transformer` library
+ - Understanding of `.idea` schema format
+
+## 3. Plugin Structure
+
+The plugin structure defines the core architecture and configuration interface for the Zod validation schema generator. This includes the main plugin function, configuration types, and the overall organization of the generated validation code.
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -59,9 +63,14 @@ export default async function generateZodSchemas(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+The implementation section covers the core plugin function and supporting utilities that handle Zod schema generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.
+
+### 4.1. Core Plugin Function
+
+The core plugin function serves as the main entry point for Zod schema generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.
+
 
 ```typescript
 export default async function generateZodSchemas(
@@ -115,7 +124,9 @@ export default async function generateZodSchemas(
 }
 ```
 
-### Generation Functions
+### 4.2. Generation Functions
+
+Generation functions create specific parts of the Zod validation output including enum schemas, type schemas, model schemas, and utility schemas. These functions handle proper Zod syntax construction and validation rule application.
 
 ```typescript
 function generateFileHeader(): string {
@@ -519,11 +530,13 @@ function validateConfig(config: any): asserts config is ZodConfig {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
+
+Schema configuration demonstrates how to integrate the Zod validation generator into your `.idea` schema files. This section covers plugin configuration options and their effects on the generated validation schemas.
 
 Add the Zod validation plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/zod-validation.js" {
   output "./generated/validation.ts"
   generateTypes true
@@ -543,7 +556,9 @@ plugin "./plugins/zod-validation.js" {
 }
 ```
 
-### Configuration Options
+**Configuration Options**
+
+Configuration options control how Zod validation schemas are generated, including output formatting, validation strictness, and feature enablement. Understanding these options helps you customize the plugin to meet your specific validation requirements.
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -555,11 +570,16 @@ plugin "./plugins/zod-validation.js" {
 | `strictMode` | `boolean` | `false` | Use strict object validation |
 | `exportStyle` | `'named'\|'default'\|'namespace'` | `'named'` | Export style for schemas |
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Schema
+Usage examples demonstrate practical applications of the Zod validation generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated validation schemas integrate into development workflows.
 
-```ts
+### 6.1. Basic Schema
+
+A basic schema example shows the fundamental structure needed to generate Zod validation schemas. This includes model definitions with proper validation attributes and plugin configuration that produces comprehensive validation rules.
+
+
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"
@@ -583,7 +603,9 @@ plugin "./plugins/zod-validation.js" {
 }
 ```
 
-### Generated Validation Usage
+### 6.2. Generated Validation Usage
+
+The generated validation usage demonstrates how to use the Zod schemas produced by the plugin in real applications. This shows practical patterns for data validation, error handling, and type safety in TypeScript applications.
 
 ```typescript
 import { 
@@ -634,7 +656,9 @@ const userData = {
 const validUser = validateCreateUser(userData);
 ```
 
-### Form Validation Example
+### 6.3. Form Validation Example
+
+Form validation examples show how to integrate the generated Zod schemas with frontend frameworks for user input validation. This demonstrates real-world usage patterns for form handling and user feedback.
 
 ```typescript
 import { CreateUserSchema } from './validation';
@@ -681,9 +705,14 @@ function UserForm() {
 }
 ```
 
-## Advanced Features
+## 7. Advanced Features
 
-### Custom Validators
+Advanced features extend the basic Zod schema generation with sophisticated validation patterns, conditional logic, data transformation, and asynchronous validation. These features enable production-ready validation that handles complex business requirements.
+
+### 7.1. Custom Validators
+
+Custom validators allow you to define specialized validation logic for specific data types or business rules. This feature enables the creation of reusable validation patterns that can be applied across multiple schema definitions.
+
 
 ```typescript
 // In plugin configuration
@@ -696,7 +725,9 @@ customValidators: {
 }
 ```
 
-### Conditional Validation
+### 7.2. Conditional Validation
+
+Conditional validation enables complex validation logic that depends on the values of other fields. This feature is essential for implementing business rules that require cross-field validation and context-dependent constraints.
 
 ```typescript
 // Generated schema with conditional validation
@@ -717,7 +748,9 @@ export const UserSchema = z.object({
 });
 ```
 
-### Transform and Preprocess
+### 7.3. Transform and Preprocess
+
+Transform and preprocess capabilities allow you to modify data during validation, enabling data normalization, formatting, and cleanup. This feature ensures data consistency and proper formatting before validation.
 
 ```typescript
 // Add transforms to generated schemas
@@ -739,7 +772,9 @@ function addTransforms(schema: string, column: any): string {
 }
 ```
 
-### Async Validation
+### 7.4. Async Validation
+
+Async validation enables validation rules that require external data sources or API calls, such as checking for unique values or validating against external services. This feature is crucial for comprehensive data validation in real applications.
 
 ```typescript
 // Generate async validation schemas
@@ -764,9 +799,14 @@ const validateUserAsync = async (data: unknown) => {
 };
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Error Handling
+Best practices ensure your generated Zod validation schemas are maintainable, performant, and provide excellent developer experience. These guidelines cover error handling, schema composition, type safety, and API integration patterns.
+
+### 8.1. Error Handling
+
+Proper error handling ensures that validation failures provide clear, actionable feedback to users and developers. Implement centralized error handling patterns and meaningful error messages to improve the overall user experience.
+
 
 ```typescript
 // Centralized validation error handling
@@ -800,7 +840,9 @@ function validateWithErrorHandling<T>(schema: z.ZodSchema<T>, data: unknown): T 
 }
 ```
 
-### 2. Schema Composition
+### 8.2. Schema Composition
+
+Schema composition enables the creation of reusable validation components that can be combined to build complex validation schemas. This approach promotes code reuse and maintains consistency across your validation logic.
 
 ```typescript
 // Compose schemas for reusability
@@ -822,7 +864,9 @@ const PostSchema = BaseEntitySchema.extend({
 });
 ```
 
-### 3. Type Guards
+### 8.3. Type Guards
+
+Type guards provide runtime type checking that integrates seamlessly with TypeScript's type system. Generated type guards enable safe type narrowing and improve code reliability by ensuring data conforms to expected types.
 
 ```typescript
 // Generate type guards from schemas
@@ -843,7 +887,9 @@ function processUserData(data: unknown) {
 }
 ```
 
-### 4. API Integration
+### 8.4. API Integration
+
+API integration patterns show how to use generated Zod schemas for request validation in web applications. This includes middleware creation, error response formatting, and type-safe request handling.
 
 ```typescript
 // Middleware for API validation
@@ -875,11 +921,18 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
 });
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+This section addresses common issues encountered when generating Zod validation schemas and provides solutions for debugging and resolving problems. Understanding these troubleshooting techniques helps ensure reliable validation schema generation.
 
-1. **Circular Dependencies**
+### 9.1. Common Issues
+
+Common issues include circular dependencies, complex validation rules, and performance problems with large schemas. These problems typically arise from schema complexity or validation requirements that need specialized handling.
+
+#### 9.1.1. Circular Dependencies
+
+Circular dependencies occur when schemas reference each other in a way that creates infinite loops. Zod provides lazy evaluation to handle these scenarios while maintaining type safety and validation integrity.
+
    ```typescript
    // Handle circular references with lazy evaluation
    const UserSchema: z.ZodSchema<User> = z.lazy(() => z.object({
@@ -893,8 +946,11 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
    }));
    ```
 
-2. **Complex Validation Rules**
-   ```typescript
+#### 9.1.2. Complex Validation Rules
+
+Complex validation rules require sophisticated logic that goes beyond simple type checking. Use Zod's refinement capabilities to implement business rules and cross-field validation while maintaining clear error messages.
+
+```typescript
    // Use refinements for complex validation
    const PasswordSchema = z.string()
      .min(8, "Password must be at least 8 characters")
@@ -909,8 +965,11 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
      });
    ```
 
-3. **Performance Issues**
-   ```typescript
+#### 9.1.3. Performance Issues
+
+Performance issues can arise when validation schemas are complex or when processing large amounts of data. Optimize validation performance using preprocessing, caching, and efficient schema design patterns.
+
+```typescript
    // Use preprocess for expensive operations
    const OptimizedSchema = z.preprocess(
      (data) => {
@@ -923,9 +982,14 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
    );
    ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
 
-1. **Schema Testing**
+Debugging tips help identify and resolve issues during Zod schema generation and usage. These techniques provide visibility into validation behavior and help diagnose problems with schema logic or performance.
+
+#### 9.2.1. Schema Testing
+
+Schema testing ensures that your validation logic works correctly across different input scenarios. Comprehensive testing helps catch edge cases and ensures validation behaves as expected in production.
+
    ```typescript
    // Test schemas with various inputs
    describe('UserSchema', () => {
@@ -951,8 +1015,11 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
    });
    ```
 
-2. **Error Message Customization**
-   ```typescript
+#### 9.2.2. Error Message Customization
+
+Error message customization improves user experience by providing clear, actionable feedback when validation fails. Well-crafted error messages help users understand what went wrong and how to fix it.
+
+```typescript
    // Customize error messages for better UX
    const UserSchema = z.object({
      email: z.string().email("Please enter a valid email address"),

@@ -2,38 +2,35 @@
 
 This tutorial demonstrates how to create a plugin that generates mock data and test fixtures from `.idea` schema files. The plugin will transform your schema models into realistic test data for development, testing, and prototyping.
 
-## Table of Contents
-
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Plugin Structure](#plugin-structure)
 4. [Implementation](#implementation)
-5. [Schema Configuration](#schema-configuration)
-6. [Usage Examples](#usage-examples)
-7. [Advanced Features](#advanced-features)
-8. [Best Practices](#best-practices)
-9. [Troubleshooting](#troubleshooting)
 
-## Overview
+## 1. Overview
 
 Test data generation is crucial for development and testing workflows. This plugin generates realistic mock data from your `.idea` schema, including:
 
-- **Mock Data**: Realistic test data based on schema types
-- **Fixtures**: Predefined test datasets for consistent testing
-- **Factories**: Data generation functions for dynamic testing
-- **Relationships**: Proper handling of model relationships
-- **Customization**: Custom data generators and constraints
+ - **Mock Data**: Realistic test data based on schema types
+ - **Fixtures**: Predefined test datasets for consistent testing
+ - **Factories**: Data generation functions for dynamic testing
+ - **Relationships**: Proper handling of model relationships
+ - **Customization**: Custom data generators and constraints
 
-## Prerequisites
+## 2. Prerequisites
 
-- Node.js 16+ and npm/yarn
-- TypeScript 4.0+
-- Faker.js 8.0+ (for realistic data generation)
-- Basic understanding of testing concepts
-- Familiarity with the `@stackpress/idea-transformer` library
-- Understanding of `.idea` schema format
+Before creating this plugin, you should have the following knowledge and tools:
 
-## Plugin Structure
+ - Node.js 16+ and npm/yarn
+ - TypeScript 4.0+
+ - Faker.js 8.0+ (for realistic data generation)
+ - Basic understanding of testing concepts
+ - Familiarity with the `@stackpress/idea-transformer` library
+ - Understanding of `.idea` schema format
+
+## 3. Plugin Structure
+
+The following code shows how to generally layout the plugin so you can focus on the implementation.
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -61,9 +58,13 @@ export default async function generateTestData(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+The implementation section covers the core plugin function and supporting utilities that handle test data generation. This includes the main plugin entry point, data generation functions, and configuration validation.
+
+### 4.1. Core Plugin Function
+
+The core plugin function serves as the main entry point for test data generation. It orchestrates the entire process from configuration validation to file output, handling different formats and generation options.
 
 ```typescript
 export default async function generateTestData(
@@ -114,7 +115,9 @@ export default async function generateTestData(
 }
 ```
 
-### Generation Functions
+### 4.2. Generation Functions
+
+The generation functions provide the core logic for creating different types of test data content. These utility functions handle file headers, imports, data factories, and various data generation patterns based on schema definitions.
 
 ```typescript
 function generateFileHeader(config: TestDataConfig): string {
@@ -580,11 +583,13 @@ function validateConfig(config: any): asserts config is TestDataConfig {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
+
+The schema configuration section demonstrates how to integrate the test data plugin into your `.idea` schema files. This includes plugin declaration syntax, configuration options, and examples of how to customize the plugin behavior for different use cases.
 
 Add the Test Data plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/test-data.js" {
   output "./generated/test-data.ts"
   format "typescript"
@@ -602,7 +607,9 @@ plugin "./plugins/test-data.js" {
 }
 ```
 
-### Configuration Options
+### 5.1. Configuration Options
+
+The following options will be processed by the test data plugin in this tutorial. 
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -616,466 +623,5 @@ plugin "./plugins/test-data.js" {
 | `customGenerators` | `object` | `{}` | Custom data generators for specific types |
 | `relationships` | `boolean` | `false` | Handle model relationships |
 
-## Usage Examples
-
-### Basic Schema
-
-```ts
-enum UserRole {
-  ADMIN "admin"
-  USER "user"
-  GUEST "guest"
-}
-
-model User {
-  id String @id @default("nanoid()")
-  email String @email @required
-  name String @min(2) @max(50) @required
-  age Number @min(18) @max(120)
-  role UserRole @default("USER")
-  active Boolean @default(true)
-  createdAt Date @default("now()")
-}
-
-model Post {
-  id String @id @default("nanoid()")
-  title String @required
-  content String @required
-  authorId String @required
-  published Boolean @default(false)
-  createdAt Date @default("now()")
-}
-
-plugin "./plugins/test-data.js" {
-  output "./test-data.ts"
-  format "typescript"
-  count 15
-  generateFactories true
-  generateFixtures true
-}
-```
-
-### Generated Test Data Usage
-
-```typescript
-import { 
-  generateUser, 
-  generateUserArray,
-  mockUserData,
-  userFixtures,
-  testData 
-} from './test-data';
-
-// Using factories
-const singleUser = generateUser();
-const multipleUsers = generateUserArray(5);
-
-// Using factories with overrides
-const adminUser = generateUser({
-  role: 'admin',
-  email: 'admin@example.com'
-});
-
-// Using mock data
-console.log('Mock users:', mockUserData);
-
-// Using fixtures for testing
-describe('User Service', () => {
-  it('should create a valid user', () => {
-    const result = userService.create(userFixtures.valid);
-    expect(result).toBeDefined();
-  });
-  
-  it('should handle minimal user data', () => {
-    const result = userService.create(userFixtures.minimal);
-    expect(result).toBeDefined();
-  });
-  
-  it('should reject invalid user data', () => {
-    expect(() => {
-      userService.create(userFixtures.invalid);
-    }).toThrow();
-  });
-  
-  it('should handle edge cases', () => {
-    const result = userService.create(userFixtures.edge);
-    expect(result).toBeDefined();
-  });
-});
-```
-
-### Database Seeding
-
-```typescript
-import { testData } from './test-data';
-
-// Seed database with test data
-async function seedDatabase() {
-  // Clear existing data
-  await db.user.deleteMany();
-  await db.post.deleteMany();
-  
-  // Insert mock data
-  await db.user.createMany({
-    data: testData.mockData.user
-  });
-  
-  await db.post.createMany({
-    data: testData.mockData.post
-  });
-  
-  console.log('Database seeded with test data');
-}
-
-// Run seeding
-seedDatabase().catch(console.error);
-```
-
-### API Testing
-
-```typescript
-import { userFixtures, generateUser } from './test-data';
-
-describe('User API', () => {
-  it('POST /users should create user with valid data', async () => {
-    const response = await request(app)
-      .post('/users')
-      .send(userFixtures.valid)
-      .expect(201);
-    
-    expect(response.body.email).toBe(userFixtures.valid.email);
-  });
-  
-  it('POST /users should reject invalid data', async () => {
-    await request(app)
-      .post('/users')
-      .send(userFixtures.invalid)
-      .expect(400);
-  });
-  
-  it('should handle bulk user creation', async () => {
-    const users = Array.from({ length: 10 }, () => generateUser());
-    
-    const response = await request(app)
-      .post('/users/bulk')
-      .send({ users })
-      .expect(201);
-    
-    expect(response.body.created).toBe(10);
-  });
-});
-```
-
-## Advanced Features
-
-### Relationship Handling
-
-```typescript
-// Generate related data
-function generateUserWithPosts(postCount: number = 3) {
-  const user = generateUser();
-  const posts = Array.from({ length: postCount }, () => 
-    generatePost({ authorId: user.id })
-  );
-  
-  return { user, posts };
-}
-
-// Generate normalized data
-function generateNormalizedData() {
-  const users = generateUserArray(5);
-  const posts = users.flatMap(user => 
-    generatePostArray(3).map(post => ({ ...post, authorId: user.id }))
-  );
-  
-  return { users, posts };
-}
-```
-
-### Custom Data Patterns
-
-```typescript
-// Generate data following specific patterns
-function generateRealisticUser() {
-  const firstName = faker.person.firstName();
-  const lastName = faker.person.lastName();
-  const email = faker.internet.email({ firstName, lastName });
-  const username = faker.internet.userName({ firstName, lastName });
-  
-  return generateUser({
-    name: `${firstName} ${lastName}`,
-    email,
-    username,
-  });
-}
-
-// Generate time-series data
-function generateTimeSeriesData(days: number = 30) {
-  const data = [];
-  const startDate = new Date();
-  
-  for (let i = 0; i < days; i++) {
-    const date = new Date(startDate);
-    date.setDate(date.getDate() - i);
-    
-    data.push(generateMetric({
-      date,
-      value: faker.number.int({ min: 100, max: 1000 }),
-    }));
-  }
-  
-  return data.reverse();
-}
-```
-
-### Performance Testing Data
-
-```typescript
-// Generate large datasets for performance testing
-function generateLargeDataset(size: number = 10000) {
-  console.log(`Generating ${size} records...`);
-  
-  const batchSize = 1000;
-  const batches = Math.ceil(size / batchSize);
-  const data = [];
-  
-  for (let i = 0; i < batches; i++) {
-    const batchData = generateUserArray(
-      Math.min(batchSize, size - i * batchSize)
-    );
-    data.push(...batchData);
-    
-    if (i % 10 === 0) {
-      console.log(`Generated ${i * batchSize} records...`);
-    }
-  }
-  
-  return data;
-}
-```
-
-### Localized Data
-
-```typescript
-// Generate localized test data
-function generateLocalizedUser(locale: string = 'en') {
-  faker.setLocale(locale);
-  
-  return generateUser({
-    name: faker.person.fullName(),
-    address: faker.location.streetAddress(),
-    city: faker.location.city(),
-    country: faker.location.country(),
-    phone: faker.phone.number(),
-  });
-}
-
-// Generate multi-locale dataset
-function generateMultiLocaleData() {
-  const locales = ['en', 'es', 'fr', 'de', 'ja'];
-  const data = [];
-  
-  for (const locale of locales) {
-    const users = Array.from({ length: 5 }, () => 
-      generateLocalizedUser(locale)
-    );
-    data.push(...users);
-  }
-  
-  return data;
-}
-```
-
-## Best Practices
-
-### 1. Consistent Data Generation
-
-```typescript
-// Use seeds for reproducible tests
-faker.seed(12345);
-
-// Create consistent test scenarios
-const testScenarios = {
-  newUser: () => generateUser({ createdAt: new Date() }),
-  activeUser: () => generateUser({ active: true, lastLogin: new Date() }),
-  inactiveUser: () => generateUser({ active: false, lastLogin: null }),
-  adminUser: () => generateUser({ role: 'admin', permissions: ['all'] }),
-};
-```
-
-### 2. Data Validation
-
-```typescript
-// Validate generated data
-function validateGeneratedUser(user: User): boolean {
-  return (
-    user.email.includes('@') &&
-    user.name.length >= 2 &&
-    user.age >= 18 &&
-    ['admin', 'user', 'guest'].includes(user.role)
-  );
-}
-
-// Test data generators
-describe('Data Generators', () => {
-  it('should generate valid users', () => {
-    const users = generateUserArray(100);
-    users.forEach(user => {
-      expect(validateGeneratedUser(user)).toBe(true);
-    });
-  });
-});
-```
-
-### 3. Memory Management
-
-```typescript
-// Generate data in chunks for large datasets
-function* generateUserChunks(totalCount: number, chunkSize: number = 1000) {
-  for (let i = 0; i < totalCount; i += chunkSize) {
-    const count = Math.min(chunkSize, totalCount - i);
-    yield generateUserArray(count);
-  }
-}
-
-// Usage
-for (const chunk of generateUserChunks(100000, 1000)) {
-  await processChunk(chunk);
-}
-```
-
-### 4. Test Environment Setup
-
-```typescript
-// Setup test environment with fresh data
-beforeEach(async () => {
-  // Clear database
-  await clearDatabase();
-  
-  // Seed with fresh test data
-  const users = generateUserArray(10);
-  await seedUsers(users);
-  
-  // Reset faker seed for consistent tests
-  faker.seed(12345);
-});
-```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Memory Issues with Large Datasets**
-   ```typescript
-   // Use streaming for large datasets
-   function* streamTestData(count: number) {
-     for (let i = 0; i < count; i++) {
-       yield generateUser();
-     }
-   }
-   
-   // Process in batches
-   const batchSize = 1000;
-   for (let i = 0; i < totalCount; i += batchSize) {
-     const batch = Array.from(
-       { length: Math.min(batchSize, totalCount - i) },
-       () => generateUser()
-     );
-     await processBatch(batch);
-   }
-   ```
-
-2. **Inconsistent Test Results**
-   ```typescript
-   // Always use seeds for reproducible tests
-   beforeAll(() => {
-     faker.seed(12345);
-   });
-   
-   // Reset state between tests
-   beforeEach(() => {
-     faker.seed(12345);
-   });
-   ```
-
-3. **Unrealistic Data**
-   ```typescript
-   // Create realistic data patterns
-   function generateRealisticEmail(name: string): string {
-     const domain = faker.helpers.arrayElement([
-       'gmail.com', 'yahoo.com', 'hotmail.com', 'company.com'
-     ]);
-     const username = name.toLowerCase().replace(/\s+/g, '.');
-     return `${username}@${domain}`;
-   }
-   ```
-
-### Debugging Tips
-
-1. **Validate Generated Data**
-   ```typescript
-   // Add validation to generators
-   function generateValidatedUser(): User {
-     const user = generateUser();
-     
-     if (!validateUser(user)) {
-       console.warn('Generated invalid user:', user);
-       return generateValidatedUser(); // Retry
-     }
-     
-     return user;
-   }
-   ```
-
-2. **Log Generation Statistics**
-   ```typescript
-   // Track generation statistics
-   const stats = {
-     generated: 0,
-     invalid: 0,
-     retries: 0
-   };
-   
-   function generateUserWithStats(): User {
-     stats.generated++;
-     const user = generateUser();
-     
-     if (!validateUser(user)) {
-       stats.invalid++;
-       stats.retries++;
-       return generateUserWithStats();
-     }
-     
-     return user;
-   }
-   ```
 
 This tutorial provides a comprehensive foundation for creating test data generation plugins that can handle complex schemas and generate realistic, useful test data for development and testing workflows.
-
-## Conclusion
-
-The Test Data Generator plugin demonstrates how to create sophisticated data generation tools that can:
-
-- **Generate Realistic Data**: Use Faker.js to create believable test data
-- **Support Multiple Formats**: Output JSON, TypeScript, or JavaScript files
-- **Handle Relationships**: Manage complex data relationships and constraints
-- **Provide Flexibility**: Support custom generators and localization
-- **Enable Testing**: Generate fixtures for comprehensive test coverage
-
-### Key Benefits
-
-1. **Consistent Testing**: Reproducible test data using seeds
-2. **Realistic Data**: Faker.js integration for believable mock data
-3. **Multiple Use Cases**: Support for unit tests, integration tests, and database seeding
-4. **Performance Testing**: Generate large datasets for load testing
-5. **Localization**: Support for multiple locales and languages
-
-### Next Steps
-
-1. **Extend Generators**: Add more sophisticated data generation patterns
-2. **Add Relationships**: Implement complex relationship handling
-3. **Performance Optimization**: Optimize for large dataset generation
-4. **Custom Providers**: Create domain-specific data providers
-5. **Integration**: Connect with testing frameworks and CI/CD pipelines
-
-This plugin provides the foundation for building comprehensive test data generation systems that can significantly improve development and testing workflows by providing realistic, consistent, and customizable test data.

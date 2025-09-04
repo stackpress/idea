@@ -1,8 +1,21 @@
 # Tutorial: Creating an HTML Form Plugin
 
-This tutorial will guide you through creating a plugin that generates HTML forms from a processed `.idea` schema.
+This tutorial will guide you through creating a plugin that generates HTML forms from a processed `.idea` schema. You'll learn how to parse schema models, generate appropriate form elements, handle validation, and create responsive forms with multiple CSS framework support.
 
-## Overview
+ 1. [Overview](#1-overview)
+ 2. [Prerequisites](#2-prerequisites)
+ 3. [Understanding the Schema Structure](#3-understanding-the-schema-structure)
+ 4. [Create the Plugin Structure](#4-create-the-plugin-structure)
+ 5. [Implement Form Element Generation](#5-implement-form-element-generation)
+ 6. [Implement Form Layout and Styling](#6-implement-form-layout-and-styling)
+ 7. [Generate Complete HTML Document](#7-generate-complete-html-document)
+ 8. [Usage in Schema](#8-usage-in-schema)
+ 9. [Generated Output](#9-generated-output)
+ 10. [Error Handling and Best Practices](#10-error-handling-and-best-practices)
+
+## 1. Overview
+
+This section provides an overview of what the HTML Form Plugin accomplishes and its key features. The plugin transforms schema definitions into fully functional HTML forms with proper validation, styling, and accessibility features.
 
 The HTML Form Plugin will:
 - Parse schema models and their columns
@@ -11,13 +24,17 @@ The HTML Form Plugin will:
 - Create responsive, accessible forms with proper styling
 - Support different form layouts and themes
 
-## Prerequisites
+## 2. Prerequisites
 
-- Basic understanding of TypeScript/JavaScript
-- Familiarity with HTML forms and CSS
-- Understanding of the `idea-transformer` plugin system
+Before starting this tutorial, ensure you have the necessary knowledge and tools to successfully implement the HTML Form Plugin. These prerequisites will help you understand the concepts and follow along with the implementation.
 
-## Step 1: Understanding the Schema Structure
+ - Basic understanding of TypeScript/JavaScript
+ - Familiarity with HTML forms and CSS
+ - Understanding of the `idea-transformer` plugin system
+
+## 3. Understanding the Schema Structure
+
+Understanding how schema attributes map to form elements is crucial for creating effective form generation. This section explains the processed schema structure and how different field types and attributes translate into HTML form elements.
 
 Before creating the plugin, let's understand how schema attributes map to form elements:
 
@@ -85,7 +102,9 @@ Before creating the plugin, let's understand how schema attributes map to form e
 }
 ```
 
-## Step 2: Create the Plugin Structure
+## 4. Create the Plugin Structure
+
+The plugin structure provides the foundation for the HTML form generator. This section covers the main plugin function, configuration interface, and the basic workflow for processing schemas and generating HTML output.
 
 Create a new file `html-form-plugin.js`:
 
@@ -139,7 +158,9 @@ export default async function htmlFormPlugin(
 }
 ```
 
-## Step 3: Implement Form Element Generation
+## 5. Implement Form Element Generation
+
+Form element generation is the core functionality of the plugin. This section demonstrates how to create functions that generate different types of HTML form elements based on schema column definitions, including inputs, textareas, selects, checkboxes, radio buttons, and file inputs.
 
 Create functions to generate different form elements:
 
@@ -430,7 +451,9 @@ function autoGenerateElement(column: any, schema: any, options: any): string {
 }
 ```
 
-## Step 4: Implement Form Layout and Styling
+## 6. Implement Form Layout and Styling
+
+Form layout and styling ensure that generated forms are visually appealing and work well with different CSS frameworks. This section covers how to implement support for Bootstrap, Tailwind CSS, and custom styling, along with different layout options like vertical, horizontal, and inline forms.
 
 Create functions for different themes and layouts:
 
@@ -581,7 +604,9 @@ function getFileClasses(theme: string): string {
 }
 ```
 
-## Step 5: Generate Complete HTML Document
+## 7. Generate Complete HTML Document
+
+Generating a complete HTML document involves combining all form elements into a properly structured HTML page. This section shows how to create the HTML structure, include necessary CSS and JavaScript files, and generate forms for multiple models within a single document.
 
 Implement the main HTML generation function:
 
@@ -966,11 +991,13 @@ function getRadioLabelClasses(theme: string): string {
 }
 ```
 
-## Step 6: Usage in Schema
+## 8. Usage in Schema
+
+This section demonstrates how to configure and use the HTML Form Plugin within your `.idea` schema files. You'll learn about the available configuration options and how to set up your schema to generate the desired form output.
 
 To use this plugin in your schema file:
 
-```ts
+```idea
 // schema.idea
 plugin "./plugins/html-form-plugin.js" {
   output "./forms/user-form.html"
@@ -1000,7 +1027,9 @@ enum UserRole {
 }
 ```
 
-## Step 7: Generated Output
+## 9. Generated Output
+
+The generated output section shows examples of the HTML code that the plugin produces. This helps you understand what to expect from the plugin and how the various configuration options affect the final output.
 
 The plugin will generate HTML like this:
 
@@ -1122,7 +1151,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </html>
 ```
 
-## Step 8: Error Handling and Best Practices
+## 10. Error Handling and Best Practices
+
+Proper error handling and following best practices ensure that your plugin is robust and reliable. This section covers validation techniques, error reporting, and recommended patterns for plugin development.
 
 Add proper error handling and validation:
 
@@ -1178,7 +1209,9 @@ function validateConfig(config: any): void {
 }
 ```
 
-## Conclusion
+## 11. Conclusion
+
+This conclusion summarizes the key concepts covered in the tutorial and provides guidance on extending the plugin with additional features. Understanding these patterns will help you create more sophisticated form generation plugins.
 
 This HTML Form Plugin demonstrates how to:
 - Parse schema models and generate appropriate form elements

@@ -6,7 +6,15 @@ The Lexer class implements the Parser interface and provides tokenization and pa
 import { Lexer } from '@stackpress/idea-parser';
 ```
 
-## Properties
+ 1. [Properties](#1-properties)
+ 2. [Methods](#2-methods)
+ 3. [Parsing Complex Data Structures](#3-parsing-complex-data-structures)
+ 4. [Error Handling](#4-error-handling)
+ 5. [Predefined Token Definitions](#5-predefined-token-definitions)
+ 6. [Usage with AST](#6-usage-with-ast)
+ 7. [Advanced Usage Patterns](#7-advanced-usage-patterns)
+
+## 1. Properties
 
 The following properties are available when instantiating a Lexer.
 
@@ -15,11 +23,11 @@ The following properties are available when instantiating a Lexer.
 | `dictionary` | `Record<string, Definition>` | Shallow copy of all token definitions |
 | `index` | `number` | Current parsing position in the code |
 
-## Methods
+## 2. Methods
 
 The following methods are available when instantiating a Lexer.
 
-### Cloning the Lexer
+### 2.1. Cloning the Lexer
 
 The following example shows how to create an exact copy of the lexer's current state.
 
@@ -40,7 +48,7 @@ console.log(clonedLexer.dictionary); // Same definitions as original
 
 A new Lexer instance with identical state to the original.
 
-### Defining Token Patterns
+### 2.2. Defining Token Patterns
 
 The following example shows how to register token definitions for parsing.
 
@@ -80,7 +88,7 @@ lexer.define('customKeyword', (code, start, lexer) => {
 
 Void (modifies the lexer's internal dictionary).
 
-### Expecting Specific Tokens
+### 2.3. Expecting Specific Tokens
 
 The following example shows how to require specific tokens at the current position.
 
@@ -121,7 +129,7 @@ console.log(booleanToken.value); // true
 
 The matched token object, or throws an exception if no match is found.
 
-### Getting Token Definitions
+### 2.4. Getting Token Definitions
 
 The following example shows how to retrieve registered token definitions.
 
@@ -150,7 +158,7 @@ if (definition) {
 
 The Definition object if found, undefined otherwise.
 
-### Loading Code
+### 2.5. Loading Code
 
 The following example shows how to load code for parsing.
 
@@ -180,7 +188,7 @@ console.log(lexer.substring(5, 11)); // 'Status'
 
 The Lexer instance to allow method chaining.
 
-### Matching Tokens
+### 2.6. Matching Tokens
 
 The following example shows how to find the first matching token from available definitions.
 
@@ -223,7 +231,7 @@ if (match2) {
 
 The first matching token object, or null if no match is found.
 
-### Testing for Next Tokens
+### 2.7. Testing for Next Tokens
 
 The following example shows how to check if the next tokens match without consuming them.
 
@@ -260,7 +268,7 @@ if (lexer.next(['String', 'Integer', 'Boolean'])) {
 
 `true` if the next token(s) match, `false` otherwise. Does not advance the index.
 
-### Optional Token Parsing
+### 2.8. Optional Token Parsing
 
 The following example shows how to optionally parse tokens without throwing errors.
 
@@ -299,7 +307,7 @@ console.log(enumToken.name); // 'enum'
 
 The matched token object if found, undefined otherwise.
 
-### Reading Ahead
+### 2.9. Reading Ahead
 
 The following example shows how to read the next available token.
 
@@ -327,7 +335,7 @@ if (token) {
 
 The next available token object, or undefined if no token can be parsed.
 
-### Getting Substrings
+### 2.10. Getting Substrings
 
 The following example shows how to extract portions of the source code.
 
@@ -357,7 +365,7 @@ console.log(empty); // ''
 
 The substring of code between start and end positions.
 
-### Finding Next Space
+### 2.11. Finding Next Space
 
 The following example shows how to find the next whitespace character (useful for error reporting).
 
@@ -381,11 +389,13 @@ console.log(endIndex); // 10 (length of code)
 
 The index of the next space character, or the code length if no space is found.
 
-## Parsing Complex Data Structures
+## 3. Parsing Complex Data Structures
 
 The Lexer can parse complex nested data structures using the predefined token definitions:
 
-### Parsing Objects
+### 3.1. Parsing Objects
+
+The following examples demonstrate how to parse object literals using the Lexer. Objects in the schema language use key-value pairs without colons, where keys are identifiers and values can be any data type.
 
 ```typescript
 import { Lexer } from '@stackpress/idea-parser';
@@ -411,7 +421,7 @@ console.log(nestedCompiled.zoo.foo); // false
 console.log(nestedCompiled.zoo.bar); // null
 ```
 
-### Parsing Arrays
+### 3.2. Parsing Arrays
 
 ```typescript
 // Parse a simple array
@@ -434,7 +444,9 @@ console.log(objectArray[0].label); // 'US'
 console.log(objectArray[1].value); // 'Canada'
 ```
 
-### Parsing Comments
+### 3.3. Parsing Comments
+
+The following examples show how to parse different types of comments in the schema language. Comments can be either single-line comments starting with `//` or multi-line block comments enclosed in `/* */`.
 
 ```typescript
 // Parse block comments
@@ -458,11 +470,11 @@ const multilineToken = lexer.expect('note');
 console.log(multilineToken.value); // Contains newlines and nested //
 ```
 
-## Error Handling
+## 4. Error Handling
 
 The Lexer provides detailed error information when parsing fails:
 
-### Unknown Definitions
+**Unknown Definitions**
 
 ```typescript
 const lexer = new Lexer();
@@ -482,7 +494,8 @@ try {
 }
 ```
 
-### Unexpected Tokens
+**Unexpected Tokens**
+
 
 ```typescript
 import { Exception } from '@stackpress/idea-parser';
@@ -502,11 +515,11 @@ try {
 }
 ```
 
-## Predefined Token Definitions
+## 5. Predefined Token Definitions
 
 The library comes with comprehensive predefined token definitions:
 
-### Literals
+**Literals**
 
 - **`Null`**: Matches `null` keyword
 - **`Boolean`**: Matches `true` and `false`
@@ -515,7 +528,7 @@ The library comes with comprehensive predefined token definitions:
 - **`Integer`**: Matches whole numbers `42`, `-10`
 - **`Environment`**: Matches environment variables `env("VAR_NAME")`
 
-### Identifiers
+**Identifiers**
 
 - **`AnyIdentifier`**: Matches any valid identifier `[a-z_][a-z0-9_]*`
 - **`UpperIdentifier`**: Matches uppercase identifiers `[A-Z_][A-Z0-9_]*`
@@ -524,14 +537,14 @@ The library comes with comprehensive predefined token definitions:
 - **`LowerIdentifier`**: Matches lowercase identifiers `[a-z_][a-z0-9_]*`
 - **`AttributeIdentifier`**: Matches attribute identifiers `@field.input`
 
-### Structural
+**Structural**
 
 - **`Array`**: Matches array expressions `[ ... ]`
 - **`Object`**: Matches object expressions `{ ... }`
 - **`{`, `}`, `[`, `]`, `(`, `)`**: Bracket and brace tokens
 - **`!`**: Final modifier token
 
-### Whitespace and Comments
+**Whitespace and Comments**
 
 - **`whitespace`**: Matches any whitespace `\s+`
 - **`space`**: Matches spaces only
@@ -539,12 +552,12 @@ The library comes with comprehensive predefined token definitions:
 - **`note`**: Matches block comments `/* ... */`
 - **`comment`**: Matches line comments `// ...`
 
-### Data Groups
+**Data Groups**
 
 - **`scalar`**: Array of scalar types `['Null', 'Boolean', 'String', 'Float', 'Integer', 'Environment']`
 - **`data`**: Array of all data types `[...scalar, 'Object', 'Array']`
 
-## Usage with AST
+## 6. Usage with AST
 
 The Lexer is typically used by AST classes for parsing specific language constructs:
 
@@ -561,9 +574,13 @@ const enumTree = new EnumTree(lexer);
 const result = enumTree.enum(); // Parse enum using configured lexer
 ```
 
-## Advanced Usage Patterns
+## 7. Advanced Usage Patterns
 
-### Backtracking with Clone
+The following patterns demonstrate advanced techniques for using the Lexer in complex parsing scenarios. These patterns are useful for implementing sophisticated parsing logic and error recovery mechanisms.
+
+### 7.1. Backtracking with Clone
+
+Backtracking allows you to save the lexer's state and restore it if parsing fails. This is useful for trying alternative parsing strategies without losing your position in the code.
 
 ```typescript
 // Save current state for potential backtracking
@@ -580,7 +597,9 @@ try {
 }
 ```
 
-### Conditional Parsing
+### 7.2. Conditional Parsing
+
+Conditional parsing allows you to make parsing decisions based on lookahead tokens. This technique is useful for parsing languages with context-sensitive grammar rules.
 
 ```typescript
 // Parse different types based on lookahead
@@ -594,7 +613,7 @@ if (lexer.next('AnyIdentifier')) {
 }
 ```
 
-### Custom Reader Functions
+### 7.3. Custom Reader Functions
 
 Reader functions should follow this pattern:
 

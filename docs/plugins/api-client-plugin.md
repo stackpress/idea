@@ -2,19 +2,17 @@
 
 This tutorial demonstrates how to create a plugin that generates REST and GraphQL API clients from `.idea` schema files. The plugin will transform your schema models into type-safe API client libraries with full CRUD operations.
 
-## Table of Contents
+ 1. [Overview](#overview)
+ 2. [Prerequisites](#prerequisites)
+ 3. [Plugin Structure](#plugin-structure)
+ 4. [Implementation](#implementation)
+ 5. [Schema Configuration](#schema-configuration)
+ 6. [Usage Examples](#usage-examples)
+ 7. [Advanced Features](#advanced-features)
+ 8. [Best Practices](#best-practices)
+ 9. [Troubleshooting](#troubleshooting)
 
-1. [Overview](#overview)
-2. [Prerequisites](#prerequisites)
-3. [Plugin Structure](#plugin-structure)
-4. [Implementation](#implementation)
-5. [Schema Configuration](#schema-configuration)
-6. [Usage Examples](#usage-examples)
-7. [Advanced Features](#advanced-features)
-8. [Best Practices](#best-practices)
-9. [Troubleshooting](#troubleshooting)
-
-## Overview
+## 1. Overview
 
 API clients provide a convenient interface for interacting with backend services. This plugin generates type-safe API clients from your `.idea` schema, including:
 
@@ -25,7 +23,9 @@ API clients provide a convenient interface for interacting with backend services
 - **Authentication**: Built-in auth handling
 - **Error Handling**: Comprehensive error management
 
-## Prerequisites
+## 2. Prerequisites
+
+Before implementing the API client generator plugin, ensure you have the necessary development environment and dependencies. This section covers the essential requirements and setup needed to successfully create and use the plugin.
 
 - Node.js 16+ and npm/yarn
 - TypeScript 4.0+
@@ -33,7 +33,9 @@ API clients provide a convenient interface for interacting with backend services
 - Familiarity with the `@stackpress/idea-transformer` library
 - Understanding of `.idea` schema format
 
-## Plugin Structure
+## 3. Plugin Structure
+
+The plugin structure defines the core architecture and configuration interface for the API client generator. This includes the main plugin function, configuration types, and the overall organization of the generated client code.
 
 ```typescript
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -63,9 +65,13 @@ export default async function generateAPIClient(
 }
 ```
 
-## Implementation
+## 4. Implementation
 
-### Core Plugin Function
+The implementation section covers the core plugin function and supporting utilities that handle API client generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.
+
+### 4.1. Core Plugin Function
+
+The core plugin function serves as the main entry point for API client generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.
 
 ```typescript
 export default async function generateAPIClient(
@@ -120,7 +126,9 @@ export default async function generateAPIClient(
 }
 ```
 
-### Generation Functions
+### 4.2. Generation Functions
+
+The generation functions handle the creation of specific parts of the API client code. These utility functions generate file headers, imports, type definitions, base client classes, and model-specific client methods, ensuring consistent code structure and proper TypeScript typing.
 
 ```typescript
 function generateFileHeader(config: APIClientConfig): string {
@@ -676,11 +684,11 @@ function validateConfig(config: any): asserts config is APIClientConfig {
 }
 ```
 
-## Schema Configuration
+## 5. Schema Configuration
 
 Add the API Client plugin to your `.idea` schema file:
 
-```ts
+```idea
 plugin "./plugins/api-client.js" {
   output "./generated/api-client.ts"
   clientType "rest"
@@ -696,7 +704,7 @@ plugin "./plugins/api-client.js" {
 }
 ```
 
-### Configuration Options
+**Configuration Options**
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -709,11 +717,15 @@ plugin "./plugins/api-client.js" {
 | `includeValidation` | `boolean` | `false` | Include request validation |
 | `errorHandling` | `'throw'\|'return'\|'callback'` | `'return'` | Error handling strategy |
 
-## Usage Examples
+## 6. Usage Examples
 
-### Basic Schema
+This section demonstrates practical usage of the API client generator plugin with real-world examples. The examples show how to configure the plugin in schema files and how to use the generated client code in applications.
 
-```ts
+### 6.1. Basic Schema
+
+A basic schema example shows the fundamental structure needed to generate API clients. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces a functional REST API client.
+
+```idea
 enum UserRole {
   ADMIN "admin"
   USER "user"
@@ -747,7 +759,9 @@ plugin "./plugins/api-client.js" {
 }
 ```
 
-### Generated Client Usage
+### 6.2. Generated Client Usage
+
+The generated client provides a type-safe interface for interacting with your API endpoints. This example demonstrates how to initialize the client, set authentication, and perform common CRUD operations with proper error handling and TypeScript support.
 
 ```typescript
 import APIClient from './api-client';
@@ -800,9 +814,11 @@ async function example() {
 }
 ```
 
-## Advanced Features
+## 7. Advanced Features
 
-### Authentication Strategies
+Advanced features extend the basic API client functionality with sophisticated authentication, error handling, request management, and customization options. These features enable production-ready API clients that can handle complex scenarios and enterprise requirements.
+
+### 7.1. Authentication Strategies
 
 ```typescript
 // Bearer token authentication
@@ -830,7 +846,9 @@ authentication: {
 }
 ```
 
-### Error Handling Strategies
+### 7.2. Error Handling Strategies
+
+Error handling strategies determine how the API client responds to and manages different types of errors. The plugin supports multiple approaches including returning errors in responses, throwing exceptions, and using callback functions for flexible error management.
 
 ```typescript
 // Return errors in response (default)
@@ -855,7 +873,9 @@ const response = await client.user.getById('123', {
 });
 ```
 
-### Request Cancellation
+### 7.3. Request Cancellation
+
+Request cancellation allows you to abort ongoing API requests when they are no longer needed. This is essential for preventing unnecessary network traffic and improving application performance, especially in scenarios with user navigation or component unmounting.
 
 ```typescript
 // Using AbortController for request cancellation
@@ -869,7 +889,9 @@ const response = await client.user.getAll({}, {
 controller.abort();
 ```
 
-### Custom Headers
+### 7.4. Custom Headers
+
+Custom headers enable you to add additional metadata to API requests for features like localization, custom authentication, tracking, or API versioning. The client supports both global and per-request header configuration.
 
 ```typescript
 // Add custom headers to requests
@@ -881,9 +903,13 @@ const response = await client.user.getById('123', {
 });
 ```
 
-## Best Practices
+## 8. Best Practices
 
-### 1. Type Safety
+Best practices ensure your API client implementation is maintainable, reliable, and follows industry standards. These guidelines cover type safety, error handling, performance optimization, and code organization for production-ready applications.
+
+### 8.1. Type Safety
+
+Type safety is crucial for preventing runtime errors and improving developer experience. Always use the generated TypeScript types and interfaces to ensure compile-time validation and better IDE support with autocomplete and error detection.
 
 ```typescript
 // Always use generated types
@@ -903,7 +929,9 @@ function handleUserResponse(response: APIResponse<User>) {
 }
 ```
 
-### 2. Error Handling
+### 8.2. Error Handling
+
+Proper error handling ensures your application can gracefully handle API failures, validation errors, and network issues. Implement centralized error handling patterns and provide meaningful feedback to users while logging appropriate details for debugging.
 
 ```typescript
 // Centralized error handling
@@ -928,7 +956,9 @@ const response = await client.user.create(userData);
 APIErrorHandler.handle(response);
 ```
 
-### 3. Request Interceptors
+### 8.3. Request Interceptors
+
+Request interceptors allow you to modify requests before they are sent or responses before they are processed. This is useful for adding logging, authentication tokens, request transformation, or implementing cross-cutting concerns like analytics.
 
 ```typescript
 // Extend base client for custom behavior
@@ -949,7 +979,9 @@ class CustomAPIClient extends APIClient {
 }
 ```
 
-### 4. Caching Strategy
+### 8.4. Caching Strategy
+
+Implementing a caching strategy reduces unnecessary API calls and improves application performance. Consider caching frequently accessed data with appropriate expiration times and cache invalidation strategies for data consistency.
 
 ```typescript
 // Simple in-memory cache
@@ -978,9 +1010,13 @@ class CachedAPIClient extends APIClient {
 }
 ```
 
-## Troubleshooting
+## 9. Troubleshooting
 
-### Common Issues
+This section addresses common issues and debugging techniques when working with the generated API clients. Understanding these solutions helps resolve typical problems encountered during development and deployment.
+
+### 9.1. Common Issues
+
+Common issues include CORS errors, authentication failures, and network timeouts. These problems often arise from configuration mismatches, expired tokens, or network connectivity issues that can be resolved with proper debugging and configuration.
 
 1. **CORS Errors**
    ```typescript
@@ -1030,7 +1066,9 @@ class CachedAPIClient extends APIClient {
    }
    ```
 
-### Debugging Tips
+### 9.2. Debugging Tips
+
+Debugging tips help identify and resolve issues during development and production. These techniques include request logging, response validation, and monitoring tools that provide visibility into API client behavior and performance.
 
 1. **Enable Request Logging**
    ```typescript

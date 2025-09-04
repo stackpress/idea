@@ -1,6 +1,6 @@
 # Transformer
 
-A class for loading, processing, and transforming schema files with plugin support and schema merging capabilities.
+A class for loading, processing, and transforming schema files with plugin support and schema merging capabilities. The Transformer class serves as the core component of the idea-transformer library, providing comprehensive functionality for schema processing, plugin execution, and file management.
 
 ```typescript
 import Transformer from '@stackpress/idea-transformer';
@@ -10,7 +10,18 @@ const schema = await transformer.schema();
 await transformer.transform();
 ```
 
-## Overview
+ 1. [Overview](#1-overview)
+ 2. [Loading a Transformer](#2-loading-a-transformer)
+ 3. [Properties](#3-properties)
+ 4. [Methods](#4-methods)
+ 5. [Usage Examples](#5-usage-examples)
+ 6. [Error Scenarios](#6-error-scenarios)
+ 7. [Best Practices](#7-best-practices)
+ 8. [Integration with Other Tools](#8-integration-with-other-tools)
+
+## 1. Overview
+
+The Transformer class provides a comprehensive solution for processing schema files and executing transformations. This section outlines the core capabilities and responsibilities of the Transformer class within the idea-transformer ecosystem.
 
 The `Transformer` class is the core component of the idea-transformer library. It handles:
 
@@ -19,11 +30,9 @@ The `Transformer` class is the core component of the idea-transformer library. I
 - Executing plugins defined in the schema
 - Managing file dependencies and imports
 
-## Static Methods
+## 2. Loading a Transformer
 
-The following methods can be accessed directly from the Transformer class.
-
-### Loading a Transformer
+The load method creates a new Transformer instance configured with the specified input file and options. This is the primary way to create a transformer and begin working with schema files.
 
 The following example shows how to create a new Transformer instance.
 
@@ -51,7 +60,11 @@ const transformer = await Transformer.load('./schema.idea', {
 
 A promise that resolves to a new Transformer instance configured with the specified input file and options.
 
-## Properties
+## 3. Properties
+
+The properties section describes the instance variables available on Transformer objects. These properties provide access to the underlying file system operations and configuration details needed for schema processing.
+
+**Properties**
 
 The following properties are available when instantiating a Transformer.
 
@@ -60,11 +73,13 @@ The following properties are available when instantiating a Transformer.
 | `loader` | `FileLoader` | File system loader for handling file operations |
 | `input` | `string` | Absolute path to the input schema file |
 
-## Methods
+## 4. Methods
 
-The following methods are available when instantiating a Transformer.
+The methods section covers the instance methods available on Transformer objects. These methods provide the core functionality for loading schema configurations, processing dependencies, and executing plugin transformations.
 
-### Loading Schema Configuration
+### 4.1. Loading Schema Configuration
+
+The schema method loads and processes the complete schema configuration, including all dependencies and imports. This method handles the complex process of merging multiple schema files and resolving all references.
 
 The following example shows how to load and process the schema configuration.
 
@@ -101,7 +116,9 @@ When processing `use` directives, the transformer applies these merging rules:
    - Child columns are prepended to parent columns
    - Parent attributes take precedence over child attributes
 
-### Transforming with Plugins
+### 4.2. Transforming with Plugins
+
+The transform method executes all plugins defined in the schema configuration. This method coordinates the plugin execution process, providing each plugin with the necessary context and handling any errors that occur during transformation.
 
 The following example shows how to execute all plugins defined in the schema.
 
@@ -150,9 +167,13 @@ Each plugin receives a context object with the following properties:
 }
 ```
 
-## Usage Examples
+## 5. Usage Examples
 
-### Basic Schema Loading
+This section provides practical examples of how to use the Transformer class in various scenarios. These examples demonstrate common patterns and best practices for working with schema files, plugins, and transformations.
+
+### 5.1. Basic Schema Loading
+
+Basic schema loading demonstrates the fundamental workflow for loading and accessing schema configurations. This example shows how to create a transformer instance and retrieve different parts of the processed schema.
 
 ```typescript
 import Transformer from '@stackpress/idea-transformer';
@@ -166,7 +187,9 @@ console.log('Enums:', Object.keys(schema.enum || {}));
 console.log('Types:', Object.keys(schema.type || {}));
 ```
 
-### Working with Multiple Schema Files
+### 5.2. Working with Multiple Schema Files
+
+Working with multiple schema files shows how the Transformer handles complex schema hierarchies with imports and dependencies. This example demonstrates how the use directive enables modular schema organization.
 
 ```typescript
 // main.idea
@@ -189,7 +212,9 @@ console.log(schema.type?.Profile);  // Available from shared/types.idea
 console.log(schema.enum?.UserRole); // Available from shared/enums.idea
 ```
 
-### Plugin Development and Execution
+### 5.3. Plugin Development and Execution
+
+Plugin development and execution demonstrates how to create and use plugins with the Transformer. This example shows both the schema configuration and plugin implementation, illustrating the complete plugin workflow.
 
 ```typescript
 // schema.idea
@@ -230,7 +255,9 @@ await transformer.transform({
 });
 ```
 
-### Error Handling
+### 5.4. Error Handling
+
+Error handling examples show how to properly catch and handle different types of errors that can occur during schema processing and transformation. This includes both expected errors from the idea-parser and unexpected runtime errors.
 
 ```typescript
 import { Exception } from '@stackpress/idea-parser';
@@ -249,7 +276,9 @@ try {
 }
 ```
 
-### Custom File System
+### 5.5. Custom File System
+
+Custom file system usage demonstrates how to configure the Transformer to work with different file system implementations. This is useful for testing, custom storage backends, or specialized deployment scenarios.
 
 ```typescript
 import { NodeFS } from '@stackpress/lib';
@@ -262,9 +291,13 @@ const transformer = await Transformer.load('./schema.idea', {
 });
 ```
 
-## Error Scenarios
+## 6. Error Scenarios
 
-### File Not Found
+This section covers common error conditions that can occur when using the Transformer class. Understanding these scenarios helps developers implement proper error handling and debugging strategies.
+
+### 6.1. File Not Found
+
+File not found errors occur when the specified schema file doesn't exist or isn't accessible. This section shows how these errors are reported and how to handle them appropriately.
 
 ```typescript
 // Throws: "Input file /path/to/nonexistent.idea does not exist"
@@ -272,7 +305,9 @@ const transformer = await Transformer.load('./nonexistent.idea');
 await transformer.schema(); // Error thrown here
 ```
 
-### No Plugins Defined
+### 6.2. No Plugins Defined
+
+No plugins defined errors occur when attempting to execute transformations on schemas that don't have any plugin configurations. This section explains when this error occurs and how to handle it.
 
 ```typescript
 // If schema has no plugins defined
@@ -280,7 +315,9 @@ const transformer = await Transformer.load('./schema-without-plugins.idea');
 await transformer.transform(); // Throws: "No plugins defined in schema file"
 ```
 
-### Invalid Plugin Module
+### 6.3. Invalid Plugin Module
+
+Invalid plugin module scenarios occur when plugin files exist but don't export the expected function interface. This section covers how the Transformer handles these situations and what developers should expect.
 
 ```typescript
 // If plugin file doesn't export a function
@@ -288,11 +325,15 @@ const transformer = await Transformer.load('./schema.idea');
 await transformer.transform(); // Plugin is silently skipped if not a function
 ```
 
-## Best Practices
+## 7. Best Practices
 
-### Schema Organization
+This section outlines recommended approaches for using the Transformer class effectively. Following these practices helps ensure reliable, maintainable, and efficient schema processing workflows.
 
-```ts
+### 7.1. Schema Organization
+
+Schema organization best practices help maintain clean, modular, and reusable schema files. This section provides guidance on structuring schema hierarchies and managing dependencies effectively.
+
+```idea
 // Organize schemas hierarchically
 // shared/base.idea - Common types and enums
 // modules/user.idea - User-specific models
@@ -308,7 +349,9 @@ model Application {
 }
 ```
 
-### Plugin Development
+### 7.2. Plugin Development
+
+Plugin development best practices ensure that plugins are robust, reliable, and integrate well with the Transformer ecosystem. This section covers validation, error handling, and proper use of the plugin context.
 
 ```typescript
 // Always validate plugin configuration
@@ -329,7 +372,9 @@ export default async function myPlugin({ config, schema, transformer, cwd }) {
 }
 ```
 
-### Error Recovery
+### 7.3. Error Recovery
+
+Error recovery strategies help build resilient applications that can handle schema processing failures gracefully. This section demonstrates patterns for implementing robust error handling and recovery mechanisms.
 
 ```typescript
 // Implement graceful error handling
@@ -346,9 +391,13 @@ async function processSchema(schemaPath) {
 }
 ```
 
-## Integration with Other Tools
+## 8. Integration with Other Tools
 
-### Build Systems
+This section demonstrates how to integrate the Transformer class with other development tools and workflows. These examples show practical applications in build systems, testing frameworks, and development environments.
+
+### 8.1. Build Systems
+
+Build system integration shows how to incorporate schema transformation into automated build processes. This enables continuous generation of code, documentation, and other artifacts from schema definitions.
 
 ```typescript
 // Integration with build tools
@@ -364,7 +413,9 @@ export async function buildSchemas(inputDir, outputDir) {
 }
 ```
 
-### Testing
+### 8.2. Testing
+
+Testing integration demonstrates how to write tests for schema transformations and validate that schemas are processed correctly. This is essential for maintaining schema quality and catching regressions.
 
 ```typescript
 // Testing schema transformations

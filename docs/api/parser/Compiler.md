@@ -2,17 +2,23 @@
 
 The Compiler class provides static methods for converting Abstract Syntax Tree (AST) tokens into structured JSON configurations. It serves as the bridge between parsed tokens and the final JSON output.
 
+ 1. [Static Methods](#1-static-methods)
+ 2. [Error Handling](#2-error-handling)
+ 3. [Type Processing](#3-type-processing)
+
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
 ```
 
-## Static Methods
+## 1. Static Methods
 
 The following methods can be accessed directly from the Compiler class.
 
-### Converting Array Tokens
+### 1.1. Converting Array Tokens
 
-The following example shows how to compile array tokens into actual arrays.
+The `array()` method compiles array tokens into actual JavaScript arrays.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -42,9 +48,11 @@ console.log(result); // ['value1', 'value2', 'value3']
 
 An array containing the compiled elements.
 
-### Converting Data Tokens
+### 1.2. Converting Data Tokens
 
-The following example shows how to compile various data tokens into their actual values.
+The `data()` method compiles various data tokens into their actual values, handling objects, arrays, literals, and identifiers.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -76,9 +84,11 @@ console.log(objectResult); // { name: 'John' }
 
 The compiled data value based on the token type.
 
-### Converting Enum Declarations
+### 1.3. Converting Enum Declarations
 
-The following example shows how to compile enum declarations into JSON configurations.
+The `enum()` method compiles enum declarations into JSON configurations with key-value pairs.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -112,9 +122,11 @@ console.log(config); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }
 
 A tuple containing the enum name and its configuration object.
 
-### Converting Schema to Final JSON
+### 1.4. Converting Schema to Final JSON
 
-The following example shows how to compile a schema token into a final JSON configuration.
+The `final()` method compiles a schema token into a final JSON configuration with all references resolved and removed.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -135,9 +147,11 @@ console.log(finalSchema);
 
 A `FinalSchemaConfig` object with references resolved and removed.
 
-### Converting Identifier Tokens
+### 1.5. Converting Identifier Tokens
 
-The following example shows how to resolve identifier tokens to their actual values.
+The `identifier()` method resolves identifier tokens to their actual values using the provided reference map.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -170,9 +184,11 @@ try {
 
 The resolved value from references, a template string, or throws an error.
 
-### Converting Literal Tokens
+### 1.6. Converting Literal Tokens
 
-The following example shows how to extract values from literal tokens.
+The `literal()` method extracts values from literal tokens, handling strings, numbers, booleans, and other primitive types.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -197,9 +213,11 @@ console.log(booleanLiteral); // true
 
 The literal value (string, number, boolean, etc.).
 
-### Converting Model Declarations
+### 1.7. Converting Model Declarations
 
-The following example shows how to compile model declarations into JSON configurations.
+The `model()` method compiles model declarations into JSON configurations with column definitions and metadata.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -252,9 +270,11 @@ console.log(config.columns); // Array of column configurations
 
 A tuple containing the model name and its configuration object.
 
-### Converting Object Tokens
+### 1.8. Converting Object Tokens
 
-The following example shows how to compile object tokens into actual objects.
+The `object()` method compiles object tokens into actual JavaScript objects with key-value pairs.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -283,9 +303,11 @@ console.log(result); // { name: 'John', age: 30 }
 
 An object with compiled key-value pairs.
 
-### Converting Plugin Declarations
+### 1.9. Converting Plugin Declarations
 
-The following example shows how to compile plugin declarations into JSON configurations.
+The `plugin()` method compiles plugin declarations into JSON configurations with plugin paths and settings.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -318,9 +340,11 @@ console.log(config); // { provider: 'postgresql' }
 
 A tuple containing the plugin name and its configuration object.
 
-### Converting Prop Declarations
+### 1.10. Converting Prop Declarations
 
-The following example shows how to compile prop declarations into JSON configurations.
+The `prop()` method compiles prop declarations into JSON configurations for reusable property definitions.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -355,9 +379,11 @@ console.log(config); // { type: 'text', format: 'lowercase' }
 
 A tuple containing the prop name and its configuration object.
 
-### Converting Schema Declarations
+### 1.11. Converting Schema Declarations
 
-The following example shows how to compile complete schema tokens into JSON configurations.
+The `schema()` method compiles complete schema tokens into JSON configurations containing all declaration types.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -384,9 +410,11 @@ console.log(finalizedConfig);
 
 A `SchemaConfig` object containing all compiled declarations.
 
-### Converting Type Declarations
+### 1.12. Converting Type Declarations
 
-The following example shows how to compile type declarations into JSON configurations.
+The `type()` method compiles type declarations into JSON configurations for custom data structures.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -438,9 +466,11 @@ console.log(config.columns); // Array of column configurations
 
 A tuple containing the type name and its configuration object.
 
-### Converting Use Declarations
+### 1.13. Converting Use Declarations
 
-The following example shows how to compile use (import) declarations.
+The `use()` method compiles use (import) declarations to extract import paths for schema dependencies.
+
+**Usage**
 
 ```typescript
 import { Compiler } from '@stackpress/idea-parser';
@@ -465,11 +495,15 @@ console.log(importPath); // './another.idea'
 
 The import path as a string.
 
-## Error Handling
+## 2. Error Handling
 
-The Compiler class throws `Exception` errors for various invalid conditions:
+The Compiler class throws `Exception` errors for various invalid conditions to help developers identify and fix schema issues.
 
-### Invalid Token Types
+### 2.1. Invalid Token Types
+
+The Compiler validates token types and throws descriptive errors for invalid or unexpected token structures.
+
+**Common Invalid Token Errors**
 
 ```typescript
 // Throws: "Invalid data token type"
@@ -494,7 +528,11 @@ Compiler.type({ kind: 'notAType' });
 Compiler.use({ type: 'NotAnImportDeclaration' });
 ```
 
-### Missing Required Properties
+### 2.2. Missing Required Properties
+
+The Compiler validates that required properties are present in declaration tokens.
+
+**Missing Properties Example**
 
 ```typescript
 // Throws: "Expecting a columns property"
@@ -507,33 +545,45 @@ Compiler.model({
 });
 ```
 
-### Unknown References
+### 2.3. Unknown References
+
+The Compiler validates that all identifier references can be resolved using the provided reference map.
+
+**Unknown Reference Example**
 
 ```typescript
 // Throws: "Unknown reference MyProp"
 Compiler.identifier({ name: 'MyProp' }, {});
 ```
 
-### Duplicate Declarations
+### 2.4. Duplicate Declarations
+
+The Compiler detects and prevents duplicate declarations within the same schema.
+
+**Duplicate Declaration Example**
 
 ```typescript
 // Throws: "Duplicate MyEnum" when compiling schema with duplicate names
 Compiler.schema(schemaWithDuplicates);
 ```
 
-## Type Processing
+## 3. Type Processing
 
-The Compiler automatically processes type information for models and types:
+The Compiler automatically processes type information for models and types, handling various type modifiers and transformations.
 
-### Type Modifiers
+### 3.1. Type Modifiers
 
-- **Optional types**: `String?` → `{ type: 'String', required: false }`
-- **Array types**: `String[]` → `{ type: 'String', multiple: true }`
-- **Combined**: `String[]?` → `{ type: 'String', required: false, multiple: true }`
+The Compiler recognizes and processes type modifiers to generate appropriate configuration objects:
 
-### Column Configuration
+ - **Optional types**: `String?` → `{ type: 'String', required: false }`
+ - **Array types**: `String[]` → `{ type: 'String', multiple: true }`
+ - **Combined**: `String[]?` → `{ type: 'String', required: false, multiple: true }`
 
-Models and types are converted from object format to array format to preserve column order:
+### 3.2. Column Configuration
+
+Models and types are converted from object format to array format to preserve column order and provide consistent structure.
+
+**Format Transformation**
 
 ```typescript
 // Input object format
@@ -553,9 +603,11 @@ Models and types are converted from object format to array format to preserve co
 }
 ```
 
-## Usage with AST
+### 3.3. Usage with AST
 
-The Compiler is typically used in conjunction with AST classes:
+The Compiler is typically used in conjunction with AST classes to parse and compile schema components.
+
+**Integration Example**
 
 ```typescript
 import { Compiler, EnumTree, ModelTree, SchemaTree } from '@stackpress/idea-parser';
