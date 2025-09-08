@@ -3,10 +3,9 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useState } from 'react';
 import { useLanguage } from 'stackpress/view/client';
 //docs
-import { H1, H2, H3, P, C, H, Nav } from '../../components/index.js';
+import { H1, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 

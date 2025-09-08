@@ -21,7 +21,6 @@ export function Head(props: LayoutHeadProps) {
   const themeColor = theme === 'dark' ? 'bg-gray-600' : 'bg-orange-600';
   const themeIcon = theme === 'dark' ? 'fa-moon' : 'fa-sun';
   return (
-
     <header className="theme-bg-bg1 theme-bc-bd0 duration-200 absolute px-h-60 px-l-0 px-r-0 px-t-0 border-b">
       <div className="flex align-middle items-center px-px-20 px-h-100-0">
         <a className="theme-tx1 flex items-center no-underline px-mr-10" href="/">
