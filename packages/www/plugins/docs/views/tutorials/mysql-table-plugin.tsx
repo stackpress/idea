@@ -8,7 +8,7 @@ import { useLanguage } from 'stackpress/view/client';
 import { H1, H2, H3, P, C, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 import Code from '../../components/Code.js';
-import {Table, Thead, Trow, Tcol} from 'frui/element/Table';
+import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -398,7 +398,7 @@ plugin "./plugins/graphql-schema.js" {
   includeQueries true
   includeMutations true
 }`,
-`# Custom Scalars
+  `# Custom Scalars
 scalar DateTime
 scalar JSON
 
@@ -689,7 +689,7 @@ export function Body() {
           <Trow>
             <Tcol><C>includeQueries</C></Tcol>
             <Tcol><C>boolean</C></Tcol>
-            <Tcol><C>false</C></Tcol>  
+            <Tcol><C>false</C></Tcol>
             <Tcol>Generate Query type with CRUD operations</Tcol>
           </Trow>
           <Trow>
@@ -720,29 +720,29 @@ export function Body() {
       </section>
 
       <section id="6-advanced-ts-morph-features">
-      <H1>Usage Examples</H1>
-      <P>
-        Usage examples demonstrate practical applications of the GraphQL schema generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated GraphQL schemas integrate into development workflows.
-      </P>
+        <H1>Usage Examples</H1>
+        <P>
+          Usage examples demonstrate practical applications of the GraphQL schema generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated GraphQL schemas integrate into development workflows.
+        </P>
 
-      <H2>6.1. Basic Schema</H2>
-      <P>
-        A basic schema example shows the fundamental structure needed to generate GraphQL type definitions. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces comprehensive GraphQL schemas.
-      </P>
+        <H2>6.1. Basic Schema</H2>
+        <P>
+          A basic schema example shows the fundamental structure needed to generate GraphQL type definitions. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces comprehensive GraphQL schemas.
+        </P>
 
-      <Code copy language='idea' className='bg-black text-white'>
-        {basicSchemaExample[0]}
-      </Code>
+        <Code copy language='idea' className='bg-black text-white'>
+          {basicSchemaExample[0]}
+        </Code>
 
-      <H2>6.2. Generated Output</H2>
-      <P>
-      The generated output demonstrates the GraphQL schema produced by the plugin from the basic schema example. This shows how schema definitions are transformed into proper GraphQL type definitions with full type safety and operation support.
-      </P>
+        <H2>6.2. Generated Output</H2>
+        <P>
+          The generated output demonstrates the GraphQL schema produced by the plugin from the basic schema example. This shows how schema definitions are transformed into proper GraphQL type definitions with full type safety and operation support.
+        </P>
 
-      <Code copy language='graphql' className='bg-black text-white'>
-        {basicSchemaExample[1]}
-      </Code>
-     
+        <Code copy language='graphql' className='bg-black text-white'>
+          {basicSchemaExample[1]}
+        </Code>
+
       </section>
 
       <section id="7-advanced-features">
@@ -887,7 +887,7 @@ export function Body() {
           This tutorial provides a comprehensive foundation for creating GraphQL schema generators from .idea files. The generated schemas can be used with any GraphQL server implementation like Apollo Server, GraphQL Yoga, or others.
         </P>
       </section>
-      
+
 
 
       <Nav
