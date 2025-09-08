@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StackPress - Open Source on the Edge of Technology</title>
+  <meta name="description" content="An open source technology stack developed on the edge of technology" />
+  <meta property="og:title" content="StackPress - Open Source on the Edge of Technology" />
+  <meta property="og:description" content="An open source technology stack developed on the edge of technology" />
+  <meta property="og:image" content="https://www.stackpress.io/images/stackpress-logo.png" />
+  <meta property="og:url" content="https://www.stackpress.io/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@stackpress" />
+  <meta name="twitter:title" content="StackPress - Open Source on the Edge of Technology" />
+  <meta name="twitter:description" content="An open source technology stack developed on the edge of technology" />
+  <meta name="twitter:image" content="https://www.stackpress.io/images/stackpress-logo.png" />
+  <link rel="favicon" href="https://www.stackpress.io/favicon.ico" />
+  <link rel="shortcut icon" type="image/png" href="https://www.stackpress.io/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    html, body {
+      background-color: #E1E8EF;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      margin: 0;
+      overflow: auto;
+      padding: 0;
+      position: relative;
+      width: 100%;
+    }
+    a {
+      text-decoration: none;
+    }
+    header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin: auto;
+      max-width: 960px;
+      padding: 20px;
+      position: relative;
+    }
+    header::before {
+      border: 1px solid#222222;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 80px;
+      right: 105px;
+    }
+    header > .icon {
+      height: 60px;
+    }
+    header .text {
+      height: 20px;
+    }
+    header h6 {
+      font-size: 14px;
+      letter-spacing: 5px;
+      margin: 10px 0 0;
+      text-transform: uppercase;
+    }
+    header .products {
+      align-items: center;
+      display: flex;
+      position: relative;
+    }
+    header .products div {
+      align-items: center;
+      background-color: #E1E8EF;
+      box-sizing: border-box;
+      display: flex;
+      margin-left: 40px;
+      padding: 5px;
+    }
+    header .products a {
+      align-items: center;
+      display: inline-flex;
+    }
+    header .products a img {
+      height: 30px;
+      margin-right: 5px;
+    }
+    header .products a span {
+      color: #222222;
+      font-size: 14px;
+      margin: 0 10px 0 0;
+    }
+    header .social {
+      align-items: center;
+      display: flex;
+      flex-grow: 1;
+      font-size: 30px;
+      justify-content: flex-end;
+      text-align: right;
+    }
+    header .social a {
+      color: #222222;
+    }
+    header .social a.npm {
+      align-items: center;
+      background-color: #CB3837;;
+      border-radius: 10000px;
+      display: inline-flex;
+      color: #FFFFFF;
+      font-size: 16px;
+      height: 30px;
+      justify-content: center;
+      margin-right: 5px;
+      width: 30px;
+    }
+    main {
+      margin: auto;
+      max-width: 960px;
+      padding-top: 20px;
+    }
+    blockquote {
+      background-color: #0C56A7;
+      border-radius: 10px;
+      color: #FFFFFF;
+      font-weight: bold;
+      margin: 0;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      background-color: #E9E9E9;
+      border: 1px solid #222222;
+      border-radius: 10px;
+      margin-top: 20px;
+      padding: 20px;
+    }
+    section div {
+      align-items: center;
+      display: flex;
+    }
+    section div img {
+      height: 30px;
+      margin-right: 10px;
+    }
+    section div h3 {
+      color: #222222;
+      padding-right: 5px;
+      text-transform: uppercase;
+    }
+    section div a {
+      color: #666666;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    section article p {
+      line-height: 24px;
+      margin-bottom: 40px;
+      margin-top: 10px;
+    }
+    section article ul {
+      line-height: 24px;
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+    footer {
+      border-top: 2px solid #222222;
+      color: #0C56A7;
+      margin: 20px auto 0;
+      max-width: 960px;
+      padding-top: 20px;
+      text-align: center;
+      
+    }
+    footer a {
+      color: #0C56A7;
+      padding: 20px 0 100px;
+    }
+    @media (max-width: 992px) {
+      header .products div {
+        margin-left: 10px;
+      }
+      header .products div:first-child {
+        margin-left: 30px;
+      }
+    }
+    @media (max-width: 960px) {
+      main {
+        margin: 0 20px;
+      }
+    }
+    @media (max-width: 848px) {
+      header .products a span {
+        display: none;
+      }
+    }
+    @media (max-width: 610px) {
+      header .products {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img class="icon" src="./images/stackpress-logo-icon.png" alt="StackPress icon" />
+    <div>
+      <img class="text" src="./images/stackpress-logo-text.png" alt="StackPress text" />
+      <h6>Foundation</h6>
+    </div>
+    <nav class="products">
+      <div>
+        <a href="/ingest">
+          <img class="icon" src="./images/ingest-logo-icon.png" alt="ingest icon" />
+          <span>Ingest</span>
+        </a>
+      </div>
+      <div>
+        <a href="/inquire">
+          <img class="icon" src="./images/inquire-logo-icon.png" alt="inquire icon" />
+          <span>Inquire</span>
+        </a>
+      </div>
+      <div>
+        <a href="/reactus">
+          <img class="icon" src="./images/reactus-logo-icon.png" alt="reactus icon" />
+          <span>Reactus</span>
+        </a>
+      </div>
+      <div>
+        <a href="/idea">
+          <img class="icon" src="./images/idea-logo-icon.png" alt="idea icon" />
+          <span>Idea</span>
+        </a>
+      </div>
+    </nav>
+    <nav class="social">
+      <a class="npm" href="https://www.npmjs.com/org/stackpress">
+        <i class="fab fa-fw fa-npm"></i>
+      </a>
+      <a href="https://github.com/stackpress">
+        <i class="fab fa-fw fa-github"></i>
+      </a>
+    </nav>
+  </header>
+  <main>
+    <blockquote>
+      > &nbsp;We are building an open source stack on the edge of technology.
+    </blockquote>
+    <section>
+      <div>
+        <img class="icon" src="./images/stackpress-logo-icon.png" alt="incept icon" />
+        <h3>Stackpress</h3>
+        <a href="https://github.com/stackpress/stackpress" target="_blank">
+          <i class="fab fa-fw fa-github"></i>
+        </a>
+        <a href="/stackpress"><i class="fas fa-fw fa-globe"></i></a>
+      </div>
+      <article>
+        <p>
+          A full stack content management framework. Build apps faster. Deploy anywhere.
+        </p>
+        <ul>
+          <li>Build apps in days, not months.</li>
+          <li>MySQL, PostGreSQL, SQLite, Neon, CockroachDB, Supabase supported</li>
+          <li>Feature rich modern admin builder generated by Ideas</li>
+          <li>Deploy to AWS Lambda, GCP Functions, Azure Functions, Vercel, Netlify</li>
+          <li>Included template engine with native web components</li>
+          <li>Included user, auth, session, API, email plugins</li>
+          <li>Event driven and pluggable design</li>
+        </ul>
+        <nav>
+          <a href="https://www.npmjs.com/package/stackpress">
+            <img src="https://img.shields.io/npm/v/stackpress.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/stackpress/blob/main/LICENSE">
+            <img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/stackpress/commits/main/">
+            <img src="https://img.shields.io/github/last-commit/stackpress/stackpress" />
+          </a>
+          <a href="https://github.com/stackpress/stackpress/blob/main/README.md#contributing">
+            <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+          </a>
+        </nav>
+      </article>
+    </section>
+    <section>
+      <div>
+        <img class="icon" src="./images/ingest-logo-icon.png" alt="ingest icon" />
+        <h3>Ingest</h3>
+        <a href="https://github.com/stackpress/ingest" target="_blank">
+          <i class="fab fa-fw fa-github"></i>
+        </a>
+        <a href="/ingest"><i class="fas fa-fw fa-globe"></i></a>
+      </div>
+      <article>
+        <p>
+          An event driven serverless framework that can be deployed on 
+          AWS, GCP, Azure, Netlify, and Vercel. A framework optimized 
+          specifically for serverless functions. Smaller footprint, 
+          and smaller builds. Publish and manage multiple containers
+          in one repo. Deploy only what was changed.
+        </p>
+        <nav>
+          <a href="https://www.npmjs.com/package/@stackpress/ingest">
+            <img alt="npm version" src="https://img.shields.io/npm/v/%40stackpress%2Fingest.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/ingest/blob/main/LICENSE">
+            <img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/ingest/commits/main/">
+            <img alt="last commit" src="https://img.shields.io/github/last-commit/stackpress/ingest" />
+          </a>
+          <a href="https://github.com/stackpress/ingest/actions">
+            <img alt="test status" src="https://img.shields.io/github/actions/workflow/status/stackpress/ingest/test.yml" />
+          </a>
+          <a href="https://coveralls.io/github/stackpress/ingest?branch=main">
+            <img alt="test coverage" src="https://coveralls.io/repos/github/stackpress/ingest/badge.svg?branch=main" />
+          </a>
+          <a href="https://github.com/stackpress/ingest/blob/main/README.md#contributing">
+            <img alt="contributing" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+          </a>
+        </nav>
+      </article>
+    </section>
+    <section>
+      <div>
+        <img class="icon" src="./images/inquire-logo-icon.png" alt="inquire icon" />
+        <h3>Inquire</h3>
+        <a href="https://github.com/stackpress/inquire" target="_blank">
+          <i class="fab fa-fw fa-github"></i>
+        </a>
+        <a href="/inquire"><i class="fas fa-fw fa-globe"></i></a>
+      </div>
+      <article>
+        <p>
+          Super lightweight generic typed SQL query builder, SQL 
+          dialects and composite engine. Schema builder, but no ORM. 
+          Bring your own database library.
+        </p>
+        <ul>
+          <li>Works with Node MySQL2</li>
+          <li>Works with Better SQLite3</li>
+          <li>Works with Node PostGres (pg)</li>
+          <li>Works with PGLite</li>
+          <li>Works with CockroachDB</li>
+          <li>Works with NeonDB</li>
+          <li>Works with Supabase</li>
+        </ul>
+        <nav>
+          <a href="https://www.npmjs.com/package/@stackpress/inquire">
+            <img alt="npm version" src="https://img.shields.io/npm/v/%40stackpress%2Finquire.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/inquire/blob/main/LICENSE">
+            <img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/inquire/commits/main/">
+            <img alt="last commit" src="https://img.shields.io/github/last-commit/stackpress/inquire" />
+          </a>
+          <a href="https://github.com/stackpress/inquire/actions">
+            <img alt="test status" src="https://img.shields.io/github/actions/workflow/status/stackpress/inquire/test.yml" />
+          </a>
+          <a href="https://coveralls.io/github/stackpress/inquire?branch=main">
+            <img alt="test coverage" src="https://coveralls.io/repos/github/stackpress/inquire/badge.svg?branch=main" />
+          </a>
+          <a href="https://github.com/stackpress/inquire/blob/main/README.md#contributing">
+            <img alt="contributing" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+          </a>
+        </nav>
+      </article>
+    </section>
+    <section>
+      <div>
+        <img class="icon" src="./images/reactus-logo-icon.png" alt="reactus icon" />
+        <h3>Reactus</h3>
+        <a href="https://github.com/stackpress/reactus" target="_blank">
+          <i class="fab fa-fw fa-github"></i>
+        </a>
+        <a href="/reactus"><i class="fas fa-fw fa-globe"></i></a>
+      </div>
+      <article>
+        <p>
+          A reactive React template engine for server and serverless 
+          frameworks for next generation server focused web applications.
+        </p>
+        <ul>
+          <li>Works with ExpressJS</li>
+          <li>Works with Fastify</li>
+          <li>Works with Hapi</li>
+          <li>Works with Koa</li>
+          <li>Works with NestJS</li>
+        </ul>
+        <nav>
+          <a href="https://www.npmjs.com/package/reactus">
+            <img alt="npm version" src="https://img.shields.io/npm/v/reactus.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/reactus/blob/main/LICENSE">
+            <img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/reactus/commits/main/">
+            <img alt="last commit" src="https://img.shields.io/github/last-commit/stackpress/reactus" />
+          </a>
+          <a href="https://github.com/stackpress/reactus/blob/main/README.md#contributing">
+            <img alt="contributing" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+          </a>
+        </nav>
+      </article>
+    </section>
+    <section>
+      <div>
+        <img class="icon" src="./images/idea-logo-icon.png" alt="idea icon" />
+        <h3>Idea</h3>
+        <a href="https://github.com/stackpress/idea" target="_blank">
+          <i class="fab fa-fw fa-github"></i>
+        </a>
+        <a href="/idea"><i class="fas fa-fw fa-globe"></i></a>
+      </div>
+      <article>
+        <p>
+          Generates app code based on a schema file. Highly pluggable. 
+          Bring your own generator. The purpose of this is to streamline 
+          and automate major parts of software development that follow 
+          a common pattern and therefore can be rendered. Some example 
+          code that can be generated using .idea files including the 
+          following.
+        </p>
+        <ul>
+          <li>Database calls with any ORM</li>
+          <li>API, REST, or GraphQL endpoints</li>
+          <li>React components</li>
+          <li>TypeScript type safety</li>
+          <li>Admin pages</li>
+          <li>more than 70% of the code you produce</li>
+        </ul>
+        <nav>
+          <a href="https://www.npmjs.com/package/@stackpress/idea">
+            <img alt="npm version" src="https://img.shields.io/npm/v/@stackpress/idea.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/idea/blob/main/LICENSE">
+            <img alt="license" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" />
+          </a>
+          <a href="https://github.com/stackpress/idea/commits/main/">
+            <img alt="last commit" src="https://img.shields.io/github/last-commit/stackpress/idea" />
+          </a>
+          <a href="https://github.com/stackpress/idea/actions">
+            <img alt="test status" src="https://img.shields.io/github/actions/workflow/status/stackpress/idea/test.yml" />
+          </a>
+          <a href="https://coveralls.io/github/stackpress/idea?branch=main">
+            <img alt="test coverage" src="https://coveralls.io/repos/github/stackpress/idea/badge.svg?branch=main" />
+          </a>
+          <a href="https://github.com/stackpress/idea/blob/main/docs/contribute.md">
+            <img alt="coverage" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" />
+          </a>
+        </nav>
+      </article>
+    </section>
+  </main>
+  <footer>
+    <i class="fas fa-fw fa-heart"></i>
+    <a href="https://www.stackpress.io/">Become a Sponsor</a>
+  </footer>
+</body>
+</html>

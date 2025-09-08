@@ -1,0 +1,52 @@
+{
+  "type": "module",
+  "name": "stackpress-with-unocss",
+  "version": "1.0.0",
+  "private": true,
+  "plugins": [
+    "./plugins/app/plugin",
+    "./plugins/docs/plugin",
+    "stackpress"
+  ],
+  "scripts": {
+    "build": "yarn build:purge && yarn build:tsx",
+    "build:purge": "rm -rf docs",
+    "build:tsx": "npx tsx build.ts",
+    "dev": "stackpress serve -v --b config/develop",
+    "emit": "stackpress emit -v --b config/develop",
+    "preview": "stackpress serve -v --b config/preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "frui": "0.1.8",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-syntax-highlighter": "15.6.1",
+    "react-toastify": "^11.0.5",
+    "stackpress": "0.6.1",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@stackpress/idea-transformer": "0.6.1",
+    "@types/chai": "5.2.1",
+    "@types/mocha": "10.0.10",
+    "@types/node": "22.14.1",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "@types/react-syntax-highlighter": "15.5.13",
+    "@vitejs/plugin-react": "4.4.1",
+    "chai": "5.2.0",
+    "dotenv-cli": "8.0.0",
+    "fast-glob": "3.3.3",
+    "mocha": "11.2.2",
+    "nyc": "17.1.0",
+    "prettier": "3.5.3",
+    "ts-mocha": "11.1.0",
+    "ts-morph": "25.0.1",
+    "ts-node": "10.9.2",
+    "tsx": "4.19.3",
+    "typescript": "5.8.3",
+    "unocss": "66.0.0",
+    "vite": "6.3.2"
+  }
+}
