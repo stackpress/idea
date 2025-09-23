@@ -3,42 +3,11 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, H3, P, C, Nav } from '../../components/index.js';
+import { H1, H2, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
-
-export function Head(props: ServerPageProps<ServerConfigProps>) {
-  //props
-  const { request, styles = [] } = props;
-  //hooks
-  const { _ } = useLanguage();
-  //variables
-  const title = _('Plugin Examples');
-  const description = _(
-    'Practical examples of common plugin implementations demonstrating real-world patterns and best practices'
-  );
-  return (
-    <>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:image" content="/images/idea-logo-icon.png" />
-      <meta property="og:url" content={request.url.pathname} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:image" content="/images/idea-logo-icon.png" />
-
-      <link rel="icon" type="image/x-icon" href="/icon.png" />
-      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
-      {styles.map((href, index) => (
-        <link key={index} rel="stylesheet" type="text/css" href={href} />
-      ))}
-    </>
-  )
-}
 
 const typescriptInterfaceGeneratorExample = [
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -207,44 +176,117 @@ function generateEnums(enums: Record<string, any>): string {
 }`
 ];
 
+export function Head(props: ServerPageProps<ServerConfigProps>) {
+  //props
+  const { request, styles = [] } = props;
+  //hooks
+  const { _ } = useLanguage();
+  //variables
+  const title = _('Plugin Examples');
+  const description = _(
+    'Practical examples of common plugin implementations ' +
+    'demonstrating real-world patterns and best practices'
+  );
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content="/images/idea-logo-icon.png" />
+      <meta property="og:url" content={request.url.pathname} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content="/images/idea-logo-icon.png" />
+
+      <link rel="icon" type="image/x-icon" href="/icon.png" />
+      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
+      {styles.map((href, index) => (
+        <link key={index} rel="stylesheet" type="text/css" href={href} />
+      ))}
+    </>
+  )
+}
+
 export function Body() {
+  //hooks
+  const { _ } = useLanguage();
+  
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Plugin Examples</H1>
-      <P>
-        This section provides practical examples of common plugin implementations. These examples demonstrate real-world patterns and best practices for creating plugins that generate TypeScript interfaces, enums, and interactive CLI tools.
-      </P>
+      <section>
+        <H1>{_('Plugin Examples')}</H1>
+        <P>
+          <Translate>
+            This section provides practical examples of common plugin 
+            implementations. These examples demonstrate real-world 
+            patterns and best practices for creating plugins that 
+            generate TypeScript interfaces, enums, and interactive 
+            CLI tools.
+          </Translate>
+        </P>
+      </section>
 
-      <H2>2.1. TypeScript Interface Generator</H2>
-      <P>
-        The TypeScript interface generator demonstrates how to create a plugin that processes schema models and types to generate TypeScript interface definitions. This example shows how to handle type mapping, optional properties, and namespace organization.
-      </P>
+      <section>
+        <H2>{_('2.1. TypeScript Interface Generator')}</H2>
+        <P>
+          <Translate>
+            The TypeScript interface generator demonstrates how to 
+            create a plugin that processes schema models and types to 
+            generate TypeScript interface definitions. This example 
+            shows how to handle type mapping, optional properties, and 
+            namespace organization.
+          </Translate>
+        </P>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {typescriptInterfaceGeneratorExample[0]}
-      </Code>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {typescriptInterfaceGeneratorExample[0]}
+        </Code>
+      </section>
 
-      <H2>2.2. Enum Generator</H2>
-      <P>
-        The enum generator plugin shows how to process schema enum definitions and convert them into TypeScript enum declarations. This example demonstrates simple schema processing and file generation patterns that can be adapted for other output formats.
-      </P>
+      <section>
+        <H2>{_('2.2. Enum Generator')}</H2>
+        <P>
+          <Translate>
+            The enum generator plugin shows how to process schema enum 
+            definitions and convert them into TypeScript enum 
+            declarations. This example demonstrates simple schema 
+            processing and file generation patterns that can be adapted 
+            for other output formats.
+          </Translate>
+        </P>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {enumGeneratorExample[0]}
-      </Code>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {enumGeneratorExample[0]}
+        </Code>
+      </section>
 
-      <H2>2.3. CLI-Interactive Plugin</H2>
-      <P>
-        The CLI-interactive plugin demonstrates how to create plugins that provide rich command-line experiences. This example shows how to use the CLI properties for user interaction, progress reporting, and adaptive behavior based on the execution context.
-      </P>
+      <section>
+        <H2>{_('2.3. CLI-Interactive Plugin')}</H2>
+        <P>
+          <Translate>
+            The CLI-interactive plugin demonstrates how to create 
+            plugins that provide rich command-line experiences. This 
+            example shows how to use the CLI properties for user 
+            interaction, progress reporting, and adaptive behavior 
+            based on the execution context.
+          </Translate>
+        </P>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {cliInteractivePluginExample[0]}
-      </Code>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {cliInteractivePluginExample[0]}
+        </Code>
+      </section>
 
       <Nav
-        prev={{ text: 'Plugin Development Guide', href: '/docs/plugin-development/plugin-development-guide' }}
-        next={{ text: 'Plugin Configuration', href: '/docs/plugin-development/plugin-configuration' }}
+        prev={{ 
+          text: _('Plugin Development Guide'), 
+          href: '/docs/plugin-development/plugin-development-guide' 
+        }}
+        next={{ 
+          text: _('Plugin Configuration'), 
+          href: '/docs/plugin-development/plugin-configuration' 
+        }}
       />
     </main>
   );

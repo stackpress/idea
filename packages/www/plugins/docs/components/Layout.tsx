@@ -16,6 +16,8 @@ import {
   useToggle
 } from 'stackpress/view/client';
 
+import '../styles/styles.css';
+
 export function LayoutHead(props: {
   open?: boolean,
   theme: string,
@@ -39,7 +41,9 @@ export function LayoutHead(props: {
   const themeColor = theme === 'dark' ? 'bg-gray-600' : 'bg-orange-600';
   const themeIcon = theme === 'dark' ? 'fa-moon' : 'fa-sun';
   return (
-    <header className={`theme-bg-bg1 duration-200 absolute px-h-60 px-r-0 px-t-0 ${full} ${left}`}>
+    <header 
+    className={`theme-bg-bg1 duration-200 absolute px-h-60 px-r-0 px-t-0 ${full} ${left} border-b border-gray-300`}
+    >
       <div className="flex items-center px-px-20 px-h-100-0">
         {toggleLeft && (
           <button className="theme-tx1 md-hidden b-0 p-0 bg-transparent text-xl" onClick={toggleLeft}>
@@ -405,7 +409,7 @@ export function LayoutRight({ children }: {
 }) {
   return (
     <aside className="duration-200 absolute px-w-220 px-b-0 px-t-0 px-t-60 px-z-100 px-r-0 rlg-hidden">
-      <div className="px-h-100-0 theme-bg-bg2 flex flex-col">
+      <div className="px-h-100-0 theme-bg-bg1 flex flex-col">
         {children}
       </div>
     </aside>

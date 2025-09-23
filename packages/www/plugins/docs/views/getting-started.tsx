@@ -4,11 +4,28 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useState } from 'react';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
 import { H1, H2, P, C, Nav } from '../components/index.js';
 import Code from '../components/Code.js';
 import Layout from '../components/Layout.js';
+
+const npmInstallCommand = 'npm i -D @stackpress/idea';
+
+const yarnInstallCommand = 'yarn add --dev @stackpress/idea';
+
+const schemaExample = `model User {
+  id String @id @default("nanoid()")
+  name String @required
+  email String @unique @required
+  created Date @default("now()")
+}
+
+plugin "./plugins/typescript-generator.js" {
+  output "./generated/types.ts"
+}`;
+
+const generateCommand = 'npx idea transform --input schema.idea';
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -17,9 +34,7 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   const { _ } = useLanguage();
   //variables
   const title = _('Getting Started');
-  const description = _(
-    'describe'
-  );
+  const description = _('describe');
   return (
     <>
       <title>{title}</title>
@@ -39,74 +54,110 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
         <link key={index} rel="stylesheet" type="text/css" href={href} />
       ))}
     </>
-  )
+  );
 }
 
 export function Body() {
   const [install, setInstall] = useState('npm');
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Getting Started</H1>
-      <P>
-        The following is a guide to get you started with Idea.
-      </P>
+      <header>
+        <H1>{_('Getting Started')}</H1>
+        <P>
+          <Translate>
+            The following is a guide to get you started with Idea.
+          </Translate>
+        </P>
+      </header>
 
-      <H2>Installation</H2>
-
-      <div className="rounded-lg px-mx-10">
-        <div className="theme-bg-bg3 flex items-center">
-          <div
-            className={`px-py-10 px-px-30 ${install === 'npm' ? 'theme-bg-bg1' : 'theme-bg-bg2'}`}
-            onClick={() => setInstall('npm')}
-          >
-            <i className="px-fs-20 fab fa-fw fa-npm" />
+      <section>
+        <H2>{_('Installation')}</H2>
+        <div className="rounded-lg px-mx-10">
+          <div className="theme-bg-bg3 flex items-center">
+            <div
+              className={`px-py-10 px-px-30 ${
+                install === 'npm' ? 'theme-bg-bg1' : 'theme-bg-bg2'
+              }`}
+              onClick={() => setInstall('npm')}
+            >
+              <i className="px-fs-20 fab fa-fw fa-npm" />
+            </div>
+            <div
+              className={`px-py-10 px-px-30 ${
+                install === 'yarn' ? 'theme-bg-bg1' : 'theme-bg-bg2'
+              }`}
+              onClick={() => setInstall('yarn')}
+            >
+              <i className="px-fs-20 fab fa-fw fa-yarn" />
+            </div>
           </div>
-          <div
-            className={`px-py-10 px-px-30 ${install === 'yarn' ? 'theme-bg-bg1' : 'theme-bg-bg2'}`}
-            onClick={() => setInstall('yarn')}
+          <Code
+            copy
+            language="bash"
+            className={`theme-bg-bg1 ${install === 'npm' ? '' : 'hidden'}`}
           >
-            <i className="px-fs-20 fab fa-fw fa-yarn" />
-          </div>
+            {npmInstallCommand}
+          </Code>
+          <Code
+            copy
+            language="bash"
+            className={`theme-bg-bg1 ${install === 'yarn' ? '' : 'hidden'}`}
+          >
+            {yarnInstallCommand}
+          </Code>
         </div>
-        <Code copy language="bash" className={`theme-bg-bg1 ${install === 'npm' ? '' : 'hidden'}`}>{
-          ' npm i -D @stackpress/idea'
-        }</Code>
-        <Code copy language="bash" className={`theme-bg-bg1 ${install === 'yarn' ? '' : 'hidden'}`}>{
-          'yarn add --dev @stackpress/idea'
-        }</Code>
-      </div>
+      </section>
 
-      <H2>Create your first schema</H2>
-      <P>Create a new file called <C>schema.idea</C></P>
+      <section>
+        <H2>{_('Create your first schema')}</H2>
+        <P>
+          <Translate>
+            Create a new file called <C>schema.idea</C>
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {schemaExample}
+        </Code>
+      </section>
 
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {`model User {
-  id String @id @default("nanoid()")
-  name String @required
-  email String @unique @required
-  created Date @default("now()")
-}
+      <section>
+        <H2>{_('Generate Code')}</H2>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {generateCommand}
+        </Code>
+      </section>
 
-plugin "./plugins/typescript-generator.js" {
-  output "./generated/types.ts"
-}
+      <section>
+        <H2>{_('Explore the Results')}</H2>
+        <P>
+          <Translate>
+            Check the generated files in your output directories!
+          </Translate>
+        </P>
+      </section>
 
-`}
-      </Code>
-
-      <H2>Generate Code</H2>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {`npx idea transform --input schema.idea
-        `}
-      </Code>
-
-      <H2>Explore the Results</H2>
-      <P>Check the generated files in your output directories!</P>
-
-      <Nav
-        prev={{ text: 'Introduction', href: '/docs/introduction' }}
-        next={{ text: 'Specifications', href: '/docs/specifications/syntax-overview' }}
-      />
+      <footer>
+        <Nav
+          prev={{
+            text: _('Introduction'),
+            href: '/docs/introduction',
+          }}
+          next={{
+            text: _('Specifications'),
+            href: '/docs/specifications/syntax-overview',
+          }}
+        />
+      </footer>
     </main>
   );
 }

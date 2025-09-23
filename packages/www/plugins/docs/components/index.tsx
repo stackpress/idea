@@ -15,7 +15,7 @@ export { Editor, Layout };
 export function Header1({ children }: { children: string }) {
   const { _ } = useLanguage();
   return (
-    <h1 className="px-fs-24 font-bold px-pt-40 px-pb-20">
+    <h1 className="px-fs-24 font-bold px-pt-30 px-pb-10">
       {_(children)}
     </h1>
   );
@@ -24,7 +24,7 @@ export function Header1({ children }: { children: string }) {
 export function Header2({ children }: { children: string }) {
   const { _ } = useLanguage();
   return (
-    <h2 className="px-fs-16 font-bold px-pt-40">
+    <h2 className="px-fs-16 font-bold px-pt-20">
       {_(children)}
     </h2>
   );
@@ -50,7 +50,7 @@ export function Header4({ children }: { children: string }) {
 
 export function Paragraph({ children }: { children: ReactNode }) {
   return (
-    <div className="px-lh-30 px-py-20 block">
+    <div className="px-lh-20 px-py-15 block">
       <Translate>{children}</Translate>
     </div>
   );
@@ -66,11 +66,11 @@ export function Highlight({ children }: { children: ReactNode }) {
   );
 }
 
-export function InlineCode({ lang = 'typescript', children }: { 
-  lang?: string, 
-  children: string 
+export function InlineCode({ lang = 'typescript', children }: {
+  lang?: string,
+  children: string
 }) {
-  const [ mounted, setMounted ] = useState(false);
+  const [mounted, setMounted] = useState(false);
   //only add highlighting when mounted
   //necessary because of problems with SSR
   useEffect(() => {
@@ -89,7 +89,9 @@ export function InlineCode({ lang = 'typescript', children }: {
               color: 'inherit',
               padding: '0'
             }}
-          >{children}</SyntaxHighlighter>
+          >
+            {children}
+          </SyntaxHighlighter>
         </span>
       </span>
     );
@@ -106,8 +108,8 @@ export function Bash({ children }: { children: string }) {
 export function Code(props: { lang?: string, children: string }) {
   const { lang = 'typescript', children } = props;
   return (
-    <CodeView 
-      copy 
+    <CodeView
+      copy
       language={lang}
       className="bg-black text-white px-mb-20 px-fs-13"
       onCopy={() => notify('success', 'Copied to clipboard')}
@@ -115,16 +117,16 @@ export function Code(props: { lang?: string, children: string }) {
   );
 }
 
-export function Link(props: { 
-  className?: string, 
-  blank?: boolean, 
-  href?: string, 
-  children: ReactNode 
+export function Link(props: {
+  className?: string,
+  blank?: boolean,
+  href?: string,
+  children: ReactNode
 }) {
   const { className = '', blank, children, ...attributes } = props;
   return (
-    <a {...attributes} 
-      target={blank? '_blank': undefined} 
+    <a {...attributes}
+      target={blank ? '_blank' : undefined}
       className={`theme-info underline ${className}`}
     >{children}</a>
   );
@@ -157,7 +159,7 @@ export function Emphasis({ children }: { children: ReactNode }) {
 export function Note({ children }: { children: ReactNode }) {
   return (
     <Alert info outline curved className="px-lh-28">
-      <i className="inline-block px-mr-5 fas fa-info-circle" /> 
+      <i className="inline-block px-mr-5 fas fa-info-circle" />
       <SS>NOTE:</SS>&nbsp;{children}
     </Alert>
   );
@@ -166,7 +168,7 @@ export function Note({ children }: { children: ReactNode }) {
 export function Congrats({ children }: { children: ReactNode }) {
   return (
     <Alert success outline curved className="px-lh-28">
-      <i className="inline-block px-mr-5 fas fa-check-circle" /> 
+      <i className="inline-block px-mr-5 fas fa-check-circle" />
       <SS>CONGRATS:</SS>&nbsp;{children}
     </Alert>
   );
@@ -175,15 +177,15 @@ export function Congrats({ children }: { children: ReactNode }) {
 export function Warn({ children }: { children: ReactNode }) {
   return (
     <Alert warning outline curved className="px-lh-24">
-      <i className="inline-block px-mr-5 fas fa-exclamation-triangle" /> 
+      <i className="inline-block px-mr-5 fas fa-exclamation-triangle" />
       <SS>WARNING:</SS>&nbsp;{children}
     </Alert>
   );
 }
 
-export function Nav({ next, prev }: { 
+export function Nav({ next, prev }: {
   next?: { text: string, href: string },
-  prev?: { text: string, href: string } 
+  prev?: { text: string, href: string }
 }) {
   const { _ } = useLanguage();
   return (
@@ -193,13 +195,13 @@ export function Nav({ next, prev }: {
           <i className="fas fa-fw fa-chevron-left" />
           {_(prev.text)}
         </a>
-      ): null}
-      {next ?(
+      ) : null}
+      {next ? (
         <a className="theme-primary flex-grow text-right px-py-40" href={next.href}>
           {_(next.text)}
           <i className="fas fa-fw fa-chevron-right" />
         </a>
-      ): null}
+      ) : null}
     </nav>
   );
 }

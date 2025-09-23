@@ -3,9 +3,9 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, P, C, H, Nav, SS } from '../../components/index.js';
+import { H1, H2, P, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
@@ -17,7 +17,11 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   //variables
   const title = _('Syntax Overview');
   const description = _(
-    'The .idea file format uses a simplified syntax that eliminates the need for traditional separators like commas (&#44;) and colons (&#58;) found in JSON or JavaScript. The parser can logically determine separations, making the syntax cleaner and more readable.'
+    'The .idea file format uses a simplified syntax that eliminates ' +
+    'the need for traditional separators like commas (&#44;) and ' +
+    'colons (&#58;) found in JSON or JavaScript. The parser can ' +
+    'logically determine separations, making the syntax cleaner ' +
+    'and more readable.'
   );
   return (
     <>
@@ -35,7 +39,12 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
       <link rel="icon" type="image/x-icon" href="/icon.png" />
       <link rel="stylesheet" type="text/css" href="/styles/global.css" />
       {styles.map((href, index) => (
-        <link key={index} rel="stylesheet" type="text/css" href={href} />
+        <link
+          key={index}
+          rel="stylesheet"
+          type="text/css"
+          href={href}
+        />
       ))}
     </>
   )
@@ -114,48 +123,106 @@ model User {
 ]
 
 export function Body() {
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Syntax Overview</H1>
-      <P>
-        The .idea file format uses a simplified syntax that eliminates the need for traditional separators like commas (&#44;) and colons (&#58;) found in JSON or JavaScript. The parser can logically determine separations, making the syntax cleaner and more readable.
-      </P>
+      <section>
+        <H1>{_('Syntax Overview')}</H1>
+        <P>
+          <Translate>
+            The .idea file format uses a simplified syntax that
+            eliminates the need for traditional separators like commas
+            (&#44;) and colons (&#58;) found in JSON or JavaScript.
+            The parser can logically determine separations, making the
+            syntax cleaner and more readable.
+          </Translate>
+        </P>
+      </section>
 
-      <H2>Key Syntax Rules</H2>
-      <ul className="px-lh-30 px-px-20">
-        <li className="list-disc"><SS>No Separators Required:</SS> The parser intelligently determines where values begin and end</li>
-        <li className="list-disc"><SS>Double Quotes Only:</SS> All strings must use double quotes (") - single quotes are not supported</li>
-        <li className="list-disc"><SS>Context Awareness:</SS> The parser understands context and can differentiate between keys, values, and nested structures</li>
-      </ul>
+      <section>
+        <H2>{_('Key Syntax Rules')}</H2>
+        <ul className="px-lh-30 px-px-20 list-disc">
+          <li>
+            <SS>{_('No Separators Required:')}</SS>
+            <Translate>
+              The parser intelligently determines where values begin
+              and end
+            </Translate>
+          </li>
+          <li>
+            <SS>{_('Double Quotes Only:')}</SS>
+            <Translate>
+              All strings must use double quotes (") - single quotes
+              are not supported
+            </Translate>
+          </li>
+          <li>
+            <SS>{_('Context Awareness:')}</SS>
+            <Translate>
+              The parser understands context and can differentiate
+              between keys, values, and nested structures
+            </Translate>
+          </li>
+        </ul>
+      </section>
 
-      <H2>Syntax Comparison</H2>
-      <P>Traditional JavaScript/JSON:</P>
-      <Code language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[0]}
-      </Code>
+      <section>
+        <H2>{_('Syntax Comparison')}</H2>
+        <P><Translate>Traditional JavaScript/JSON:</Translate></P>
+        <Code
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {examples[0]}
+        </Code>
 
-      <P>Equivalent .idea syntax:</P>
-      <Code language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[1]}
-      </Code>
+        <P><Translate>Equivalent .idea syntax:</Translate></P>
+        <Code
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {examples[1]}
+        </Code>
+      </section>
 
-      <H2>Data Types Representations</H2>
-      <Code language="javascript" className="bg-black text-white px-mx-10 px-mb-20 mt-5">
-        {examples[2]}
-      </Code>
+      <section>
+        <H2>{_('Data Types Representations')}</H2>
+        <Code
+          language="javascript"
+          className="bg-black text-white px-mb-20 mt-5"
+        >
+          {examples[2]}
+        </Code>
+      </section>
 
-      <H2>Comments</H2>
-      <P>Comments in .idea files use the standard // syntax:</P>
-      <Code language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[3]}
-      </Code>
+      <section>
+        <H2>{_('Comments')}</H2>
+        <P>
+          <Translate>
+            Comments in .idea files use the standard // syntax:
+          </Translate>
+        </P>
+        <Code
+          language="javascript"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {examples[3]}
+        </Code>
+      </section>
 
-      <Nav
-        next={{ text: 'Data Types', href: '/docs/specifications/data-types' }}
-        prev={{ text: 'Getting Started', href: '/docs/getting-started' }}
-      />
-
-
+      <footer>
+        <Nav
+          next={{
+            text: _('Data Types'),
+            href: '/docs/specifications/data-types'
+          }}
+          prev={{
+            text: _('Getting Started'),
+            href: '/docs/getting-started'
+          }}
+        />
+      </footer>
     </main>
   );
 }

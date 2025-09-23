@@ -3,43 +3,11 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, H3, P, C, Nav } from '../../components/index.js';
+import { H1, H2, H3, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
-
-export function Head(props: ServerPageProps<ServerConfigProps>) {
-  //props
-  const { request, styles = [] } = props;
-  //hooks
-  const { _ } = useLanguage();
-  //variables
-  const title = _('Getting Started');
-  const description = _(
-    'Essential information for developers who are new to plugin development with prerequisites, basic concepts, and step-by-step guidance'
-  );
-  return (
-    <>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:image" content="/images/idea-logo-icon.png" />
-      <meta property="og:url" content={request.url.pathname} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:image" content="/images/idea-logo-icon.png" />
-
-      <link rel="icon" type="image/x-icon" href="/icon.png" />
-      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
-      {styles.map((href, index) => (
-        <link key={index} rel="stylesheet" type="text/css" href={href} />
-      ))}
-    </>
-  )
-}
-
 
 const commonPluginStructureExample = [
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -65,7 +33,9 @@ export default async function myPlugin(
   const content = processSchema(schema);
   
   // 3. Write output
-  const outputPath = await transformer.loader.absolute(config.output);
+  const outputPath = await transformer.loader.absolute(
+    config.output
+  );
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.writeFile(outputPath, content, 'utf8');
   
@@ -130,14 +100,18 @@ const configurationValidationExample = [
   }
   
   if (config.format && !['json', 'yaml'].includes(config.format)) {
-    throw new Error(\`Unsupported format: \${config.format}\`);
+    throw new Error(
+      \`Unsupported format: \${config.format}\`
+    );
   }
 }`
 ];
 
 const fileOperationsExample = [
   `// ✅ Good - uses transformer's file loader
-const outputPath = await transformer.loader.absolute(config.output);
+const outputPath = await transformer.loader.absolute(
+  config.output
+);
 
 // ✅ Good - creates directories if needed
 await fs.mkdir(path.dirname(outputPath), { recursive: true });
@@ -146,7 +120,9 @@ await fs.mkdir(path.dirname(outputPath), { recursive: true });
 try {
   await fs.writeFile(outputPath, content, 'utf8');
 } catch (error) {
-  throw new Error(\`Failed to write file: \${error.message}\`);
+  throw new Error(
+    \`Failed to write file: \${error.message}\`
+  );
 }`
 ];
 
@@ -157,8 +133,13 @@ const errorHandlingExample = [
     validateConfig(props.config);
     
     // Check for required schema elements
-    if (!props.schema.model || Object.keys(props.schema.model).length === 0) {
-      console.warn('⚠️  No models found in schema. Skipping generation.');
+    if (
+      !props.schema.model || 
+      Object.keys(props.schema.model).length === 0
+    ) {
+      console.warn(
+        '⚠️  No models found in schema. Skipping generation.'
+      );
       return;
     }
     
@@ -177,7 +158,9 @@ const errorHandlingExample = [
 const schemaProcessingExample = [
   `// ✅ Good - checks for existence before processing
 if (schema.model) {
-  for (const [modelName, model] of Object.entries(schema.model)) {
+  for (const [modelName, model] of Object.entries(
+    schema.model
+  )) {
     // Process model
   }
 }
@@ -224,186 +207,391 @@ enum UserRole {
 }`
 ];
 
+export function Head(props: ServerPageProps<ServerConfigProps>) {
+  //props
+  const { request, styles = [] } = props;
+  //hooks
+  const { _ } = useLanguage();
+  //variables
+  const title = _('Getting Started');
+  const description = _(
+    'Essential information for developers who are new to plugin ' +
+    'development with prerequisites, basic concepts, and step-by-step ' +
+    'guidance'
+  );
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content="/images/idea-logo-icon.png" />
+      <meta property="og:url" content={request.url.pathname} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content="/images/idea-logo-icon.png" />
+
+      <link rel="icon" type="image/x-icon" href="/icon.png" />
+      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
+      {styles.map((href, index) => (
+        <link key={index} rel="stylesheet" type="text/css" href={href} />
+      ))}
+    </>
+  )
+}
+
 export function Body() {
+  //hooks
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Getting Started</H1>
-      <P>
-        This section provides essential information for developers who are new to plugin development. It covers prerequisites, basic concepts, and step-by-step guidance for creating your first plugin.
-      </P>
+      <section>
+        <H1>{_('Getting Started')}</H1>
+        <Translate>
+          This section provides essential information for developers who
+          are new to plugin development. It covers prerequisites, basic
+          concepts, and step-by-step guidance for creating your first
+          plugin.
+        </Translate>
+      </section>
 
-      <H2>8.1. Prerequisites</H2>
-      <P>
-        Before starting plugin development, ensure you have the necessary knowledge and tools. These prerequisites will help you understand the examples and successfully implement your own plugins.
-      </P>
+      <section>
+        <H2>{_('8.1. Prerequisites')}</H2>
+        <Translate>
+          Before starting plugin development, ensure you have the
+          necessary knowledge and tools. These prerequisites will help
+          you understand the examples and successfully implement your
+          own plugins.
+        </Translate>
 
-      <P>
-        Before starting these tutorials, make sure you have:
-      </P>
+        <Translate>
+          Before starting these tutorials, make sure you have:
+        </Translate>
 
-      <ul className="list-disc pl-6 my-4">
-        <li className="my-2">Basic understanding of TypeScript/JavaScript</li>
-        <li className="my-2">Familiarity with the <C>idea-transformer</C> plugin system</li>
-        <li className="my-2">Understanding of the target technology (MySQL, HTML/CSS, Markdown)</li>
-      </ul>
+        <ul className="list-disc pl-6 my-4">
+          <li className="my-2">
+            <Translate>
+              Basic understanding of TypeScript/JavaScript
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Familiarity with the <C>idea-transformer</C> plugin system
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Understanding of the target technology
+              (MySQL, HTML/CSS, Markdown)
+            </Translate>
+          </li>
+        </ul>
+      </section>
 
-      <H2>8.2. Plugin Development Basics</H2>
-      <P>
-        Plugin development follows consistent patterns that make it easy to create new plugins once you understand the core concepts. This section outlines the fundamental steps and patterns used across all plugin types.
-      </P>
+      <section>
+        <H2>{_('8.2. Plugin Development Basics')}</H2>
+        <Translate>
+          Plugin development follows consistent patterns that make it
+          easy to create new plugins once you understand the core
+          concepts. This section outlines the fundamental steps and
+          patterns used across all plugin types.
+        </Translate>
 
-      <P>
-        All plugins in the <C>idea-transformer</C> system follow a similar pattern:
-      </P>
+        <Translate>
+          All plugins in the <C>idea-transformer</C> system follow a
+          similar pattern:
+        </Translate>
 
-      <ol className="list-decimal pl-6 my-4">
-        <li className="my-2"><strong>Import Types:</strong> Use the provided TypeScript types for type safety</li>
-        <li className="my-2"><strong>Define Configuration:</strong> Specify what configuration options your plugin accepts</li>
-        <li className="my-2"><strong>Validate Input:</strong> Check that required configuration is provided</li>
-        <li className="my-2"><strong>Process Schema:</strong> Parse the schema and extract relevant information</li>
-        <li className="my-2"><strong>Generate Output:</strong> Create the target files or content</li>
-        <li className="my-2"><strong>Handle Errors:</strong> Provide meaningful error messages and graceful failure</li>
-      </ol>
+        <ol className="list-decimal pl-6 my-4">
+          <li className="my-2">
+            <Translate>
+              <SS>Import Types:</SS> Use the provided TypeScript
+              types for type safety
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Define Configuration:</SS> Specify what
+              configuration options your plugin accepts
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Validate Input:</SS> Check that required
+              configuration is provided
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Process Schema:</SS> Parse the schema and
+              extract relevant information
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Generate Output:</SS> Create the target files
+              or content
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Handle Errors:</SS> Provide meaningful error
+              messages and graceful failure
+            </Translate>
+          </li>
+        </ol>
+      </section>
 
-      <H2>8.3. Common Plugin Structure</H2>
-      <P>
-        The common plugin structure provides a template that can be adapted for any type of code generation. This structure ensures consistency across plugins and includes all essential components for robust plugin development.
-      </P>
+      <section>
+        <H2>{_('8.3. Common Plugin Structure')}</H2>
+        <Translate>
+          The common plugin structure provides a template that can be
+          adapted for any type of code generation. This structure
+          ensures consistency across plugins and includes all essential
+          components for robust plugin development.
+        </Translate>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {commonPluginStructureExample[0]}
-      </Code>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {commonPluginStructureExample[0]}
+        </Code>
+      </section>
 
-      <H2>8.4. Schema Structure</H2>
-      <P>
-        Understanding the schema structure is crucial for plugin development. The processed schema provides a standardized format that plugins can rely on, regardless of the original <C>.idea</C> file structure.
-      </P>
+      <section>
+        <H2>{_('8.4. Schema Structure')}</H2>
+        <Translate>
+          Understanding the schema structure is crucial for plugin
+          development. The processed schema provides a standardized
+          format that plugins can rely on, regardless of the original
+          <C>.idea</C> file structure.
+        </Translate>
 
-      <P>
-        All plugins receive a processed schema with this structure:
-      </P>
+        <Translate>
+          All plugins receive a processed schema with this structure:
+        </Translate>
 
-      <Code copy language='javascript' className='bg-black text-white'>
-        {schemaStructureExample[0]}
-      </Code>
+        <Code copy language='javascript' className='bg-black text-white'>
+          {schemaStructureExample[0]}
+        </Code>
+      </section>
 
-      <H2>8.5. Implementation Guidelines</H2>
-      <P>
-        These implementation guidelines help ensure that your plugins are reliable, maintainable, and follow established patterns. Following these guidelines will make your plugins easier to debug and extend.
-      </P>
+      <section>
+        <H2>{_('8.5. Implementation Guidelines')}</H2>
+        <Translate>
+          These implementation guidelines help ensure that your plugins
+          are reliable, maintainable, and follow established patterns.
+          Following these guidelines will make your plugins easier to
+          debug and extend.
+        </Translate>
 
-      <H3>8.5.1. Type Safety</H3>
-      <P>
-        Type safety prevents runtime errors and provides better development experiences through IDE support and compile-time error checking.
-      </P>
+        <section>
+          <H3>{_('8.5.1. Type Safety')}</H3>
+          <Translate>
+            Type safety prevents runtime errors and provides better
+            development experiences through IDE support and compile-time
+            error checking.
+          </Translate>
 
-      <P>
-        Always use the provided TypeScript types:
-      </P>
+          <Translate>
+            Always use the provided TypeScript types:
+          </Translate>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {typeSafetyExample[0]}
-      </Code>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {typeSafetyExample[0]}
+          </Code>
+        </section>
 
-      <H3>8.5.2. Configuration Validation</H3>
-      <P>
-        Configuration validation ensures that plugins receive valid input and fail early with clear error messages when configuration is incorrect.
-      </P>
+        <section>
+          <H3>{_('8.5.2. Configuration Validation')}</H3>
+          <Translate>
+            Configuration validation ensures that plugins receive valid
+            input and fail early with clear error messages when
+            configuration is incorrect.
+          </Translate>
 
-      <P>
-        Validate all required configuration upfront:
-      </P>
+          <Translate>
+            Validate all required configuration upfront:
+          </Translate>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {configurationValidationExample[0]}
-      </Code>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {configurationValidationExample[0]}
+          </Code>
+        </section>
 
-      <H3>8.5.3. File Operations</H3>
-      <P>
-        File operations should follow consistent patterns for path resolution, directory creation, and error handling to ensure compatibility with the idea transformer system.
-      </P>
+        <section>
+          <H3>{_('8.5.3. File Operations')}</H3>
+          <Translate>
+            File operations should follow consistent patterns for path
+            resolution, directory creation, and error handling to ensure
+            compatibility with the idea transformer system.
+          </Translate>
 
-      <P>
-        Use the transformer's file loader for consistent path resolution:
-      </P>
+          <Translate>
+            Use the transformer's file loader for consistent path
+            resolution:
+          </Translate>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {fileOperationsExample[0]}
-      </Code>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {fileOperationsExample[0]}
+          </Code>
+        </section>
 
-      <H3>8.5.4. Error Handling</H3>
-      <P>
-        Comprehensive error handling provides better user experiences and makes plugins more reliable in production environments.
-      </P>
+        <section>
+          <H3>{_('8.5.4. Error Handling')}</H3>
+          <Translate>
+            Comprehensive error handling provides better user experiences
+            and makes plugins more reliable in production environments.
+          </Translate>
 
-      <P>
-        Provide meaningful error messages and handle edge cases:
-      </P>
+          <Translate>
+            Provide meaningful error messages and handle edge cases:
+          </Translate>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {errorHandlingExample[0]}
-      </Code>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {errorHandlingExample[0]}
+          </Code>
+        </section>
 
-      <H3>8.5.5. Schema Processing</H3>
-      <P>
-        Schema processing should handle optional elements gracefully and provide meaningful defaults to ensure plugins work with various schema configurations.
-      </P>
+        <section>
+          <H3>{_('8.5.5. Schema Processing')}</H3>
+          <Translate>
+            Schema processing should handle optional elements gracefully
+            and provide meaningful defaults to ensure plugins work with
+            various schema configurations.
+          </Translate>
 
-      <P>
-        Handle optional schema elements gracefully:
-      </P>
+          <Translate>
+            Handle optional schema elements gracefully:
+          </Translate>
 
-      <Code copy language='typescript' className='bg-black text-white'>
-        {schemaProcessingExample[0]}
-      </Code>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {schemaProcessingExample[0]}
+          </Code>
+        </section>
+      </section>
 
-      <H2>8.6. Usage in Schema Files</H2>
-      <P>
-        This section demonstrates how to use plugins within <C>.idea</C> schema files, showing the declarative syntax for plugin configuration and how multiple plugins can work together to generate comprehensive outputs.
-      </P>
+      <section>
+        <H2>{_('8.6. Usage in Schema Files')}</H2>
+        <Translate>
+          This section demonstrates how to use plugins within
+          <C>.idea</C> schema files, showing the declarative syntax
+          for plugin configuration and how multiple plugins can work
+          together to generate comprehensive outputs.
+        </Translate>
 
-      <P>
-        To use any of these plugins in your schema file:
-      </P>
+        <Translate>
+          To use any of these plugins in your schema file:
+        </Translate>
 
-      <Code copy language='idea' className='bg-black text-white'>
-        {usageInSchemaFilesExample[0]}
-      </Code>
+        <Code copy language='idea' className='bg-black text-white'>
+          {usageInSchemaFilesExample[0]}
+        </Code>
+      </section>
 
-      <H2>8.7. Next Steps</H2>
-      <P>
-        After completing the getting started section, you'll be ready to dive into specific tutorials and start building your own plugins. These next steps will guide you toward becoming proficient in plugin development.
-      </P>
+      <section>
+        <H2>{_('8.7. Next Steps')}</H2>
+        <Translate>
+          After completing the getting started section, you'll be ready
+          to dive into specific tutorials and start building your own
+          plugins. These next steps will guide you toward becoming
+          proficient in plugin development.
+        </Translate>
 
-      <ol className="list-decimal pl-6 my-4">
-        <li className="my-2"><strong>Choose a Tutorial:</strong> Start with the tutorial that matches your immediate needs</li>
-        <li className="my-2"><strong>Follow Along:</strong> Each tutorial provides step-by-step instructions with complete code examples</li>
-        <li className="my-2"><strong>Customize:</strong> Adapt the examples to your specific requirements</li>
-        <li className="my-2"><strong>Extend:</strong> Use the patterns learned to create your own custom plugins</li>
-      </ol>
+        <ol className="list-decimal pl-6 my-4">
+          <li className="my-2">
+            <Translate>
+              <SS>Choose a Tutorial:</SS> Start with the tutorial
+              that matches your immediate needs
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Follow Along:</SS> Each tutorial provides
+              step-by-step instructions with complete code examples
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Customize:</SS> Adapt the examples to your
+              specific requirements
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Extend:</SS> Use the patterns learned to
+              create your own custom plugins
+            </Translate>
+          </li>
+        </ol>
+      </section>
 
-      <H2>8.8. Additional Plugin Ideas</H2>
-      <P>
-        Beyond the provided tutorials, there are many other types of plugins you can create using the patterns and techniques covered in this documentation:
-      </P>
+      <section>
+        <H2>{_('8.8. Additional Plugin Ideas')}</H2>
+        <Translate>
+          Beyond the provided tutorials, there are many other types of
+          plugins you can create using the patterns and techniques
+          covered in this documentation:
+        </Translate>
 
-      <ul className="list-disc pl-6 my-4">
-        <li className="my-2"><strong>Database Migration Generator:</strong> Create migration files for various databases</li>
-        <li className="my-2"><strong>Form Validation Generator:</strong> Generate client-side validation rules</li>
-        <li className="my-2"><strong>Mock Server Generator:</strong> Create mock API servers for testing</li>
-        <li className="my-2"><strong>Documentation Site Generator:</strong> Build complete documentation websites</li>
-        <li className="my-2"><strong>Configuration File Generator:</strong> Generate app configuration files</li>
-        <li className="my-2"><strong>Seed Data Generator:</strong> Create database seed scripts</li>
-        <li className="my-2"><strong>API Test Generator:</strong> Generate automated API test suites</li>
-      </ul>
+        <ul className="list-disc pl-6 my-4">
+          <li className="my-2">
+            <Translate>
+              <SS>Database Migration Generator:</SS> Create
+              migration files for various databases
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Form Validation Generator:</SS> Generate
+              client-side validation rules
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Mock Server Generator:</SS> Create mock API
+              servers for testing
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Documentation Site Generator:</SS> Build
+              complete documentation websites
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Configuration File Generator:</SS> Generate
+              app configuration files
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>Seed Data Generator:</SS> Create database
+              seed scripts
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              <SS>API Test Generator:</SS> Generate automated
+              API test suites
+            </Translate>
+          </li>
+        </ul>
 
-      <P>
-        Happy coding! 🚀
-      </P>
+        <Translate>
+          Happy coding! 🚀
+        </Translate>
+      </section>
 
       <Nav
-        prev={{ text: 'Advanced Tutorials', href: '/docs/plugin-development/advanced-tutorials' }}
-        next={{ text: 'Plugin Development Guide', href: '/docs/plugin-development/plugin-development-guide' }}
+        prev={{
+          text: _('Advanced Tutorials'),
+          href: '/docs/plugin-development/advanced-tutorials'
+        }}
+        next={{
+          text: _('Plugin Development Guide'),
+          href: '/docs/tutorials/tsmorph-plugin-guide'
+        }}
       />
     </main>
   );

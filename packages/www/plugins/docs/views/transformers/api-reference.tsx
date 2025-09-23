@@ -3,10 +3,9 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, H3, P, C, Nav, SS } from '../../components/index.js';
-import Code from '../../components/Code.js';
+import { H1, H2, P, C, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
@@ -18,7 +17,8 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   //variables
   const title = _('API Reference');
   const description = _(
-    'Detailed documentation for all components and interfaces in the idea-transformer library'
+    'Detailed documentation for all components and interfaces in the ' +
+    'idea-transformer library'
   );
   return (
     <>
@@ -48,12 +48,18 @@ export function Right() {
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
         {_('API Reference')}
       </h6>
-      <nav className="px-fs-14 px-lh-32">
-        <a className="text-blue-500 block cursor-pointer underline" href="/docs/transformers/pages/transformer">
-          {_('Transformer')}
+      <nav className="px-fs-14 px-lh-28 flex flex-col">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/transformers/api-references/transformer"
+        >
+          {_('1. Transformer')}
         </a>
-        <a className="text-blue-500 block cursor-pointer underline" href="/docs/transformers/pages/terminal">
-          {_('Terminal')}
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/transformers/api-references/terminal"
+        >
+          {_('2. Terminal')}
         </a>
       </nav>
     </menu>
@@ -61,75 +67,199 @@ export function Right() {
 }
 
 export function Body() {
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>API Reference</H1>
-      <P>
-        The API reference provides detailed documentation for all components and interfaces available in the idea-transformer library. This section covers the main classes and their methods for schema processing and plugin execution.
-      </P>
+      <section>
+        <H1>{_('API Reference')}</H1>
+        <P>
+          <Translate>
+            The API reference provides detailed documentation for all
+            components and interfaces available in the idea-transformer
+            library. This section covers the main classes and their methods
+            for schema processing and plugin execution.
+          </Translate>
+        </P>
+      </section>
 
-      <H2>Core Components</H2>
-      <P>
-        The core components form the foundation of the transformation system, providing the main classes and interfaces you'll use to process schemas and execute plugins.
-      </P>
+      <section>
+        <H2>{_('Core Components')}</H2>
+        <P>
+          <Translate>
+            The core components form the foundation of the transformation
+            system, providing the main classes and interfaces you'll use to
+            process schemas and execute plugins.
+          </Translate>
+        </P>
 
-      <Table className="text-left">
-        <Thead className="theme-bg-bg2">Component</Thead>
-        <Thead className="theme-bg-bg2">Description</Thead>
-        <Thead className="theme-bg-bg2">Documentation</Thead>
-        <Trow>
-          <Tcol className="font-bold text-blue-500">Transformer</Tcol>
-          <Tcol>Main class for loading and transforming schema files</Tcol>
-          <Tcol><a href="/docs/transformers/pages/transformer" className="text-blue-500 underline">View Docs</a></Tcol>
-        </Trow>
-        <Trow>
-          <Tcol className="font-bold text-blue-500">Terminal</Tcol>
-          <Tcol>Command-line interface for schema processing</Tcol>
-          <Tcol><a href="/docs/transformers/pages/terminal" className="text-blue-500 underline">View Docs</a></Tcol>
-        </Trow>
-      </Table>
+        <Table className="text-left">
+          <Trow className="theme-bg-bg1">
+            <Thead>Component</Thead>
+            <Thead>Description</Thead>
+            <Thead>Documentation</Thead>
+          </Trow>
+          <Trow>
+            <Tcol className="font-bold text-blue-500">
+              Transformer
+            </Tcol>
+            <Tcol>
+              <Translate>
+                Main class for loading and transforming schema files
+              </Translate>
+            </Tcol>
+            <Tcol>
+              <a
+                href="/docs/transformers/api-references/transformer"
+                className="text-blue-500 underline"
+              >
+                {_('View Docs')}
+              </a>
+            </Tcol>
+          </Trow>
+          <Trow className="theme-bg-bg1">
+            <Tcol className="font-bold text-blue-500">
+              {_('Terminal')}
+            </Tcol>
+            <Tcol>
+              Command-line interface for schema processing
+            </Tcol>
+            <Tcol>
+              <a
+                href="/docs/transformers/api-references/terminal"
+                className="text-blue-500 underline"
+              >
+                {_('View Docs')}
+              </a>
+            </Tcol>
+          </Trow>
+        </Table>
 
-      <H2>Key Features</H2>
-      <P>
-        The idea-transformer library offers several key features that make schema processing and code generation efficient and reliable. These features work together to provide a comprehensive transformation solution.
-      </P>
+        <H2>{_('Key Features')}</H2>
+        <P>
+          <Translate>
+            The idea-transformer library offers several key features that make
+            schema processing and code generation efficient and reliable. These
+            features work together to provide a comprehensive transformation
+            solution.
+          </Translate>
+        </P>
+      </section>
 
-      <H2>Schema Loading and Processing</H2>
-      <P>
-        The transformer provides robust schema loading capabilities that handle complex schema structures and dependencies. This includes support for modular schemas and intelligent merging strategies.
-      </P>
-      <ul className="list-disc pl-6 my-4">
-        <li className="my-2">Support for both <C>.idea</C> and <C>.json</C> schema files</li>
-        <li className="my-2">Automatic dependency resolution with <C>use</C> directives</li>
-        <li className="my-2">Intelligent schema merging based on mutability rules</li>
-        <li className="my-2">Comprehensive error handling and validation</li>
-      </ul>
+      <section>
+        <H2>{_('Schema Loading and Processing')}</H2>
+        <P>
+          <Translate>
+            The transformer provides robust schema loading capabilities that
+            handle complex schema structures and dependencies. This includes
+            support for modular schemas and intelligent merging strategies.
+          </Translate>
+        </P>
 
-      <H2>Plugin System</H2>
-      <P>
-        The plugin system enables extensible code generation through a type-safe and flexible architecture. Plugins can access the complete schema context and generate any type of output.
-      </P>
-      <ul className="list-disc pl-6 my-4">
-        <li className="my-2">Type-safe plugin development with <C>PluginProps</C> and <C>PluginWithCLIProps</C></li>
-        <li className="my-2">Access to complete schema configuration and transformation context</li>
-        <li className="my-2">CLI integration for interactive plugins</li>
-        <li className="my-2">Flexible plugin configuration system</li>
-      </ul>
+        <ul className="list-disc pl-6 my-4">
+          <li className="my-2">
+            <Translate>
+              Support for both <C>.idea</C> and <C>.json</C> schema files
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Automatic dependency resolution with <C>use</C> directives
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Intelligent schema merging based on mutability rules
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Comprehensive error handling and validation
+            </Translate>
+          </li>
+        </ul>
+      </section>
 
-      <H2>Command-Line Interface</H2>
-      <P>
-        The CLI provides convenient command-line access for integrating schema processing into build pipelines and development workflows. It supports various configuration options and batch processing capabilities.
-      </P>
-      <ul className="list-disc pl-6 my-4">
-        <li className="my-2">Simple CLI for processing schemas in build pipelines</li>
-        <li className="my-2">Configurable working directories and file extensions</li>
-        <li className="my-2">Integration with npm scripts and build tools</li>
-        <li className="my-2">Support for batch processing multiple schemas</li>
-      </ul>
+      <section>
+        <H2>{_('Plugin System')}</H2>
+        <P>
+          <Translate>
+            The plugin system enables extensible code generation through a
+            type-safe and flexible architecture. Plugins can access the
+            complete schema context and generate any type of output.
+          </Translate>
+        </P>
+
+        <ul className="list-disc pl-6 my-4">
+          <li className="my-2">
+            <Translate>
+              Type-safe plugin development with <C>PluginProps</C> and
+              <C>PluginWithCLIProps</C>
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Access to complete schema configuration and transformation
+              context
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              CLI integration for interactive plugins
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Flexible plugin configuration system
+            </Translate>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <H2>{_('Command-Line Interface')}</H2>
+        <P>
+          <Translate>
+            The CLI provides convenient command-line access for integrating
+            schema processing into build pipelines and development workflows.
+            It supports various configuration options and batch processing
+            capabilities.
+          </Translate>
+        </P>
+
+        <ul className="list-disc pl-6 my-4">
+          <li className="my-2">
+            <Translate>
+              Simple CLI for processing schemas in build pipelines
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Configurable working directories and file extensions
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Integration with npm scripts and build tools
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Support for batch processing multiple schemas
+            </Translate>
+          </li>
+        </ul>
+      </section>
 
       <Nav
-        prev={{ text: 'Introduction', href: '/docs/transformers/introduction' }}
-        next={{ text: 'Architecture', href: '/docs/transformers/architecture' }}
+        prev={{
+          text: _('Introduction'),
+          href: '/docs/transformers/introduction'
+        }}
+        next={{
+          text: _('Architecture'),
+          href: '/docs/transformers/architecture'
+        }}
       />
     </main>
   );

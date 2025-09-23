@@ -3,42 +3,11 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
 import { H1, H2, H3, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
-
-export function Head(props: ServerPageProps<ServerConfigProps>) {
-  //props
-  const { request, styles = [] } = props;
-  //hooks
-  const { _ } = useLanguage();
-  //variables
-  const title = _('Examples');
-  const description = _(
-    'Practical examples of using the idea-transformer library for common code generation tasks'
-  );
-  return (
-    <>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:image" content="/images/icon.png" />
-      <meta property="og:url" content={request.url.pathname} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:image" content="/images/icon.png" />
-
-      <link rel="icon" type="image/x-icon" href="/icon.png" />
-      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
-      {styles.map((href, index) => (
-        <link key={index} rel="stylesheet" type="text/css" href={href} />
-      ))}
-    </>
-  )
-}
 
 const schemaExample = [
   `// schema.idea
@@ -66,7 +35,36 @@ plugin "./generate-types.js" {
 ];
 
 const pluginExample = [
-  '// generate-types.js\nexport default async function generateTypes({ schema, config, transformer }) {\n  let content = \'\';\n  \n  // Generate enums\n  if (schema.enum) {\n    for (const [name, enumDef] of Object.entries(schema.enum)) {\n      content += `export enum ${name} {\\n`;\n      for (const [key, value] of Object.entries(enumDef)) {\n        content += `  ${key} = "${value}",\\n`;\n      }\n      content += \'}\\n\\n\';\n    }\n  }\n  \n  // Generate interfaces\n  if (schema.model) {\n    for (const [name, model] of Object.entries(schema.model)) {\n      content += `export interface ${name} {\\n`;\n      for (const column of model.columns) {\n        const optional = column.required ? \'\' : \'?\';\n        content += `  ${column.name}${optional}: ${mapType(column.type)};\\n`;\n      }\n      content += \'}\\n\\n\';\n    }\n  }\n  \n  const outputPath = await transformer.loader.absolute(config.output);\n  await writeFile(outputPath, content);\n}'
+  `// generate-types.js
+export default async function generateTypes({ schema, config, transformer }) {
+  let content = '';
+  
+  // Generate enums
+  if (schema.enum) {
+    for (const [name, enumDef] of Object.entries(schema.enum)) {
+      content += \`export enum \${name} {\\n\`;
+      for (const [key, value] of Object.entries(enumDef)) {
+        content += \`  \${key} = "\${value}",\\n\`;
+      }
+      content += '}\\n\\n';
+    }
+  }
+  
+  // Generate interfaces
+  if (schema.model) {
+    for (const [name, model] of Object.entries(schema.model)) {
+      content += \`export interface \${name} {\\n\`;
+      for (const column of model.columns) {
+        const optional = column.required ? '' : '?';
+        content += \`  \${column.name}\${optional}: \${mapType(column.type)};\\n\`;
+      }
+      content += '}\\n\\n';
+    }
+  }
+  
+  const outputPath = await transformer.loader.absolute(config.output);
+  await writeFile(outputPath, content);
+}`
 ];
 
 const cliExample = [
@@ -79,41 +77,105 @@ const cliExample = [
 }`
 ];
 
+
+export function Head(props: ServerPageProps<ServerConfigProps>) {
+  //props
+  const { request, styles = [] } = props;
+  //hooks
+  const { _ } = useLanguage();
+  //variables
+  const title = _('Examples');
+  const description = _(
+    'Practical examples of using the idea-transformer library for ' +
+    'common code generation tasks'
+  );
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content="/images/icon.png" />
+      <meta property="og:url" content={request.url.pathname} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content="/images/icon.png" />
+
+      <link rel="icon" type="image/x-icon" href="/icon.png" />
+      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
+      {styles.map((href, index) => (
+        <link key={index} rel="stylesheet" type="text/css" href={href} />
+      ))}
+    </>
+  )
+}
+
 export function Body() {
+  //hooks
+  const { _ } = useLanguage();
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Examples</H1>
-      <P>
-        This section provides practical examples of using the idea-transformer library for common code generation tasks. These examples demonstrate real-world usage patterns and best practices.
-      </P>
+      <section>
+        <H1>{_('Examples')}</H1>
+        <P>
+          <Translate>
+            This section provides practical examples of using the
+            idea-transformer library for common code generation tasks. These
+            examples demonstrate real-world usage patterns and best practices.
+          </Translate>
+        </P>
+      </section>
 
-      <H2>TypeScript Interface Generation</H2>
-      <P>
-        This example shows how to create a plugin that generates TypeScript interfaces from schema models. The example includes both the schema definition and the plugin implementation.
-      </P>
+      <section>
+        <H2>{_('TypeScript Interface Generation')}</H2>
+        <P>
+          <Translate>
+            This example shows how to create a plugin that generates TypeScript
+            interfaces from schema models. The example includes both the schema
+            definition and the plugin implementation.
+          </Translate>
+        </P>
+      </section>
+      
+      <section>
 
-      <H3>Schema Definition</H3>
-      <Code copy language='idea' className='bg-black text-white'>
-        {schemaExample[0]}
-      </Code>
+        <H2>{_('Schema Definition')}</H2>
+        <Code copy language='idea' className='bg-black text-white'>
+          {schemaExample[0]}
+        </Code>
 
-      <H3>Plugin Implementation</H3>
-      <Code copy language='javascript' className='bg-black text-white'>
-        {pluginExample[0]}
-      </Code>
+        <H2>{_('Plugin Implementation')}</H2>
+        <Code copy language='javascript' className='bg-black text-white'>
+          {pluginExample[0]}
+        </Code>
+      </section>
 
-      <H2>CLI Integration</H2>
-      <P>
-        This example demonstrates how to integrate the idea-transformer CLI into your npm scripts for automated code generation during the build process.
-      </P>
-      <Code copy language='json' className='bg-black text-white'>
-        {cliExample[0]}
-      </Code>
+      <section>
+        <H2>{_('CLI Integration')}</H2>
+        <P>
+          <Translate>
+            This example demonstrates how to integrate the idea-transformer CLI
+            into your npm scripts for automated code generation during the
+            build process.
+          </Translate>
+        </P>
+        <Code copy language='json' className='bg-black text-white'>
+          {cliExample[0]}
+        </Code>
+      </section>
 
-      <Nav
-        prev={{ text: 'Common Use Cases', href: '/docs/transformers/common-use-cases' }}
-        next={{ text: 'Error Handling', href: '/docs/transformers/error-handling' }}
-      />
+      <footer>
+        <Nav
+          prev={{
+            text: _('Common Use Cases'),
+            href: '/docs/transformers/common-use-cases'
+          }}
+          next={{
+            text: _('Error Handling'),
+            href: '/docs/transformers/error-handling'
+          }}
+        />
+      </footer>
     </main>
   );
 }

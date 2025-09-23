@@ -3,9 +3,9 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, H3, P, C, H, Nav, SS } from '../../components/index.js';
+import { H1, H2, P, C, H, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
@@ -36,7 +36,12 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
       <link rel="icon" type="image/x-icon" href="/icon.png" />
       <link rel="stylesheet" type="text/css" href="/styles/global.css" />
       {styles.map((href, index) => (
-        <link key={index} rel="stylesheet" type="text/css" href={href} />
+        <link
+          key={index}
+          rel="stylesheet"
+          type="text/css"
+          href={href}
+        />
       ))}
     </>
   )
@@ -123,99 +128,150 @@ type Address @serializable @cacheable(3600) {
 ]
 
 export function Body() {
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Schema Elements</H1>
-      <H2>Attributes (@)</H2>
-      <P>
-        Attributes provide metadata and configuration for columns, types, and models. They define validation rules, UI components, relationships, and behavior. Attributes can be attached to any schema element and are processed by plugins according to their specific needs.
-      </P>
+      <H1>{_('Schema Elements')}</H1>
+      
+      <section>
+        <H2>{_('Attributes (@)')}</H2>
+        <P>
+          <Translate>
+            Attributes provide metadata and configuration for columns,
+            types, and models. They define validation rules, UI components,
+            relationships, and behavior. Attributes can be attached to any
+            schema element and are processed by plugins according to their
+            specific needs.
+          </Translate>
+        </P>
 
-      <H>
-        <SS>Note: </SS>
-        There are no reserved or pre-defined attributes in idea. You can define any arbitrary attributes in your schema. It's up to the plugins to recognize and process them.
-      </H>
+        <H>
+          <SS>{_('Note:')}</SS>
+          {_('There are no reserved or pre-defined attributes in idea. You ' +
+            'can define any arbitrary attributes in your schema. It\'s up to ' +
+            'the plugins to recognize and process them.')}
+        </H>
 
-      <H2>Attribute Syntax</H2>
-      <P>
-        Attributes always start with the at symbol (@) followed by letters, numbers, and periods. They can be expressed in several forms:
-      </P>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[0]}
-      </Code>
+        <H2>{_('Attribute Syntax')}</H2>
+        <P>
+          <Translate>
+            Attributes always start with the at symbol (@) followed by
+            letters, numbers, and periods. They can be expressed in several
+            forms
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mx-10 px-mb-20">
+          {examples[0]}
+        </Code>
 
-      <H2>Attribute Value Types</H2>
-      <P>Attributes can hold different types of values:</P>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[1]}
-      </Code>
+        <H2>{_('Attribute Value Types')}</H2>
+        <P>{_('Attributes can hold different types of values:')}</P>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mx-10 px-mb-20">
+          {examples[1]}
+        </Code>
 
-      <H2>Attribute Scope</H2>
-      <P>Attributes can be applied to different schema elements:</P>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[2]}
-      </Code>
+        <H2>{_('Attribute Scope')}</H2>
+        <P>
+          <Translate>
+            Attributes can be applied to different schema elements:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {examples[2]}
+        </Code>
+      </section>
 
-      <H2>Columns</H2>
-      <P>
-        Columns define the individual fields within models and types, specifying their data type, constraints, and behavior.
-      </P>
+      <section>
+        <H2>{_('Columns')}</H2>
+        <P>
+          <Translate>
+            Columns define the individual fields within models and types,
+            specifying their data type, constraints, and behavior.
+          </Translate>
+        </P>
 
-      <Table>
-        <Thead className="theme-bg-bg2 text-left">Types</Thead>
-        <Thead className="theme-bg-bg2 text-left">Description</Thead>
-        <Thead className="theme-bg-bg2 text-left">Example</Thead>
-        <Trow>
-          <Tcol noWrap className="text-left"><C>String</C></Tcol>
-          <Tcol className="text-left">Text data</Tcol>
-          <Tcol><C>name String</C></Tcol>
-        </Trow>
-        <Trow>
-          <Tcol noWrap className="text-left"><C>Number</C></Tcol>
-          <Tcol className="text-left">Numeric data</Tcol>
-          <Tcol><C>age Number</C></Tcol>
-        </Trow>
-        <Trow>
-          <Tcol noWrap className="text-left"><C>Boolean</C></Tcol>
-          <Tcol className="text-left">True or false values</Tcol>
-          <Tcol><C>active Boolean</C></Tcol>
-        </Trow>
-        <Trow>
-          <Tcol noWrap className="text-left"><C>Date</C></Tcol>
-          <Tcol className="text-left">Date/time values</Tcol>
-          <Tcol><C>created Date</C></Tcol>
-        </Trow>
-        <Trow>
-          <Tcol noWrap className="text-left"><C>JSON</C></Tcol>
-          <Tcol className="text-left">JSON Objects</Tcol>
-          <Tcol><C>metadata JSON</C></Tcol>
-        </Trow>
-        <Trow>
-          <Tcol noWrap className="text-left"><C>CustomType</C></Tcol>
-          <Tcol className="text-left">User-defined types</Tcol>
-          <Tcol><C>address Address</C></Tcol>
-        </Trow>
-        <Trow>
-          <Tcol noWrap className="text-left"><C>EnumType</C></Tcol>
-          <Tcol className="text-left">Enum values</Tcol>
-          <Tcol><C>role UserRole</C></Tcol>
-        </Trow>
-      </Table>
+        <Table>
+          <Thead className="theme-bg-bg1 text-left">Types</Thead>
+          <Thead className="theme-bg-bg1 text-left">Description</Thead>
+          <Thead className="theme-bg-bg1 text-left">Example</Thead>
+          <Trow>
+            <Tcol noWrap className="text-left"><C>String</C></Tcol>
+            <Tcol className="text-left">Text data</Tcol>
+            <Tcol><C>name String</C></Tcol>
+          </Trow>
+          <Trow className='theme-bg-bg1'>
+            <Tcol noWrap className="text-left"><C>Number</C></Tcol>
+            <Tcol className="text-left">Numeric data</Tcol>
+            <Tcol><C>age Number</C></Tcol>
+          </Trow>
+          <Trow>
+            <Tcol noWrap className="text-left"><C>Boolean</C></Tcol>
+            <Tcol className="text-left">True or false values</Tcol>
+            <Tcol><C>active Boolean</C></Tcol>
+          </Trow>
+          <Trow className='theme-bg-bg1'>
+            <Tcol noWrap className="text-left"><C>Date</C></Tcol>
+            <Tcol className="text-left">Date/time values</Tcol>
+            <Tcol><C>created Date</C></Tcol>
+          </Trow>
+          <Trow>
+            <Tcol noWrap className="text-left"><C>JSON</C></Tcol>
+            <Tcol className="text-left">JSON Objects</Tcol>
+            <Tcol><C>metadata JSON</C></Tcol>
+          </Trow>
+          <Trow className='theme-bg-bg1'>
+            <Tcol noWrap className="text-left"><C>CustomType</C></Tcol>
+            <Tcol className="text-left">User-defined types</Tcol>
+            <Tcol><C>address Address</C></Tcol>
+          </Trow>
+          <Trow>
+            <Tcol noWrap className="text-left"><C>EnumType</C></Tcol>
+            <Tcol className="text-left">Enum values</Tcol>
+            <Tcol><C>role UserRole</C></Tcol>
+          </Trow>
+        </Table>
 
-      <H2>Optional and Array Types</H2>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[3]}
-      </Code>
+        <H2>{_('Optional and Array Types')}</H2>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+          >
+          {examples[3]}
+        </Code>
 
-      <H2>Nested Types</H2>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {examples[4]}
-      </Code>
+        <H2>{_('Nested Types')}</H2>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20">
+          {examples[4]}
+        </Code>
+      </section>
 
-      <Nav
-        prev={{ text: 'Data Types', href: '/docs/specifications/data-types' }}
-        next={{ text: 'Schema Structure', href: '/docs/specifications/schema-structure' }}
-      />
+      <footer>
+        <Nav
+          prev={{
+            text: _('Data Types'),
+            href: '/docs/specifications/data-types'
+          }}
+          next={{
+            text: _('Schema Structure'),
+            href: '/docs/specifications/schema-structure'
+          }}
+        />
+      </footer>
     </main>
   );
 }

@@ -3,43 +3,11 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, H3, P, C, H, Nav } from '../../components/index.js';
+import { H1, H2, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
-
-export function Head(props: ServerPageProps<ServerConfigProps>) {
-  //props
-  const { request, styles = [] } = props;
-  //hooks
-  const { _ } = useLanguage();
-  //variables
-  const title = _('Best Practices');
-  const description = _(
-    'Best practices for using the .idea file format to generate various outputs like TypeScript interfaces, database schemas, API documentation, and more.'
-  );
-  return (
-    <>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:image" content="/icon.png" />
-      <meta property="og:url" content={request.url.pathname} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:image" content="/icon.png" />
-
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="icon" type="image/x-icon" href="/icon.png" />
-      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
-      {styles.map((href, index) => (
-        <link key={index} rel="stylesheet" type="text/css" href={href} />
-      ))}
-    </>
-  )
-}
 
 const bestPractices = [
   `// ✅ Good
@@ -181,66 +149,162 @@ plugin "./plugins/form-generator.js" {
   framework "react"
   styling "tailwind"
 }`
-]
+];
+
+export function Head(props: ServerPageProps<ServerConfigProps>) {
+  //props
+  const { request, styles = [] } = props;
+  //hooks
+  const { _ } = useLanguage();
+  //variables
+  const title = _('Best Practices');
+  const description = _(
+    'Best practices for using the .idea file format to generate ' +
+    'various outputs like TypeScript interfaces, database schemas, ' +
+    'API documentation, and more.'
+  );
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content="/icon.png" />
+      <meta property="og:url" content={request.url.pathname} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content="/icon.png" />
+
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/icon.png" />
+      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
+      {styles.map((href, index) => (
+        <link
+          key={index}
+          rel="stylesheet"
+          type="text/css"
+          href={href}
+        />
+      ))}
+    </>
+  )
+}
 
 export function Body() {
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Best Practices</H1>
-      <H2>1. Schema Organization</H2>
-      <P>Use Descriptive Names</P>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[0]}
-      </Code>
+      <H1>{_('Best Practices')}</H1>
 
-      <P>Group Related Elements</P>
-      <Code copy language="typescript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[1]}
-      </Code>
+      <section>
+        <H2>{_('1. Schema Organization')}</H2>
+        <P><Translate>Use Descriptive Names</Translate></P>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[0]}
+        </Code>
 
-      <P>Use Consistent Naming Conventions</P>
-      <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[2]}
-      </Code>
+        <P><Translate>Group Related Elements</Translate></P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[1]}
+        </Code>
 
-      <H2>2. Type Safety</H2>
-      <P>Define Custom Types for Complex Data</P>
-      <Code copy language="typescript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[3]}
-      </Code>
+        <P><Translate>Use Consistent Naming Conventions</Translate></P>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[2]}
+        </Code>
+      </section>
 
-      <P>Use Enums for Fixed Sets of Values</P>
-      <Code copy language="typescript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[4]}
-      </Code>
+      <section>
+        <H2>{_('2. Type Safety')}</H2>
+        <P><Translate>Define Custom Types for Complex Data</Translate></P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[3]}
+        </Code>
 
-      <H2>3. Validation and Constraints</H2>
-      <P>Use Appropriate Validation Attributes</P>
-      <Code copy language="typescript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[5]}
-      </Code>
+        <P><Translate>Use Enums for Fixed Sets of Values</Translate></P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[4]}
+        </Code>
+      </section>
 
-      <P>Provide Meaningful Defaults</P>
-      <Code copy language="typescript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[6]}
-      </Code>
+      <section>
+        <H2>{_('3. Validation and Constraints')}</H2>
+        <P><Translate>Use Appropriate Validation Attributes</Translate></P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[5]}
+        </Code>
 
-      <H2>4. Relationships</H2>
-      <P>Use Clear Relationship Patterns</P>
-      <Code copy language="typescript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[7]}
-      </Code>
+        <P><Translate>Provide Meaningful Defaults</Translate></P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[6]}
+        </Code>
+      </section>
 
-      <H2>5. Plugin Configuration</H2>
-      <P>Organize Plugins by Purpose</P>
-      <Code copy language="typescript" className="bg-black text-white px-mx-10 px-mb-20">
-        {bestPractices[8]}
-      </Code>
+      <section>
+        <H2>{_('4. Relationships')}</H2>
+        <P><Translate>Use Clear Relationship Patterns</Translate></P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[7]}
+        </Code>
+      </section>
 
-      <Nav
-        prev={{ text: 'Complete Examples', href: '/docs/specifications/complete-examples' }}
-        next={{ text: 'Error Handling', href: '/docs/specifications/error-handling' }}
-      />
+      <section>
+        <H2>{_('5. Plugin Configuration')}</H2>
+        <P><Translate>Organize Plugins by Purpose</Translate></P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mb-20"
+        >
+          {bestPractices[8]}
+        </Code>
+      </section>
+
+      <footer>
+        <Nav
+          prev={{ 
+            text: _('Complete Examples'), 
+            href: '/docs/specifications/complete-examples' 
+          }}
+          next={{
+            text: _('Error Handling'),
+            href: '/docs/specifications/error-handling' 
+          }}
+        />
+      </footer>
     </main>
   );
 }

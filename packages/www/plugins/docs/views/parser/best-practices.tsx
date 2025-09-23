@@ -3,11 +3,57 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
 import { H1, H2, P, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
+
+const typeSafetyExample = `import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
+
+const schema: SchemaConfig = parse(code);
+`;
+
+const errorHandlingExample = `import { parse, Exception } from '@stackpress/idea-parser';
+
+try {
+  const result = parse(schemaCode);
+  // Process result
+} catch (error) {
+  if (error instanceof Exception) {
+    console.error('Schema parsing failed:', error.message);
+    // Handle parsing error
+  } else {
+    console.error('Unexpected error:', error);
+    // Handle other errors
+  }
+}`;
+
+const schemaStructureExample = `// Good: Proper model structure
+model User {
+  id String @id
+  name String
+}
+
+// Bad: Missing required properties
+model User {
+  // Missing columns - will throw error
+}`;
+
+const namingExample = `// Good
+enum UserStatus { ACTIVE "Active" SUSPENDED "Suspended" }
+prop EmailInput { type "email" format "email" }
+
+// Less clear
+enum Status { A "Active" S "Suspended" }
+prop Input { type "email" }`;
+
+const errorExamples = {
+  invalidSchema: 'Error: "Invalid Schema"',
+  missingColumns: 'Error: "Expecting a columns property"',
+  duplicateName: 'Error: "Duplicate [name]"',
+  unknownReference: 'Error: "Unknown reference [name]"'
+};
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -17,7 +63,9 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   //variables
   const title = _('Best Practices');
   const description = _(
-    'Best practices for using the parser library effectively'
+    'Best practices and guidelines for using the Idea Parser ' +
+    'library effectively, including error handling, type safety, ' +
+    'and common pitfalls to avoid.'
   );
   return (
     <>
@@ -32,7 +80,11 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
       <meta name="twitter:image" content="/images/icon.png" />
 
       <link rel="icon" type="image/x-icon" href="/icon.png" />
-      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="/styles/global.css"
+      />
       {styles.map((href, index) => (
         <link key={index} rel="stylesheet" type="text/css" href={href} />
       ))}
@@ -40,138 +92,174 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   )
 }
 
-const typeSafetyExamples = [
-  `import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
-
-const schema: SchemaConfig = parse(code);
-`
-];
-
-const errorHandlingExamples = [
-  `import { parse, Exception } from '@stackpress/idea-parser';
-
-try {
-  const result = parse(schemaCode);
-  // Process result
-} catch (error) {
-  if (error instanceof Exception) {
-    console.error('Schema parsing failed:', error.message);
-    // Handle parsing error
-  } else {
-    console.error('Unexpected error:', error);
-    // Handle other errors
-  }
-}`
-];
-
-const schemaStructureExamples = [
-  `// Good: Proper model structure
-model User {
-  id String @id
-  name String
-}
-
-// Bad: Missing required properties
-model User {
-  // Missing columns - will throw error
-}`
-];
-
-const namingExamples = [
-  `// Good
-enum UserStatus { ACTIVE "Active" SUSPENDED "Suspended" }
-prop EmailInput { type "email" format "email" }
-
-// Less clear
-enum Status { A "Active" S "Suspended" }
-prop Input { type "email" }`
-];
-
-const errorSolutionsExamples = [
-  `Error: "Invalid Schema"`,
-  `Error: "Expecting a columns property"`,
-  `Error: "Duplicate [name]"`,
-  `Error: "Unknown reference [name]"`
-];
-
 export function Body() {
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>Best Practices</H1>
+      <H1>{_('Best Practices')}</H1>
       <P>
-        Follow these best practices to use the parser library effectively and avoid common pitfalls.
+        <Translate>
+          Follow these best practices to use the parser library
+          effectively and avoid common pitfalls.
+        </Translate>
       </P>
 
-      <H2>1. Use Type Safety</H2>
-      <P>
-        The library is built with TypeScript and provides comprehensive type definitions:
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {typeSafetyExamples[0]}
-      </Code>
 
-      <H2>2. Handle Errors Gracefully</H2>
-      <P>
-        Always wrap parsing operations in try-catch blocks:
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {errorHandlingExamples[0]}
-      </Code>
+      <section>
+        <H2>{_('1. Use Type Safety')}</H2>
+        <P>
+          <Translate>
+            The library is built with TypeScript and provides
+            comprehensive type definitions
+          </Translate>
+        </P>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white'
+        >
+          {typeSafetyExample}
+        </Code>
+      </section>
 
-      <H2>3. Choose the Right Function</H2>
-      <li className='my-2'><C>Use parse()</C> when you need to preserve references for further processing</li>
-      <li className='my-2'><C>Use final()</C> when you want a clean output for final consumption</li>
+      <section>
+        <H2>{_('2. Handle Errors Gracefully')}</H2>
+        <P>
+          <Translate>
+            Always wrap parsing operations in try-catch blocks
+          </Translate>
+        </P>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white'
+        >
+          {errorHandlingExample}
+        </Code>
+      </section>
 
-      <H2>4. Validate Schema Structure</H2>
-      <P>
-        Ensure your schema follows the expected structure:
-      </P>
-      <Code copy language='idea' className='bg-black text-white'>
-        {schemaStructureExamples[0]}
-      </Code>
+      <section>
+        <H2>{_('3. Choose the Right Function')}</H2>
+        <li className='my-2'>
+          <C>Use parse()</C>
+          <Translate>
+            when you need to preserve references for further processing
+          </Translate>
+        </li>
+        <li className='my-2'>
+          <C>Use final()</C>
+          <Translate>
+            when you want a clean output for final consumption
+          </Translate>
+        </li>
+      </section>
 
-      <H2>5. Use Meaningful Names</H2>
-      <P>
-        Choose descriptive names for your schema elements:
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {namingExamples[0]}
-      </Code>
+      <section>
+        <H2>{_('4. Validate Schema Structure')}</H2>
+        <P>
+          <Translate>
+            Ensure your schema follows the expected structure:
+          </Translate>
+        </P>
+        <Code copy language='idea' className='bg-black text-white'>
+          {schemaStructureExample}
+        </Code>
+      </section>
 
-      <H2>Error Handling</H2>
-      <P>
-        Common errors and their solutions:
-      </P>
+      <section>
+        <H2>{_('5. Use Meaningful Names')}</H2>
+        <P>
+          <Translate>
+            Choose descriptive names for your schema elements:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white'
+        >
+          {namingExample}
+        </Code>
+      </section>
 
-      <H2>Invalid Schema Structure</H2>
-      <Code copy language='
-      javascript' className='bg-black text-white'>
-        {errorSolutionsExamples[0]}
-      </Code>
-      <li className='my-2 list-none'><SS>Solution:</SS> Ensure your schema follows the correct syntax and structure.</li>
+      <section>
+        <H2>{_('Error Handling')}</H2>
+        <P><Translate>Common errors and their solutions:</Translate></P>
 
-      <H2>Missing Required Properties</H2>
-      <Code copy language='javascript' className='bg-black text-white'>
-        {errorSolutionsExamples[1]}
-      </Code>
-      <li className='my-2 list-none'><SS>Solution:</SS> Models and types must have a columns definition.</li>
+        <H2>{_('Invalid Schema Structure')}</H2>
+        <Code
+          copy
+          language='javascript'
+          className='bg-black text-white'
+        >
+          {errorExamples.invalidSchema}
+        </Code>
+        <li className='my-2 list-none'>
+          <SS>Solution:</SS>
+          <Translate>
+            Ensure your schema follows the correct syntax and structure.
+          </Translate>
+        </li>
 
-      <H2>Duplicate Declarations</H2>
-      <Code copy language='javascript' className='bg-black text-white'>
-        {errorSolutionsExamples[2]}
-      </Code>
-      <li className='my-2 list-none'><SS>Solution:</SS> Each declaration name must be unique within the schema.</li>
+        <H2>{_('Missing Required Properties')}</H2>
+        <Code
+          copy
+          language='javascript'
+          className='bg-black text-white'
+        >
+          {errorExamples.missingColumns}
+        </Code>
+        <li className='my-2 list-none'>
+          <SS>Solution:</SS>
+          <Translate>
+            Models and types must have a columns definition.
+          </Translate>
+        </li>
 
-      <H2>Unknown References</H2>
-      <Code copy language='javascript' className='bg-black text-white'>
-        {errorSolutionsExamples[3]}
-      </Code>
-      <li className='my-2 list-none'><SS>Solution:</SS> Ensure all referenced props and types are defined before use.</li>
+        <H2>{_('Duplicate Declarations')}</H2>
+        <Code
+          copy
+          language='javascript'
+          className='bg-black text-white'
+        >
+          {errorExamples.duplicateName}
+        </Code>
+        <li className='my-2 list-none'>
+          <SS>Solution:</SS>
+          <Translate>
+            Each declaration name must be unique within the schema.
+          </Translate>
+        </li>
 
-      <Nav
-        prev={{ text: 'Examples', href: '/docs/parser/examples' }}
-        next={{ text: 'Transformers', href: '/docs/parser/transformers' }}
-      />
+        <H2>{_('Unknown References')}</H2>
+        <Code
+          copy
+          language='javascript'
+          className='bg-black text-white'
+        >
+          {errorExamples.unknownReference}
+        </Code>
+        <li className='my-2 list-none'>
+          <SS>Solution:</SS>
+          <Translate>
+            Ensure all referenced props and types are defined before use.
+          </Translate>
+        </li>
+      </section>
+
+      <footer>
+        <Nav
+          prev={{
+            text: _('Examples'),
+            href: '/docs/parser/examples'
+          }}
+          next={{
+            text: _('Transformers'),
+            href: '/docs/transformers/introduction'
+          }}
+        />
+      </footer>
     </main>
   );
 }

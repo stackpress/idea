@@ -3,12 +3,46 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useState } from 'react';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, P, C, Nav, SS, A } from '../../components/index.js';
+import { H1, H2, P, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
+
+const parseExample = `import { parse } from '@stackpress/idea-parser';
+
+const result = parse(\`
+prop Text { type "text" }
+model User {
+  name String @field.input(Text)
+}
+\`);
+
+console.log(result);
+// Output includes prop references: { prop: { Text: { type: "text" } }, ... }`;
+
+const finalExample = `import { final } from '@stackpress/idea-parser';
+
+const result = final(\`
+prop Text { type "text" }
+model User {
+  name String @field.input(Text)
+}
+\`);
+
+console.log(result);
+// Output has resolved references: { model: { User: { ... } } }
+// No 'prop' section in output`;
+
+const exceptionExample = `import { Exception } from '@stackpress/idea-parser';
+
+try {
+  const result = parse(invalidCode);
+} catch (error) {
+  if (error instanceof Exception) {
+    console.log('Parsing error:', error.message);
+  }
+}`;
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -18,7 +52,9 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   //variables
   const title = _('API Reference');
   const description = _(
-    'API Reference for the parser library'
+    'Complete API reference for the Idea Parser library, ' +
+    'including detailed documentation for all classes, ' +
+    'methods, and interfaces.'
   );
   return (
     <>
@@ -33,9 +69,18 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
       <meta name="twitter:image" content="/images/icon.png" />
 
       <link rel="icon" type="image/x-icon" href="/icon.png" />
-      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="/styles/global.css"
+      />
       {styles.map((href, index) => (
-        <link key={index} rel="stylesheet" type="text/css" href={href} />
+        <link
+          key={index}
+          rel="stylesheet"
+          type="text/css"
+          href={href}
+        />
       ))}
     </>
   )
@@ -43,121 +88,179 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 
 export function Right() {
   const { _ } = useLanguage();
+
   return (
-    <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
+    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
         {_('API Reference')}
       </h6>
-      <nav className="px-fs-14 px-lh-32">
-        <a className="text-blue-500 block cursor-pointer underline" href="/docs/parser/pages/lexer">
+      <nav className="px-fs-14 px-lh-28 flex flex-col">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/lexer"
+        >
           {_('Lexer API Reference')}
         </a>
-        <a className="text-blue-500 block cursor-pointer underline" href="/docs/parser/pages/compiler">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/compiler"
+        >
           {_('Compiler API Reference')}
         </a>
-        <a className="text-blue-500 block cursor-pointer underline" href="/docs/parser/pages/ast">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/ast"
+        >
           {_('AST Reference')}
         </a>
 
-        <a className="text-blue-500 block cursor-pointer underline" href="/docs/parser/pages/tokens">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/tokens"
+        >
           {_('Token Reference')}
         </a>
-        <a className="text-blue-500 block cursor-pointer underline" href="/docs/parser/pages/exception-handling">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling"
+        >
           {_('Exception Handling')}
         </a>
       </nav>
-    </menu>
+    </aside>
   );
 }
 
-const exampleCode = [
-  `import { parse } from '@stackpress/idea-parser';
-
-const result = parse(\`
-prop Text { type "text" }
-model User {
-  name String @field.input(Text)
-}
-\`);
-
-console.log(result);
-// Output includes prop references: { prop: { Text: { type: "text" } }, ... }`,
-  `import { final } from '@stackpress/idea-parser';
-
-const result = final(\`
-prop Text { type "text" }
-model User {
-  name String @field.input(Text)
-}
-\`);
-
-console.log(result);
-// Output has resolved references: { model: { User: { ... } } }
-// No 'prop' section in output`,
-`import { Exception } from '@stackpress/idea-parser';
-
-try {
-  const result = parse(invalidCode);
-} catch (error) {
-  if (error instanceof Exception) {
-    console.log('Parsing error:', error.message);
-  }
-}`
-]
-
 export function Body() {
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>API Reference</H1>
-      <H2>Main Functions</H2>
-      <P><C>parse(code: string)</C></P>
-      <P>Converts schema code into a JSON representation with references preserved.</P>
-      <SS>Parameters:</SS>
-      <li className='my-2'><C>code (string):</C> The schema code to parse</li>
+      <H1>{_('API Reference')}</H1>
+     
+      <section>
+        <H2>{_('Main Functions')}</H2>
+        <P><C>parse(code: string)</C></P>
+        <Translate>
+          Converts schema code into a JSON representation with
+          references preserved.
+        </Translate>
+        <SS>{_('Parameters:')}:</SS>
+        <li className='my-2'>
+          <C>code (string):</C> {_('The schema code to parse')}
+        </li>
 
-      <SS>Returns:</SS>
-      <li className='my-2'><C>SchemaConfig:</C> JSON object representing the parse schema</li>
+        <SS>{_('Returns:')}:</SS>
+        <li className='my-2'>
+          <C>SchemaConfig:</C> {_('JSON object representing the ' +
+            'parse schema')}
+        </li>
 
-      <P>Example: </P>
-      <Code copy language='javascript' className='bg-black text-white'>
-        {exampleCode[0]}
-      </Code>
+        <P>{_('Example:')} </P>
+        <Code
+          copy
+          language='javascript'
+          className='bg-black text-white'
+        >
+          {parseExample}
+        </Code>
 
-      <P><C>final(code: string)</C></P>
-      <P>
-        Converts schema code into a clean JSON representation with references resolved and removed.
-      </P>
+        <P><C>final(code: string)</C></P>
+        <Translate>
+          Converts schema code into a clean JSON representation with
+          references resolved and removed.
+        </Translate>
 
-      <SS>Parameters</SS>
-      <li className='my-2'><C>code (string):</C> The schema code to parse</li>
+        <SS>{_('Parameters')}</SS>
+        <li className='my-2'>
+          <C>code (string):</C> {_('The schema code to parse')}
+        </li>
 
-      <SS>Returns:</SS>
-      <li className='my-2'><C>FinalSchemaConfig: </C> Clean JSON object without prop/use references</li>
+        <SS>{_('Returns:')}:</SS>
+        <li className='my-2'>
+          <C>FinalSchemaConfig: </C> {_('Clean JSON object without ' +
+            'prop/use references')}
+        </li>
 
-      <SS>Example: </SS>
-      <Code copy language='javascript' className='bg-black text-white'>
-        {exampleCode[1]}
-      </Code>
+        <SS>{_('Example:')} </SS>
+        <Code
+          copy
+          language='javascript'
+          className='bg-black text-white'
+        >
+          {finalExample}
+        </Code>
+      </section>
 
-      <H2>Core Classes</H2>
-      <ul className='list-disc list-inside'>
-        <li><a href="/docs/parser/pages/compiler" className='text-blue-500 underline'>Compiler:</a> Static methods for converting AST tokens to JSON</li>
-        <li><a href="/docs/parser/pages/lexer" className='text-blue-500 underline'>Lexer:</a> Tokenization and parsing utilities</li>
-        <li><a className='text-blue-500 underline'>SchemaTree:</a> Main parser for complete schema files</li>
-        <li><a href="/docs/parser/pages/ast" className='text-blue-500 underline'>Syntax Trees:</a> Individual parsers for different schema elements</li>
-        <li><a href="/docs/parser/pages/tokens" className='text-blue-500 underline'>Tokens:</a> AST token structures and type definitions</li>
-      </ul>
+      <section>
+        <H2>{_('Core Classes')}</H2>
+        <ul className='list-disc list-inside'>
+          <li>
+            <a
+              href="/docs/parser/api-references/compiler"
+              className='text-blue-500 underline'
+            >
+              Compiler:
+            </a> {_('Static methods for converting AST tokens to JSON')}
+          </li>
+          <li>
+            <a
+              href="/docs/parser/api-references/lexer"
+              className='text-blue-500 underline'
+            >
+              Lexer:
+            </a> {_('Tokenization and parsing utilities')}
+          </li>
+          <li>
+            <a className='text-blue-500 underline'>SchemaTree:</a>
+            {_('Main parser for complete schema files')}
+          </li>
+          <li>
+            <a
+              href="/docs/parser/api-references/ast"
+              className='text-blue-500 underline'
+            >
+              Syntax Trees:
+            </a> {_('Individual parsers for different schema elements')}
+          </li>
+          <li>
+            <a
+              href="/docs/parser/api-references/tokens"
+              className='text-blue-500 underline'
+            >
+              Tokens:
+            </a> {_('AST token structures and type definitions')}
+          </li>
+        </ul>
+      </section>
 
-      <H2>Exception Handling</H2>
-      <P>The library uses a custom <C>Exception</C> class that extends the standard Exception class for better error reporting.</P>
-      <Code copy language='javascript' className='bg-black text-white'>
-        {exampleCode[2]}
-      </Code>
+      <section>
+        <H2>{_('Exception Handling')}</H2>
+        <Translate>
+          The library uses a custom Exception class that extends the
+          standard Exception class for better error reporting.
+        </Translate>
+        <Code
+          copy
+          language='javascript'
+          className='bg-black text-white'
+        >
+          {exceptionExample}
+        </Code>
+      </section>
 
-      <Nav
-        prev={{ text: 'Core Concepts', href: '/docs/parser/core-concepts' }}
-        next={{ text: 'Examples', href: '/docs/parser/examples' }}
-      />
+      <footer>
+        <Nav
+          prev={{
+            text: _('Core Concepts'),
+            href: '/docs/parser/core-concepts'
+          }}
+          next={{
+            text: _('Examples'),
+            href: '/docs/parser/examples'
+          }}
+        />
+      </footer>
     </main>
   );
 }

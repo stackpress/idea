@@ -1,47 +1,15 @@
 //modules
 import type {
-    ServerConfigProps,
-    ServerPageProps
-  } from 'stackpress/view/client';
-  import { useState } from 'react';
-  import { useLanguage } from 'stackpress/view/client';
-  //docs
-  import { H1, H2, H3, P, C, H, Nav } from '../../components/index.js';
-  import Code from '../../components/Code.js';
-  import Layout from '../../components/Layout.js';
-  
-  export function Head(props: ServerPageProps<ServerConfigProps>) {
-    //props
-    const { request, styles = [] } = props;
-    //hooks
-    const { _ } = useLanguage();
-    //variables
-    const title = _('Complete Examples');
-    const description = _(
-      'Complete examples of how to use the .idea file format to generate various outputs like TypeScript interfaces, database schemas, API documentation, and more.'
-    );
-    return (
-      <>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:image" content="/images/icon.png" />
-        <meta property="og:url" content={request.url.pathname} />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:image" content="/images/icon.png" />
-  
-        <link rel="icon" type="image/x-icon" href="/icon.png" />
-        <link rel="stylesheet" type="text/css" href="/styles/global.css" />
-        {styles.map((href, index) => (
-          <link key={index} rel="stylesheet" type="text/css" href={href} />
-        ))}
-      </>
-    )
-  }
+  ServerConfigProps,
+  ServerPageProps
+} from 'stackpress/view/client';
+import { useLanguage } from 'r22n';
+//docs
+import { H1, H2, Nav } from '../../components/index.js';
+import Code from '../../components/Code.js';
+import Layout from '../../components/Layout.js';
 
-  const ecommerceSchema = `// E-commerce application schema
+const ecommerceSchema = `// E-commerce application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/schema.ts"
 }
@@ -211,7 +179,7 @@ model OrderItem {
   quantity Number @required @min(1)
   price Money @required
   total Money @required
-}`
+}`;
 
 const blogSchema = `// Blog application schema
 plugin "./plugins/generate-types.js" {
@@ -335,41 +303,99 @@ model Comment {
   parent Comment? @relation(Comment, parentId)
   replies Comment[] @relation(Comment.parentId)
   created Date @default("now()")
-}`
-  
-  export function Body() {
-    return (
-      <main className="px-h-100-0 overflow-auto px-p-10">
-        <H1>Complete Examples</H1>
-        <H2>E-commerce Application Schema</H2>
-        <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
+}`;
+
+export function Head(props: ServerPageProps<ServerConfigProps>) {
+  //props
+  const { request, styles = [] } = props;
+  //hooks
+  const { _ } = useLanguage();
+  //variables
+  const title = _('Complete Examples');
+  const description = _(
+    'Complete examples of how to use the .idea file format to ' +
+    'generate various outputs like TypeScript interfaces, database ' +
+    'schemas, API documentation, and more.'
+  );
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:image" content="/images/icon.png" />
+      <meta property="og:url" content={request.url.pathname} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content="/images/icon.png" />
+
+      <link rel="icon" type="image/x-icon" href="/icon.png" />
+      <link rel="stylesheet" type="text/css" href="/styles/global.css" />
+      {styles.map((href, index) => (
+        <link
+          key={index}
+          rel="stylesheet"
+          type="text/css"
+          href={href}
+        />
+      ))}
+    </>
+  )
+}
+
+export function Body() {
+  const { _ } = useLanguage();
+
+  return (
+    <main className="px-h-100-0 overflow-auto px-p-10">
+      <H1>{_('Complete Examples')}</H1>
+
+      <section>
+        <H2>{_('E-commerce Application Schema')}</H2>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20">
           {ecommerceSchema}
         </Code>
+      </section>
 
-        <H2>Blog Application Schema</H2>
-        <Code copy language="javascript" className="bg-black text-white px-mx-10 px-mb-20">
+      <section>
+        <H2>{_('Blog Application Schema')}</H2>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20">
           {blogSchema}
         </Code>
+      </section>
 
+      <footer>
         <Nav
-          prev={{ text: 'Plugin System', href: '/docs/specifications/plugin-system' }}
-          next={{ text: 'Best Practices', href: '/docs/specifications/best-practices' }}
+          prev={{ 
+            text: _( 'Plugin System'), 
+            href: '/docs/specifications/plugin-system' 
+          }}
+          next={{ 
+            text: _( 'Best Practices'), 
+            href: '/docs/specifications/best-practices' 
+          }}
         />
-      </main>
-    );
-  }
-  
-  export default function Page(props: ServerPageProps<ServerConfigProps>) {
-    const { data, session, request, response } = props;
-    return (
-      <Layout
-        data={data}
-        session={session}
-        request={request}
-        response={response}
-      >
-        <Body />
-      </Layout>
-    );
-  }
-  
+      </footer>
+    </main>
+  );
+}
+
+export default function Page(props: ServerPageProps<ServerConfigProps>) {
+  const { data, session, request, response } = props;
+  return (
+    <Layout
+      data={data}
+      session={session}
+      request={request}
+      response={response}
+    >
+      <Body />
+    </Layout>
+  );
+}

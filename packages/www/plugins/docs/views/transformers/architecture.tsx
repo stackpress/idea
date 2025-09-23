@@ -3,11 +3,23 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
+import { useLanguage, Translate } from 'r22n';
 //docs
 import { H1, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
+
+const architectureDiagram = `
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Schema File   │───▶│   Transformer  │───▶│    Plugins      │
+│   (.idea/.json) │    │                 │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │                        │
+                              ▼                        ▼
+                       ┌─────────────────┐    ┌─────────────────┐
+                       │  Schema Config  │    │ Generated Files │
+                       │                 │    │                 │
+                       └─────────────────┘    └─────────────────┘`
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -17,7 +29,10 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   //variables
   const title = _('Architecture');
   const description = _(
-    'The idea-transformer follows a clear architectural pattern that separates concerns between schema loading, processing, and output generation. This design enables flexible plugin development and maintainable code generation workflows.'
+    'The idea-transformer follows a clear architectural pattern that ' +
+    'separates concerns between schema loading, processing, and output ' +
+    'generation. This design enables flexible plugin development and ' +
+    'maintainable code generation workflows.'
   );
   return (
     <>
@@ -43,30 +58,37 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 
 
 export function Body() {
+  //hooks
+  const { _ } = useLanguage();
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      <section>
+        <H1>{_('Architecture')}</H1>
+        <P>
+          <Translate>
+            The idea-transformer follows a clear architectural pattern that
+            separates concerns between schema loading, processing, and output
+            generation. This design enables flexible plugin development and
+            maintainable code generation workflows.
+          </Translate>
+        </P>
+        <Code copy language='text' className='bg-black text-white'>
+          {architectureDiagram}
+        </Code>
+      </section>
 
-      <H1>Architecture</H1>
-      <P>
-        The idea-transformer follows a clear architectural pattern that separates concerns between schema loading, processing, and output generation. This design enables flexible plugin development and maintainable code generation workflows.
-      </P>
-      <Code copy language='text' className='bg-black text-white'>
-        {`┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Schema File   │───▶│   Transformer  │───▶│    Plugins      │
-│   (.idea/.json) │    │                 │    │                 │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │                        │
-                              ▼                        ▼
-                       ┌─────────────────┐    ┌─────────────────┐
-                       │  Schema Config  │    │ Generated Files │
-                       │                 │    │                 │
-                       └─────────────────┘    └─────────────────┘`}
-      </Code>
-
-      <Nav
-        prev={{ text: 'API Reference', href: '/docs/transformers/api-reference' }}
-        next={{ text: 'Usage Patterns', href: '/docs/transformers/usage-patterns' }}
-      />
+      <footer>
+        <Nav
+          prev={{
+            text: _('API Reference'),
+            href: '/docs/transformers/api-reference'
+          }}
+          next={{
+            text: _('Usage Patterns'),
+            href: '/docs/transformers/usage-patterns'
+          }}
+        />
+      </footer>
     </main>
   );
 }

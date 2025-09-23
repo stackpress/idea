@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react';
 import { useEffect, useState } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { toast, Bounce } from 'react-toastify';
 
 // copy should reveal the copy button, but onCopy should be defined to modify its behavior
 // meanwhile, the presence of onCopy should be enough to show the copy button
@@ -16,14 +17,14 @@ export default function Code(props: {
   children: string;
   style?: CSSProperties;
 }) {
-  const [ mounted, setMounted ] = useState(false);
-  const { 
-    children, 
-    className, 
-    copy, 
-    onCopy, 
-    language = 'javascript', 
-    numbers, 
+  const [mounted, setMounted] = useState(false);
+  const {
+    children,
+    className,
+    copy,
+    onCopy,
+    language = 'javascript',
+    numbers,
     style = {
       background: 'transparent',
       color: 'inherit',
@@ -43,6 +44,18 @@ export default function Code(props: {
       onCopy();
     }
     navigator.clipboard.writeText(children.toString());
+
+    toast.success('Code copied to clipboard!', {
+      position: "bottom-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
   };
 
   //only add highlighting when mounted
