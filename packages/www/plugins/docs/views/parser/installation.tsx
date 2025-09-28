@@ -94,7 +94,6 @@ export function Body() {
           developers work with schema definitions in a structured and
           type-safe manner.
         </Translate>
-
       </section>
 
       <section>

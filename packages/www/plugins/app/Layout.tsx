@@ -14,8 +14,11 @@ import {
   LayoutMain,
   LayoutProvider
 } from 'stackpress/view/client';
-
+//styles
 import './styles/page.css';
+
+//components
+import SearchField from './components/Search.js';
 
 export function Head(props: LayoutHeadProps) {
   const { theme, toggleTheme } = props;
@@ -25,54 +28,60 @@ export function Head(props: LayoutHeadProps) {
   return (
     <header className="theme-bg-bg1 theme-bc-bd0 duration-200 absolute 
     px-h-60 px-l-0 px-r-0 px-t-0 border-b">
-      <div className="flex align-middle items-center px-px-20 px-h-100-0">
-        <a
-          className="theme-tx1 flex items-center no-underline px-mr-10"
-          href="/"
-        >
-          <img
-            src="/icon.png"
-            alt="idea-logo"
-            className='px-w-30 px-h-30 px-mr-10'
-          />
-          <span className="px-fs-20 font-extrabold">idea</span>
-        </a>
-        <nav className="flex-grow">
+      <div className="flex justify-between align-middle items-center px-px-20 px-h-100-0">
+        <div className='flex items-center'>
           <a
-            className="theme-tx1 flex items-center no-underline 
+            className="theme-tx1 flex items-center no-underline px-mr-10"
+            href="/"
+          >
+            <img
+              src="/icon.png"
+              alt="idea-logo"
+              className='px-w-30 px-h-30 px-mr-10'
+            />
+            <span className="px-fs-20 font-extrabold">idea</span>
+          </a>
+          <nav>
+            <a
+              className="theme-tx1 flex items-center no-underline 
           uppercase mt-1 hover:text-yellow-500"
-            href="/docs/introduction"
-          >
-            {_('Docs')}
-          </a>
-        </nav>
-        <nav className="rmd-hidden flex items-center">
-          <a
-            href="https://marketplace.visualstudio.com/items?itemName=stackpress.idea-schema"
-            className="px-mr-10 hover:text-yellow-500 theme-tx1"
-          >
-            <i className="px-fs-22 fa-solid fa-puzzle-piece"></i>
-          </a>
-          <a className="px-mr-10" href="https://github.com/stackpress/idea">
-            <i className="px-fs-26 fab fa-github"></i>
-          </a>
-          <a
-            className="px-mr-10 px-w-26 px-h-26 hex-bg-CB3837 rounded-full 
-            flex justify-center items-center"
-            href="https://www.npmjs.com/package/@stackpress/idea"
-          >
-            <i className="px-fs-16 fab fa-npm text-white"></i>
-          </a>
-          {toggleTheme && (
-            <button
-              className={`flex justify-center items-center b-0 px-mr-10 
-              px-h-26 px-w-26 px-fs-18 rounded-full text-white ${themeColor}`}
-              onClick={() => toggleTheme()}
+              href="/docs/introduction"
             >
-              <i className={`fas ${themeIcon}`}></i>
-            </button>
-          )}
-        </nav>
+              {_('Docs')}
+            </a>
+          </nav>
+        </div>
+        <div className='flex items-center'>
+          <SearchField />
+
+          <nav className="rmd-hidden flex items-center">
+            <a
+              href="https://marketplace.visualstudio.com/items?itemName=stackpress.idea-schema"
+              className="px-mr-10 hover:text-yellow-500 theme-tx1"
+            >
+              <i className="px-fs-22 fa-solid fa-puzzle-piece"></i>
+            </a>
+            <a className="px-mr-10" href="https://github.com/stackpress/idea">
+              <i className="px-fs-26 fab fa-github"></i>
+            </a>
+            <a
+              className="px-mr-10 px-w-26 px-h-26 hex-bg-CB3837 rounded-full 
+            flex justify-center items-center"
+              href="https://www.npmjs.com/package/@stackpress/idea"
+            >
+              <i className="px-fs-16 fab fa-npm text-white"></i>
+            </a>
+            {toggleTheme && (
+              <button
+                className={`flex justify-center items-center b-0 px-mr-10 
+              px-h-26 px-w-26 px-fs-20 rounded-full text-white ${themeColor}`}
+                onClick={() => toggleTheme()}
+              >
+                <i className={`fas ${themeIcon}`}></i>
+              </button>
+            )}
+          </nav>
+        </div>
       </div>
     </header>
   );

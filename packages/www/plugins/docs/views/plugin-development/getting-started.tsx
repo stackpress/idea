@@ -589,7 +589,7 @@ export function Body() {
           href: '/docs/plugin-development/advanced-tutorials'
         }}
         next={{
-          text: _('Plugin Development Guide'),
+          text: _('Tutorial'),
           href: '/docs/tutorials/tsmorph-plugin-guide'
         }}
       />

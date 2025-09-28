@@ -216,7 +216,11 @@ export function DocumentationBody() {
         </Translate>
       </P>
 
-      <Code language="javascript" className="bg-black text-white px-mb-20">
+      <Code
+        copy
+        language="javascript"
+        className="bg-black text-white"
+      >
         {schemaExample}
       </Code>
 

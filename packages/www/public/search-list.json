@@ -1,0 +1,853 @@
+[
+  {
+    "title": "Introduction",
+    "description": "The .idea file format is a declarative schema definition language designed to simplify application development by providing a single source of truth for data structures, relationships, and code generation.",
+    "url": "/docs/introduction/"
+  },
+  {
+    "title": "What is idea?",
+    "description": "The .idea file format is a declarative schema definition language designed to simplify application development by providing a single source of truth for data structures, relationships, and code generation.",
+    "url": "/docs/introduction/"
+  },
+  {
+    "title": "Getting Started",
+    "description": "The following is a guide to get you started with Idea.",
+    "url": "/docs/getting-started/"
+  },
+  {
+    "title": "Specification",
+    "description": "The specification section provides a comprehensive overview of the .idea file format, including its syntax, data types, and structure.",
+    "url": "/docs/specifications/syntax-overview/"
+  },
+  {
+    "title": "Syntax Overview - Specification",
+    "description": "The specification section provides a comprehensive overview of the .idea file format, including its syntax, data types, and structure.",
+    "url": "/docs/specifications/syntax-overview/"
+  },
+  {
+    "title": "Data Types - Specification",
+    "description": "The .idea format supports four primary data types that form the building blocks of your application schema.",
+    "url": "/docs/specifications/data-types/"
+  },
+  {
+    "title": "(Enums) Data Types - Specification",
+    "description": "The .idea format supports four primary data types that form the building blocks of your application schema.",
+    "url": "/docs/specifications/data-types#enums/"
+  },
+  {
+    "title": "(Props) Data Types - Specification",
+    "description": "Props are reusable property configurations that define common field behaviors, validation rules, and UI components. They promote consistency and reduce duplication across your schema.",
+    "url": "/docs/specifications/data-types#props-1/"
+  },
+  {
+    "title": "(Type) Data Types - Specification",
+    "description": "The .idea format supports four primary data types that form the building blocks of your application schema.",
+    "url": "/docs/specifications/data-types#type/"
+  },
+  {
+    "title": "(Models) Data Types - Specification",
+    "description": "Models represent the core entities in your application, typically corresponding to database tables or API resources. They define the structure, relationships, and behavior of your data.",
+    "url": "/docs/specifications/data-types#models/"
+  },
+  {
+    "title": "Schema Elements - Specification",
+    "description": "Schema elements are the building blocks of your application schema.",
+    "url": "/docs/specifications/schema-elements/"
+  },
+  {
+    "title": "Schema Structure - Specification",
+    "description": "A complete .idea schema file can contain multiple elements organized in a specific structure.",
+    "url": "/docs/specifications/schema-structure/"
+  },
+  {
+    "title": "Schema Directives - Specification",
+    "description": "Schema directives are special declarations that control how the schema is processed and what outputs are generated.",
+    "url": "/docs/specifications/schema-structure/"
+  },
+  {
+    "title": "(Use) Schema Directives - Specification",
+    "description": "Schema directives are special declarations that control how the schema is processed and what outputs are generated.",
+    "url": "/docs/specifications/schema-structure#use/"
+  },
+  {
+    "title": "(Plugin) Schema Directives - Specification",
+    "description": "Schema directives are special declarations that control how the schema is processed and what outputs are generated.",
+    "url": "/docs/specifications/schema-structure#plugin/"
+  },
+  {
+    "title": "Processing Flow - Specification",
+    "description": "The .idea file format follows a structured processing flow:",
+    "url": "/docs/specifications/processing-flow/"
+  },
+  {
+    "title": "Plugin System - Specification",
+    "description": "The plugin system enables extensible code generation from your schema definitions.",
+    "url": "/docs/specifications/plugin-system/"
+  },
+  {
+    "title": "Complete Example - Specification",
+    "description": "Complete examples of how to use the .idea file format to generate various outputs like TypeScript interfaces, database schemas, API documentation, and more.",
+    "url": "/docs/specifications/complete-example/"
+  },
+  {
+    "title": "Best Practices - Specification",
+    "description": "Best practices for using the .idea file format to generate various outputs like TypeScript interfaces, database schemas, API documentation, and more.",
+    "url": "/docs/specifications/best-practices/"
+  },
+  {
+    "title": "Error Handling - Specification",
+    "description": "Error handling is a crucial aspect of any application. The .idea file format provides a way to handle errors in a structured way.",
+    "url": "/docs/specifications/error-handling/"
+  },
+  {
+    "title": "Installation - Parser",
+    "description": "A TypeScript library for parsing .idea schema files into Abstract Syntax Trees (AST) and converting them to readable JSON configurations. This library is designed to help developers work with schema definitions in a structured and type-safe manner.",
+    "url": "/docs/parser/installation/"
+  },
+  {
+    "title": "Core Concepts - Parser",
+    "description": "Learn the core concepts of the Idea Parser library including schema structure, processing flow, and key components.",
+    "url": "/docs/parser/core-concepts/"
+  },
+  {
+    "title": "API Reference - Parser",
+    "description": "Complete API reference for the Idea Parser library, including detailed documentation for all classes, methods, and interfaces.",
+    "url": "/docs/parser/api-reference/"
+  },
+  {
+    "title": "Examples - Parser",
+    "description": "Practical examples showing how to use the Idea Parser library for parsing schema files and working with individual components.",
+    "url": "/docs/parser/examples/"
+  },
+  {
+    "title": "Best Practices - Parser",
+    "description": "Best practices and guidelines for using the Idea Parser library effectively, including error handling, type safety, and common pitfalls to avoid.",
+    "url": "/docs/parser/best-practices/"
+  },
+  {
+    "title": "Lexer API",
+    "description": "The Lexer class implements the Parser interface and provides tokenization and parsing utilities for schema code. It manages a dictionary of token definitions and handles the parsing process by matching patterns against the input code.",
+    "url": "/docs/parser/api-references/lexer/"
+  },
+  {
+    "title": "Compiler API",
+    "description": "Compiler class documentation for the Idea Parser library, including methods for compiling AST tokens into structured JSON configurations.",
+    "url": "/docs/parser/api-references/compiler/"
+  },
+  {
+    "title": "AST API",
+    "description": "AST (Abstract Syntax Tree) representation for the Idea Parser library, including node types and traversal methods.",
+    "url": "/docs/parser/api-references/ast/"
+  },
+  {
+    "title": "Tokens API",
+    "description": "Tokens representation for the Idea Parser library, including token types and utilities.",
+    "url": "/docs/parser/api-references/tokens/"
+  },
+  {
+    "title": "Exception Handling API",
+    "description": "Exception handling representation for the Idea Parser library, including error types and utilities.",
+    "url": "/docs/parser/api-references/exception-handling/"
+  },
+  {
+    "title": "Transformers",
+    "description": "Introduction to the concept of transformers in the Idea Parser library, including their purpose and usage.",
+    "url": "/docs/transformers/introduction/"
+  },
+  {
+    "title": "API Reference - Transformers",
+    "description": "Complete API reference for the transformers in the Idea Parser library, including detailed documentation for all classes, methods, and interfaces.",
+    "url": "/docs/transformers/api-reference/"
+  },
+  {
+    "title": "Transformers API",
+    "description": "Complete API reference for the transformers in the Idea Parser library, including detailed documentation for all classes, methods, and interfaces.",
+    "url": "/docs/transformers/api-references/transformer/"
+  },
+  {
+    "title": "Terminal API",
+    "description": "Complete API reference for the terminal in the Idea Parser library, including detailed documentation for all classes, methods, and interfaces.",
+    "url": "/docs/transformers/api-references/terminal/"
+  },
+  {
+    "title": "Architecture - Transformers",
+    "description": "Learn about the architecture of transformers in the Idea Parser library, including their components and interactions.",
+    "url": "/docs/transformers/architecture/"
+  },
+  {
+    "title": "Usage Patterns - Transformers",
+    "description": "Learn about the usage patterns of transformers in the Idea Parser library, including common scenarios and best practices.",
+    "url": "/docs/transformers/usage-patterns/"
+  },
+  {
+    "title": "Common Use Cases - Transformers",
+    "description": "Explore common use cases for transformers in the Idea Parser library, including practical examples and scenarios.",
+    "url": "/docs/transformers/common-use-cases/"
+  },
+  {
+    "title": "Examples - Transformers",
+    "description": "Explore practical examples of using transformers in the Idea Parser library, including code snippets and use case demonstrations.",
+    "url": "/docs/transformers/examples/"
+  },
+  {
+    "title": "Error Handling - Transformers",
+    "description": "Explore error handling strategies for transformers in the Idea Parser library, including best practices and common pitfalls.",
+    "url": "/docs/transformers/error-handling/"
+  },
+  {
+    "title": "Best Practices - Transformers",
+    "description": "Explore best practices for using transformers in the Idea Parser library, including tips and guidelines for effective implementation.",
+    "url": "/docs/transformers/best-practices/"
+  },
+  {
+    "title": "Plugin",
+    "description": "The plugin system enables extensible code generation from your schema definitions. Plugins can be developed to generate code in various programming languages, frameworks, or for specific use cases.",
+    "url": "/docs/plugin-development/plugin-development-guide"
+  },
+  {
+    "title": "Plugin Examples",
+    "description": "Explore examples of plugins developed for the Idea Parser library, showcasing various use cases and implementations.",
+    "url": "/docs/plugin-development/plugin-examples"
+  },
+  {
+    "title": "Plugin Configuration",
+    "description": "Learn how to configure and customize plugins in the Idea Parser library, including setup instructions and configuration options.",
+    "url": "/docs/plugin-development/plugin-configuration"
+  },
+  {
+    "title": "Error Handling - Plugin",
+    "description": "Learn about error handling strategies for plugins in the Idea Parser library, including best practices and common pitfalls.",
+    "url": "/docs/plugin-development/error-handling"
+  },
+  {
+    "title": "Best Practices - Plugin",
+    "description": "Learn about best practices for developing plugins in the Idea Parser library, including tips and guidelines for effective implementation.",
+    "url": "/docs/plugin-development/best-practices"
+  },
+  {
+    "title": "Available Tutorials - Plugin",
+    "description": "Explore available tutorials for developing plugins in the Idea Parser library, including step-by-step guides and practical examples.",
+    "url": "/docs/plugin-development/available-tutorials"
+  },
+  {
+    "title": "Advanced Tutorials - Plugin",
+    "description": "Explore advanced tutorials for developing plugins in the Idea Parser library, including step-by-step guides and practical examples.",
+    "url": "/docs/plugin-development/advanced-tutorials"
+  },
+  {
+    "title": "Getting Started - Plugin",
+    "description": "Explore advanced tutorials for developing plugins in the Idea Parser library, including step-by-step guides and practical examples.",
+    "url": "/docs/plugin-development/getting-started"
+  },
+
+  {
+    "title": "Markdown Documentation Plugin Guide",
+    "description": "A comprehensive guide to developing a plugin for generating markdown documentation from your Idea schema files.",
+    "url": "/docs/tutorials/markdown-documentation-plugin"
+  },
+  {
+    "title": "TypeScript Interface Plugin Guide",
+    "description": "Learn how to create a plugin that generates TypeScript interfaces from your Idea schema definitions.",
+    "url": "/docs/tutorials/typescript-interface-plugin"
+  },
+  {
+    "title": "GraphQL Schema Plugin Guide",
+    "description": "A step-by-step guide to building a plugin that converts Idea schemas into GraphQL schema definitions.",
+    "url": "/docs/tutorials/graphql-schema-plugin"
+  },
+  {
+    "title": "Validation Plugin Guide",
+    "description": "Create validation logic plugins for your Idea schemas, including custom validators and error handling.",
+    "url": "/docs/tutorials/validation-plugin"
+  },
+  {
+    "title": "API Client Plugin Guide",
+    "description": "Build plugins that generate API client code from your Idea schema models and endpoints.",
+    "url": "/docs/tutorials/api-client-plugin"
+  },
+  {
+    "title": "HTML Form Plugin Guide",
+    "description": "Generate HTML forms and form validation logic from your Idea schema field definitions.",
+    "url": "/docs/tutorials/html-form-plugin"
+  },
+  {
+    "title": "Test Data Plugin Guide",
+    "description": "Create plugins that generate mock data and test fixtures based on your Idea schema structures.",
+    "url": "/docs/tutorials/test-data-plugin"
+  },
+  {
+    "title": "OpenAPI Specification Plugin Guide",
+    "description": "Convert your Idea schemas into OpenAPI (Swagger) specifications for API documentation and testing.",
+    "url": "/docs/tutorials/openapi-specification-plugin"
+  },
+  {
+    "title": "API Client Plugin - Introduction",
+    "description": "Introduction to building API client plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/api-client-plugin#introduction"
+  },
+  {
+    "title": "API Client Plugin - Overview",
+    "description": "Overview of API client plugin development concepts and features.",
+    "url": "/docs/tutorials/api-client-plugin#overview"
+  },
+  {
+    "title": "API Client Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building API client plugins.",
+    "url": "/docs/tutorials/api-client-plugin#prerequisites"
+  },
+  {
+    "title": "API Client Plugin - Plugin Structure",
+    "description": "Understanding the structure and organization of API client plugins.",
+    "url": "/docs/tutorials/api-client-plugin#plugin-structure"
+  },
+  {
+    "title": "API Client Plugin - Schema Configuration",
+    "description": "Configuring schemas for API client plugin development.",
+    "url": "/docs/tutorials/api-client-plugin#schema-configuration"
+  },
+  {
+    "title": "API Client Plugin - Implementation",
+    "description": "Implementation guide for API client plugin functionality.",
+    "url": "/docs/tutorials/api-client-plugin#implementation"
+  },
+  {
+    "title": "API Client Plugin - Advanced Features",
+    "description": "Advanced features and techniques for API client plugins.",
+    "url": "/docs/tutorials/api-client-plugin#advanced-features"
+  },
+  {
+    "title": "API Client Plugin - Usage Examples",
+    "description": "Practical examples of using API client plugins.",
+    "url": "/docs/tutorials/api-client-plugin#usage-examples"
+  },
+  {
+    "title": "API Client Plugin - Troubleshooting",
+    "description": "Troubleshooting common issues with API client plugins.",
+    "url": "/docs/tutorials/api-client-plugin#troubleshooting"
+  },
+  {
+    "title": "API Client Plugin - Best Practices",
+    "description": "Best practices for developing API client plugins.",
+    "url": "/docs/tutorials/api-client-plugin#best-practices"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Introduction",
+    "description": "Introduction to building GraphQL schema plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/graphql-schema-plugin#introduction"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Overview",
+    "description": "Overview of GraphQL schema plugin development concepts and features.",
+    "url": "/docs/tutorials/graphql-schema-plugin#overview"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building GraphQL schema plugins.",
+    "url": "/docs/tutorials/graphql-schema-plugin#prerequisites"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Plugin Structure",
+    "description": "Understanding the structure and organization of GraphQL schema plugins.",
+    "url": "/docs/tutorials/graphql-schema-plugin#plugin-structure"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Schema Configuration",
+    "description": "Configuring schemas for GraphQL schema plugin development.",
+    "url": "/docs/tutorials/graphql-schema-plugin#schema-configuration"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Implementation",
+    "description": "Implementation guide for GraphQL schema plugin functionality.",
+    "url": "/docs/tutorials/graphql-schema-plugin#implementation"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Advanced Features",
+    "description": "Advanced features and techniques for GraphQL schema plugins.",
+    "url": "/docs/tutorials/graphql-schema-plugin#advanced-features"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Usage Examples",
+    "description": "Practical examples of using GraphQL schema plugins.",
+    "url": "/docs/tutorials/graphql-schema-plugin#usage-examples"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Troubleshooting",
+    "description": "Troubleshooting common issues with GraphQL schema plugins.",
+    "url": "/docs/tutorials/graphql-schema-plugin#troubleshooting"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Best Practices",
+    "description": "Best practices for developing GraphQL schema plugins.",
+    "url": "/docs/tutorials/graphql-schema-plugin#best-practices"
+  },
+  {
+    "title": "GraphQL Schema Plugin - Conclusion",
+    "description": "Conclusion and next steps for GraphQL schema plugin development.",
+    "url": "/docs/tutorials/graphql-schema-plugin#conclusion"
+  },
+  {
+    "title": "HTML Form Plugin - Introduction",
+    "description": "Introduction to building HTML form plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/html-form-plugin#introduction"
+  },
+  {
+    "title": "HTML Form Plugin - Overview",
+    "description": "Overview of HTML form plugin development concepts and features.",
+    "url": "/docs/tutorials/html-form-plugin#overview"
+  },
+  {
+    "title": "HTML Form Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building HTML form plugins.",
+    "url": "/docs/tutorials/html-form-plugin#prerequisites"
+  },
+  {
+    "title": "HTML Form Plugin - Understanding Schema Structure",
+    "description": "Understanding schema structure for HTML form plugin development.",
+    "url": "/docs/tutorials/html-form-plugin#understanding-schema-structure"
+  },
+  {
+    "title": "HTML Form Plugin - Create Plugin Structure",
+    "description": "Creating the plugin structure for HTML form plugins.",
+    "url": "/docs/tutorials/html-form-plugin#create-plugin-structure"
+  },
+  {
+    "title": "HTML Form Plugin - Implement Form Element Generation",
+    "description": "Implementation guide for form element generation in HTML form plugins.",
+    "url": "/docs/tutorials/html-form-plugin#implement-form-element-generation"
+  },
+  {
+    "title": "HTML Form Plugin - Implement Form Layout and Styling",
+    "description": "Implementation guide for form layout and styling in HTML form plugins.",
+    "url": "/docs/tutorials/html-form-plugin#implement-form-layout-styling"
+  },
+  {
+    "title": "HTML Form Plugin - Generate Complete HTML Document",
+    "description": "Generating complete HTML documents with HTML form plugins.",
+    "url": "/docs/tutorials/html-form-plugin#generate-complete-html-document"
+  },
+  {
+    "title": "HTML Form Plugin - Usage in Schema",
+    "description": "Using HTML form plugins in schema definitions.",
+    "url": "/docs/tutorials/html-form-plugin#usage-in-schema"
+  },
+  {
+    "title": "HTML Form Plugin - Generated Output",
+    "description": "Understanding the generated output from HTML form plugins.",
+    "url": "/docs/tutorials/html-form-plugin#generated-output"
+  },
+  {
+    "title": "HTML Form Plugin - Error Handling and Best Practices",
+    "description": "Error handling and best practices for HTML form plugins.",
+    "url": "/docs/tutorials/html-form-plugin#error-handling-best-practices"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Introduction",
+    "description": "Introduction to building markdown documentation plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#introduction"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Overview",
+    "description": "Overview of markdown documentation plugin development concepts and features.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#overview"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building markdown documentation plugins.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#prerequisites"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Understanding Schema Structure",
+    "description": "Understanding schema structure for markdown documentation plugin development.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#understanding-schema-structure"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Create Plugin Structure",
+    "description": "Creating the plugin structure for markdown documentation plugins.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#create-plugin-structure"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Utility Functions",
+    "description": "Utility functions for markdown documentation plugin development.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#utility-functions"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Generate Types, Enums & Props",
+    "description": "Generating documentation for types, enums, and props in markdown format.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#generate-types-enums-props"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Generate Models Documentation",
+    "description": "Generating documentation for models in markdown format.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#generate-models-documentation"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Implement Documentation Generation",
+    "description": "Implementation guide for documentation generation in markdown plugins.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#implement-documentation-generation"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Advanced Features",
+    "description": "Advanced features and techniques for markdown documentation plugins.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#advanced-features"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Usage in Schema",
+    "description": "Using markdown documentation plugins in schema definitions.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#usage-in-schema"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Generated Output",
+    "description": "Understanding the generated output from markdown documentation plugins.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#generated-output"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Error Handling and Best Practices",
+    "description": "Error handling and best practices for markdown documentation plugins.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#error-handling-best-practices"
+  },
+  {
+    "title": "Markdown Documentation Plugin - Conclusion",
+    "description": "Conclusion and next steps for markdown documentation plugin development.",
+    "url": "/docs/tutorials/markdown-documentation-plugin#conclusion"
+  },
+  {
+    "title": "MySQL Table Plugin - Introduction",
+    "description": "Introduction to building MySQL table plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/mysql-table-plugin#introduction"
+  },
+  {
+    "title": "MySQL Table Plugin - Overview",
+    "description": "Overview of MySQL table plugin development concepts and features.",
+    "url": "/docs/tutorials/mysql-table-plugin#overview"
+  },
+  {
+    "title": "MySQL Table Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building MySQL table plugins.",
+    "url": "/docs/tutorials/mysql-table-plugin#prerequisites"
+  },
+  {
+    "title": "MySQL Table Plugin - Understanding Schema Structure",
+    "description": "Understanding schema structure for MySQL table plugin development.",
+    "url": "/docs/tutorials/mysql-table-plugin#understanding-schema-structure"
+  },
+  {
+    "title": "MySQL Table Plugin - Create Plugin Structure",
+    "description": "Creating the plugin structure for MySQL table plugins.",
+    "url": "/docs/tutorials/mysql-table-plugin#create-plugin-structure"
+  },
+  {
+    "title": "MySQL Table Plugin - Implement Type Mapping",
+    "description": "Implementation guide for type mapping in MySQL table plugins.",
+    "url": "/docs/tutorials/mysql-table-plugin#implement-type-mapping"
+  },
+  {
+    "title": "MySQL Table Plugin - Generate SQL Statements",
+    "description": "Generating SQL statements with MySQL table plugins.",
+    "url": "/docs/tutorials/mysql-table-plugin#generate-sql-statements"
+  },
+  {
+    "title": "MySQL Table Plugin - Usage in Schema",
+    "description": "Using MySQL table plugins in schema definitions.",
+    "url": "/docs/tutorials/mysql-table-plugin#usage-in-schema"
+  },
+  {
+    "title": "MySQL Table Plugin - Generated Output",
+    "description": "Understanding the generated output from MySQL table plugins.",
+    "url": "/docs/tutorials/mysql-table-plugin#generated-output"
+  },
+  {
+    "title": "MySQL Table Plugin - Best Practices",
+    "description": "Best practices for developing MySQL table plugins.",
+    "url": "/docs/tutorials/mysql-table-plugin#best-practices"
+  },
+  {
+    "title": "MySQL Table Plugin - Conclusion",
+    "description": "Conclusion and next steps for MySQL table plugin development.",
+    "url": "/docs/tutorials/mysql-table-plugin#conclusion"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Introduction",
+    "description": "Introduction to building OpenAPI specification plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/openapi-specification-plugin#introduction"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Overview",
+    "description": "Overview of OpenAPI specification plugin development concepts and features.",
+    "url": "/docs/tutorials/openapi-specification-plugin#overview"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Configuration Options",
+    "description": "Configuration options for OpenAPI specification plugins.",
+    "url": "/docs/tutorials/openapi-specification-plugin#configuration-options"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Schema Processing",
+    "description": "Schema processing techniques for OpenAPI specification plugins.",
+    "url": "/docs/tutorials/openapi-specification-plugin#schema-processing"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Basic Implementation",
+    "description": "Basic implementation guide for OpenAPI specification plugins.",
+    "url": "/docs/tutorials/openapi-specification-plugin#basic-implementation"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Advanced Features",
+    "description": "Advanced features and techniques for OpenAPI specification plugins.",
+    "url": "/docs/tutorials/openapi-specification-plugin#advanced-features"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Usage Examples",
+    "description": "Practical examples of using OpenAPI specification plugins.",
+    "url": "/docs/tutorials/openapi-specification-plugin#usage-examples"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Troubleshooting",
+    "description": "Troubleshooting common issues with OpenAPI specification plugins.",
+    "url": "/docs/tutorials/openapi-specification-plugin#troubleshooting"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Best Practices",
+    "description": "Best practices for developing OpenAPI specification plugins.",
+    "url": "/docs/tutorials/openapi-specification-plugin#best-practices"
+  },
+  {
+    "title": "OpenAPI Specification Plugin - Conclusion",
+    "description": "Conclusion and next steps for OpenAPI specification plugin development.",
+    "url": "/docs/tutorials/openapi-specification-plugin#conclusion"
+  },
+  {
+    "title": "Test Data Plugin - Overview",
+    "description": "Overview of test data plugin development concepts and features.",
+    "url": "/docs/tutorials/test-data-plugin#overview"
+  },
+  {
+    "title": "Test Data Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building test data plugins.",
+    "url": "/docs/tutorials/test-data-plugin#prerequisites"
+  },
+  {
+    "title": "Test Data Plugin - Plugin Structure",
+    "description": "Understanding the structure and organization of test data plugins.",
+    "url": "/docs/tutorials/test-data-plugin#plugin-structure"
+  },
+  {
+    "title": "Test Data Plugin - Schema Configuration",
+    "description": "Configuring schemas for test data plugin development.",
+    "url": "/docs/tutorials/test-data-plugin#schema-configuration"
+  },
+  {
+    "title": "Test Data Plugin - Core Plugin Function",
+    "description": "Core functionality implementation for test data plugins.",
+    "url": "/docs/tutorials/test-data-plugin#core-plugin-function"
+  },
+  {
+    "title": "Test Data Plugin - Generation Functions",
+    "description": "Data generation functions for test data plugins.",
+    "url": "/docs/tutorials/test-data-plugin#generation-functions"
+  },
+  {
+    "title": "Test Data Plugin - Conclusion",
+    "description": "Conclusion and next steps for test data plugin development.",
+    "url": "/docs/tutorials/test-data-plugin#conclusion"
+  },
+  {
+    "title": "TS Morph Plugin Guide",
+    "description": "A comprehensive guide to developing a plugin using TS Morph for the Idea Parser library, including setup instructions, code examples, and best practices.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Introduction",
+    "description": "Introduction to building plugins with TS Morph for the Idea Parser library.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#introduction"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Installation",
+    "description": "Installation guide for TS Morph plugin development.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#installation"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Setting Up The Project",
+    "description": "Setting up your project for TS Morph plugin development.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#setting-up-project"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Understanding TS Morph Basics",
+    "description": "Understanding the basics of TS Morph for plugin development.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#understanding-ts-morph-basics"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Creating Your First Plugin",
+    "description": "Step-by-step guide to creating your first TS Morph plugin.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#creating-first-plugin"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Advanced TS Morph Features",
+    "description": "Advanced features and techniques for TS Morph plugins.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#advanced-ts-morph-features"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Testing Your Plugin",
+    "description": "Testing strategies and techniques for TS Morph plugins.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#testing-your-plugin"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Best Practices",
+    "description": "Best practices for developing TS Morph plugins.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#best-practices"
+  },
+  {
+    "title": "TS Morph Plugin Guide - Troubleshooting",
+    "description": "Troubleshooting common issues with TS Morph plugins.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#troubleshooting"
+  },
+  {
+    "title": "TS Morph Plugin Guide - References",
+    "description": "References and additional resources for TS Morph plugin development.",
+    "url": "/docs/tutorials/tsmorph-plugin-guide#references"
+  },
+  {
+    "title": "MySQL Tables Plugin Guide",
+    "description": "A comprehensive guide to developing MySQL table plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/mysql-table-plugin"
+  },
+  {
+    "title": "MySQL Tables Plugin Guide - Prerequisites",
+    "description": "Prerequisites and requirements for building MySQL table plugins.",
+    "url": "/docs/tutorials/mysql-table-plugin#prerequisites"
+  },
+  {
+    "title": "MySQL Tables Plugin Guide - Understanding Schema Structure",
+    "description": "Understanding schema structure for MySQL table plugin development.",
+    "url": "/docs/tutorials/mysql-table-plugin#understanding-schema"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Introduction",
+    "description": "Introduction to building TypeScript interface plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/typescript-interface-plugin#introduction"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Overview",
+    "description": "Overview of TypeScript interface plugin development concepts and features.",
+    "url": "/docs/tutorials/typescript-interface-plugin#overview"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building TypeScript interface plugins.",
+    "url": "/docs/tutorials/typescript-interface-plugin#prerequisites"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Plugin Structure",
+    "description": "Understanding the structure and organization of TypeScript interface plugins.",
+    "url": "/docs/tutorials/typescript-interface-plugin#plugin-structure"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Schema Configuration",
+    "description": "Configuring schemas for TypeScript interface plugin development.",
+    "url": "/docs/tutorials/typescript-interface-plugin#schema-configuration"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Implementation",
+    "description": "Implementation guide for TypeScript interface plugin functionality.",
+    "url": "/docs/tutorials/typescript-interface-plugin#implementation"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Advanced Features",
+    "description": "Advanced features and techniques for TypeScript interface plugins.",
+    "url": "/docs/tutorials/typescript-interface-plugin#advanced-features"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Usage Examples",
+    "description": "Practical examples of using TypeScript interface plugins.",
+    "url": "/docs/tutorials/typescript-interface-plugin#usage-examples"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Troubleshooting",
+    "description": "Troubleshooting common issues with TypeScript interface plugins.",
+    "url": "/docs/tutorials/typescript-interface-plugin#troubleshooting"
+  },
+  {
+    "title": "TypeScript Interface Plugin - Best Practices",
+    "description": "Best practices for developing TypeScript interface plugins.",
+    "url": "/docs/tutorials/typescript-interface-plugin#best-practices"
+  },
+  {
+    "title": "Validation Plugin - Introduction",
+    "description": "Introduction to building validation plugins for the Idea Parser library.",
+    "url": "/docs/tutorials/validation-plugin#introduction"
+  },
+  {
+    "title": "Validation Plugin - Overview",
+    "description": "Overview of validation plugin development concepts and features.",
+    "url": "/docs/tutorials/validation-plugin#overview"
+  },
+  {
+    "title": "Validation Plugin - Prerequisites",
+    "description": "Prerequisites and requirements for building validation plugins.",
+    "url": "/docs/tutorials/validation-plugin#prerequisites"
+  },
+  {
+    "title": "Validation Plugin - Plugin Structure",
+    "description": "Understanding the structure and organization of validation plugins.",
+    "url": "/docs/tutorials/validation-plugin#plugin-structure"
+  },
+  {
+    "title": "Validation Plugin - Schema Configuration",
+    "description": "Configuring schemas for validation plugin development.",
+    "url": "/docs/tutorials/validation-plugin#schema-configuration"
+  },
+  {
+    "title": "Validation Plugin - Implementation",
+    "description": "Implementation guide for validation plugin functionality.",
+    "url": "/docs/tutorials/validation-plugin#implementation"
+  },
+  {
+    "title": "Validation Plugin - Advanced Features",
+    "description": "Advanced features and techniques for validation plugins.",
+    "url": "/docs/tutorials/validation-plugin#advanced-features"
+  },
+  {
+    "title": "Validation Plugin - Usage Examples",
+    "description": "Practical examples of using validation plugins.",
+    "url": "/docs/tutorials/validation-plugin#usage-examples"
+  },
+  {
+    "title": "Validation Plugin - Troubleshooting",
+    "description": "Troubleshooting common issues with validation plugins.",
+    "url": "/docs/tutorials/validation-plugin#troubleshooting"
+  },
+  {
+    "title": "Validation Plugin - Best Practices",
+    "description": "Best practices for developing validation plugins.",
+    "url": "/docs/tutorials/validation-plugin#best-practices"
+  },
+  {
+    "title": "Specifications - Data Types - Enums",
+    "description": "Detailed specification for enum data types in the Idea schema format.",
+    "url": "/docs/specifications/data-types#enums-component"
+  },
+  {
+    "title": "Specifications - Data Types - Models",
+    "description": "Detailed specification for model data types in the Idea schema format.",
+    "url": "/docs/specifications/data-types#models-component"
+  },
+  {
+    "title": "Specifications - Data Types - Props",
+    "description": "Detailed specification for prop data types in the Idea schema format.",
+    "url": "/docs/specifications/data-types#props-component"
+  },
+  {
+    "title": "Specifications - Data Types - Type",
+    "description": "Detailed specification for type data types in the Idea schema format.",
+    "url": "/docs/specifications/data-types#type-component"
+  },
+  {
+    "title": "Specifications - Schema Directives - Plugin",
+    "description": "Detailed specification for plugin schema directives in the Idea format.",
+    "url": "/docs/specifications/schema-directives#plugin-component"
+  },
+  {
+    "title": "Specifications - Schema Directives - Use",
+    "description": "Detailed specification for use schema directives in the Idea format.",
+    "url": "/docs/specifications/schema-directives#use-component"
+  }
+]

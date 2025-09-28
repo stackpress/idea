@@ -5,9 +5,9 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, H3, P, C, Nav, SS } from '../../index.js';
-import Code from '../../Code.js';
-import Layout from '../../Layout.js';
+import { H1, H2, H3, P, C, Nav, SS } from '../../../components/index.js';
+import Code from '../../../components/Code.js';
+import Layout from '../../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 const examples = [
@@ -506,27 +506,27 @@ export function Body() {
         </Code>
       </section>
 
-     <section>
-       <H2>{_('Parameters')}</H2>
-      <Table>
-        <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-        <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-        <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
-        <Trow>
-          <Tcol><C>keys</C></Tcol>
-          <Tcol><C>string | string[]</C></Tcol>
-          <Tcol>{_('Token definition key(s) to expect')}</Tcol>
-        </Trow>
-      </Table>
+      <section>
+        <H2>{_('Parameters')}</H2>
+        <Table>
+          <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
+          <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
+          <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+          <Trow>
+            <Tcol><C>keys</C></Tcol>
+            <Tcol><C>string | string[]</C></Tcol>
+            <Tcol>{_('Token definition key(s) to expect')}</Tcol>
+          </Trow>
+        </Table>
 
-      <SS>{_('Returns')}</SS>
-      <li className='my-2 list-none'>
-        <Translate>
-          The matched token object, or throws an exception if no match
-          is found.
-        </Translate>
-      </li>
-     </section>
+        <SS>{_('Returns')}</SS>
+        <li className='my-2 list-none'>
+          <Translate>
+            The matched token object, or throws an exception if no match
+            is found.
+          </Translate>
+        </li>
+      </section>
 
       <H2>{_('Getting Token Definitions')}</H2>
       <P>

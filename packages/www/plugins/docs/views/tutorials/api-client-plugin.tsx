@@ -113,17 +113,28 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* This is Introduction Section */}
       <Introduction />
+      {/* This is Overview Section */}
       <Overview />
+      {/* This is Prerequisites Section */}
       <Prerequisites />
+      {/* This is Plugin Structure Section */}
       <PluginStructure />
+      {/* This is Implementation Section */}
       <Implementation />
+      {/* This is Schema Configuration Section */}
       <SchemaConfiguration />
+      {/* This is Usage Examples Section */}
       <UsageExamples />
+      {/* This is Advanced Features Section */}
       <AdvancedFeatures />
+      {/* This is Best Practices Section */}
       <BestPractices />
+      {/* This is Troubleshooting Section */}
       <Troubleshooting />
 
+      {/* This is Navigation Section */}
       <Nav
         prev={{ 
           text: _('TypeScript Interface Plugin'), 

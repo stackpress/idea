@@ -5,9 +5,9 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, H3, P, C, Nav } from '../../index.js';
-import Code from '../../Code.js';
-import Layout from '../../Layout.js';
+import { H1, H2, H3, P, C, Nav } from '../../../components/index.js';
+import Code from '../../../components/Code.js';
+import Layout from '../../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //example code constants

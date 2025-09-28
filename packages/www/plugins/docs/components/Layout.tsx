@@ -15,8 +15,10 @@ import {
   useRequest,
   useToggle
 } from 'stackpress/view/client';
-
+//styles
 import '../styles/styles.css';
+//components
+import Search from '../../app/components/Search.js';
 
 export function LayoutHead(props: {
   open?: boolean,
@@ -41,8 +43,8 @@ export function LayoutHead(props: {
   const themeColor = theme === 'dark' ? 'bg-gray-600' : 'bg-orange-600';
   const themeIcon = theme === 'dark' ? 'fa-moon' : 'fa-sun';
   return (
-    <header 
-    className={`theme-bg-bg1 duration-200 absolute px-h-60 px-r-0 px-t-0 ${full} ${left} border-b border-gray-300`}
+    <header
+      className={`theme-bg-bg1 duration-200 absolute px-h-60 px-r-0 px-t-0 ${full} ${left}`}
     >
       <div className="flex items-center px-px-20 px-h-100-0">
         {toggleLeft && (
@@ -63,6 +65,7 @@ export function LayoutHead(props: {
             </span>
           ) : undefined}
         </div>
+        <Search />
         {toggleTheme && (
           <button
             className={`flex justify-center items-center b-0 px-mr-10 px-h-26 px-w-26 px-fs-18 rounded-full text-white ${themeColor}`}
@@ -408,7 +411,7 @@ export function LayoutRight({ children }: {
   children: ReactNode
 }) {
   return (
-    <aside className="duration-200 absolute px-w-220 px-b-0 px-t-0 px-t-60 px-z-100 px-r-0 rlg-hidden">
+    <aside className="duration-200 absolute px-w-220 px-b-0 px-t-0 px-t-60 px-z-100 px-r-0 rlg-hidden ">
       <div className="px-h-100-0 theme-bg-bg1 flex flex-col">
         {children}
       </div>
