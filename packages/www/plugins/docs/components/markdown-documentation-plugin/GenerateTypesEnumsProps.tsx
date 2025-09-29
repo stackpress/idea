@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 
 export default function GenerateTypesEnumsProps() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="generate-types-enums-props">
-      <H2>{_('Generate Types, Enums, and Props')}</H2>
+    <>
+      {/* Generate Types, Enums, and Props Section Content */}
+      <section id="generate-types-enums-props">
+      <H1>{_('7. Generate Types, Enums, and Props')}</H1>
       <P>
         <Translate>
           Similar to models, you can implement generation functions for
@@ -21,6 +26,7 @@ export default function GenerateTypesEnumsProps() {
           configurations for form fields and validation.
         </Translate>
       </P>
-    </section>
+      </section>
+    </>
   )
 }

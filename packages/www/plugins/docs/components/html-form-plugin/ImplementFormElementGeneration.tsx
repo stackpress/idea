@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const formElementExample = `function generateFormElement(column: any, schema: any, options: any): string {
   const { name, type, required, attributes = {} } = column;
@@ -196,14 +201,19 @@ function autoGenerateElement(column: any, schema: any, options: any): string {
       // Default to text input
       return generateInputElement(column, { type: 'text' }, options);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function ImplementFormElementGeneration() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="implement-form-element-generation">
-      <H2>{_('5. Implement Form Element Generation')}</H2>
+    <>
+      {/* Implement Form Element Generation Section Content */}
+      <section id="implement-form-element-generation">
+      <H1>{_('5. Implement Form Element Generation')}</H1>
       <P>
         <Translate>
           Form element generation is the core functionality of the 
@@ -221,6 +231,7 @@ export default function ImplementFormElementGeneration() {
       <Code copy language='typescript' className='bg-black text-white'>
         {formElementExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

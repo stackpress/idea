@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const errorHandlingExample = `// Centralized validation error handling
+//code examples
+//----------------------------------------------------------------------
+
+const errorHandlingExample = 
+`// Centralized validation error handling
 class ValidationError extends Error {
   constructor(public errors: z.ZodError) {
     super('Validation failed');
@@ -30,7 +36,9 @@ function validateWithErrorHandling<T>(schema: z.ZodSchema<T>, data: unknown): T 
   }
   
   return result.data;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const schemaCompositionExample = `// Compose schemas for reusability
 const BaseEntitySchema = z.object({
@@ -48,9 +56,12 @@ const PostSchema = BaseEntitySchema.extend({
   title: z.string().min(1),
   content: z.string(),
   authorId: z.string(),
-});`;
+});`
 
-const typeGuardsExample = `// Generate type guards from schemas
+//----------------------------------------------------------------------
+
+const typeGuardsExample = 
+`// Generate type guards from schemas
 export const isUser = (data: unknown): data is User => {
   return UserSchema.safeParse(data).success;
 };
@@ -67,7 +78,10 @@ function processUserData(data: unknown) {
   }
 }`;
 
-const apiIntegrationExample = `// Middleware for API validation
+//----------------------------------------------------------------------
+
+const apiIntegrationExample = 
+`// Middleware for API validation
 function validateBody<T>(schema: z.ZodSchema<T>) {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
@@ -93,14 +107,19 @@ function validateBody<T>(schema: z.ZodSchema<T>) {
 app.post('/users', validateBody(CreateUserSchema), (req, res) => {
   // req.body is now typed and validated
   const user = req.body; // Type: CreateUserInput
-});`;
+});`
+
+//----------------------------------------------------------------------
 
 export default function BestPractices() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="best-practices">
-      <H2>{_('8. Best Practices')}</H2>
+    <>
+      {/* Best Practices Section Content */}
+      <section id="best-practices">
+      <H1>{_('8. Best Practices')}</H1>
       <P>
         <Translate>
           Best practices ensure your generated Zod validation schemas are 
@@ -110,7 +129,7 @@ export default function BestPractices() {
         </Translate>
       </P>
 
-      <H3>{_('8.1. Error Handling')}</H3>
+      <H2>{_('8.1. Error Handling')}</H2>
       <P>
         <Translate>
           Proper error handling ensures that validation failures provide clear, 
@@ -123,7 +142,7 @@ export default function BestPractices() {
         {errorHandlingExample}
       </Code>
 
-      <H3>{_('8.2. Schema Composition')}</H3>
+      <H2>{_('8.2. Schema Composition')}</H2>
       <P>
         <Translate>
           Schema composition enables the creation of reusable validation components 
@@ -135,7 +154,7 @@ export default function BestPractices() {
         {schemaCompositionExample}
       </Code>
 
-      <H3>{_('8.3. Type Guards')}</H3>
+      <H2>{_('8.3. Type Guards')}</H2>
       <P>
         <Translate>
           Type guards provide runtime type checking that integrates seamlessly 
@@ -148,7 +167,7 @@ export default function BestPractices() {
         {typeGuardsExample}
       </Code>
 
-      <H3>{_('8.4. API Integration')}</H3>
+      <H2>{_('8.4. API Integration')}</H2>
       <P>
         <Translate>
           API integration patterns show how to use generated Zod schemas for 
@@ -159,6 +178,7 @@ export default function BestPractices() {
       <Code copy language='typescript' className='bg-black text-white'>
         {apiIntegrationExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

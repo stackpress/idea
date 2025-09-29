@@ -1,5 +1,7 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, Code } from '../index.js';
+//local
+import { H1, H2, P, Code } from '../index.js';
 
 const namespaceConfigurationExample = 
 `// With namespace configuration
@@ -19,7 +21,9 @@ export namespace MyApp {
     name: string;
     role: UserRole;
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const standardEnumExample = 
 `// Standard enum (default)
@@ -27,12 +31,16 @@ enumType: "enum"
 export enum UserRole {
   ADMIN = "admin",
   USER = "user",
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const unionTypeExample = 
 `// Union type
 enumType: "union"
-export type UserRole = "admin" | "user";`;
+export type UserRole = "admin" | "user";`
+
+//----------------------------------------------------------------------
 
 const constAssertionExample = 
 `// Const assertion
@@ -41,7 +49,9 @@ export const UserRole = {
   ADMIN: "admin",
   USER: "user",
 } as const;
-export type UserRole = typeof UserRole[keyof typeof UserRole];`;
+export type UserRole = typeof UserRole[keyof typeof UserRole];`
+
+//----------------------------------------------------------------------
 
 const relationshipHandlingExample = 
 `function handleRelationships(
@@ -65,7 +75,9 @@ const relationshipHandlingExample =
   }
   
   return formatPropertyType(column, config, availableTypes);
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const genericTypeSupportExample = 
 `function generateGenericTypes(
@@ -91,15 +103,19 @@ const genericTypeSupportExample =
 }\\n\\n\`;
   
   return content;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function AdvancedFeatures() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <main>
+    <>
+      {/* Advanced Features Section Content */}
       <section id="advanced-features">
-        <H2>{_('Advanced Features')}</H2>
+        <H1>{_('7. Advanced Features')}</H1>
         <P>
           <Translate>
             Advanced features extend the basic TypeScript interface 
@@ -111,8 +127,9 @@ export default function AdvancedFeatures() {
         </P>
       </section>
 
+      {/* Namespace Support Section Content */}
       <section>
-        <H3>{_('Namespace Support')}</H3>
+        <H2>{_('Namespace Support')}</H2>
         <P>
           <Translate>
             Namespace support allows you to organize generated types within 
@@ -129,8 +146,9 @@ export default function AdvancedFeatures() {
         </Code>
       </section>
 
+      {/* Different Enum Types Section Content */}
       <section>
-        <H3>{_('Different Enum Types')}</H3>
+        <H2>{_('Different Enum Types')}</H2>
         <P>
           <Translate>
             Different enum types provide flexibility in how enumerations are 
@@ -150,8 +168,9 @@ export default function AdvancedFeatures() {
         </Code>
       </section>
 
+      {/* Relationship Handling Section Content */}
       <section>
-        <H3>{_('Relationship Handling')}</H3>
+        <H2>{_('Relationship Handling')}</H2>
         <P>
           <Translate>
             Relationship handling manages references between different types 
@@ -165,8 +184,9 @@ export default function AdvancedFeatures() {
         </Code>
       </section>
 
+      {/* Generic Type Support Section Content */}
       <section>
-        <H3>{_('Generic Type Support')}</H3>
+        <H2>{_('Generic Type Support')}</H2>
         <P>
           <Translate>
             Generic type support enables the generation of reusable type 
@@ -179,6 +199,6 @@ export default function AdvancedFeatures() {
           {genericTypeSupportExample}
         </Code>
       </section>
-    </main>
+    </>
   );
 }

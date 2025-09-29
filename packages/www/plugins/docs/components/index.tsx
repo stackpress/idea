@@ -24,7 +24,7 @@ export function Header1({ children }: { children: string }) {
 export function Header2({ children }: { children: string }) {
   const { _ } = useLanguage();
   return (
-    <h2 className="px-fs-16 font-bold px-pt-20">
+    <h2 className="px-fs-16 font-bold px-pt-20 mb-5">
       {_(children)}
     </h2>
   );

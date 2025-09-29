@@ -4,7 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage } from 'r22n';
-//docs
+//local
 import { Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 //components
@@ -30,7 +30,7 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   //variables
   const title = _('OpenAPI Specification Generator Plugin Tutorial');
   const description = _(
-    'A comprehensive guide to creating a plugin that generates OpenAPI' + 
+    'A comprehensive guide to creating a plugin that generates OpenAPI' +
     ' 3.0 specifications from .idea schema files'
   );
   return (
@@ -64,44 +64,44 @@ export function Right() {
         {_('On this page')}
       </h6>
       <nav className="px-m-14 px-lh-28 flex flex-col">
-        <a 
-        href="#overview" 
-        className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#overview"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('1. Overview')}
         </a>
-        <a 
-        href="#basic-implementation" 
-        className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#basic-implementation"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('2. Basic Implementation')}
         </a>
-        <a 
-        href="#configuration-options" 
-        className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#configuration-options"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('3. Configuration Options')}
         </a>
-        <a 
-        href="#schema-processing" 
-        className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#schema-processing"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('4. Schema Processing')}
         </a>
-        <a 
-        href="#advanced-features"
-         className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#advanced-features"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('5. Advanced Features')}
         </a>
-        <a 
-        href="#usage-examples" 
-        className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#usage-examples"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('6. Usage Examples')}
         </a>
-        <a 
-        href="#best-practices" 
-        className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#best-practices"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('7. Best Practices')}
         </a>
-        <a 
-        href="#troubleshooting" 
-        className="text-blue-500 cursor-pointer hover:text-blue-700">
+        <a
+          href="#troubleshooting"
+          className="text-blue-500 cursor-pointer hover:text-blue-700">
           {_('8. Troubleshooting')}
         </a>
       </nav>
@@ -115,21 +115,58 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-        <Introduction />
-        <Overview />
-        <BasicImplementation />
-        <ConfigurationOptions />
-        <SchemaProcessing />
-        <AdvancedFeatures />
-        <UsageExamples />
-        <BestPractices />
-        <Troubleshooting />
-        <Conclusion />
-     
+      {/* Page Contents Section */}
+      <Introduction />
+      
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <Overview />
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <BasicImplementation />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <ConfigurationOptions />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <SchemaProcessing />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <AdvancedFeatures />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <UsageExamples />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <BestPractices />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <Troubleshooting />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      <Conclusion />
+
+      {/* Page Navigation */}
       <Nav
-        prev={{ 
-          text: _('Test Data Plugin'), 
-          href: '/docs/tutorials/test-data-plugin' 
+        prev={{
+          text: _('Test Data Plugin'),
+          href: '/docs/tutorials/test-data-plugin'
         }}
       />
     </main>

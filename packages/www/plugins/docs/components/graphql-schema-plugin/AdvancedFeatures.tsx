@@ -1,15 +1,24 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, Code } from '../index.js';
+//local
+import { H1, P, Code, H2 } from '../index.js';
 
-const customScalarTypesExample = `// In your plugin configuration
+//code examples
+//----------------------------------------------------------------------
+
+const customScalarTypesExample = 
+`// In your plugin configuration
 customScalars: {
   Email: "String",
   URL: "String", 
   PhoneNumber: "String",
   BigInt: "String"
-}`;
+}`
 
-const relationshipHandlingExample = `function handleRelationships(column: any, models: Record<string, any>): string {
+//----------------------------------------------------------------------
+
+const relationshipHandlingExample = 
+`function handleRelationships(column: any, models: Record<string, any>): string {
   // Check if the column type is another model
   if (models[column.type]) {
     let type = column.type;
@@ -26,9 +35,12 @@ const relationshipHandlingExample = `function handleRelationships(column: any, m
   }
   
   return formatFieldType(column);
-}`;
+}`
 
-const directiveSupportExample = `function generateDirectives(column: any): string {
+//----------------------------------------------------------------------
+
+const directiveSupportExample = 
+`function generateDirectives(column: any): string {
   const directives: string[] = [];
   
   if (column.attributes?.unique) {
@@ -40,14 +52,19 @@ const directiveSupportExample = `function generateDirectives(column: any): strin
   }
   
   return directives.length > 0 ? \` \${directives.join(' ')}\` : '';
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function AdvancedFeatures() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="advanced-features">
-      <H2>{_('Advanced Features')}</H2>
+    <>
+      {/* Advanced Features Section Content */}
+      <section id="advanced-features">
+      <H1>{_('7. Advanced Features')}</H1>
       <P>
         <Translate>
           Advanced features extend the basic GraphQL schema generation with 
@@ -57,7 +74,7 @@ export default function AdvancedFeatures() {
         </Translate>
       </P>
 
-      <H3>{_('Custom Scalar Types')}</H3>
+      <H2>{_('Custom Scalar Types')}</H2>
       <P>
         <Translate>
           Custom scalar types allow you to define specialized data types that 
@@ -70,7 +87,7 @@ export default function AdvancedFeatures() {
         {customScalarTypesExample}
       </Code>
 
-      <H3>{_('Relationship Handling')}</H3>
+      <H2>{_('Relationship Handling')}</H2>
       <P>
         <Translate>
           Relationship handling manages references between different types and 
@@ -83,7 +100,7 @@ export default function AdvancedFeatures() {
         {relationshipHandlingExample}
       </Code>
 
-      <H3>{_('Directive Support')}</H3>
+      <H2>{_('Directive Support')}</H2>
       <P>
         <Translate>
           Directive support enables the addition of GraphQL directives to 
@@ -95,6 +112,7 @@ export default function AdvancedFeatures() {
       <Code lang='typescript'>
         {directiveSupportExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const formLayoutExample = `function wrapFormGroup(element: string, label: string, name: string, required: boolean, validation: any, options: any): string {
+//code examples
+//----------------------------------------------------------------------
+
+const formLayoutExample = 
+`function wrapFormGroup(element: string, label: string, name: string, required: boolean, validation: any, options: any): string {
   const requiredMark = required ? ' <span class="required">*</span>' : '';
   const helpText = generateHelpText(validation);
 
@@ -100,14 +106,19 @@ function getTextareaClasses(theme: string): string {
     default:
       return 'form-textarea';
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function ImplementFormLayoutAndStyling() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="implement-form-layout-and-styling">
-      <H2>{_('6. Implement Form Layout and Styling')}</H2>
+    <>
+      {/* Implement Form Layout and Styling Section Content */}
+      <section id="implement-form-layout-and-styling">
+      <H1>{_('6. Implement Form Layout and Styling')}</H1>
       <P>
         <Translate>
           Form layout and styling ensure that generated forms are 
@@ -126,6 +137,7 @@ export default function ImplementFormLayoutAndStyling() {
       <Code copy language='typescript' className='bg-black text-white'>
         {formLayoutExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

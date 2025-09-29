@@ -1,11 +1,16 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, P, C } from '../index.js';
 
 export default function Introduction() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section>
+    <>
+      {/* Creating a Validation Schema Generator Plugin */}
+      <section id="introduction">
       <H1>{_('Validation Schema Generator Plugin Tutorial')}</H1>
       <P>
         <Translate>
@@ -15,6 +20,7 @@ export default function Introduction() {
           schemas with comprehensive validation rules.
         </Translate>
       </P>
-    </section>
+      </section>
+    </>
   );
 }

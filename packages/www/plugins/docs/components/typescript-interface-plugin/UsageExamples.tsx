@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const basicSchemaExample = `enum UserRole {
+//code examples
+//----------------------------------------------------------------------
+
+const basicSchemaExample = 
+`enum UserRole {
   ADMIN "admin"
   USER "user"
   GUEST "guest"
@@ -29,9 +35,12 @@ plugin "./plugins/typescript-interfaces.js" {
   output "./types.ts"
   generateUtilityTypes true
   includeComments true
-}`;
+}`
 
-const generatedOutputExample = `/**
+//----------------------------------------------------------------------
+
+const generatedOutputExample = 
+`/**
  * Generated TypeScript interfaces
  * Generated at: 2024-01-15T10:30:00.000Z
  * 
@@ -84,14 +93,19 @@ export type UpdateUserInput = Partial<User>;
 
 export type AnyModel = User;
 
-export type UserKeys = keyof User;`;
+export type UserKeys = keyof User;`
+
+//----------------------------------------------------------------------
 
 export default function UsageExamples() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="usage-examples">
-      <H2>{_('Usage Examples')}</H2>
+    <>
+      {/* Usage Examples Section Content */}
+      <section id="usage-examples">
+      <H1>{_('6. Usage Examples')}</H1>
       <P>
         <Translate>
           Usage examples demonstrate practical applications of the TypeScript
@@ -101,7 +115,7 @@ export default function UsageExamples() {
         </Translate>
       </P>
 
-      <H3>{_('Basic Schema')}</H3>
+      <H2>{_('Basic Schema')}</H2>
       <P>
         <Translate>
           A basic schema example shows the fundamental structure needed to
@@ -117,7 +131,7 @@ export default function UsageExamples() {
         {basicSchemaExample}
       </Code>
 
-      <H3>{_('Generated Output')}</H3>
+      <H2>{_('Generated Output')}</H2>
       <P>
         <Translate>
           The generated output demonstrates the TypeScript code produced by
@@ -132,7 +146,7 @@ export default function UsageExamples() {
       >
         {generatedOutputExample}
       </Code>
-
-    </section>
+      </section>
+    </>
   );
 }

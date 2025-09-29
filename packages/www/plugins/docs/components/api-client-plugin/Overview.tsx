@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 
 export default function Overview() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="overview">
-      <H2>{_('1. Overview')}</H2>
+    <>
+      {/* Overview Section Content */}
+      <section id="overview">
+      <H1>{_('1. Overview')}</H1>
       <P>
         <Translate>
           API clients provide a convenient interface for interacting with
@@ -34,6 +39,7 @@ export default function Overview() {
           <Translate>Request cancellation and custom headers</Translate>
         </li>
       </ul>
-    </section>
+      </section>
+    </>
   );
 }

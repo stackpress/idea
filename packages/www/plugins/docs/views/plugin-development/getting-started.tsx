@@ -4,13 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, H3, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const commonPluginStructureExample = [
-  `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//code examples
+//----------------------------------------------------------------------
+
+const commonPluginStructureExample = 
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -41,10 +44,11 @@ export default async function myPlugin(
   
   console.log(\`✅ Generated: \${outputPath}\`);
 }`
-];
 
-const schemaStructureExample = [
-  `{
+//----------------------------------------------------------------------
+
+const schemaStructureExample =
+`{
   model: {
     [modelName]: {
       mutable: boolean,
@@ -76,10 +80,11 @@ const schemaStructureExample = [
     }
   }
 }`
-];
 
-const typeSafetyExample = [
-  `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//----------------------------------------------------------------------
+
+const typeSafetyExample =
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 
 interface MyPluginConfig {
   output: string;
@@ -91,9 +96,10 @@ export default async function myPlugin(
 ) {
   // TypeScript will enforce the config structure
 }`
-];
 
-const configurationValidationExample = [
+//----------------------------------------------------------------------
+
+const configurationValidationExample =
   `function validateConfig(config: any): void {
   if (!config.output) {
     throw new Error('Plugin requires "output" configuration');
@@ -105,10 +111,11 @@ const configurationValidationExample = [
     );
   }
 }`
-];
 
-const fileOperationsExample = [
-  `// ✅ Good - uses transformer's file loader
+//----------------------------------------------------------------------
+
+const fileOperationsExample = 
+`// ✅ Good - uses transformer's file loader
 const outputPath = await transformer.loader.absolute(
   config.output
 );
@@ -124,10 +131,11 @@ try {
     \`Failed to write file: \${error.message}\`
   );
 }`
-];
 
-const errorHandlingExample = [
-  `export default async function myPlugin(props: PluginProps<{}>) {
+//----------------------------------------------------------------------
+
+const errorHandlingExample = 
+`export default async function myPlugin(props: PluginProps<{}>) {
   try {
     // Validate configuration
     validateConfig(props.config);
@@ -153,9 +161,10 @@ const errorHandlingExample = [
     throw error;
   }
 }`
-];
 
-const schemaProcessingExample = [
+//----------------------------------------------------------------------
+
+const schemaProcessingExample = 
   `// ✅ Good - checks for existence before processing
 if (schema.model) {
   for (const [modelName, model] of Object.entries(
@@ -169,10 +178,11 @@ if (schema.model) {
 const attributes = column.attributes || {};
 const label = attributes.label || column.name;
 const description = attributes.description || '';`
-];
 
-const usageInSchemaFilesExample = [
-  `// schema.idea
+//----------------------------------------------------------------------
+
+const usageInSchemaFilesExample =
+`// schema.idea
 plugin "./plugins/mysql-tables-plugin.js" {
   output "./database/tables.sql"
   database "my_app"
@@ -205,7 +215,8 @@ enum UserRole {
   ADMIN "Administrator"
   USER "Regular User"
 }`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -246,6 +257,7 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Getting Started Section Content */}
       <section>
         <H1>{_('Getting Started')}</H1>
         <Translate>
@@ -256,6 +268,7 @@ export function Body() {
         </Translate>
       </section>
 
+      {/* Prerequisites Section */}
       <section>
         <H2>{_('8.1. Prerequisites')}</H2>
         <Translate>
@@ -289,6 +302,7 @@ export function Body() {
         </ul>
       </section>
 
+      {/* Plugin Development Basics Section */}
       <section>
         <H2>{_('8.2. Plugin Development Basics')}</H2>
         <Translate>
@@ -343,7 +357,8 @@ export function Body() {
         </ol>
       </section>
 
-      <section>
+      {/* Common Plugin Structure Section */}
+      <section> 
         <H2>{_('8.3. Common Plugin Structure')}</H2>
         <Translate>
           The common plugin structure provides a template that can be
@@ -353,10 +368,11 @@ export function Body() {
         </Translate>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {commonPluginStructureExample[0]}
+          {commonPluginStructureExample}
         </Code>
       </section>
 
+      {/* Schema Structure Section */}
       <section>
         <H2>{_('8.4. Schema Structure')}</H2>
         <Translate>
@@ -371,10 +387,11 @@ export function Body() {
         </Translate>
 
         <Code copy language='javascript' className='bg-black text-white'>
-          {schemaStructureExample[0]}
+          {schemaStructureExample}
         </Code>
       </section>
 
+      {/* Implementation Guidelines Section */}
       <section>
         <H2>{_('8.5. Implementation Guidelines')}</H2>
         <Translate>
@@ -397,7 +414,7 @@ export function Body() {
           </Translate>
 
           <Code copy language='typescript' className='bg-black text-white'>
-            {typeSafetyExample[0]}
+            {typeSafetyExample}
           </Code>
         </section>
 
@@ -414,7 +431,7 @@ export function Body() {
           </Translate>
 
           <Code copy language='typescript' className='bg-black text-white'>
-            {configurationValidationExample[0]}
+            {configurationValidationExample}
           </Code>
         </section>
 
@@ -432,7 +449,7 @@ export function Body() {
           </Translate>
 
           <Code copy language='typescript' className='bg-black text-white'>
-            {fileOperationsExample[0]}
+            {fileOperationsExample}
           </Code>
         </section>
 
@@ -448,7 +465,7 @@ export function Body() {
           </Translate>
 
           <Code copy language='typescript' className='bg-black text-white'>
-            {errorHandlingExample[0]}
+            {errorHandlingExample}
           </Code>
         </section>
 
@@ -465,11 +482,12 @@ export function Body() {
           </Translate>
 
           <Code copy language='typescript' className='bg-black text-white'>
-            {schemaProcessingExample[0]}
+            {schemaProcessingExample}
           </Code>
         </section>
       </section>
 
+      {/* Usage in Schema Files Section */}
       <section>
         <H2>{_('8.6. Usage in Schema Files')}</H2>
         <Translate>
@@ -484,10 +502,11 @@ export function Body() {
         </Translate>
 
         <Code copy language='idea' className='bg-black text-white'>
-          {usageInSchemaFilesExample[0]}
+          {usageInSchemaFilesExample}
         </Code>
       </section>
 
+      {/* Next Steps Section */}
       <section>
         <H2>{_('8.7. Next Steps')}</H2>
         <Translate>
@@ -525,6 +544,7 @@ export function Body() {
         </ol>
       </section>
 
+      {/* Additional Plugin Ideas Section */}
       <section>
         <H2>{_('8.8. Additional Plugin Ideas')}</H2>
         <Translate>
@@ -583,6 +603,7 @@ export function Body() {
         </Translate>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('Advanced Tutorials'),

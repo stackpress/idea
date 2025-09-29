@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const schemaStructureExample = `// Example processed schema
+//code examples
+//----------------------------------------------------------------------
+
+const schemaStructureExample =
+  `// Example processed schema
 {
   model: {
     User: {
@@ -48,29 +54,35 @@ const schemaStructureExample = `// Example processed schema
       USER: 'user'
     }
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UnderstandingSchemaStructure() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="understanding-schema">
-      <H1>{_('3. Understanding the Schema Structure')}</H1>
-      <P>
-        <Translate>
-          Before creating the plugin, let's understand what a processed
-          schema looks like. The schema structure contains models, enums,
-          and other configuration data that our plugin will process.
-        </Translate>
-      </P>
-      <H2>{_('Example Schema Structure')}</H2>
-      <Code
-      copy
-        language="typescript"
-        className='bg-black text-white p-2'
-      >
-        {schemaStructureExample}
-      </Code>
-    </section>
+    <>
+      {/* Understanding Schema Structure Section Content */}
+      <section id="understanding-schema">
+        <H1>{_('3. Understanding the Schema Structure')}</H1>
+        <P>
+          <Translate>
+            Before creating the plugin, let's understand what a processed
+            schema looks like. The schema structure contains models, enums,
+            and other configuration data that our plugin will process.
+          </Translate>
+        </P>
+        <H2>{_('Example Schema Structure')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white p-2'
+        >
+          {schemaStructureExample}
+        </Code>
+      </section>
+    </>
   );
 }

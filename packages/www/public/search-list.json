@@ -32,22 +32,22 @@
   {
     "title": "(Enums) Data Types - Specification",
     "description": "The .idea format supports four primary data types that form the building blocks of your application schema.",
-    "url": "/docs/specifications/data-types#enums/"
+    "url": "/docs/specifications/data-types/#enums"
   },
   {
     "title": "(Props) Data Types - Specification",
     "description": "Props are reusable property configurations that define common field behaviors, validation rules, and UI components. They promote consistency and reduce duplication across your schema.",
-    "url": "/docs/specifications/data-types#props-1/"
+    "url": "/docs/specifications/data-types/#props-1"
   },
   {
     "title": "(Type) Data Types - Specification",
     "description": "The .idea format supports four primary data types that form the building blocks of your application schema.",
-    "url": "/docs/specifications/data-types#type/"
+    "url": "/docs/specifications/data-types/#type"
   },
   {
     "title": "(Models) Data Types - Specification",
     "description": "Models represent the core entities in your application, typically corresponding to database tables or API resources. They define the structure, relationships, and behavior of your data.",
-    "url": "/docs/specifications/data-types#models/"
+    "url": "/docs/specifications/data-types/#models"
   },
   {
     "title": "Schema Elements - Specification",

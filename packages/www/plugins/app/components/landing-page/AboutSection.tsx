@@ -1,10 +1,13 @@
+//modules
 import { Translate, useLanguage } from 'r22n';
 
 export default function AboutSection() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <main>
+    <>
+      {/* About .idea Section Content */}
       <section className="theme-bg-bg1 max-w-4xl mx-auto px-4 py-20 rounded-lg">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-center mb-4">
@@ -21,6 +24,6 @@ export default function AboutSection() {
           </p>
         </div>
       </section>
-    </main>
+    </>
   )
 }

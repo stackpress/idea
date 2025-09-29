@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, H3, P } from '../index.js'
 import Code from '../Code.js'
+
+//code examples
+//----------------------------------------------------------------------
 
 const examples = [
 `function validateGeneratedCode(sourceFile: SourceFile): void {
@@ -16,6 +21,9 @@ const examples = [
     throw new Error(\`Generated TypeScript has errors: \${JSON.stringify(errors, null, 2)}\`);
   }
 }`,
+
+//----------------------------------------------------------------------
+
 `function detectCircularReferences(schemas: Schema[]): string[] {
   const graph = new Map<string, Set<string>>();
   const cycles: string[] = [];
@@ -67,6 +75,9 @@ const examples = [
   
   return cycles;
 }`,
+
+//----------------------------------------------------------------------
+
 `class StreamingGenerator {
   async generateLargeSchema(schemas: Schema[]): Promise<void> {
     const batchSize = 10;
@@ -88,6 +99,9 @@ const examples = [
     // Process smaller batches to avoid memory issues
   }
 }`,
+
+//----------------------------------------------------------------------
+
 `const DEBUG = process.env.DEBUG === 'true';
 
 function debugLog(message: string, data?: any): void {
@@ -99,6 +113,9 @@ function debugLog(message: string, data?: any): void {
 // Usage
 debugLog('Processing schema', schema);
 debugLog('Generated interface', interfaceDeclaration.getText());`,
+
+//----------------------------------------------------------------------
+
 `async function saveIntermediateResults(
   sourceFile: SourceFile,
   step: string
@@ -109,6 +126,9 @@ debugLog('Generated interface', interfaceDeclaration.getText());`,
     console.log(\`Saved intermediate result: \${outputPath}\`);
   }
 }`,
+
+//----------------------------------------------------------------------
+
 `function validateStep(
   sourceFile: SourceFile,
   stepName: string
@@ -126,10 +146,15 @@ debugLog('Generated interface', interfaceDeclaration.getText());`,
 }`
 ];
 
+//----------------------------------------------------------------------
+
 export default function Troubleshooting() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <>
+    {/* Troubleshooting Section Content */}
       <section id="troubleshooting">
         <H1>{_('9. Troubleshooting')}</H1>
         <P>
@@ -142,7 +167,8 @@ export default function Troubleshooting() {
         </P>
       </section>
 
-      <section>
+      {/* Common Issues Section Content */}
+      <section> 
         <H2>{_('9.1. Common Issues')}</H2>
         <P>
           <Translate>
@@ -192,6 +218,7 @@ export default function Troubleshooting() {
         </Code>
       </section>
 
+      {/* Debugging Techniques Section Content */}
       <section>
         <H2>{_('9.2. Debugging Tips')}</H2>
         <P>

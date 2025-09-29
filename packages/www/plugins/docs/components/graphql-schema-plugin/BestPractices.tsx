@@ -1,7 +1,13 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, Code } from '../index.js';
+//local
+import { H1, H2, P, Code } from '../index.js';
 
-const typeSafetyExample = `interface GraphQLColumn {
+//code examples
+//----------------------------------------------------------------------
+
+const typeSafetyExample = 
+`interface GraphQLColumn {
   name: string;
   type: string;
   required: boolean;
@@ -15,9 +21,12 @@ function validateColumn(column: any): column is GraphQLColumn {
     typeof column.type === 'string' &&
     typeof column.required === 'boolean'
   );
-}`;
+}`
 
-const errorHandlingExample = `function generateTypes(models: Record<string, any>): string {
+//----------------------------------------------------------------------
+
+const errorHandlingExample = 
+`function generateTypes(models: Record<string, any>): string {
   try {
     let content = '# Types\\n';
     
@@ -34,9 +43,12 @@ const errorHandlingExample = `function generateTypes(models: Record<string, any>
   } catch (error) {
     throw new Error(\`Failed to generate GraphQL types: \${error.message}\`);
   }
-}`;
+}`
 
-const configurationValidationExample = `function validateConfig(config: any): asserts config is GraphQLConfig {
+//----------------------------------------------------------------------
+
+const configurationValidationExample = 
+`function validateConfig(config: any): asserts config is GraphQLConfig {
   if (!config.output || typeof config.output !== 'string') {
     throw new Error('GraphQL plugin requires "output" configuration as string');
   }
@@ -44,9 +56,12 @@ const configurationValidationExample = `function validateConfig(config: any): as
   if (config.customScalars && typeof config.customScalars !== 'object') {
     throw new Error('customScalars must be an object');
   }
-}`;
+}`
 
-const performanceOptimizationExample = `// Cache type mappings
+//----------------------------------------------------------------------
+
+const performanceOptimizationExample = 
+`// Cache type mappings
 const typeCache = new Map<string, string>();
 
 function getCachedType(schemaType: string, customScalars: Record<string, string>): string {
@@ -60,14 +75,19 @@ function getCachedType(schemaType: string, customScalars: Record<string, string>
   typeCache.set(cacheKey, mappedType);
   
   return mappedType;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function BestPractices() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="best-practices">
-      <H2>{_('Best Practices')}</H2>
+    <>
+      {/* Best Practices Section Content */}
+      <section id="best-practices">
+      <H1>{_('8. Best Practices')}</H1>
       <P>
         <Translate>
           Best practices ensure your generated GraphQL schemas are 
@@ -77,7 +97,7 @@ export default function BestPractices() {
         </Translate>
       </P>
 
-      <H3>{_('Type Safety')}</H3>
+      <H2>{_('Type Safety')}</H2>
       <P>
         <Translate>
           Type safety is crucial for preventing runtime errors and ensuring 
@@ -90,7 +110,7 @@ export default function BestPractices() {
         {typeSafetyExample}
       </Code>
 
-      <H3>{_('Error Handling')}</H3>
+      <H2>{_('Error Handling')}</H2>
       <P>
         <Translate>
           Proper error handling ensures that schema generation failures 
@@ -103,7 +123,7 @@ export default function BestPractices() {
         {errorHandlingExample}
       </Code>
 
-      <H3>{_('Configuration Validation')}</H3>
+      <H2>{_('Configuration Validation')}</H2>
       <P>
         <Translate>
           Configuration validation ensures that plugin settings are correct 
@@ -115,7 +135,7 @@ export default function BestPractices() {
         {configurationValidationExample}
       </Code>
 
-      <H3>{_('Performance Optimization')}</H3>
+      <H2>{_('Performance Optimization')}</H2>
       <P>
         <Translate>
           Performance optimization techniques help maintain reasonable 
@@ -127,6 +147,7 @@ export default function BestPractices() {
       <Code lang='typescript'>
         {performanceOptimizationExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

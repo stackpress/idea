@@ -45,27 +45,35 @@ export function Body() {
   const { _ } = useLanguage();
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>{_('Best Practices')}</H1>
-      <P>
-        <Translate>
-          Following best practices ensures maintainable, scalable, and 
-          reliable schema processing workflows. These guidelines help you 
-          avoid common pitfalls and optimize your development experience.
-        </Translate>
-      </P>
-
-      <H2>{_('Schema Organization')}</H2>
-      <P>
-        <Translate>
-          Organize your schemas for maintainability and clarity to support 
-          team collaboration and long-term project success. Proper 
-          organization makes schemas easier to understand and modify.
-        </Translate>
-      </P>
+      {/* Best Practices Section Content */}
       <section>
+        <H1>{_('Best Practices')}</H1>
+        <P>
+          <Translate>
+            Following best practices ensures maintainable, scalable, and
+            reliable schema processing workflows. These guidelines help you
+            avoid common pitfalls and optimize your development experience.
+          </Translate>
+        </P>
+      </section>
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Schema Organization Section Content */}
+      <section>
+        <H1>{_('Schema Organization')}</H1>
+        <P>
+          <Translate>
+            Organize your schemas for maintainability and clarity to support
+            team collaboration and long-term project success. Proper
+            organization makes schemas easier to understand and modify.
+          </Translate>
+        </P>
+
         <ul className="list-disc pl-6 my-4">
           <li className="my-2">
-            {_('Use ')} <C>{_('use')}</C> 
+            {_('Use ')} <C>{_('use')}</C>
             {_(' directives to split large schemas into manageable files')}
           </li>
           <li className="my-2">
@@ -80,15 +88,20 @@ export function Body() {
         </ul>
       </section>
 
-      <H2>{_('Plugin Development')}</H2>
-      <P>
-        <Translate>
-          Follow these guidelines when developing plugins to ensure 
-          reliability, maintainability, and type safety. Good plugin 
-          development practices lead to more robust code generation.
-        </Translate>
-      </P>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Plugin Development Section Content */}
       <section>
+        <H1>{_('Plugin Development')}</H1>
+        <P>
+          <Translate>
+            Follow these guidelines when developing plugins to ensure
+            reliability, maintainability, and type safety. Good plugin
+            development practices lead to more robust code generation.
+          </Translate>
+        </P>
+
         <ul className="list-disc pl-6 my-4">
           <li className="my-2">
             {_('Always validate plugin configuration')}
@@ -106,15 +119,20 @@ export function Body() {
         </ul>
       </section>
 
-      <H2>{_('Build Integration')}</H2>
-      <P>
-        <Translate>
-          Integrate schema processing effectively into your workflow to 
-          maximize productivity and maintain consistency across environments. 
-          Proper build integration ensures reliable code generation.
-        </Translate>
-      </P>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Build Integration Section Content */}
       <section>
+        <H1>{_('Build Integration')}</H1>
+        <P>
+          <Translate>
+            Integrate schema processing effectively into your workflow to
+            maximize productivity and maintain consistency across environments.
+            Proper build integration ensures reliable code generation.
+          </Translate>
+        </P>
+
         <ul className="list-disc pl-6 my-4">
           <li className="my-2">
             {_('Add schema generation to your build process')}
@@ -131,14 +149,15 @@ export function Body() {
         </ul>
       </section>
 
+      {/* Page Navigation */}
       <Nav
-        prev={{ 
-          text: _('Error Handling'), 
-          href: '/docs/transformers/error-handling' 
+        prev={{
+          text: _('Error Handling'),
+          href: '/docs/transformers/error-handling'
         }}
-        next={{ 
-          text: _('Plugin Development'), 
-          href: '/docs/plugin-development/plugin-development-guide' 
+        next={{
+          text: _('Plugin Development'),
+          href: '/docs/plugin-development/plugin-development-guide'
         }}
       />
     </main>

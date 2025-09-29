@@ -1,50 +1,57 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, P } from '../index.js';
 
 export default function Conclusion() {
+  //hooks
   const { _ } = useLanguage();
-  
+
   return (
-    <section>
-      <H1>{_('10. Conclusion')}</H1>
-      <P>
-        <Translate>
-          This MySQL Tables Plugin demonstrates how to:
-        </Translate>
-      </P>
-      <ul className="px-ml-20 my-4 list-disc">
-        <li>
+    <>
+    {/* Conclusion Section Content */}
+      <section>
+        <H1>{_('10. Conclusion')}</H1>
+        <P>
           <Translate>
-            Parse schema models and columns
+            This MySQL Tables Plugin demonstrates how to:
           </Translate>
-        </li>
-        <li>
+        </P>
+        <ul className="px-ml-20 my-4 list-disc">
+          <li>
+            <Translate>
+              Parse schema models and columns
+            </Translate>
+          </li>
+          <li>
+            <Translate>
+              Map schema types to database-specific types
+            </Translate>
+          </li>
+          <li>
+            <Translate>
+              Generate SQL DDL statements
+            </Translate>
+          </li>
+          <li>
+            <Translate>
+              Handle constraints, indexes, and foreign keys
+            </Translate>
+          </li>
+          <li>
+            <Translate>
+              Provide proper error handling and validation
+            </Translate>
+          </li>
+        </ul>
+        <P>
           <Translate>
-            Map schema types to database-specific types
+            The plugin is flexible and can be extended to support 
+            additional MySQL features like partitioning, triggers, or 
+            stored procedures.
           </Translate>
-        </li>
-        <li>
-          <Translate>
-            Generate SQL DDL statements
-          </Translate>
-        </li>
-        <li>
-          <Translate>
-            Handle constraints, indexes, and foreign keys
-          </Translate>
-        </li>
-        <li>
-          <Translate>
-            Provide proper error handling and validation
-          </Translate>
-        </li>
-      </ul>
-      <P>
-        <Translate>
-          The plugin is flexible and can be extended to support additional
-          MySQL features like partitioning, triggers, or stored procedures.
-        </Translate>
-      </P>
-    </section>
+        </P>
+      </section>
+    </>
   );
 }

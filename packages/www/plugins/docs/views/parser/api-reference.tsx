@@ -4,12 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const parseExample = `import { parse } from '@stackpress/idea-parser';
+//code examples
+//----------------------------------------------------------------------
+
+const parseExample = 
+`import { parse } from '@stackpress/idea-parser';
 
 const result = parse(\`
 prop Text { type "text" }
@@ -19,9 +23,12 @@ model User {
 \`);
 
 console.log(result);
-// Output includes prop references: { prop: { Text: { type: "text" } }, ... }`;
+// Output includes prop references: { prop: { Text: { type: "text" } }, ... }`
 
-const finalExample = `import { final } from '@stackpress/idea-parser';
+//----------------------------------------------------------------------
+
+const finalExample = 
+`import { final } from '@stackpress/idea-parser';
 
 const result = final(\`
 prop Text { type "text" }
@@ -32,9 +39,12 @@ model User {
 
 console.log(result);
 // Output has resolved references: { model: { User: { ... } } }
-// No 'prop' section in output`;
+// No 'prop' section in output`
 
-const exceptionExample = `import { Exception } from '@stackpress/idea-parser';
+//----------------------------------------------------------------------
+
+const exceptionExample = 
+`import { Exception } from '@stackpress/idea-parser';
 
 try {
   const result = parse(invalidCode);
@@ -42,7 +52,9 @@ try {
   if (error instanceof Exception) {
     console.log('Parsing error:', error.message);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -87,6 +99,7 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
@@ -132,12 +145,14 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
       <H1>{_('API Reference')}</H1>
-     
+
+      {/* Main Function Section Content */}
       <section>
         <H2>{_('Main Functions')}</H2>
         <P><C>parse(code: string)</C></P>
@@ -191,7 +206,11 @@ export function Body() {
           {finalExample}
         </Code>
       </section>
-
+      
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+      
+      {/* Core Classes Section Content */}
       <section>
         <H2>{_('Core Classes')}</H2>
         <ul className='list-disc list-inside'>
@@ -234,6 +253,10 @@ export function Body() {
         </ul>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Exception Handling Section Content */}
       <section>
         <H2>{_('Exception Handling')}</H2>
         <Translate>
@@ -249,18 +272,17 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Core Concepts'),
-            href: '/docs/parser/core-concepts'
-          }}
-          next={{
-            text: _('Examples'),
-            href: '/docs/parser/examples'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Core Concepts'),
+          href: '/docs/parser/core-concepts'
+        }}
+        next={{
+          text: _('Examples'),
+          href: '/docs/parser/examples'
+        }}
+      />
     </main>
   );
 }

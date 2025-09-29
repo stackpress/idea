@@ -1,11 +1,16 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, P, C } from '../index.js';
 
 export default function Introduction() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section>
+    <>
+      {/* Creating a Markdown Documentation Plugin */}
+      <section>
       <H1>{_('Creating a Markdown Documentation Plugin')}</H1>
       <P>
         <Translate>
@@ -16,6 +21,7 @@ export default function Introduction() {
           examples and cross-references.
         </Translate>
       </P>
-    </section>
+      </section>
+    </>
   )
 }

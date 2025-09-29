@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const schemaUsageExample = `// schema.idea
 plugin "./plugins/mysql-tables-plugin.js" {
@@ -25,27 +30,34 @@ model User {
 enum UserRole {
   ADMIN "admin"
   USER "user"
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UsageInSchema() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="usage-in-schema">
-      <H1>{_('7. Usage in Schema')}</H1>
-      <P>
-        <Translate>
-          To use this plugin in your schema file, add the plugin
-          declaration with appropriate configuration options.
-        </Translate>
-      </P>
-      <H2>{_('Schema Configuration')}</H2>
-      <Code
-        language="idea"
-        className='bg-black text-white'
-      >
-        {schemaUsageExample}
-      </Code>
-    </section>
+    <>
+      {/* Usage In Schema Section Content */}
+      <section id="usage-in-schema">
+        <H1>{_('7. Usage in Schema')}</H1>
+        <P>
+          <Translate>
+            To use this plugin in your schema file, add the plugin
+            declaration with appropriate configuration options.
+          </Translate>
+        </P>
+        <H2>{_('Schema Configuration')}</H2>
+        <Code
+          copy
+          language="idea"
+          className='bg-black text-white'
+        >
+          {schemaUsageExample}
+        </Code>
+      </section>
+    </>
   );
 }

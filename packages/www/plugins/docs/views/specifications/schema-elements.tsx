@@ -4,11 +4,108 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//locals
 import { H1, H2, P, C, H, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+
+//code examples
+//----------------------------------------------------------------------
+
+const examples = [
+  `// Simple boolean attribute (sets value to true)
+@filterable
+
+// Function with single argument
+@label("Name")
+
+// Function with multiple arguments
+@is.cgt(3 "Name should be more than 3 characters")
+
+// Function with object argument
+@view.image({ width 100 height 100 })
+
+// Nested attribute names using periods
+@field.input(Email)
+@validation.required
+@ui.component("CustomInput")`,
+
+  //----------------------------------------------------------------------
+
+  `// Boolean (implicit true)
+@required
+@unique
+@filterable
+
+// String values
+@label("User Name")
+@placeholder("Enter your name")
+@description("This field is required")
+
+// Number values
+@min(0)
+@max(100)
+@precision(2)
+
+// Object values
+@validation({ required true minLength 3 })
+@ui({ component "Input" placeholder "Enter text" })
+@options({ multiple true searchable false })
+
+// Array values
+@tags(["admin" "user" "guest"])
+@options(["small" "medium" "large"])
+@toolbar(["bold" "italic" "underline"])
+
+// Mixed arguments
+@between(1 100 "Value must be between 1 and 100")
+@pattern("^[a-zA-Z]+$" "Only letters allowed")`,
+
+  //----------------------------------------------------------------------
+
+  `// Model-level attributes
+model User @table("users") @index(["email" "created"]) {
+  // Column-level attributes
+  id String @id @default("nanoid()")
+  name String @required @minLength(2)
+}
+
+// Type-level attributes
+type Address @serializable @cacheable(3600) {
+  street String @required
+  city String @required
+}`,
+
+  //----------------------------------------------------------------------
+
+  `model User {
+  name String          // Required string
+  bio String?          // Optional string
+  tags String[]        // Array of strings
+  addresses Address[]  // Array of custom types
+  metadata JSON?       // Optional JSON
+}`,
+
+  //----------------------------------------------------------------------
+
+  `model User {
+  profile {
+    firstName String
+    lastName String
+    social {
+      twitter String?
+      github String?
+    }
+  }
+  settings {
+    theme String @default("light")
+    notifications Boolean @default(true)
+  }
+}`
+];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -47,93 +144,16 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   )
 }
 
-const examples = [
-  `// Simple boolean attribute (sets value to true)
-@filterable
-
-// Function with single argument
-@label("Name")
-
-// Function with multiple arguments
-@is.cgt(3 "Name should be more than 3 characters")
-
-// Function with object argument
-@view.image({ width 100 height 100 })
-
-// Nested attribute names using periods
-@field.input(Email)
-@validation.required
-@ui.component("CustomInput")`,
-  `// Boolean (implicit true)
-@required
-@unique
-@filterable
-
-// String values
-@label("User Name")
-@placeholder("Enter your name")
-@description("This field is required")
-
-// Number values
-@min(0)
-@max(100)
-@precision(2)
-
-// Object values
-@validation({ required true minLength 3 })
-@ui({ component "Input" placeholder "Enter text" })
-@options({ multiple true searchable false })
-
-// Array values
-@tags(["admin" "user" "guest"])
-@options(["small" "medium" "large"])
-@toolbar(["bold" "italic" "underline"])
-
-// Mixed arguments
-@between(1 100 "Value must be between 1 and 100")
-@pattern("^[a-zA-Z]+$" "Only letters allowed")`,
-  `// Model-level attributes
-model User @table("users") @index(["email" "created"]) {
-  // Column-level attributes
-  id String @id @default("nanoid()")
-  name String @required @minLength(2)
-}
-
-// Type-level attributes
-type Address @serializable @cacheable(3600) {
-  street String @required
-  city String @required
-}`,
-  `model User {
-  name String          // Required string
-  bio String?          // Optional string
-  tags String[]        // Array of strings
-  addresses Address[]  // Array of custom types
-  metadata JSON?       // Optional JSON
-}`,
-  `model User {
-  profile {
-    firstName String
-    lastName String
-    social {
-      twitter String?
-      github String?
-    }
-  }
-  settings {
-    theme String @default("light")
-    notifications Boolean @default(true)
-  }
-}`
-]
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
       <H1>{_('Schema Elements')}</H1>
-      
+
+      {/* Attributes Content */}
       <section>
         <H2>{_('Attributes (@)')}</H2>
         <P>
@@ -192,6 +212,10 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+      
+      {/* Columns Content */}
       <section>
         <H2>{_('Columns')}</H2>
         <P>
@@ -247,7 +271,7 @@ export function Body() {
           copy
           language="javascript"
           className="bg-black text-white px-mb-20"
-          >
+        >
           {examples[3]}
         </Code>
 
@@ -260,18 +284,17 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Data Types'),
-            href: '/docs/specifications/data-types'
-          }}
-          next={{
-            text: _('Schema Structure'),
-            href: '/docs/specifications/schema-structure'
-          }}
-        />
-      </footer>
+      <Nav
+        prev={{
+          text: _('Data Types'),
+          href: '/docs/specifications/data-types'
+        }}
+        next={{
+          text: _('Schema Structure'),
+          href: '/docs/specifications/schema-structure'
+        }}
+      />
+
     </main>
   );
 }

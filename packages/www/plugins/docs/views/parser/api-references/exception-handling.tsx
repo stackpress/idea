@@ -4,13 +4,18 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, H3, SS, Nav, P } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
+//code examples
+//----------------------------------------------------------------------
+
 const examples = [
   `import { Exception } from '@stackpress/idea-parser';`,
+
+  //----------------------------------------------------------------------
   `import { parse, Exception } from '@stackpress/idea-parser';
 
 try {
@@ -22,6 +27,9 @@ try {
     console.log('Stack trace:', error.stack);
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `import { EnumTree, Exception } from '@stackpress/idea-parser';
 
 try {
@@ -37,21 +45,33 @@ try {
     const errorRange = { start: error.start, end: error.end };
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `try {
   parse('enum Status { ACTIVE "Active"'); // Missing closing brace
 } catch (error) {
   console.log(error.message); // "Unexpected end of input expecting }"
 }`,
+
+  //----------------------------------------------------------------------
+
   `try {
   parse('model user { id String }'); // Invalid - should be capitalized
 } catch (error) {
   console.log(error.message); // "Expected CapitalIdentifier but got something else"
 }`,
+
+  //----------------------------------------------------------------------
+
   `try {
   parse('model User { name String @field.input(UnknownProp) }');
 } catch (error) {
   console.log(error.message); // "Unknown reference UnknownProp"
 }`,
+
+  //----------------------------------------------------------------------
+
   `try {
   parse(\`
     enum Status { ACTIVE "Active" }
@@ -60,6 +80,9 @@ try {
 } catch (error) {
   console.log(error.message); // "Duplicate Status"
 }`,
+
+  //----------------------------------------------------------------------
+
   `import { SchemaTree, EnumTree, ModelTree, Exception } from '@stackpress/idea-parser';
 
 // Any parsing operation can throw Exception
@@ -76,6 +99,9 @@ try {
     console.error('Unexpected error:', error);
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `import { parse, Exception } from '@stackpress/idea-parser';
 
 function parseWithFallback(code: string, fallbackCode?: string) {
@@ -89,6 +115,9 @@ function parseWithFallback(code: string, fallbackCode?: string) {
     throw error; // Re-throw if no fallback or different error type
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `import { parse, Exception } from '@stackpress/idea-parser';
 
 function validateSchema(code: string) {
@@ -112,6 +141,9 @@ function validateSchema(code: string) {
     throw error;
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `try {
   parse(schemaCode);
 } catch (error) {
@@ -123,6 +155,9 @@ function validateSchema(code: string) {
     handleGenericError(error);
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `function highlightError(code: string, error: Exception) {
   const lines = code.split('\\n');
   let currentPos = 0;
@@ -142,6 +177,9 @@ function validateSchema(code: string) {
     currentPos = lineEnd + 1; // +1 for newline
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `function parseWithContext(code: string, filename?: string) {
   try {
     return parse(code);
@@ -157,6 +195,8 @@ function validateSchema(code: string) {
   }
 }`
 ];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -192,18 +232,121 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   )
 }
 
+export function Right() {
+  //hooks
+  const { _ } = useLanguage();
+
+  return (
+    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
+      {/* API Reference Navigation */}
+      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+        {_('API Reference')}
+      </h6>
+      <nav className="px-fs-14 px-lh-28 flex flex-col">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/lexer"
+        >
+          {_('Lexer API Reference')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/compiler"
+        >
+          {_('Compiler API Reference')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/ast"
+        >
+          {_('AST Reference')}
+        </a>
+
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/tokens"
+        >
+          {_('Token Reference')}
+        </a>
+        <div className="text-blue-300 cursor-pointer">
+          {_('Exception Handling')}
+        </div>
+      </nav>
+
+
+      {/* On This Page Navigation */}
+      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-50 px-pb-10 uppercase">
+        {_('On This Page')}
+      </h6>
+      <nav className="px-fs-14 px-lh-28 flex flex-col">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling"
+        >
+          {_('A. Exception')}
+        </a>
+
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling#overview"
+        >
+          {_('B. Overview')}  
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling#usage-examples"
+        >
+          {_('C. Usage Examples')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling#integration-with-ast"
+        >
+          {_('D. Integration with AST')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling#error-recovery"
+        >
+          {_('E. Error Recovery')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling#language-server-integration"
+        >
+          {_('F. Language Server Integration')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling#inherited-features"
+        >
+          {_('G. Inherited Features')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling#best-practices"
+        >
+          {_('H. Best Practices')}
+        </a>  
+      </nav>
+    </aside>
+  );
+}
+
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <section>
+      {/* Exception Section Content */}
+      <section id='exception'>
         <H1>{_('Exception')}</H1>
         <P>
           <Translate>
-            The Exception class extends the Exception class from 
-            @stackpress/lib to provide enhanced error handling specific 
-            to the idea parser library. It includes position information 
+            The Exception class extends the Exception class from
+            @stackpress/lib to provide enhanced error handling specific
+            to the idea parser library. It includes position information
             and better error reporting for parsing failures.
           </Translate>
         </P>
@@ -212,8 +355,12 @@ export function Body() {
         </Code>
       </section>
 
-      <section>
-        <H2>{_('Overview')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+      
+      {/* Overview Section Content */}
+      <section id='overview'>
+        <H1>{_('Overview')}</H1>
         <Translate>
           Exception is a specialized error class that extends the base
           Exception class with additional functionality for parser-specific
@@ -223,15 +370,19 @@ export function Body() {
         </Translate>
       </section>
 
-      <section>
-        <H2>{_('Usage Examples')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+      
+      {/* Usage Examples Section Content */}
+      <section id='usage-examples'>
+        <H1>{_('Usage Examples')}</H1>
 
-        <H3>{_('Basic Error Handling')}</H3>
+        <H2>{_('Basic Error Handling')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[1]}
         </Code>
 
-        <H3>{_('Position Information')}</H3>
+        <H2>{_('Position Information')}</H2>
         <Translate>
           Exception includes position information to help locate errors in
           the source code:
@@ -240,7 +391,7 @@ export function Body() {
           {examples[2]}
         </Code>
 
-        <H3>{_('Common Error Scenarios')}</H3>
+        <H2>{_('Common Error Scenarios')}</H2>
 
         <SS>{_('Syntax Errors')}</SS>
         <Code copy language='typescript' className='bg-black text-white'>
@@ -263,8 +414,12 @@ export function Body() {
         </Code>
       </section>
 
-      <section>
-        <H2>{_('Integration with AST')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+      
+      {/* Integration with AST Section Content */}
+      <section id='integration-with-ast'>
+        <H1>{_('Integration with AST')}</H1>
         <Translate>
           All AST classes throw Exception when parsing fails:
         </Translate>
@@ -273,8 +428,12 @@ export function Body() {
         </Code>
       </section>
 
-      <section>
-        <H2>{_('Error Recovery')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Error Recovery Section Content */}
+      <section id='error-recovery'>
+        <H1>{_('Error Recovery')}</H1>
         <Translate>
           While Exception indicates parsing failure, you can implement error
           recovery strategies:
@@ -284,8 +443,12 @@ export function Body() {
         </Code>
       </section>
 
-      <section>
-        <H2>{_('Language Server Integration')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Language Server Integration Section Content */}
+      <section id='language-server-integration'>
+        <H1>{_('Language Server Integration')}</H1>
         <Translate>
           Exception's position information makes it ideal for language
           server implementations:
@@ -295,8 +458,12 @@ export function Body() {
         </Code>
       </section>
 
-      <section>
-        <H2>{_('Inherited Features')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Inherited Features Section Content */}
+      <section id='inherited-features'>
+        <H1>{_('Inherited Features')}</H1>
         <Translate>
           Since Exception extends the base Exception class from
           @stackpress/lib, it inherits all the enhanced error handling
@@ -313,36 +480,41 @@ export function Body() {
           For more details on the base Exception functionality, refer to the
           <a href="https://github.com/stackpress/lib#exception"
             className="text-blue-400 hover:text-blue-300 underline">
-            @stackpress/lib Exception documentation
+            {' '}@stackpress/lib Exception documentation
           </a>.
         </Translate>
       </section>
 
-      <section>
-        <H2>{_('Best Practices')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
 
-        <H3>{_('Always Check Error Type')}</H3>
+      {/* Best Practices Section Content */}
+      <section id='best-practices'>
+        <H1>{_('Best Practices')}</H1>
+
+        <H2>{_('Always Check Error Type')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[10]}
         </Code>
 
-        <H3>{_('Use Position Information')}</H3>
+        <H2>{_('Use Position Information')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[11]}
         </Code>
 
-        <H3>{_('Provide Helpful Error Messages')}</H3>
+        <H2>{_('Provide Helpful Error Messages')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[12]}
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{ text: 'Tokens', href: '/docs/parser/pages/tokens' }}
-        />
-      </footer>
-
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Tokens'),
+          href: '/docs/parser/pages/tokens'
+        }}
+      />
     </main>
   );
 }
@@ -355,6 +527,7 @@ export default function Page(props: ServerPageProps<ServerConfigProps>) {
       session={session}
       request={request}
       response={response}
+      right={<Right />}
     >
       <Body />
     </Layout>

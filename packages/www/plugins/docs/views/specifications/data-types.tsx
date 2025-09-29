@@ -4,7 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, P, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 import Models from '../../components/specifications/data-types/Models.js';
@@ -57,27 +57,27 @@ export function Right() {
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-fs-14 px-lh-32">
+      <nav className="px-fs-14 px-lh-28 flex flex-col">
         <a
-          className="theme-tx0 block cursor-pointer"
+          className="cursor-pointer text-blue-500 hover:text-blue-700"
           href="#enums"
         >
           {_('Enums')}
         </a>
         <a
-          className="theme-tx0 block cursor-pointer"
+          className="cursor-pointer text-blue-500 hover:text-blue-700"
           href="#props-1"
         >
           {_('Props')}
         </a>
         <a
-          className="theme-tx0 block cursor-pointer"
+          className="cursor-pointer text-blue-500 hover:text-blue-700"
           href="#type"
         >
           {_('Type')}
         </a>
         <a
-          className="theme-tx0 block cursor-pointer"
+          className="cursor-pointer text-blue-500 hover:text-blue-700"
           href="#models"
         >
           {_('Models')}
@@ -88,10 +88,12 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Data Types Content */}
       <section>
         <H1>{_('Data Types')}</H1>
         <P>
@@ -102,25 +104,44 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Enums, Props, Type, Models Content */}
       <section>
+        {/* Enums Section */}
         <Enums />
+
+        {/* Horizontal Rule */}
+        <hr className='mt-10 ' />
+
+        {/* Props Section */}
         <Props />
+
+        {/* Horizontal Rule */}
+        <hr className='mt-10 ' />
+
+        {/* Type Section */}
         <Type />
+
+        {/* Horizontal Rule */}
+        <hr className='mt-10 ' />
+
+        {/* Models Section */}
         <Models />
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Syntax Overview'),
-            href: '/docs/specifications/syntax-overview'
-          }}
-          next={{
-            text: _('Schema Elements'),
-            href: '/docs/specifications/schema-elements'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Syntax Overview'),
+          href: '/docs/specifications/syntax-overview'
+        }}
+        next={{
+          text: _('Schema Elements'),
+          href: '/docs/specifications/schema-elements'
+        }}
+      />
     </main>
   );
 }

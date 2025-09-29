@@ -1,9 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const corePluginFunction = 
-`export default async function generateZodSchemas(
+//code examples
+//----------------------------------------------------------------------
+
+const corePluginFunction =
+  `export default async function generateZodSchemas(
   props: PluginProps<{ config: ZodConfig }>
 ) {
   const { config, schema, transformer } = props;
@@ -51,9 +56,12 @@ const corePluginFunction =
     console.error('❌ Zod schema generation failed:', error.message);
     throw error;
   }
-}`;
+}`
 
-const enumGeneration = `function generateEnumSchemas(enums: Record<string, any>, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const enumGeneration =
+  `function generateEnumSchemas(enums: Record<string, any>, config: ZodConfig): string {
   let content = '// Enum Schemas\\n';
   
   for (const [enumName, enumDef] of Object.entries(enums)) {
@@ -70,9 +78,12 @@ const enumGeneration = `function generateEnumSchemas(enums: Record<string, any>,
   }
   
   return content + '\\n';
-}`;
+}`
 
-const typeGeneration = `function generateTypeSchemas(types: Record<string, any>, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const typeGeneration =
+  `function generateTypeSchemas(types: Record<string, any>, config: ZodConfig): string {
   let content = '// Type Schemas\\n';
   
   for (const [typeName, typeDef] of Object.entries(types)) {
@@ -100,9 +111,12 @@ const typeGeneration = `function generateTypeSchemas(types: Record<string, any>,
   }
   
   return content;
-}`;
+}`
 
-const modelGeneration = `function generateModelSchemas(models: Record<string, any>, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const modelGeneration =
+  `function generateModelSchemas(models: Record<string, any>, config: ZodConfig): string {
   let content = '// Model Schemas\\n';
   
   for (const [modelName, model] of Object.entries(models)) {
@@ -133,9 +147,12 @@ const modelGeneration = `function generateModelSchemas(models: Record<string, an
   }
   
   return content;
-}`;
+}`
 
-const fieldMapping = `function generateFieldSchema(column: any, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const fieldMapping =
+  `function generateFieldSchema(column: any, config: ZodConfig): string {
   let schema = mapTypeToZod(column.type, config);
   
   // Handle arrays
@@ -173,9 +190,12 @@ function mapTypeToZod(schemaType: string, config: ZodConfig): string {
   };
   
   return typeMap[schemaType] || \`\${schemaType}Schema\`;
-}`;
+}`
 
-const attributeValidations = `function addAttributeValidations(schema: string, attributes: any, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const attributeValidations =
+  `function addAttributeValidations(schema: string, attributes: any, config: ZodConfig): string {
   let validatedSchema = schema;
   
   // String validations
@@ -252,9 +272,12 @@ function extractFieldName(schema: string): string | null {
   // Extract field name from schema for error message lookup
   const match = schema.match(/(\\w+)Schema/);
   return match ? match[1] : null;
-}`;
+}`
 
-const inputSchemas = `function generateInputSchemas(modelName: string, model: any, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const inputSchemas =
+  `function generateInputSchemas(modelName: string, model: any, config: ZodConfig): string {
   let content = '';
   
   // Generate create input schema (omit auto-generated fields)
@@ -297,9 +320,12 @@ const inputSchemas = `function generateInputSchemas(modelName: string, model: an
   }
   
   return content;
-}`;
+}`
 
-const utilitySchemas = `function generateUtilitySchemas(schema: any, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const utilitySchemas =
+  `function generateUtilitySchemas(schema: any, config: ZodConfig): string {
   let content = '// Utility Schemas\\n';
   
   // Generate pagination schema
@@ -339,9 +365,12 @@ export const PaginatedResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =
 \`;
   
   return content;
-}`;
+}`
 
-const exportFunctions = `function generateMainExport(schema: any, config: ZodConfig): string {
+//----------------------------------------------------------------------
+
+const exportFunctions =
+  `function generateMainExport(schema: any, config: ZodConfig): string {
   if (config.exportStyle === 'namespace') {
     return generateNamespaceExport(schema, config);
   }
@@ -419,9 +448,12 @@ export default schemas;
 \`;
   
   return content;
-}`;
+}`
 
-const configValidation = `function validateConfig(config: any): asserts config is ZodConfig {
+//----------------------------------------------------------------------
+
+const configValidation = 
+`function validateConfig(config: any): asserts config is ZodConfig {
   if (!config.output || typeof config.output !== 'string') {
     throw new Error('Zod plugin requires "output" configuration as string');
   }
@@ -429,75 +461,81 @@ const configValidation = `function validateConfig(config: any): asserts config i
   if (config.exportStyle && !['named', 'default', 'namespace'].includes(config.exportStyle)) {
     throw new Error('exportStyle must be one of: named, default, namespace');
   }
-}`;
- 
+}`
+
+//----------------------------------------------------------------------
+
 export default function Implementation() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="implementation">
-      <H2>{_('4. Implementation')}</H2>
-      <P>
-        <Translate>
-          The implementation section covers the core plugin function and
-          supporting utilities that handle Zod schema generation. This
-          includes configuration validation, content generation, file writing,
-          and error handling throughout the generation process.
-        </Translate>
-      </P>
+    <>
+      {/* Implementation Section Content */}
+      <section id="implementation">
+        <H1>{_('4. Implementation')}</H1>
+        <P>
+          <Translate>
+            The implementation section covers the core plugin function and
+            supporting utilities that handle Zod schema generation. This
+            includes configuration validation, content generation, file writing,
+            and error handling throughout the generation process.
+          </Translate>
+        </P>
 
-      <H3>{_('4.1. Core Plugin Function')}</H3>
-      <P>
-        <Translate>
-          The core plugin function serves as the main entry point for Zod
-          schema generation. It orchestrates the entire process from
-          configuration validation through content generation to file output,
-          ensuring proper error handling and logging throughout.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {corePluginFunction}
-      </Code>
+        <H2>{_('4.1. Core Plugin Function')}</H2>
+        <P>
+          <Translate>
+            The core plugin function serves as the main entry point for Zod
+            schema generation. It orchestrates the entire process from
+            configuration validation through content generation to file output,
+            ensuring proper error handling and logging throughout.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {corePluginFunction}
+        </Code>
 
-      <H3>{_('4.2. Generation Functions')}</H3>
-      <P>
-        <Translate>
-          Generation functions create specific parts of the Zod validation
-          output including enum schemas, type schemas, model schemas, and
-          utility schemas. These functions handle proper Zod syntax
-          construction and validation rule application.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {corePluginFunction}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {enumGeneration}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {typeGeneration}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {modelGeneration}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {fieldMapping}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {attributeValidations}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {inputSchemas}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {utilitySchemas}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {exportFunctions}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {configValidation}
-      </Code>
-    </section>
+        <H2>{_('4.2. Generation Functions')}</H2>
+        <P>
+          <Translate>
+            Generation functions create specific parts of the Zod validation
+            output including enum schemas, type schemas, model schemas, and
+            utility schemas. These functions handle proper Zod syntax
+            construction and validation rule application.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {corePluginFunction}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {enumGeneration}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {typeGeneration}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {modelGeneration}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {fieldMapping}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {attributeValidations}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {inputSchemas}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {utilitySchemas}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {exportFunctions}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {configValidation}
+        </Code>
+      </section>
+    </>
   );
 }

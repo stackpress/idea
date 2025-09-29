@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const documentationBestPracticesExample = `// Always include detailed descriptions
+//code examples
+//----------------------------------------------------------------------
+
+const documentationBestPracticesExample =
+  `// Always include detailed descriptions
 function generateModelSchema(model: any): any {
   const schema: any = {
     type: 'object',
@@ -210,76 +216,82 @@ function generateInvalidExample(schema: any): any {
   }
   
   return example;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function BestPractices() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="best-practices">
-      <H2>{_('7. Best Practices')}</H2>
-      <P>
-        <Translate>
-          Best practices ensure your generated OpenAPI specifications
-          are comprehensive, maintainable, and follow industry
-          standards. These guidelines cover documentation quality,
-          error handling, security implementation, and validation
-          strategies.
-        </Translate>
-      </P>
+    <>
+      {/* Best Practices Section Content */}
+      <section id="best-practices">
+        <H1>{_('7. Best Practices')}</H1>
+        <P>
+          <Translate>
+            Best practices ensure your generated OpenAPI specifications
+            are comprehensive, maintainable, and follow industry
+            standards. These guidelines cover documentation quality,
+            error handling, security implementation, and validation
+            strategies.
+          </Translate>
+        </P>
 
-      <H3>{_('7.1. Comprehensive Documentation')}</H3>
-      <P>
-        <Translate>
-          Comprehensive documentation practices ensure your API
-          specifications provide clear, detailed information for both
-          human readers and automated tools. This includes proper
-          descriptions, examples, and consistent formatting throughout
-          the specification.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {documentationBestPracticesExample}
-      </Code>
+        <H2>{_('7.1. Comprehensive Documentation')}</H2>
+        <P>
+          <Translate>
+            Comprehensive documentation practices ensure your API
+            specifications provide clear, detailed information for both
+            human readers and automated tools. This includes proper
+            descriptions, examples, and consistent formatting throughout
+            the specification.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {documentationBestPracticesExample}
+        </Code>
 
-      <H3>{_('7.2. Consistent Error Responses')}</H3>
-      <P>
-        <Translate>
-          Consistent error responses provide standardized error
-          handling across your API endpoints. This approach ensures
-          predictable error formats that client applications can
-          handle reliably, improving the overall developer experience.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {errorResponsesExample}
-      </Code>
+        <H2>{_('7.2. Consistent Error Responses')}</H2>
+        <P>
+          <Translate>
+            Consistent error responses provide standardized error
+            handling across your API endpoints. This approach ensures
+            predictable error formats that client applications can
+            handle reliably, improving the overall developer experience.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {errorResponsesExample}
+        </Code>
 
-      <H3>{_('7.3. Security Best Practices')}</H3>
-      <P>
-        <Translate>
-          Security best practices ensure your API documentation
-          properly represents authentication and authorization
-          requirements. This includes applying appropriate security
-          schemes to endpoints and documenting access control patterns.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {securityBestPracticesExample}
-      </Code>
+        <H2>{_('7.3. Security Best Practices')}</H2>
+        <P>
+          <Translate>
+            Security best practices ensure your API documentation
+            properly represents authentication and authorization
+            requirements. This includes applying appropriate security
+            schemes to endpoints and documenting access control patterns.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {securityBestPracticesExample}
+        </Code>
 
-      <H3>{_('7.4. Validation and Testing')}</H3>
-      <P>
-        <Translate>
-          Validation and testing practices ensure your generated
-          OpenAPI specifications are accurate and functional. This
-          includes adding validation examples, testing request/response
-          formats, and verifying specification compliance.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {validationExamplesExample}
-      </Code>
-    </section>
+        <H2>{_('7.4. Validation and Testing')}</H2>
+        <P>
+          <Translate>
+            Validation and testing practices ensure your generated
+            OpenAPI specifications are accurate and functional. This
+            includes adding validation examples, testing request/response
+            formats, and verifying specification compliance.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {validationExamplesExample}
+        </Code>
+      </section>
+    </>
   );
 }

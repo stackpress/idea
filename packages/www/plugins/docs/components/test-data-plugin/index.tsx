@@ -1,3 +1,4 @@
+//exporting all components to have multiple imports from a single file
 export { default as Overview } from './Overview.js';
 export { default as Prerequisites } from './Prerequisites.js';
 export { default as PluginStructure } from './PluginStructure.js';

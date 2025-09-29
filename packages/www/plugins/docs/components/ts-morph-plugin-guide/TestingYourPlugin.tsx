@@ -1,9 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, P } from '../index.js'
 import Code from '../Code.js'
 
+//code examples
+//----------------------------------------------------------------------
+
 const examples = [
-`// tests/plugin.test.ts
+  `// tests/plugin.test.ts
 import { TypeScriptInterfaceGenerator } from "../src/plugin";
 import { PluginConfig, Schema } from "../src/types";
 import { Project } from "ts-morph";
@@ -122,48 +127,58 @@ describe("TypeScriptInterfaceGenerator", () => {
     expect(diagnostics).toHaveLength(0);
   });
 });`,
-`npm test`
+
+  //----------------------------------------------------------------------
+
+  `npm test`
 ];
 
+//----------------------------------------------------------------------
+
 export default function TestingYourPlugin() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
-    <section id="testing-your-plugin">
-      <H1>{_('7. Testing Your Plugin')}</H1>
-      <P>
-        <Translate>
-          Comprehensive testing ensures your plugin works correctly across 
-          different scenarios and maintains reliability as it evolves. This 
-          section covers unit testing, integration testing, and validation 
-          strategies for ts-morph plugins.
-        </Translate>
-      </P>
-      
-      <P>
-        <Translate>
-          Create comprehensive tests for your plugin:
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language='typescript' 
-        className="bg-black text-white"
-      >
-        {examples[0]}
-      </Code>
-      
-      <P>
-        <Translate>
-          Run tests:
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language='bash' 
-        className="bg-black text-white"
-      >
-        {examples[1]}
-      </Code>
-    </section>
+    <>
+    {/* Testing Your Plugin Section Content */}
+      <section id="testing-your-plugin">
+        <H1>{_('7. Testing Your Plugin')}</H1>
+        <P>
+          <Translate>
+            Comprehensive testing ensures your plugin works correctly 
+            across different scenarios and maintains reliability as it 
+            evolves. This section covers unit testing, integration testing, 
+            and validation strategies for ts-morph plugins.
+          </Translate>
+        </P>
+
+        <P>
+          <Translate>
+            Create comprehensive tests for your plugin:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language='typescript'
+          className="bg-black text-white"
+        >
+          {examples[0]}
+        </Code>
+
+        <P>
+          <Translate>
+            Run tests:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language='bash'
+          className="bg-black text-white"
+        >
+          {examples[1]}
+        </Code>
+      </section>
+    </>
   )
 }

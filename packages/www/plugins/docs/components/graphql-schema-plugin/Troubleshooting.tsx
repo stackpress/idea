@@ -1,12 +1,21 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, Code } from '../index.js';
+//local
+import { H1, H2, P, Code } from '../index.js';
 
-const invalidGraphQLNamesExample = `function sanitizeGraphQLName(name: string): string {
+//code examples
+//----------------------------------------------------------------------
+
+const invalidGraphQLNamesExample = 
+`function sanitizeGraphQLName(name: string): string {
   // GraphQL names must match /^[_A-Za-z][_0-9A-Za-z]*$/
   return name.replace(/[^_A-Za-z0-9]/g, '_').replace(/^[0-9]/, '_$&');
-}`;
+}`
 
-const circularDependenciesExample = `function detectCircularDependencies(models: Record<string, any>): string[] {
+//----------------------------------------------------------------------
+
+const circularDependenciesExample = 
+`function detectCircularDependencies(models: Record<string, any>): string[] {
   const visited = new Set<string>();
   const recursionStack = new Set<string>();
   const cycles: string[] = [];
@@ -14,13 +23,18 @@ const circularDependenciesExample = `function detectCircularDependencies(models:
   // Implementation for cycle detection...
   
   return cycles;
-}`;
+}`
 
-const missingRequiredFieldsExample = `function validateRequiredFields(model: any): void {
+//----------------------------------------------------------------------
+
+const missingRequiredFieldsExample = 
+`function validateRequiredFields(model: any): void {
   if (!model.columns || model.columns.length === 0) {
     throw new Error(\`Model must have at least one column\`);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const verboseLoggingExample = `const DEBUG = process.env.DEBUG === 'true';
 
@@ -28,7 +42,9 @@ function debugLog(message: string, data?: any) {
   if (DEBUG) {
     console.log(\`[GraphQL Plugin] \${message}\`, data || '');
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const validateGeneratedSchemaExample = `import { buildSchema } from 'graphql';
 
@@ -39,14 +55,19 @@ function validateGeneratedSchema(schemaContent: string): void {
   } catch (error) {
     throw new Error(\`Invalid GraphQL schema: \${error.message}\`);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function Troubleshooting() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="troubleshooting">
-      <H2>{_('Troubleshooting')}</H2>
+    <>
+      {/* Troubleshooting Section Content */}
+      <section id="troubleshooting">
+      <H1>{_('9. Troubleshooting')}</H1>
       <P>
         <Translate>
           This section addresses common issues encountered when generating 
@@ -56,7 +77,7 @@ export default function Troubleshooting() {
         </Translate>
       </P>
 
-      <H3>{_('Common Issues')}</H3>
+      <H2>{_('Common Issues')}</H2>
       <P>
         <Translate>
           Common issues include invalid GraphQL identifiers, circular 
@@ -66,7 +87,7 @@ export default function Troubleshooting() {
         </Translate>
       </P>
 
-      <H3>{_('Invalid GraphQL Names')}</H3>
+      <H2>{_('Invalid GraphQL Names')}</H2>
       <P>
         <Translate>
           Invalid GraphQL names occur when schema identifiers contain 
@@ -79,7 +100,7 @@ export default function Troubleshooting() {
         {invalidGraphQLNamesExample}
       </Code>
 
-      <H3>{_('Circular Dependencies')}</H3>
+      <H2>{_('Circular Dependencies')}</H2>
       <P>
         <Translate>
           Circular dependencies can cause infinite loops during generation or 
@@ -92,7 +113,7 @@ export default function Troubleshooting() {
         {circularDependenciesExample}
       </Code>
 
-      <H3>{_('Missing Required Fields')}</H3>
+      <H2>{_('Missing Required Fields')}</H2>
       <P>
         <Translate>
           Missing required fields can result in invalid GraphQL types that 
@@ -104,7 +125,7 @@ export default function Troubleshooting() {
         {missingRequiredFieldsExample}
       </Code>
 
-      <H3>{_('Debugging Tips')}</H3>
+      <H2>{_('Debugging Tips')}</H2>
       <P>
         <Translate>
           Debugging tips help identify and resolve issues during GraphQL 
@@ -114,7 +135,7 @@ export default function Troubleshooting() {
         </Translate>
       </P>
 
-      <H3>{_('Enable Verbose Logging')}</H3>
+      <H2>{_('Enable Verbose Logging')}</H2>
       <P>
         <Translate>
           Verbose logging provides detailed information about the schema 
@@ -126,7 +147,7 @@ export default function Troubleshooting() {
         {verboseLoggingExample}
       </Code>
 
-      <H3>{_('Validate Generated Schema')}</H3>
+      <H2>{_('Validate Generated Schema')}</H2>
       <P>
         <Translate>
           Validating the generated GraphQL schema ensures that the output is 
@@ -137,6 +158,7 @@ export default function Troubleshooting() {
       <Code lang='typescript'>
         {validateGeneratedSchemaExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

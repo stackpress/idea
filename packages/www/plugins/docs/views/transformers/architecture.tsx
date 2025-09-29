@@ -4,12 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const architectureDiagram = `
+//code example
+//----------------------------------------------------------------------
+
+const architectureDiagram =
+  `
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Schema File   │───▶│   Transformer  │───▶│    Plugins      │
 │   (.idea/.json) │    │                 │    │                 │
@@ -20,6 +24,8 @@ const architectureDiagram = `
                        │  Schema Config  │    │ Generated Files │
                        │                 │    │                 │
                        └─────────────────┘    └─────────────────┘`
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -60,8 +66,10 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 export function Body() {
   //hooks
   const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Architecture Section Content */}
       <section>
         <H1>{_('Architecture')}</H1>
         <P>
@@ -77,18 +85,17 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('API Reference'),
-            href: '/docs/transformers/api-reference'
-          }}
-          next={{
-            text: _('Usage Patterns'),
-            href: '/docs/transformers/usage-patterns'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('API Reference'),
+          href: '/docs/transformers/api-reference'
+        }}
+        next={{
+          text: _('Usage Patterns'),
+          href: '/docs/transformers/usage-patterns'
+        }}
+      />
     </main>
   );
 }

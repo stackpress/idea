@@ -1,9 +1,15 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C, SS } from '../index.js';
-import Code from '../Code.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+//local
+import { H1, H2, P, C, SS } from '../index.js';
+import Code from '../Code.js';
 
-const schemaConfigExample = `plugin "./plugins/test-data.js" {
+//code examples
+//----------------------------------------------------------------------
+
+const schemaConfigExample = 
+`plugin "./plugins/test-data.js" {
   output "./generated/test-data.ts"
   format "typescript"
   count 20
@@ -17,14 +23,19 @@ const schemaConfigExample = `plugin "./plugins/test-data.js" {
     Password "faker.internet.password()"
     Slug "faker.lorem.slug()"
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function SchemaConfiguration() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="schema-configuration">
-      <H2>{_('5. Schema Configuration')}</H2>
+    <>
+      {/* Schema Configuration Section Content */}
+      <section id="schema-configuration">
+      <H1>{_('5. Schema Configuration')}</H1>
       <P>
         <Translate>
           The schema configuration section demonstrates how to integrate
@@ -42,7 +53,7 @@ export default function SchemaConfiguration() {
         {schemaConfigExample}
       </Code>
 
-      <H3>{_('5.1. Configuration Options')}</H3>
+      <H2>{_('5.1. Configuration Options')}</H2>
       <P>
         <Translate>
           The following options will be processed by the test data plugin
@@ -130,6 +141,7 @@ export default function SchemaConfiguration() {
           </Tcol>
         </Trow>
       </Table>
-    </section>
+      </section>
+    </>
   );
 }

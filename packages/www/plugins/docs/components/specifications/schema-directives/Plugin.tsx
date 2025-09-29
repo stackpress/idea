@@ -1,6 +1,11 @@
+//modules
+import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P, SS, C } from '../../index.js';
 import Code from '../../Code.js';
-import { useLanguage, Translate } from 'r22n';
+
+//code examples
+//----------------------------------------------------------------------
 
 const pluginExamples = [
   `plugin "path/to/plugin.js" {
@@ -10,6 +15,9 @@ const pluginExamples = [
     flag true
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `// TypeScript interface generation
 plugin "./plugins/typescript-generator.js" {
   output "./src/types/schema.ts"
@@ -76,6 +84,9 @@ plugin "./plugins/form-generator.js" {
     errorMessage "ErrorText"
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `plugin "./plugins/my-plugin.js" {
   // Output configuration
   output "./generated/output.ts"
@@ -107,6 +118,9 @@ plugin "./plugins/form-generator.js" {
     compressionLevel 9
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `// Generate TypeScript types
 plugin "./plugins/typescript.js" {
   output "./src/types/index.ts"
@@ -135,7 +149,10 @@ plugin "./plugins/validation.js" {
   output "./src/validation/index.ts"
   library "zod"
 }`,
-`// Example plugin structure
+
+  //----------------------------------------------------------------------
+
+  `// Example plugin structure
 import type { PluginProps } from '@stackpress/idea-transformer/types';
 
 interface MyPluginConfig {
@@ -163,120 +180,130 @@ export default async function myPlugin(
   
   console.log(\`✅ Generated: \${outputPath}\`);
 }`
-]
+];
+
+//----------------------------------------------------------------------
 
 export default function Plugin() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="plugin">
-      <header>
+    <>
+      {/* Plugin Section Content */}
+      <section id="plugin">
         <H1>{_('Plugin')}</H1>
         <P>
           <Translate>
-            The <C>plugin</C> directive configures code generation 
-            plugins that process your schema and generate various 
-            outputs like TypeScript interfaces, database schemas, API 
+            The <C>plugin</C> directive configures code generation
+            plugins that process your schema and generate various
+            outputs like TypeScript interfaces, database schemas, API
             documentation, and more.
           </Translate>
         </P>
-      </header>
 
-      <section>
-        <H2>{_('Syntax')}</H2>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
-        >
-          {pluginExamples[0]}
-        </Code>
-      </section>
+        {/* Syntax Section Content */}
+        <section>
+          <H2>{_('Syntax')}</H2>
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white px-mx-10 px-mb-20"
+          >
+            {pluginExamples[0]}
+          </Code>
+        </section>
 
-      <section>
-        <H2>{_('Structure')}</H2>
-        <ul className="px-lh-30 px-px-20">
-          <li className="list-disc">
-            <SS>{_('Path:')}</SS>{' '}
+        {/* Structure Section Content */}
+        <section>
+          <H2>{_('Structure')}</H2>
+          <ul className="px-lh-30 px-px-20">
+            <li className="list-disc">
+              <SS>{_('Path:')}</SS>{' '}
+              <Translate>
+                Relative or absolute path to the plugin file
+              </Translate>
+            </li>
+            <li className="list-disc">
+              <SS>{_('Configuration Block:')}</SS>{' '}
+              <Translate>
+                Key-value pairs that configure the plugin behavior
+              </Translate>
+            </li>
+            <li className="list-disc">
+              <SS>{_('Nested Configuration:')}</SS>{' '}
+              <Translate>
+                Support for complex configuration structures
+              </Translate>
+            </li>
+          </ul>
+        </section>
+
+        {/* Example Section Content */}
+        <section>
+          <H2>{_('Example')}</H2>
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white px-mx-10 px-mb-20"
+          >
+            {pluginExamples[1]}
+          </Code>
+        </section>
+
+        {/* Plugin Configuration Options Section Content */}
+        <section>
+          <H2>{_('Plugin Configuration Options')}</H2>
+          <P>
             <Translate>
-              Relative or absolute path to the plugin file
+              Common configuration patterns across different plugin types:
             </Translate>
-          </li>
-          <li className="list-disc">
-            <SS>{_('Configuration Block:')}</SS>{' '}
+          </P>
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white px-mx-10 px-mb-20"
+          >
+            {pluginExamples[2]}
+          </Code>
+        </section>
+
+        {/* Multiple Plugins Execution Section Content */}
+        <section>
+          <H2>{_('Multiple Plugins Execution')}</H2>
+          <P>
             <Translate>
-              Key-value pairs that configure the plugin behavior
+              You can configure multiple plugins to generate different
+              outputs from the same schema:
             </Translate>
-          </li>
-          <li className="list-disc">
-            <SS>{_('Nested Configuration:')}</SS>{' '}
+          </P>
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white px-mx-10 px-mb-20"
+          >
+            {pluginExamples[3]}
+          </Code>
+        </section>
+
+        {/* Plugin Development Section Content */}
+        <section>
+          <H2>{_('Plugin Development')}</H2>
+          <P>
             <Translate>
-              Support for complex configuration structures
+              Plugins are JavaScript/TypeScript modules that export a
+              default function:
             </Translate>
-          </li>
-        </ul>
+          </P>
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white px-mx-10 px-mb-20"
+          >
+            {pluginExamples[4]}
+          </Code>
+        </section>
       </section>
-
-      <section>
-        <H2>{_('Example')}</H2>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
-        >
-          {pluginExamples[1]}
-        </Code>
-      </section>
-
-      <section>
-        <H2>{_('Plugin Configuration Options')}</H2>
-        <P>
-          <Translate>
-            Common configuration patterns across different plugin types:
-          </Translate>
-        </P>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
-        >
-          {pluginExamples[2]}
-        </Code>
-      </section>
-
-      <section>
-        <H2>{_('Multiple Plugins Execution')}</H2>
-        <P>
-          <Translate>
-            You can configure multiple plugins to generate different
-            outputs from the same schema:
-          </Translate>
-        </P>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
-        >
-          {pluginExamples[3]}
-        </Code>
-      </section>
-
-      <section>
-        <H2>{_('Plugin Development')}</H2>
-        <P>
-          <Translate>
-            Plugins are JavaScript/TypeScript modules that export a 
-            default function:
-          </Translate>
-        </P>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
-        >
-          {pluginExamples[4]}
-        </Code>
-      </section>
-    </section>
+    </>
   );
 }

@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const schemaExample = `// Example processed schema
 {
@@ -62,14 +67,19 @@ const schemaExample = `// Example processed schema
       GUEST: 'Guest User'
     }
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UnderstandingSchemaStructure() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="understanding-the-schema-structure">
-      <H2>{_('3. Understanding the Schema Structure')}</H2>
+    <>
+      {/* Understanding the Schema Structure Section Content */}
+      <section id="understanding-the-schema-structure">
+      <H1>{_('3. Understanding the Schema Structure')}</H1>
       <P>
         <Translate>
           Understanding how schema attributes map to form elements is 
@@ -87,6 +97,7 @@ export default function UnderstandingSchemaStructure() {
       <Code copy language='typescript' className='bg-black text-white'>
         {schemaExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

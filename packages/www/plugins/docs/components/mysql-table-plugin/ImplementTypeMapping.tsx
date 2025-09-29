@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const typeMappingFunction = `function mapSchemaTypeToMySQL(column: any): string {
+//code examples
+//----------------------------------------------------------------------
+
+const typeMappingFunction =
+  `function mapSchemaTypeToMySQL(column: any): string {
   const { type, attributes = {} } = column;
   
   switch (type) {
@@ -73,28 +79,35 @@ const typeMappingFunction = `function mapSchemaTypeToMySQL(column: any): string 
       
       return 'VARCHAR(255)'; // Default fallback
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function ImplementTypeMapping() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="implement-type-mapping">
-      <H1>{_('5. Implement Type Mapping')}</H1>
-      <P>
-        <Translate>
-          Create a function to map schema types to MySQL types. This
-          function handles the conversion between idea schema types and
-          their corresponding MySQL data types.
-        </Translate>
-      </P>
-      <H2>{_('Type Mapping Function')}</H2>
-      <Code
-        language="typescript"
-        className='bg-black text-white'
-      >
-        {typeMappingFunction}
-      </Code>
-    </section>
+    <>
+      {/* Implement Type Mapping */}
+      <section id="implement-type-mapping">
+        <H1>{_('5. Implement Type Mapping')}</H1>
+        <P>
+          <Translate>
+            Create a function to map schema types to MySQL types. This
+            function handles the conversion between idea schema types and
+            their corresponding MySQL data types.
+          </Translate>
+        </P>
+        <H2>{_('Type Mapping Function')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >
+          {typeMappingFunction}
+        </Code>
+      </section>
+    </>
   );
 }

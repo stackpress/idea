@@ -4,11 +4,15 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
-import { H1, H2, H3, C, SS, Nav } from '../../../components/index.js';
+//local
+import { H1, H2, H3, C, SS, Nav, P } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+
+
+//code examples
+//----------------------------------------------------------------------
 
 const examples = [
   `import type { 
@@ -21,6 +25,9 @@ const examples = [
   PropertyToken,
   ImportToken
 } from '@stackpress/idea-parser';`,
+
+  //----------------------------------------------------------------------
+
   `const unknownToken: UnknownToken = {
   type: 'CustomType',
   start: 0,
@@ -28,12 +35,18 @@ const examples = [
   value: 'some value',
   raw: 'raw text'
 };`,
+
+  //----------------------------------------------------------------------
+
   `const identifierToken: IdentifierToken = {
   type: 'Identifier',
   name: 'UserRole',
   start: 5,
   end: 13
 };`,
+
+  //----------------------------------------------------------------------
+
   `// From enum.json fixture
 {
   "type": "Identifier",
@@ -49,6 +62,9 @@ const examples = [
   "end": 20,
   "name": "ADMIN"
 }`,
+
+  //----------------------------------------------------------------------
+
   `const stringLiteral: LiteralToken = {
   type: 'Literal',
   start: 21,
@@ -64,6 +80,9 @@ const numberLiteral: LiteralToken = {
   value: 42,
   raw: '42'
 };`,
+
+  //----------------------------------------------------------------------
+
   `// From enum.json fixture
 {
   "type": "Literal",
@@ -72,6 +91,9 @@ const numberLiteral: LiteralToken = {
   "value": "Admin",
   "raw": "'Admin'"
 }`,
+
+  //----------------------------------------------------------------------
+
   `const objectToken: ObjectToken = {
   type: 'ObjectExpression',
   start: 0,
@@ -96,6 +118,9 @@ const numberLiteral: LiteralToken = {
     }
   ]
 };`,
+
+  //----------------------------------------------------------------------
+
   `const arrayToken: ArrayToken = {
   type: 'ArrayExpression',
   start: 0,
@@ -105,6 +130,9 @@ const numberLiteral: LiteralToken = {
     { type: 'Literal', value: 'item2', start: 11, end: 18, raw: '"item2"' }
   ]
 };`,
+
+  //----------------------------------------------------------------------
+
   `const propertyToken: PropertyToken = {
   type: 'Property',
   kind: 'init',
@@ -127,6 +155,9 @@ const numberLiteral: LiteralToken = {
     raw: '"Admin"'
   }
 };`,
+
+  //----------------------------------------------------------------------
+
   `const enumDeclaration: DeclarationToken = {
   type: 'VariableDeclaration',
   kind: 'enum',
@@ -150,6 +181,9 @@ const numberLiteral: LiteralToken = {
     }
   }]
 };`,
+
+  //----------------------------------------------------------------------
+
   `const declaratorToken: DeclaratorToken = {
   type: 'VariableDeclarator',
   start: 5,
@@ -167,6 +201,9 @@ const numberLiteral: LiteralToken = {
     properties: [/* property tokens */]
   }
 };`,
+
+  //----------------------------------------------------------------------
+
   `const importToken: ImportToken = {
   type: 'ImportDeclaration',
   start: 0,
@@ -180,6 +217,9 @@ const numberLiteral: LiteralToken = {
     raw: '"./shared/types.idea"'
   }
 };`,
+
+  //----------------------------------------------------------------------
+
   `const schemaToken: SchemaToken = {
   type: 'Program',
   kind: 'schema',
@@ -204,17 +244,32 @@ const numberLiteral: LiteralToken = {
     }
   ]
 };`,
+
+  //----------------------------------------------------------------------
+
   `type Token = DataToken | UnknownToken;`,
+
+  //----------------------------------------------------------------------
+
   `type DataToken = IdentifierToken | LiteralToken | ObjectToken | ArrayToken;`,
+
+  //----------------------------------------------------------------------
+
   `type Reader = (
   code: string, 
   start: number, 
   lexer: Parser
 ) => Token | undefined;`,
+
+  //----------------------------------------------------------------------
+
   `type Definition = { 
   key: string, 
   reader: Reader 
 };`,
+
+  //----------------------------------------------------------------------
+
   `interface Parser {
   get dictionary(): Record<string, Definition>;
   get index(): number;
@@ -228,9 +283,21 @@ const numberLiteral: LiteralToken = {
   optional<T = Token>(keys: string | string[]): T | undefined;
   read(): Token | undefined;
 }`,
+
+  //----------------------------------------------------------------------
+
   `type UseReferences = Record<string, any> | false;`,
+
+  //----------------------------------------------------------------------
+
   `type Scalar = string | number | null | boolean;`,
+
+  //----------------------------------------------------------------------
+
   `type Data = Scalar | Data[] | { [key: string]: Data };`,
+
+  //----------------------------------------------------------------------
+
   `import { EnumTree } from '@stackpress/idea-parser';
 
 const enumCode = \`enum Roles {
@@ -243,12 +310,18 @@ const enumCode = \`enum Roles {
 const enumToken = EnumTree.parse(enumCode);
 console.log(enumToken.kind); // 'enum'
 console.log(enumToken.declarations[0].id.name); // 'Roles'`,
+
+  //----------------------------------------------------------------------
+
   `import { Compiler } from '@stackpress/idea-parser';
 
 // Convert DeclarationToken to configuration
 const [enumName, enumConfig] = Compiler.enum(enumToken);
 console.log(enumName); // 'Roles'
 console.log(enumConfig); // { ADMIN: 'Admin', MANAGER: 'Manager', USER: 'User' }`,
+
+  //----------------------------------------------------------------------
+
   `// ObjectToken processing
 const objectToken: ObjectToken = {
   type: 'ObjectExpression',
@@ -271,6 +344,9 @@ const objectToken: ObjectToken = {
 
 const compiled = Compiler.object(objectToken);
 console.log(compiled); // { type: 'text' }`,
+
+  //----------------------------------------------------------------------
+
   `import { Exception } from '@stackpress/idea-parser';
 
 try {
@@ -281,6 +357,9 @@ try {
     console.log('Token error:', error.message); // 'Invalid Enum'
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `// Position information for error highlighting
 const token: IdentifierToken = {
   type: 'Identifier',
@@ -291,7 +370,9 @@ const token: IdentifierToken = {
 
 // Can be used to highlight errors in editors
 const errorRange = { start: token.start, end: token.end };`
-]
+];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -336,12 +417,228 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   )
 }
 
+export function Right() {
+  //hooks
+  const { _ } = useLanguage();
+
+  return (
+    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
+      {/* API Reference Navigation*/}
+      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+        {_('API Reference')}
+      </h6>
+      <nav className="px-fs-14 px-lh-28 flex flex-col">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/lexer"
+        >
+          {_('Lexer API Reference')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/compiler"
+        >
+          {_('Compiler API Reference')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/ast"
+        >
+          {_('AST Reference')}
+        </a>
+
+        <div className="text-blue-300 cursor-pointer">
+          {_('Token Reference')}
+        </div>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/parser/api-references/exception-handling"
+        >
+          {_('Exception Handling')}
+        </a>
+      </nav>
+
+      {/* On This Page Navigation */}
+      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-30 px-pb-10 uppercase">
+        {_('On this page')}
+      </h6>
+      <nav className="px-fs-14 px-lh-28 flex flex-col">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#tokens"
+        >
+          {_('A. Tokens')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#core-token-types"
+        >
+          {_('1. Core Token Types')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#unknown-token"
+        >
+          {_('1.1 UnknownToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#identifier-token"
+        >
+          {_('1.2 IdentifierToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#literal-token"
+        >
+          {_('1.3 LiteralToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#object-token"
+        >
+          {_('1.4 ObjectToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#array-token"
+        >
+          {_('1.5 ArrayToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#property-token"
+        >
+          {_('1.6 PropertyToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#declaration-tokens"
+        >
+          {_('2. Declaration Tokens')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#declaration-token"
+        >
+          {_('2.1 DeclarationToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#declarator-token"
+        >
+          {_('2.2 DeclaratorToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#import-token"
+        >
+          {_('2.3 ImportToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#schema-token"
+        >
+          {_('2.4 SchemaToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#union-types"
+        >
+          {_('3. Union Types')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#token"
+        >
+          {_('3.1 Token')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#data-token"
+        >
+          {_('3.2 DataToken')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#parser-interface"
+        >
+          {_('4. Parser Interface')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#reader-function"
+        >
+          {_('4.1 Reader')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#token-definition"
+        >
+          {_('4.2 Definition')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#parser-interface"
+        >
+          {_('4.3 Parser')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#reference-types"
+        >
+          {_('5. Reference Types')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#use-references"
+        >
+          {_('5.1 UseReferences')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#scalar"
+        >
+          {_('5.2 Scalar')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#data"
+        >
+          {_('5.3 Data')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#usage-examples"
+        >
+          {_('6. Usage Examples')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#token-validation"
+        >
+          {_('7. Token Validation')}
+        </a>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="#integration-with-ast"
+        >
+          {_('8. Integration with AST')}
+        </a>
+      </nav>
+    </aside>
+  );
+}
+
+
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <header>
+      {/* Tokens Section Content */}
+      <section id='tokens'>
         <H1>{_('Tokens')}</H1>
         <Translate>
           Token types define the Abstract Syntax Tree (AST) structures
@@ -352,919 +649,1003 @@ export function Body() {
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[0]}
         </Code>
-      </header>
-
-      <section>
-        <H2>{_('Core Token Types')}</H2>
-        <Translate>The following types define the fundamental token
-          structures used throughout the parsing system.
-        </Translate>
-
-        <H3>{_('UnknownToken')}</H3>
-        <Translate>
-          Base token structure for unrecognized or generic tokens during
-          parsing.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[1]}
-        </Code>
-
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>string</C></Tcol>
-            <Tcol>
-              <Translate>
-                Token type identifier
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Starting character position in source code
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Ending character position in source code
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>value</C></Tcol>
-            <Tcol><C>any</C></Tcol>
-            <Tcol>
-              <Translate>
-                Parsed value of the token
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>raw</C></Tcol>
-            <Tcol><C>string</C></Tcol>
-            <Tcol>
-              <Translate>
-                Raw text from source code
-              </Translate>
-            </Tcol>
-          </Trow>
-        </Table>
-
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used as a fallback for tokens that don't match specific patterns
-          and as a base structure for other token types.
-        </Translate>
-
-        <H3>{_('IdentifierToken')}</H3>
-        <Translate>
-          Represents identifiers such as variable names, type names,
-          and property keys.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[2]}
-        </Code>
-
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'Identifier'</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always 'Identifier' for identifier tokens
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>name</C></Tcol>
-            <Tcol><C>string</C></Tcol>
-            <Tcol>
-              <Translate>
-                The identifier name
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Starting character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Ending character position
-              </Translate>
-            </Tcol>
-          </Trow>
-        </Table>
-
-        <SS>{_('Usage')}</SS>
-        <Translate>Used throughout the parser for:</Translate>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'>Enum names: <C>enum UserRole</C></li>
-          <li className='my-2'>Model names: <C>model User</C></li>
-          <li className='my-2'>Property names: <C>name String</C></li>
-          <li className='my-2'>Type references: <C>role UserRole</C></li>
-        </ul>
-
-        <SS>{_('Examples from Tests')}</SS>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[3]}
-        </Code>
-
-        <H3>{_('LiteralToken')}</H3>
-        <Translate>
-          Represents literal values such as strings, numbers, booleans,
-          and null.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[4]}
-        </Code>
-
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'Literal'</C></Tcol>
-            <Tcol>Always 'Literal' for literal tokens</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Starting character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Ending character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>value</C></Tcol>
-            <Tcol><C>any</C></Tcol>
-            <Tcol>The parsed literal value</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>raw</C></Tcol>
-            <Tcol><C>string</C></Tcol>
-            <Tcol>Raw text representation from source</Tcol>
-          </Trow>
-        </Table>
-
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used for all scalar values in schema definitions:
-        </Translate>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'>String literals: <C>"Admin"</C>, <C>"localhost"</C></li>
-          <li className='my-2'>Number literals: <C>5432</C>, <C>3.14</C></li>
-          <li className='my-2'>Boolean literals: <C>true</C>, <C>false</C></li>
-          <li className='my-2'>Null literals: <C>null</C></li>
-        </ul>
-
-        <SS>{_('Examples from Tests')}</SS>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[5]}
-        </Code>
       </section>
 
-      <section>
-        <H2>{_('ObjectToken')}</H2>
-        <Translate>
-          Represents object expressions containing key-value pairs.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[6]}
-        </Code>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
 
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'ObjectExpression'</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always 'ObjectExpression' for object tokens
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Starting character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Ending character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>properties</C></Tcol>
-            <Tcol><C>PropertyToken[]</C></Tcol>
-            <Tcol>
-              <Translate>
-                Array of property tokens
-              </Translate>
-            </Tcol>
-          </Trow>
-        </Table>
+      {/* Core Token Types */}
+      <section id='core-token-types'>
+        <H1>{_('1. Core Token Types')}</H1>
+        <P>
+          <Translate>
+            The following types define the fundamental token
+            structures used throughout the parsing system.
+          </Translate>
+        </P>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>Used for:</Translate>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'>
-            Enum definitions:
-            <C>&#123; ADMIN "Admin", USER "User" &#125;</C>
-          </li>
-          <li className='my-2'>
-            Model column definitions:
-            <C>&#123; id String @id, name String &#125;</C>
-          </li>
-          <li className='my-2'>
-            Plugin configurations:
-            <C>&#123; provider "postgresql", url env("DATABASE_URL") &#125;</C>
-          </li>
-          <li className='my-2'>
-            Attribute parameters:
-            <C>@field.input(&#123; type "text" &#125;)</C>
-          </li>
-        </ul>
+        {/* UnknownToken Section Content */}
+        <section id='unknown-token'>
+          <H2>{_('1.1 UnknownToken')}</H2>
+          <P>
+            <Translate>
+              Base token structure for unrecognized or generic tokens during
+              parsing.
+            </Translate>
+          </P>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[1]}
+          </Code>
 
-        <SS>{_('Examples from Tests')}</SS>
-        <Translate>
-          The enum fixture shows an ObjectToken containing three PropertyTokens
-          for ADMIN, MANAGER, and USER enum values.
-        </Translate>
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>string</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Token type identifier
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Starting character position in source code
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Ending character position in source code
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>value</C></Tcol>
+              <Tcol><C>any</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Parsed value of the token
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>raw</C></Tcol>
+              <Tcol><C>string</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Raw text from source code
+                </Translate>
+              </Tcol>
+            </Trow>
+          </Table>
+
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used as a fallback for tokens that don't match specific patterns
+            and as a base structure for other token types.
+          </Translate>
+        </section>
+
+        {/* IdentifierToken Section Content */}
+        <section id='identifier-token'>
+          <H2>{_('1.2 IdentifierToken')}</H2>
+          <Translate>
+            Represents identifiers such as variable names, type names,
+            and property keys.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[2]}
+          </Code>
+
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'Identifier'</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always 'Identifier' for identifier tokens
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>name</C></Tcol>
+              <Tcol><C>string</C></Tcol>
+              <Tcol>
+                <Translate>
+                  The identifier name
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Starting character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Ending character position
+                </Translate>
+              </Tcol>
+            </Trow>
+          </Table>
+
+          <SS>{_('Usage')}</SS>
+          <Translate>Used throughout the parser for:</Translate>
+          <ul className='my-2 list-disc pl-5'>
+            <li className='my-2'>Enum names: <C>enum UserRole</C></li>
+            <li className='my-2'>Model names: <C>model User</C></li>
+            <li className='my-2'>Property names: <C>name String</C></li>
+            <li className='my-2'>Type references: <C>role UserRole</C></li>
+          </ul>
+
+          <SS>{_('Examples from Tests')}</SS>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[3]}
+          </Code>
+        </section>
+
+        {/* LiteralToken Section Content */}
+        <section id='literal-token'>
+          <H2>{_('1.3 LiteralToken')}</H2>
+          <Translate>
+            Represents literal values such as strings, numbers, booleans,
+            and null.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[4]}
+          </Code>
+
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'Literal'</C></Tcol>
+              <Tcol>Always 'Literal' for literal tokens</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Starting character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Ending character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>value</C></Tcol>
+              <Tcol><C>any</C></Tcol>
+              <Tcol>The parsed literal value</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>raw</C></Tcol>
+              <Tcol><C>string</C></Tcol>
+              <Tcol>Raw text representation from source</Tcol>
+            </Trow>
+          </Table>
+
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used for all scalar values in schema definitions:
+          </Translate>
+          <ul className='my-2 list-disc pl-5'>
+            <li className='my-2'>String literals: <C>"Admin"</C>, <C>"localhost"</C></li>
+            <li className='my-2'>Number literals: <C>5432</C>, <C>3.14</C></li>
+            <li className='my-2'>Boolean literals: <C>true</C>, <C>false</C></li>
+            <li className='my-2'>Null literals: <C>null</C></li>
+          </ul>
+
+          <SS>{_('Examples from Tests')}</SS>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[5]}
+          </Code>
+        </section>
+
+        {/* ObjectToken Section Content */}
+        <section id='object-token'>
+          <H2>{_('1.4 ObjectToken')}</H2>
+          <Translate>
+            Represents object expressions containing key-value pairs.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[6]}
+          </Code>
+
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'ObjectExpression'</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always 'ObjectExpression' for object tokens
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Starting character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Ending character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>properties</C></Tcol>
+              <Tcol><C>PropertyToken[]</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Array of property tokens
+                </Translate>
+              </Tcol>
+            </Trow>
+          </Table>
+
+          <SS>{_('Usage')}</SS>
+          <Translate>Used for:</Translate>
+          <ul className='my-2 list-disc pl-5'>
+            <li className='my-2'>
+              Enum definitions:
+              <C>&#123; ADMIN "Admin", USER "User" &#125;</C>
+            </li>
+            <li className='my-2'>
+              Model column definitions:
+              <C>&#123; id String @id, name String &#125;</C>
+            </li>
+            <li className='my-2'>
+              Plugin configurations:
+              <C>&#123; provider "postgresql", url env("DATABASE_URL") &#125;</C>
+            </li>
+            <li className='my-2'>
+              Attribute parameters:
+              <C>@field.input(&#123; type "text" &#125;)</C>
+            </li>
+          </ul>
+
+          <SS>{_('Examples from Tests')}</SS>
+          <Translate>
+            The enum fixture shows an ObjectToken containing three PropertyTokens
+            for ADMIN, MANAGER, and USER enum values.
+          </Translate>
+        </section>
+
+        {/* ArrayToken Section Content */}
+        <section id='array-token'>
+          <H2>{_('1.5 ArrayToken')}</H2>
+          <Translate>
+            Represents array expressions containing ordered elements.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[7]}
+          </Code>
+
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'ArrayExpression'</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always 'ArrayExpression' for array tokens
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Starting character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Ending character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>elements</C></Tcol>
+              <Tcol><C>DataToken[]</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Array of data tokens
+                </Translate>
+              </Tcol>
+            </Trow>
+          </Table>
+
+          <SS>{_('Usage')}</SS>
+          <Translate>Used for:</Translate>
+          <ul className='my-2 list-disc pl-5'>
+            <li className='my-2'>
+              Array type definitions:
+              <C>String[]</C>
+            </li>
+            <li className='my-2'>
+              Plugin feature lists:
+              <C>previewFeatures ["fullTextSearch", "metrics"]</C>
+            </li>
+            <li className='my-2'>
+              Attribute arrays:
+              <C>@is.oneOf(["admin", "user", "guest"])</C>
+            </li>
+          </ul>
+        </section>
+
+        {/* PropertyToken Section Content */}
+        <section id='property-token'>
+          <H2>{_('1.6 PropertyToken')}</H2>
+          <Translate>
+            Represents key-value pairs within object expressions.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[8]}
+          </Code>
+
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'Property'</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always 'Property' for property tokens
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>kind</C></Tcol>
+              <Tcol><C>'init'</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always 'init' for initialization properties
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Starting character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Ending character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>method</C></Tcol>
+              <Tcol><C>boolean</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always false (not used for method properties)
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>shorthand</C></Tcol>
+              <Tcol><C>boolean</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always false (not used for shorthand properties)
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>computed</C></Tcol>
+              <Tcol><C>boolean</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always false (not used for computed properties)
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>key</C></Tcol>
+              <Tcol><C>IdentifierToken</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Property key identifier
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>value</C></Tcol>
+              <Tcol><C>DataToken</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Property value (literal, object, array, or identifier)
+                </Translate>
+              </Tcol>
+            </Trow>
+          </Table>
+
+          <SS>{_('Usage')}</SS>
+          <Translate>Used within ObjectTokens for:</Translate>
+          <ul className='my-2 list-disc pl-5'>
+            <li className='my-2'>Enum key-value pairs: <C>ADMIN "Admin"</C></li>
+            <li className='my-2'>Model column definitions: <C>id String</C></li>
+            <li className='my-2'>
+              Plugin configuration options: <C>provider "postgresql"</C>
+            </li>
+            <li className='my-2'>Attribute parameters: <C>type "text"</C></li>
+          </ul>
+
+          <SS>{_('Examples from Tests')}</SS>
+          <Translate>
+            From the enum fixture, each enum value is represented as a
+            PropertyToken with an IdentifierToken key and LiteralToken value.
+          </Translate>
+        </section>
       </section>
 
-      <section>
-        <H2>{_('ArrayToken')}</H2>
-        <Translate>
-          Represents array expressions containing ordered elements.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[7]}
-        </Code>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
 
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'ArrayExpression'</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always 'ArrayExpression' for array tokens
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Starting character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Ending character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>elements</C></Tcol>
-            <Tcol><C>DataToken[]</C></Tcol>
-            <Tcol>
-              <Translate>
-                Array of data tokens
-              </Translate>
-            </Tcol>
-          </Trow>
-        </Table>
-
-        <SS>{_('Usage')}</SS>
-        <Translate>Used for:</Translate>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'>
-            Array type definitions:
-            <C>String[]</C>
-          </li>
-          <li className='my-2'>
-            Plugin feature lists:
-            <C>previewFeatures ["fullTextSearch", "metrics"]</C>
-          </li>
-          <li className='my-2'>
-            Attribute arrays:
-            <C>@is.oneOf(["admin", "user", "guest"])</C>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <H2>{_('PropertyToken')}</H2>
-        <Translate>
-          Represents key-value pairs within object expressions.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[8]}
-        </Code>
-
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'Property'</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always 'Property' for property tokens
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>kind</C></Tcol>
-            <Tcol><C>'init'</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always 'init' for initialization properties
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Starting character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Ending character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>method</C></Tcol>
-            <Tcol><C>boolean</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always false (not used for method properties)
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>shorthand</C></Tcol>
-            <Tcol><C>boolean</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always false (not used for shorthand properties)
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>computed</C></Tcol>
-            <Tcol><C>boolean</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always false (not used for computed properties)
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>key</C></Tcol>
-            <Tcol><C>IdentifierToken</C></Tcol>
-            <Tcol>
-              <Translate>
-                Property key identifier
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>value</C></Tcol>
-            <Tcol><C>DataToken</C></Tcol>
-            <Tcol>
-              <Translate>
-                Property value (literal, object, array, or identifier)
-              </Translate>
-            </Tcol>
-          </Trow>
-        </Table>
-
-        <SS>{_('Usage')}</SS>
-        <Translate>Used within ObjectTokens for:</Translate>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'>Enum key-value pairs: <C>ADMIN "Admin"</C></li>
-          <li className='my-2'>Model column definitions: <C>id String</C></li>
-          <li className='my-2'>
-            Plugin configuration options: <C>provider "postgresql"</C>
-          </li>
-          <li className='my-2'>Attribute parameters: <C>type "text"</C></li>
-        </ul>
-
-        <SS>{_('Examples from Tests')}</SS>
-        <Translate>
-          From the enum fixture, each enum value is represented as a
-          PropertyToken with an IdentifierToken key and LiteralToken value.
-        </Translate>
-      </section>
-
-      <section>
-        <H2>{_('Declaration Tokens')}</H2>
+      {/* Declaration Tokens Section Content*/}
+      <section id='declaration-tokens'>
+        <H1>{_('2. Declaration Tokens')}</H1>
         <Translate>
           The following types represent top-level declarations in schema files.
         </Translate>
 
-        <H2>{_('DeclarationToken')}</H2>
-        <Translate>
-          Represents variable declarations for enums, props, types, models,
-          and plugins.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[9]}
-        </Code>
+        {/* DeclarationToken Section Content */}
+        <section id='declaration-token'>
+          <H2>{_('2.1 DeclarationToken')}</H2>
+          <Translate>
+            Represents variable declarations for enums, props, types, models,
+            and plugins.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[9]}
+          </Code>
 
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'VariableDeclaration'</C></Tcol>
-            <Tcol>Always 'VariableDeclaration' for declarations</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>kind</C></Tcol>
-            <Tcol><C>string</C></Tcol>
-            <Tcol>
-              Declaration type: 'enum', 'prop', 'type', 'model', 'plugin'
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>mutable</C></Tcol>
-            <Tcol><C>boolean</C></Tcol>
-            <Tcol>Optional mutability flag (for types and models)</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Starting character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Ending character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>declarations</C></Tcol>
-            <Tcol><C>[DeclaratorToken]</C></Tcol>
-            <Tcol>Array with single declarator token</Tcol>
-          </Trow>
-        </Table>
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'VariableDeclaration'</C></Tcol>
+              <Tcol>Always 'VariableDeclaration' for declarations</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>kind</C></Tcol>
+              <Tcol><C>string</C></Tcol>
+              <Tcol>
+                Declaration type: 'enum', 'prop', 'type', 'model', 'plugin'
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>mutable</C></Tcol>
+              <Tcol><C>boolean</C></Tcol>
+              <Tcol>Optional mutability flag (for types and models)</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Starting character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Ending character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>declarations</C></Tcol>
+              <Tcol><C>[DeclaratorToken]</C></Tcol>
+              <Tcol>Array with single declarator token</Tcol>
+            </Trow>
+          </Table>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used by all tree parsers (EnumTree, PropTree, TypeTree, ModelTree,
-          PluginTree) to represent their respective declarations. The
-          <C>kind</C> property determines how the Compiler processes the
-          declaration.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used by all tree parsers (EnumTree, PropTree, TypeTree, ModelTree,
+            PluginTree) to represent their respective declarations. The
+            <C>kind</C> property determines how the Compiler processes the
+            declaration.
+          </Translate>
 
-        <SS>{_('Examples from Tests')}</SS>
-        <Translate>
-          The enum fixture shows a complete DeclarationToken with kind 'enum'
-          containing the Roles enum definition.
-        </Translate>
+          <SS>{_('Examples from Tests')}</SS>
+          <Translate>
+            The enum fixture shows a complete DeclarationToken with kind 'enum'
+            containing the Roles enum definition.
+          </Translate>
+        </section>
 
-        <H2>{_('DeclaratorToken')}</H2>
-        <Translate>
-          Represents the declarator part of a variable declaration,
-          containing the identifier and initialization.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[10]}
-        </Code>
+        {/* DeclaratorToken Section Content */}
+        <section id='declarator-token'>
+          <H2>{_('2.2 DeclaratorToken')}</H2>
+          <Translate>
+            Represents the declarator part of a variable declaration,
+            containing the identifier and initialization.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[10]}
+          </Code>
 
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'VariableDeclarator'</C></Tcol>
-            <Tcol>Always 'VariableDeclarator' for declarators</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Starting character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Ending character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>id</C></Tcol>
-            <Tcol><C>IdentifierToken</C></Tcol>
-            <Tcol>Declaration identifier (name)</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>init</C></Tcol>
-            <Tcol><C>ObjectToken</C></Tcol>
-            <Tcol>Initialization object containing the declaration body</Tcol>
-          </Trow>
-        </Table>
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'VariableDeclarator'</C></Tcol>
+              <Tcol>Always 'VariableDeclarator' for declarators</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Starting character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Ending character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>id</C></Tcol>
+              <Tcol><C>IdentifierToken</C></Tcol>
+              <Tcol>Declaration identifier (name)</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>init</C></Tcol>
+              <Tcol><C>ObjectToken</C></Tcol>
+              <Tcol>Initialization object containing the declaration body</Tcol>
+            </Trow>
+          </Table>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used within DeclarationTokens to separate the declaration name
-          from its body. The <C>id</C> contains the name (e.g., "Roles", "User")
-          and <C>init</C> contains the definition object.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used within DeclarationTokens to separate the declaration name
+            from its body. The <C>id</C> contains the name (e.g., "Roles", "User")
+            and <C>init</C> contains the definition object.
+          </Translate>
+        </section>
 
-        <H2>{_('ImportToken')}</H2>
-        <Translate>
-          Represents use statements for importing other schema files.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[11]}
-        </Code>
+        {/* ImportToken Section Content */}
+        <section id='import-token'>
+          <H2>{_('2.3 ImportToken')}</H2>
+          <Translate>
+            Represents use statements for importing other schema files.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[11]}
+          </Code>
 
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'ImportDeclaration'</C></Tcol>
-            <Tcol>Always 'ImportDeclaration' for imports</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Starting character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Ending character position</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>specifiers</C></Tcol>
-            <Tcol><C>[]</C></Tcol>
-            <Tcol>Always empty array (not used for named imports)</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>source</C></Tcol>
-            <Tcol><C>LiteralToken</C></Tcol>
-            <Tcol>Source file path as literal token</Tcol>
-          </Trow>
-        </Table>
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'ImportDeclaration'</C></Tcol>
+              <Tcol>Always 'ImportDeclaration' for imports</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Starting character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Ending character position</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>specifiers</C></Tcol>
+              <Tcol><C>[]</C></Tcol>
+              <Tcol>Always empty array (not used for named imports)</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>source</C></Tcol>
+              <Tcol><C>LiteralToken</C></Tcol>
+              <Tcol>Source file path as literal token</Tcol>
+            </Trow>
+          </Table>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used by UseTree to represent <C>use "./path/to/file.idea"</C>
-          statements. The Compiler extracts the source path for dependency
-          resolution.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used by UseTree to represent <C>use "./path/to/file.idea"</C>
+            statements. The Compiler extracts the source path for dependency
+            resolution.
+          </Translate>
+        </section>
 
-        <H2>{_('SchemaToken')}</H2>
-        <Translate>
-          Represents the complete parsed schema file containing all
-          declarations and imports.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[12]}
-        </Code>
+        {/* SchemaToken Section Content */}
+        <section id='schema-token'>
+          <H2>{_('2.4 SchemaToken')}</H2>
+          <Translate>
+            Represents the complete parsed schema file containing all
+            declarations and imports.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[12]}
+          </Code>
 
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>type</C></Tcol>
-            <Tcol><C>'Program'</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always 'Program' for complete schemas
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>kind</C></Tcol>
-            <Tcol><C>'schema'</C></Tcol>
-            <Tcol>
-              <Translate>
-                Always 'schema' for schema files
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Starting character position (usually 0)
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>end</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>
-              <Translate>
-                Ending character position
-              </Translate>
-            </Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>body</C></Tcol>
-            <Tcol><C>(DeclarationToken|ImportToken)[]</C></Tcol>
-            <Tcol>
-              <Translate>
-                Array of all declarations and imports
-              </Translate>
-            </Tcol>
-          </Trow>
-        </Table>
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>type</C></Tcol>
+              <Tcol><C>'Program'</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always 'Program' for complete schemas
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>kind</C></Tcol>
+              <Tcol><C>'schema'</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Always 'schema' for schema files
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Starting character position (usually 0)
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>end</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Ending character position
+                </Translate>
+              </Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>body</C></Tcol>
+              <Tcol><C>(DeclarationToken|ImportToken)[]</C></Tcol>
+              <Tcol>
+                <Translate>
+                  Array of all declarations and imports
+                </Translate>
+              </Tcol>
+            </Trow>
+          </Table>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used by SchemaTree as the root token representing the entire parsed
-          schema file. The Compiler processes the body array to generate the
-          final schema configuration.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <P>
+            <Translate>
+              Used by SchemaTree as the root token representing the
+              entire parsed schema file. The Compiler processes the
+              body array to generate the final schema configuration.
+            </Translate>
+          </P>
+        </section>
       </section>
 
-      <section>
-        <H2>{_('U Types')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Union Types Section Content */}
+      <section id='union-types'>
+        <H1>{_('3. Union Types')}</H1>
         <Translate>
           The following types provide flexible token handling for different
           contexts.
         </Translate>
 
-        <H2>{_('Token')}</H2>
-        <Translate>
-          Union type for all possible token types that can be returned by
-          readers.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[13]}
-        </Code>
+        {/* Token Section Content */}
+        <section id='token'>
+          <H2>{_('3.1 Token')}</H2>
+          <Translate>
+            Union type for all possible token types that can be returned by
+            readers.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[13]}
+          </Code>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used as the return type for lexer operations and reader functions.
-          Allows handling both recognized data tokens and unknown tokens.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used as the return type for lexer operations and reader functions.
+            Allows handling both recognized data tokens and unknown tokens.
+          </Translate>
+        </section>
 
-        <H2>{_('DataToken')}</H2>
-        <Translate>
-          Union type for tokens representing data values.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[14]}
-        </Code>
+        {/* Data Token Section */}
+        <section id='data-token'>
+          <H2>{_('3.2 DataToken')}</H2>
+          <Translate>
+            Union type for tokens representing data values.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[14]}
+          </Code>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used throughout the Compiler for processing data values. These tokens
-          can be converted to actual JavaScript values using
-          <C>Compiler.data()</C>.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used throughout the Compiler for processing data values. These tokens
+            can be converted to actual JavaScript values using
+            <C>Compiler.data()</C>.
+          </Translate>
+        </section>
       </section>
 
-      <section>
-        <H2>{_('Parser Interface')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Parser Interface Section Content */}
+      <section id='parser-interface'>
+        <H1>{_('4. Parser Interface')}</H1>
         <Translate>
           The following types define the parser interface and reader functions.
         </Translate>
 
-        <H2>{_('Reader')}</H2>
-        <Translate>
-          Function type for token readers that attempt to parse specific
-          patterns.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[15]}
-        </Code>
 
-        <H2>{_('Parameters')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>code</C></Tcol>
-            <Tcol><C>string</C></Tcol>
-            <Tcol>Source code being parsed</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>start</C></Tcol>
-            <Tcol><C>number</C></Tcol>
-            <Tcol>Starting position to attempt parsing</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>lexer</C></Tcol>
-            <Tcol><C>Parser</C></Tcol>
-            <Tcol>Parser instance for recursive parsing</Tcol>
-          </Trow>
-        </Table>
+        {/* Reader Function Section */}
+        <section id='reader-function'>
+          <H2>{_('4.1 Reader')}</H2>
+          <Translate>
+            Function type for token readers that attempt to parse specific
+            patterns.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[15]}
+          </Code>
 
-        <SS>{_('Returns')}</SS>
-        <Translate>
-          Token object if pattern matches, undefined otherwise.
-        </Translate>
+          <H2>{_('Parameters')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>code</C></Tcol>
+              <Tcol><C>string</C></Tcol>
+              <Tcol>Source code being parsed</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>start</C></Tcol>
+              <Tcol><C>number</C></Tcol>
+              <Tcol>Starting position to attempt parsing</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>lexer</C></Tcol>
+              <Tcol><C>Parser</C></Tcol>
+              <Tcol>Parser instance for recursive parsing</Tcol>
+            </Trow>
+          </Table>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used to define token recognition patterns in the definitions system.
-          Each token type has a corresponding reader function.
-        </Translate>
+          <SS>{_('Returns')}</SS>
+          <Translate>
+            Token object if pattern matches, undefined otherwise.
+          </Translate>
 
-        <H2>{_('Definition')}</H2>
-        <Translate>
-          Pairs a token key with its reader function for lexer registration.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[16]}
-        </Code>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used to define token recognition patterns in the definitions system.
+            Each token type has a corresponding reader function.
+          </Translate>
+        </section>
 
-        <H2>{_('Properties')}</H2>
-        <Table>
-          <Thead className="theme-bg-bg2 text-left">Property</Thead>
-          <Thead className="theme-bg-bg2 text-left">Type</Thead>
-          <Thead className="theme-bg-bg2 text-left">Description</Thead>
-          <Trow>
-            <Tcol><C>key</C></Tcol>
-            <Tcol><C>string</C></Tcol>
-            <Tcol>Unique identifier for the token type</Tcol>
-          </Trow>
-          <Trow>
-            <Tcol><C>reader</C></Tcol>
-            <Tcol><C>Reader</C></Tcol>
-            <Tcol>Function that attempts to parse the token</Tcol>
-          </Trow>
-        </Table>
+        {/* Token Definition Section */}
+        <section id='token-definition'>
+          <H2>{_('4.2 Definition')}</H2>
+          <Translate>
+            Pairs a token key with its reader function for lexer registration.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[16]}
+          </Code>
 
-        <SS>Usage</SS>
-        <Translate>
-          Used by the Lexer to register and manage token definitions. The key
-          identifies the token type, and the reader attempts to parse it.
-        </Translate>
+          <H2>{_('Properties')}</H2>
+          <Table>
+            <Thead className="theme-bg-bg2 text-left">Property</Thead>
+            <Thead className="theme-bg-bg2 text-left">Type</Thead>
+            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+            <Trow>
+              <Tcol><C>key</C></Tcol>
+              <Tcol><C>string</C></Tcol>
+              <Tcol>Unique identifier for the token type</Tcol>
+            </Trow>
+            <Trow>
+              <Tcol><C>reader</C></Tcol>
+              <Tcol><C>Reader</C></Tcol>
+              <Tcol>Function that attempts to parse the token</Tcol>
+            </Trow>
+          </Table>
 
-        <H3>{_('Parser')}</H3>
-        <Translate>
-          Interface defining the contract for parser implementations.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[17]}
-        </Code>
+          <SS>Usage</SS>
+          <Translate>
+            Used by the Lexer to register and manage token definitions. The key
+            identifies the token type, and the reader attempts to parse it.
+          </Translate>
+        </section>
 
-        <SS>Usage</SS>
-        <Translate>
-          Implemented by the Lexer class to provide consistent parsing
-          operations across all tree parsers.
-        </Translate>
+        {/* Parser Interface Section */}
+        <section id='parser-interface'>
+          <H2>{_('4.3 Parser')}</H2>
+          <Translate>
+            Interface defining the contract for parser implementations.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[17]}
+          </Code>
+
+          <SS>Usage</SS>
+          <Translate>
+            Implemented by the Lexer class to provide consistent parsing
+            operations across all tree parsers.
+          </Translate>
+        </section>
       </section>
 
-      <section>
-        <H2>{_('Reference Types')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Reference Types Section Content */}
+      <section id='reference-types'>
+        <H1>{_('5. Reference Types')}</H1>
         <Translate>
           The following types handle reference resolution and data processing.
         </Translate>
 
-        <H3>{_('UseReferences')}</H3>
-        <Translate>
-          Type for managing prop and type references during compilation.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[18]}
-        </Code>
+        {/* UseReferences Section Content */}
+        <section id='use-references'>
+          <H2>{_('5.1 UseReferences')}</H2>
+          <Translate>
+            Type for managing prop and type references during compilation.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[18]}
+          </Code>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used by the Compiler to resolve identifier references:
-        </Translate>
-        <ul className='my-2 list-disc pl-5'>
-          <li>
-            <C>false</C>: Return template strings like <C>$&#123;PropName&#125;</C>
-          </li>
-          <li>
-            <C>Record&lt;string, any&gt;</C>: Resolve identifiers to actual values
-          </li>
-          <li>Empty object <C>&#123;&#125;</C>: Throw error for unknown references</li>
-        </ul>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used by the Compiler to resolve identifier references:
+          </Translate>
+          <ul className='my-2 list-disc pl-5'>
+            <li>
+              <C>false</C>: Return template strings like <C>$&#123;PropName&#125;</C>
+            </li>
+            <li>
+              <C>Record&lt;string, any&gt;</C>: Resolve identifiers to actual values
+            </li>
+            <li>Empty object <C>&#123;&#125;</C>: Throw error for unknown references</li>
+          </ul>
+        </section>
 
-        <H3>{_('Scalar')}</H3>
-        <Translate>
-          Union type for primitive values that can be stored in schema
-          configurations.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[19]}
-        </Code>
+        {/* Scalar Section Content */}
+        <section id='scalar'>
+          <H2>{_('5.2 Scalar')}</H2>
+          <Translate>
+            Union type for primitive values that can be stored in schema
+            configurations.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[19]}
+          </Code>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used in enum configurations and other places where only primitive
-          values are allowed.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used in enum configurations and other places where only primitive
+            values are allowed.
+          </Translate>
+        </section>
 
-        <H3>{_('Data')}</H3>
-        <Translate>
-          Recursive type for nested data structures in schema configurations.
-        </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
-          {examples[20]}
-        </Code>
+        {/* Data Section Content */}
+        <section id='data'>
+          <H2>{_('5.3 Data')}</H2>
+          <Translate>
+            Recursive type for nested data structures in schema configurations.
+          </Translate>
+          <Code copy language='typescript' className='bg-black text-white'>
+            {examples[20]}
+          </Code>
 
-        <SS>{_('Usage')}</SS>
-        <Translate>
-          Used throughout the system for representing complex nested data
-          structures in plugin configurations, attributes, and other schema
-          elements.
-        </Translate>
+          <SS>{_('Usage')}</SS>
+          <Translate>
+            Used throughout the system for representing complex nested data
+            structures in plugin configurations, attributes, and other schema
+            elements.
+          </Translate>
+        </section>
       </section>
 
-      <section>
-        <H2>{_('Usage Examples')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
 
-        <H3>{_('Parsing and Token Generation')}</H3>
+      {/* Usage Examples Section Content */}
+      <section id='usage-examples'>
+        <H1>{_('6. Usage Examples')}</H1>
+
+        <H2>{_('6.1 Parsing and Token Generation')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[21]}
         </Code>
 
-        <H3>{_('Token Processing with Compiler')}</H3>
+        <H2>{_('6.2 Token Processing with Compiler')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[22]}
         </Code>
 
-        <H3>{_('Working with Complex Tokens')}</H3>
+        <H2>{_('6.3 Working with Complex Tokens')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[23]}
         </Code>
 
-        <H3>{_('Error Handling with Tokens')}</H3>
+        <H2>{_('6.4 Error Handling with Tokens')}</H2>
         <Code copy language='typescript' className='bg-black text-white'>
           {examples[24]}
         </Code>
       </section>
 
-      <section>
-        <H2>{_('Token Validation')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Token Validation Section Content */}
+      <section id='token-validation'>
+        <H1>{_('7. Token Validation')}</H1>
         <Translate>
           Tokens include position information for error reporting and
           validation:
@@ -1274,8 +1655,12 @@ export function Body() {
         </Code>
       </section>
 
-      <section>
-        <H2>{_('Integration with AST')}</H2>
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Integration With AST Section Content */}
+      <section id='integration-with-ast'>
+        <H1>{_('8. Integration with AST')}</H1>
         <Translate>
           AST classes generate specific token types:
         </Translate>
@@ -1317,6 +1702,7 @@ export function Body() {
         </Translate>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('Syntax Trees'),
@@ -1339,6 +1725,7 @@ export default function Page(props: ServerPageProps<ServerConfigProps>) {
       session={session}
       request={request}
       response={response}
+      right={<Right />}
     >
       <Body />
     </Layout>

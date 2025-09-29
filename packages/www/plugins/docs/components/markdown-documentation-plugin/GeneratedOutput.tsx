@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const generatedOutputExample = `# My Application Schema
+//code examples
+//----------------------------------------------------------------------
+
+const generatedOutputExample = 
+`# My Application Schema
 
 API Reference documentation for the schema definitions.
 
@@ -52,14 +58,19 @@ Enums define sets of named constants with associated values.
 
 ---
 
-*Documentation generated on 1/15/2024, 10:30:00 AM*`;
+*Documentation generated on 1/15/2024, 10:30:00 AM*`
+
+//----------------------------------------------------------------------
 
 export default function GeneratedOutput() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="generated-output">
-      <H2>{_('Generated Output')}</H2>
+    <>
+      {/* Generated Output Section Content */}
+      <section id="generated-output">
+      <H1>{_('10. Generated Output')}</H1>
       <P>
         <Translate>
           The plugin will generate markdown documentation like this:
@@ -68,6 +79,7 @@ export default function GeneratedOutput() {
       <Code copy language='markdown' className='bg-black text-white'>
         {generatedOutputExample}
       </Code>
-    </section>
+      </section>
+    </>
   )
 }

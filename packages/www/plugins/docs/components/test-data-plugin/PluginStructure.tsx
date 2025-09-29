@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const pluginStructureExample = `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//code examples
+//----------------------------------------------------------------------
+
+const pluginStructureExample = 
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -24,14 +30,19 @@ export default async function generateTestData(
   const { config, schema, transformer } = props;
   
   // Implementation here...
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function PluginStructure() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="plugin-structure">
-      <H2>{_('3. Plugin Structure')}</H2>
+    <>
+      {/* Plugin Structure Section Content */}
+      <section id="plugin-structure">
+      <H1>{_('3. Plugin Structure')}</H1>
       <P>
         <Translate>
           The following code shows how to generally layout the plugin so 
@@ -41,6 +52,7 @@ export default function PluginStructure() {
       <Code copy language='typescript' className='bg-black text-white'>
         {pluginStructureExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

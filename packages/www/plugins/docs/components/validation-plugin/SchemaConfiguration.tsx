@@ -1,9 +1,15 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
-import { H2, H3, P, C } from '../index.js';
+//local
+import { H1, H2, P, C } from '../index.js';
 import Code from '../Code.js';
 
-const basicConfiguration = `plugin "./plugins/zod-validation.js" {
+//code examples
+//----------------------------------------------------------------------
+
+const basicConfiguration = 
+`plugin "./plugins/zod-validation.js" {
   output "./generated/validation.ts"
   generateTypes true
   includeEnums true
@@ -19,9 +25,9 @@ const basicConfiguration = `plugin "./plugins/zod-validation.js" {
     password "Password must be at least 8 characters with uppercase, lowercase, and number"
     required "This field is required"
   }
-}`;
+}`
 
-
+//----------------------------------------------------------------------
 
 const configurationOptions = [
   { 
@@ -68,12 +74,17 @@ const configurationOptions = [
   }
 ];
 
+//----------------------------------------------------------------------
+
 export default function SchemaConfiguration() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="schema-configuration">
-      <H2>{_('5. Schema Configuration')}</H2>
+    <>
+      {/* Schema Configuration Section Content */}
+      <section id="schema-configuration">
+      <H1>{_('5. Schema Configuration')}</H1>
       <P>
         <Translate>
           Schema configuration demonstrates how to integrate the Zod validation 
@@ -91,7 +102,7 @@ export default function SchemaConfiguration() {
         {basicConfiguration}
       </Code>
 
-      <H3>{_('Configuration Options')}</H3>
+      <H2>{_('Configuration Options')}</H2>
       <P>
         <Translate>
           Configuration options control how Zod validation schemas are generated, 
@@ -116,6 +127,7 @@ export default function SchemaConfiguration() {
           </Trow>
         ))}
       </Table>
-    </section>
+      </section>
+    </>
   );
 }

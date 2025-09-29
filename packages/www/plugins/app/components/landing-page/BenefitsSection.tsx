@@ -1,5 +1,7 @@
+//modules
 import { Translate, useLanguage } from 'r22n';
 
+//benefit cards data
 const benefitCards = [
   {
     title: 'Single Source of Truth',
@@ -39,15 +41,21 @@ const benefitCards = [
   }
 ];
 
+//----------------------------------------------------------------------
+
 export default function BenefitsSection() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <main>
+    <>
+      {/* Benefits Section Content */}
       <section className="theme-bg-bg0 max-w-7xl mx-auto px-4 py-20">
         <h3 className="mb-6 text-3xl font-bold">
           {_('Key Benefits')}
         </h3>
+
+        {/* Benefit Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {benefitCards.map((card, index) => (
             <div 
@@ -73,6 +81,6 @@ export default function BenefitsSection() {
           ))}
         </div>
       </section>
-    </main>
+    </>
   )
 }

@@ -52,6 +52,7 @@ export function Head(props: LayoutHeadProps) {
           </nav>
         </div>
         <div className='flex items-center'>
+          {/* Search Field Component */}
           <SearchField />
 
           <nav className="rmd-hidden flex items-center">

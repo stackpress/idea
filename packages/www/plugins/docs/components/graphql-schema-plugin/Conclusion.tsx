@@ -1,10 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { P, C, Nav } from '../index.js';
+//local
+import { H1, P, C } from '../index.js';
 
 export default function Conclusion() {
+  //hooks
+  const { _ } = useLanguage();
+
   return (
     <>
+      {/* Conclusion Section Content */}
       <section id="conclusion">
+        <H1>{_('10. Conclusion')}</H1>
         <P>
           <Translate>
             This tutorial provides a comprehensive foundation for creating 

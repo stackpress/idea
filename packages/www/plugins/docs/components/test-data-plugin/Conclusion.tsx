@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 
 export default function Conclusion() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="conclusion">
-      <H2>{_('Conclusion')}</H2>
+    <>
+      {/* Conclusion Section Content */}
+      <section id="conclusion">
+      <H1>{_('Conclusion')}</H1>
       <P>
         <Translate>
           This tutorial provides a comprehensive foundation for creating 
@@ -15,6 +20,7 @@ export default function Conclusion() {
           workflows.
         </Translate>
       </P>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P, C, SS } from '../index.js';
+//local
+import { H1, P, C, SS } from '../index.js';
 
 export default function Overview() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="overview">
-      <H2>{_('1. Overview')}</H2>
+    <>
+      {/* Overview Section Content */}
+      <section id="overview">
+      <H1>{_('1. Overview')}</H1>
       <P>
         <Translate>
           Zod is a TypeScript-first schema validation library that provides
@@ -49,6 +54,7 @@ export default function Overview() {
           </Translate>
         </li>
       </ul>
-    </section>
+      </section>
+    </>
   );
 }

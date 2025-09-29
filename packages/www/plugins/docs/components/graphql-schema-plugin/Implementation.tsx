@@ -1,7 +1,13 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C, Code } from '../index.js';
+//local
+import { H1, H2, P, C, Code } from '../index.js';
 
-const corePluginFunctionExample = `export default async function generateGraphQLSchema(
+//code examples
+//----------------------------------------------------------------------
+
+const corePluginFunctionExample = 
+`export default async function generateGraphQLSchema(
   props: PluginProps<{ config: GraphQLConfig }>
 ) {
   const { config, schema, transformer } = props;
@@ -61,9 +67,12 @@ const corePluginFunctionExample = `export default async function generateGraphQL
     console.error('❌ GraphQL schema generation failed:', error.message);
     throw error;
   }
-}`;
+}`
 
-const typeMappingFunctionsExample = `function mapSchemaTypeToGraphQL(schemaType: string, customScalars: Record<string, string> = {}): string {
+//----------------------------------------------------------------------
+
+const typeMappingFunctionsExample = 
+`function mapSchemaTypeToGraphQL(schemaType: string, customScalars: Record<string, string> = {}): string {
   // Check for custom scalar mappings first
   if (customScalars[schemaType]) {
     return customScalars[schemaType];
@@ -97,9 +106,12 @@ function formatFieldType(column: any, customScalars: Record<string, string> = {}
   }
   
   return type;
-}`;
+}`
 
-const customScalarsExample = `function generateCustomScalars(customScalars: Record<string, string>): string {
+//----------------------------------------------------------------------
+
+const customScalarsExample = 
+`function generateCustomScalars(customScalars: Record<string, string>): string {
   if (Object.keys(customScalars).length === 0) {
     return \`# Custom Scalars
 scalar DateTime
@@ -117,9 +129,12 @@ scalar JSON
   }
   
   return content + '\\n';
-}`;
+}`
 
-const enumsAndTypesExample = `function generateEnums(enums: Record<string, any>): string {
+//----------------------------------------------------------------------
+
+const enumsAndTypesExample = 
+`function generateEnums(enums: Record<string, any>): string {
   let content = '# Enums\\n';
   
   for (const [enumName, enumDef] of Object.entries(enums)) {
@@ -150,9 +165,12 @@ function generateTypes(models: Record<string, any>): string {
   }
   
   return content;
-}`;
+}`
 
-const inputTypesAndQueriesExample = `function generateInputTypes(models: Record<string, any>): string {
+//----------------------------------------------------------------------
+
+const inputTypesAndQueriesExample = 
+`function generateInputTypes(models: Record<string, any>): string {
   let content = '# Input Types\\n';
   
   for (const [modelName, model] of Object.entries(models)) {
@@ -204,14 +222,19 @@ function generateQueries(models: Record<string, any>): string {
   
   content += '}\\n\\n';
   return content;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function Implementation() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="implementation">
-      <H2>{_('Implementation')}</H2>
+    <>
+      {/* Implementation Section Content */}
+      <section id="implementation">
+      <H1>{_('4. Implementation')}</H1>
       <P>
         <Translate>
           The implementation section covers the core plugin function and 
@@ -221,7 +244,7 @@ export default function Implementation() {
         </Translate>
       </P>
 
-      <H3>{_('Core Plugin Function')}</H3>
+      <H2>{_('Core Plugin Function')}</H2>
       <P>
         <Translate>
           The core plugin function serves as the main entry point for GraphQL 
@@ -234,7 +257,7 @@ export default function Implementation() {
         {corePluginFunctionExample}
       </Code>
 
-      <H3>{_('Type Mapping Functions')}</H3>
+      <H2>{_('Type Mapping Functions')}</H2>
       <P>
         <Translate>
           Type mapping functions handle the conversion of <C>.idea</C> schema 
@@ -247,7 +270,7 @@ export default function Implementation() {
         {typeMappingFunctionsExample}
       </Code>
 
-      <H3>{_('Schema Generation Functions')}</H3>
+      <H2>{_('Schema Generation Functions')}</H2>
       <P>
         <Translate>
           Schema generation functions create specific parts of the GraphQL 
@@ -265,6 +288,7 @@ export default function Implementation() {
       <Code lang='typescript'>
         {inputTypesAndQueriesExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

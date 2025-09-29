@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const circularReferencesExample = `// Problem: Circular references in schemas
+//code examples
+//----------------------------------------------------------------------
+
+const circularReferencesExample =
+  `// Problem: Circular references in schemas
 // Solution: Use allOf or oneOf patterns
 
 function handleCircularReferences(spec: any): void {
@@ -35,9 +41,12 @@ function handleCircularReferences(spec: any): void {
   for (const [name, schema] of Object.entries(spec.components.schemas)) {
     checkSchema(schema, name);
   }
-}`;
+}`
 
-const validationErrorsExample = `// Problem: Generated spec doesn't validate
+//----------------------------------------------------------------------
+
+const validationErrorsExample =
+  `// Problem: Generated spec doesn't validate
 // Solution: Add comprehensive validation
 
 function validateOpenAPISpec(spec: any): void {
@@ -83,18 +92,24 @@ function validateOpenAPISpec(spec: any): void {
   }
   
   console.log('✅ OpenAPI specification validation passed');
-}`;
+}`
 
-const dependenciesExample = `# Install required dependencies
+//----------------------------------------------------------------------
+
+const dependenciesExample =
+  `# Install required dependencies
 npm install --save-dev yaml swagger-ui-dist
 
 # For validation
 npm install --save-dev swagger-parser
 
 # For code generation
-npm install --save-dev @openapitools/openapi-generator-cli`;
+npm install --save-dev @openapitools/openapi-generator-cli`
 
-const performanceOptimizationExample = `// Problem: Large schemas cause performance issues
+//----------------------------------------------------------------------
+
+const performanceOptimizationExample =
+  `// Problem: Large schemas cause performance issues
 // Solution: Implement schema optimization
 
 function optimizeSchema(spec: any): any {
@@ -132,9 +147,12 @@ function optimizeSchema(spec: any): any {
       schemas: optimizedSchemas
     }
   };
-}\n`;
+}\n`
 
-const debugModeExample = `interface DebugOpenAPIConfig extends AdvancedOpenAPIConfig {
+//----------------------------------------------------------------------
+
+const debugModeExample =
+  `interface DebugOpenAPIConfig extends AdvancedOpenAPIConfig {
   debug?: boolean;
   logLevel?: 'info' | 'warn' | 'error';
 }
@@ -187,101 +205,106 @@ export default async function generateOpenAPISpecWithDebug(
     }
     throw error;
   }
-}\n`;
+}\n`
+
+//----------------------------------------------------------------------
 
 export default function Troubleshooting() {
   //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="troubleshooting">
-      <H2>{_('8. Troubleshooting')}</H2>
-      <P>
-        <Translate>
-          This section addresses common issues encountered when
-          generating OpenAPI specifications and provides solutions
-          for debugging and resolving problems. Understanding these
-          troubleshooting techniques helps ensure reliable
-          specification generation.
-        </Translate>
-      </P>
+    <>
+      {/* Troubleshooting Section Content */}
+      <section id="troubleshooting">
+        <H1>{_('8. Troubleshooting')}</H1>
+        <P>
+          <Translate>
+            This section addresses common issues encountered when
+            generating OpenAPI specifications and provides solutions
+            for debugging and resolving problems. Understanding these
+            troubleshooting techniques helps ensure reliable
+            specification generation.
+          </Translate>
+        </P>
 
-      <H3>{_('8.1. Common Issues')}</H3>
-      <P>
-        <Translate>
-          Common issues include schema reference errors, validation
-          failures, and performance problems with large specifications.
-          These problems typically arise from circular references,
-          invalid configurations, or missing dependencies.
-        </Translate>
-      </P>
+        <H2>{_('8.1. Common Issues')}</H2>
+        <P>
+          <Translate>
+            Common issues include schema reference errors, validation
+            failures, and performance problems with large specifications.
+            These problems typically arise from circular references,
+            invalid configurations, or missing dependencies.
+          </Translate>
+        </P>
 
-      <H3>{_('8.1.1. Schema Reference Errors')}</H3>
-      <P>
-        <Translate>
-          Schema reference errors occur when the generator encounters
-          circular dependencies or invalid references between schema
-          components. These issues can break the specification
-          generation process and require careful handling of schema
-          relationships.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {circularReferencesExample}
-      </Code>
+        <H2>{_('8.1.1. Schema Reference Errors')}</H2>
+        <P>
+          <Translate>
+            Schema reference errors occur when the generator encounters
+            circular dependencies or invalid references between schema
+            components. These issues can break the specification
+            generation process and require careful handling of schema
+            relationships.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {circularReferencesExample}
+        </Code>
 
-      <H3>{_('8.1.2. Invalid OpenAPI Format')}</H3>
-      <P>
-        <Translate>
-          Invalid OpenAPI format errors occur when the generated
-          specification doesn't conform to OpenAPI standards. These
-          validation failures can prevent the specification from
-          working with OpenAPI tools and require comprehensive
-          validation during generation.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {validationErrorsExample}
-      </Code>
+        <H2>{_('8.1.2. Invalid OpenAPI Format')}</H2>
+        <P>
+          <Translate>
+            Invalid OpenAPI format errors occur when the generated
+            specification doesn't conform to OpenAPI standards. These
+            validation failures can prevent the specification from
+            working with OpenAPI tools and require comprehensive
+            validation during generation.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {validationErrorsExample}
+        </Code>
 
-      <H3>{_('8.1.3. Missing Dependencies')}</H3>
-      <P>
-        <Translate>
-          Missing dependencies can cause the plugin to fail during
-          execution or limit available features. Ensuring all required
-          packages are installed and properly configured is essential
-          for reliable operation.
-        </Translate>
-      </P>
-      <Code copy language='bash' className='bg-black text-white'>
-        {dependenciesExample}
-      </Code>
+        <H2>{_('8.1.3. Missing Dependencies')}</H2>
+        <P>
+          <Translate>
+            Missing dependencies can cause the plugin to fail during
+            execution or limit available features. Ensuring all required
+            packages are installed and properly configured is essential
+            for reliable operation.
+          </Translate>
+        </P>
+        <Code copy language='bash' className='bg-black text-white'>
+          {dependenciesExample}
+        </Code>
 
-      <H3>{_('8.1.4. Performance Issues')}</H3>
-      <P>
-        <Translate>
-          Performance issues can occur when generating specifications
-          for large schemas with many models and complex relationships.
-          Optimization techniques help maintain reasonable generation
-          times and manageable output file sizes.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {performanceOptimizationExample}
-      </Code>
+        <H2>{_('8.1.4. Performance Issues')}</H2>
+        <P>
+          <Translate>
+            Performance issues can occur when generating specifications
+            for large schemas with many models and complex relationships.
+            Optimization techniques help maintain reasonable generation
+            times and manageable output file sizes.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {performanceOptimizationExample}
+        </Code>
 
-      <H3>{_('8.2. Debug Mode')}</H3>
-      <P>
-        <Translate>
-          Debug mode provides detailed logging and diagnostic
-          information during specification generation. This feature
-          helps identify issues, understand the generation process,
-          and optimize plugin configuration for better results.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {debugModeExample}
-      </Code>
-    </section>
+        <H2>{_('8.2. Debug Mode')}</H2>
+        <P>
+          <Translate>
+            Debug mode provides detailed logging and diagnostic
+            information during specification generation. This feature
+            helps identify issues, understand the generation process,
+            and optimize plugin configuration for better results.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {debugModeExample}
+        </Code>
+      </section>
+    </>
   );
 }

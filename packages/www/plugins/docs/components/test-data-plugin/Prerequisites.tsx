@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P, C } from '../index.js';
+//local
+import { H1, P, C } from '../index.js';
 
 export default function Prerequisites() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="prerequisites">
-      <H2>{_('2. Prerequisites')}</H2>
+    <>
+      {/* Prerequisites Section Content */}
+      <section id="prerequisites">
+      <H1>{_('2. Prerequisites')}</H1>
       <P>
         <Translate>
           Before creating this plugin, you should have the following 
@@ -33,6 +38,7 @@ export default function Prerequisites() {
           <Translate>Understanding of</Translate> <C>.idea</C> <Translate>schema format</Translate>
         </li>
       </ul>
-    </section>
+      </section>
+    </>
   );
 }

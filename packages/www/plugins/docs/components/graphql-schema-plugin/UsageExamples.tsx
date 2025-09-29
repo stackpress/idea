@@ -1,7 +1,13 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, Code } from '../index.js';
+//local
+import { H1, H2, P, Code } from '../index.js';
 
-const basicSchemaExample = `enum UserRole {
+//code examples
+//----------------------------------------------------------------------
+
+const basicSchemaExample = 
+`enum UserRole {
   ADMIN "admin"
   USER "user"
   GUEST "guest"
@@ -20,7 +26,9 @@ plugin "./plugins/graphql-schema.js" {
   output "./schema.graphql"
   includeQueries true
   includeMutations true
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const generatedOutputExample = `# Custom Scalars
 scalar DateTime
@@ -70,14 +78,19 @@ type Mutation {
   createUser(input: UserInput!): User
   updateUser(id: ID!, input: UserUpdateInput!): User
   deleteUser(id: ID!): Boolean
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UsageExamples() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="usage-examples">
-      <H2>{_('Usage Examples')}</H2>
+    <>
+      {/* Usage Examples Section Content */}
+      <section id="usage-examples">
+      <H1>{_('6. Usage Examples')}</H1>
       <P>
         <Translate>
           Usage examples demonstrate practical applications of the GraphQL 
@@ -87,7 +100,7 @@ export default function UsageExamples() {
         </Translate>
       </P>
 
-      <H3>{_('Basic Schema')}</H3>
+      <H2>{_('Basic Schema')}</H2>
       <P>
         <Translate>
           A basic schema example shows the fundamental structure needed to 
@@ -100,7 +113,7 @@ export default function UsageExamples() {
         {basicSchemaExample}
       </Code>
 
-      <H3>{_('Generated Output')}</H3>
+      <H2>{_('Generated Output')}</H2>
       <P>
         <Translate>
           The generated output demonstrates the GraphQL schema produced by the 
@@ -112,6 +125,7 @@ export default function UsageExamples() {
       <Code lang='graphql'>
         {generatedOutputExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

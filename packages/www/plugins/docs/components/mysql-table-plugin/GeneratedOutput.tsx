@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const generatedOutputExample = `-- Generated MySQL Tables
 -- Database: my_app
@@ -21,27 +26,35 @@ CREATE TABLE \`User\` (
   PRIMARY KEY (\`id\`),
   UNIQUE KEY \`uk_User_email\` (\`email\`),
   KEY \`idx_User_age\` (\`age\`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;`;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;`
+
+//----------------------------------------------------------------------
 
 export default function GeneratedOutput() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="generated-output">
-      <H1>{_('8. Generated Output')}</H1>
-      <P>
-        <Translate>
-          The plugin will generate SQL like this. The output includes
-          proper MySQL syntax with constraints, indexes, and foreign keys.
-        </Translate>
-      </P>
-      <H2>{_('Example Generated SQL')}</H2>
-      <Code
-        language="sql"
-        className='bg-black text-white'
-      >
-        {generatedOutputExample}
-      </Code>
-    </section>
+    <>
+      {/* Generated Output Section Content */}
+      <section id="generated-output">
+        <H1>{_('8. Generated Output')}</H1>
+        <P>
+          <Translate>
+            The plugin will generate SQL like this. The output includes
+            proper MySQL syntax with constraints, indexes, and foreign
+            keys.
+          </Translate>
+        </P>
+        <H2>{_('Example Generated SQL')}</H2>
+        <Code
+          copy
+          language="sql"
+          className='bg-black text-white'
+        >
+          {generatedOutputExample}
+        </Code>
+      </section>
+    </>
   );
 }

@@ -1,8 +1,14 @@
+//module
 import { useLanguage, Translate } from 'r22n';
-import { H1, H2 ,P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const enhancedErrorHandling = `export default async function mysqlTablesPlugin(props: PluginProps<{}>) {
+//code examples
+//----------------------------------------------------------------------
+
+const enhancedErrorHandling =
+  `export default async function mysqlTablesPlugin(props: PluginProps<{}>) {
   const { config, schema, transformer, cwd } = props;
   
   try {
@@ -32,9 +38,12 @@ const enhancedErrorHandling = `export default async function mysqlTablesPlugin(p
     console.error(\`❌ MySQL Tables Plugin failed: \${error.message}\`);
     throw error;
   }
-}`;
+}`
 
-const configValidation = `function validateConfig(config: any): void {
+//----------------------------------------------------------------------
+
+const configValidation =
+  `function validateConfig(config: any): void {
   if (!config.output) {
     throw new Error('MySQL Tables Plugin requires "output" configuration');
   }
@@ -42,31 +51,43 @@ const configValidation = `function validateConfig(config: any): void {
   if (config.engine && !['InnoDB', 'MyISAM', 'Memory'].includes(config.engine)) {
     throw new Error(\`Unsupported MySQL engine: \${config.engine}\`);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function BestPractices() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="best-practices">
-      <H1>{_('9. Error Handling and Best Practices')}</H1>
-      <P>
-        <Translate>
-          Add proper error handling and validation to make your plugin
-          robust and user-friendly.
-        </Translate>
-      </P>
+    <>
+      {/* Best Practices Section Content */}
+      <section id="best-practices">
+        <H1>{_('9. Error Handling and Best Practices')}</H1>
+        <P>
+          <Translate>
+            Add proper error handling and validation to make your plugin
+            robust and user-friendly.
+          </Translate>
+        </P>
 
-      <H2>{_('9.1. Enhanced Error Handling')}</H2>
-      <Code language="typescript">{enhancedErrorHandling}</Code>
+        <H2>{_('9.1. Enhanced Error Handling')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >{enhancedErrorHandling}
+        </Code>
 
-      <H2>{_('9.2. Configuration Validation')}</H2>
-      <Code
-        language="typescript"
-        className='bg-black text-white'
-      >
-        {configValidation}
-      </Code>
-    </section>
+        <H2>{_('9.2. Configuration Validation')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >
+          {configValidation}
+        </Code>
+      </section>
+    </>
   );
 }

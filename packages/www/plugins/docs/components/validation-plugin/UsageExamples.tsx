@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const basicSchemaExample = `enum UserRole {
+//code examples
+//----------------------------------------------------------------------
+
+const basicSchemaExample = 
+`enum UserRole {
   ADMIN "admin"
   USER "user"
   GUEST "guest"
@@ -22,7 +28,9 @@ plugin "./plugins/zod-validation.js" {
   output "./validation.ts"
   generateTypes true
   strictMode true
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const generatedValidationUsage = `import { 
   UserSchema, 
@@ -69,9 +77,12 @@ const userData = {
   role: 'user' as UserRole
 };
 
-const validUser = validateCreateUser(userData);`;
+const validUser = validateCreateUser(userData);`
 
-const formValidationExample = `import { CreateUserSchema } from './validation';
+//----------------------------------------------------------------------
+
+const formValidationExample = 
+`import { CreateUserSchema } from './validation';
 
 // React form validation
 function UserForm() {
@@ -112,14 +123,19 @@ function UserForm() {
       <button type="submit">Create User</button>
     </form>
   );
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UsageExamples() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="usage-examples">
-      <H2>{_('6. Usage Examples')}</H2>
+    <>
+      {/* Usage Examples Section Content */}
+      <section id="usage-examples">
+      <H1>{_('6. Usage Examples')}</H1>
       <P>
         <Translate>
           Usage examples demonstrate practical applications of the Zod 
@@ -130,7 +146,7 @@ export default function UsageExamples() {
         </Translate>
       </P>
 
-      <H3>{_('6.1. Basic Schema')}</H3>
+      <H2>{_('6.1. Basic Schema')}</H2>
       <P>
         <Translate>
           A basic schema example shows the fundamental structure needed 
@@ -143,7 +159,7 @@ export default function UsageExamples() {
         {basicSchemaExample}
       </Code>
 
-      <H3>{_('6.2. Generated Validation Usage')}</H3>
+      <H2>{_('6.2. Generated Validation Usage')}</H2>
       <P>
         <Translate>
           The generated validation usage demonstrates how to use the Zod 
@@ -156,7 +172,7 @@ export default function UsageExamples() {
         {generatedValidationUsage}
       </Code>
 
-      <H3>{_('6.3. Form Validation Example')}</H3>
+      <H2>{_('6.3. Form Validation Example')}</H2>
       <P>
         <Translate>
           Zod schemas with frontend frameworks for user input validation. 
@@ -167,7 +183,7 @@ export default function UsageExamples() {
       <Code copy language='typescript' className='bg-black text-white'>
         {formValidationExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
-};
-
+}

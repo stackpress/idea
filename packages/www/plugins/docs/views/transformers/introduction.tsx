@@ -4,24 +4,27 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H3, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const installationExample = [
-  `npm install @stackpress/idea-transformer`
-];
+//code examples
+//----------------------------------------------------------------------
 
-const basicUsageExample = [
+const installationExample = `npm install @stackpress/idea-transformer`
+
+//----------------------------------------------------------------------
+
+const basicUsageExample =
   `import Transformer from '@stackpress/idea-transformer';
 
 // Load and process a schema
 const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
 await transformer.transform();`
-];
 
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -55,25 +58,34 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>{_('Overview')}</H1>
-      <P>
-        <Translate>
-          The idea-transformer library provides a complete solution for
-          processing schema files and generating code through a flexible
-          plugin system. This library serves as the core transformation
-          engine that bridges schema definitions with code generation.
-        </Translate>
-      </P>
+      {/* Overview Section Content */}
+      <section>
+        <H1>{_('Overview')}</H1>
+        <P>
+          <Translate>
+            The idea-transformer library provides a complete solution for
+            processing schema files and generating code through a flexible
+            plugin system. This library serves as the core transformation
+            engine that bridges schema definitions with code generation.
+          </Translate>
+        </P>
 
-      <P>
-        <Translate>
-          The idea-transformer library provides a complete solution for:
-        </Translate>
-      </P>
+        <P>
+          <Translate>
+            The idea-transformer library provides a complete solution for:
+          </Translate>
+        </P>
+      </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Features List Section Content */}
       <section>
         <ul className="list-disc pl-6 my-4">
           <li className="my-2">
@@ -107,25 +119,29 @@ export function Body() {
         </ul>
       </section>
 
-      <H1>{_('Quick Start')}</H1>
-      <P>
-        <Translate>
-          Get started with the idea-transformer library in just a few
-          steps. This section shows you how to install the library and
-          perform basic schema transformation operations.
-        </Translate>
-      </P>
+      {/* Quick Start Section Content */}
+      <section>
+        <H1>{_('Quick Start')}</H1>
+        <P>
+          <Translate>
+            Get started with the idea-transformer library in just a few
+            steps. This section shows you how to install the library and
+            perform basic schema transformation operations.
+          </Translate>
+        </P>
 
-      <H3>{_('Installation')}</H3>
-      <Code copy language='bash' className='bg-black text-white'>
-        {installationExample[0]}
-      </Code>
+        <H3>{_('Installation')}</H3>
+        <Code copy language='bash' className='bg-black text-white'>
+          {installationExample}
+        </Code>
 
-      <H3>{_('Basic Usage')}</H3>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {basicUsageExample[0]}
-      </Code>
+        <H3>{_('Basic Usage')}</H3>
+        <Code copy language='typescript' className='bg-black text-white'>
+          {basicUsageExample}
+        </Code>
+      </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{ text: _('Parser'), href: '/docs/parser/installation' }}
         next={{

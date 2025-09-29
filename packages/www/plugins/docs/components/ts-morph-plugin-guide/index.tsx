@@ -1,3 +1,4 @@
+//exporting all components to have multiple imports from a single file
 export { default as Introduction } from './Introduction.js';
 export { default as Installation } from './Installation.js';
 export { default as SettingUpProject } from './SettingUpProject.js';

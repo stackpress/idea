@@ -1,9 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C } from '../index.js';
+//local
+import { H1, H2, P, C } from '../index.js';
 import Code from '../Code.js';
 
 //code examples
-const basicUsageExample = `// schema.idea
+//----------------------------------------------------------------------
+
+const basicUsageExample = 
+`// schema.idea
 enum UserRole {
   ADMIN "admin"
   USER "user"
@@ -33,9 +38,12 @@ plugin "./plugins/openapi-spec.js" {
   security {
     bearer true
   }
-}`;
+}`
 
-const advancedUsageExample = `// schema.idea
+//----------------------------------------------------------------------
+
+const advancedUsageExample = 
+`// schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec"
   formats ["json" "yaml" "html"]
@@ -167,9 +175,12 @@ plugin "./plugins/openapi-spec.js" {
     strict true
     examples true
   }
-}`;
+}`
 
-const cliIntegrationExample = `# Generate OpenAPI specification
+//----------------------------------------------------------------------
+
+const cliIntegrationExample = 
+`# Generate OpenAPI specification
 npm run transform
 
 # Serve documentation locally
@@ -180,16 +191,19 @@ npx swagger-codegen validate -i docs/api-spec.json
 
 # Generate client SDKs
 npx swagger-codegen generate -i docs/api-spec.json -l typescript-fetch -o ./sdk/typescript
-npx swagger-codegen generate -i docs/api-spec.json -l python -o ./sdk/python`;
+npx swagger-codegen generate -i docs/api-spec.json -l python -o ./sdk/python`
 
+//----------------------------------------------------------------------
 
 export default function UsageExamples() {
   //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="usage-examples">
-      <H2>{_('6. Usage Examples')}</H2>
+    <>
+      {/* Usage Examples Section Content */}
+      <section id="usage-examples">
+      <H1>{_('6. Usage Examples')}</H1>
       <P>
         <Translate>
           Usage examples demonstrate practical applications of the
@@ -200,7 +214,7 @@ export default function UsageExamples() {
         </Translate>
       </P>
 
-      <H3>{_('6.1. Basic Usage')}</H3>
+      <H2>{_('6.1. Basic Usage')}</H2>
       <P>
         <Translate>
           Basic usage examples show the fundamental configuration
@@ -214,7 +228,7 @@ export default function UsageExamples() {
         {basicUsageExample}
       </Code>
 
-      <H3>{_('6.2. Advanced Configuration')}</H3>
+      <H2>{_('6.2. Advanced Configuration')}</H2>
       <P>
         <Translate>
           Advanced configuration demonstrates comprehensive plugin
@@ -228,7 +242,7 @@ export default function UsageExamples() {
         {advancedUsageExample}
       </Code>
 
-      <H3>{_('6.3. CLI Integration')}</H3>
+      <H2>{_('6.3. CLI Integration')}</H2>
       <P>
         <Translate>
           CLI integration shows how to incorporate the OpenAPI
@@ -241,6 +255,7 @@ export default function UsageExamples() {
       <Code copy language='bash' className='bg-black text-white'>
         {cliIntegrationExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

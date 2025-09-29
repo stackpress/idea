@@ -1,14 +1,23 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const corsIssues = `// Ensure your API server allows CORS
+//code examples
+//----------------------------------------------------------------------
+
+const corsIssues = 
+`// Ensure your API server allows CORS
 // Add appropriate headers in your API configuration
 
 // For development, you might need to proxy requests
-const client = new APIClient('/api/proxy');`;
+const client = new APIClient('/api/proxy');`
 
-const authenticationIssues = `// Check token format and expiration
+//----------------------------------------------------------------------
+
+const authenticationIssues = 
+`// Check token format and expiration
 function isTokenValid(token: string): boolean {
   try {
     const payload = JSON.parse(atob(token.split('.')[1]));
@@ -19,9 +28,12 @@ function isTokenValid(token: string): boolean {
 }
 
 // Refresh token automatically
-client.setAuthToken(await refreshToken());`;
+client.setAuthToken(await refreshToken());`
 
-const networkIssues = `// Implement retry logic
+//----------------------------------------------------------------------
+
+const networkIssues = 
+`// Implement retry logic
 async function withRetry<T>(
   operation: () => Promise<APIResponse<T>>,
   maxRetries: number = 3
@@ -39,32 +51,43 @@ async function withRetry<T>(
   }
   
   throw new Error('Max retries exceeded');
-}`;
+}`
 
-const debuggingTips = `// Add to base client
+//----------------------------------------------------------------------
+
+const debuggingTips = 
+`// Add to base client
 private logRequest(method: string, url: string, data?: any) {
   if (process.env.NODE_ENV === 'development') {
     console.group(\`API \${method} \${url}\`);
     if (data) console.log('Data:', data);
     console.groupEnd();
   }
-}`;
+}`
 
-const responseValidation = `// Validate response structure
+//----------------------------------------------------------------------
+
+const responseValidation = 
+`// Validate response structure
 function validateResponse<T>(response: any): response is APIResponse<T> {
   return (
     typeof response === 'object' &&
     typeof response.success === 'boolean' &&
     (response.success ? 'data' in response : 'error' in response)
   );
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function Troubleshooting() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="9-troubleshooting">
-      <H2>{_('9. Troubleshooting')}</H2>
+    <>
+      {/* Troubleshooting Section Content */}
+      <section id="troubleshooting">
+      <H1>{_('9. Troubleshooting')}</H1>
       <P>
         <Translate>
           This section covers common issues you might encounter when using the
@@ -73,7 +96,7 @@ export default function Troubleshooting() {
         </Translate>
       </P>
 
-      <H3>{_('9.1. CORS Issues')}</H3>
+      <H2>{_('9.1. CORS Issues')}</H2>
       <P>
         <Translate>
           Cross-Origin Resource Sharing (CORS) issues are common when making
@@ -86,7 +109,7 @@ export default function Troubleshooting() {
         {corsIssues}
       </Code>
 
-      <H3>{_('9.2. Authentication Problems')}</H3>
+      <H2>{_('9.2. Authentication Problems')}</H2>
       <P>
         <Translate>
           Authentication issues often stem from expired tokens, incorrect
@@ -98,7 +121,7 @@ export default function Troubleshooting() {
         {authenticationIssues}
       </Code>
 
-      <H3>{_('9.3. Network Issues')}</H3>
+      <H2>{_('9.3. Network Issues')}</H2>
       <P>
         <Translate>
           Network connectivity problems require robust retry logic and proper
@@ -110,7 +133,7 @@ export default function Troubleshooting() {
         {networkIssues}
       </Code>
 
-      <H3>{_('9.4. Debugging Tips')}</H3>
+      <H2>{_('9.4. Debugging Tips')}</H2>
       <P>
         <Translate>
           Enable comprehensive logging during development to track request
@@ -122,7 +145,7 @@ export default function Troubleshooting() {
         {debuggingTips}
       </Code>
 
-      <H3>{_('9.5. Response Validation')}</H3>
+      <H2>{_('9.5. Response Validation')}</H2>
       <P>
         <Translate>
           Validate API responses to ensure they match expected formats. This
@@ -133,6 +156,7 @@ export default function Troubleshooting() {
       <Code copy language='typescript' className='bg-black text-white'>
         {responseValidation}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

@@ -4,7 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, H3, P, SS, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 
@@ -41,6 +41,7 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
@@ -96,6 +97,7 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Advanced Tutorials Section Content */}  
       <section>
         <H1>{_('Advanced Tutorials')}</H1>
         <P>
@@ -108,6 +110,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* API Development Plugins Section */}
       <section>
         <H2>{_('7.1. API Development Plugins')}</H2>
 
@@ -260,6 +263,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Validation and Testing Plugins Section */}
       <section>
         <H2>{_('7.2. Validation and Testing Plugins')}</H2>
         <P>
@@ -371,6 +375,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Documentation and Specification Plugins Section */}
       <section>
         <H2>{_('7.3. Documentation and Specification Plugins')}</H2>
         <P>
@@ -422,7 +427,8 @@ export function Body() {
         </P>
       </section>
 
-      <Nav
+      {/* Page Navigation */}
+      <Nav  
         prev={{
           text: _('Available Tutorials'),
           href: '/docs/plugin-development/available-tutorials'

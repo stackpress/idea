@@ -4,13 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
-import { H1, H2, H3, P, Nav } from '../../components/index.js';
+//local
+import { H1, H2,  P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const typeSafetyExample = [
-  `// Always use proper typing for plugin props
+//code examples
+//----------------------------------------------------------------------
+
+const typeSafetyExample = 
+`// Always use proper typing for plugin props
 import type { 
   PluginProps, 
   PluginWithCLIProps 
@@ -36,10 +39,11 @@ export default async function typedPlugin(
   const strict: boolean = config.strict ?? false; 
   // ✅ Type-safe with default
 }`
-];
 
-const configurationValidationExample = [
-  `function validateConfig(
+//----------------------------------------------------------------------
+
+const configurationValidationExample = 
+`function validateConfig(
   config: any
 ): asserts config is MyPluginConfig {
   if (!config.output || typeof config.output !== 'string') {
@@ -67,10 +71,11 @@ export default async function validatedPlugin(
   // Now config is properly typed
   const { output, format } = props.config;
 }`
-];
 
-const fileOperationsExample = [
-  `// Use transformer's file loader for consistent path resolution
+//----------------------------------------------------------------------
+
+const fileOperationsExample = 
+`// Use transformer's file loader for consistent path resolution
 export default async function filePlugin(props: PluginProps<{}>) {
   const { config, transformer } = props;
   
@@ -91,10 +96,11 @@ export default async function filePlugin(props: PluginProps<{}>) {
     );
   }
 }`
-];
 
-const cliIntegrationExample = [
-  `// Use CLI props when available
+//----------------------------------------------------------------------
+
+const cliIntegrationExample = 
+`// Use CLI props when available
 export default async function adaptivePlugin(
   props: PluginWithCLIProps
 ) {
@@ -116,7 +122,8 @@ export default async function adaptivePlugin(
   
   // Generate files...
 }`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -157,6 +164,7 @@ export function Body() {
   
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Best Practices Section Content */}
       <section>
         <H1>{_('Best Practices')}</H1>
         <P>
@@ -168,9 +176,7 @@ export function Body() {
             excellent developer experiences.
           </Translate>
         </P>
-      </section>
-
-      <section>
+    
         <H2>{_('5.1. Type Safety')}</H2>
         <P>
           <Translate>
@@ -183,10 +189,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {typeSafetyExample[0]}
+          {typeSafetyExample}
         </Code>
       </section>
 
+      {/* Configuration Validation Section */}
       <section>
         <H2>{_('5.2. Configuration Validation')}</H2>
         <P>
@@ -200,10 +207,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {configurationValidationExample[0]}
+          {configurationValidationExample}
         </Code>
       </section>
 
+      {/* File Operations Section */}
       <section>
         <H2>{_('5.3. File Operations')}</H2>
         <P>
@@ -217,10 +225,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {fileOperationsExample[0]}
+          {fileOperationsExample}
         </Code>
       </section>
 
+      {/* CLI Integration Section */}
       <section>
         <H2>{_('5.4. CLI Integration')}</H2>
         <P>
@@ -234,10 +243,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {cliIntegrationExample[0]}
+          {cliIntegrationExample}
         </Code>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{ 
           text: _('Error Handling'), 

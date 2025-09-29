@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P, C } from '../index.js';
+//local
+import { H1, P, C } from '../index.js';
 import Code from '../Code.js';
 
-const pluginStructureExample = `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//code examples
+//----------------------------------------------------------------------
+
+const pluginStructureExample = 
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -47,14 +53,19 @@ export default async function markdownDocsPlugin(
   }
   
   console.log(\`✅ Markdown documentation generated: \${options.output}\`);
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function CreatePluginStructure() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="create-plugin">
-      <H2>{_('Create the Plugin Structure')}</H2>
+    <>
+      {/* Create the Plugin Structure Section Content */}
+      <section id="create-plugin">
+      <H1>{_('4. Create the Plugin Structure')}</H1>
       <P>
         <Translate>
           Create a new file <C>markdown-docs-plugin.js</C>:
@@ -63,6 +74,7 @@ export default function CreatePluginStructure() {
       <Code copy language='typescript' className='bg-black text-white'>
         {pluginStructureExample}
       </Code>
-    </section>
+      </section>
+    </>
   )
 }

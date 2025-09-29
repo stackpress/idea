@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P, C } from '../index.js';
+//local
+import { H1, P, C } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const usageExample = `// schema.idea
 plugin "./plugins/html-form-plugin.js" {
@@ -28,14 +33,19 @@ enum UserRole {
   ADMIN "Administrator"
   USER "Regular User"
   GUEST "Guest User"
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UsageInSchema() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="usage-in-schema">
-      <H2>{_('8. Usage in Schema')}</H2>
+    <>
+      {/* Usage in Schema Section Content */}
+      <section id="usage-in-schema">
+      <H1>{_('8. Usage in Schema')}</H1>
       <P>
         <Translate>
           This section demonstrates how to configure and use the HTML 
@@ -54,6 +64,7 @@ export default function UsageInSchema() {
       <Code copy language='idea' className='bg-black text-white'>
         {usageExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

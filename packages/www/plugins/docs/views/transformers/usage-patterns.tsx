@@ -4,28 +4,33 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const basicTransformationExample = [
+//code examples
+//----------------------------------------------------------------------
+
+const basicTransformationExample =
   `import Transformer from '@stackpress/idea-transformer';
 
 // Load schema and execute plugins
 const transformer = await Transformer.load('./schema.idea');
 await transformer.transform();`
-];
 
-const cliUsageExample = [
+//----------------------------------------------------------------------
+
+const cliUsageExample =
   `# Process schema file
 node cli.js transform --input ./schema.idea
 
 # Using short flag
 node cli.js transform --i ./schema.idea`
-];
 
-const pluginDevelopmentExample = [
+//----------------------------------------------------------------------
+
+const pluginDevelopmentExample =
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
 
 export default async function myPlugin(props: PluginProps<{}>) {
@@ -36,7 +41,8 @@ export default async function myPlugin(props: PluginProps<{}>) {
   const outputPath = await transformer.loader.absolute(config.output);
   await writeFile(outputPath, content);
 }`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -73,8 +79,10 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 export function Body() {
   //hooks
   const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Usage Patterns Section Content */}
       <section>
         <H1>{_('Usage Patterns')}</H1>
         <P>
@@ -86,6 +94,10 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Basic Schema Transformation Section Content */}
       <section>
         <H2>{_('Basic Schema Transformation')}</H2>
         <P>
@@ -96,10 +108,14 @@ export function Body() {
           </Translate>
         </P>
         <Code copy language='typescript' className='bg-black text-white'>
-          {basicTransformationExample[0]}
+          {basicTransformationExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* CLI Usage Section Content */}
       <section>
         <H2>{_('CLI Usage')}</H2>
         <P>
@@ -111,10 +127,14 @@ export function Body() {
           </Translate>
         </P>
         <Code copy language='bash' className='bg-black text-white'>
-          {cliUsageExample[0]}
+          {cliUsageExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Plugin Development Section Content */}
       <section>
         <H2>{_('Plugin Development')}</H2>
         <P>
@@ -125,23 +145,22 @@ export function Body() {
           </Translate>
         </P>
         <Code copy language='typescript' className='bg-black text-white'>
-          {pluginDevelopmentExample[0]}
+          {pluginDevelopmentExample}
         </Code>
-
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Architecture'),
-            href: '/docs/transformers/architecture'
-          }}
-          next={{
-            text: _('Common Use Cases'),
-            href: '/docs/transformers/common-use-cases'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Architecture'),
+          href: '/docs/transformers/architecture'
+        }}
+        next={{
+          text: _('Common Use Cases'),
+          href: '/docs/transformers/common-use-cases'
+        }}
+      />
+
     </main>
   );
 }

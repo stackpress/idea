@@ -4,16 +4,20 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'stackpress/view/client';
-//docs
+//locals
 import { H1, H2, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const installCommand = `npm install @stackpress/idea-parser
-`;
+//code examples
+//----------------------------------------------------------------------
 
-const usageExample = `
-import { parse, final } from '@stackpress/idea-parser';
+const installCommand = `npm install @stackpress/idea-parser`
+
+//----------------------------------------------------------------------
+
+const usageExample =
+  `import { parse, final } from '@stackpress/idea-parser';
 
 // Parse a schema file into JSON (includes references)
 const schemaCode = \`
@@ -34,7 +38,9 @@ const parsedSchema = parse(schemaCode);
 
 // Parse and clean up references (final version)
 const finalSchema = final(schemaCode);
-`;
+`
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -81,10 +87,12 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Idea Parser Section Content */}
       <section>
         <H1>{_('Idea Parser')}</H1>
         <Translate>
@@ -96,6 +104,10 @@ export function Body() {
         </Translate>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Installation Section Content */}
       <section>
         <H1>{_('Installation')}</H1>
         <P><Translate>Install the package using npm:</Translate></P>
@@ -108,6 +120,10 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Quick Start Section Content */}
       <section>
         <H1>{_('Quick Start')}</H1>
         <P>
@@ -128,33 +144,38 @@ export function Body() {
 
         <ul>
           <li className='font-bold list-none text-xl mt-10'>
-            {_('Difference between')} <C>parse</C> {_('and')} <C>final</C>
+            <Translate>
+              Difference between <C>parse</C> and <C>final</C>
+            </Translate>
           </li>
           <li className='my-2'>
-            <C>parse(code: string): </C>
-            {_('Converts schema code to JSON while preserving prop and ' +
-              'use references')}
+            <C>parse(code: string):</C>
+            <Translate>
+              Converts schema code to JSON while preserving prop and use
+              references
+            </Translate>
           </li>
           <li>
-            <C>final(code: string): </C>
-            {_('Like parse but removes prop and use references for a ' +
-              'clean final output')}
+            <C>final(code: string):</C>
+            <Translate>
+              Like parse but removes prop and use references for a clean
+              final output
+            </Translate>
           </li>
         </ul>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Specifications'),
-            href: '/docs/specifications/syntax-overview'
-          }}
-          next={{
-            text: _('Core Concepts'),
-            href: '/docs/parser/core-concepts'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Specifications'),
+          href: '/docs/specifications/syntax-overview'
+        }}
+        next={{
+          text: _('Core Concepts'),
+          href: '/docs/parser/core-concepts'
+        }}
+      />
     </main>
   );
 }

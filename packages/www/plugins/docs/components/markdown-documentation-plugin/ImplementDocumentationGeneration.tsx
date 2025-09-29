@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const documentationGenerationExample = `async function generateSingleFile(schema: any, options: any, transformer: any): Promise<void> {
+//code examples
+//----------------------------------------------------------------------
+
+const documentationGenerationExample = 
+`async function generateSingleFile(schema: any, options: any, transformer: any): Promise<void> {
   let content = generateHeader(options);
   
   // Generate table of contents
@@ -43,14 +49,19 @@ const documentationGenerationExample = `async function generateSingleFile(schema
   const outputPath = await transformer.loader.absolute(options.output);
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.writeFile(outputPath, content, 'utf8');
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function ImplementDocumentationGeneration() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="implement-generation">
-      <H2>{_('Implement Documentation Generation')}</H2>
+    <>
+      {/* Implement Documentation Generation Section Content */}
+      <section id="implement-generation">
+      <H1>{_('5. Implement Documentation Generation')}</H1>
       <P>
         <Translate>
           Create functions to generate different sections of documentation:
@@ -59,6 +70,7 @@ export default function ImplementDocumentationGeneration() {
       <Code copy language='typescript' className='bg-black text-white'>
         {documentationGenerationExample}
       </Code>
-    </section>
+      </section>
+    </>
   )
 }

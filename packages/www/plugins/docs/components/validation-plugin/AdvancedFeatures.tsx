@@ -1,17 +1,26 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const customValidatorsExample = `// In plugin configuration
+//code examples
+//----------------------------------------------------------------------
+
+const customValidatorsExample = 
+`// In plugin configuration
 customValidators: {
   Email: "z.string().email().transform(val => val.toLowerCase())",
   Password: "z.string().min(8).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)/)",
   Slug: "z.string().regex(/^[a-z0-9-]+$/)",
   Color: "z.string().regex(/^#[0-9A-F]{6}$/i)",
   JSON: "z.string().transform(val => JSON.parse(val))"
-}`;
+}`
 
-const conditionalValidationExample = `// Generated schema with conditional validation
+//----------------------------------------------------------------------
+
+const conditionalValidationExample = 
+`// Generated schema with conditional validation
 export const UserSchema = z.object({
   id: z.string(),
   email: z.string().email(),
@@ -26,9 +35,12 @@ export const UserSchema = z.object({
 }, {
   message: "Admin users must provide an admin code",
   path: ["adminCode"],
-});`;
+});`
 
-const transformPreprocessExample = `// Add transforms to generated schemas
+//----------------------------------------------------------------------
+
+const transformPreprocessExample = 
+`// Add transforms to generated schemas
 function addTransforms(schema: string, column: any): string {
   if (column.attributes?.transform) {
     switch (column.attributes.transform) {
@@ -44,9 +56,12 @@ function addTransforms(schema: string, column: any): string {
   }
   
   return schema;
-}`;
+}`
 
-const asyncValidationExample = `// Generate async validation schemas
+//----------------------------------------------------------------------
+
+const asyncValidationExample = 
+`// Generate async validation schemas
 export const UserSchemaAsync = UserSchema.extend({
   email: z.string().email().refine(async (email) => {
     // Check if email is unique
@@ -65,14 +80,19 @@ const validateUserAsync = async (data: unknown) => {
   } catch (error) {
     return { success: false, errors: error.errors };
   }
-};`;
+};`
+
+//----------------------------------------------------------------------
 
 export default function AdvancedFeatures() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="advanced-features">
-      <H2>{_('7. Advanced Features')}</H2>
+    <>
+      {/* Advanced Features Section Content */}
+      <section id="advanced-features">
+      <H1>{_('7. Advanced Features')}</H1>
       <P>
         <Translate>
           Advanced features extend the basic Zod schema generation with sophisticated 
@@ -82,7 +102,7 @@ export default function AdvancedFeatures() {
         </Translate>
       </P>
 
-      <H3>{_('7.1. Custom Validators')}</H3>
+      <H2>{_('7.1. Custom Validators')}</H2>
       <P>
         <Translate>
           Custom validators allow you to define specialized validation logic for 
@@ -95,7 +115,7 @@ export default function AdvancedFeatures() {
         {customValidatorsExample}
       </Code>
 
-      <H3>{_('7.2. Conditional Validation')}</H3>
+      <H2>{_('7.2. Conditional Validation')}</H2>
       <P>
         <Translate>
           Conditional validation enables complex validation logic that depends on 
@@ -108,7 +128,7 @@ export default function AdvancedFeatures() {
         {conditionalValidationExample}
       </Code>
 
-      <H3>{_('7.3. Transform and Preprocess')}</H3>
+      <H2>{_('7.3. Transform and Preprocess')}</H2>
       <P>
         <Translate>
           Transform and preprocess capabilities allow you to modify data during 
@@ -120,7 +140,7 @@ export default function AdvancedFeatures() {
         {transformPreprocessExample}
       </Code>
 
-      <H3>{_('7.4. Async Validation')}</H3>
+      <H2>{_('7.4. Async Validation')}</H2>
       <P>
         <Translate>
           Async validation enables validation rules that require external data 
@@ -132,6 +152,7 @@ export default function AdvancedFeatures() {
       <Code copy language='typescript' className='bg-black text-white'>
         {asyncValidationExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

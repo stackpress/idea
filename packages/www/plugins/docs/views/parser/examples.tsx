@@ -3,13 +3,17 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage } from 'stackpress/view/client';
-//docs
-import { H1, H2, Nav } from '../../components/index.js';
+import { Translate, useLanguage } from 'r22n';
+//local
+import { H1, H2, Nav, P } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const completeSchemaExamples = `import { final } from '@stackpress/idea-parser';
+//code examples
+//----------------------------------------------------------------------
+
+const completeSchemaExamples = 
+`import { final } from '@stackpress/idea-parser';
 
 const schemaCode = \`
 plugin "./database-plugin" {
@@ -46,9 +50,12 @@ model User! {
 \`;
 
 const result = final(schemaCode);
-console.log(JSON.stringify(result, null, 2));`;
+console.log(JSON.stringify(result, null, 2));`
 
-const individualComponentsExample = `import { Compiler, EnumTree, ModelTree } from '@stackpress/idea-parser';
+//----------------------------------------------------------------------
+
+const individualComponentsExample = 
+`import { Compiler, EnumTree, ModelTree } from '@stackpress/idea-parser';
 
 // Parse individual enum
 const enumCode = \`enum Status { ACTIVE "Active" INACTIVE "Inactive" }\`;
@@ -58,7 +65,9 @@ const [enumName, enumConfig] = Compiler.enum(enumAST);
 // Parse individual model
 const modelCode = \`model User { id String @id name String }\`;
 const modelAST = ModelTree.parse(modelCode);
-const [modelName, modelConfig] = Compiler.model(modelAST);`;
+const [modelName, modelConfig] = Compiler.model(modelAST);`
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -103,12 +112,24 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
       <H1>{_('Examples')}</H1>
+      <P>
+        <Translate>
+          Explore practical examples demonstrating how to use the
+          parser library for common tasks such as parsing complete
+          schema files and working with individual components.
+        </Translate>
+      </P>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Complete Schema Example Section */}
       <section>
         <H2>{_('Complete Schema Example')}</H2>
         <Code
@@ -120,6 +141,10 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Working with Individual Components Section */}
       <section>
         <H2>{_('Working with Individual Components')}</H2>
         <Code
@@ -131,18 +156,17 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('API Reference'),
-            href: '/docs/parser/api-reference'
-          }}
-          next={{
-            text: _('Best Practices'),
-            href: '/docs/parser/best-practices'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('API Reference'),
+          href: '/docs/parser/api-reference'
+        }}
+        next={{
+          text: _('Best Practices'),
+          href: '/docs/parser/best-practices'
+        }}
+      />
     </main>
   );
 }

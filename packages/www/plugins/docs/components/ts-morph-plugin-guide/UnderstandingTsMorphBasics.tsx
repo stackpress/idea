@@ -1,9 +1,14 @@
+//moudles
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P, C } from '../index.js';
 import Code from '../Code.js';
 
+//code examples
+//----------------------------------------------------------------------
+
 const examples = [
-  `import { Project } from "ts-morph";
+`import { Project } from "ts-morph";
 
 // Create a new project
 const project = new Project({
@@ -32,7 +37,10 @@ console.log(sourceFile.getFullText());
 //     id: string;
 //     name: string;
 // }`,
-  `// Add imports
+
+//----------------------------------------------------------------------
+
+`// Add imports
 sourceFile.addImportDeclaration({
   moduleSpecifier: "react",
   namedImports: ["useState", "useEffect"],
@@ -86,7 +94,10 @@ sourceFile.addEnum({
     { name: "GUEST", value: "guest" },
   ],
 });`,
-  `import { Project } from "ts-morph";
+
+//----------------------------------------------------------------------
+
+`import { Project } from "ts-morph";
 
 const project = new Project();
 
@@ -105,12 +116,18 @@ myClass.addMethod({
 });
 
 project.saveSync();`,
-  `export default class MyClass {
+
+//----------------------------------------------------------------------
+
+`export default class MyClass {
   myMethod(param1: string): void {
     console.log(param1);
   }
 }`,
-  `import { Project } from "ts-morph";
+
+//----------------------------------------------------------------------
+
+`import { Project } from "ts-morph";
 
 const project = new Project();
 
@@ -132,11 +149,17 @@ source.addFunction({
 });
 
 project.saveSync();`,
-  `export async function myFunction(param1: string, param2: number): void {
+
+//----------------------------------------------------------------------
+
+`export async function myFunction(param1: string, param2: number): void {
   console.log(param1);
   console.log(param2);
 }`,
-  `import { VariableDeclarationKind } from 'ts-morph';
+
+//----------------------------------------------------------------------
+
+`import { VariableDeclarationKind } from 'ts-morph';
 
 source.addVariableStatement({
   isExported: true,
@@ -146,17 +169,32 @@ source.addVariableStatement({
     initializer: '\'bar\''
   }]
 });`,
-  `export const foo = 'bar';`,
-  `source.addExportDeclaration({
+
+//----------------------------------------------------------------------
+
+`export const foo = 'bar';`,
+
+//----------------------------------------------------------------------
+
+`source.addExportDeclaration({
   namedExports: ['ComponentA', 'ComponentB', 'ComponentC']
 });`,
-  `source.addTypeAlias({
+
+//----------------------------------------------------------------------
+
+`source.addTypeAlias({
   name: "ExampleType",
   isExported: true,
   type: "string | number"
 });`,
-  `export type ExampleType = string | number;`,
-  `source.addTypeAlias({
+
+//----------------------------------------------------------------------
+
+`export type ExampleType = string | number;`,
+
+//----------------------------------------------------------------------
+
+`source.addTypeAlias({
   name: "AnotherType",
   isExported: true,
   type: "boolean"
@@ -175,34 +213,58 @@ source.addInterface({
 source.addExportDeclaration({
   namedExports: ["ExampleType", "AnotherType", "ExampleInterface"]
 });`,
-  `export type ExampleType = string | number;
+
+//----------------------------------------------------------------------
+
+`export type ExampleType = string | number;
 export type AnotherType = boolean;
 export interface ExampleInterface {
   id: number;
   name: string;
 }`,
-  `source.addImportDeclaration({
+
+//----------------------------------------------------------------------
+
+`source.addImportDeclaration({
   moduleSpecifier: 'react',
   namedImports: [ 'useState', 'useEffect' ]
 });`,
-  `import { useState, useEffect } from 'react';`,
-  `source.addImportDeclaration({
+
+//----------------------------------------------------------------------
+
+`import { useState, useEffect } from 'react';`,
+
+//----------------------------------------------------------------------
+
+`source.addImportDeclaration({
   moduleSpecifier: 'next',
   namedImports: [ 
     'NextApiRequest as Request', 
     'NextApiResponse as as Response' 
   ]
 });`,
-  `import type { 
+
+//----------------------------------------------------------------------
+
+`import type { 
   NextApiRequest as Request, 
   NextApiResponse as Response
 } from 'next';`,
-  `source.addImportDeclaration({
+
+//----------------------------------------------------------------------
+
+`source.addImportDeclaration({
   moduleSpecifier: 'react',
   defaultImport: 'React'
 });`,
-  `import React from 'react';`,
-  `// Load existing files
+
+//----------------------------------------------------------------------
+
+`import React from 'react';`,
+
+//----------------------------------------------------------------------
+
+`// Load existing files
 project.addSourceFilesAtPaths("src/**/*.ts");
 
 // Get a specific file
@@ -228,10 +290,15 @@ if (userInterface) {
 }`
 ];
 
+//----------------------------------------------------------------------
+
 export default function UnderstandingTsMorphBasics() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <>
+    {/* Understanding ts-morph Basics  Section Content*/}
       <section id="understanding-ts-morph-basics">
         <H1>{_('4. Understanding ts-morph Basics')}</H1>
         <P>
@@ -245,6 +312,7 @@ export default function UnderstandingTsMorphBasics() {
         </P>
       </section>
 
+      {/* Project and Source Files Section Content */}
       <section>
         <H2>{_('4.1. Project and Source Files')}</H2>
         <P>
@@ -264,6 +332,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Adding Different Constructs Section Content */}
       <section>
         <H2>{_('4.2. Adding Different Constructs')}</H2>
         <P>
@@ -283,6 +352,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Exporting a Class Section Content */}
       <section>
         <H2>{_('4.3. Exporting a Class')}</H2>
         <P>
@@ -331,6 +401,7 @@ export default function UnderstandingTsMorphBasics() {
         </P>
       </section>
 
+      {/* Exporting a Function Section Content */}
       <section>
         <H2>{_('4.4. Exporting a Function')}</H2>
         <P>
@@ -379,6 +450,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Exporting a Const Section Content */}
       <section>
         <H2>{_('4.5. Exporting a Const')}</H2>
         <P>
@@ -420,6 +492,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Exporting an Object Section Content */}
       <section>
         <H2>{_('4.6. Exporting an Object')}</H2>
         <P>
@@ -449,6 +522,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Exporting Types Section Content */}
       <section>
         <H2>{_('4.7. Exporting Types')}</H2>
         <P>
@@ -518,6 +592,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Importing Values Section Content */}
       <section>
         <H2>{_('4.8. Importing Values')}</H2>
         <P>
@@ -585,6 +660,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Importing Defaults Section Content */}
       <section>
         <H2>{_('4.9. Importing Defaults')}</H2>
         <P>
@@ -622,6 +698,7 @@ export default function UnderstandingTsMorphBasics() {
         </Code>
       </section>
 
+      {/* Working with Existing Code Section Content */}
       <section>
         <H2>{_('4.10. Working with Existing Code')}</H2>
         <P>

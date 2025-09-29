@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P, C } from '../index.js';
+//local
+import { H1, P, C } from '../index.js';
 import Code from '../Code.js';
 
-const pluginStructureExample = `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//code examples
+//----------------------------------------------------------------------
+
+const pluginStructureExample = 
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -48,14 +54,19 @@ export default async function htmlFormPlugin(
   await fs.writeFile(outputPath, htmlContent, 'utf8');
 
   console.log(\`✅ HTML form generated: \${outputPath}\`);
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function CreatePluginStructure() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="create-the-plugin-structure">
-      <H2>{_('4. Create the Plugin Structure')}</H2>
+    <>
+      {/* Create the Plugin Structure Section Content */}
+      <section id="create-the-plugin-structure">
+      <H1>{_('4. Create the Plugin Structure')}</H1>
       <P>
         <Translate>
           The plugin structure provides the foundation for the HTML 
@@ -72,6 +83,7 @@ export default function CreatePluginStructure() {
       <Code copy language='typescript' className='bg-black text-white'>
         {pluginStructureExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

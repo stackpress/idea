@@ -25,7 +25,8 @@
     "react-syntax-highlighter": "15.6.1",
     "react-toastify": "^11.0.5",
     "stackpress": "0.6.1",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.12",
+    "vanta-react": "^0.4.3"
   },
   "devDependencies": {
     "@stackpress/idea-transformer": "0.6.1",

@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const modelsGenerationExample = 
 `function generateModelsSection(models: any, schema: any, options: any): string {
@@ -12,14 +17,19 @@ const modelsGenerationExample =
   }
   
   return content;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function GenerateModelsDocumentation() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="generate-models">
-      <H2>{_('Generate Models Documentation')}</H2>
+    <>
+      {/* Generate Models Documentation Section Content */}
+      <section id="generate-models">
+      <H1>{_('6. Generate Models Documentation')}</H1>
       <P>
         <Translate>
           Implement model documentation generation:
@@ -28,6 +38,7 @@ export default function GenerateModelsDocumentation() {
       <Code copy language='typescript' className='bg-black text-white'>
         {modelsGenerationExample}
       </Code>
-    </section>
+      </section>
+    </>
   )
 }

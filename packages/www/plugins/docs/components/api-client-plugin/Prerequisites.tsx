@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 
 export default function Prerequisites() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="2-prerequisites">
-      <H2>{_('2. Prerequisites')}</H2>
+    <>
+      {/* Prerequisites Section Content */}
+      <section id="prerequisites">
+      <H1>{_('2. Prerequisites')}</H1>
       <P>
         <Translate>
           Before implementing the API client generator plugin, ensure you
@@ -32,6 +37,7 @@ export default function Prerequisites() {
           <Translate>Understanding of plugin development patterns</Translate>
         </li>
       </ul>
-    </section>
+      </section>
+    </>
   );
 }

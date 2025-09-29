@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 
 export default function AdvancedFeatures() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="advanced-features">
-      <H2>{_('Advanced Features')}</H2>
+    <>
+      {/* Advanced Features Section Content */}
+      <section id="advanced-features">
+      <H1>{_('12. Advanced Features')}</H1>
       <P>
         <Translate>
           The plugin can be extended with additional features:
@@ -39,6 +44,7 @@ export default function AdvancedFeatures() {
           </Translate>
         </li>
       </ul>
-    </section>
+      </section>
+    </>
   )
 }

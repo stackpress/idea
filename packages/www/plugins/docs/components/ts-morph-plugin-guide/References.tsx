@@ -1,10 +1,15 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, H3, P } from '../index.js'
 
 export default function References() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <>
+    {/* References Section Content */}
       <section id="references">
         <H1>{_('10. References')}</H1>
         <P>
@@ -17,6 +22,7 @@ export default function References() {
         </P>
       </section>
 
+      {/* Official Documentation */}
       <section>
         <H2>{_('10.1. Official Documentation')}</H2>
         <P>
@@ -58,6 +64,7 @@ export default function References() {
         </P>
       </section>
 
+      {/* Useful Resources */}
       <section>
         <H2>{_('10.2. Useful Resources')}</H2>
         <P>
@@ -97,6 +104,7 @@ export default function References() {
         </P>
       </section>
 
+      {/* Community Examples and Related Tools */}
       <section>
         <H2>{_('10.3. Community Examples')}</H2>
         <P>

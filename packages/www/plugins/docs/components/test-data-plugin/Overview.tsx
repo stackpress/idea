@@ -1,11 +1,16 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H1, H2, P, SS } from '../index.js';
+//local
+import { H1, P, SS } from '../index.js';
 
 export default function Overview() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="overview">
+    <>
+      {/* Creating a Test Data Generator Plugin */}
+      <section id="introduction">
       <H1>{_('Test Data Generator Plugin Tutorial')}</H1>
       <P>
         <Translate>
@@ -15,8 +20,11 @@ export default function Overview() {
           realistic test data for development, testing, and prototyping.
         </Translate>
       </P>
+      </section>
 
-      <H2>{_('1. Overview')}</H2>
+      {/* Overview Section Content */}
+      <section id="overview">
+      <H1>{_('1. Overview')}</H1>
       <P>
         <Translate>
           Test data generation is crucial for development and testing
@@ -51,6 +59,7 @@ export default function Overview() {
           </Translate>
         </li>
       </ul>
-    </section>
+      </section>
+    </>
   );
 }

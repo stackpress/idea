@@ -4,20 +4,24 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, H3, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
-const basicPluginExample = [
+//code examples
+//----------------------------------------------------------------------
+
+const basicPluginExample =
   `import type { PluginWithCLIProps } from '@stackpress/idea';
 
 export default function generate(props: PluginWithCLIProps) {}`
-];
 
-const basicPluginStructureExample = [
-  `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//----------------------------------------------------------------------
+
+const basicPluginStructureExample =
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -43,10 +47,11 @@ function processSchema(schema: SchemaConfig): string {
   // Implementation for processing schema
   return '// Generated content';
 }`
-];
 
-const cliPluginExample = [
-  `import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
+//----------------------------------------------------------------------
+
+const cliPluginExample =
+`import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 
 export default async function cliPlugin(props: PluginWithCLIProps) {
@@ -74,10 +79,11 @@ export default async function cliPlugin(props: PluginWithCLIProps) {
   
   console.log(\`Generated: \${outputPath}\`);
 }`
-];
 
-const customPluginPropsExample = [
-  `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//----------------------------------------------------------------------
+
+const customPluginPropsExample =
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 
 // Define custom props
 interface CustomProps {
@@ -104,7 +110,8 @@ await transformer.transform({
   version: '1.0.0',
   debug: true
 });`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -144,6 +151,7 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Idea Plugins Section Content */}
       <section>
         <H1>{_('Idea Plugins')}</H1>
         <P>
@@ -157,6 +165,10 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Plugin Development Guide Section Content */}
       <section>
         <H2>{_('1. Plugin Development Guide')}</H2>
         <P>
@@ -177,10 +189,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {basicPluginExample[0]}
+          {basicPluginExample}
         </Code>
       </section>
 
+      {/* Basic Plugin Structure Section */}
       <section>
         <H2>{_('1.1. Basic Plugin Structure')}</H2>
         <P>
@@ -194,7 +207,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {basicPluginStructureExample[0]}
+          {basicPluginStructureExample}
         </Code>
 
         <H3>{_('Properties')}</H3>
@@ -219,7 +232,7 @@ export function Body() {
               </Translate>
             </Tcol>
           </Trow>
-          <Trow>
+          <Trow className="theme-bg-bg1">
             <Tcol className="font-bold"><C>schema</C></Tcol>
             <Tcol><C>SchemaConfig</C></Tcol>
             <Tcol>
@@ -237,7 +250,7 @@ export function Body() {
               </Translate>
             </Tcol>
           </Trow>
-          <Trow>
+          <Trow className="theme-bg-bg1">
             <Tcol className="font-bold"><C>cwd</C></Tcol>
             <Tcol><C>string</C></Tcol>
             <Tcol>
@@ -249,6 +262,7 @@ export function Body() {
         </Table>
       </section>
 
+      {/* CLI-Aware Plugin Structure */}
       <section>
         <H2>{_('1.2. CLI-Aware Plugin Structure')}</H2>
         <P>
@@ -262,7 +276,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {cliPluginExample[0]}
+          {cliPluginExample}
         </Code>
 
         <H3>{_('Properties')}</H3>
@@ -287,7 +301,7 @@ export function Body() {
               </Translate>
             </Tcol>
           </Trow>
-          <Trow>
+          <Trow className="theme-bg-bg1">
             <Tcol className="font-bold"><C>schema</C></Tcol>
             <Tcol><C>SchemaConfig</C></Tcol>
             <Tcol>
@@ -305,7 +319,7 @@ export function Body() {
               </Translate>
             </Tcol>
           </Trow>
-          <Trow>
+          <Trow className="theme-bg-bg1">
             <Tcol className="font-bold"><C>cwd</C></Tcol>
             <Tcol><C>string</C></Tcol>
             <Tcol>
@@ -326,6 +340,7 @@ export function Body() {
         </Table>
       </section>
 
+      {/* Custom Plugin Props */}
       <section>
         <H2>{_('1.3. Custom Plugin Props')}</H2>
         <P>
@@ -345,10 +360,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {customPluginPropsExample[0]}
+          {customPluginPropsExample}
         </Code>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('Transformers'),

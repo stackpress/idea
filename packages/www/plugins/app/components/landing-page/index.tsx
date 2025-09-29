@@ -1,3 +1,4 @@
+//exporting all landing page sections from a single file for easier imports
 export { default as HeroSection } from './HeroSection.js';
 export { default as AboutSection } from './AboutSection.js';
 export { default as BenefitsSection } from './BenefitsSection.js';

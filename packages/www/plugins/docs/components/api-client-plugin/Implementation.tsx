@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const corePluginFunction = `export default async function generateAPIClient(
+//code examples
+//----------------------------------------------------------------------
+
+const corePluginFunction = 
+`export default async function generateAPIClient(
   props: PluginProps<{ config: APIClientConfig }>
 ) {
   const { config, schema, transformer } = props;
@@ -51,9 +57,12 @@ const corePluginFunction = `export default async function generateAPIClient(
     console.error('❌ API client generation failed:', error.message);
     throw error;
   }
-}`;
+}`
 
-const headerAndImports = `function generateFileHeader(config: APIClientConfig): string {
+//----------------------------------------------------------------------
+
+const headerAndImports = 
+`function generateFileHeader(config: APIClientConfig): string {
   const timestamp = new Date().toISOString();
   return \`/**
  * Generated API Client
@@ -101,9 +110,12 @@ interface RequestOptions {
 \`;
   
   return imports;
-}`;
+}`
 
-const typeGeneration = `function generateTypes(schema: any, config: APIClientConfig): string {
+//----------------------------------------------------------------------
+
+const typeGeneration = 
+`function generateTypes(schema: any, config: APIClientConfig): string {
   let content = '// Generated Types\\n';
   
   // Generate enums
@@ -145,9 +157,12 @@ const typeGeneration = `function generateTypes(schema: any, config: APIClientCon
   }
   
   return content;
-}`;
+}`
 
-const baseClientGeneration = `function generateBaseClient(config: APIClientConfig): string {
+//----------------------------------------------------------------------
+
+const baseClientGeneration = 
+`function generateBaseClient(config: APIClientConfig): string {
   const authType = config.authentication?.type || 'bearer';
   const headerName = config.authentication?.headerName || 'Authorization';
   
@@ -177,9 +192,12 @@ export class BaseAPIClient {
 }
 
 \`;
-}`;
+}`
 
-const restClientGeneration = `function generateRESTClients(models: Record<string, any>, config: APIClientConfig): string {
+//----------------------------------------------------------------------
+
+const restClientGeneration = 
+`function generateRESTClients(models: Record<string, any>, config: APIClientConfig): string {
   let content = '// REST API Clients\\n';
   
   for (const [modelName, model] of Object.entries(models)) {
@@ -231,14 +249,19 @@ export class \${modelName}Client extends BaseAPIClient {
   }
   
   return content;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function Implementation() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="implementation">
-      <H2>{_('4. Implementation')}</H2>
+    <>
+      {/* Implementation Section Content */}
+      <section id="implementation">
+        <H1>{_('4. Implementation')}</H1>
       <P>
         <Translate>
           The implementation section covers the core plugin function and
@@ -248,7 +271,7 @@ export default function Implementation() {
         </Translate>
       </P>
 
-      <H3>{_('4.1. Core Plugin Function')}</H3>
+      <H2>{_('4.1. Core Plugin Function')}</H2>
       <P>
         <Translate>
           The core plugin function serves as the main entry point for API
@@ -261,7 +284,7 @@ export default function Implementation() {
         {corePluginFunction}
       </Code>
 
-      <H3>{_('4.2. Generation Functions')}</H3>
+      <H2>{_('4.2. Generation Functions')}</H2>
       <P>
         <Translate>
           The generation functions handle the creation of specific parts of
@@ -283,6 +306,7 @@ export default function Implementation() {
       <Code copy language='typescript' className='bg-black text-white'>
         {restClientGeneration}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

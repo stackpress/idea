@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P, C } from '../index.js';
+//local
+import { H1, P, C } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const securitySchemesExample = 
 `function generateSecuritySchemes(spec: any, security: any): void {
@@ -36,7 +41,9 @@ const securitySchemesExample =
       }
     };
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const crudEndpointsExample = 
 `function generateCRUDEndpoints(spec: any, modelName: string, model: any): void {
@@ -232,15 +239,19 @@ const crudEndpointsExample =
       security: [{ BearerAuth: [] }]
     }
   };
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function SchemaProcessing() {
   //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="schema-processing">
-      <H2>{_('4. Schema Processing')}</H2>
+    <>
+      {/* Schema Processing Section Content */}
+      <section id="schema-processing">
+      <H1>{_('4. Schema Processing')}</H1>
       <P>
         <Translate>
           Schema processing handles the transformation of
@@ -257,6 +268,7 @@ export default function SchemaProcessing() {
       <Code copy language='typescript' className='bg-black text-white'>
         {crudEndpointsExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

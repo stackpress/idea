@@ -3,10 +3,11 @@ import type {
   ServerConfigProps,
   ServerPageProps
 } from 'stackpress/view/client';
-import { useLanguage, Translate } from 'r22n';
-//docs
+import { useLanguage } from 'r22n';
+//local
 import { Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
+//components
 import {
   Introduction,
   Overview,
@@ -56,7 +57,9 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
@@ -141,31 +144,88 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
+  const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Page Section */}
       <Introduction />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <Overview />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <Prerequisites />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <UnderstandingSchemaStructure />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <CreatePluginStructure />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <ImplementDocumentationGeneration />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <GenerateModelsDocumentation />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <GenerateTypesEnumsProps />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <UtilityFunctions />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <UsageInSchema />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <GeneratedOutput />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
+      {/* Horizontal Rule */}
       <ErrorHandlingAndBestPractices />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
+      {/* Horizontal Rule */}
       <AdvancedFeatures />
+      <hr className='mt-10'/>
+
+      {/* Horizontal Rule */}
       <Conclusion />
 
-
+      {/* Page Navigation */}
       <Nav
         prev={{
-          text: 'HMTL Form Plugin',
+          text: _('HMTL Form Plugin'),
           href: '/docs/tutorials/html-form-plugin'
         }}
         next={{
-          text: 'GraphQL Schema Plugin',
+          text: _('GraphQL Schema Plugin'),
           href: '/docs/tutorials/graphql-schema-plugin'
         }}
       />
@@ -174,6 +234,7 @@ export function Body() {
 }
 
 export default function Page(props: ServerPageProps<ServerConfigProps>) {
+  //props
   const { data, session, request, response } = props;
   return (
     <Layout

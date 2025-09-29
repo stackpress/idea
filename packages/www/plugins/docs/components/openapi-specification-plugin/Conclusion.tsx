@@ -1,13 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C, SS } from '../index.js';
+//local
+import { H1, H2, P, C, SS } from '../index.js';
 
 export default function Conclusion() {
   //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="conclusion">
-      <H2>{_('Conclusion')}</H2>
+    <>
+      {/* Conclusion Section Content */}
+      <section id="conclusion">
+      <H1>{_('Conclusion')}</H1>
       <P>
         <Translate>
           This OpenAPI Specification Generator plugin provides a
@@ -62,7 +66,7 @@ export default function Conclusion() {
         </Translate>
       </P>
 
-      <H3>{_('Next Steps')}</H3>
+      <H2>{_('Next Steps')}</H2>
       <ul className="list-disc pl-6 my-4">
         <li className="my-2">
           <SS>Extend Schema Mapping</SS>: 
@@ -104,6 +108,7 @@ export default function Conclusion() {
           like Swagger UI, Postman, and various code generators.
         </Translate>
       </P>
-    </section>
+      </section>
+    </>
   );
 }

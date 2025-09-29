@@ -4,10 +4,97 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
+
+//code examples
+//----------------------------------------------------------------------
+
+const examples = [
+  `// JavaScript object
+{ foo: "bar", bar: "foo" }
+
+// JavaScript array
+[ "foo", "bar" ]
+[ "foo", "bar" ]
+
+// Nested structure
+{
+  user: {
+    name: "John",
+    age: 30,
+    active: true
+  },
+  tags: ["admin", "user"]
+}`,
+
+  //----------------------------------------------------------------------
+
+  `// Object structure
+{ foo "bar" bar "foo" }
+
+// Array structure
+[ "foo" "bar" ]
+
+// Nested structure
+{
+  user {
+    name "John"
+    age 30
+    active true
+  }
+  tags ["admin" "user"]
+}`,
+
+  //----------------------------------------------------------------------
+
+  `// Strings - always use double quotes
+name "John Doe"
+description "A comprehensive user management system"
+
+// Numbers - no quotes needed
+age 30
+price 99.99
+count -5
+
+// Booleans - no quotes needed
+active true
+verified false
+
+// Arrays - space-separated values
+tags ["admin" "user" "moderator"]
+numbers [1 2 3 4 5]
+mixed ["text" 123 true]
+
+// Objects - nested key-value pairs
+profile {
+  firstName "John"
+  lastName "Doe"
+  settings {
+    theme "dark"
+    notifications true
+  }
+}`,
+
+  //----------------------------------------------------------------------
+
+  `// This is a single-line comment
+model User {
+  id String @id // Inline comment
+  name String @required
+  // Another comment
+  email String @unique
+}
+
+/*
+  Multi-line comments are also supported
+  for longer explanations
+*/`
+];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -50,83 +137,13 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   )
 }
 
-const examples = [
-  `// JavaScript object
-{ foo: "bar", bar: "foo" }
-
-// JavaScript array
-[ "foo", "bar" ]
-
-// Nested structure
-{
-  user: {
-    name: "John",
-    age: 30,
-    active: true
-  },
-  tags: ["admin", "user"]
-}`,
-  `// Object structure
-{ foo "bar" bar "foo" }
-
-// Array structure
-[ "foo" "bar" ]
-
-// Nested structure
-{
-  user {
-    name "John"
-    age 30
-    active true
-  }
-  tags ["admin" "user"]
-}`,
-  `// Strings - always use double quotes
-name "John Doe"
-description "A comprehensive user management system"
-
-// Numbers - no quotes needed
-age 30
-price 99.99
-count -5
-
-// Booleans - no quotes needed
-active true
-verified false
-
-// Arrays - space-separated values
-tags ["admin" "user" "moderator"]
-numbers [1 2 3 4 5]
-mixed ["text" 123 true]
-
-// Objects - nested key-value pairs
-profile {
-  firstName "John"
-  lastName "Doe"
-  settings {
-    theme "dark"
-    notifications true
-  }
-}`,
-  `// This is a single-line comment
-model User {
-  id String @id // Inline comment
-  name String @required
-  // Another comment
-  email String @unique
-}
-
-/*
-  Multi-line comments are also supported
-  for longer explanations
-*/`
-]
-
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Syntax Overview Content */}
       <section>
         <H1>{_('Syntax Overview')}</H1>
         <P>
@@ -140,6 +157,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Key Syntax Rules Content */}
       <section>
         <H2>{_('Key Syntax Rules')}</H2>
         <ul className="px-lh-30 px-px-20 list-disc">
@@ -167,10 +185,15 @@ export function Body() {
         </ul>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Examples Content */}
       <section>
         <H2>{_('Syntax Comparison')}</H2>
         <P><Translate>Traditional JavaScript/JSON:</Translate></P>
         <Code
+          copy
           language="javascript"
           className="bg-black text-white px-mb-20"
         >
@@ -179,6 +202,7 @@ export function Body() {
 
         <P><Translate>Equivalent .idea syntax:</Translate></P>
         <Code
+          copy
           language="javascript"
           className="bg-black text-white px-mb-20"
         >
@@ -186,15 +210,23 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Data Types Representations Content */}
       <section>
         <H2>{_('Data Types Representations')}</H2>
         <Code
+          copy
           language="javascript"
           className="bg-black text-white px-mb-20 mt-5"
         >
           {examples[2]}
         </Code>
       </section>
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
 
       <section>
         <H2>{_('Comments')}</H2>
@@ -204,6 +236,7 @@ export function Body() {
           </Translate>
         </P>
         <Code
+          copy
           language="javascript"
           className="bg-black text-white px-mx-10 px-mb-20"
         >
@@ -211,18 +244,17 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          next={{
-            text: _('Data Types'),
-            href: '/docs/specifications/data-types'
-          }}
-          prev={{
-            text: _('Getting Started'),
-            href: '/docs/getting-started'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        next={{
+          text: _('Data Types'),
+          href: '/docs/specifications/data-types'
+        }}
+        prev={{
+          text: _('Getting Started'),
+          href: '/docs/getting-started'
+        }}
+      />
     </main>
   );
 }

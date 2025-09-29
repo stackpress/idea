@@ -4,13 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
-import { H1, H2, H3, P, Nav } from '../../components/index.js';
+//local
+import { H1, H2, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const pluginErrorHandlingExample = [
-  `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//code examples
+//----------------------------------------------------------------------
+
+const pluginErrorHandlingExample =
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 
 export default async function safePlugin(props: PluginProps<{}>) {
   const { config, schema, transformer } = props;
@@ -51,10 +54,11 @@ export default async function safePlugin(props: PluginProps<{}>) {
     throw error; // Re-throw to stop transformation
   }
 }`
-];
 
-const gracefulErrorRecoveryExample = [
-  `export default async function resilientPlugin(
+//----------------------------------------------------------------------
+
+const gracefulErrorRecoveryExample = 
+`export default async function resilientPlugin(
   props: PluginProps<{}>
 ) {
   const { config, schema, transformer } = props;
@@ -89,7 +93,8 @@ const gracefulErrorRecoveryExample = [
     );
   }
 }`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -129,6 +134,7 @@ export function Body() {
   
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Error Handling Section Content */}
       <section>
         <H1>{_('Error Handling')}</H1>
         <P>
@@ -141,6 +147,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Plugin Error Handling Section */}
       <section>
         <H2>{_('4.1. Plugin Error Handling')}</H2>
         <P>
@@ -154,10 +161,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {pluginErrorHandlingExample[0]}
+          {pluginErrorHandlingExample}
         </Code>
       </section>
 
+      {/* Graceful Error Recovery Section */}
       <section>
         <H2>{_('4.2. Graceful Error Recovery')}</H2>
         <P>
@@ -171,10 +179,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {gracefulErrorRecoveryExample[0]}
+          {gracefulErrorRecoveryExample}
         </Code>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{ 
           text: _('Plugin Configuration'), 

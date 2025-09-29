@@ -4,13 +4,18 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const processingFlow = `Raw Schema Code → SchemaTree → Compiler → JSON Output
-`;
+//code examples
+//----------------------------------------------------------------------
+
+const processingFlow = 
+`Raw Schema Code → SchemaTree → Compiler → JSON Output`
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -54,12 +59,14 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
       <H1>{_('Core Concepts')}</H1>
-
+      
+      {/* Schema Structure Section Content */}
       <section>
         <H2>{_('Schema Structure')}</H2>
         <P>
@@ -107,8 +114,12 @@ export function Body() {
             </Translate>
           </li>
         </ol>
-      </section>
+      </section> 
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Processing Flow Section Content */}
       <section>
         <H2>{_('Processing Flow')}</H2>
         <P>
@@ -153,18 +164,18 @@ export function Body() {
         </ol>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Installation'),
-            href: '/docs/parser/installation'
-          }}
-          next={{
-            text: _('API Reference'),
-            href: '/docs/parser/api-reference'
-          }}
-        />
-      </footer>
+      
+      <Nav
+        prev={{
+          text: _('Installation'),
+          href: '/docs/parser/installation'
+        }}
+        next={{
+          text: _('API Reference'),
+          href: '/docs/parser/api-reference'
+        }}
+      />
+      
     </main>
   );
 }

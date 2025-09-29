@@ -1,46 +1,56 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, Code } from '../index.js';
+//local
+import { H1, H2, P, Code } from '../index.js';
 
-const typeSafetyInterface = 
-`interface TypeScriptColumn {
+const typeSafetyInterface =
+  `interface TypeScriptColumn {
   name: string;
   type: string;
   required: boolean;
   multiple: boolean;
   description?: string;
   attributes?: Record<string, any>;
-}`;
+}`
 
-const columnValidation = 
-`function validateColumn(column: any): column is TypeScriptColumn {
+//----------------------------------------------------------------------
+
+const columnValidation =
+  `function validateColumn(column: any): column is TypeScriptColumn {
   return (
     typeof column.name === 'string' &&
     typeof column.type === 'string' &&
     typeof column.required === 'boolean'
   );
-}`;
+}`
 
-const typeNameSanitization = 
-`function sanitizeTypeName(name: string): string {
+//----------------------------------------------------------------------
+
+const typeNameSanitization =
+  `function sanitizeTypeName(name: string): string {
   // Ensure TypeScript-valid names
   return name
     .replace(/[^a-zA-Z0-9_]/g, '_')
     .replace(/^[0-9]/, '_$&')
     .replace(/^_+|_+$/g, '');
-}`;
+}`
 
-const pascalCaseConversion = 
-`function toPascalCase(str: string): string {
+//----------------------------------------------------------------------
+
+const pascalCaseConversion =
+  `function toPascalCase(str: string): string {
   return str
     .split(/[-_\\s]+/)
     .map(word => 
       word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     )
     .join('');
-}`;
+}`
 
-const jsDocGeneration = 
-`function generateJSDocComment(
+//----------------------------------------------------------------------
+
+const jsDocGeneration =
+  `function generateJSDocComment(
   column: any, 
   includeAttributes: boolean = true
 ): string {
@@ -67,10 +77,12 @@ const jsDocGeneration =
   
   return \`  /**\\n\${lines.map(line => 
     \`   * \${line}\`).join('\\n')}\\n   */\\n\`;
-}`;
+}`
 
-const typeCacheOptimization = 
-`// Cache type mappings
+//----------------------------------------------------------------------
+
+const typeCacheOptimization =
+  `// Cache type mappings
 const typeCache = new Map<string, string>();
 
 function getCachedTypeMapping(
@@ -90,32 +102,37 @@ function getCachedTypeMapping(
   typeCache.set(cacheKey, mappedType);
   
   return mappedType;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function BestPractices() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <main>
+    <>
+      {/* Best Practices Section Content */}
       <section id="best-practices">
-        <H2>{_('Best Practices')}</H2>
+        <H1>{_('8. Best Practices')}</H1>
         <P>
           <Translate>
-            Best practices ensure your generated TypeScript interfaces are 
-            maintainable, reliable, and follow industry standards. These 
-            guidelines cover type safety, naming conventions, documentation 
+            Best practices ensure your generated TypeScript interfaces are
+            maintainable, reliable, and follow industry standards. These
+            guidelines cover type safety, naming conventions, documentation
             generation, and performance optimization.
           </Translate>
         </P>
       </section>
 
+      {/* Type Safety Section Content */}
       <section>
-        <H3>{_('Type Safety')}</H3>
+        <H2>{_('Type Safety')}</H2>
         <P>
           <Translate>
-            Type safety is crucial for preventing runtime errors and 
-            improving developer experience. Always validate input data and 
-            use proper TypeScript types throughout the plugin implementation 
+            Type safety is crucial for preventing runtime errors and
+            improving developer experience. Always validate input data and
+            use proper TypeScript types throughout the plugin implementation
             to ensure reliable code generation.
           </Translate>
         </P>
@@ -127,13 +144,14 @@ export default function BestPractices() {
         </Code>
       </section>
 
+      {/* Naming Conventions Section Content */}
       <section>
-        <H3>{_('Naming Conventions')}</H3>
+        <H2>{_('Naming Conventions')}</H2>
         <P>
           <Translate>
-            Naming conventions ensure that generated TypeScript identifiers 
-            are valid and follow established patterns. Proper naming improves 
-            code readability and prevents conflicts with reserved keywords 
+            Naming conventions ensure that generated TypeScript identifiers
+            are valid and follow established patterns. Proper naming improves
+            code readability and prevents conflicts with reserved keywords
             or invalid characters.
           </Translate>
         </P>
@@ -145,13 +163,14 @@ export default function BestPractices() {
         </Code>
       </section>
 
+      {/* Documentation Generation Section Content */}
       <section>
-        <H3>{_('Documentation Generation')}</H3>
+        <H2>{_('Documentation Generation')}</H2>
         <P>
           <Translate>
-            Documentation generation creates comprehensive JSDoc comments that 
-            provide context and examples for the generated types. This 
-            improves the developer experience by providing inline 
+            Documentation generation creates comprehensive JSDoc comments that
+            provide context and examples for the generated types. This
+            improves the developer experience by providing inline
             documentation in IDEs and code editors.
           </Translate>
         </P>
@@ -161,12 +180,12 @@ export default function BestPractices() {
       </section>
 
       <section>
-        <H3>{_('Performance Optimization')}</H3>
+        <H2>{_('Performance Optimization')}</H2>
         <P>
           <Translate>
-            Performance optimization techniques help maintain reasonable 
-            generation times when working with large schemas. Caching 
-            strategies and efficient algorithms ensure the plugin scales 
+            Performance optimization techniques help maintain reasonable
+            generation times when working with large schemas. Caching
+            strategies and efficient algorithms ensure the plugin scales
             well with complex type hierarchies.
           </Translate>
         </P>
@@ -174,6 +193,6 @@ export default function BestPractices() {
           {typeCacheOptimization}
         </Code>
       </section>
-    </main>
+    </>
   );
 }

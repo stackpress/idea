@@ -5,16 +5,24 @@ import type {
 } from 'stackpress/view/client';
 import { useState } from 'react';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav } from '../components/index.js';
 import Code from '../components/Code.js';
 import Layout from '../components/Layout.js';
 
+//code examples
+//----------------------------------------------------------------------
+
 const npmInstallCommand = 'npm i -D @stackpress/idea';
+
+//----------------------------------------------------------------------
 
 const yarnInstallCommand = 'yarn add --dev @stackpress/idea';
 
-const schemaExample = `model User {
+//----------------------------------------------------------------------
+
+const schemaExample =
+  `model User {
   id String @id @default("nanoid()")
   name String @required
   email String @unique @required
@@ -25,7 +33,11 @@ plugin "./plugins/typescript-generator.js" {
   output "./generated/types.ts"
 }`;
 
+//----------------------------------------------------------------------
+
 const generateCommand = 'npx idea transform --input schema.idea';
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -58,11 +70,13 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const [install, setInstall] = useState('npm');
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Introduction */}
       <header>
         <H1>{_('Getting Started')}</H1>
         <P>
@@ -72,22 +86,21 @@ export function Body() {
         </P>
       </header>
 
+      {/* Installation  */}
       <section>
         <H2>{_('Installation')}</H2>
         <div className="rounded-lg px-mx-10">
           <div className="theme-bg-bg3 flex items-center">
             <div
-              className={`px-py-10 px-px-30 ${
-                install === 'npm' ? 'theme-bg-bg1' : 'theme-bg-bg2'
-              }`}
+              className={`px-py-10 px-px-30 ${install === 'npm' ? 'theme-bg-bg1' : 'theme-bg-bg2'
+                }`}
               onClick={() => setInstall('npm')}
             >
               <i className="px-fs-20 fab fa-fw fa-npm" />
             </div>
             <div
-              className={`px-py-10 px-px-30 ${
-                install === 'yarn' ? 'theme-bg-bg1' : 'theme-bg-bg2'
-              }`}
+              className={`px-py-10 px-px-30 ${install === 'yarn' ? 'theme-bg-bg1' : 'theme-bg-bg2'
+                }`}
               onClick={() => setInstall('yarn')}
             >
               <i className="px-fs-20 fab fa-fw fa-yarn" />
@@ -110,6 +123,7 @@ export function Body() {
         </div>
       </section>
 
+      {/* Create Schema Content */}
       <section>
         <H2>{_('Create your first schema')}</H2>
         <P>
@@ -126,6 +140,7 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Generate Code Content */}
       <section>
         <H2>{_('Generate Code')}</H2>
         <Code
@@ -137,6 +152,7 @@ export function Body() {
         </Code>
       </section>
 
+       {/* Explore the Results Content */}         
       <section>
         <H2>{_('Explore the Results')}</H2>
         <P>
@@ -146,18 +162,17 @@ export function Body() {
         </P>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Introduction'),
-            href: '/docs/introduction',
-          }}
-          next={{
-            text: _('Specifications'),
-            href: '/docs/specifications/syntax-overview',
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Introduction'),
+          href: '/docs/introduction',
+        }}
+        next={{
+          text: _('Specifications'),
+          href: '/docs/specifications/syntax-overview',
+        }}
+      />
     </main>
   );
 }

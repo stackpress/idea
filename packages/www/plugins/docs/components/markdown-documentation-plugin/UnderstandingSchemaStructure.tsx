@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const exampleProcessedSchema = `// Example processed schema
+//code examples
+//----------------------------------------------------------------------
+
+const exampleProcessedSchema = 
+`// Example processed schema
 {
   model: {
     User: {
@@ -65,14 +71,19 @@ const exampleProcessedSchema = `// Example processed schema
       maxLength: 255
     }
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UnderstandingSchemaStructure() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="understanding-schema">
-      <H2>{_('Understanding the Schema Structure')}</H2>
+    <>
+      {/* Understanding the Schema Structure Section Content */}
+      <section id="understanding-schema">
+      <H1>{_('3. Understanding the Schema Structure')}</H1>
       <P>
         <Translate>
           Before creating the plugin, let's understand what documentation
@@ -82,6 +93,7 @@ export default function UnderstandingSchemaStructure() {
       <Code copy language='typescript' className='bg-black text-white'>
         {exampleProcessedSchema}
       </Code>
-    </section>
+      </section>
+    </>
   )
 }

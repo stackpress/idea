@@ -4,13 +4,14 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, Nav } from '../components/index.js';
 import Layout from '../components/Layout.js';
 import Code from '../components/Code.js';
 
-const schemaExample = `
-// schema.idea
+//code example
+const schemaExample = 
+`// schema.idea
 enum UserRole {
   ADMIN "Administrator"
   CUSTOMER "Customer"
@@ -60,6 +61,8 @@ plugin "./plugins/api-generator.js" {
   includeValidation true
 }`
 
+//----------------------------------------------------------------------
+
 export function DocumentationHead(props: ServerPageProps<ServerConfigProps>) {
   //props
   const { request, styles = [] } = props;
@@ -100,166 +103,213 @@ export function DocumentationBody() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <H1>{_('What is .idea?')}</H1>
+      {/* Introduction */}
+      <section>
+        <H1>{_('What is .idea?')}</H1>
 
-      <P>
-        <Translate>
-          The .idea file format is a declarative schema definition
-          language designed to simplify application development by
-          providing a single source of truth for data structures,
-          relationships, and code generation. It enables developers
-          to define their application's data model once and generate
-          multiple outputs including database schemas, TypeScript
-          interfaces, API documentation, forms, and more.
-        </Translate>
-      </P>
-
-      <P>
-        <Translate>
-          Think of it as the bridge between AI prompting and full-
-          stack code generation - where a simple schema definition can
-          automatically generate everything from database tables to
-          React components, API endpoints to documentation sites.
-        </Translate>
-      </P>
-
-      <H1>{_('Why Use .idea?')}</H1>
-
-      <ul>
-        <li>
-          <H2>{_('Single Source of Truth')}</H2>
+        <P>
           <Translate>
-            Define your data model once, use it everywhere. No more
-            maintaining separate schemas for database, frontend, and
-            API.
+            The .idea file format is a declarative schema definition
+            language designed to simplify application development by
+            providing a single source of truth for data structures,
+            relationships, and code generation. It enables developers
+            to define their application's data model once and generate
+            multiple outputs including database schemas, TypeScript
+            interfaces, API documentation, forms, and more.
           </Translate>
-        </li>
-        <li>
-          <H2>Type Safety Everywhere</H2>
+        </P>
+
+        <P>
           <Translate>
-            Generate type-safe code across languages - TypeScript,
-            Python, Rust, Go, and more. Catch errors at compile time.
+            Think of it as the bridge between AI prompting and full-
+            stack code generation - where a simple schema definition can
+            automatically generate everything from database tables to
+            React components, API endpoints to documentation sites.
           </Translate>
-        </li>
-        <li>
-          <H2>Rapid Development</H2>
+        </P>
+      </section>
+
+      <hr className='mt-10' />
+
+      {/* Why use .idea? */}
+      <section>
+        <H1>{_('Why Use .idea?')}</H1>
+
+        <ul>
+          <li>
+            <H2>{_('Single Source of Truth')}</H2>
+            <Translate>
+              Define your data model once, use it everywhere. No more
+              maintaining separate schemas for database, frontend, and
+              API.
+            </Translate>
+          </li>
+          <li>
+            <H2>Type Safety Everywhere</H2>
+            <Translate>
+              Generate type-safe code across languages - TypeScript,
+              Python, Rust, Go, and more. Catch errors at compile time.
+            </Translate>
+          </li>
+          <li>
+            <H2>Rapid Development</H2>
+            <Translate>
+              Generate boilerplate code, forms, and documentation in
+              seconds. What used to take hours now happens instantly.
+            </Translate>
+          </li>
+        </ul>
+      </section>
+
+      <hr className='mt-10' />
+
+      {/* Who Should Use This? */}
+      <section>
+        <H1>{_('Who Should Use This?')}</H1>
+
+        <ul>
+          <li>
+            <H2>{_('Junior Developers')}</H2>
+            <Translate>
+              Easy syntax, rapid prototyping, learn best practices through
+              generated code.
+            </Translate>
+          </li>
+          <li>
+            <H2>{_('Senior Developers')}</H2>
+            <Translate>
+              Powerful features, extensible plugins, maintain consistency
+              across large codebases.
+            </Translate>
+          </li>
+          <li>
+            <H2>{_('CTOs & Technical Leaders')}</H2>
+            <Translate>
+              Reduce development time by 60-80%, improve consistency,
+              accelerate time-to-market.
+            </Translate>
+          </li>
+        </ul>
+      </section>
+
+      <hr className='mt-10' />
+
+      {/* The Plugin Ecosystem */}
+      <section>
+        <H1>{_('The Plugin Ecosystem')}</H1>
+
+        <P>
           <Translate>
-            Generate boilerplate code, forms, and documentation in
-            seconds. What used to take hours now happens instantly.
+            The power of .idea comes from its plugin system. Generate code
+            for any technology:
           </Translate>
-        </li>
-      </ul>
+        </P>
 
-      <H1>{_('Who Should Use This?')}</H1>
+        <ul>
+          <li>
+            <H2>{_('Languages')}</H2>
+            <Translate>
+              TypeScript, Python, Rust, Go, Java, C#, PHP, and more.
+            </Translate>
+          </li>
+          <li>
+            <H2>{_('Frameworks')}</H2>
+            <Translate>
+              React, Vue, Angular, Next.js, Express, FastAPI, Django, and
+              more.
+            </Translate>
+          </li>
+          <li>
+            <H2>{_('Databases')}</H2>
+            <Translate>
+              PostgreSQL, MySQL, MongoDB, Neo4j, and more.
+            </Translate>
+          </li>
+        </ul>
+      </section>
 
-      <ul>
-        <li>
-          <H2>{_('Junior Developers')}</H2>
+      <hr className='mt-10' />
+
+      {/* Real-World Example */}
+      <section>
+        <H1>{_('Real-World Example')}</H1>
+
+        <P>
           <Translate>
-            Easy syntax, rapid prototyping, learn best practices through
-            generated code.
+            Here's how a simple e-commerce schema becomes a full
+            application:
           </Translate>
-        </li>
-        <li>
-          <H2>{_('Senior Developers')}</H2>
+        </P>
+
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
+          {schemaExample}
+        </Code>
+
+        <P>
           <Translate>
-            Powerful features, extensible plugins, maintain consistency
-            across large codebases.
+            From this single schema, generate:
           </Translate>
-        </li>
-        <li>
-          <H2>{_('CTOs & Technical Leaders')}</H2>
+        </P>
+
+        <ul className="px-lh-30 px-px-20flex flex-wrap rmd-block rmd-w-100-0">
+          <li>
+            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            {_('TypeScript interfaces')}
+          </li>
+          <li>
+            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            {_('PostgreSQL schema')}
+          </li>
+          <li>
+            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            {_('React components')}
+          </li>
+          <li>
+            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            {_('API documentation')}
+          </li>
+          <li>
+            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            {_('Validation schemas')}
+          </li>
+          <li>
+            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            {_('Test data')}
+          </li>
+        </ul>
+      </section>
+
+      <hr className='mt-10' />
+
+      {/* AI-Powered Workflow */}
+      <section>
+        <H1>{_('AI-Powered Workflow')}</H1>
+
+        <P>
           <Translate>
-            Reduce development time by 60-80%, improve consistency,
-            accelerate time-to-market.
+            The perfect workflow for AI-driven development:
           </Translate>
-        </li>
-      </ul>
+        </P>
+        <ol className="list-decimal px-lh-30 px-px-20 px-w-767 rmd-block rmd-w-100-0">
+          <li className="px-w-100-0">{_('Describe your app to an AI')}</li>
+          <li className="px-w-100-0">{_('Get a .idea schema')}</li>
+          <li className="px-w-100-0">{_('Configure plugins')}</li>
+          <li className="px-w-100-0">{_('Generate full-stack code')}</li>
+          <li className="px-w-100-0">{_('Iterate and improve')}</li>
+        </ol>
 
-      <H1>{_('The Plugin Ecosystem')}</H1>
-
-      <P>
-        <Translate>
-          The power of .idea comes from its plugin system. Generate code
-          for any technology:
-        </Translate>
-      </P>
-
-      <ul>
-        <li>
-          <H2>{_('Languages')}</H2>
+        <P>
           <Translate>
-            TypeScript, Python, Rust, Go, Java, C#, PHP, and more.
+            Go from idea to working application in minutes, not days.
           </Translate>
-        </li>
-        <li>
-          <H2>{_('Frameworks')}</H2>
-          <Translate>
-            React, Vue, Angular, Next.js, Express, FastAPI, Django, and
-            more.
-          </Translate>
-        </li>
-        <li>
-          <H2>{_('Databases')}</H2>
-          <Translate>
-            PostgreSQL, MySQL, MongoDB, Neo4j, and more.
-          </Translate>
-        </li>
-      </ul>
+        </P>
+      </section>
 
-      <H1>{_('Real-World Example')}</H1>
-
-      <P>
-        <Translate>
-          Here's how a simple e-commerce schema becomes a full
-          application:
-        </Translate>
-      </P>
-
-      <Code
-        copy
-        language="javascript"
-        className="bg-black text-white"
-      >
-        {schemaExample}
-      </Code>
-
-      <P>
-        <Translate>
-          From this single schema, generate:
-        </Translate>
-      </P>
-
-      <ul className="px-lh-30 px-px-20 px-w-767 flex flex-wrap rmd-block rmd-w-100-0">
-        <li className="px-w-50-0">✅ {_('TypeScript interfaces')}</li>
-        <li className="px-w-50-0">✅ {_('PostgreSQL schema')}</li>
-        <li className="px-w-50-0">✅ {_('React components')}</li>
-        <li className="px-w-50-0">✅ {_('API documentation')}</li>
-        <li className="px-w-50-0">✅ {_('Validation schemas')}</li>
-        <li className="px-w-50-0">✅ {_('Test data')}</li>
-      </ul>
-
-      <H2>{_('AI-Powered Workflow')}</H2>
-
-      <P>
-        <Translate>
-          The perfect workflow for AI-driven development:
-        </Translate>
-      </P>
-      <ol className="list-decimal px-lh-30 px-px-20 px-w-767 rmd-block rmd-w-100-0">
-        <li className="px-w-100-0">{_('Describe your app to an AI')}</li>
-        <li className="px-w-100-0">{_('Get a .idea schema')}</li>
-        <li className="px-w-100-0">{_('Configure plugins')}</li>
-        <li className="px-w-100-0">{_('Generate full-stack code')}</li>
-        <li className="px-w-100-0">{_('Iterate and improve')}</li>
-      </ol>
-
-      <P>
-        <Translate>
-          Go from idea to working application in minutes, not days.
-        </Translate>
-      </P>
-
+      {/* Page Navigation */}
       <Nav next={{
         text: _('Getting Started'),
         href: '/docs/getting-started'

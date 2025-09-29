@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P, SS, C } from '../../index.js';
 import Code from '../../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const modelsExamples = [
   `model ModelName {
@@ -11,7 +16,10 @@ const modelsExamples = [
 model ModelName! {  // Mutable model
   // columns...
 }`,
-  `// base-schema.idea
+
+//----------------------------------------------------------------------
+
+`// base-schema.idea
 model User {
   id String @id
   name String @required
@@ -32,7 +40,10 @@ model User! {
   username String @required
   password String @required
 }`,
-  `model User! {
+
+//----------------------------------------------------------------------
+
+`model User! {
   id String @id @default("nanoid()")
   email String @unique @required @field.input(Email)
   username String @unique @required @field.input(Text)
@@ -81,93 +92,98 @@ enum PostStatus {
   PUBLISHED "Published"
   ARCHIVED "Archived"
 }`
+];
 
-]
+//----------------------------------------------------------------------
 
 export default function Models() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="models">
-      <H1>{_('Models')}</H1>
-
-      <P>
-        <Translate>
-          Models represent the core entities in your application,
-          typically corresponding to database tables or API resources.
-          They define the structure, relationships, and behavior of your
-          data.
-        </Translate>
-      </P>
-
-      <section>
-        <H2>{_('Syntax')}</H2>
-        <Code
-          copy
-          language="typescript"
-          className="bg-black text-white px-mb-20"
-        >
-          {modelsExamples[0]}
-        </Code>
-
-        <H2>{_('Structure')}</H2>
-        <ul className="px-lh-30 px-px-20 list-disc">
-          <li>
-            <SS>{_('ModelName: ')}</SS>
-            <Translate>The identifier for this model</Translate>
-          </li>
-          <li>
-            <SS>!: </SS>
-            <Translate>
-              Optional non-mergeable indicator prevents automatic
-              merging when using <C>use</C> directives
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('columnName: ')}</SS>
-            <Translate>The field name within the model</Translate>
-          </li>
-          <li>
-            <SS>{_('DataType: ')}</SS>
-            <Translate>
-              Built-in types (String, Number, Boolean, Date) or custom
-              types/enums
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('@attribute: ')}</SS>
-            <Translate>
-              Attributes for validation, relationships, UI, etc.
-            </Translate>
-          </li>
-        </ul>
-
-        <H2>{_('Merging Behavior')}</H2>
+    <>
+      {/* Models Section Content */}
+      <section id="models">
+        <H1>{_('Models')}</H1>
 
         <P>
           <Translate>
-            By default, when importing schemas with use directives,
-            models with the same name are automatically merged. The !
-            suffix prevents this behavior:
+            Models represent the core entities in your application,
+            typically corresponding to database tables or API resources.
+            They define the structure, relationships, and behavior of your
+            data.
           </Translate>
         </P>
-        <Code
-          copy
-          language="typescript"
-          className="bg-black text-white px-mb-20"
-        >
-          {modelsExamples[1]}
-        </Code>
 
-        <H2>{_('Example')}</H2>
-        <Code
-          copy
-          language="typescript"
-          className="bg-black text-white px-mb-20"
-        >
-          {modelsExamples[2]}
-        </Code>
+        <section>
+          <H2>{_('Syntax')}</H2>
+          <Code
+            copy
+            language="typescript"
+            className="bg-black text-white px-mb-20"
+          >
+            {modelsExamples[0]}
+          </Code>
+
+          <H2>{_('Structure')}</H2>
+          <ul className="px-lh-30 px-px-20 list-disc">
+            <li>
+              <SS>{_('ModelName: ')}</SS>
+              <Translate>The identifier for this model</Translate>
+            </li>
+            <li>
+              <SS>!: </SS>
+              <Translate>
+                Optional non-mergeable indicator prevents automatic
+                merging when using <C>use</C> directives
+              </Translate>
+            </li>
+            <li>
+              <SS>{_('columnName: ')}</SS>
+              <Translate>The field name within the model</Translate>
+            </li>
+            <li>
+              <SS>{_('DataType: ')}</SS>
+              <Translate>
+                Built-in types (String, Number, Boolean, Date) or custom
+                types/enums
+              </Translate>
+            </li>
+            <li>
+              <SS>{_('@attribute: ')}</SS>
+              <Translate>
+                Attributes for validation, relationships, UI, etc.
+              </Translate>
+            </li>
+          </ul>
+
+          <H2>{_('Merging Behavior')}</H2>
+
+          <P>
+            <Translate>
+              By default, when importing schemas with use directives,
+              models with the same name are automatically merged. The !
+              suffix prevents this behavior:
+            </Translate>
+          </P>
+          <Code
+            copy
+            language="typescript"
+            className="bg-black text-white px-mb-20"
+          >
+            {modelsExamples[1]}
+          </Code>
+
+          <H2>{_('Example')}</H2>
+          <Code
+            copy
+            language="typescript"
+            className="bg-black text-white px-mb-20"
+          >
+            {modelsExamples[2]}
+          </Code>
+        </section>
       </section>
-    </section>
+    </>
   )
 }

@@ -4,17 +4,24 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const typeSafetyExample = `import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
+//code examples
+//----------------------------------------------------------------------
+
+const typeSafetyExample =
+  `import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
 
 const schema: SchemaConfig = parse(code);
-`;
+`
 
-const errorHandlingExample = `import { parse, Exception } from '@stackpress/idea-parser';
+//----------------------------------------------------------------------
+
+const errorHandlingExample =
+  `import { parse, Exception } from '@stackpress/idea-parser';
 
 try {
   const result = parse(schemaCode);
@@ -27,9 +34,12 @@ try {
     console.error('Unexpected error:', error);
     // Handle other errors
   }
-}`;
+}`
 
-const schemaStructureExample = `// Good: Proper model structure
+//----------------------------------------------------------------------
+
+const schemaStructureExample =
+  `// Good: Proper model structure
 model User {
   id String @id
   name String
@@ -38,15 +48,20 @@ model User {
 // Bad: Missing required properties
 model User {
   // Missing columns - will throw error
-}`;
+}`
 
-const namingExample = `// Good
+//----------------------------------------------------------------------
+
+const namingExample =
+  `// Good
 enum UserStatus { ACTIVE "Active" SUSPENDED "Suspended" }
 prop EmailInput { type "email" format "email" }
 
 // Less clear
 enum Status { A "Active" S "Suspended" }
-prop Input { type "email" }`;
+prop Input { type "email" }`
+
+//----------------------------------------------------------------------
 
 const errorExamples = {
   invalidSchema: 'Error: "Invalid Schema"',
@@ -54,6 +69,8 @@ const errorExamples = {
   duplicateName: 'Error: "Duplicate [name]"',
   unknownReference: 'Error: "Unknown reference [name]"'
 };
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -93,6 +110,7 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
@@ -105,7 +123,10 @@ export function Body() {
         </Translate>
       </P>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
 
+      {/* Type Safety Section Content */}
       <section>
         <H2>{_('1. Use Type Safety')}</H2>
         <P>
@@ -123,6 +144,10 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Error Handling Section Content */}
       <section>
         <H2>{_('2. Handle Errors Gracefully')}</H2>
         <P>
@@ -139,6 +164,10 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Choose the Right Function Section Content */}
       <section>
         <H2>{_('3. Choose the Right Function')}</H2>
         <li className='my-2'>
@@ -155,6 +184,10 @@ export function Body() {
         </li>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Validate Schema Structure Section Content */}
       <section>
         <H2>{_('4. Validate Schema Structure')}</H2>
         <P>
@@ -167,6 +200,10 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Use Meaningful Names Section Content */}
       <section>
         <H2>{_('5. Use Meaningful Names')}</H2>
         <P>
@@ -183,8 +220,12 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10 ' />
+
+      {/* Error Examples Section Content */}
       <section>
-        <H2>{_('Error Handling')}</H2>
+        <H1>{_('Error Handling')}</H1>
         <P><Translate>Common errors and their solutions:</Translate></P>
 
         <H2>{_('Invalid Schema Structure')}</H2>
@@ -196,7 +237,7 @@ export function Body() {
           {errorExamples.invalidSchema}
         </Code>
         <li className='my-2 list-none'>
-          <SS>Solution:</SS>
+          <SS>Solution: </SS>
           <Translate>
             Ensure your schema follows the correct syntax and structure.
           </Translate>
@@ -211,7 +252,7 @@ export function Body() {
           {errorExamples.missingColumns}
         </Code>
         <li className='my-2 list-none'>
-          <SS>Solution:</SS>
+          <SS>Solution: </SS>
           <Translate>
             Models and types must have a columns definition.
           </Translate>
@@ -226,7 +267,7 @@ export function Body() {
           {errorExamples.duplicateName}
         </Code>
         <li className='my-2 list-none'>
-          <SS>Solution:</SS>
+          <SS>Solution: </SS>
           <Translate>
             Each declaration name must be unique within the schema.
           </Translate>
@@ -241,25 +282,25 @@ export function Body() {
           {errorExamples.unknownReference}
         </Code>
         <li className='my-2 list-none'>
-          <SS>Solution:</SS>
+          <SS>Solution: </SS>
           <Translate>
             Ensure all referenced props and types are defined before use.
           </Translate>
         </li>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Examples'),
-            href: '/docs/parser/examples'
-          }}
-          next={{
-            text: _('Transformers'),
-            href: '/docs/transformers/introduction'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Examples'),
+          href: '/docs/parser/examples'
+        }}
+        next={{
+          text: _('Transformers'),
+          href: '/docs/transformers/introduction'
+        }}
+      />
+
     </main>
   );
 }

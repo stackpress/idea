@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const corePluginExample = `export default async function generateTestData(
+//code examples
+//----------------------------------------------------------------------
+
+const corePluginExample = 
+`export default async function generateTestData(
   props: PluginProps<{ config: TestDataConfig }>
 ) {
   const { config, schema, transformer } = props;
@@ -47,9 +53,12 @@ const corePluginExample = `export default async function generateTestData(
     console.error('❌ Test data generation failed:', error.message);
     throw error;
   }
-}`;
+}`
 
-const headerAndImportsExample = `function generateFileHeader(config: TestDataConfig): string {
+//----------------------------------------------------------------------
+
+const headerAndImportsExample = 
+`function generateFileHeader(config: TestDataConfig): string {
   const timestamp = new Date().toISOString();
   return \`/**
  * Generated Test Data and Fixtures
@@ -80,14 +89,19 @@ function generateImports(config: TestDataConfig): string {
   }
   
   return imports;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function CorePluginFunction() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="implementation">
-      <H2>{_('4. Implementation')}</H2>
+    <>
+      {/* Implementation Section Content */}
+      <section id="implementation">
+      <H1>{_('4. Implementation')}</H1>
       <P>
         <Translate>
           The implementation section covers the core plugin function and 
@@ -97,7 +111,7 @@ export default function CorePluginFunction() {
         </Translate>
       </P>
 
-      <H3>{_('4.1. Core Plugin Function')}</H3>
+      <H2>{_('4.1. Core Plugin Function')}</H2>
       <P>
         <Translate>
           The core plugin function serves as the main entry point for test 
@@ -110,7 +124,7 @@ export default function CorePluginFunction() {
         {corePluginExample}
       </Code>
 
-      <H3>{_('4.2. Generation Functions')}</H3>
+      <H2>{_('4.2. Generation Functions')}</H2>
       <P>
         <Translate>
           The generation functions provide the core logic for creating 
@@ -122,6 +136,7 @@ export default function CorePluginFunction() {
       <Code copy language='typescript' className='bg-black text-white mb-5'>
         {headerAndImportsExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

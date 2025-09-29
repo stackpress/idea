@@ -4,11 +4,13 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
+//processing flow diagram example
+//----------------------------------------------------------------------
 
 const processingFlowDiagram = `
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -34,6 +36,8 @@ const processingFlowDiagram = `
                                               │                 │
                                               └─────────────────┘
 `
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -73,10 +77,12 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Processing Flow Content */}
       <section>
         <H1>{_('Processing Flow')}</H1>
         <P>
@@ -85,9 +91,7 @@ export function Body() {
             processing flow:
           </Translate>
         </P>
-      </section>
 
-      <section>
         <Code
           copy
           language="text"
@@ -132,18 +136,17 @@ export function Body() {
         </ol>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Schema Directives'),
-            href: '/docs/specifications/schema-directives'
-          }}
-          next={{
-            text: _('Plugin System'),
-            href: '/docs/specifications/plugin-system'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Schema Directives'),
+          href: '/docs/specifications/schema-directives'
+        }}
+        next={{
+          text: _('Plugin System'),
+          href: '/docs/specifications/plugin-system'
+        }}
+      />
     </main>
   );
 }

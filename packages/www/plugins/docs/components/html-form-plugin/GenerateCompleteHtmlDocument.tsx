@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const htmlGenerationExample = `function generateHTML(schema: any, options: any): string {
+//code examples
+//----------------------------------------------------------------------
+
+const htmlGenerationExample = 
+`function generateHTML(schema: any, options: any): string {
   let html = generateHTMLHeader(options);
 
   // Generate forms for each model
@@ -136,14 +142,19 @@ function generateJavaScript(options: any): string {
   js += '  </script>\\n';
 
   return js;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function GenerateCompleteHtmlDocument() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="generate-complete-html-document">
-      <H2>{_('7. Generate Complete HTML Document')}</H2>
+    <>
+      {/* Generate Complete HTML Document Section Content */}
+      <section id="generate-complete-html-document">
+      <H1>{_('7. Generate Complete HTML Document')}</H1>
       <P>
         <Translate>
           Generating a complete HTML document involves combining all 
@@ -161,6 +172,7 @@ export default function GenerateCompleteHtmlDocument() {
       <Code copy language='typescript' className='bg-black text-white'>
         {htmlGenerationExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

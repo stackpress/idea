@@ -1,12 +1,19 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C, Code } from '../index.js';
+//local
+import { H1, H2, P, C, Code } from '../index.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const typeNameValidation = 
 `function validateTypeName(name: string): void {
   if (!/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(name)) {
     throw new Error(\`Invalid TypeScript identifier: \${name}\`);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const circularReferenceDetection = 
 `function detectCircularReferences(
@@ -37,7 +44,9 @@ const circularReferenceDetection =
   }
   
   return cycles;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const dependencyValidation = 
 `function validateTypeDependencies(
@@ -50,7 +59,9 @@ const dependencyValidation =
   ]);
   
   // Validate all type references...
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const verboseLogging = 
 `const VERBOSE = process.env.TS_PLUGIN_VERBOSE === 'true';
@@ -59,7 +70,9 @@ function verboseLog(message: string, data?: any) {
   if (VERBOSE) {
     console.log(\`[TypeScript Plugin] \${message}\`, data || '');
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const typeScriptValidation = 
 `import { transpile, ScriptTarget } from 'typescript';
@@ -74,15 +87,19 @@ function validateGeneratedTypeScript(content: string): void {
   } catch (error) {
     throw new Error(\`Invalid TypeScript: \${error.message}\`);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function Troubleshooting() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <main>
+    <>
+      {/* Troubleshooting Section Content */}
       <section id="troubleshooting">
-        <H2>{_('Troubleshooting')}</H2>
+        <H1>{_('9. Troubleshooting')}</H1>
         <P>
           <Translate>
             This section addresses common issues encountered when generating 
@@ -93,8 +110,9 @@ export default function Troubleshooting() {
         </P>
       </section>
 
+      {/* Common Issues Section Content */}
       <section>
-        <H3>{_('Common Issues')}</H3>
+        <H2>{_('Common Issues')}</H2>
         <P>
           <Translate>
             Common issues include invalid TypeScript identifiers, circular 
@@ -106,7 +124,7 @@ export default function Troubleshooting() {
         </P>
 
         <section>
-          <H3>{_('Invalid TypeScript Names')}</H3>
+          <H2>{_('Invalid TypeScript Names')}</H2>
           <P>
             <Translate>
               Invalid TypeScript names occur when schema identifiers contain 
@@ -120,8 +138,9 @@ export default function Troubleshooting() {
           </Code>
         </section>
 
+        {/* Circular Type References Section Content */}
         <section>
-          <H3>{_('Circular Type References')}</H3>
+          <H2>{_('Circular Type References')}</H2>
           <P>
             <Translate>
               Circular type references can cause infinite loops during 
@@ -135,8 +154,9 @@ export default function Troubleshooting() {
           </Code>
         </section>
 
+        {/* Missing Type Dependencies Section Content */}
         <section>
-          <H3>{_('Missing Type Dependencies')}</H3>
+          <H2>{_('Missing Type Dependencies')}</H2>
           <P>
             <Translate>
               Missing type dependencies occur when a type references another 
@@ -151,8 +171,9 @@ export default function Troubleshooting() {
         </section>
       </section>
 
+      {/* Debugging Tips Section Content */}
       <section>
-        <H3>{_('Debugging Tips')}</H3>
+        <H2>{_('Debugging Tips')}</H2>
         <P>
           <Translate>
             Debugging tips help identify and resolve issues during TypeScript 
@@ -162,8 +183,9 @@ export default function Troubleshooting() {
           </Translate>
         </P>
 
+        {/* Enable Verbose Output Section Content */}
         <section>
-          <H3>{_('Enable Verbose Output')}</H3>
+          <H2>{_('Enable Verbose Output')}</H2>
           <P>
             <Translate>
               Verbose output provides detailed logging during the generation 
@@ -176,8 +198,9 @@ export default function Troubleshooting() {
           </Code>
         </section>
 
+        {/* Validate Generated TypeScript Section Content */}
         <section>
-          <H3>{_('Validate Generated TypeScript')}</H3>
+          <H2>{_('Validate Generated TypeScript')}</H2>
           <P>
             <Translate>
               Validating generated TypeScript ensures that the output is 
@@ -192,6 +215,7 @@ export default function Troubleshooting() {
         </section>
       </section>
 
+      {/* Conclusion Section Content */}
       <section>
         <P>
           <Translate>
@@ -202,6 +226,6 @@ export default function Troubleshooting() {
           </Translate>
         </P>
       </section>
-    </main>
+    </>
   );
 }

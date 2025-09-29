@@ -4,13 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const schemaPluginDefinitionExample = [
-  `// schema.idea
+//code examples
+//----------------------------------------------------------------------
+
+const schemaPluginDefinitionExample = 
+`// schema.idea
 plugin "./plugins/my-plugin.js" {
   output "./generated/output.ts"
   format "typescript"
@@ -19,10 +22,11 @@ plugin "./plugins/my-plugin.js" {
     comments true
   }
 }`
-];
 
-const pluginConfigurationAccessExample = [
-  `export default async function myPlugin(props: PluginProps<{}>) {
+//----------------------------------------------------------------------
+
+const pluginConfigurationAccessExample =
+`export default async function myPlugin(props: PluginProps<{}>) {
   const { config } = props;
   
   // Access top-level config
@@ -43,7 +47,8 @@ const pluginConfigurationAccessExample = [
     // Add comments to generated code
   }
 }`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -83,6 +88,7 @@ export function Body() {
   
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Plugin Configuration Section Content */}
       <section>
         <H1>{_('Plugin Configuration')}</H1>
         <P>
@@ -95,7 +101,8 @@ export function Body() {
           </Translate>
         </P>
       </section>
-
+      
+      {/* Schema Plugin Definition Section */}
       <section>
         <H2>{_('3.1. Schema Plugin Definition')}</H2>
         <P>
@@ -109,10 +116,11 @@ export function Body() {
         </P>
 
         <Code copy language='idea' className='bg-black text-white'>
-          {schemaPluginDefinitionExample[0]}
+          {schemaPluginDefinitionExample}
         </Code>
       </section>
 
+      {/* Plugin Configuration Access Section */}
       <section>
         <H2>{_('3.2. Plugin Configuration Access')}</H2>
         <P>
@@ -126,10 +134,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {pluginConfigurationAccessExample[0]}
+          {pluginConfigurationAccessExample}
         </Code>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{ 
           text: _('Plugin Examples'), 

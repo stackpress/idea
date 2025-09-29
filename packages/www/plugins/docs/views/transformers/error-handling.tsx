@@ -4,12 +4,15 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const errorHandlingExample = [
+//code example
+//----------------------------------------------------------------------
+
+const errorHandlingExample =
   `import { Exception } from '@stackpress/idea-parser';
 
 try {
@@ -23,8 +26,8 @@ try {
     console.error('Unexpected error:', error);
   }
 }`
-];
 
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -60,8 +63,10 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 export function Body() {
   //hooks
   const { _ } = useLanguage();
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Error Handling Section Content */}
       <section>
         <H1>{_('Error Handling')}</H1>
         <P>
@@ -81,22 +86,21 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {errorHandlingExample[0]}
+          {errorHandlingExample}
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Examples'),
-            href: '/docs/transformers/examples'
-          }}
-          next={{
-            text: _('Best Practices'),
-            href: '/docs/transformers/best-practices'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Examples'),
+          href: '/docs/transformers/examples'
+        }}
+        next={{
+          text: _('Best Practices'),
+          href: '/docs/transformers/best-practices'
+        }}
+      />
     </main>
   );
 }

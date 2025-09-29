@@ -115,30 +115,39 @@ export function Body() {
   const { _ } = useLanguage();
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Examples Section Content */}
       <section>
         <H1>{_('Examples')}</H1>
         <P>
           <Translate>
             This section provides practical examples of using the
-            idea-transformer library for common code generation tasks. These
-            examples demonstrate real-world usage patterns and best practices.
+            idea-transformer library for common code generation tasks.
+            These examples demonstrate real-world usage patterns and
+            best practices.
           </Translate>
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* TypeScript Interface Generation Section Content */}
       <section>
         <H2>{_('TypeScript Interface Generation')}</H2>
         <P>
           <Translate>
-            This example shows how to create a plugin that generates TypeScript
-            interfaces from schema models. The example includes both the schema
-            definition and the plugin implementation.
+            This example shows how to create a plugin that generates
+            TypeScript interfaces from schema models. The example
+            includes both the schema definition and the plugin implementation.
           </Translate>
         </P>
       </section>
-      
-      <section>
 
+       {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Schema Definition Section Content */}
+      <section>
         <H2>{_('Schema Definition')}</H2>
         <Code copy language='idea' className='bg-black text-white'>
           {schemaExample[0]}
@@ -150,6 +159,10 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* CLI Integration Section Content */}
       <section>
         <H2>{_('CLI Integration')}</H2>
         <P>
@@ -164,18 +177,18 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Common Use Cases'),
-            href: '/docs/transformers/common-use-cases'
-          }}
-          next={{
-            text: _('Error Handling'),
-            href: '/docs/transformers/error-handling'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Common Use Cases'),
+          href: '/docs/transformers/common-use-cases'
+        }}
+        next={{
+          text: _('Error Handling'),
+          href: '/docs/transformers/error-handling'
+        }}
+      />
+
     </main>
   );
 }

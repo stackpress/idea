@@ -1,5 +1,10 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C, Code } from '../index.js';
+//local
+import { H1, H2, H3, P, C, Code } from '../index.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const corePluginFunctionExample =
   `export default async function generateTypeScriptInterfaces(
@@ -57,7 +62,9 @@ const corePluginFunctionExample =
     );
     throw error;
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const typeMappingFunctionsExample =
   `function mapSchemaTypeToTypeScript(
@@ -109,7 +116,9 @@ function formatPropertyType(
   }
   
   return type;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const generationFunctionsExample =
   `function generateFileHeader(): string {
@@ -211,7 +220,9 @@ function generateInterfaces(
   }
   
   return content;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const validationFunctionsExample =
   `function validateConfig(config: any): asserts config is TypeScriptConfig {
@@ -232,14 +243,19 @@ const validationFunctionsExample =
       !['enum', 'union', 'const'].includes(config.enumType)) {
     throw new Error('enumType must be one of: enum, union, const');
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function Implementation() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="implementation">
-      <H2>{_('Implementation')}</H2>
+    <>
+      {/* Implementation Section Content */}
+      <section id="implementation">
+      <H1>{_('4. Implementation')}</H1>
       <P>
         <Translate>
           The implementation section covers the core plugin function and
@@ -249,7 +265,7 @@ export default function Implementation() {
         </Translate>
       </P>
 
-      <H3>{_('Core Plugin Function')}</H3>
+      <H2>{_('Core Plugin Function')}</H2>
       <P>
         <Translate>
           The core plugin function serves as the main entry point for
@@ -262,7 +278,7 @@ export default function Implementation() {
         {corePluginFunctionExample}
       </Code>
 
-      <H3>{_('Type Mapping Functions')}</H3>
+      <H2>{_('Type Mapping Functions')}</H2>
       <P>
         <Translate>
           Type mapping functions handle the conversion of <C>.idea</C> schema
@@ -275,7 +291,7 @@ export default function Implementation() {
         {typeMappingFunctionsExample}
       </Code>
 
-      <H3>{_('Generation Functions')}</H3>
+      <H2>{_('Generation Functions')}</H2>
       <P>
         <Translate>
           Generation functions create specific parts of the TypeScript output
@@ -288,7 +304,7 @@ export default function Implementation() {
         {generationFunctionsExample}
       </Code>
 
-      <H3>{_('Validation Functions')}</H3>
+      <H2>{_('Validation Functions')}</H2>
       <P>
         <Translate>
           Validation functions ensure that the plugin configuration is correct
@@ -300,6 +316,7 @@ export default function Implementation() {
       <Code lang='typescript'>
         {validationFunctionsExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

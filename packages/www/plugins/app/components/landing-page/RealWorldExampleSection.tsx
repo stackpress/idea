@@ -1,7 +1,12 @@
+//modules
 import Code from 'frui/format/Code';
 import { Translate, useLanguage } from 'r22n';
 
-const exampleSchema = `enum UserRole {
+//code example
+//----------------------------------------------------------------------
+
+const exampleSchema =
+  `enum UserRole {
   ADMIN "Administrator"
   CUSTOMER "Customer"
   VENDOR "Vendor"
@@ -63,84 +68,90 @@ plugin "./plugins/api-generator.js" {
   includeValidation true
 }`;
 
+//----------------------------------------------------------------------
+
 export default function RealWorldExampleSection() {
+  //hooks
   const { _ } = useLanguage();
-  
+
   return (
-    <section className="max-w-6xl mx-auto px-4 py-20 rounded-lg">
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
-        <div className="flex-1 w-full">
-          <h2 className="text-3xl font-bold mb-4">
-            {_('Real-World Example')}
-          </h2>
-          
-          <p className="text-lg mb-6">
-            <Translate>
-              See how a simple e‑commerce schema can generate a full-stack 
-              application:
-            </Translate>
-          </p>
-          
-          <div className="theme-bg-bg1 rounded-lg shadow-lg p-6">
-            <Code language='javascript'>
-              {exampleSchema}
-            </Code>
+    <>
+      {/* Real-World Example Section Content */}
+      <section className="max-w-6xl mx-auto px-4 py-20 rounded-lg">
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="flex-1 w-full">
+            <h2 className="text-3xl font-bold mb-4">
+              {_('Real-World Example')}
+            </h2>
+
+            <p className="text-lg mb-6">
+              <Translate>
+                See how a simple e‑commerce schema can generate a full-stack
+                application:
+              </Translate>
+            </p>
+
+            <div className="theme-bg-bg1 rounded-lg shadow-lg p-6">
+              <Code language='javascript'>
+                {exampleSchema}
+              </Code>
+            </div>
           </div>
-        </div>
-        
-        <div className="w-full lg:w-5/12">
-          <div className="bg-yellow-50 rounded-lg border border-yellow-200 
+
+          <div className="w-full lg:w-5/12">
+            <div className="bg-yellow-50 rounded-lg border border-yellow-200 
             p-6">
-            <h3 className="font-bold mb-4 text-yellow-800 text-lg">
-              {_('From this single schema, generate:')}
-            </h3>
-            
-            <ul className="text-base space-y-2 pl-5 list-disc text-gray-700">
-              <li>
-                <Translate>
-                  TypeScript interfaces and types
-                </Translate>
-              </li>
-              <li>
-                <Translate>
-                  PostgreSQL database schema
-                </Translate>
-              </li>
-              <li>
-                <Translate>
-                  React form components with Tailwind CSS
-                </Translate>
-              </li>
-              <li>
-                <Translate>
-                  Express.js API routes with validation
-                </Translate>
-              </li>
-              <li>
-                <Translate>
-                  OpenAPI documentation
-                </Translate>
-              </li>
-              <li>
-                <Translate>
-                  Test data and fixtures
-                </Translate>
-              </li>
-              <li>
-                <Translate>
-                  Database migration files
-                </Translate>
-              </li>
-              <li>
-                <Translate>
-                  Validation schemas (Zod, Joi, etc.)
-                </Translate>
-              </li>
-            </ul>
+              <h3 className="font-bold mb-4 text-yellow-800 text-lg">
+                {_('From this single schema, generate:')}
+              </h3>
+
+              <ul className="text-base space-y-2 pl-5 list-disc text-gray-700">
+                <li>
+                  <Translate>
+                    TypeScript interfaces and types
+                  </Translate>
+                </li>
+                <li>
+                  <Translate>
+                    PostgreSQL database schema
+                  </Translate>
+                </li>
+                <li>
+                  <Translate>
+                    React form components with Tailwind CSS
+                  </Translate>
+                </li>
+                <li>
+                  <Translate>
+                    Express.js API routes with validation
+                  </Translate>
+                </li>
+                <li>
+                  <Translate>
+                    OpenAPI documentation
+                  </Translate>
+                </li>
+                <li>
+                  <Translate>
+                    Test data and fixtures
+                  </Translate>
+                </li>
+                <li>
+                  <Translate>
+                    Database migration files
+                  </Translate>
+                </li>
+                <li>
+                  <Translate>
+                    Validation schemas (Zod, Joi, etc.)
+                  </Translate>
+                </li>
+              </ul>
+            </div>
           </div>
+
         </div>
-        
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

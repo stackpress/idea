@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const typeSafety = `// Always use generated types
+//code examples
+//----------------------------------------------------------------------
+
+const typeSafety = 
+`// Always use generated types
 interface UserWithPosts extends User {
   posts: Post[];
 }
@@ -16,9 +22,12 @@ function handleUserResponse(response: APIResponse<User>) {
     // TypeScript knows response.error exists
     console.error(response.error);
   }
-}`;
+}`
 
-const errorHandlingPattern = `// Centralized error handling
+//----------------------------------------------------------------------
+
+const errorHandlingPattern = 
+`// Centralized error handling
 class APIErrorHandler {
   static handle(response: APIResponse<any>) {
     if (!response.success) {
@@ -37,9 +46,12 @@ class APIErrorHandler {
 
 // Usage
 const response = await client.user.create(userData);
-APIErrorHandler.handle(response);`;
+APIErrorHandler.handle(response);`
 
-const clientExtension = `// Extend base client for custom behavior
+//----------------------------------------------------------------------
+
+const clientExtension = 
+`// Extend base client for custom behavior
 class CustomAPIClient extends APIClient {
   constructor(baseUrl?: string) {
     super(baseUrl);
@@ -54,9 +66,12 @@ class CustomAPIClient extends APIClient {
       return originalRequest.call(this, method, url, data, options);
     };
   }
-}`;
+}`
 
-const cachingPattern = `// Simple in-memory cache
+//----------------------------------------------------------------------
+
+const cachingPattern = 
+`// Simple in-memory cache
 class CachedAPIClient extends APIClient {
   private cache = new Map<string, { data: any; timestamp: number }>();
   private cacheTimeout = 5 * 60 * 1000; // 5 minutes
@@ -79,14 +94,19 @@ class CachedAPIClient extends APIClient {
     
     return response;
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function BestPractices() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="8-best-practices">
-      <H2>{_('8. Best Practices')}</H2>
+    <>
+      {/* Best Practices Section Content */}
+      <section id="best-practices">
+      <H1>{_('8. Best Practices')}</H1>
       <P>
         <Translate>
           Following best practices ensures your API client is maintainable,
@@ -96,7 +116,7 @@ export default function BestPractices() {
         </Translate>
       </P>
 
-      <H3>{_('8.1. Type Safety')}</H3>
+      <H2>{_('8.1. Type Safety')}</H2>
       <P>
         <Translate>
           Leverage TypeScript's type system to catch errors at compile time
@@ -108,7 +128,7 @@ export default function BestPractices() {
         {typeSafety}
       </Code>
 
-      <H3>{_('8.2. Error Handling')}</H3>
+      <H2>{_('8.2. Error Handling')}</H2>
       <P>
         <Translate>
           Implement consistent error handling patterns across your
@@ -120,7 +140,7 @@ export default function BestPractices() {
         {errorHandlingPattern}
       </Code>
 
-      <H3>{_('8.3. Client Extension')}</H3>
+      <H2>{_('8.3. Client Extension')}</H2>
       <P>
         <Translate>
           Extend the generated client for custom functionality while
@@ -132,7 +152,7 @@ export default function BestPractices() {
         {clientExtension}
       </Code>
 
-      <H3>{_('8.4. Caching Strategies')}</H3>
+      <H2>{_('8.4. Caching Strategies')}</H2>
       <P>
         <Translate>
           Implement appropriate caching strategies to improve performance and
@@ -143,6 +163,7 @@ export default function BestPractices() {
       <Code copy language='typescript' className='bg-black text-white'>
         {cachingPattern}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

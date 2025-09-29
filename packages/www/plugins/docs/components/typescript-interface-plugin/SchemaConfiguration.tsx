@@ -1,10 +1,15 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
-import { H2, H3, P, C } from '../index.js';
+//local
+import { H1, H2, P, C } from '../index.js';
 import Code from '../Code.js';
 
+//code examples
+//----------------------------------------------------------------------
 
-const basicConfigurationExample = `plugin "./plugins/typescript-interfaces.js" {
+const basicConfigurationExample = 
+`plugin "./plugins/typescript-interfaces.js" {
   output "./generated/types.ts"
   namespace "MyApp"
   exportType "named"
@@ -13,7 +18,9 @@ const basicConfigurationExample = `plugin "./plugins/typescript-interfaces.js" {
   strictNullChecks true
   generateEnums true
   enumType "enum"
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 const configurationTableData = [
   {
@@ -67,11 +74,14 @@ const configurationTableData = [
 ];
 
 export default function SchemaConfiguration() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="schema-configuration">
-      <H2>{_('Schema Configuration')}</H2>
+    <>
+      {/* Schema Configuration Section Content */}
+      <section id="schema-configuration">
+      <H1>{_('5. Schema Configuration')}</H1>
       <P>
         <Translate>
           Schema configuration demonstrates how to integrate the TypeScript
@@ -92,7 +102,7 @@ export default function SchemaConfiguration() {
         {basicConfigurationExample}
       </Code>
 
-      <H3>{_('Configuration Options')}</H3>
+      <H2>{_('Configuration Options')}</H2>
       <P>
         <Translate>
           Configuration options control how TypeScript interfaces are
@@ -126,6 +136,7 @@ export default function SchemaConfiguration() {
           </Trow>
         ))}
       </Table>
-    </section>
+      </section>
+    </>
   );
 }

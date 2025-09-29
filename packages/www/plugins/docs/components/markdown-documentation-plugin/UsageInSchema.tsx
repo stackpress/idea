@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const schemaUsageExample = `// schema.idea
+//code examples
+//----------------------------------------------------------------------
+
+const schemaUsageExample = 
+`// schema.idea
 plugin "./plugins/markdown-docs-plugin.js" {
   output "./docs/schema.md"
   title "My Application Schema"
@@ -27,14 +33,19 @@ enum UserRole {
   ADMIN "Administrator"
   USER "Regular User"
   GUEST "Guest User"
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UsageInSchema() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="usage-in-schema">
-      <H2>{_('Usage in Schema')}</H2>
+    <>
+      {/* Usage in Schema Section Content */}
+      <section id="usage-in-schema">
+      <H1>{_('9. Usage in Schema')}</H1>
       <P>
         <Translate>
           To use this plugin in your schema file:
@@ -43,6 +54,7 @@ export default function UsageInSchema() {
       <Code copy language='idea' className='bg-black text-white'>
         {schemaUsageExample}
       </Code>
-    </section>
+      </section>
+    </>
   )
 }

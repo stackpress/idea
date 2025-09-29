@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const configurationExample = `// schema.idea
+//code examples
+//----------------------------------------------------------------------
+
+const configurationExample = 
+`// schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec.json"
   info {
@@ -92,15 +98,19 @@ plugin "./plugins/openapi-spec.js" {
       }
     }
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function ConfigurationOptions() {
   //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="configuration-options">
-      <H2>{_('3. Configuration Options')}</H2>
+    <>
+      {/* Configuration Options Section Content */}
+      <section id="configuration-options">
+      <H1>{_('3. Configuration Options')}</H1>
       <P>
         <Translate>
           Configuration options control how the OpenAPI specification
@@ -113,6 +123,7 @@ export default function ConfigurationOptions() {
       <Code copy language='idea' className='bg-black text-white'>
         {configurationExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

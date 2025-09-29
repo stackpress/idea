@@ -1,14 +1,16 @@
 import Button from 'frui/form/Button';
 import Code from 'frui/format/Code';
 import { Bounce, toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
 import { Translate, useLanguage } from 'r22n';
 
-const installCommand = [
-  `npm i -D @stackpress/idea`
-];
+//code examples
+//----------------------------------------------------------------------
 
-const schemaExample = [
+const installCommand = `npm i -D @stackpress/idea`
+
+//----------------------------------------------------------------------
+
+const schemaExample =
   `model User {
   id String @id @default("nanoid()")
   name String @required
@@ -19,14 +21,14 @@ const schemaExample = [
 plugin "./plugins/typescript-generator.js" {
   output "./generated/types.ts"
 }`
-];
 
-const transformCommand = [
-  `npx idea transform --input schema.idea`
-];
+//----------------------------------------------------------------------
+
+const transformCommand = `npx idea transform --input schema.idea`;
+
+//----------------------------------------------------------------------
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const { _ } = useLanguage();
 
   const notify = () => toast.success('Copied to clipboard!', {
@@ -41,18 +43,14 @@ export default function HeroSection() {
     transition: Bounce,
   });
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
-    <main>
+    <>
+      {/* Hero Content */}
       <section
-        className="theme-bg-bg0 max-w-6xl mx-auto px-4 py-45 text-center"
+        className="max-w-6xl mx-auto px-4 py-45 text-center
+        relative z-10"
       >
-        <div className={`max-w-4xl mx-auto transition-all duration-1000 
-            ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-
+        <div>
           <div className="mb-8">
             <div className="mb-4 animate-pulse text-9xl">
               <i className="fa-solid fa-lightbulb text-yellow-500"></i>
@@ -122,6 +120,7 @@ export default function HeroSection() {
         </div>
       </section>
 
+      {/* Steps Section */}
       <section className="mx-auto max-w-6xl px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-5xl font-bold theme-color-text mb-4">
@@ -148,7 +147,7 @@ export default function HeroSection() {
               </h3>
             </div>
             <Code copy onCopy={notify} language="bash">
-              {installCommand[0]}
+              {installCommand}
             </Code>
           </div>
 
@@ -172,7 +171,7 @@ export default function HeroSection() {
               language="idea"
               className="text-base"
             >
-              {schemaExample[0]}
+              {schemaExample}
             </Code>
           </div>
 
@@ -195,7 +194,7 @@ export default function HeroSection() {
               onCopy={notify}
               language="bash"
             >
-              {transformCommand[0]}
+              {transformCommand}
             </Code>
           </div>
 
@@ -224,6 +223,6 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   )
 }

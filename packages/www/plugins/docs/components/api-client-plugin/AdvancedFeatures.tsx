@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const authenticationStrategies = `// Bearer token authentication
+//code examples
+//----------------------------------------------------------------------
+
+const authenticationStrategies = 
+`// Bearer token authentication
 authentication: {
   type: "bearer",
   headerName: "Authorization"
@@ -24,9 +30,12 @@ authentication: {
 authentication: {
   type: "custom",
   headerName: "X-Custom-Auth"
-}`;
+}`
 
-const errorHandlingStrategies = `// Return errors in response (default)
+//----------------------------------------------------------------------
+
+const errorHandlingStrategies = 
+`// Return errors in response (default)
 errorHandling: "return"
 const response = await client.user.getById('123');
 if (!response.success) {
@@ -45,32 +54,42 @@ try {
 errorHandling: "callback"
 const response = await client.user.getById('123', {
   onError: (error) => console.error(error)
-});`;
+});`
 
-const requestCancellation = `// Using AbortController for request cancellation
+//----------------------------------------------------------------------
+
+const requestCancellation = 
+`// Using AbortController for request cancellation
 const controller = new AbortController();
 
 const response = await client.user.getAll({}, {
   signal: controller.signal
 });
+ 
+controller.abort();`
 
-// Cancel the request
-controller.abort();`;
+//----------------------------------------------------------------------
 
-const customHeaders = `// Add custom headers to requests
+const customHeaders = 
+`// Add custom headers to requests
 const response = await client.user.getById('123', {
   headers: {
     'X-Custom-Header': 'value',
     'Accept-Language': 'en-US'
   }
-});`;
+});`
+
+//----------------------------------------------------------------------
 
 export default function AdvancedFeatures() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="7-advanced-features">
-      <H2>{_('7. Advanced Features')}</H2>
+    <>
+      {/* Advanced Features Section Content */}
+      <section id="advanced-features">
+      <H1>{_('7. Advanced Features')}</H1>
       <P>
         <Translate>
           Advanced features extend the basic API client functionality with
@@ -81,12 +100,12 @@ export default function AdvancedFeatures() {
         </Translate>
       </P>
 
-      <H3>{_('7.1. Authentication Strategies')}</H3>
+      <H2>{_('7.1. Authentication Strategies')}</H2>
       <Code copy language='typescript' className='bg-black text-white'>
         {authenticationStrategies}
       </Code>
 
-      <H3>{_('7.2. Error Handling Strategies')}</H3>
+      <H2>{_('7.2. Error Handling Strategies')}</H2>
       <P>
         <Translate>
           Error handling strategies determine how the API client responds to
@@ -100,7 +119,7 @@ export default function AdvancedFeatures() {
         {errorHandlingStrategies}
       </Code>
 
-      <H3>{_('7.3. Request Cancellation')}</H3>
+      <H2>{_('7.3. Request Cancellation')}</H2>
       <P>
         <Translate>
           Request cancellation allows you to abort ongoing API requests when
@@ -114,7 +133,7 @@ export default function AdvancedFeatures() {
         {requestCancellation}
       </Code>
 
-      <H3>{_('7.4. Custom Headers')}</H3>
+      <H2>{_('7.4. Custom Headers')}</H2>
       <P>
         <Translate>
           Custom headers allow you to add additional metadata to requests,
@@ -126,6 +145,7 @@ export default function AdvancedFeatures() {
       <Code copy language='typescript' className='bg-black text-white'>
         {customHeaders}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

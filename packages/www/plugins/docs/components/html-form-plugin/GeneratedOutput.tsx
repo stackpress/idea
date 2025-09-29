@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const generatedOutputExample = `<!DOCTYPE html>
+//code examples
+//----------------------------------------------------------------------
+
+const generatedOutputExample = 
+`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -116,14 +122,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 </body>
-</html>`;
+</html>`
+
+//----------------------------------------------------------------------
 
 export default function GeneratedOutput() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="generated-output">
-      <H2>{_('9. Generated Output')}</H2>
+    <>
+      {/* Generated Output Section Content */}
+      <section id="generated-output">
+      <H1>{_('9. Generated Output')}</H1>
       <P>
         <Translate>
           The generated output section shows examples of the HTML code 
@@ -140,6 +151,7 @@ export default function GeneratedOutput() {
       <Code copy language='html' className='bg-black text-white'>
         {generatedOutputExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

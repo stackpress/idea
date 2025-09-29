@@ -4,11 +4,14 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+
+//code examples
+//----------------------------------------------------------------------
 
 const pluginDeclaration = [
   `plugin "./path/to/plugin.js" {
@@ -19,6 +22,9 @@ const pluginDeclaration = [
     comments true
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
 
 export default async function myPlugin(props: PluginProps<{}>) {
@@ -32,6 +38,8 @@ export default async function myPlugin(props: PluginProps<{}>) {
   await writeFile(outputPath, content);
 }`
 ];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -71,10 +79,12 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Plugin System Content */}
       <section>
         <H1>{_('Plugin System')}</H1>
         <P>
@@ -85,6 +95,10 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Plugin Declaration Content */}
       <section>
         <H2>{_('Plugin Declaration')}</H2>
         <Code
@@ -144,18 +158,17 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{
-            text: _('Processing Flow'),
-            href: '/docs/specifications/processing-flow'
-          }}
-          next={{
-            text: _('Complete Examples'),
-            href: '/docs/specifications/complete-examples'
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Processing Flow'),
+          href: '/docs/specifications/processing-flow'
+        }}
+        next={{
+          text: _('Complete Examples'),
+          href: '/docs/specifications/complete-examples'
+        }}
+      />
     </main>
   );
 }

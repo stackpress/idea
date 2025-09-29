@@ -1,4 +1,14 @@
-const advancedConfigExample = `interface AdvancedOpenAPIConfig extends OpenAPIConfig {
+//modules
+import { useLanguage, Translate } from 'r22n';
+//local
+import { H1, H2, P } from '../index.js';
+import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
+
+const advancedConfigExample =
+  `interface AdvancedOpenAPIConfig extends OpenAPIConfig {
   formats?: ('json' | 'yaml' | 'html')[];
   validation?: {
     strict?: boolean;
@@ -34,9 +44,12 @@ export default async function generateAdvancedOpenAPISpec(
   for (const format of formats) {
     await generateFormat(spec, format, outputBase, transformer);
   }
-}`;
+}`
 
-const formatGenerationExample = `async function generateFormat(
+//----------------------------------------------------------------------
+
+const formatGenerationExample =
+  `async function generateFormat(
   spec: any, 
   format: string, 
   outputBase: string, 
@@ -66,9 +79,12 @@ const formatGenerationExample = `async function generateFormat(
   const outputPath = await transformer.loader.absolute(\`\${outputBase}\${extension}\`);
   await fs.writeFile(outputPath, content, 'utf8');
   console.log(\`✅ Generated \${format.toUpperCase()} specification: \${outputPath}\`);
-}`;
+}`
 
-const exampleGenerationExample = `function addExamples(spec: any, schema: any): void {
+//----------------------------------------------------------------------
+
+const exampleGenerationExample =
+  `function addExamples(spec: any, schema: any): void {
   // Add examples to schemas
   for (const [name, schemaObj] of Object.entries(spec.components.schemas)) {
     if (schemaObj.type === 'object') {
@@ -138,9 +154,12 @@ function generatePropertyExample(propSchema: any): any {
     default:
       return null;
   }
-}`;
+}`
 
-const validationExample = `function validateSpecification(spec: any): void {
+//----------------------------------------------------------------------
+
+const validationExample =
+  `function validateSpecification(spec: any): void {
   // Basic validation
   if (!spec.openapi) {
     throw new Error('OpenAPI version is required');
@@ -168,9 +187,12 @@ const validationExample = `function validateSpecification(spec: any): void {
   }
   
   console.log('✅ OpenAPI specification validation passed');
-}`;
+}`
 
-const htmlGenerationExample = `function generateHTMLDocumentation(spec: any): string {
+//----------------------------------------------------------------------
+
+const htmlGenerationExample =
+`function generateHTMLDocumentation(spec: any): string {
   return \`
 <!DOCTYPE html>
 <html lang="en">
@@ -218,42 +240,46 @@ const htmlGenerationExample = `function generateHTMLDocumentation(spec: any): st
     </script>
 </body>
 </html>\`;
-}`;
+}`
 
-import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
-import Code from '../Code.js';
+//----------------------------------------------------------------------
 
 export default function AdvancedFeatures() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="advanced-features">
-      <H2>{_('5. Multiple Output Formats')}</H2>
-      <P>
-        <Translate>
-          Multiple output formats allow you to generate OpenAPI
-          specifications in JSON, YAML, and HTML formats. This
-          flexibility ensures compatibility with different tools and
-          enables both machine-readable specifications and human-friendly
-          documentation.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {advancedConfigExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {formatGenerationExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {exampleGenerationExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {validationExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {htmlGenerationExample}
-      </Code>
-    </section>
+    <>
+      {/* Advanced Features Section Content */}
+      <section id="advanced-features">
+        <H1>{_('5. Advanced Features')}</H1>
+
+        <H2>{_('5.1. Multiple Output Formats')}</H2>
+        <P>
+          <Translate>
+            Multiple output formats allow you to generate OpenAPI
+            specifications in JSON, YAML, and HTML formats. This
+            flexibility ensures compatibility with different tools and
+            enables both machine-readable specifications and human-friendly
+            documentation.
+          </Translate>
+        </P>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {advancedConfigExample}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {formatGenerationExample}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {exampleGenerationExample}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {validationExample}
+        </Code>
+        <Code copy language='typescript' className='bg-black text-white mb-5'>
+          {htmlGenerationExample}
+        </Code>
+      </section>
+    </>
   );
 }

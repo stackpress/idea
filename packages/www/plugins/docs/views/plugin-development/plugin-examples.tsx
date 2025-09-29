@@ -4,13 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const typescriptInterfaceGeneratorExample = [
-  `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//code examples
+//----------------------------------------------------------------------
+
+const typescriptInterfaceGeneratorExample =
+`import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -85,9 +88,10 @@ function mapToTypeScript(schemaType: string): string {
   
   return typeMap[schemaType] || 'any';
 }`
-];
 
-const enumGeneratorExample = [
+//----------------------------------------------------------------------
+
+const enumGeneratorExample =
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 
@@ -116,10 +120,11 @@ export default async function generateEnums(props: PluginProps<{}>) {
   
   console.log(\`Generated enums: \${outputPath}\`);
 }`
-];
 
-const cliInteractivePluginExample = [
-  `import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
+//----------------------------------------------------------------------
+
+const cliInteractivePluginExample =
+`import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -174,7 +179,8 @@ function generateEnums(enums: Record<string, any>): string {
   // Implementation for generating enums
   return '// Generated enums\\n';
 }`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -211,81 +217,86 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 export function Body() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Plugin Examples Section Content */}
       <section>
         <H1>{_('Plugin Examples')}</H1>
         <P>
           <Translate>
-            This section provides practical examples of common plugin 
-            implementations. These examples demonstrate real-world 
-            patterns and best practices for creating plugins that 
-            generate TypeScript interfaces, enums, and interactive 
+            This section provides practical examples of common plugin
+            implementations. These examples demonstrate real-world
+            patterns and best practices for creating plugins that
+            generate TypeScript interfaces, enums, and interactive
             CLI tools.
           </Translate>
         </P>
       </section>
 
+      {/* TypeScript Interface Generator Section Content */}
       <section>
         <H2>{_('2.1. TypeScript Interface Generator')}</H2>
         <P>
           <Translate>
-            The TypeScript interface generator demonstrates how to 
-            create a plugin that processes schema models and types to 
-            generate TypeScript interface definitions. This example 
-            shows how to handle type mapping, optional properties, and 
+            The TypeScript interface generator demonstrates how to
+            create a plugin that processes schema models and types to
+            generate TypeScript interface definitions. This example
+            shows how to handle type mapping, optional properties, and
             namespace organization.
           </Translate>
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {typescriptInterfaceGeneratorExample[0]}
+          {typescriptInterfaceGeneratorExample}
         </Code>
       </section>
 
+      {/* Enum Generator Section Content */}
       <section>
         <H2>{_('2.2. Enum Generator')}</H2>
         <P>
           <Translate>
-            The enum generator plugin shows how to process schema enum 
-            definitions and convert them into TypeScript enum 
-            declarations. This example demonstrates simple schema 
-            processing and file generation patterns that can be adapted 
+            The enum generator plugin shows how to process schema enum
+            definitions and convert them into TypeScript enum
+            declarations. This example demonstrates simple schema
+            processing and file generation patterns that can be adapted
             for other output formats.
           </Translate>
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {enumGeneratorExample[0]}
+          {enumGeneratorExample}
         </Code>
       </section>
 
+      {/* CLI-Interactive Plugin Section Content */}
       <section>
         <H2>{_('2.3. CLI-Interactive Plugin')}</H2>
         <P>
           <Translate>
-            The CLI-interactive plugin demonstrates how to create 
-            plugins that provide rich command-line experiences. This 
-            example shows how to use the CLI properties for user 
-            interaction, progress reporting, and adaptive behavior 
+            The CLI-interactive plugin demonstrates how to create
+            plugins that provide rich command-line experiences. This
+            example shows how to use the CLI properties for user
+            interaction, progress reporting, and adaptive behavior
             based on the execution context.
           </Translate>
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {cliInteractivePluginExample[0]}
+          {cliInteractivePluginExample}
         </Code>
-      </section>
+      </section>  
 
+      {/* Page Navigation */}
       <Nav
-        prev={{ 
-          text: _('Plugin Development Guide'), 
-          href: '/docs/plugin-development/plugin-development-guide' 
+        prev={{
+          text: _('Plugin Development Guide'),
+          href: '/docs/plugin-development/plugin-development-guide'
         }}
-        next={{ 
-          text: _('Plugin Configuration'), 
-          href: '/docs/plugin-development/plugin-configuration' 
+        next={{
+          text: _('Plugin Configuration'),
+          href: '/docs/plugin-development/plugin-configuration'
         }}
       />
     </main>
@@ -305,4 +316,3 @@ export default function Page(props: ServerPageProps<ServerConfigProps>) {
     </Layout>
   );
 }
-  

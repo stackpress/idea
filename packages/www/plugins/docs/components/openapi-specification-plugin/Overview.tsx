@@ -1,12 +1,17 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C } from '../index.js';
+//local
+import { H1, H2, P, C } from '../index.js';
 
 export default function Overview() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="overview">
-      <H2>{_('1. Overview')}</H2>
+    <>
+      {/* Overview Section Content */}
+      <section id="overview">
+      <H1>{_('1. Overview')}</H1>
       <P>
         <Translate>
           OpenAPI (formerly Swagger) specifications provide a standard
@@ -54,7 +59,7 @@ export default function Overview() {
         </li>
       </ul>
 
-      <H3>{_('What You\'ll Learn')}</H3>
+      <H2>{_('What You\'ll Learn')}</H2>
       <P>
         <Translate>
           This section outlines the key concepts and skills you'll
@@ -90,6 +95,7 @@ export default function Overview() {
           </Translate>
         </li>
       </ul>
-    </section>
+      </section>
+    </>
   );
 }

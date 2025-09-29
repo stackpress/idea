@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 //stackpress
 import type { ServerPageProps } from 'stackpress/view/client';
 import Layout from '../Layout.js';
-//components
+//multiple section components
 import {
   HeroSection,
   AboutSection,
@@ -38,20 +38,37 @@ export default function HomePage(props: ServerPageProps) {
     <Layout session={session} request={request} response={response}>
       <main className="theme-bg-bg0 theme-tx1 px-h-100-0 px-w-100-0 
       overflow-auto relative">
+        {/* Hero Sections */}
         <HeroSection />
+
+        {/* About Section */}
         <AboutSection />
+
+        {/* Benefits Section */}
         <BenefitsSection />
+
+        {/* Wrap the section with a background */}
         <section className='theme-bg-bg2'>
           <AudienceSection />
         </section>
+
+        {/* Plugin Ecosystem Section */}
         <PluginEcosystemSection />
+
+        {/* Wrap the section with a background */}
         <section className='theme-bg-bg2'>
           <RealWorldExampleSection />
         </section>
+
+        {/* AI Development Workflow Section */}
         <AIDevelopmentWorkflowSection />
+
+        {/* Wrap the section with a background */}
         <section className='theme-bg-bg2'>
           <FutureSection />
         </section>
+
+        {/* Toast Container for notifications */}
         <ToastContainer />
       </main>
     </Layout>

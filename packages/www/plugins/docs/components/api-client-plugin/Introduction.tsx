@@ -1,11 +1,16 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, P, C } from '../index.js';
 
 export default function Introduction() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section>
+    <>
+      {/* API Client Generator Plugin Tutorial */}
+      <section>
       <H1>{_('API Client Generator Plugin Tutorial')}</H1>
       <P>
         <Translate>
@@ -15,6 +20,7 @@ export default function Introduction() {
           libraries with full CRUD operations.
         </Translate>
       </P>
-    </section>
+      </section>
+    </>
   );
 }

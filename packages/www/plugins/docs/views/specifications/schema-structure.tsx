@@ -4,12 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const schemaExample = `// 1. Plugin declarations
+//code example
+//----------------------------------------------------------------------
+
+const schemaExample =
+  `// 1. Plugin declarations
 plugin "./plugins/generate-types.js" {
   output "./generated/types.ts"
 }
@@ -56,7 +60,9 @@ model User! {
   address Address?
   active Boolean @default(true)
   created Date @default("now()")
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -84,11 +90,11 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
       <link rel="icon" type="image/x-icon" href="/icon.png" />
       <link rel="stylesheet" type="text/css" href="/styles/global.css" />
       {styles.map((href, index) => (
-        <link 
-          key={index} 
-          rel="stylesheet" 
-          type="text/css" 
-          href={href} 
+        <link
+          key={index}
+          rel="stylesheet"
+          type="text/css"
+          href={href}
         />
       ))}
     </>
@@ -96,10 +102,12 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Schema Structure Content */}
       <section>
         <H1>{_('Schema Structure')}</H1>
         <P>
@@ -108,30 +116,28 @@ export function Body() {
             elements organized in a specific structure:
           </Translate>
         </P>
-      </section>
 
-      <section>
-        <Code 
-          copy 
-          language="javascript" 
+        <Code
+          copy
+          language="javascript"
           className="bg-black text-white px-mx-10 px-mb-20"
         >
           {schemaExample}
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{ 
-            text: _('Schema Elements'), 
-            href: '/docs/specifications/schema-elements' 
-          }}
-          next={{ 
-            text: _('Schema Directives'), 
-            href: '/docs/specifications/schema-directives' 
-          }}
-        />
-      </footer>
+
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Schema Elements'),
+          href: '/docs/specifications/schema-elements'
+        }}
+        next={{
+          text: _('Schema Directives'),
+          href: '/docs/specifications/schema-directives'
+        }}
+      />
     </main>
   );
 }

@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const utilityFunctionsExample = `function formatType(type: string, multiple: boolean = false): string {
+//code examples
+//----------------------------------------------------------------------
+
+const utilityFunctionsExample = 
+`function formatType(type: string, multiple: boolean = false): string {
   let formattedType = type;
   
   // Add array notation if multiple
@@ -20,14 +26,19 @@ const utilityFunctionsExample = `function formatType(type: string, multiple: boo
   }
   
   return formattedType;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function UtilityFunctions() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="utility-functions">
-      <H2>{_('Utility Functions')}</H2>
+    <>
+      {/* Utility Functions Section Content */}
+      <section id="utility-functions">
+      <H1>{_('8. Utility Functions')}</H1>
       <P>
         <Translate>
           Create helper functions for formatting and processing:
@@ -36,6 +47,7 @@ export default function UtilityFunctions() {
       <Code copy language='typescript' className='bg-black text-white'>
         {utilityFunctionsExample}
       </Code>
-    </section>
+      </section>
+    </>
   )
 }

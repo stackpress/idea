@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C, SS, Code } from '../index.js';
+//local
+import { H1, H2, P, C, SS, Code } from '../index.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
-const schemaConfigurationExample = `plugin "./plugins/graphql-schema.js" {
+//code examples
+//----------------------------------------------------------------------
+
+const schemaConfigurationExample = 
+`plugin "./plugins/graphql-schema.js" {
   output "./generated/schema.graphql"
   includeQueries true
   includeMutations true
@@ -13,14 +19,19 @@ const schemaConfigurationExample = `plugin "./plugins/graphql-schema.js" {
     URL "String"
     PhoneNumber "String"
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function SchemaConfiguration() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="schema-configuration">
-      <H2>{_('Schema Configuration')}</H2>
+    <>
+      {/* Schema Configuration Section Content */}
+      <section id="schema-configuration">
+      <H1>{_('5. Schema Configuration')}</H1>
       <P>
         <Translate>
           Schema configuration demonstrates how to integrate the GraphQL schema 
@@ -38,7 +49,7 @@ export default function SchemaConfiguration() {
         {schemaConfigurationExample}
       </Code>
 
-      <H3>{_('Configuration Options')}</H3>
+      <H2>{_('Configuration Options')}</H2>
       <P>
         <Translate>
           Configuration options control how GraphQL schema definitions are 
@@ -114,6 +125,7 @@ export default function SchemaConfiguration() {
           </Tcol>
         </Trow>
       </Table>
-    </section>
+      </section>
+    </>
   );
 }

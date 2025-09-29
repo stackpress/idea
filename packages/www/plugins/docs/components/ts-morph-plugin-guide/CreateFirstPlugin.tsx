@@ -1,6 +1,11 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P, C } from '../index.js';
 import Code from '../Code.js';
+
+//code examples
+//----------------------------------------------------------------------
 
 const examples = [
   `// src/types.ts
@@ -28,6 +33,9 @@ export interface PluginConfig {
   generateUtilityTypes?: boolean;
   exportType?: 'named' | 'default' | 'namespace';
 }`,
+
+  //----------------------------------------------------------------------
+
   `// src/plugin.ts
 import { Project, SourceFile, InterfaceDeclaration } from "ts-morph";
 import { Schema, SchemaProperty, PluginConfig } from "./types";
@@ -270,6 +278,9 @@ export class TypeScriptInterfaceGenerator {
     }
   }
 }`,
+
+  //----------------------------------------------------------------------
+
   `// src/index.ts
 import { TypeScriptInterfaceGenerator } from "./plugin";
 import { PluginConfig } from "./types";
@@ -294,6 +305,9 @@ if (require.main === module) {
 
   generateTypeScriptInterfaces(config).catch(console.error);
 }`,
+
+  //----------------------------------------------------------------------
+
   `// examples/input.json
 [
   {
@@ -382,7 +396,13 @@ if (require.main === module) {
     "required": ["id", "title", "content", "authorId"]
   }
 ]`,
+
+  //----------------------------------------------------------------------
+
   `npx ts-node src/index.ts examples/input.json examples/output.ts`,
+
+  //----------------------------------------------------------------------
+
   `// examples/output.ts
 /**
  * Generated TypeScript interfaces
@@ -477,129 +497,137 @@ export type PostKeys = keyof Post;
 export type AnyModel = User | Post;`
 ];
 
+//----------------------------------------------------------------------
+
 export default function CreateFirstPlugin() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
-    <section id="creating-your-first-plugin">
-      <H1>{_('5. Creating Your First Plugin')}</H1>
-      <P>
-        <Translate>
-          Creating your first plugin with <C>ts-morph</C> involves 
-          understanding the complete workflow from schema processing to code 
-          generation. This comprehensive example demonstrates building a 
-          TypeScript interface generator that transforms JSON schemas into 
-          properly typed interfaces with full feature support.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Let's create a plugin that generates TypeScript interfaces from 
-          JSON schema definitions. This will demonstrate the core concepts 
-          of using <C>ts-morph</C> for code generation.
-        </Translate>
-      </P>
+    <>
+    {/* Creating Your First Plugin Section Content */}
+      <section id="creating-your-first-plugin">
+        <H1>{_('5. Creating Your First Plugin')}</H1>
+        <P>
+          <Translate>
+            Creating your first plugin with <C>ts-morph</C> involves
+            understanding the complete workflow from schema processing 
+            to code generation. This comprehensive example demonstrates 
+            building a TypeScript interface generator that transforms 
+            JSON schemas into properly typed interfaces with full feature 
+            support.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Let's create a plugin that generates TypeScript interfaces 
+            from JSON schema definitions. This will demonstrate the core 
+            concepts of using <C>ts-morph</C> for code generation.
+          </Translate>
+        </P>
 
-      <H2>{_('5.1. Define the Plugin Interface')}</H2>
-      <P>
-        <Translate>
-          Defining clear interfaces for your plugin ensures type safety and 
-          provides a solid foundation for implementation. This section 
-          establishes the data structures and configuration options that 
-          will guide the entire plugin development process.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          First, let's define the types for our plugin:
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language="typescript" 
-        className="bg-black text-white px-mx-10 px-mb-20"
-      >
-        {examples[0]}
-      </Code>
+        <H2>{_('5.1. Define the Plugin Interface')}</H2>
+        <P>
+          <Translate>
+            Defining clear interfaces for your plugin ensures type safety 
+            and provides a solid foundation for implementation. This 
+            section establishes the data structures and configuration 
+            options that will guide the entire plugin development process.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            First, let's define the types for our plugin:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {examples[0]}
+        </Code>
 
-      <H2>{_('5.2. Core Plugin Implementation')}</H2>
-      <P>
-        <Translate>
-          The core plugin implementation orchestrates the entire code 
-          generation process, from loading input schemas to generating and 
-          saving TypeScript files. This comprehensive class demonstrates 
-          best practices for plugin architecture and error handling.
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language="typescript" 
-        className="bg-black text-white px-mx-10 px-mb-20"
-      >
-        {examples[1]}
-      </Code>
+        <H2>{_('5.2. Core Plugin Implementation')}</H2>
+        <P>
+          <Translate>
+            The core plugin implementation orchestrates the entire code
+            generation process, from loading input schemas to generating and
+            saving TypeScript files. This comprehensive class demonstrates
+            best practices for plugin architecture and error handling.
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {examples[1]}
+        </Code>
 
-      <H2>{_('5.3. Plugin Entry Point')}</H2>
-      <P>
-        <Translate>
-          The plugin entry point provides a clean API for consumers and 
-          handles CLI integration. This section shows how to create both 
-          programmatic and command-line interfaces for your plugin, making 
-          it accessible in different usage scenarios.
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language="typescript" 
-        className="bg-black text-white px-mx-10 px-mb-20"
-      >
-        {examples[2]}
-      </Code>
+        <H2>{_('5.3. Plugin Entry Point')}</H2>
+        <P>
+          <Translate>
+            The plugin entry point provides a clean API for consumers and
+            handles CLI integration. This section shows how to create both
+            programmatic and command-line interfaces for your plugin, making
+            it accessible in different usage scenarios.
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {examples[2]}
+        </Code>
 
-      <H2>{_('5.4. Example Usage')}</H2>
-      <P>
-        <Translate>
-          Example usage demonstrates the plugin in action with realistic 
-          data structures. This comprehensive example shows how the plugin 
-          processes complex schemas with various property types, 
-          relationships, and validation rules.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Create an example schema file:
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language="json" 
-        className="bg-black text-white px-mx-10 px-mb-20"
-      >
-        {examples[3]}
-      </Code>
-      <P>
-        <Translate>
-          Run the plugin:
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language="bash" 
-        className="bg-black text-white px-mx-10 px-mb-20"
-      >
-        {examples[4]}
-      </Code>
-      <P>
-        <Translate>
-          Generated output:
-        </Translate>
-      </P>
-      <Code 
-        copy 
-        language="typescript" 
-        className="bg-black text-white px-mx-10 px-mb-20"
-      >
-        {examples[5]}
-      </Code>
-    </section>
+        <H2>{_('5.4. Example Usage')}</H2>
+        <P>
+          <Translate>
+            Example usage demonstrates the plugin in action with realistic
+            data structures. This comprehensive example shows how the plugin
+            processes complex schemas with various property types,
+            relationships, and validation rules.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Create an example schema file:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="json"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {examples[3]}
+        </Code>
+        <P>
+          <Translate>
+            Run the plugin:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="bash"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {examples[4]}
+        </Code>
+        <P>
+          <Translate>
+            Generated output:
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white px-mx-10 px-mb-20"
+        >
+          {examples[5]}
+        </Code>
+      </section>
+    </>
   )
 }

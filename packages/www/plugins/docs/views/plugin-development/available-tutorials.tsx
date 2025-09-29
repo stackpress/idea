@@ -4,7 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, H3, P, C, Nav, SS } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 
@@ -41,7 +41,9 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
@@ -83,6 +85,7 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Available Tutorials Section Content */}
       <section>
         <H1>{_('Available Tutorials')}</H1>
         <P>
@@ -94,9 +97,7 @@ export function Body() {
             plugins.
           </Translate>
         </P>
-      </section>
 
-      <section>
         <H2>{_('6.1. Meta Coding With TSMorph')}</H2>
         <P>
           <Translate>
@@ -115,6 +116,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Database Integration Plugins Section */}
       <section>
         <H2>{_('6.2. Database Integration Plugins')}</H2>
         <P>
@@ -167,6 +169,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Frontend Development Plugins Section */}
       <section>
         <H2>{_('6.3. Frontend Development Plugins')}</H2>
         <P>
@@ -219,6 +222,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Documentation Generation Plugins Section */}
       <section>
         <H2>{_('6.4. Documentation Generation Plugins')}</H2>
         <P>
@@ -270,6 +274,7 @@ export function Body() {
         </P>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('Best Practices'),

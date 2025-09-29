@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, H3, P, C } from '../index.js';
+//local
+import { H1, H2, P, C } from '../index.js';
 import Code from '../Code.js';
 
-const basicPluginExample = `// plugins/openapi-spec.ts
+//code examples
+//----------------------------------------------------------------------
+
+const basicPluginExample = 
+`// plugins/openapi-spec.ts
 import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
@@ -57,9 +63,12 @@ export default async function generateOpenAPISpec(
   await fs.writeFile(outputPath, JSON.stringify(spec, null, 2), 'utf8');
   
   console.log(\`✅ Generated OpenAPI specification: \${outputPath}\`);
-}`;
+}`
 
-const schemaGenerationExample = `function generateSpecification(schema: any, config: OpenAPIConfig) {
+//----------------------------------------------------------------------
+
+const schemaGenerationExample = 
+`function generateSpecification(schema: any, config: OpenAPIConfig) {
   const spec: any = {
     openapi: '3.0.3',
     info: {
@@ -118,9 +127,12 @@ const schemaGenerationExample = `function generateSpecification(schema: any, con
   }
   
   return spec;
-}`;
+}`
 
-const modelSchemaExample = `function generateModelSchema(model: any): any {
+//----------------------------------------------------------------------
+
+const modelSchemaExample = 
+`function generateModelSchema(model: any): any {
   const schema: any = {
     type: 'object',
     properties: {},
@@ -169,9 +181,12 @@ function generateEnumSchema(enumDef: any): any {
     enum: values,
     example: values[0]
   };
-}`;
+}`
 
-const propertySchemaExample = `function generatePropertySchema(column: any): any {
+//----------------------------------------------------------------------
+
+const propertySchemaExample = 
+`function generatePropertySchema(column: any): any {
   const property: any = {};
   
   // Map idea types to OpenAPI types
@@ -248,16 +263,19 @@ function addValidationRules(property: any, attributes: any): void {
   if (attributes.format) {
     property.format = attributes.format;
   }
-}`;
+}`
 
+//----------------------------------------------------------------------
 
 export default function BasicImplementation() {
   //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="basic-implementation">
-      <H2>{_('2. Basic Implementation')}</H2>
+    <>
+      {/* Basic Implementation Section Content */}
+      <section id="basic-implementation">
+      <H1>{_('2. Basic Implementation')}</H1>
       <P>
         <Translate>
           The basic implementation provides the foundation for generating
@@ -274,7 +292,7 @@ export default function BasicImplementation() {
         </Translate>
       </P>
 
-      <H3>{_('2.1. Plugin Structure')}</H3>
+      <H2>{_('2.1. Plugin Structure')}</H2>
       <P>
         <Translate>
           The plugin structure defines the main entry point and
@@ -291,7 +309,7 @@ export default function BasicImplementation() {
         {schemaGenerationExample}
       </Code>
 
-      <H3>{_('2.2. Schema Generation')}</H3>
+      <H2>{_('2.2. Schema Generation')}</H2>
       <P>
         <Translate>
           Schema generation transforms
@@ -308,6 +326,7 @@ export default function BasicImplementation() {
       <Code copy language='typescript' className='bg-black text-white'>
         {propertySchemaExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

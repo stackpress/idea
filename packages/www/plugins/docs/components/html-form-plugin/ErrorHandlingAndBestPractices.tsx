@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
-import { H2, P } from '../index.js';
+//local
+import { H1, P } from '../index.js';
 import Code from '../Code.js';
 
-const errorHandlingExample = `export default async function htmlFormPlugin(props: PluginProps<{}>) {
+//code examples
+//----------------------------------------------------------------------
+
+const errorHandlingExample = 
+`export default async function htmlFormPlugin(props: PluginProps<{}>) {
   const { config, schema, transformer, cwd } = props;
 
   try {
@@ -50,14 +56,19 @@ function validateConfig(config: any): void {
   if (config.method && !['GET', 'POST'].includes(config.method)) {
     throw new Error(\`Unsupported HTTP method: \${config.method}\`);
   }
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function ErrorHandlingAndBestPractices() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
-    <section id="error-handling-and-best-practices">
-      <H2>{_('10. Error Handling and Best Practices')}</H2>
+    <>
+      {/* Error Handling and Best Practices Section Content */}
+      <section id="error-handling-and-best-practices">
+      <H1>{_('10. Error Handling and Best Practices')}</H1>
       <P>
         <Translate>
           Proper error handling and following best practices ensure 
@@ -74,6 +85,7 @@ export default function ErrorHandlingAndBestPractices() {
       <Code copy language='typescript' className='bg-black text-white'>
         {errorHandlingExample}
       </Code>
-    </section>
+      </section>
+    </>
   );
 }

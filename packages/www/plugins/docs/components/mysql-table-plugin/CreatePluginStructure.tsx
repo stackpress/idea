@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const basicPluginStructure = `import type { PluginProps } from '@stackpress/idea-transformer/types';
+//code examples
+//----------------------------------------------------------------------
+
+const basicPluginStructure =
+  `import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -42,27 +48,34 @@ export default async function mysqlTablesPlugin(
   await fs.writeFile(outputPath, sqlContent, 'utf8');
   
   console.log(\`✅ MySQL tables generated: \${outputPath}\`);
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function CreatePluginStructure() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="create-plugin-structure">
-      <H1>{_('4. Create the Plugin Structure')}</H1>
-      <P>
-        <Translate>
-          Create a new file mysql-tables-plugin.js. This will be the main
-          entry point for our plugin that handles configuration validation
-          and orchestrates the SQL generation process.
-        </Translate>
-      </P>
-      <H2>{_('Basic Plugin Structure')}</H2>
-      <Code
-        language="typescript"
-        className='bg-black text-white'
-      >{basicPluginStructure}
-      </Code>
-    </section>
+    <>
+      {/* Create the Plugin Structure Section Content */}
+      <section id="create-plugin-structure">
+        <H1>{_('4. Create the Plugin Structure')}</H1>
+        <P>
+          <Translate>
+            Create a new file mysql-tables-plugin.js. This will be the main
+            entry point for our plugin that handles configuration validation
+            and orchestrates the SQL generation process.
+          </Translate>
+        </P>
+        <H2>{_('Basic Plugin Structure')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >{basicPluginStructure}
+        </Code>
+      </section>
+    </>
   );
 }

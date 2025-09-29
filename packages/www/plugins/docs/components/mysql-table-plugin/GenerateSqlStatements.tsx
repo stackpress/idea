@@ -1,8 +1,14 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, H2, P } from '../index.js';
 import Code from '../Code.js';
 
-const mainSQLGeneration = `function generateSQL(schema: any, options: any): string {
+//code examples
+//----------------------------------------------------------------------
+
+const mainSQLGeneration =
+  `function generateSQL(schema: any, options: any): string {
   let sql = '';
   
   // Add header comment
@@ -25,9 +31,12 @@ const mainSQLGeneration = `function generateSQL(schema: any, options: any): stri
   }
   
   return sql;
-}`;
+}`
 
-const tableSQLGeneration = `function generateTableSQL(tableName: string, model: any, options: any): string {
+//----------------------------------------------------------------------
+
+const tableSQLGeneration =
+  `function generateTableSQL(tableName: string, model: any, options: any): string {
   const columns: string[] = [];
   const indexes: string[] = [];
   const foreignKeys: string[] = [];
@@ -77,9 +86,12 @@ const tableSQLGeneration = `function generateTableSQL(tableName: string, model: 
   sql += \`\\n) ENGINE=\${options.engine} DEFAULT CHARSET=\${options.charset} COLLATE=\${options.collation};\\n\`;
   
   return sql;
-}`;
+}`
 
-const columnDefinitionGeneration = `function generateColumnDefinition(column: any, options: any): any {
+//----------------------------------------------------------------------
+
+const columnDefinitionGeneration =
+  `function generateColumnDefinition(column: any, options: any): any {
   const { name, required, attributes = {} } = column;
   const mysqlType = mapSchemaTypeToMySQL(column);
   
@@ -128,9 +140,12 @@ const columnDefinitionGeneration = `function generateColumnDefinition(column: an
     isIndex: !!attributes.index || !!attributes.searchable || !!attributes.filterable,
     foreignKey: generateForeignKey(column, options)
   };
-}`;
+}`
 
-const foreignKeyGeneration = `function generateForeignKey(column: any, options: any): string | null {
+//----------------------------------------------------------------------
+
+const foreignKeyGeneration =
+  `function generateForeignKey(column: any, options: any): string | null {
   const { name, type, attributes = {} } = column;
   
   // Check if this column references another model
@@ -142,53 +157,63 @@ const foreignKeyGeneration = `function generateForeignKey(column: any, options: 
   }
   
   return null;
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export default function GenerateSqlStatements() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="generate-sql-statements">
-      <H1>{_('6. Generate SQL Statements')}</H1>
-      <P>
-        <Translate>
-          Implement the main SQL generation function. This section contains
-          the core logic for creating MySQL CREATE TABLE statements from
-          the processed schema.
-        </Translate>
-      </P>
+    <>
+      {/* Generate SQL Statements Section Content */}
+      <section id="generate-sql-statements">
+        <H1>{_('6. Generate SQL Statements')}</H1>
+        <P>
+          <Translate>
+            Implement the main SQL generation function. This section
+            contains the core logic for creating MySQL CREATE TABLE
+            statements from the processed schema.
+          </Translate>
+        </P>
 
-      <H2>{_('6.1. Main SQL Generation')}</H2>
-      <Code
-        language="typescript"
-        className='bg-black text-white'
-      >
-        {mainSQLGeneration}
-      </Code>
+        <H2>{_('6.1. Main SQL Generation')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >
+          {mainSQLGeneration}
+        </Code>
 
-      <H2>{_('6.2. Table SQL Generation')}</H2>
-      <Code
-        language="typescript"
-        className='bg-black text-white'
-      >
-        {tableSQLGeneration}
-      </Code>
+        <H2>{_('6.2. Table SQL Generation')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >
+          {tableSQLGeneration}
+        </Code>
 
-      <H2>{_('6.3. Column Definition Generation')}</H2>
-      <Code
-        language="typescript"
-        className='bg-black text-white'
-      >
-        {columnDefinitionGeneration}
-      </Code>
+        <H2>{_('6.3. Column Definition Generation')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >
+          {columnDefinitionGeneration}
+        </Code>
 
-      <H2>{_('6.4. Foreign Key Generation')}</H2>
-      <Code
-        language="typescript"
-        className='bg-black text-white'
-      >
-        {foreignKeyGeneration}
-      </Code>
-    </section>
+        <H2>{_('6.4. Foreign Key Generation')}</H2>
+        <Code
+          copy
+          language="typescript"
+          className='bg-black text-white'
+        >
+          {foreignKeyGeneration}
+        </Code>
+      </section>
+    </>
   );
 }

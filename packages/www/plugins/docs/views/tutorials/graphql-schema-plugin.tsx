@@ -4,7 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage } from 'r22n';
-//docs
+//local
 import Layout from '../../components/Layout.js';
 import { Nav } from '../../components/index.js';
 //components
@@ -54,7 +54,9 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
+  
   return (
     <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
@@ -112,22 +114,65 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Page Section */}
       <Introduction />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <Overview />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <Prerequisites />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <PluginStructure />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <Implementation />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <SchemaConfiguration />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <UsageExamples />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <AdvancedFeatures />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <BestPractices />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <Troubleshooting />
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10'/>
+
       <Conclusion />
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('Markdown Documentation Plugin'),
@@ -143,6 +188,7 @@ export function Body() {
 }
 
 export default function Page(props: ServerPageProps<ServerConfigProps>) {
+  //props
   const { data, session, request, response } = props;
   return (
     <Layout

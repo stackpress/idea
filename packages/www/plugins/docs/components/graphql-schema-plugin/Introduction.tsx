@@ -1,11 +1,15 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//local
 import { H1, P, C } from '../index.js';
 
 export default function Introduction() {
+  //hooks
   const { _ } = useLanguage();
   
   return (
     <>
+      {/* GraphQL Schema Generator Plugin Tutorial */}
       <H1>{_('GraphQL Schema Generator Plugin Tutorial')}</H1>
       <P>
         <Translate>

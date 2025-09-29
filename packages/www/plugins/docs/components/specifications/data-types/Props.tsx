@@ -1,15 +1,23 @@
+//modules
 import { useLanguage, Translate } from 'r22n';
+//locals
 import { H1, H2, P, SS, C } from '../../index.js';
 import Code from '../../Code.js';
 
+//code examples
+//----------------------------------------------------------------------
+
 const propsExamples = [
-  `prop PropName {
+`prop PropName {
   property "value"
   nested {
     property "value"
   }
 }`,
-  `prop Email {
+
+//----------------------------------------------------------------------
+
+`prop Email {
   type "email"
   format "email"
   validation {
@@ -50,76 +58,85 @@ prop Currency {
     locale "en-US"
   }
 }`,
-  `model User {
+
+//----------------------------------------------------------------------
+
+`model User {
   email String @field.input(Email)
   password String @field.input(Password)
 }`
-]
+];
+
+//----------------------------------------------------------------------
 
 export default function Props() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <section id="props-1">
-      <H1>{_('Props')}</H1>
+    <>
+      {/* Props Section Content */}
+      <section id="props-1">
+        <H1>{_('Props')}</H1>
 
-      <P>
-        <Translate>
-          Props are reusable property configurations that define common
-          field behaviors, validation rules, and UI components. They
-          promote consistency and reduce duplication across your schema.
-        </Translate>
-      </P>
-
-      <H2>{_('Syntax')}</H2>
-      <Code
-        copy
-        language="javascript"
-        className="bg-black text-white px-mb-20"
-      >
-        {propsExamples[0]}
-      </Code>
-
-      <H2>{_('Structure')}</H2>
-
-      <ul className="px-lh-30 px-px-20 list-disc">
-        <li>
-          <SS>{_('PropName:')}</SS>
+        <P>
           <Translate>
-            The identifier used to reference this prop
+            Props are reusable property configurations that define common
+            field behaviors, validation rules, and UI components. They
+            promote consistency and reduce duplication across your schema.
           </Translate>
-        </li>
-        <li>
-          <SS>{_('property:')}</SS>
-          <Translate>Configuration key-value pairs</Translate>
-        </li>
-        <li>
-          <SS>{_('nested:')}</SS>
-          <Translate>A nested prop</Translate>
-        </li>
-      </ul>
+        </P>
 
-      <H2>{_('Example')}</H2>
-      <Code
-        copy
-        language="javascript"
-        className="bg-black text-white px-mb-20"
-      >
-        {propsExamples[1]}
-      </Code>
+        <H2>{_('Syntax')}</H2>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {propsExamples[0]}
+        </Code>
 
-      <SS>{_('Usage in Models')}</SS>
-      <P>
-        <Translate>Props are referenced using the </Translate>
-        <C>{_('@field')}</C> {_('attribute:')}
-      </P>
-      <Code
-        copy
-        language="javascript"
-        className="bg-black text-white px-mb-20"
-      >
-        {propsExamples[2]}
-      </Code>
-    </section>
+        <H2>{_('Structure')}</H2>
+
+        <ul className="px-lh-30 px-px-20 list-disc">
+          <li>
+            <SS>{_('PropName:')}</SS>
+            <Translate>
+              The identifier used to reference this prop
+            </Translate>
+          </li>
+          <li>
+            <SS>{_('property:')}</SS>
+            <Translate>Configuration key-value pairs</Translate>
+          </li>
+          <li>
+            <SS>{_('nested:')}</SS>
+            <Translate>A nested prop</Translate>
+          </li>
+        </ul>
+
+        <H2>{_('Example')}</H2>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {propsExamples[1]}
+        </Code>
+
+        <SS>{_('Usage in Models')}</SS>
+        <P>
+          <Translate>Props are referenced using the </Translate>
+          <C>{_('@field')}</C> {_('attribute:')}
+        </P>
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white px-mb-20"
+        >
+          {propsExamples[2]}
+        </Code>
+      </section>
+    </>
   )
 }

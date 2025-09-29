@@ -4,12 +4,16 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage } from 'r22n';
-//docs
+//local
 import { H1, H2, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const ecommerceSchema = `// E-commerce application schema
+//code examples
+//----------------------------------------------------------------------
+
+const ecommerceSchema =
+`// E-commerce application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/schema.ts"
 }
@@ -179,9 +183,12 @@ model OrderItem {
   quantity Number @required @min(1)
   price Money @required
   total Money @required
-}`;
+}`
 
-const blogSchema = `// Blog application schema
+//----------------------------------------------------------------------
+
+const blogSchema =
+`// Blog application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/blog.ts"
 }
@@ -303,7 +310,9 @@ model Comment {
   parent Comment? @relation(Comment, parentId)
   replies Comment[] @relation(Comment.parentId)
   created Date @default("now()")
-}`;
+}`
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -344,12 +353,14 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
       <H1>{_('Complete Examples')}</H1>
 
+      {/* E-commerce Example Content */}
       <section>
         <H2>{_('E-commerce Application Schema')}</H2>
         <Code
@@ -360,6 +371,7 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Blog Example Content */}
       <section>
         <H2>{_('Blog Application Schema')}</H2>
         <Code
@@ -370,18 +382,18 @@ export function Body() {
         </Code>
       </section>
 
-      <footer>
-        <Nav
-          prev={{ 
-            text: _( 'Plugin System'), 
-            href: '/docs/specifications/plugin-system' 
-          }}
-          next={{ 
-            text: _( 'Best Practices'), 
-            href: '/docs/specifications/best-practices' 
-          }}
-        />
-      </footer>
+      {/* Page Navigation */}
+      <Nav
+        prev={{
+          text: _('Plugin System'),
+          href: '/docs/specifications/plugin-system'
+        }}
+        next={{
+          text: _('Best Practices'),
+          href: '/docs/specifications/best-practices'
+        }}
+      />
+
     </main>
   );
 }

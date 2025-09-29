@@ -4,7 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
@@ -42,7 +42,9 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
@@ -67,10 +69,12 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* API Refernce Section Content */}
       <section>
         <H1>{_('API Reference')}</H1>
         <P>
@@ -83,8 +87,12 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className="my-10" />
+
+      {/* Core Components Content */}
       <section>
-        <H2>{_('Core Components')}</H2>
+        <H1>{_('Core Components')}</H1>
         <P>
           <Translate>
             The core components form the foundation of the transformation
@@ -146,8 +154,12 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className="my-10" />
+
+      {/* Schema Loading Section Content */}
       <section>
-        <H2>{_('Schema Loading and Processing')}</H2>
+        <H1>{_('Schema Loading and Processing')}</H1>
         <P>
           <Translate>
             The transformer provides robust schema loading capabilities that
@@ -180,8 +192,12 @@ export function Body() {
         </ul>
       </section>
 
+       {/* Horizontal Rule */}
+      <hr className="my-10" />
+
+      {/* Plugin System Section Content */}
       <section>
-        <H2>{_('Plugin System')}</H2>
+        <H1>{_('Plugin System')}</H1>
         <P>
           <Translate>
             The plugin system enables extensible code generation through a
@@ -216,8 +232,12 @@ export function Body() {
         </ul>
       </section>
 
+       {/* Horizontal Rule */}
+      <hr className="my-10" />
+
+      {/* Command-Line Interface Section Content */}
       <section>
-        <H2>{_('Command-Line Interface')}</H2>
+        <H1>{_('Command-Line Interface')}</H1>
         <P>
           <Translate>
             The CLI provides convenient command-line access for integrating
@@ -251,6 +271,7 @@ export function Body() {
         </ul>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('Introduction'),
