@@ -76,31 +76,35 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      {/* Introduction */}
-      <header>
+      {/* Getting Started Section Content */}
+      <section>
         <H1>{_('Getting Started')}</H1>
         <P>
           <Translate>
             The following is a guide to get you started with Idea.
           </Translate>
         </P>
-      </header>
+      </section>
+
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
 
       {/* Installation  */}
       <section>
-        <H2>{_('Installation')}</H2>
+        <H1>{_('Installation')}</H1>
         <div className="rounded-lg px-mx-10">
-          <div className="theme-bg-bg3 flex items-center">
+          <div className="theme-bg-bg1 flex items-center">
             <div
-              className={`px-py-10 px-px-30 ${install === 'npm' ? 'theme-bg-bg1' : 'theme-bg-bg2'
+              className={`px-py-10 px-px-30 
+              ${install === 'npm' ? 'bg-dark-800 text-white' : 'theme-bg-bg2'
                 }`}
               onClick={() => setInstall('npm')}
             >
               <i className="px-fs-20 fab fa-fw fa-npm" />
             </div>
             <div
-              className={`px-py-10 px-px-30 ${install === 'yarn' ? 'theme-bg-bg1' : 'theme-bg-bg2'
-                }`}
+              className={`px-py-10 px-px-30 
+              ${install === 'yarn' ? 'bg-dark-800 text-white' : 'theme-bg-bg2'}`}
               onClick={() => setInstall('yarn')}
             >
               <i className="px-fs-20 fab fa-fw fa-yarn" />
@@ -109,23 +113,26 @@ export function Body() {
           <Code
             copy
             language="bash"
-            className={`theme-bg-bg1 ${install === 'npm' ? '' : 'hidden'}`}
+            className={`bg-black text-white ${install === 'npm' ? '' : 'hidden'}`}
           >
             {npmInstallCommand}
           </Code>
           <Code
             copy
             language="bash"
-            className={`theme-bg-bg1 ${install === 'yarn' ? '' : 'hidden'}`}
+            className={`bg-black text-white ${install === 'yarn' ? '' : 'hidden'}`}
           >
             {yarnInstallCommand}
           </Code>
         </div>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
       {/* Create Schema Content */}
       <section>
-        <H2>{_('Create your first schema')}</H2>
+        <H1>{_('Create your first schema')}</H1>
         <P>
           <Translate>
             Create a new file called <C>schema.idea</C>
@@ -134,27 +141,33 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black text-white"
         >
           {schemaExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
       {/* Generate Code Content */}
       <section>
-        <H2>{_('Generate Code')}</H2>
+        <H1>{_('Generate Code')}</H1>
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black text-white"
         >
           {generateCommand}
         </Code>
       </section>
 
-       {/* Explore the Results Content */}         
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Explore the Results Content */}
       <section>
-        <H2>{_('Explore the Results')}</H2>
+        <H1>{_('Explore the Results')}</H1>
         <P>
           <Translate>
             Check the generated files in your output directories!

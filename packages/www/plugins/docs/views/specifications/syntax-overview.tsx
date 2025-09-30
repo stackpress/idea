@@ -159,7 +159,7 @@ export function Body() {
 
       {/* Key Syntax Rules Content */}
       <section>
-        <H2>{_('Key Syntax Rules')}</H2>
+        <H1>{_('Key Syntax Rules')}</H1>
         <ul className="px-lh-30 px-px-20 list-disc">
           <li>
             <SS>{_('No Separators Required:')}</SS>
@@ -190,7 +190,7 @@ export function Body() {
 
       {/* Examples Content */}
       <section>
-        <H2>{_('Syntax Comparison')}</H2>
+        <H1>{_('Syntax Comparison')}</H1>
         <P><Translate>Traditional JavaScript/JSON:</Translate></P>
         <Code
           copy
@@ -215,7 +215,7 @@ export function Body() {
 
       {/* Data Types Representations Content */}
       <section>
-        <H2>{_('Data Types Representations')}</H2>
+        <H1>{_('Data Types Representations')}</H1>
         <Code
           copy
           language="javascript"
@@ -229,7 +229,7 @@ export function Body() {
       <hr className='mt-10 ' />
 
       <section>
-        <H2>{_('Comments')}</H2>
+        <H1>{_('Comments')}</H1>
         <P>
           <Translate>
             Comments in .idea files use the standard // syntax:

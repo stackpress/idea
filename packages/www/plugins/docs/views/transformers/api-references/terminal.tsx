@@ -4,20 +4,24 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+//local
 import { H1, H2, P, C, Nav } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
-import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
-const basicExample = [
+//code examples
+//----------------------------------------------------------------------
+
+const basicExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
 
 const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
 await terminal.run();`
-];
 
-const loadExample = [
+//----------------------------------------------------------------------
+
+const loadExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
 
 // Load with command-line arguments
@@ -30,54 +34,61 @@ const terminal = await Terminal.load(args, {
   extname: '.schema',
   brand: '[MY-TOOL]'
 });`
-];
 
-const runExample = [
+//----------------------------------------------------------------------
+
+const runExample =
   `const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
 await terminal.run();`
-];
 
-const basicCommandExecutionExample = [
+//----------------------------------------------------------------------
+
+const basicCommandExecutionExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
 
 // Process a schema file
 const args = ['transform', '--input', './schema.idea'];
 const terminal = await Terminal.load(args);
 await terminal.run();`
-];
 
-const shortFlagExample = [
+//----------------------------------------------------------------------
+
+const shortFlagExample =
   `// Using the short flag alias
 const args = ['transform', '--i', './schema.idea'];
 const terminal = await Terminal.load(args);
 await terminal.run();`
-];
 
-const customWorkingDirectoryExample = [
+//----------------------------------------------------------------------
+
+const customWorkingDirectoryExample =
   `// Set custom working directory
 const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
   cwd: '/path/to/project'
 });
 await terminal.run();`
-];
 
-const customFileExtensionExample = [
+//----------------------------------------------------------------------
+
+const customFileExtensionExample =
   `// Use custom file extension
 const terminal = await Terminal.load(['transform', '--i', './schema.custom'], {
   extname: '.custom'
 });
 await terminal.run();`
-];
 
-const customBrandExample = [
+//----------------------------------------------------------------------
+
+const customBrandExample =
   `// Use custom terminal brand
 const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
   brand: '[MY-SCHEMA-TOOL]'
 });
 await terminal.run();`
-];
 
-const directCommandLineExample = [
+//----------------------------------------------------------------------
+
+const directCommandLineExample =
   `## Basic usage
 node cli.js transform --input ./schema.idea
 
@@ -86,9 +97,10 @@ node cli.js transform --i ./schema.idea
 
 ## With custom working directory
 cd /path/to/project && node cli.js transform --i ./schema.idea`
-];
 
-const cliScriptExample = [
+//----------------------------------------------------------------------
+
+const cliScriptExample =
   `#!/usr/bin/env node
 import Terminal from '@stackpress/idea-transformer/Terminal';
 
@@ -107,9 +119,10 @@ async function main() {
 }
 
 main();`
-];
 
-const packageJsonIntegrationExample = [
+//----------------------------------------------------------------------
+
+const packageJsonIntegrationExample =
   `{
   "name": "my-schema-tool",
   "bin": {
@@ -120,42 +133,47 @@ const packageJsonIntegrationExample = [
     "dev": "schema transform --i ./dev-schema.idea"
   }
 }`
-];
 
-const defaultPathExample = [
+//----------------------------------------------------------------------
+
+const defaultPathExample =
   `// Default file path construction
 const defaultPath = \`\${terminal.cwd}/schema\${terminal.extname}\`;
 // Example: "/current/directory/schema.idea"`
-];
 
-const flagProcessingExample = [
+//----------------------------------------------------------------------
+
+const flagProcessingExample =
   `// These are equivalent:
 ['transform', '--input', './schema.idea']
 ['transform', '--i', './schema.idea']
 
 // Uses default path: ./schema.idea
 ['transform']`
-];
 
-const missingSchemaFileExample = [
+//----------------------------------------------------------------------
+
+const missingSchemaFileExample =
   `try {
   const terminal = await Terminal.load(['transform', '--i', './nonexistent.idea']);
   await terminal.run();
 } catch (error) {
   console.error('File not found:', error.message);
 }`
-];
 
-const invalidCommandExample = [
+//----------------------------------------------------------------------
+
+const invalidCommandExample =
   `try {
   const terminal = await Terminal.load(['invalid-command']);
   await terminal.run();
 } catch (error) {
   console.error('Unknown command:', error.message);
 }`
-];
 
-const pluginErrorsExample = [
+//----------------------------------------------------------------------
+
+const pluginErrorsExample =
   `// If plugins fail during transformation
 try {
   const terminal = await Terminal.load(['transform', '--i', './schema.idea']);
@@ -163,9 +181,10 @@ try {
 } catch (error) {
   console.error('Transformation failed:', error.message);
 }`
-];
 
-const customEventHandlersExample = [
+//----------------------------------------------------------------------
+
+const customEventHandlersExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
 
 const terminal = await Terminal.load(['transform', '--i', './schema.idea']);
@@ -177,9 +196,10 @@ terminal.on('custom-command', async (event) => {
 });
 
 await terminal.run();`
-];
 
-const programmaticCLIExample = [
+//----------------------------------------------------------------------
+
+const programmaticCLIExample =
   `// Build CLI arguments programmatically
 function buildCLIArgs(schemaFile: string, options: any = {}) {
   const args = ['transform'];
@@ -194,9 +214,10 @@ function buildCLIArgs(schemaFile: string, options: any = {}) {
 const args = buildCLIArgs('./my-schema.idea');
 const terminal = await Terminal.load(args);
 await terminal.run();`
-];
 
-const batchProcessingExample = [
+//----------------------------------------------------------------------
+
+const batchProcessingExample =
   `import { glob } from 'glob';
 
 async function processAllSchemas(pattern: string) {
@@ -214,9 +235,10 @@ async function processAllSchemas(pattern: string) {
 
 // Process all .idea files in a directory
 await processAllSchemas('./schemas/**/*.idea');`
-];
 
-const environmentBasedConfigExample = [
+//----------------------------------------------------------------------
+
+const environmentBasedConfigExample =
   `const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
   cwd: process.env.SCHEMA_CWD || process.cwd(),
   extname: process.env.SCHEMA_EXT || '.idea',
@@ -224,9 +246,11 @@ const environmentBasedConfigExample = [
 });
 
 await terminal.run();`
-];
 
-const webpackPluginExample = [
+//----------------------------------------------------------------------
+
+
+const webpackPluginExample =
   `class SchemaTransformPlugin {
   constructor(options = {}) {
     this.options = options;
@@ -244,9 +268,10 @@ const webpackPluginExample = [
     });
   }
 }`
-];
 
-const gulpTaskExample = [
+//----------------------------------------------------------------------
+
+const gulpTaskExample =
   `import gulp from 'gulp';
 import Terminal from '@stackpress/idea-transformer/Terminal';
 
@@ -254,9 +279,10 @@ gulp.task('transform-schema', async () => {
   const terminal = await Terminal.load(['transform', '--i', './schema.idea']);
   await terminal.run();
 });`
-];
 
-const npmScriptsExample = [
+//----------------------------------------------------------------------
+
+const npmScriptsExample =
   `{
   "scripts": {
     "schema:build": "node -e \"import('./cli.js').then(m => m.default(['transform', '--i', './schema.idea']))\"",
@@ -264,9 +290,10 @@ const npmScriptsExample = [
     "schema:watch": "nodemon --watch schema.idea --exec \"npm run schema:build\""
   }
 }`
-];
 
-const unitTestingExample = [
+//----------------------------------------------------------------------
+
+const unitTestingExample =
   `import { expect } from 'chai';
 import Terminal from '@stackpress/idea-transformer/Terminal';
 
@@ -292,9 +319,10 @@ describe('Terminal Tests', () => {
     expect(terminal.cwd).to.be.a('string');
   });
 });`
-];
 
-const integrationTestingExample = [
+//----------------------------------------------------------------------
+
+const integrationTestingExample =
   `import fs from 'fs';
 import path from 'path';
 
@@ -320,9 +348,10 @@ describe('Terminal Integration', () => {
     }
   });
 });`
-];
 
-const errorHandlingBestPracticeExample = [
+//----------------------------------------------------------------------
+
+const errorHandlingBestPracticeExample =
   `// Always wrap terminal execution in try-catch
 async function safeTransform(schemaFile: string) {
   try {
@@ -334,9 +363,11 @@ async function safeTransform(schemaFile: string) {
     throw error;
   }
 }`
-];
 
-const configurationManagementExample = [
+//----------------------------------------------------------------------
+
+
+const configurationManagementExample =
   `// Use configuration objects for reusable settings
 const defaultConfig = {
   cwd: process.cwd(),
@@ -347,9 +378,10 @@ const defaultConfig = {
 async function createTerminal(args: string[], config = defaultConfig) {
   return await Terminal.load(args, config);
 }`
-];
 
-const loggingAndDebuggingExample = [
+//----------------------------------------------------------------------
+
+const loggingAndDebuggingExample =
   `// Add logging for better debugging
 const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
   cwd: process.cwd()
@@ -359,7 +391,8 @@ console.log(\`Working directory: \${terminal.cwd}\`);
 console.log(\`File extension: \${terminal.extname}\`);
 
 await terminal.run();`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -394,13 +427,30 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
-        {_('Terminal')}
+        {_('API Reference')}
       </h6>
-      <nav className="px-m-14 px-lh-28 flex flex-col">
+      <nav className="px-m-0 px-lh-28 flex flex-col">
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/transformers/api-references/transformer"
+        >
+          {_('Transformer')}
+        </a>
+        <div className="text-blue-300 cursor-pointer">
+          {_('Terminal')}
+        </div>
+      </nav>
+
+      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-30 px-pb-10 uppercase">
+        {_('On this page')}
+      </h6>
+      <nav className="px-m-0 px-lh-28 flex flex-col">
         <a
           className="text-blue-500 cursor-pointer hover:text-blue-700"
           href="#overview-1"
@@ -479,11 +529,13 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      <section id="overview-1">
+      {/* Overview Section */}
+      <section>
         <H1>{_('Terminal')}</H1>
         <P>
           <Translate>
@@ -495,13 +547,20 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
-          {basicExample[0]}
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white'>
+          {basicExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Overview Section */}
       <section id="overview-1">
-        <H2>{_('Overview')}</H2>
+        <H1>{_('Overview')}</H1>
         <P>
           <Translate>
             The Terminal class provides a command-line interface for
@@ -528,8 +587,12 @@ export function Body() {
         </ul>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Loading a Terminal Instance Section */}
       <section id="loading-a-terminal-instance-2">
-        <H2>{_('Loading a Terminal Instance')}</H2>
+        <H1>{_('Loading a Terminal Instance')}</H1>
         <P>
           <Translate>
             The load method creates a new Terminal instance from
@@ -547,7 +610,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {loadExample[0]}
+          {loadExample}
         </Code>
 
         <H2>{_('Parameters')}</H2>
@@ -587,8 +650,12 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Properties Section */}
       <section id="properties-3">
-        <H2>{_('Properties')}</H2>
+        <H1>{_('Properties')}</H1>
         <P>
           <Translate>
             The properties section describes the instance variables
@@ -633,8 +700,12 @@ export function Body() {
         </Table>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Running Terminal Commands Section */}
       <section id="running-terminal-commands-4">
-        <H2>{_('Running Terminal Commands')}</H2>
+        <H1>{_('Running Terminal Commands')}</H1>
         <P>
           <Translate>
             The run method executes the configured terminal command and
@@ -652,7 +723,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {runExample[0]}
+          {runExample}
         </Code>
 
         <H2>{_('Command Structure')}</H2>
@@ -685,8 +756,12 @@ export function Body() {
         </Table>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Usage Examples Section */}
       <section id="usage-examples-5">
-        <H2>{_('Usage Examples')}</H2>
+        <H1>{_('Usage Examples')}</H1>
         <P>
           <Translate>
             This section provides practical examples of how to use the
@@ -706,7 +781,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {basicCommandExecutionExample[0]}
+          {basicCommandExecutionExample}
         </Code>
 
         <H2>{_('Using Short Flag Syntax')}</H2>
@@ -719,7 +794,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {shortFlagExample[0]}
+          {shortFlagExample}
         </Code>
 
         <H2>{_('Custom Working Directory')}</H2>
@@ -733,7 +808,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {customWorkingDirectoryExample[0]}
+          {customWorkingDirectoryExample}
         </Code>
 
         <H2>{_('Custom File Extension')}</H2>
@@ -747,7 +822,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {customFileExtensionExample[0]}
+          {customFileExtensionExample}
         </Code>
 
         <H2>{_('Custom Brand/Label')}</H2>
@@ -761,12 +836,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {customBrandExample[0]}
+          {customBrandExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Command-Line Integration Section */}
       <section id="command-line-integration-6">
-        <H2>{_('Command-Line Integration')}</H2>
+        <H1>{_('Command-Line Integration')}</H1>
         <P>
           <Translate>
             This section demonstrates how to integrate the Terminal class
@@ -786,7 +865,7 @@ export function Body() {
         </P>
 
         <Code copy language='bash' className='bg-black text-white'>
-          {directCommandLineExample[0]}
+          {directCommandLineExample}
         </Code>
 
         <H2>{_('CLI Script Example')}</H2>
@@ -800,7 +879,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {cliScriptExample[0]}
+          {cliScriptExample}
         </Code>
 
         <H2>{_('Package.json Integration')}</H2>
@@ -814,12 +893,16 @@ export function Body() {
         </P>
 
         <Code copy language='json' className='bg-black text-white'>
-          {packageJsonIntegrationExample[0]}
+          {packageJsonIntegrationExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Default Behavior Section */}
       <section id="default-behavior-7">
-        <H2>{_('Default Behavior')}</H2>
+        <H1>{_('Default Behavior')}</H1>
         <P>
           <Translate>
             This section explains the default behavior and conventions
@@ -847,7 +930,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {defaultPathExample[0]}
+          {defaultPathExample}
         </Code>
 
         <H2>{_('Flag Processing')}</H2>
@@ -880,12 +963,16 @@ export function Body() {
         </ol>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {flagProcessingExample[0]}
+          {flagProcessingExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Error Handling Section */}
       <section id="error-handling-8">
-        <H2>{_('Error Handling')}</H2>
+        <H1>{_('Error Handling')}</H1>
         <P>
           <Translate>
             This section covers common error conditions that can occur
@@ -906,7 +993,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {missingSchemaFileExample[0]}
+          {missingSchemaFileExample}
         </Code>
 
         <H2>{_('Invalid Command')}</H2>
@@ -920,7 +1007,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {invalidCommandExample[0]}
+          {invalidCommandExample}
         </Code>
 
         <H2>{_('Plugin Errors')}</H2>
@@ -934,12 +1021,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {pluginErrorsExample[0]}
+          {pluginErrorsExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Advanced Usage Section */}
       <section id="advanced-usage-9">
-        <H2>{_('Advanced Usage')}</H2>
+        <H1>{_('Advanced Usage')}</H1>
         <P>
           <Translate>
             This section covers advanced patterns and techniques for
@@ -960,7 +1051,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {customEventHandlersExample[0]}
+          {customEventHandlersExample}
         </Code>
 
         <H2>{_('Programmatic CLI Building')}</H2>
@@ -974,7 +1065,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {programmaticCLIExample[0]}
+          {programmaticCLIExample}
         </Code>
 
         <H2>{_('Batch Processing')}</H2>
@@ -988,7 +1079,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {batchProcessingExample[0]}
+          {batchProcessingExample}
         </Code>
 
         <H2>{_('Environment-Based Configuration')}</H2>
@@ -1002,12 +1093,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {environmentBasedConfigExample[0]}
+          {environmentBasedConfigExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Integration with Build Tools Section */}
       <section id="integration-with-build-tools-10">
-        <H2>{_('Integration with Build Tools')}</H2>
+        <H1>{_('Integration with Build Tools')}</H1>
         <P>
           <Translate>
             This section demonstrates how to integrate the Terminal class
@@ -1028,7 +1123,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {webpackPluginExample[0]}
+          {webpackPluginExample}
         </Code>
 
         <H2>{_('Gulp Task')}</H2>
@@ -1041,7 +1136,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {gulpTaskExample[0]}
+          {gulpTaskExample}
         </Code>
 
         <H2>{_('NPM Scripts')}</H2>
@@ -1055,12 +1150,16 @@ export function Body() {
         </P>
 
         <Code copy language='json' className='bg-black text-white'>
-          {npmScriptsExample[0]}
+          {npmScriptsExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Testing Section */}
       <section id="testing-11">
-        <H2>{_('Testing')}</H2>
+        <H1>{_('Testing')}</H1>
         <P>
           <Translate>
             This section covers testing strategies and patterns for
@@ -1081,7 +1180,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {unitTestingExample[0]}
+          {unitTestingExample}
         </Code>
 
         <H2>{_('Integration Testing')}</H2>
@@ -1095,12 +1194,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {integrationTestingExample[0]}
+          {integrationTestingExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Best Practices Section */}
       <section id="best-practices-12">
-        <H2>{_('Best Practices')}</H2>
+        <H1>{_('Best Practices')}</H1>
         <P>
           <Translate>
             This section outlines recommended approaches for using the
@@ -1121,7 +1224,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {errorHandlingBestPracticeExample[0]}
+          {errorHandlingBestPracticeExample}
         </Code>
 
         <H2>{_('Configuration Management')}</H2>
@@ -1135,7 +1238,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {configurationManagementExample[0]}
+          {configurationManagementExample}
         </Code>
 
         <H2>{_('Logging and Debugging')}</H2>
@@ -1149,10 +1252,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {loggingAndDebuggingExample[0]}
+          {loggingAndDebuggingExample}
         </Code>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('Transformer'),

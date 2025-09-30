@@ -1,12 +1,13 @@
 //modules
-import Code from 'frui/format/Code';
 import { Translate, useLanguage } from 'r22n';
+//local
+import Code from '../../../docs/components/Code.js';
 
 //code example
 //----------------------------------------------------------------------
 
 const exampleSchema =
-  `enum UserRole {
+`enum UserRole {
   ADMIN "Administrator"
   CUSTOMER "Customer"
   VENDOR "Vendor"
@@ -66,7 +67,7 @@ plugin "./plugins/api-generator.js" {
   output "./src/api/"
   framework "express"
   includeValidation true
-}`;
+}`
 
 //----------------------------------------------------------------------
 
@@ -91,57 +92,66 @@ export default function RealWorldExampleSection() {
               </Translate>
             </p>
 
-            <div className="theme-bg-bg1 rounded-lg shadow-lg p-6">
-              <Code language='javascript'>
-                {exampleSchema}
-              </Code>
-            </div>
+            <Code
+              copy
+              language='javascript'
+              className='bg-dark-800 rounded-lg text-white p-3'>
+              {exampleSchema}
+            </Code>
           </div>
 
           <div className="w-full lg:w-5/12">
             <div className="bg-yellow-50 rounded-lg border border-yellow-200 
             p-6">
-              <h3 className="font-bold mb-4 text-yellow-800 text-lg">
+              <h3 className="font-bold mb-4 text-yellow-900 text-lg">
                 {_('From this single schema, generate:')}
               </h3>
 
-              <ul className="text-base space-y-2 pl-5 list-disc text-gray-700">
-                <li>
+              <ul className="text-base space-y-3 text-gray-900">
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3 "></i>
                   <Translate>
                     TypeScript interfaces and types
                   </Translate>
                 </li>
-                <li>
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3"></i>
                   <Translate>
                     PostgreSQL database schema
                   </Translate>
                 </li>
-                <li>
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3"></i>
                   <Translate>
                     React form components with Tailwind CSS
                   </Translate>
                 </li>
-                <li>
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3"></i>
                   <Translate>
                     Express.js API routes with validation
                   </Translate>
                 </li>
-                <li>
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3"></i>
                   <Translate>
                     OpenAPI documentation
                   </Translate>
                 </li>
-                <li>
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3"></i>
                   <Translate>
                     Test data and fixtures
                   </Translate>
                 </li>
-                <li>
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3"></i>
                   <Translate>
                     Database migration files
                   </Translate>
                 </li>
-                <li>
+                <li className="flex items-center">
+                  <i className="fa-solid fa-check text-green-500 mr-3"></i>
                   <Translate>
                     Validation schemas (Zod, Joi, etc.)
                   </Translate>

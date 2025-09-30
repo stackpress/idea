@@ -98,8 +98,8 @@ export function Body() {
       <hr className='mt-10' />
 
       {/* Basic Schema Transformation Section Content */}
-      <section>
-        <H2>{_('Basic Schema Transformation')}</H2>
+      <section> 
+        <H1>{_('Basic Schema Transformation')}</H1>
         <P>
           <Translate>
             The most common usage pattern involves loading a schema file and
@@ -117,7 +117,7 @@ export function Body() {
 
       {/* CLI Usage Section Content */}
       <section>
-        <H2>{_('CLI Usage')}</H2>
+        <H1>{_('CLI Usage')}</H1>
         <P>
           <Translate>
             The command-line interface provides a simple way to process
@@ -136,7 +136,7 @@ export function Body() {
 
       {/* Plugin Development Section Content */}
       <section>
-        <H2>{_('Plugin Development')}</H2>
+        <H1>{_('Plugin Development')}</H1>
         <P>
           <Translate>
             Creating custom plugins allows you to extend the transformer with

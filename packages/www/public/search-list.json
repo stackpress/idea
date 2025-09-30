@@ -67,12 +67,12 @@
   {
     "title": "(Use) Schema Directives - Specification",
     "description": "Schema directives are special declarations that control how the schema is processed and what outputs are generated.",
-    "url": "/docs/specifications/schema-structure#use/"
+    "url": "/docs/specifications/schema-directives#use"
   },
   {
     "title": "(Plugin) Schema Directives - Specification",
     "description": "Schema directives are special declarations that control how the schema is processed and what outputs are generated.",
-    "url": "/docs/specifications/schema-structure#plugin/"
+    "url": "/docs/specifications/schema-directives#plugin"
   },
   {
     "title": "Processing Flow - Specification",
@@ -87,7 +87,7 @@
   {
     "title": "Complete Example - Specification",
     "description": "Complete examples of how to use the .idea file format to generate various outputs like TypeScript interfaces, database schemas, API documentation, and more.",
-    "url": "/docs/specifications/complete-example/"
+    "url": "/docs/specifications/complete-examples/"
   },
   {
     "title": "Best Practices - Specification",

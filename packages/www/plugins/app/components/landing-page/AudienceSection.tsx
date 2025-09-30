@@ -14,7 +14,7 @@ export default function AudienceSection() {
         </h2>
 
         <div className="space-y-6 ">
-          <div className="theme-bg-bg1 rounded-lg p-6 shadow-md">
+          <div className="theme-bg-bg2 rounded-lg p-6 shadow-md">
             <div className="flex items-center mb-4">
               <span className="text-2xl mr-3">
                 <i className="fa-solid fa-graduation-cap text-blue"></i>
@@ -37,7 +37,7 @@ export default function AudienceSection() {
             </ul>
           </div>
 
-          <div className="theme-bg-bg1 rounded-lg p-6 shadow-md">
+          <div className="theme-bg-bg2 rounded-lg p-6 shadow-md">
             <div className="flex items-center mb-4">
               <span className="text-2xl mr-3">
                 <i className="fa-solid fa-user-tie text-red-500"></i>
@@ -65,7 +65,7 @@ export default function AudienceSection() {
             </ul>
           </div>
 
-          <div className="theme-bg-bg1 rounded-lg p-6 shadow-md">
+          <div className="theme-bg-bg2 rounded-lg p-6 shadow-md">
             <div className="flex items-center mb-4">
               <span className="text-2xl mr-3">
                 <i className="fa-solid fa-suitcase text-green-500"></i>

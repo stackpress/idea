@@ -4,12 +4,15 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
-import { H1, H2, H3, P, C, Nav } from '../../components/index.js';
+//local
+import { H1, H2, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
-const schemaExample = [
+//code examples
+//----------------------------------------------------------------------
+
+const schemaExample =
   `// schema.idea
 model User {
   id String @id
@@ -32,9 +35,10 @@ type Profile {
 plugin "./generate-types.js" {
   output "./generated/types.ts"
 }`
-];
 
-const pluginExample = [
+//----------------------------------------------------------------------
+
+const pluginExample =
   `// generate-types.js
 export default async function generateTypes({ schema, config, transformer }) {
   let content = '';
@@ -65,9 +69,10 @@ export default async function generateTypes({ schema, config, transformer }) {
   const outputPath = await transformer.loader.absolute(config.output);
   await writeFile(outputPath, content);
 }`
-];
 
-const cliExample = [
+//----------------------------------------------------------------------
+
+const cliExample =
   `{
   "scripts": {
     "generate": "idea transform --input ./schema.idea",
@@ -75,7 +80,8 @@ const cliExample = [
     "dev": "npm run generate && npm run build -- --watch"
   }
 }`
-];
+
+//----------------------------------------------------------------------
 
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
@@ -133,7 +139,7 @@ export function Body() {
 
       {/* TypeScript Interface Generation Section Content */}
       <section>
-        <H2>{_('TypeScript Interface Generation')}</H2>
+        <H1>{_('TypeScript Interface Generation')}</H1>
         <P>
           <Translate>
             This example shows how to create a plugin that generates
@@ -143,19 +149,19 @@ export function Body() {
         </P>
       </section>
 
-       {/* Horizontal Rule */}
+      {/* Horizontal Rule */}
       <hr className='mt-10' />
 
       {/* Schema Definition Section Content */}
       <section>
-        <H2>{_('Schema Definition')}</H2>
+        <H1>{_('Schema Definition')}</H1>
         <Code copy language='idea' className='bg-black text-white'>
-          {schemaExample[0]}
+          {schemaExample}
         </Code>
 
-        <H2>{_('Plugin Implementation')}</H2>
+        <H1>{_('Plugin Implementation')}</H1>
         <Code copy language='javascript' className='bg-black text-white'>
-          {pluginExample[0]}
+          {pluginExample}
         </Code>
       </section>
 
@@ -164,7 +170,7 @@ export function Body() {
 
       {/* CLI Integration Section Content */}
       <section>
-        <H2>{_('CLI Integration')}</H2>
+        <H1>{_('CLI Integration')}</H1>
         <P>
           <Translate>
             This example demonstrates how to integrate the idea-transformer CLI
@@ -173,7 +179,7 @@ export function Body() {
           </Translate>
         </P>
         <Code copy language='json' className='bg-black text-white'>
-          {cliExample[0]}
+          {cliExample}
         </Code>
       </section>
 
@@ -188,7 +194,6 @@ export function Body() {
           href: '/docs/transformers/error-handling'
         }}
       />
-
     </main>
   );
 }

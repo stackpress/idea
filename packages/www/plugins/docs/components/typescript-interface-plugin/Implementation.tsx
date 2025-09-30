@@ -1,7 +1,7 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, H3, P, C, Code } from '../index.js';
+import { H1, H2, P, C, Code } from '../index.js';
 
 //code examples
 //----------------------------------------------------------------------
@@ -269,9 +269,10 @@ export default function Implementation() {
       <P>
         <Translate>
           The core plugin function serves as the main entry point for
-          TypeScript interface generation. It orchestrates the entire process
-          from configuration validation through content generation to file
-          output, ensuring proper error handling and logging throughout.
+          TypeScript interface generation. It orchestrates the entire 
+          process from configuration validation through content generation 
+          to file output, ensuring proper error handling and logging 
+          throughout.
         </Translate>
       </P>
       <Code lang='typescript'>
@@ -281,10 +282,10 @@ export default function Implementation() {
       <H2>{_('Type Mapping Functions')}</H2>
       <P>
         <Translate>
-          Type mapping functions handle the conversion of <C>.idea</C> schema
-          types to their TypeScript equivalents. These functions ensure proper
-          type safety and handle complex scenarios like nullable types, arrays,
-          and custom type references.
+          Type mapping functions handle the conversion of <C>.idea</C> 
+          schema types to their TypeScript equivalents. These functions 
+          ensure proper type safety and handle complex scenarios like 
+          nullable types, arrays, and custom type references.
         </Translate>
       </P>
       <Code lang='typescript'>

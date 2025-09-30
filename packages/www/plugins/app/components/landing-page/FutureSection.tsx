@@ -1,3 +1,4 @@
+//modules
 import Button from 'frui/form/Button';
 import { Translate, useLanguage } from 'r22n';
 
@@ -31,20 +32,23 @@ export default function FutureSection() {
             <div className="flex items-center justify-center gap-4 mb-8">
               <a href="/docs/getting-started">
                 <Button className="bg-yellow-500 hover:bg-yellow-600 
-                px-6 py-3 rounded-lg font-bold">
+                px-6 py-3 rounded-lg font-bold hover:scale-105
+                transition">
                   {_('Get Started')}
                 </Button>
               </a>
               <a href="/docs/specifications/syntax-overview"
                 className="px-6 py-3 border border-gray-600 rounded-lg 
-                bg-gray-800 hover:bg-gray-700 text-white transition">
+                bg-gray-800 hover:bg-gray-700 text-white hover:scale-105
+                transition">
                 {_('Read the Spec')}
               </a>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-
+          {/* Features, Benefits, Resources, Philosophy sections */}
+          <section className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            {/* Features */}
             <div>
               <h3 className="text-xl font-bold mb-4 text-yellow-400">
                 {_('Features')}
@@ -73,6 +77,7 @@ export default function FutureSection() {
               </div>
             </div>
 
+            {/* Benefits */}
             <div>
               <h3 className="text-xl font-bold mb-4 text-yellow-400">
                 {_('Benefits')}
@@ -101,6 +106,7 @@ export default function FutureSection() {
               </div>
             </div>
 
+            {/* Resources */}
             <div>
               <h3 className="text-xl font-bold mb-4 text-yellow-400">
                 {_('Resources')}
@@ -108,7 +114,7 @@ export default function FutureSection() {
               <ul className="space-y-2">
                 <li>
                   <a href="/docs/specifications/syntax-overview"
-                    className="text-blue-400 hover:text-blue-300 underline">
+                    className="text-blue-500 hover:text-blue-600 underline">
                     <Translate>
                       Read the Spec
                     </Translate>
@@ -116,7 +122,7 @@ export default function FutureSection() {
                 </li>
                 <li>
                   <a href="/docs/plugin-development/plugin-development-guide"
-                    className="text-blue-400 hover:text-blue-300 underline">
+                    className="text-blue-500 hover:text-blue-600 underline">
                     <Translate>
                       Plugin tutorials
                     </Translate>
@@ -124,7 +130,7 @@ export default function FutureSection() {
                 </li>
                 <li>
                   <a href="/docs/getting-started"
-                    className="text-blue-400 hover:text-blue-300 underline">
+                    className="text-blue-500 hover:text-blue-600 underline">
                     <Translate>
                       Build something
                     </Translate>
@@ -133,28 +139,30 @@ export default function FutureSection() {
               </ul>
             </div>
 
+            {/* Philosophy */}
             <div>
               <h3 className="text-xl font-bold mb-4 text-yellow-400">
                 {_('Philosophy')}
               </h3>
               <blockquote className="text-sm  italic mb-2">
                 <Translate>
-                  The fastest, safest line of code is the one you never write.
+                  "The fastest, safest line of code is the one you never write."
                 </Translate>
               </blockquote>
-              <div className="text-xs">
+              <h6 className="text-xs">
                 {_('— Steve Jobs')}
-              </div>
+              </h6>
             </div>
-          </div>
+          </section>
 
-          <div className="border-t border-gray-700 pt-6 text-center">
+          {/* Copyright section */}
+          <section className="border-t border-gray-700 pt-6 text-center">
             <p className=" text-sm">
               <Translate>
                 © 2025 .idea. Building the future of declarative development.
               </Translate>
             </p>
-          </div>
+          </section>
         </div>
       </section>
     </>

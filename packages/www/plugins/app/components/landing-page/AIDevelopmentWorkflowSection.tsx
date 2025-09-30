@@ -31,11 +31,13 @@ export default function AIDevelopmentWorkflowSection() {
           </p>
         </div>
 
+        {/* AI Development Workflow Steps */}
         <div className="space-y-6">
+          {/* Step 1 */}
           <div className="theme-bg-bg1 rounded-lg p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <span className="flex h-8 w-8 items-center justify-center 
-          rounded-full bg-pink-100 text-pink-600">
+              rounded-full bg-pink-100 text-pink-600">
                 <i className="fa-solid fa-comment"></i>
               </span>
               <h3 className="font-bold text-lg">
@@ -49,10 +51,11 @@ export default function AIDevelopmentWorkflowSection() {
             </p>
           </div>
 
+          {/* Step 2 */}
           <div className="theme-bg-bg1 rounded-lg  p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <span className="flex h-8 w-8 items-center justify-center 
-          rounded-full bg-purple-100 text-purple-600">
+              rounded-full bg-purple-100 text-purple-600">
                 <i className="fa-solid fa-lightbulb"></i>
               </span>
               <h3 className="font-bold text-lg">
@@ -66,11 +69,12 @@ export default function AIDevelopmentWorkflowSection() {
             </p>
           </div>
 
+          {/* Step 3 */}
           <div className="theme-bg-bg1 rounded-lg p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <span className="flex h-8 w-8 items-center justify-center 
-          rounded-full bg-yellow-100 text-yellow-600">
-                🔌
+              rounded-full bg-yellow-100 text-yellow-600">
+                <i className="fa-solid fa-plug"></i>
               </span>
               <h3 className="font-bold text-lg">
                 {_('Step 3')}
@@ -83,11 +87,12 @@ export default function AIDevelopmentWorkflowSection() {
             </p>
           </div>
 
+          {/* Step 4 */}
           <div className="theme-bg-bg1 rounded-lg p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <span className="flex h-8 w-8 items-center justify-center 
-          rounded-full bg-green-100 text-green-600">
-                ⚡
+              rounded-full bg-green-100 text-green-600">
+                <i className="fa-solid fa-bolt"></i>
               </span>
               <h3 className="font-bold text-lg">
                 {_('Step 4')}
@@ -100,11 +105,12 @@ export default function AIDevelopmentWorkflowSection() {
             </p>
           </div>
 
+          {/* Step 5 */}
           <div className="theme-bg-bg1 rounded-lg p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
               <span className="flex h-8 w-8 items-center justify-center 
               rounded-full bg-blue-100 text-blue-600">
-                🔄
+                <i className="fa-solid fa-repeat"></i>
               </span>
               <h3 className="font-bold text-lg">
                 {_('Step 5')}
@@ -118,6 +124,7 @@ export default function AIDevelopmentWorkflowSection() {
           </div>
         </div>
 
+        {/* Text to describe the workflow */}
         <div className="text-center mt-10">
           <p className="text-lg">
             <Translate>

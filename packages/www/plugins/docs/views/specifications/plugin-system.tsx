@@ -100,7 +100,7 @@ export function Body() {
 
       {/* Plugin Declaration Content */}
       <section>
-        <H2>{_('Plugin Declaration')}</H2>
+        <H1>{_('Plugin Declaration')}</H1>
         <Code
           copy
           language="javascript"
@@ -109,7 +109,7 @@ export function Body() {
           {pluginDeclaration[0]}
         </Code>
 
-        <H2>{_('Common Plugin Types')}</H2>
+        <H1>{_('Common Plugin Types')}</H1>
         <Table className='text-left'>
           <Trow className='theme-bg-bg1'>
             <Thead>Plugin Type</Thead>
@@ -148,7 +148,7 @@ export function Body() {
           </Trow>
         </Table>
 
-        <H2>{_('Plugin Development')}</H2>
+        <H1>{_('Plugin Development')}</H1>
         <Code
           copy
           language="javascript"

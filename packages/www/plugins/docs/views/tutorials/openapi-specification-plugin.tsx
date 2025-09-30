@@ -63,7 +63,7 @@ export function Right() {
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-m-14 px-lh-28 flex flex-col">
+      <nav className="px-m-0 px-lh-28 flex flex-col">
         <a
           href="#overview"
           className="text-blue-500 cursor-pointer hover:text-blue-700">

@@ -4,21 +4,25 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
-//docs
+//local
 import { H1, H2, P, C, Nav, SS } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
-const basicExample = [
+//code examples
+//----------------------------------------------------------------------
+
+const basicExample = 
   `import Transformer from '@stackpress/idea-transformer';
 
 const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
 await transformer.transform();`
-];
 
-const loadExample = [
+//----------------------------------------------------------------------
+
+const loadExample = 
   `import Transformer from '@stackpress/idea-transformer';
 
 // Load with default options
@@ -29,9 +33,10 @@ const transformer = await Transformer.load('./schema.idea', {
   cwd: '/custom/working/directory',
   fs: customFileSystem
 });`
-];
 
-const schemaExample = [
+//----------------------------------------------------------------------
+
+const schemaExample = 
   `const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
 
@@ -40,9 +45,10 @@ console.log(schema.enum); // Access enum definitions
 console.log(schema.type); // Access type definitions
 console.log(schema.prop); // Access prop definitions
 console.log(schema.plugin); // Access plugin configurations`
-];
 
-const transformExample = [
+//----------------------------------------------------------------------
+
+const transformExample = 
   `const transformer = await Transformer.load('./schema.idea');
 
 // Transform with no additional context
@@ -53,9 +59,10 @@ await transformer.transform({
   outputDir: './generated',
   debug: true
 });`
-];
 
-const pluginContextExample = [
+//----------------------------------------------------------------------
+
+const pluginContextExample = 
   `{
   transformer: Transformer,  // The transformer instance
   config: PluginConfig,      // Plugin-specific configuration
@@ -63,9 +70,10 @@ const pluginContextExample = [
   cwd: string,              // Current working directory
   ...extras                 // Any additional context passed to transform()
 }`
-];
 
-const basicSchemaLoadingExample = [
+//----------------------------------------------------------------------
+
+const basicSchemaLoadingExample = 
   `import Transformer from '@stackpress/idea-transformer';
 
 const transformer = await Transformer.load('./schema.idea');
@@ -75,9 +83,10 @@ const schema = await transformer.schema();
 console.log('Models:', Object.keys(schema.model || {}));
 console.log('Enums:', Object.keys(schema.enum || {}));
 console.log('Types:', Object.keys(schema.type || {}));`
-];
 
-const multipleSchemaFilesExample = [
+//----------------------------------------------------------------------
+
+const multipleSchemaFilesExample = 
   `// main.idea
 /*
 use "./shared/types.idea"
@@ -96,9 +105,10 @@ const schema = await transformer.schema();
 // The schema now includes definitions from all imported files
 console.log(schema.type?.Profile);  // Available from shared/types.idea
 console.log(schema.enum?.UserRole); // Available from shared/enums.idea`
-];
 
-const pluginDevelopmentExample = [
+//----------------------------------------------------------------------
+
+const pluginDevelopmentExample = 
   `// schema.idea
 /*
 plugin "./plugins/generate-types.js" {
@@ -135,9 +145,10 @@ const transformer = await Transformer.load('./schema.idea');
 await transformer.transform({
   timestamp: new Date().toISOString()
 });`
-];
 
-const errorHandlingExample = [
+//----------------------------------------------------------------------
+
+const errorHandlingExample = 
   `import { Exception } from '@stackpress/idea-parser';
 
 try {
@@ -152,9 +163,10 @@ try {
     console.error('Unexpected error:', error);
   }
 }`
-];
 
-const customFileSystemExample = [
+//----------------------------------------------------------------------
+
+const customFileSystemExample = 
   `import { NodeFS } from '@stackpress/lib';
 
 // Using custom file system
@@ -163,27 +175,31 @@ const transformer = await Transformer.load('./schema.idea', {
   fs: customFS,
   cwd: '/custom/working/directory'
 });`
-];
 
-const fileNotFoundExample = [
+//----------------------------------------------------------------------
+
+const fileNotFoundExample = 
   `// Throws: "Input file /path/to/nonexistent.idea does not exist"
 const transformer = await Transformer.load('./nonexistent.idea');
 await transformer.schema(); // Error thrown here`
-];
 
-const noPluginsExample = [
+//----------------------------------------------------------------------
+
+const noPluginsExample = 
   `// If schema has no plugins defined
 const transformer = await Transformer.load('./schema-without-plugins.idea');
 await transformer.transform(); // Throws: "No plugins defined in schema file"`
-];
 
-const invalidPluginExample = [
+//----------------------------------------------------------------------
+
+const invalidPluginExample = 
   `// If plugin file doesn't export a function
 const transformer = await Transformer.load('./schema.idea');
 await transformer.transform(); // Plugin is silently skipped if not a function`
-];
 
-const schemaOrganizationExample = [
+//----------------------------------------------------------------------
+
+const schemaOrganizationExample = 
   `// Organize schemas hierarchically
 // shared/base.idea - Common types and enums
 // modules/user.idea - User-specific models
@@ -197,9 +213,10 @@ model Application {
   id String @id
   users User[]
 }`
-];
 
-const pluginDevelopmentBestPracticeExample = [
+//----------------------------------------------------------------------
+
+const pluginDevelopmentBestPracticeExample = 
   `// Always validate plugin configuration
 export default async function myPlugin({ config, schema, transformer, cwd }) {
   // Validate required configuration
@@ -216,9 +233,10 @@ export default async function myPlugin({ config, schema, transformer, cwd }) {
   
   // Generate output...
 }`
-];
 
-const errorRecoveryExample = [
+//----------------------------------------------------------------------
+
+const errorRecoveryExample = 
   `// Implement graceful error handling
 async function processSchema(schemaPath) {
   try {
@@ -231,9 +249,10 @@ async function processSchema(schemaPath) {
     return { success: false, error: error.message };
   }
 }`
-];
 
-const buildSystemIntegrationExample = [
+//----------------------------------------------------------------------
+
+const buildSystemIntegrationExample = 
   `// Integration with build tools
 import Transformer from '@stackpress/idea-transformer';
 
@@ -245,9 +264,10 @@ export async function buildSchemas(inputDir, outputDir) {
     await transformer.transform({ outputDir });
   }
 }`
-];
 
-const testingExample = [
+//----------------------------------------------------------------------
+
+const testingExample = 
   `// Testing schema transformations
 import { expect } from 'chai';
 
@@ -260,7 +280,8 @@ describe('Schema Transformation', () => {
     expect(schema.model.User.columns).to.have.length.greaterThan(0);
   });
 });`
-];
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -295,13 +316,30 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
     <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
       <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
-        {_('Transformer')}
+        {_('API Reference')}
       </h6>
-      <nav className="px-m-14 px-lh-26 flex flex-col">
+      <nav className="px-m-0 px-lh-28 flex flex-col">
+        <div className="text-blue-300 cursor-pointer">
+          {_('Transformer')}
+        </div>
+        <a
+          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          href="/docs/transformers/api-references/terminal" 
+        >
+          {_('Terminal')}
+        </a>
+      </nav>
+
+      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-30 px-pb-10 uppercase">
+        {_('On this page')}
+      </h6>
+      <nav className="px-m-0 px-lh-26 flex flex-col">
         <a
           className="text-blue-500 cursor-pointer hover:text-blue-700"
           href="#overview-1"
@@ -356,12 +394,14 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
+      {/* Transformer API Reference Section Content */}
       <section>
-        <H1>{_('Transformer')}</H1>
+        <H1>{_('Transformer API Reference')}</H1>
         <P>
           <Translate>
             A class for loading, processing, and transforming schema files
@@ -373,12 +413,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {basicExample[0]}
+          {basicExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Overview Section Content */}
       <section id="overview-1">
-        <H2>{_('Overview')}</H2>
+        <H1>{_('Overview')}</H1>
         <P>
           <Translate>
             The Transformer class provides a comprehensive solution for
@@ -420,8 +464,12 @@ export function Body() {
         </ul>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Loading a Transformer Section Content */}
       <section id="loading-a-transformer-2">
-        <H2>{_('Loading a Transformer')}</H2>
+        <H1>{_('Loading a Transformer')}</H1>
         <P>
           <Translate>
             The load method creates a new Transformer instance configured
@@ -438,7 +486,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {loadExample[0]}
+          {loadExample}
         </Code>
 
         <H2>{_('Parameters')}</H2>
@@ -478,8 +526,12 @@ export function Body() {
         </P>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Properties Section Content */}
       <section id="properties-3">
-        <H2>{_('Properties')}</H2>
+        <H1>{_('Properties')}</H1>
         <P>
           <Translate>
             The properties section describes the instance variables
@@ -523,8 +575,12 @@ export function Body() {
         </Table>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Methods Section Content */}
       <section id="methods-4">
-        <H2>{_('Methods')}</H2>
+        <H1>{_('Methods')}</H1>
         <P>
           <Translate>
             The methods section covers the instance methods available
@@ -552,7 +608,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {schemaExample[0]}
+          {schemaExample}
         </Code>
 
         <H2>{_('Returns')}</H2>
@@ -652,7 +708,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {transformExample[0]}
+          {transformExample}
         </Code>
 
         <H2>{_('Parameters')}</H2>
@@ -727,8 +783,12 @@ export function Body() {
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Usage Examples Section Content */}
       <section id="usage-examples-5">
-        <H2>{_('Usage Examples')}</H2>
+        <H1>{_('Usage Examples')}</H1>
         <P>
           <Translate>
             This section provides practical examples of how to use the
@@ -749,10 +809,10 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {basicSchemaLoadingExample[0]}
+          {basicSchemaLoadingExample}
         </Code>
 
-        <H2>{_('Working with Multiple Schema Files')}</H2>
+        <H1>{_('Working with Multiple Schema Files')}</H1>
         <P>
           <Translate>
             Working with multiple schema files shows how the Transformer
@@ -763,7 +823,7 @@ export function Body() {
         </P>
 
         <Code copy language='idea' className='bg-black text-white'>
-          {multipleSchemaFilesExample[0]}
+          {multipleSchemaFilesExample}
         </Code>
 
         <H2>{_('Plugin Development and Execution')}</H2>
@@ -777,7 +837,7 @@ export function Body() {
         </P>
 
         <Code copy language='idea' className='bg-black text-white'>
-          {pluginDevelopmentExample[0]}
+          {pluginDevelopmentExample}
         </Code>
 
         <H2>{_('Error Handling')}</H2>
@@ -792,7 +852,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {errorHandlingExample[0]}
+          {errorHandlingExample}
         </Code>
 
         <H2>{_('Custom File System')}</H2>
@@ -806,12 +866,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {customFileSystemExample[0]}
+          {customFileSystemExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Error Scenarios Section Content */}
       <section id="error-scenarios-6">
-        <H2>{_('Error Scenarios')}</H2>
+        <H1>{_('Error Scenarios')}</H1>
         <P>
           <Translate>
             This section covers common error conditions that can occur
@@ -832,7 +896,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {fileNotFoundExample[0]}
+          {fileNotFoundExample}
         </Code>
 
         <H2>{_('No Plugins Defined')}</H2>
@@ -846,7 +910,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {noPluginsExample[0]}
+          {noPluginsExample}
         </Code>
 
         <H2>{_('Invalid Plugin Module')}</H2>
@@ -860,12 +924,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {invalidPluginExample[0]}
+          {invalidPluginExample}
         </Code>
-      </section>
+      </section> 
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Best Practices Section Content */}
       <section id="best-practices-7">
-        <H2>{_('Best Practices')}</H2>
+        <H1>{_('Best Practices')}</H1>
         <P>
           <Translate>
             This section outlines recommended approaches for using the
@@ -886,7 +954,7 @@ export function Body() {
         </P>
 
         <Code copy language='idea' className='bg-black text-white'>
-          {schemaOrganizationExample[0]}
+          {schemaOrganizationExample}
         </Code>
 
         <H2>{_('Plugin Development')}</H2>
@@ -900,7 +968,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {pluginDevelopmentBestPracticeExample[0]}
+          {pluginDevelopmentBestPracticeExample}
         </Code>
 
         <H2>{_('Error Recovery')}</H2>
@@ -914,12 +982,16 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {errorRecoveryExample[0]}
+          {errorRecoveryExample}
         </Code>
       </section>
 
+      {/* Horizontal Rule */}
+      <hr className='mt-10' />
+
+      {/* Integration with Other Tools Section Content */}
       <section id="integration-with-other-tools-8">
-        <H2>{_('Integration with Other Tools')}</H2>
+        <H1>{_('Integration with Other Tools')}</H1>
         <P>
           <Translate>
             This section demonstrates how to integrate the Transformer
@@ -940,7 +1012,7 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {buildSystemIntegrationExample[0]}
+          {buildSystemIntegrationExample}
         </Code>
 
         <H2>{_('Testing')}</H2>
@@ -954,10 +1026,11 @@ export function Body() {
         </P>
 
         <Code copy language='typescript' className='bg-black text-white'>
-          {testingExample[0]}
+          {testingExample}
         </Code>
       </section>
 
+      {/* Page Navigation */}
       <Nav
         prev={{
           text: _('API Reference'),

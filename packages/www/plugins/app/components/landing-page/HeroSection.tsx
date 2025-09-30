@@ -1,7 +1,8 @@
-import Button from 'frui/form/Button';
-import Code from 'frui/format/Code';
-import { Bounce, toast } from 'react-toastify';
+//modules
 import { Translate, useLanguage } from 'r22n';
+import Button from 'frui/form/Button';
+//local
+import Code from '../../../docs/components/Code.js';
 
 //code examples
 //----------------------------------------------------------------------
@@ -29,37 +30,24 @@ const transformCommand = `npx idea transform --input schema.idea`;
 //----------------------------------------------------------------------
 
 export default function HeroSection() {
+  //hooks
   const { _ } = useLanguage();
-
-  const notify = () => toast.success('Copied to clipboard!', {
-    position: "bottom-center",
-    autoClose: 1000,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-    transition: Bounce,
-  });
 
   return (
     <>
       {/* Hero Content */}
-      <section
-        className="max-w-6xl mx-auto px-4 py-45 text-center
-        relative z-10"
-      >
+      <section className="max-w-6xl mx-auto px-4 py-40 text-center">
         <div>
           <div className="mb-8">
-            <div className="mb-4 animate-pulse text-9xl">
-              <i className="fa-solid fa-lightbulb text-yellow-500"></i>
+            <div className="animate-pulse transition flex 
+            justify-center ">
+              <img src="icon.png" alt="logo" className="w-50 h-50" />
             </div>
           </div>
 
           <h1
             className="mb-6 lg:text-8xl font-bold sm:text-6xl md:text-5xl 
-          xs:text-4xl text-5xl"
+          xs:text-4xl text-5xl text-white"
           >
             <Translate>
               From <span className="text-yellow-500">Idea</span> to Code
@@ -67,14 +55,14 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-lg theme-color-text-muted mb-6 max-w-3xl 
-              mx-auto">
+              mx-auto text-white">
             <Translate>
               A meta language to express and transform your ideas to
               reality.
             </Translate>
           </p>
 
-          <p className="text-yellow-600 mb-10">
+          <p className="text-yellow-600 mb-10 text-white">
             <Translate>
               Generate TypeScript, GraphQL, REST APIs, and more from a
               single schema
@@ -85,34 +73,36 @@ export default function HeroSection() {
             <Button
               href="/docs"
               className="px-8 py-4 rounded-lg text-lg font-bold 
-                  bg-yellow-500 hover:bg-yellow-600"
+              bg-yellow-500 hover:bg-yellow-600 hover:scale-105
+              transition"
             >
-              {_('📖 Documentation')}
+              <i className="fa-solid fa-book-open mx-2"></i>
+              {_('Documentation')}
             </Button>
           </div>
 
           <div className="grid grid-cols-3 gap-8 max-w-md mx-auto">
             <div className="text-center">
               <div className="text-7xl mb-2">
-                <i className="fa-solid fa-bolt"></i>
+                <i className="fa-solid fa-bolt text-white"></i>
               </div>
-              <div className="text-lg font-bold theme-color-text">
+              <div className="text-lg text-white">
                 {_('Fast')}
               </div>
             </div>
             <div className="text-center">
               <div className="text-7xl mb-2">
-                <i className="fa-solid fa-shield"></i>
+                <i className="fa-solid fa-shield text-white"></i>
               </div>
-              <div className="text-lg font-bold theme-color-text">
+              <div className="text-lg text-white">
                 {_('Safe')}
               </div>
             </div>
             <div className="text-center">
               <div className="text-7xl mb-2">
-                <i className="fa-solid fa-wrench"></i>
+                <i className="fa-solid fa-wrench text-white"></i>
               </div>
-              <div className="text-lg font-bold theme-color-text">
+              <div className="text-lg text-white">
                 {_('Flexible')}
               </div>
             </div>
@@ -137,6 +127,7 @@ export default function HeroSection() {
         </div>
 
         <div className="space-y-8">
+          {/* Install the Package */}
           <div className="p-6 rounded-lg theme-bg-bg1">
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">
@@ -146,12 +137,16 @@ export default function HeroSection() {
                 {_('1. Install the Package')}
               </h3>
             </div>
-            <Code copy onCopy={notify} language="bash">
+            <Code
+              copy
+              language="bash"
+              className="bg-dark-800 rounded-lg text-white">
               {installCommand}
             </Code>
           </div>
 
-          <div className="p-6 rounded-lg theme-bg-bg1 border border-gray-200/10">
+          {/* Create Your Schema */}
+          <div className="p-6 rounded-lg theme-bg-bg1">
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">
                 <i className="fa-solid fa-pencil text-yellow-500"></i>
@@ -167,15 +162,15 @@ export default function HeroSection() {
             </p>
             <Code
               copy
-              onCopy={notify}
               language="idea"
-              className="text-base"
+              className="bg-dark-800 rounded-lg text-white"
             >
               {schemaExample}
             </Code>
           </div>
 
-          <div className="p-6 rounded-lg theme-bg-bg1 border border-gray-200/10">
+          {/* Generate Code */}
+          <div className="p-6 rounded-lg theme-bg-bg1">
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">
                 <i className="fa-solid fa-bolt text-yellow-500"></i>
@@ -191,13 +186,14 @@ export default function HeroSection() {
             </p>
             <Code
               copy
-              onCopy={notify}
               language="bash"
+              className="bg-dark-800 rounded-lg text-white"
             >
               {transformCommand}
             </Code>
           </div>
 
+          {/* Your Idea is Now Code! */}
           <div className="p-6 rounded-lg theme-bg-bg1 border border-gray-200/10">
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">

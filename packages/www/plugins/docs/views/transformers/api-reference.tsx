@@ -55,13 +55,13 @@ export function Right() {
           className="text-blue-500 cursor-pointer hover:text-blue-700"
           href="/docs/transformers/api-references/transformer"
         >
-          {_('1. Transformer')}
+          {_('Transformer')}
         </a>
         <a
           className="text-blue-500 cursor-pointer hover:text-blue-700"
           href="/docs/transformers/api-references/terminal"
         >
-          {_('2. Terminal')}
+          {_('Terminal')}
         </a>
       </nav>
     </menu>
