@@ -1,7 +1,7 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, P, C, SS, Code } from '../index.js';
+import { H1, H2, P, C, SS, Code } from '../../../docs/components/index.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples

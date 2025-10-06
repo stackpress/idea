@@ -1,7 +1,7 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, P, C, Code } from '../index.js';
+import { H1, H2, P, C, Code } from '../../../docs/components/index.js';
 
 //code examples
 //----------------------------------------------------------------------

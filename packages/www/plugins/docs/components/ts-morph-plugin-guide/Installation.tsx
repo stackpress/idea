@@ -1,8 +1,8 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, P, C, SS } from '../index.js';
-import Code from '../Code.js';
+import { H1, P, C, SS } from '../../../docs/components/index.js';
+import Code from '../../../docs/components/Code.js';
 
 //code examples
 //----------------------------------------------------------------------

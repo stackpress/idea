@@ -36,7 +36,10 @@ export default function HeroSection() {
   return (
     <>
       {/* Hero Content */}
-      <section className="max-w-6xl mx-auto px-4 py-40 text-center">
+      <section
+        id='vanta-bg'
+        className="px-4 py-40 text-center opacity-100"
+      >
         <div>
           <div className="mb-8">
             <div className="animate-pulse transition flex 

@@ -2,8 +2,8 @@
 import { useLanguage, Translate } from 'r22n';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 //local
-import { H1, H2, P, C, SS } from '../index.js';
-import Code from '../Code.js';
+import { H1, H2, P, C, SS } from '../../../docs/components/index.js';
+import Code from '../../../docs/components/Code.js';
 
 //code examples
 //----------------------------------------------------------------------

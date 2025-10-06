@@ -1,7 +1,7 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, P, SS, C } from '../index.js';
+import { H1, P, SS, C } from '../../../docs/components/index.js';
 
 export default function Prerequisites() {
   //hooks

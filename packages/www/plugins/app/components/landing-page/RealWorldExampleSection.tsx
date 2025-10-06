@@ -7,47 +7,49 @@ import Code from '../../../docs/components/Code.js';
 //----------------------------------------------------------------------
 
 const exampleSchema =
-`enum UserRole {
+`// schema.idea
+enum UserRole {
   ADMIN "Administrator"
   CUSTOMER "Customer"
   VENDOR "Vendor"
 }
 
 type Address {
-  street String @required
-  city String @required
+  street  String @required
+  city    String @required
   country String @default("US")
 }
 
 model User {
-  id String @id @default("nanoid()")
-  email String @unique @required @field.input(Email)
-  name String @required @field.input(Text)
-  role UserRole @default("CUSTOMER")
+  id    String     @id @default("nanoid()")
+  email String     @unique @required @field.input(Email)
+  name  String     @required @field.input(Text)
+  role  UserRole   @default("CUSTOMER")
   address Address?
-  orders Order[] @relation(Order.userId)
-  created Date @default("now()")
+  orders Order[]   @relation(Order.userId)
+  created Date     @default("now()")
 }
 
 model Product {
-  id String @id @default("nanoid()")
-  name String @required @field.input(Text)
-  price Number @required @field.input(Currency)
-  description String @field.textarea
-  category String @field.select
-  inStock Boolean @default(true)
+  id          String  @id @default("nanoid()")
+  name        String  SSSSSS@required @field.input(Text)
+  price       Number  @required @field.input(Currency)
+  description String  @field.textarea
+  category    String  @field.select
+  inStock     Boolean @default(true)
 }
 
 model Order {
-  id String @id @default("nanoid()")
-  userId String @relation(User.id)
-  user User @relation(User, userId)
-  items OrderItem[] @relation(OrderItem.orderId)
-  total Number @required
+  id String          @id @default("nanoid()")
+  userId String      @relation(User.id)
+  user User          @relation(User, userId)
+  items OrderItem[]  @relation(OrderItem.orderId)
+  total Number       @required
   status OrderStatus @default("PENDING")
-  created Date @default("now()")
+  created Date       @default("now()")
 }
 
+// Plugin configurations
 plugin "./plugins/typescript-generator.js" {
   output "./src/types/schema.ts"
 }
@@ -78,7 +80,7 @@ export default function RealWorldExampleSection() {
   return (
     <>
       {/* Real-World Example Section Content */}
-      <section className="max-w-6xl mx-auto px-4 py-20 rounded-lg">
+      <section className="max-w-7xl mx-auto px-4 py-20 rounded-lg">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           <div className="flex-1 w-full">
             <h2 className="text-3xl font-bold mb-4">
@@ -159,7 +161,6 @@ export default function RealWorldExampleSection() {
               </ul>
             </div>
           </div>
-
         </div>
       </section>
     </>

@@ -1,7 +1,7 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, P, Code } from '../index.js';
+import { H1, H2, P, Code } from '../../../docs/components/index.js';
 
 const typeSafetyInterface =
   `interface TypeScriptColumn {

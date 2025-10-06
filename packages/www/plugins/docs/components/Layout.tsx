@@ -350,6 +350,7 @@ export function LayoutLeft(props: {
           <a className="theme-tx1 flex items-center no-underline" href="/">
             <i className="fas fa-lightbulb px-mr-10 text-yellow-500 text-2xl"></i>
             <span className="font-extrabold px-fs-20">{_('idea')}</span>
+            <span className="px-ml-5 mt-2 text-gray-400">{_('0.6.2')}</span>
           </a>
         </h3>
         <button className="theme-tx1 md-hidden b-0 p-0 bg-transparent text-xl" onClick={toggle}>

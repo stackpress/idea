@@ -20,6 +20,7 @@ import {
 
 export function Head(props: ServerPageProps) {
   const { styles = [] } = props;
+
   return (
     <>
       <title>Idea</title>
@@ -41,26 +42,26 @@ export function Head(props: ServerPageProps) {
 export default function HomePage(props: ServerPageProps) {
   const { session, request, response } = props;
   
-  //add useEffect to initialize Vanta
   useEffect(() => {
     //check if Vanta is available in the window object
     if (typeof window !== 'undefined' && (window as any).VANTA) {
       const effect = (window as any).VANTA.NET({
-        el: "#vanta-bg", 
-        mouseControls: false, 
-        touchControls: true, 
-        gyroControls: false, 
-        minHeight: 500.00, 
-        minWidth: 500.00, 
-        scale: 1.00, 
-        scaleMobile: 1.00, 
-        color: 0xffc107, 
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        minHeight: 500.00,
+        minWidth: 500.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0xffc107,
         backgroundColor: 0x121212,
         points: 10.00,
-        maxDistance: 10.00,
-        spacing: 15.00
+        maxDistance: 15.00,
+        spacing: 15.00,
+        showDots: false,
+        opacity: 0.5
       });
-      
+
       //destroy the effect when the component unmounts
       return () => {
         if (effect) effect.destroy();
@@ -71,9 +72,9 @@ export default function HomePage(props: ServerPageProps) {
   return (
     <Layout session={session} request={request} response={response}>
       <main
-        id="vanta-bg"
         className="theme-bg-bg0 theme-tx1 px-h-100-0 px-w-100-0 
-        overflow-auto relative">
+        overflow-auto relative"
+      >
         {/* Hero Sections */}
         <HeroSection />
 
@@ -83,7 +84,7 @@ export default function HomePage(props: ServerPageProps) {
         {/* Benefits Section */}
         <BenefitsSection />
 
-        {/* Wrap the section with a background */}
+        {/* Audience Section */}
         <section className='theme-bg-bg1'>
           <AudienceSection />
         </section>
@@ -91,7 +92,7 @@ export default function HomePage(props: ServerPageProps) {
         {/* Plugin Ecosystem Section */}
         <PluginEcosystemSection />
 
-        {/* Wrap the section with a background */}
+        {/* Real World Example Section */}
         <section className='theme-bg-bg1'>
           <RealWorldExampleSection />
         </section>
@@ -99,7 +100,7 @@ export default function HomePage(props: ServerPageProps) {
         {/* AI Development Workflow Section */}
         <AIDevelopmentWorkflowSection />
 
-        {/* Wrap the section with a background */}
+        {/* Future Section */}
         <section className='theme-bg-bg1'>
           <FutureSection />
         </section>

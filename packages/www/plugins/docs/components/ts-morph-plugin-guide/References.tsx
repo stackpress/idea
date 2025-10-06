@@ -1,7 +1,7 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, H3, P } from '../index.js'
+import { H1, H2, H3, P } from '../../../docs/components/index.js'
 
 export default function References() {
   //hooks

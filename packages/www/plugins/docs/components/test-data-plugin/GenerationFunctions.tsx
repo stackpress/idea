@@ -1,5 +1,5 @@
 //local
-import Code from '../Code.js';
+import Code from '../../../docs/components/Code.js';
 
 //code examples
 //----------------------------------------------------------------------
