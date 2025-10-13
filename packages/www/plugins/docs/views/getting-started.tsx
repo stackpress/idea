@@ -5,8 +5,9 @@ import type {
 } from 'stackpress/view/client';
 import { useState } from 'react';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
-import { H1, H2, P, C, Nav } from '../components/index.js';
+import { H1, P, C, Nav } from '../components/index.js';
 import Code from '../components/Code.js';
 import Layout from '../components/Layout.js';
 
@@ -21,8 +22,8 @@ const yarnInstallCommand = 'yarn add --dev @stackpress/idea';
 
 //----------------------------------------------------------------------
 
-const schemaExample =
-  `model User {
+const schemaExample = `
+model User {
   id String @id @default("nanoid()")
   name String @required
   email String @unique @required
@@ -36,6 +37,14 @@ plugin "./plugins/typescript-generator.js" {
 //----------------------------------------------------------------------
 
 const generateCommand = 'npx idea transform --input schema.idea';
+
+//styles
+//----------------------------------------------------------------------
+
+const packageStyle = clsx(
+  'bg-yellow-800',
+  'text-white'
+);
 
 //----------------------------------------------------------------------
 
@@ -75,7 +84,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Getting Started Section Content */}
       <section>
         <H1>{_('Getting Started')}</H1>
@@ -92,35 +101,56 @@ export function Body() {
       {/* Installation  */}
       <section>
         <H1>{_('Installation')}</H1>
-        <div className="rounded-lg px-mx-10">
-          <div className="theme-bg-bg1 flex items-center">
+        <div className="px-mx-10 rounded-lg">
+          <div className="flex items-center theme-bg-bg1">
             <div
-              className={`px-py-10 px-px-30 
-              ${install === 'npm' ? 'bg-dark-800 text-white' : 'theme-bg-bg2'
-                }`}
+              className={
+                clsx(
+                  'px-px-30',
+                  'px-py-10',
+                  install === 'npm' ? packageStyle : 'theme-bg-bg2'
+                )
+              }
               onClick={() => setInstall('npm')}
             >
-              <i className="px-fs-20 fab fa-fw fa-npm" />
+              <i className="fab fa-fw fa-npm px-fs-20" />
             </div>
             <div
-              className={`px-py-10 px-px-30 
-              ${install === 'yarn' ? 'bg-dark-800 text-white' : 'theme-bg-bg2'}`}
+              className={
+                clsx(
+                  'px-px-30',
+                  'px-py-10',
+                  install === 'yarn' ? packageStyle : 'theme-bg-bg2'
+                )
+              }
               onClick={() => setInstall('yarn')}
             >
-              <i className="px-fs-20 fab fa-fw fa-yarn" />
+              <i className="fab fa-fw fa-yarn px-fs-20" />
             </div>
           </div>
           <Code
             copy
             language="bash"
-            className={`bg-black text-white ${install === 'npm' ? '' : 'hidden'}`}
+            className={
+              clsx(
+                'bg-black',
+                'text-white',
+                install === 'npm' ? '' : 'hidden'
+              )
+            }
           >
             {npmInstallCommand}
           </Code>
           <Code
             copy
             language="bash"
-            className={`bg-black text-white ${install === 'yarn' ? '' : 'hidden'}`}
+            className={
+              clsx(
+                'bg-black',
+                'text-white',
+                install === 'yarn' ? '' : 'hidden'
+              )
+            }
           >
             {yarnInstallCommand}
           </Code>
@@ -128,7 +158,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Create Schema Content */}
       <section>
@@ -148,7 +178,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Generate Code Content */}
       <section>
@@ -163,7 +193,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Explore the Results Content */}
       <section>
@@ -179,11 +209,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Introduction'),
-          href: '/docs/introduction',
+          href: "/docs/introduction"
         }}
         next={{
           text: _('Specifications'),
-          href: '/docs/specifications/syntax-overview',
+          href: "/docs/specifications/syntax-overview"
         }}
       />
     </main>

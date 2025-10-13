@@ -12,8 +12,8 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const ecommerceSchema =
-`// E-commerce application schema
+const ecommerceSchema = `
+// E-commerce application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/schema.ts"
 }
@@ -187,8 +187,8 @@ model OrderItem {
 
 //----------------------------------------------------------------------
 
-const blogSchema =
-`// Blog application schema
+const blogSchema = `
+// Blog application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/blog.ts"
 }
@@ -357,7 +357,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       <H1>{_('Complete Examples')}</H1>
 
       {/* E-commerce Example Content */}
@@ -366,7 +366,8 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20">
+          className="bg-black px-mb-20 text-white"
+        >
           {ecommerceSchema}
         </Code>
       </section>
@@ -377,7 +378,8 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20">
+          className="bg-black px-mb-20 text-white"
+        >
           {blogSchema}
         </Code>
       </section>
@@ -386,14 +388,13 @@ export function Body() {
       <Nav
         prev={{
           text: _('Plugin System'),
-          href: '/docs/specifications/plugin-system'
+          href: "/docs/specifications/plugin-system"
         }}
         next={{
           text: _('Best Practices'),
-          href: '/docs/specifications/best-practices'
+          href: "/docs/specifications/best-practices"
         }}
       />
-
     </main>
   );
 }

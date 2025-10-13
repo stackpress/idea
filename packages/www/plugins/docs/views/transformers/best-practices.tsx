@@ -5,7 +5,7 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 //docs
-import { H1, H2, P, C, Nav } from '../../components/index.js';
+import { H1, P, C, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {

@@ -4,11 +4,11 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 //local
-import { H1, H2, H3, P, C, Nav } from '../../../components/index.js';
+import { H1, H2, P, C, Nav } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
-import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
 //----------------------------------------------------------------------
@@ -617,7 +617,7 @@ export function Body() {
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
       {/* Compiler Section Content */}
-      <section id='compiler'>
+      <section id="compiler">
         <H1>{_('Compiler')}</H1>
         <P>
           <Translate>
@@ -627,16 +627,16 @@ export function Body() {
             and the final JSON output.
           </Translate>
         </P>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {basicImportExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Static Methods Section Content */}
-      <section id='static-methods'>
+      <section id="static-methods">
         <H1>{_('1. Static Methods')}</H1>
         <P>
           <Translate>
@@ -646,7 +646,7 @@ export function Body() {
         </P>
 
         {/* Converting Array Tokens Section Content */}
-        <section id='converting-array-tokens'>
+        <section id="converting-array-tokens">
           <H2>{_('1.1 Converting Array Tokens')}</H2>
           <P>
             <Translate>
@@ -654,13 +654,13 @@ export function Body() {
               actual arrays.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {arrayTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
-            <Trow className="theme-bg-bg2 text-left">
+          <Table className="mt-5 text-left">
+            <Trow className="text-left theme-bg-bg2">
               <Thead>Parameter</Thead>
               <Thead>Type</Thead>
               <Thead>Description</Thead>
@@ -674,7 +674,7 @@ export function Body() {
                 </Translate>
               </Tcol>
             </Trow>
-            <Trow className='theme-bg-bg2'>
+            <Trow className="theme-bg-bg2">
               <Tcol><C>references</C></Tcol>
               <Tcol><C>UseReferences</C></Tcol>
               <Tcol>
@@ -695,15 +695,15 @@ export function Body() {
 
 
         {/* Converting Data Tokens Section Content */}
-        <section id='converting-data-tokens'>
+        <section id="converting-data-tokens">
           <H2>{_('1.2 Converting Data Tokens')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile various data tokens
-              into their actual values.
+              The following example shows how to compile data tokens into
+              JavaScript values.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {dataTokenExample}
           </Code>
 

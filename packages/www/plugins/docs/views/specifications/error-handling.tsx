@@ -12,8 +12,8 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const errorsExamples = [
-`// ❌ Invalid - missing quotes around enum values
+const errorsExamples = [`
+// ❌ Invalid - missing quotes around enum values
 enum Status {
   ACTIVE Active
   INACTIVE Inactive
@@ -25,9 +25,9 @@ enum Status {
   INACTIVE "Inactive"
 }`,
 
-//----------------------------------------------------------------------
+  //----------------------------------------------------------------------
 
-`// ❌ Invalid - empty model
+  `// ❌ Invalid - empty model
 model User {
 }
 
@@ -37,9 +37,9 @@ model User {
   name String @required
 }`,
 
-//----------------------------------------------------------------------
+  //----------------------------------------------------------------------
 
-`// ❌ Invalid - duplicate model names
+  `// ❌ Invalid - duplicate model names
 model User {
   id String @id
 }
@@ -57,9 +57,9 @@ model UserProfile {
   name String
 }`,
 
-//----------------------------------------------------------------------
+  //----------------------------------------------------------------------
 
-`// ❌ Invalid - EmailInput prop not defined
+  `// ❌ Invalid - EmailInput prop not defined
 model User {
   email String @field.input(EmailInput)
 }
@@ -74,9 +74,9 @@ model User {
   email String @field.input(EmailInput)
 }`,
 
-//----------------------------------------------------------------------
+  //----------------------------------------------------------------------
 
-`// ❌ Invalid - Boolean can't have @minLength
+  `// ❌ Invalid - Boolean can't have @minLength
 model User {
   active Boolean @minLength(5)
 }
@@ -90,8 +90,8 @@ model User {
 
 //----------------------------------------------------------------------
 
-const errorPrevention = [
-`import type { PluginProps, SchemaConfig } from '@stackpress/idea-transformer/types';
+const errorPrevention = [`
+import type { PluginProps, SchemaConfig } from '@stackpress/idea-transformer/types';
 
 export default async function myPlugin(props: PluginProps<{}>) {
   // TypeScript will catch type errors at compile time
@@ -110,9 +110,9 @@ export default async function myPlugin(props: PluginProps<{}>) {
   }
 }`,
 
-//----------------------------------------------------------------------
+  //----------------------------------------------------------------------
 
-`// Always validate required fields
+  `// Always validate required fields
 model User {
   id String @id @required
   email String @required @unique
@@ -126,9 +126,9 @@ model Product {
   created Date @default("now()") // Not String
 }`,
 
-//----------------------------------------------------------------------
+  //----------------------------------------------------------------------
 
-`// Consistent ID patterns
+  `// Consistent ID patterns
 model User {
   id String @id @default("nanoid()")
 }
@@ -143,9 +143,9 @@ model User {
   updated Date @default("updated()")
 }`,
 
-//----------------------------------------------------------------------
+  //----------------------------------------------------------------------
 
-`# Parse schema to check for errors
+  `# Parse schema to check for errors
 npm run idea:parse schema.idea
 
 # Transform schema to validate plugins
@@ -200,7 +200,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       <H1>{_('Error Handling')}</H1>
 
       {/* Common Errors and Solutions Section */}
@@ -225,7 +225,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorsExamples[0]}
         </Code>
@@ -248,7 +248,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorsExamples[1]}
         </Code>
@@ -276,7 +276,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorsExamples[2]}
         </Code>
@@ -299,7 +299,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorsExamples[3]}
         </Code>
@@ -322,14 +322,14 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorsExamples[4]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Error Prevention Section */}
       <section>
@@ -340,7 +340,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorPrevention[0]}
         </Code>
@@ -349,7 +349,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorPrevention[1]}
         </Code>
@@ -358,7 +358,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorPrevention[2]}
         </Code>
@@ -367,7 +367,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {errorPrevention[3]}
         </Code>
@@ -377,11 +377,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Best Practices'),
-          href: '/docs/specifications/best-practices'
+          href: "/docs/specifications/best-practices"
         }}
         next={{
           text: _('Parser Installation'),
-          href: '/docs/parser/installation'
+          href: "/docs/parser/installation"
         }}
       />
     </main>

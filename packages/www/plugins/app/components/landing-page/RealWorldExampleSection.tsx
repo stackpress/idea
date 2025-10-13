@@ -6,12 +6,12 @@ import Code from '../../../docs/components/Code.js';
 //code example
 //----------------------------------------------------------------------
 
-const exampleSchema =
-`// schema.idea
+const exampleSchema = `
+// schema.idea
 enum UserRole {
-  ADMIN "Administrator"
-  CUSTOMER "Customer"
-  VENDOR "Vendor"
+  ADMIN     "Administrator"
+  CUSTOMER  "Customer"
+  VENDOR    "Vendor"
 }
 
 type Address {
@@ -32,7 +32,7 @@ model User {
 
 model Product {
   id          String  @id @default("nanoid()")
-  name        String  SSSSSS@required @field.input(Text)
+  name        String  @required @field.input(Text)
   price       Number  @required @field.input(Currency)
   description String  @field.textarea
   category    String  @field.select
@@ -69,7 +69,7 @@ plugin "./plugins/api-generator.js" {
   output "./src/api/"
   framework "express"
   includeValidation true
-}`
+}`;
 
 //----------------------------------------------------------------------
 
@@ -89,22 +89,24 @@ export default function RealWorldExampleSection() {
 
             <p className="text-lg mb-6">
               <Translate>
-                See how a simple e‑commerce schema can generate a full-stack
-                application:
+                See how a simple e‑commerce schema can generate a
+                full-stack application:
               </Translate>
             </p>
 
             <Code
               copy
-              language='javascript'
-              className='bg-dark-800 rounded-lg text-white p-3'>
+              language="javascript"
+              className="bg-dark-800 rounded-lg text-white p-3"
+            >
               {exampleSchema}
             </Code>
           </div>
 
           <div className="w-full lg:w-5/12">
-            <div className="bg-yellow-50 rounded-lg border border-yellow-200 
-            p-6">
+            <div
+              className="bg-yellow-50 rounded-lg border border-yellow-200 p-6"
+            >
               <h3 className="font-bold mb-4 text-yellow-900 text-lg">
                 {_('From this single schema, generate:')}
               </h3>

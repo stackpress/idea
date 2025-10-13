@@ -14,7 +14,7 @@ import Layout from '../../components/Layout.js';
 
 const processingFlowDiagram = `
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   .idea File    │───▶│     Parser      │───▶│   AST (JSON)   │
+│   .idea File    │───▶│     Parser      │───▶│   AST (JSON)    │
 │                 │    │                 │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                               │                        │
@@ -81,71 +81,71 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Processing Flow Content */}
       <section>
-        <H1>{_('Processing Flow')}</H1>
-        <P>
-          <Translate>
-            The <C>.idea</C> file format follows a structured
-            processing flow:
-          </Translate>
-        </P>
+      <H1>{_('Processing Flow')}</H1>
+      <P>
+        <Translate>
+        The <C>.idea</C> file format follows a structured
+        processing flow:
+        </Translate>
+      </P>
 
-        <Code
-          copy
-          language="text"
-          className="bg-black text-white px-mx-10 px-mb-20"
-        >
-          {processingFlowDiagram}
-        </Code>
+      <Code
+        copy
+        language="text"
+        className="bg-black px-mb-20 px-mx-10 text-white"
+      >
+        {processingFlowDiagram}
+      </Code>
 
-        <H2>{_('Processing Steps')}</H2>
-        <ol className="px-lh-30 px-px-20 list-decimal list-inside">
-          <li>
-            <SS>{_('Parsing:')}</SS>
-            <Translate>
-              Convert <C>.idea</C> syntax into Abstract Syntax Tree (AST)
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('Validation:')}</SS>
-            <Translate>
-              Check for syntax errors, type consistency, and constraint
-              violations
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('Transformation:')}</SS>
-            <Translate>
-              Convert AST into structured JSON configuration
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('Plugin Execution:')}</SS>
-            <Translate>
-              Run configured plugins to generate output files
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('Code Generation:')}</SS>
-            <Translate>
-              Create TypeScript, SQL, documentation, forms, etc.
-            </Translate>
-          </li>
-        </ol>
+      <H2>{_('Processing Steps')}</H2>
+      <ol className="list-decimal list-inside px-lh-30 px-px-20">
+        <li>
+        <SS>{_('Parsing:')}</SS>
+        <Translate>
+          Convert <C>.idea</C> syntax into Abstract Syntax Tree (AST)
+        </Translate>
+        </li>
+        <li>
+        <SS>{_('Validation:')}</SS>
+        <Translate>
+          Check for syntax errors, type consistency, and constraint
+          violations
+        </Translate>
+        </li>
+        <li>
+        <SS>{_('Transformation:')}</SS>
+        <Translate>
+          Convert AST into structured JSON configuration
+        </Translate>
+        </li>
+        <li>
+        <SS>{_('Plugin Execution:')}</SS>
+        <Translate>
+          Run configured plugins to generate output files
+        </Translate>
+        </li>
+        <li>
+        <SS>{_('Code Generation:')}</SS>
+        <Translate>
+          Create TypeScript, SQL, documentation, forms, etc.
+        </Translate>
+        </li>
+      </ol>
       </section>
 
       {/* Page Navigation */}
       <Nav
-        prev={{
-          text: _('Schema Directives'),
-          href: '/docs/specifications/schema-directives'
-        }}
-        next={{
-          text: _('Plugin System'),
-          href: '/docs/specifications/plugin-system'
-        }}
+      prev={{
+        text: _('Schema Directives'),
+        href: "/docs/specifications/schema-directives"
+      }}
+      next={{
+        text: _('Plugin System'),
+        href: "/docs/specifications/plugin-system"
+      }}
       />
     </main>
   );

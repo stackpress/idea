@@ -7,10 +7,13 @@ import { useLanguage, Translate } from 'r22n';
 //local
 import { H1, P, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
-import Models from '../../components/specifications/data-types/Models.js';
-import Type from '../../components/specifications/data-types/Type.js';
-import Props from '../../components/specifications/data-types/Props.js';
-import Enums from '../../components/specifications/data-types/Enums.js';
+//data types components
+import {
+  Enums,
+  Models,
+  Props,
+  Type
+} from '../../components/specifications/data-types/index.js';
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -51,33 +54,35 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function Right() {
+  //hooks
   const { _ } = useLanguage();
+
   return (
-    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+    <aside className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="cursor-pointer text-blue-500 hover:text-blue-700"
+          className="cursor-pointer hover:text-blue-700 text-blue-500"
           href="#enums"
         >
           {_('Enums')}
         </a>
         <a
-          className="cursor-pointer text-blue-500 hover:text-blue-700"
+          className="cursor-pointer hover:text-blue-700 text-blue-500"
           href="#props-1"
         >
           {_('Props')}
         </a>
         <a
-          className="cursor-pointer text-blue-500 hover:text-blue-700"
+          className="cursor-pointer hover:text-blue-700 text-blue-500"
           href="#type"
         >
           {_('Type')}
         </a>
         <a
-          className="cursor-pointer text-blue-500 hover:text-blue-700"
+          className="cursor-pointer hover:text-blue-700 text-blue-500"
           href="#models"
         >
           {_('Models')}
@@ -92,7 +97,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Data Types Content */}
       <section>
         <H1>{_('Data Types')}</H1>
@@ -105,7 +110,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Enums, Props, Type, Models Content */}
       <section>
@@ -113,19 +118,19 @@ export function Body() {
         <Enums />
 
         {/* Horizontal Rule */}
-        <hr className='mt-10 ' />
+        <hr className="mt-10" />
 
         {/* Props Section */}
         <Props />
 
         {/* Horizontal Rule */}
-        <hr className='mt-10 ' />
+        <hr className="mt-10" />
 
         {/* Type Section */}
         <Type />
 
         {/* Horizontal Rule */}
-        <hr className='mt-10 ' />
+        <hr className="mt-10" />
 
         {/* Models Section */}
         <Models />
@@ -135,11 +140,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Syntax Overview'),
-          href: '/docs/specifications/syntax-overview'
+          href: "/docs/specifications/syntax-overview"
         }}
         next={{
           text: _('Schema Elements'),
-          href: '/docs/specifications/schema-elements'
+          href: "/docs/specifications/schema-elements"
         }}
       />
     </main>

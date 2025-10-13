@@ -12,10 +12,9 @@ import Layout from '../../components/Layout.js';
 //code example
 //----------------------------------------------------------------------
 
-const architectureDiagram =
-  `
+const architectureDiagram = `
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Schema File   │───▶│   Transformer  │───▶│    Plugins      │
+│   Schema File   │───▶│   Transformer   │───▶│    Plugins      │
 │   (.idea/.json) │    │                 │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                               │                        │
@@ -23,7 +22,8 @@ const architectureDiagram =
                        ┌─────────────────┐    ┌─────────────────┐
                        │  Schema Config  │    │ Generated Files │
                        │                 │    │                 │
-                       └─────────────────┘    └─────────────────┘`
+                       └─────────────────┘    └─────────────────┘
+`
 
 //----------------------------------------------------------------------
 
@@ -74,10 +74,10 @@ export function Body() {
         <H1>{_('Architecture')}</H1>
         <P>
           <Translate>
-            The idea-transformer follows a clear architectural pattern that
-            separates concerns between schema loading, processing, and output
-            generation. This design enables flexible plugin development and
-            maintainable code generation workflows.
+            The idea-transformer follows a clear architectural pattern 
+            that separates concerns between schema loading, processing,
+            and output generation. This design enables flexible plugin
+            development and maintainable code generation workflows.
           </Translate>
         </P>
         <Code copy language='text' className='bg-black text-white'>

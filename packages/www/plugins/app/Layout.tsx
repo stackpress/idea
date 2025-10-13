@@ -128,6 +128,7 @@ export default function Layout(props: LayoutPanelProps) {
   if (!request?.session?.theme) {
     return null;
   }
+
   return (
     <LayoutProvider
       data={data}

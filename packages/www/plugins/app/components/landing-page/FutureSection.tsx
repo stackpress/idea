@@ -1,6 +1,48 @@
 //modules
 import Button from 'frui/form/Button';
 import { Translate, useLanguage } from 'r22n';
+import clsx from 'clsx';
+
+//styles
+//----------------------------------------------------------------------
+
+const headlineBarStyle = clsx(
+  'bg-green-800',
+  'border',
+  'gap-2',
+  'inline-flex',
+  'items-center',
+  'mb-4',
+  'px-3',
+  'py-1',
+  'rounded-full',
+  'text-sm',
+  'text-green-200'
+);
+
+const getStartedButtonStyle = clsx(
+  'bg-yellow-500',
+  'hover:bg-yellow-600',
+  'px-6',
+  'py-3',
+  'rounded-lg',
+  'font-bold',
+  'hover:scale-105',
+  'transition'
+);
+
+const readTheSpecButtonStyle = clsx(
+  'px-6',
+  'py-3',
+  'border',
+  'border-gray-600',
+  'rounded-lg',
+  'bg-gray-800',
+  'hover:bg-gray-700',
+  'text-white',
+  'hover:scale-105',
+  'transition'
+);
 
 export default function FutureSection() {
   //hooks
@@ -12,8 +54,7 @@ export default function FutureSection() {
       <section className="py-16 ">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 
-            rounded-full bg-green-800 text-green-200 text-sm mb-4">
+            <div className={headlineBarStyle}>
               <span><i className="fa-solid fa-rocket"></i></span>
               <span>{_('The Future')}</span>
             </div>
@@ -25,22 +66,19 @@ export default function FutureSection() {
 
             <p className="text-lg mb-6 max-w-3xl mx-auto">
               <Translate>
-                Define intent once. Generate apps, APIs, and docs in seconds.
+                Define intent once. Generate apps, APIs, and docs in 
+                seconds.
               </Translate>
             </p>
 
             <div className="flex items-center justify-center gap-4 mb-8">
               <a href="/docs/getting-started">
-                <Button className="bg-yellow-500 hover:bg-yellow-600 
-                px-6 py-3 rounded-lg font-bold hover:scale-105
-                transition">
+                <Button className={getStartedButtonStyle}>
                   {_('Get Started')}
                 </Button>
               </a>
               <a href="/docs/specifications/syntax-overview"
-                className="px-6 py-3 border border-gray-600 rounded-lg 
-                bg-gray-800 hover:bg-gray-700 text-white hover:scale-105
-                transition">
+                className={readTheSpecButtonStyle}>
                 {_('Read the Spec')}
               </a>
             </div>

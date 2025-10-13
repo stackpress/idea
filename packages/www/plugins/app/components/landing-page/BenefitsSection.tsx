@@ -1,5 +1,6 @@
 //modules
 import { Translate, useLanguage } from 'r22n';
+import clsx from 'clsx';
 
 //benefit cards data
 const benefitCards = [
@@ -41,36 +42,43 @@ const benefitCards = [
   }
 ];
 
-//----------------------------------------------------------------------
-
 export default function BenefitsSection() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <>
       {/* Benefits Section Content */}
-      <section className="theme-bg-bg0 max-w-7xl mx-auto px-4 py-20">
-        <h3 className="mb-6 text-3xl font-bold">
+      <section className="max-w-7xl mx-auto px-4 py-20 theme-bg-bg0">
+        <h3 className="font-bold mb-6 text-3xl">
           {_('Key Benefits')}
         </h3>
 
         {/* Benefit Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
           {benefitCards.map((card, index) => (
-            <div 
-              key={index} 
-              className="rounded-lg theme-bg-bg1 p-5">
-              <div className="flex items-start gap-3">
-                <span className={`inline-flex h-9 w-9 items-center 
-                  justify-center rounded-full theme-bg-bg1 ${card.color}`}>
-                  <i className={`fa-solid ${card.icon} text-3xl mt-4`} />
+            <div
+              key={index}
+              className="p-5 rounded-lg theme-bg-bg1"
+            >
+              <div className="flex gap-3 items-start">
+                <span className={clsx([
+                  'h-9',
+                  'inline-flex',
+                  'items-center',
+                  'justify-center',
+                  'rounded-full',
+                  'theme-bg-bg1',
+                  'w-9',
+                  card.color
+                ])}>
+                  <i className={`fa-solid ${card.icon} mt-4 text-3xl`} />
                 </span>
                 <div>
                   <div className="font-bold mb-2">
                     {_(card.title)}
                   </div>
-                  <p className="text-base opacity-90">
+                  <p className="opacity-90 text-base">
                     <Translate>
                       {card.desc}
                     </Translate>

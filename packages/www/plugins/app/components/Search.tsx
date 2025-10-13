@@ -1,6 +1,7 @@
 //modules
 import { useState, useEffect } from "react"
 import Fuse from "fuse.js"
+import clsx from "clsx";
 
 //search types
 type SearchItem = {
@@ -8,6 +9,49 @@ type SearchItem = {
   url: string;
   description: string;
 };
+
+//styles
+const searchFieldStyle = clsx(
+  "border",
+  "border-gray-500",
+  "lg:w-120",
+  "mx-10",
+  "p-2",
+  "placeholder:text-gray-600",
+  "theme-bg-bg1",
+  "z-10"
+);
+
+const searchResultsStyle = clsx(
+  "absolute",
+  "border",
+  "border-gray-500",
+  "lg:w-120",
+  "mb-2",
+  "md:w-96",
+  "mt-3",
+  "right-10",
+  "sm:w-100",
+  "top-full",
+  "w-85",
+  "z-200"
+);
+
+const noResultsStyle = clsx(
+  "absolute",
+  "border",
+  "border-gray-500",
+  "lg:w-120",
+  "mb-2",
+  "md:w-96",
+  "mt-3",
+  "right-10",
+  "sm:w-100",
+  "top-full",
+  "w-85",
+  "z-200"
+);
+
 
 export default function Search() {
   //hooks
@@ -18,9 +62,9 @@ export default function Search() {
   //load search index function
   async function loadIndex() {
     //fetch search index file from public directory
-    const result = await fetch("/search-list.json")
+    const result = await fetch("/search-list.json");
     //await response and parse json
-    const data: SearchItem[] = await result.json()
+    const data: SearchItem[] = await result.json();
 
     //create fuse instance with options
     const fuseInstance = new Fuse(data, {
@@ -28,10 +72,10 @@ export default function Search() {
       threshold: 0.6,
       findAllMatches: false,
       minMatchCharLength: 2
-    })
+    });
 
     //set fuse instance to state
-    setFuse(fuseInstance)
+    setFuse(fuseInstance);
   }
 
   //effect to load index and perform search
@@ -59,35 +103,32 @@ export default function Search() {
           placeholder="Search..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="border p-2 z-10 mx-10 placeholder:text-gray-600 
-        theme-bg-bg1 border border-gray-500 lg:w-120"
+          className={searchFieldStyle}
         />
         {results.length > 0 ? (
-          <div className="absolute top-full mt-3 right-10 z-200 
-        mb-2 border border-gray-500 w-85 sm:w-100 md:w-96 lg:w-120">
-            <ul className="space-y-2 theme-bg-bg1 py-2 overflow-y-auto">
+          //results found
+          <div className={searchResultsStyle}>
+            <ul className="overflow-y-auto py-2 space-y-2 theme-bg-bg1">
               {results.slice(0, 3).map((item, index) => (
                 <a href={item.url}>
                   <li
                     key={index}
-                    className="p-4 hover:theme-bg-bg2"
+                    className="hover:theme-bg-bg2 p-4"
                   >
-
                     <h3 className="font-semibold">{item.title}</h3>
-                    <p className="text-sm text-gray-500 truncate">
+                    <p className="text-gray-500 text-sm truncate">
                       {item.description}
                     </p>
-
                   </li>
                 </a>
               ))}
             </ul>
           </div>
         ) : query ? (
-          <div className="absolute top-full mt-3 right-10 z-200 
-        mb-2 border border-gray-500 w-85 sm:w-100 md:w-96 lg:w-120">
-            <ul className="space-y-2 theme-bg-bg1 py-2 overflow-y-auto">
-              <li className="p-4 text-gray-500 text-center">
+          //if no results found
+          <div className={noResultsStyle}>
+            <ul className="overflow-y-auto py-2 space-y-2 theme-bg-bg1">
+              <li className="p-4 text-center text-gray-500">
                 No results found.
               </li>
             </ul>

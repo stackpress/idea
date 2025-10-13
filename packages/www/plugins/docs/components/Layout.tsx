@@ -350,7 +350,7 @@ export function LayoutLeft(props: {
           <a className="theme-tx1 flex items-center no-underline" href="/">
             <i className="fas fa-lightbulb px-mr-10 text-yellow-500 text-2xl"></i>
             <span className="font-extrabold px-fs-20">{_('idea')}</span>
-            <span className="px-ml-5 mt-2 text-gray-400">{_('0.6.2')}</span>
+            <span className="px-ml-5 mt-2 text-gray-400">{_('v0.6.1')}</span>
           </a>
         </h3>
         <button className="theme-tx1 md-hidden b-0 p-0 bg-transparent text-xl" onClick={toggle}>
@@ -361,7 +361,11 @@ export function LayoutLeft(props: {
         {menu.map((section, i) => (
           <div key={i}>
             {section.label.length ? (
-              <a href={section.children[0].href} className="theme-tx1 theme-bg-bg2 theme-bc-bd1 font-semibold px-fs-16 uppercase px-mb-0 px-mt-0 px-py-12 px-px-20 flex items-center">
+              <a href={section.children[0].href}
+                className="theme-tx1 theme-bg-bg2 theme-bc-bd1 font-semibold 
+                px-fs-16 uppercase px-mb-0 px-mt-0 px-py-12 px-px-20 flex 
+                items-center"
+              >
                 <span className="flex-grow">{_(section.label)}</span>
                 {pathname.startsWith(section.search) ? (
                   <i className="theme-muted px-fs-12 fas fa-caret-down"></i>
@@ -474,6 +478,7 @@ export default function Layout(props: LayoutProviderProps & PanelAppProps) {
     }
     unload();
   }, []);
+  
   return (
     <LayoutProvider
       data={data}

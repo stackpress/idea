@@ -7,8 +7,11 @@ import { useLanguage, Translate } from 'r22n';
 //local
 import { H1, P, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
-import Use from '../../components/specifications/schema-directives/Use.js';
-import Plugin from '../../components/specifications/schema-directives/Plugin.js';
+//multiple components
+import {
+  Plugin,
+  Use
+} from '../../components/specifications/schema-directives/index.js';
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -50,19 +53,19 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
 export function Right() {
   const { _ } = useLanguage();
   return (
-    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+    <aside className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="cursor-pointer text-blue-500 hover:text-blue-700"
+          className="cursor-pointer hover:text-blue-700 text-blue-500"
           href="#use"
         >
           {_('Use')}
         </a>
         <a
-          className="cursor-pointer text-blue-500 hover:text-blue-700"
+          className="cursor-pointer hover:text-blue-700 text-blue-500"
           href="#plugin"
         >
           {_('Plugin')}
@@ -77,7 +80,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Schema Directives Content */}
       <section>
         <H1>{_('Schema Directives')}</H1>
@@ -88,9 +91,9 @@ export function Body() {
           </Translate>
         </P>
       </section>
-
+      
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Use, Plugin Content */}
       <section>
@@ -98,7 +101,7 @@ export function Body() {
         <Use />
 
         {/* Horizontal Rule */}
-        <hr className='mt-10 ' />
+        <hr className="mt-10" />
 
         {/* Plugin Section */}
         <Plugin />
@@ -108,11 +111,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Schema Structure'),
-          href: '/docs/specifications/schema-structure'
+          href: "/docs/specifications/schema-structure"
         }}
         next={{
           text: _('Processing Flow'),
-          href: '/docs/specifications/processing-flow'
+          href: "/docs/specifications/processing-flow"
         }}
       />
     </main>

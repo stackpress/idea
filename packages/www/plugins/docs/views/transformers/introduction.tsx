@@ -12,7 +12,7 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const installationExample = `npm install @stackpress/idea-transformer`
+const installationExample = `npm install @stackpress/idea-transformer`;
 
 //----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ const basicUsageExample =
 // Load and process a schema
 const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
-await transformer.transform();`
+await transformer.transform();`;
 
 //----------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Overview Section Content */}
       <section>
         <H1>{_('Overview')}</H1>
@@ -83,11 +83,11 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Features List Section Content */}
       <section>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <C>{_('Schema Processing:')}</C>
             <Translate>
@@ -131,22 +131,25 @@ export function Body() {
         </P>
 
         <H3>{_('Installation')}</H3>
-        <Code copy language='bash' className='bg-black text-white'>
+        <Code copy language="bash" className="bg-black text-white">
           {installationExample}
         </Code>
 
         <H3>{_('Basic Usage')}</H3>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {basicUsageExample}
         </Code>
       </section>
 
       {/* Page Navigation */}
       <Nav
-        prev={{ text: _('Parser'), href: '/docs/parser/installation' }}
+        prev={{ 
+          text: _('Parser'), 
+          href: "/docs/parser/installation"
+        }}
         next={{
           text: _('API Reference'),
-          href: '/docs/transformers/api-reference'
+          href: "/docs/transformers/api-reference"
         }}
       />
     </main>

@@ -12,8 +12,8 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const bestPractices = [
-  `// ✅ Good
+const bestPractices = [`
+// ✅ Good
 enum UserAccountStatus {
   ACTIVE "Active Account"
   SUSPENDED "Temporarily Suspended"
@@ -27,9 +27,9 @@ enum Status {
   D "Deactivated"
 }`,
 
-//----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
-`// User-related enums
+  `// User-related enums
 enum UserRole { /* ... */ }
 enum UserStatus { /* ... */ }
 
@@ -56,9 +56,9 @@ model User {
   emailAddress String
 }`,
 
-//----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
-`type Money {
+  `type Money {
   amount Number @required @min(0)
   currency String @default("USD")
 }
@@ -73,9 +73,9 @@ model Product {
   location Coordinates?
 }`,
 
-//----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
-`// ✅ Good - type-safe and self-documenting
+  `// ✅ Good - type-safe and self-documenting
 enum Priority {
   LOW "Low Priority"
   MEDIUM "Medium Priority"
@@ -92,9 +92,9 @@ model Task {
   priority String @default("medium")
 }`,
 
-//----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
-`model User {
+  `model User {
   email String @required @unique @pattern("^[^\s@]+@[^\s@]+\.[^\s@]+$")
   age Number @min(13) @max(120)
   username String @required @minLength(3) @maxLength(30) @pattern("^[a-zA-Z0-9_]+$")
@@ -102,9 +102,9 @@ model Task {
   tags String[] @maxItems(10)
 }`,
 
-//----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
-`model User {
+  `model User {
   role UserRole @default("USER")
   active Boolean @default(true)
   emailVerified Boolean @default(false)
@@ -117,9 +117,9 @@ model Task {
   }
 }`,
 
-//----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
-`// One-to-many relationship
+  `// One-to-many relationship
 model User {
   id String @id
   posts Post[] @relation(Post.authorId)
@@ -147,9 +147,9 @@ model PostTag {
   tagId String @relation(Tag.id)
 }`,
 
-//----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
-`// Type generation
+  `// Type generation
 plugin "./plugins/typescript-generator.js" {
   output "./src/types/schema.ts"
   namespace "Schema"
@@ -222,17 +222,19 @@ export function Body() {
 
   return (
     <>
-      <main className="px-h-100-0 overflow-auto px-p-10">
+      <main className="overflow-auto px-h-100-0 px-p-10">
         <H1>{_('Best Practices')}</H1>
 
         {/* Schema Organization Content */}
         <section>
           <H2>{_('1. Schema Organization')}</H2>
-          <P><Translate>Use Descriptive Names</Translate></P>
+          <P>
+            <Translate>Use Descriptive Names</Translate>
+          </P>
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[0]}
           </Code>
@@ -241,16 +243,18 @@ export function Body() {
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[1]}
           </Code>
 
-          <P><Translate>Use Consistent Naming Conventions</Translate></P>
+          <P>
+            <Translate>Use Consistent Naming Conventions</Translate>
+          </P>
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[2]}
           </Code>
@@ -259,20 +263,24 @@ export function Body() {
         {/* Type Safety Content */}
         <section>
           <H2>{_('2. Type Safety')}</H2>
-          <P><Translate>Define Custom Types for Complex Data</Translate></P>
+          <P>
+            <Translate>Define Custom Types for Complex Data</Translate>
+          </P>
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[3]}
           </Code>
 
-          <P><Translate>Use Enums for Fixed Sets of Values</Translate></P>
+          <P>
+            <Translate>Use Enums for Fixed Sets of Values</Translate>
+          </P>
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[4]}
           </Code>
@@ -281,20 +289,24 @@ export function Body() {
         {/* Validation and Constraints Content */}
         <section>
           <H2>{_('3. Validation and Constraints')}</H2>
-          <P><Translate>Use Appropriate Validation Attributes</Translate></P>
+          <P>
+            <Translate>Use Appropriate Validation Attributes</Translate>
+          </P>
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[5]}
           </Code>
 
-          <P><Translate>Provide Meaningful Defaults</Translate></P>
+          <P>
+            <Translate>Provide Meaningful Defaults</Translate>
+          </P>
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[6]}
           </Code>
@@ -303,11 +315,13 @@ export function Body() {
         {/* Relationships Content */}
         <section>
           <H2>{_('4. Relationships')}</H2>
-          <P><Translate>Use Clear Relationship Patterns</Translate></P>
+          <P>
+            <Translate>Use Clear Relationship Patterns</Translate>
+          </P>
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[7]}
           </Code>
@@ -316,11 +330,13 @@ export function Body() {
         {/* Plugin Configuration Content */}
         <section>
           <H2>{_('5. Plugin Configuration')}</H2>
-          <P><Translate>Organize Plugins by Purpose</Translate></P>
+          <P>
+            <Translate>Organize Plugins by Purpose</Translate>
+          </P>
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {bestPractices[8]}
           </Code>
@@ -330,11 +346,11 @@ export function Body() {
         <Nav
           prev={{
             text: _('Complete Examples'),
-            href: '/docs/specifications/complete-examples'
+            href: "/docs/specifications/complete-examples"
           }}
           next={{
             text: _('Error Handling'),
-            href: '/docs/specifications/error-handling'
+            href: "/docs/specifications/error-handling"
           }}
         />
       </main>

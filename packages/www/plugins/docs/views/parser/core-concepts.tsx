@@ -12,8 +12,9 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const processingFlow = 
-`Raw Schema Code → SchemaTree → Compiler → JSON Output`
+const processingFlow = `
+Raw Schema Code → SchemaTree → Compiler → JSON Output
+`;
 
 //----------------------------------------------------------------------
 
@@ -63,9 +64,9 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       <H1>{_('Core Concepts')}</H1>
-      
+
       {/* Schema Structure Section Content */}
       <section>
         <H2>{_('Schema Structure')}</H2>
@@ -76,14 +77,14 @@ export function Body() {
           </Translate>
         </P>
 
-        <ol className='list-decimal list-inside'>
-          <li className='my-2 '>
+        <ol className="list-decimal list-inside">
+          <li className="my-2">
             <C>Plugins:</C>{' '}
             <Translate>
               External integrations and configurations
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <C>Use statements:</C>{' '}
             <Translate>
               Import other schema files
@@ -95,29 +96,29 @@ export function Body() {
               Reusable property configurations
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <C>Enums:</C>{' '}
             <Translate>
               Enumerated value definitions
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <C>Types:</C>{' '}
             <Translate>
               Custom type definitions with columns
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <C>Models:</C>{' '}
             <Translate>
               Database model definitions
             </Translate>
           </li>
         </ol>
-      </section> 
+      </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Processing Flow Section Content */}
       <section>
@@ -130,32 +131,32 @@ export function Body() {
 
         <Code
           copy
-          language='text'
-          className='bg-black text-white'
+          language="text"
+          className="bg-black text-white"
         >
           {processingFlow}
         </Code>
 
-        <ol className='list-decimal list-inside'>
-          <li className='my-2'>
+        <ol className="list-decimal list-inside">
+          <li className="my-2">
             <SS>Raw Code:</SS>
             <Translate>
               Your <C>.idea</C> schema file content
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <SS>SchemaTree:</SS>
             <Translate>
               Parses the entire file into an 'Abstract Syntax Tree'
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <SS>Compiler:</SS>
             <Translate>
               Converts AST tokens into structured JSON
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <SS>JSON Output:</SS>
             <Translate>
               Final configuration object
@@ -164,18 +165,18 @@ export function Body() {
         </ol>
       </section>
 
-      
+
       <Nav
         prev={{
           text: _('Installation'),
-          href: '/docs/parser/installation'
+          href: "/docs/parser/installation"
         }}
         next={{
           text: _('API Reference'),
-          href: '/docs/parser/api-reference'
+          href: "/docs/parser/api-reference"
         }}
       />
-      
+
     </main>
   );
 }

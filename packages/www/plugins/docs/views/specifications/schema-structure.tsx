@@ -12,8 +12,8 @@ import Layout from '../../components/Layout.js';
 //code example
 //----------------------------------------------------------------------
 
-const schemaExample =
-  `// 1. Plugin declarations
+const schemaExample = `
+// 1. Plugin declarations
 plugin "./plugins/generate-types.js" {
   output "./generated/types.ts"
 }
@@ -60,7 +60,7 @@ model User! {
   address Address?
   active Boolean @default(true)
   created Date @default("now()")
-}`
+}`;
 
 //----------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Schema Structure Content */}
       <section>
         <H1>{_('Schema Structure')}</H1>
@@ -120,7 +120,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {schemaExample}
         </Code>
@@ -131,11 +131,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Schema Elements'),
-          href: '/docs/specifications/schema-elements'
+          href: "/docs/specifications/schema-elements"
         }}
         next={{
           text: _('Schema Directives'),
-          href: '/docs/specifications/schema-directives'
+          href: "/docs/specifications/schema-directives"
         }}
       />
     </main>

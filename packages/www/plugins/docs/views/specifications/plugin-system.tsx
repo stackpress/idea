@@ -5,7 +5,7 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, P, C, Nav } from '../../components/index.js';
+import { H1, P, C, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
@@ -13,8 +13,8 @@ import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 //code examples
 //----------------------------------------------------------------------
 
-const pluginDeclaration = [
-  `plugin "./path/to/plugin.js" {
+const pluginDeclaration = [`
+  plugin "./path/to/plugin.js" {
   output "./generated/output.ts"
   format "typescript"
   options {
@@ -23,7 +23,7 @@ const pluginDeclaration = [
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
 
@@ -83,7 +83,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Plugin System Content */}
       <section>
         <H1>{_('Plugin System')}</H1>
@@ -96,7 +96,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Plugin Declaration Content */}
       <section>
@@ -104,12 +104,13 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {pluginDeclaration[0]}
         </Code>
 
         <H1>{_('Common Plugin Types')}</H1>
+
         <Table className='text-left'>
           <Trow className='theme-bg-bg1'>
             <Thead>Plugin Type</Thead>
@@ -152,7 +153,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {pluginDeclaration[1]}
         </Code>
@@ -162,11 +163,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Processing Flow'),
-          href: '/docs/specifications/processing-flow'
+          href: "/docs/specifications/processing-flow"
         }}
         next={{
           text: _('Complete Examples'),
-          href: '/docs/specifications/complete-examples'
+          href: "/docs/specifications/complete-examples"
         }}
       />
     </main>

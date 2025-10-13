@@ -10,8 +10,10 @@ import Layout from '../components/Layout.js';
 import Code from '../components/Code.js';
 
 //code example
-const schemaExample = 
-`// schema.idea
+//----------------------------------------------------------------------
+
+const schemaExample = `
+// schema.idea
 enum UserRole {
   ADMIN "Administrator"
   CUSTOMER "Customer"
@@ -59,7 +61,7 @@ plugin "./plugins/api-generator.js" {
   output "./src/api/"
   framework "express"
   includeValidation true
-}`
+}`;
 
 //----------------------------------------------------------------------
 
@@ -99,10 +101,11 @@ export function DocumentationHead(props: ServerPageProps<ServerConfigProps>) {
 }
 
 export function DocumentationBody() {
+  //hooks
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Introduction */}
       <section>
         <H1>{_('What is .idea?')}</H1>
@@ -129,13 +132,14 @@ export function DocumentationBody() {
         </P>
       </section>
 
-      <hr className='mt-10' />
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       {/* Why use .idea? */}
       <section>
         <H1>{_('Why Use .idea?')}</H1>
 
-        <ul>
+        <ul className="list-disc px-px-20">
           <li>
             <H2>{_('Single Source of Truth')}</H2>
             <Translate>
@@ -145,14 +149,14 @@ export function DocumentationBody() {
             </Translate>
           </li>
           <li>
-            <H2>Type Safety Everywhere</H2>
+            <H2>{_('Type Safety Everywhere')}</H2>
             <Translate>
               Generate type-safe code across languages - TypeScript,
               Python, Rust, Go, and more. Catch errors at compile time.
             </Translate>
           </li>
           <li>
-            <H2>Rapid Development</H2>
+            <H2>{_('Rapid Development')}</H2>
             <Translate>
               Generate boilerplate code, forms, and documentation in
               seconds. What used to take hours now happens instantly.
@@ -161,13 +165,14 @@ export function DocumentationBody() {
         </ul>
       </section>
 
-      <hr className='mt-10' />
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       {/* Who Should Use This? */}
       <section>
         <H1>{_('Who Should Use This?')}</H1>
 
-        <ul>
+        <ul className="list-disc px-px-20">
           <li>
             <H2>{_('Junior Developers')}</H2>
             <Translate>
@@ -192,7 +197,8 @@ export function DocumentationBody() {
         </ul>
       </section>
 
-      <hr className='mt-10' />
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       {/* The Plugin Ecosystem */}
       <section>
@@ -205,7 +211,7 @@ export function DocumentationBody() {
           </Translate>
         </P>
 
-        <ul>
+        <ul className="list-disc px-px-20">
           <li>
             <H2>{_('Languages')}</H2>
             <Translate>
@@ -228,7 +234,8 @@ export function DocumentationBody() {
         </ul>
       </section>
 
-      <hr className='mt-10' />
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       {/* Real-World Example */}
       <section>
@@ -255,7 +262,7 @@ export function DocumentationBody() {
           </Translate>
         </P>
 
-        <ul className="px-lh-30 px-px-20flex flex-wrap rmd-block rmd-w-100-0">
+        <ul className="flex-wrap flex flex-col px-lh-30">
           <li>
             <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
             {_('TypeScript interfaces')}
@@ -283,7 +290,8 @@ export function DocumentationBody() {
         </ul>
       </section>
 
-      <hr className='mt-10' />
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       {/* AI-Powered Workflow */}
       <section>
@@ -294,7 +302,8 @@ export function DocumentationBody() {
             The perfect workflow for AI-driven development:
           </Translate>
         </P>
-        <ol className="list-decimal px-lh-30 px-px-20 px-w-767 rmd-block rmd-w-100-0">
+
+        <ol className="list-decimal px-lh-30 px-px-20 px-w-767">
           <li className="px-w-100-0">{_('Describe your app to an AI')}</li>
           <li className="px-w-100-0">{_('Get a .idea schema')}</li>
           <li className="px-w-100-0">{_('Configure plugins')}</li>
@@ -310,10 +319,12 @@ export function DocumentationBody() {
       </section>
 
       {/* Page Navigation */}
-      <Nav next={{
-        text: _('Getting Started'),
-        href: '/docs/getting-started'
-      }} />
+      <Nav
+        next={{
+          text: _('Getting Started'),
+          href: "/docs/getting-started"
+        }}
+      />
     </main>
   );
 }

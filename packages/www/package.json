@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
+    "clsx": "^2.1.1",
     "frui": "0.1.8",
     "fuse.js": "^7.1.0",
     "react": "19.1.0",

@@ -64,14 +64,16 @@ export const language = {
       label: 'EN',
       translations: {
         'Sign In': 'Signin',
-        'Home Page': 'Home Page'
+        'Home Page': 'Home Page',
+        'From %s Idea to Code' : 'From %s Idea to Code!!!',
+        'Introduction' : 'Introduction',
       }
     },
     th_TH: {
       label: 'TH',
       translations: {
         'Sign In': 'Signin',
-        'Home Page': 'Home Pagesss'
+        'Home Page': 'Home Pages'
       }
     }
   }

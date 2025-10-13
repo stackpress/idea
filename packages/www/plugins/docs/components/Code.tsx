@@ -72,12 +72,13 @@ export default function Code(props: {
           padding: '10px 10px 0 0',
           color: 'inherit',
           cursor: 'pointer',
-          whiteSpace: 'nowrap'
+          whiteSpace: 'nowrap',
         }} onClick={copy && handleCopy}>
-          <span>❐</span> Copy
+          <span><i className='fa-solid fa-copy'></i></span> Copy
         </div>
       )}
       {mounted && (
+        //@ts-ignore
         <SyntaxHighlighter
           language={language}
           style={atomOneDark}

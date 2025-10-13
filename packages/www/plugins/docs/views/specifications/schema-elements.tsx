@@ -13,8 +13,8 @@ import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 //code examples
 //----------------------------------------------------------------------
 
-const examples = [
-  `// Simple boolean attribute (sets value to true)
+const examples = [`
+// Simple boolean attribute (sets value to true)
 @filterable
 
 // Function with single argument
@@ -31,7 +31,7 @@ const examples = [
 @validation.required
 @ui.component("CustomInput")`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Boolean (implicit true)
 @required
@@ -62,7 +62,7 @@ const examples = [
 @between(1 100 "Value must be between 1 and 100")
 @pattern("^[a-zA-Z]+$" "Only letters allowed")`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Model-level attributes
 model User @table("users") @index(["email" "created"]) {
@@ -77,7 +77,7 @@ type Address @serializable @cacheable(3600) {
   city String @required
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `model User {
   name String          // Required string
@@ -87,7 +87,7 @@ type Address @serializable @cacheable(3600) {
   metadata JSON?       // Optional JSON
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `model User {
   profile {
@@ -150,7 +150,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       <H1>{_('Schema Elements')}</H1>
 
       {/* Attributes Content */}
@@ -168,9 +168,11 @@ export function Body() {
 
         <H>
           <SS>{_('Note:')}</SS>
-          {_('There are no reserved or pre-defined attributes in idea. You ' +
-            'can define any arbitrary attributes in your schema. It\'s up to ' +
-            'the plugins to recognize and process them.')}
+          <Translate>
+            There are no reserved or pre-defined attributes in idea. You
+            can define any arbitrary attributes in your schema. It\'s up
+            to the plugins to recognize and process them.
+          </Translate>
         </H>
 
         <H2>{_('Attribute Syntax')}</H2>
@@ -178,13 +180,13 @@ export function Body() {
           <Translate>
             Attributes always start with the at symbol (@) followed by
             letters, numbers, and periods. They can be expressed in several
-            forms
+            forms.
           </Translate>
         </P>
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20">
+          className="bg-black px-mb-20 px-mx-10 text-white">
           {examples[0]}
         </Code>
 
@@ -193,7 +195,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20">
+          className="bg-black px-mb-20 px-mx-10 text-white">
           {examples[1]}
         </Code>
 
@@ -206,15 +208,15 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20"
         >
           {examples[2]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
-      
+      <hr className="mt-10" />
+
       {/* Columns Content */}
       <section>
         <H2>{_('Columns')}</H2>
@@ -226,41 +228,76 @@ export function Body() {
         </P>
 
         <Table>
-          <Thead className="theme-bg-bg1 text-left">Types</Thead>
-          <Thead className="theme-bg-bg1 text-left">Description</Thead>
-          <Thead className="theme-bg-bg1 text-left">Example</Thead>
+          <Thead className="text-left theme-bg-bg1">Types</Thead>
+          <Thead className="text-left theme-bg-bg1">Description</Thead>
+          <Thead className="text-left theme-bg-bg1">Example</Thead>
           <Trow>
-            <Tcol noWrap className="text-left"><C>String</C></Tcol>
+            <Tcol
+              noWrap
+              className="text-left"
+            >
+              <C>String</C>
+            </Tcol>
             <Tcol className="text-left">Text data</Tcol>
             <Tcol><C>name String</C></Tcol>
           </Trow>
-          <Trow className='theme-bg-bg1'>
-            <Tcol noWrap className="text-left"><C>Number</C></Tcol>
+          <Trow className="theme-bg-bg1">
+            <Tcol
+              noWrap
+              className="text-left"
+            >
+              <C>Number</C>
+            </Tcol>
             <Tcol className="text-left">Numeric data</Tcol>
             <Tcol><C>age Number</C></Tcol>
           </Trow>
           <Trow>
-            <Tcol noWrap className="text-left"><C>Boolean</C></Tcol>
+            <Tcol
+              noWrap
+              className="text-left"
+            >
+              <C>Boolean</C>
+            </Tcol>
             <Tcol className="text-left">True or false values</Tcol>
             <Tcol><C>active Boolean</C></Tcol>
           </Trow>
-          <Trow className='theme-bg-bg1'>
-            <Tcol noWrap className="text-left"><C>Date</C></Tcol>
+          <Trow className="theme-bg-bg1">
+            <Tcol
+              noWrap
+              className="text-left"
+            >
+              <C>Date</C>
+            </Tcol>
             <Tcol className="text-left">Date/time values</Tcol>
             <Tcol><C>created Date</C></Tcol>
           </Trow>
           <Trow>
-            <Tcol noWrap className="text-left"><C>JSON</C></Tcol>
+            <Tcol
+              noWrap
+              className="text-left"
+            >
+              <C>JSON</C>
+            </Tcol>
             <Tcol className="text-left">JSON Objects</Tcol>
             <Tcol><C>metadata JSON</C></Tcol>
           </Trow>
-          <Trow className='theme-bg-bg1'>
-            <Tcol noWrap className="text-left"><C>CustomType</C></Tcol>
+          <Trow className="theme-bg-bg1">
+            <Tcol
+              noWrap
+              className="text-left"
+            >
+              <C>CustomType</C>
+            </Tcol>
             <Tcol className="text-left">User-defined types</Tcol>
             <Tcol><C>address Address</C></Tcol>
           </Trow>
           <Trow>
-            <Tcol noWrap className="text-left"><C>EnumType</C></Tcol>
+            <Tcol
+              noWrap
+              className="text-left"
+            >
+              <C>EnumType</C>
+            </Tcol>
             <Tcol className="text-left">Enum values</Tcol>
             <Tcol><C>role UserRole</C></Tcol>
           </Trow>
@@ -270,7 +307,7 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20"
         >
           {examples[3]}
         </Code>
@@ -279,7 +316,8 @@ export function Body() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20">
+          className="bg-black px-mb-20"
+        >
           {examples[4]}
         </Code>
       </section>
@@ -287,11 +325,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Data Types'),
-          href: '/docs/specifications/data-types'
+          href: "/docs/specifications/data-types"
         }}
         next={{
           text: _('Schema Structure'),
-          href: '/docs/specifications/schema-structure'
+          href: "/docs/specifications/schema-structure"
         }}
       />
 

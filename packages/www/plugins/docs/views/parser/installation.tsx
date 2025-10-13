@@ -12,12 +12,12 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const installCommand = `npm install @stackpress/idea-parser`
+const installCommand = `npm install @stackpress/idea-parser`;
 
 //----------------------------------------------------------------------
 
-const usageExample =
-  `import { parse, final } from '@stackpress/idea-parser';
+const usageExample = `
+import { parse, final } from '@stackpress/idea-parser';
 
 // Parse a schema file into JSON (includes references)
 const schemaCode = \`
@@ -37,8 +37,7 @@ model User {
 const parsedSchema = parse(schemaCode);
 
 // Parse and clean up references (final version)
-const finalSchema = final(schemaCode);
-`
+const finalSchema = final(schemaCode);`;
 
 //----------------------------------------------------------------------
 
@@ -91,7 +90,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Idea Parser Section Content */}
       <section>
         <H1>{_('Idea Parser')}</H1>
@@ -105,23 +104,25 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Installation Section Content */}
       <section>
         <H1>{_('Installation')}</H1>
-        <P><Translate>Install the package using npm:</Translate></P>
+        <P>
+          <Translate>Install the package using npm:</Translate>
+        </P>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white px-mb-20'
+          language="javascript"
+          className="bg-black px-mb-20 text-white"
         >
           {installCommand}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Quick Start Section Content */}
       <section>
@@ -136,19 +137,19 @@ export function Body() {
         <H2>{_('Basic Usage')}</H2>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white px-mb-20'
+          language="javascript"
+          className="bg-black px-mb-20 text-white"
         >
           {usageExample}
         </Code>
 
         <ul>
-          <li className='font-bold list-none text-xl mt-10'>
+          <li className="font-bold list-none mt-10 text-xl">
             <Translate>
               Difference between <C>parse</C> and <C>final</C>
             </Translate>
           </li>
-          <li className='my-2'>
+          <li className="my-2">
             <C>parse(code: string):</C>
             <Translate>
               Converts schema code to JSON while preserving prop and use
@@ -169,11 +170,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Specifications'),
-          href: '/docs/specifications/syntax-overview'
+          href: "/docs/specifications/syntax-overview"
         }}
         next={{
           text: _('Core Concepts'),
-          href: '/docs/parser/core-concepts'
+          href: "/docs/parser/core-concepts"
         }}
       />
     </main>

@@ -12,8 +12,8 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const completeSchemaExamples = 
-`import { final } from '@stackpress/idea-parser';
+const completeSchemaExamples = `
+import { final } from '@stackpress/idea-parser';
 
 const schemaCode = \`
 plugin "./database-plugin" {
@@ -50,12 +50,12 @@ model User! {
 \`;
 
 const result = final(schemaCode);
-console.log(JSON.stringify(result, null, 2));`
+console.log(JSON.stringify(result, null, 2));`;
 
 //----------------------------------------------------------------------
 
-const individualComponentsExample = 
-`import { Compiler, EnumTree, ModelTree } from '@stackpress/idea-parser';
+const individualComponentsExample = `
+import { Compiler, EnumTree, ModelTree } from '@stackpress/idea-parser';
 
 // Parse individual enum
 const enumCode = \`enum Status { ACTIVE "Active" INACTIVE "Inactive" }\`;
@@ -65,7 +65,7 @@ const [enumName, enumConfig] = Compiler.enum(enumAST);
 // Parse individual model
 const modelCode = \`model User { id String @id name String }\`;
 const modelAST = ModelTree.parse(modelCode);
-const [modelName, modelConfig] = Compiler.model(modelAST);`
+const [modelName, modelConfig] = Compiler.model(modelAST);`;
 
 //----------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       <H1>{_('Examples')}</H1>
       <P>
         <Translate>
@@ -127,30 +127,30 @@ export function Body() {
       </P>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Complete Schema Example Section */}
       <section>
         <H2>{_('Complete Schema Example')}</H2>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white'
+          language="javascript"
+          className="bg-black text-white"
         >
           {completeSchemaExamples}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Working with Individual Components Section */}
       <section>
         <H2>{_('Working with Individual Components')}</H2>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white'
+          language="javascript"
+          className="bg-black text-white"
         >
           {individualComponentsExample}
         </Code>
@@ -160,11 +160,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('API Reference'),
-          href: '/docs/parser/api-reference'
+          href: "/docs/parser/api-reference"
         }}
         next={{
           text: _('Best Practices'),
-          href: '/docs/parser/best-practices'
+          href: "/docs/parser/best-practices"
         }}
       />
     </main>

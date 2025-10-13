@@ -12,11 +12,10 @@ import Layout from '../../components/Layout.js';
 //code examples
 //----------------------------------------------------------------------
 
-const typeSafetyExample =
-  `import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
+const typeSafetyExample = `
+import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
 
-const schema: SchemaConfig = parse(code);
-`
+const schema: SchemaConfig = parse(code);`;
 
 //----------------------------------------------------------------------
 
@@ -34,7 +33,7 @@ try {
     console.error('Unexpected error:', error);
     // Handle other errors
   }
-}`
+}`;
 
 //----------------------------------------------------------------------
 
@@ -48,7 +47,7 @@ model User {
 // Bad: Missing required properties
 model User {
   // Missing columns - will throw error
-}`
+}`;
 
 //----------------------------------------------------------------------
 
@@ -59,7 +58,7 @@ prop EmailInput { type "email" format "email" }
 
 // Less clear
 enum Status { A "Active" S "Suspended" }
-prop Input { type "email" }`
+prop Input { type "email" }`;
 
 //----------------------------------------------------------------------
 
@@ -114,7 +113,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       <H1>{_('Best Practices')}</H1>
       <P>
         <Translate>
@@ -124,7 +123,7 @@ export function Body() {
       </P>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Type Safety Section Content */}
       <section>
@@ -137,15 +136,15 @@ export function Body() {
         </P>
         <Code
           copy
-          language='typescript'
-          className='bg-black text-white'
+          language="typescript"
+          className="bg-black text-white"
         >
           {typeSafetyExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Error Handling Section Content */}
       <section>
@@ -157,26 +156,26 @@ export function Body() {
         </P>
         <Code
           copy
-          language='typescript'
-          className='bg-black text-white'
+          language="typescript"
+          className="bg-black text-white"
         >
           {errorHandlingExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Choose the Right Function Section Content */}
       <section>
         <H2>{_('3. Choose the Right Function')}</H2>
-        <li className='my-2'>
+        <li className="my-2">
           <C>Use parse()</C>
           <Translate>
             when you need to preserve references for further processing
           </Translate>
         </li>
-        <li className='my-2'>
+        <li className="my-2">
           <C>Use final()</C>
           <Translate>
             when you want a clean output for final consumption
@@ -185,7 +184,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Validate Schema Structure Section Content */}
       <section>
@@ -195,13 +194,13 @@ export function Body() {
             Ensure your schema follows the expected structure:
           </Translate>
         </P>
-        <Code copy language='idea' className='bg-black text-white'>
+        <Code copy language="idea" className="bg-black text-white">
           {schemaStructureExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Use Meaningful Names Section Content */}
       <section>
@@ -213,15 +212,15 @@ export function Body() {
         </P>
         <Code
           copy
-          language='typescript'
-          className='bg-black text-white'
+          language="typescript"
+          className="bg-black text-white"
         >
           {namingExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Error Examples Section Content */}
       <section>
@@ -231,12 +230,12 @@ export function Body() {
         <H2>{_('Invalid Schema Structure')}</H2>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white'
+          language="javascript"
+          className="bg-black text-white"
         >
           {errorExamples.invalidSchema}
         </Code>
-        <li className='my-2 list-none'>
+        <li className="my-2 list-none">
           <SS>Solution: </SS>
           <Translate>
             Ensure your schema follows the correct syntax and structure.
@@ -246,12 +245,12 @@ export function Body() {
         <H2>{_('Missing Required Properties')}</H2>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white'
+          language="javascript"
+          className="bg-black text-white"
         >
           {errorExamples.missingColumns}
         </Code>
-        <li className='my-2 list-none'>
+        <li className="my-2 list-none">
           <SS>Solution: </SS>
           <Translate>
             Models and types must have a columns definition.
@@ -261,12 +260,12 @@ export function Body() {
         <H2>{_('Duplicate Declarations')}</H2>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white'
+          language="javascript"
+          className="bg-black text-white"
         >
           {errorExamples.duplicateName}
         </Code>
-        <li className='my-2 list-none'>
+        <li className="my-2 list-none">
           <SS>Solution: </SS>
           <Translate>
             Each declaration name must be unique within the schema.
@@ -276,12 +275,12 @@ export function Body() {
         <H2>{_('Unknown References')}</H2>
         <Code
           copy
-          language='javascript'
-          className='bg-black text-white'
+          language="javascript"
+          className="bg-black text-white"
         >
           {errorExamples.unknownReference}
         </Code>
-        <li className='my-2 list-none'>
+        <li className="my-2 list-none">
           <SS>Solution: </SS>
           <Translate>
             Ensure all referenced props and types are defined before use.
@@ -293,11 +292,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Examples'),
-          href: '/docs/parser/examples'
+          href: "/docs/parser/examples"
         }}
         next={{
           text: _('Transformers'),
-          href: '/docs/transformers/introduction'
+          href: "/docs/transformers/introduction"
         }}
       />
 

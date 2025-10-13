@@ -5,15 +5,15 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, P, Nav, SS } from '../../components/index.js';
+import { H1, P, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
 //----------------------------------------------------------------------
 
-const examples = [
-  `// JavaScript object
+const examples = [`
+// JavaScript object
 { foo: "bar", bar: "foo" }
 
 // JavaScript array
@@ -30,7 +30,7 @@ const examples = [
   tags: ["admin", "user"]
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Object structure
 { foo "bar" bar "foo" }
@@ -48,7 +48,7 @@ const examples = [
   tags ["admin" "user"]
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Strings - always use double quotes
 name "John Doe"
@@ -78,7 +78,7 @@ profile {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// This is a single-line comment
 model User {
@@ -142,118 +142,118 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Syntax Overview Content */}
       <section>
-        <H1>{_('Syntax Overview')}</H1>
-        <P>
-          <Translate>
-            The .idea file format uses a simplified syntax that
-            eliminates the need for traditional separators like commas
-            (&#44;) and colons (&#58;) found in JSON or JavaScript.
-            The parser can logically determine separations, making the
-            syntax cleaner and more readable.
-          </Translate>
-        </P>
+      <H1>{_('Syntax Overview')}</H1>
+      <P>
+        <Translate>
+        The .idea file format uses a simplified syntax that eliminates
+        the need for traditional separators like commas (&#44;) and
+        colons (&#58;) found in JSON or JavaScript. The parser can
+        logically determine separations, making the syntax cleaner
+        and more readable.
+        </Translate>
+      </P>
       </section>
 
       {/* Key Syntax Rules Content */}
       <section>
-        <H1>{_('Key Syntax Rules')}</H1>
-        <ul className="px-lh-30 px-px-20 list-disc">
-          <li>
-            <SS>{_('No Separators Required:')}</SS>
-            <Translate>
-              The parser intelligently determines where values begin
-              and end
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('Double Quotes Only:')}</SS>
-            <Translate>
-              All strings must use double quotes (") - single quotes
-              are not supported
-            </Translate>
-          </li>
-          <li>
-            <SS>{_('Context Awareness:')}</SS>
-            <Translate>
-              The parser understands context and can differentiate
-              between keys, values, and nested structures
-            </Translate>
-          </li>
-        </ul>
+      <H1>{_('Key Syntax Rules')}</H1>
+      <ul className="list-disc px-lh-30 px-px-20">
+        <li>
+        <SS>{_('No Separators Required:')}</SS>
+        <Translate>
+          The parser intelligently determines where values begin
+          and end
+        </Translate>
+        </li>
+        <li>
+        <SS>{_('Double Quotes Only:')}</SS>
+        <Translate>
+          All strings must use double quotes (") - single quotes
+          are not supported
+        </Translate>
+        </li>
+        <li>
+        <SS>{_('Context Awareness:')}</SS>
+        <Translate>
+          The parser understands context and can differentiate
+          between keys, values, and nested structures
+        </Translate>
+        </li>
+      </ul>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Examples Content */}
       <section>
-        <H1>{_('Syntax Comparison')}</H1>
-        <P><Translate>Traditional JavaScript/JSON:</Translate></P>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mb-20"
-        >
-          {examples[0]}
-        </Code>
+      <H1>{_('Syntax Comparison')}</H1>
+      <P><Translate>Traditional JavaScript/JSON:</Translate></P>
+      <Code
+        copy
+        language="javascript"
+        className="bg-black px-mb-20 text-white"
+      >
+        {examples[0]}
+      </Code>
 
-        <P><Translate>Equivalent .idea syntax:</Translate></P>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mb-20"
-        >
-          {examples[1]}
-        </Code>
+      <P><Translate>Equivalent .idea syntax:</Translate></P>
+      <Code
+        copy
+        language="javascript"
+        className="bg-black px-mb-20 text-white"
+      >
+        {examples[1]}
+      </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       {/* Data Types Representations Content */}
       <section>
-        <H1>{_('Data Types Representations')}</H1>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mb-20 mt-5"
-        >
-          {examples[2]}
-        </Code>
+      <H1>{_('Data Types Representations')}</H1>
+      <Code
+        copy
+        language="javascript"
+        className="bg-black mt-5 px-mb-20 text-white"
+      >
+        {examples[2]}
+      </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10 ' />
+      <hr className="mt-10" />
 
       <section>
-        <H1>{_('Comments')}</H1>
-        <P>
-          <Translate>
-            Comments in .idea files use the standard // syntax:
-          </Translate>
-        </P>
-        <Code
-          copy
-          language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
-        >
-          {examples[3]}
-        </Code>
+      <H1>{_('Comments')}</H1>
+      <P>
+        <Translate>
+        Comments in .idea files use the standard // syntax:
+        </Translate>
+      </P>
+      <Code
+        copy
+        language="javascript"
+        className="bg-black px-mb-20 text-white"
+      >
+        {examples[3]}
+      </Code>
       </section>
 
       {/* Page Navigation */}
       <Nav
-        next={{
-          text: _('Data Types'),
-          href: '/docs/specifications/data-types'
-        }}
-        prev={{
-          text: _('Getting Started'),
-          href: '/docs/getting-started'
-        }}
+      next={{
+        text: _('Data Types'),
+        href: "/docs/specifications/data-types"
+      }}
+      prev={{
+        text: _('Getting Started'),
+        href: "/docs/getting-started"
+      }}
       />
     </main>
   );
