@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const errorHandlingExample = 
 `// Centralized validation error handling
@@ -38,7 +38,7 @@ function validateWithErrorHandling<T>(schema: z.ZodSchema<T>, data: unknown): T 
   return result.data;
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaCompositionExample = `// Compose schemas for reusability
 const BaseEntitySchema = z.object({
@@ -58,7 +58,7 @@ const PostSchema = BaseEntitySchema.extend({
   authorId: z.string(),
 });`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeGuardsExample = 
 `// Generate type guards from schemas
@@ -78,7 +78,7 @@ function processUserData(data: unknown) {
   }
 }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const apiIntegrationExample = 
 `// Middleware for API validation
@@ -109,7 +109,7 @@ app.post('/users', validateBody(CreateUserSchema), (req, res) => {
   const user = req.body; // Type: CreateUserInput
 });`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function BestPractices() {
   //hooks

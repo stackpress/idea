@@ -5,16 +5,17 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const generatedOutputExample = 
-`# My Application Schema
+const generatedOutputExample =
+  `# My Application Schema
 
 API Reference documentation for the schema definitions.
 
 ## Overview
 
-This document provides comprehensive API documentation for all schema elements including models, types, enums, and properties.
+This document provides comprehensive API documentation for all schema 
+elements including models, types, enums, and properties.
 
 Generated on: 2024-01-15T10:30:00.000Z
 
@@ -58,9 +59,9 @@ Enums define sets of named constants with associated values.
 
 ---
 
-*Documentation generated on 1/15/2024, 10:30:00 AM*`
+*Documentation generated on 1/15/2024, 10:30:00 AM*`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function GeneratedOutput() {
   //hooks
@@ -70,15 +71,15 @@ export default function GeneratedOutput() {
     <>
       {/* Generated Output Section Content */}
       <section id="generated-output">
-      <H1>{_('10. Generated Output')}</H1>
-      <P>
-        <Translate>
-          The plugin will generate markdown documentation like this:
-        </Translate>
-      </P>
-      <Code copy language='markdown' className='bg-black text-white'>
-        {generatedOutputExample}
-      </Code>
+        <H1>{_('10. Generated Output')}</H1>
+        <P>
+          <Translate>
+            The plugin will generate markdown documentation like this:
+          </Translate>
+        </P>
+        <Code copy language="markdown" className="bg-black text-white">
+          {generatedOutputExample}
+        </Code>
       </section>
     </>
   )

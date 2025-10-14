@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeMappingFunction =
   `function mapSchemaTypeToMySQL(column: any): string {
@@ -79,9 +79,9 @@ const typeMappingFunction =
       
       return 'VARCHAR(255)'; // Default fallback
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function ImplementTypeMapping() {
   //hooks
@@ -103,7 +103,7 @@ export default function ImplementTypeMapping() {
         <Code
           copy
           language="typescript"
-          className='bg-black text-white'
+          className="bg-black text-white"
         >
           {typeMappingFunction}
         </Code>

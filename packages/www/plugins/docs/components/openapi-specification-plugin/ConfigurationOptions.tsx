@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const configurationExample = 
-`// schema.idea
+const configurationExample =
+  `// schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec.json"
   info {
@@ -98,9 +98,9 @@ plugin "./plugins/openapi-spec.js" {
       }
     }
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function ConfigurationOptions() {
   //hooks
@@ -120,7 +120,7 @@ export default function ConfigurationOptions() {
           requirements and integrates with your development workflow.
         </Translate>
       </P>
-      <Code copy language='idea' className='bg-black text-white'>
+      <Code copy language="idea" className="bg-black text-white">
         {configurationExample}
       </Code>
       </section>

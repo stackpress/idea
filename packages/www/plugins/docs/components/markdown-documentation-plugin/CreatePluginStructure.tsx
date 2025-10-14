@@ -5,10 +5,10 @@ import { H1, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const pluginStructureExample = 
-`import type { PluginProps } from '@stackpress/idea-transformer/types';
+const pluginStructureExample =
+  `import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -53,9 +53,9 @@ export default async function markdownDocsPlugin(
   }
   
   console.log(\`✅ Markdown documentation generated: \${options.output}\`);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function CreatePluginStructure() {
   //hooks
@@ -65,15 +65,15 @@ export default function CreatePluginStructure() {
     <>
       {/* Create the Plugin Structure Section Content */}
       <section id="create-plugin">
-      <H1>{_('4. Create the Plugin Structure')}</H1>
-      <P>
-        <Translate>
-          Create a new file <C>markdown-docs-plugin.js</C>:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {pluginStructureExample}
-      </Code>
+        <H1>{_('4. Create the Plugin Structure')}</H1>
+        <P>
+          <Translate>
+            Create a new file <C>markdown-docs-plugin.js</C>:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {pluginStructureExample}
+        </Code>
       </section>
     </>
   )

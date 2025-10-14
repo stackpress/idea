@@ -10,14 +10,14 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const installCommand = `npm install @stackpress/idea-parser`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const usageExample = `
-import { parse, final } from '@stackpress/idea-parser';
+const usageExample = 
+`import { parse, final } from '@stackpress/idea-parser';
 
 // Parse a schema file into JSON (includes references)
 const schemaCode = \`
@@ -39,7 +39,7 @@ const parsedSchema = parse(schemaCode);
 // Parse and clean up references (final version)
 const finalSchema = final(schemaCode);`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -98,8 +98,8 @@ export function Body() {
           A TypeScript library for parsing .idea schema files into
           Abstract Syntax Trees (AST) and converting them to readable
           JSON configurations. This library is designed to help
-          developers work with schema definitions in a structured and
-          type-safe manner.
+          developers work with schema definitions in a structured 
+          and type-safe manner.
         </Translate>
       </section>
 
@@ -129,8 +129,8 @@ export function Body() {
         <H1>{_('Quick Start')}</H1>
         <P>
           <Translate>
-            The library provides two main functions for parsing schema
-            files:
+            The library provides two main functions for parsing 
+            schema files:
           </Translate>
         </P>
 

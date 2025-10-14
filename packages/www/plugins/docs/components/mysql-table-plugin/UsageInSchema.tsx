@@ -5,9 +5,10 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const schemaUsageExample = `// schema.idea
+const schemaUsageExample =
+  `// schema.idea
 plugin "./plugins/mysql-tables-plugin.js" {
   output "./database/tables.sql"
   database "my_app"
@@ -30,9 +31,9 @@ model User {
 enum UserRole {
   ADMIN "admin"
   USER "user"
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UsageInSchema() {
   //hooks
@@ -53,7 +54,7 @@ export default function UsageInSchema() {
         <Code
           copy
           language="idea"
-          className='bg-black text-white'
+          className="bg-black text-white"
         >
           {schemaUsageExample}
         </Code>

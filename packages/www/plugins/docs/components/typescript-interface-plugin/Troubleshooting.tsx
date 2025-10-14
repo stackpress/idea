@@ -4,19 +4,19 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, C, Code } from '../../../docs/components/index.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const typeNameValidation = 
-`function validateTypeName(name: string): void {
+const typeNameValidation =
+  `function validateTypeName(name: string): void {
   if (!/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(name)) {
     throw new Error(\`Invalid TypeScript identifier: \${name}\`);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const circularReferenceDetection = 
-`function detectCircularReferences(
+const circularReferenceDetection =
+  `function detectCircularReferences(
   types: Record<string, any>
 ): string[] {
   const visited = new Set<string>();
@@ -44,12 +44,12 @@ const circularReferenceDetection =
   }
   
   return cycles;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const dependencyValidation = 
-`function validateTypeDependencies(
+const dependencyValidation =
+  `function validateTypeDependencies(
   schema: any
 ): void {
   const availableTypes = new Set([
@@ -59,23 +59,23 @@ const dependencyValidation =
   ]);
   
   // Validate all type references...
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const verboseLogging = 
-`const VERBOSE = process.env.TS_PLUGIN_VERBOSE === 'true';
+const verboseLogging =
+  `const VERBOSE = process.env.TS_PLUGIN_VERBOSE === 'true';
 
 function verboseLog(message: string, data?: any) {
   if (VERBOSE) {
     console.log(\`[TypeScript Plugin] \${message}\`, data || '');
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const typeScriptValidation = 
-`import { transpile, ScriptTarget } from 'typescript';
+const typeScriptValidation =
+  `import { transpile, ScriptTarget } from 'typescript';
 
 function validateGeneratedTypeScript(content: string): void {
   try {
@@ -87,9 +87,9 @@ function validateGeneratedTypeScript(content: string): void {
   } catch (error) {
     throw new Error(\`Invalid TypeScript: \${error.message}\`);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Troubleshooting() {
   //hooks
@@ -102,10 +102,11 @@ export default function Troubleshooting() {
         <H1>{_('9. Troubleshooting')}</H1>
         <P>
           <Translate>
-            This section addresses common issues encountered when generating 
-            TypeScript interfaces and provides solutions for debugging and 
-            resolving problems. Understanding these troubleshooting techniques 
-            helps ensure reliable interface generation.
+            This section addresses common issues encountered when
+            generating TypeScript interfaces from <C>.idea</C> files
+            and provides solutions for debugging and resolving problems.
+            Understanding these troubleshooting techniques helps ensure
+            reliable TypeScript interface generation.
           </Translate>
         </P>
       </section>
@@ -115,10 +116,10 @@ export default function Troubleshooting() {
         <H2>{_('Common Issues')}</H2>
         <P>
           <Translate>
-            Common issues include invalid TypeScript identifiers, circular 
-            type references, and missing dependencies. These problems 
-            typically arise from schema complexity or configuration 
-            mismatches that can be resolved with proper validation and 
+            Common issues include invalid TypeScript identifiers, circular
+            type references, and missing dependencies. These problems
+            typically arise from schema complexity or configuration
+            mismatches that can be resolved with proper validation and
             error handling.
           </Translate>
         </P>
@@ -127,13 +128,13 @@ export default function Troubleshooting() {
           <H2>{_('Invalid TypeScript Names')}</H2>
           <P>
             <Translate>
-              Invalid TypeScript names occur when schema identifiers contain 
-              characters that are not valid in TypeScript. The plugin should 
-              validate and sanitize names to ensure they conform to 
-              TypeScript identifier rules.
+              Invalid TypeScript names occur when schema identifiers
+              contain characters that are not valid in TypeScript. The
+              plugin should validate and sanitize names to ensure they
+              conform to TypeScript identifier rules.
             </Translate>
           </P>
-          <Code lang='typescript'>
+          <Code lang="typescript">
             {typeNameValidation}
           </Code>
         </section>
@@ -143,13 +144,13 @@ export default function Troubleshooting() {
           <H2>{_('Circular Type References')}</H2>
           <P>
             <Translate>
-              Circular type references can cause infinite loops during 
-              generation or compilation errors in the generated TypeScript 
-              code. Detecting and handling these scenarios is essential for 
+              Circular type references can cause infinite loops during
+              generation or compilation errors in the generated TypeScript
+              code. Detecting and handling these scenarios is essential for
               robust type generation.
             </Translate>
           </P>
-          <Code lang='typescript'>
+          <Code lang="typescript">
             {circularReferenceDetection}
           </Code>
         </section>
@@ -159,13 +160,13 @@ export default function Troubleshooting() {
           <H2>{_('Missing Type Dependencies')}</H2>
           <P>
             <Translate>
-              Missing type dependencies occur when a type references another 
-              type that doesn't exist in the schema. Validating type 
-              dependencies ensures all references are resolvable and prevents 
-              compilation errors.
+              Missing type dependencies occur when a type references
+              another type that doesn't exist in the schema. Validating
+              type dependencies ensures all references are resolvable
+              and prevents compilation errors.
             </Translate>
           </P>
-          <Code lang='typescript'>
+          <Code lang="typescript">
             {dependencyValidation}
           </Code>
         </section>
@@ -176,9 +177,9 @@ export default function Troubleshooting() {
         <H2>{_('Debugging Tips')}</H2>
         <P>
           <Translate>
-            Debugging tips help identify and resolve issues during TypeScript 
-            interface generation. These techniques provide visibility into 
-            the generation process and help diagnose problems with schema 
+            Debugging tips help identify and resolve issues during TypeScript
+            interface generation. These techniques provide visibility into
+            the generation process and help diagnose problems with schema
             processing or output generation.
           </Translate>
         </P>
@@ -188,12 +189,12 @@ export default function Troubleshooting() {
           <H2>{_('Enable Verbose Output')}</H2>
           <P>
             <Translate>
-              Verbose output provides detailed logging during the generation 
-              process, helping identify where issues occur and what data is 
+              Verbose output provides detailed logging during the generation
+              process, helping identify where issues occur and what data is
               being processed at each step.
             </Translate>
           </P>
-          <Code lang='typescript'>
+          <Code lang="typescript">
             {verboseLogging}
           </Code>
         </section>
@@ -203,13 +204,13 @@ export default function Troubleshooting() {
           <H2>{_('Validate Generated TypeScript')}</H2>
           <P>
             <Translate>
-              Validating generated TypeScript ensures that the output is 
-              syntactically correct and will compile successfully. This 
-              validation step catches generation errors before the code is 
+              Validating generated TypeScript ensures that the output is
+              syntactically correct and will compile successfully. This
+              validation step catches generation errors before the code is
               used in development.
             </Translate>
           </P>
-          <Code lang='typescript'>
+          <Code lang="typescript">
             {typeScriptValidation}
           </Code>
         </section>
@@ -219,9 +220,9 @@ export default function Troubleshooting() {
       <section>
         <P>
           <Translate>
-            This tutorial provides a comprehensive foundation for creating 
-            TypeScript interface generators from <C>.idea</C> files. The 
-            generated types can be used throughout your TypeScript projects 
+            This tutorial provides a comprehensive foundation for creating
+            TypeScript interface generators from <C>.idea</C> files. The
+            generated types can be used throughout your TypeScript projects
             for compile-time type checking and enhanced IDE support.
           </Translate>
         </P>

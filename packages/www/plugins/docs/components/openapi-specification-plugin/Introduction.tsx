@@ -15,15 +15,10 @@ export default function Introduction() {
         <P>
           <Translate>
             This tutorial demonstrates how to create a plugin for
-          </Translate>
-          <C>@stackpress/idea-transformer</C>
-          <Translate>
-            that generates OpenAPI 3.0 specifications from
-          </Translate>
-          <C>.idea</C>
-          <Translate>
-            schema files. The plugin will create comprehensive API
-            documentation with endpoints, schemas, and validation rules.
+            <C>@stackpress/idea-transformer</C> that generates OpenAPI 
+            3.0 specifications from <C>.idea</C> schema files. The 
+            plugin will create comprehensive API documentation with 
+            endpoints, schemas, and validation rules.
           </Translate>
         </P>
       </section>

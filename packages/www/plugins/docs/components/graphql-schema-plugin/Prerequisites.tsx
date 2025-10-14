@@ -14,13 +14,13 @@ export default function Prerequisites() {
       <H1>{_('2. Prerequisites')}</H1>
       <P>
         <Translate>
-          Before implementing the GraphQL schema generator plugin, ensure you 
-          have the necessary development environment and knowledge. This 
-          section covers the essential requirements for successful plugin 
-          creation and GraphQL integration.
+          Before implementing the GraphQL schema generator plugin, 
+          ensure you have the necessary development environment and 
+          knowledge. This section covers the essential requirements 
+          for successful plugin creation and GraphQL integration.
         </Translate>
       </P>
-      <ul className="list-disc pl-6 my-4">
+      <ul className="list-disc my-4 pl-6">
         <li className="my-2">
           <Translate>
             Node.js 16+ and npm/yarn
@@ -33,7 +33,8 @@ export default function Prerequisites() {
         </li>
         <li className="my-2">
           <Translate>
-            Familiarity with the <C>@stackpress/idea-transformer</C> library
+            Familiarity with the <C>@stackpress/idea-transformer</C> 
+            library
           </Translate>
         </li>
         <li className="my-2">

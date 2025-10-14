@@ -4,19 +4,20 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
-import { H1, H2, H3, P, C, Nav, SS } from '../../../components/index.js';
+import { H1, H2, P, C, Nav, SS } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const examples = [
   `import { Lexer } from '@stackpress/idea-parser';`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -29,7 +30,7 @@ const clonedLexer = lexer.clone();
 console.log(clonedLexer.index); // Same index as original
 console.log(clonedLexer.dictionary); // Same definitions as original`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions from '@stackpress/idea-parser/definitions';
@@ -54,7 +55,7 @@ lexer.define('customKeyword', (code, start, lexer) => {
   return undefined;
 });`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions, { data } from '@stackpress/idea-parser/definitions';
@@ -81,7 +82,7 @@ lexer.load('true');
 const booleanToken = lexer.expect(['Boolean', 'String', 'Integer']);
 console.log(booleanToken.value); // true`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -96,7 +97,7 @@ if (definition) {
   console.log('Definition not found');
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -111,7 +112,7 @@ lexer.load('enum Status { ACTIVE "Active" }', 5);
 console.log(lexer.index); // 5
 console.log(lexer.substring(5, 11)); // 'Status'`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -138,7 +139,7 @@ if (match2) {
   console.log('Matched:', match2.type); // 'Literal'
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions from '@stackpress/idea-parser/definitions';
@@ -161,7 +162,7 @@ if (lexer.next(['String', 'Integer', 'Boolean'])) {
   console.log('Next token is a literal value');
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions from '@stackpress/idea-parser/definitions';
@@ -186,7 +187,7 @@ lexer.optional('whitespace');
 const enumToken = lexer.expect('AnyIdentifier');
 console.log(enumToken.name); // 'enum'`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -206,7 +207,7 @@ if (token) {
   console.log('Token value:', token.value); // 42
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -221,7 +222,7 @@ console.log(substring); // 'code'
 const empty = lexer.substring(5, 5);
 console.log(empty); // ''`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -237,7 +238,7 @@ lexer.load('enumStatus');
 const endIndex = lexer.nextSpace();
 console.log(endIndex); // 10 (length of code)`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer } from '@stackpress/idea-parser';
 import { Compiler } from '@stackpress/idea-parser';
@@ -261,7 +262,7 @@ const nestedCompiled = Compiler.object(nestedToken);
 console.log(nestedCompiled.zoo.foo); // false
 console.log(nestedCompiled.zoo.bar); // null`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Parse a simple array
 lexer.load('[ 4.4 "bar" false null ]');
@@ -282,7 +283,7 @@ const objectArray = Compiler.array(objectArrayToken);
 console.log(objectArray[0].label); // 'US'
 console.log(objectArray[1].value); // 'Canada'`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Parse block comments
 lexer.load('/* some comment */');
@@ -304,7 +305,7 @@ lexer.load("/*
 const multilineToken = lexer.expect('note');
 console.log(multilineToken.value); // Contains newlines and nested //`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `const lexer = new Lexer();
 
@@ -322,7 +323,7 @@ try {
   console.log(error.message); // "Unknown definition missingKey"
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Exception } from '@stackpress/idea-parser';
 
@@ -340,7 +341,7 @@ try {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `import { Lexer, EnumTree } from '@stackpress/idea-parser';
 
@@ -353,7 +354,7 @@ lexer.load('enum Status { ACTIVE "Active" INACTIVE "Inactive" }');
 const enumTree = new EnumTree(lexer);
 const result = enumTree.enum(); // Parse enum using configured lexer`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Save current state for potential backtracking
 const checkpoint = lexer.clone();
@@ -368,7 +369,7 @@ try {
   return parseAlternativeStructure(restoredLexer);
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
 
   `// Parse different types based on lookahead
 if (lexer.next('AnyIdentifier')) {
@@ -380,7 +381,7 @@ if (lexer.next('AnyIdentifier')) {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //--------------------------------------------------------------------
   `import type { Reader } from '@stackpress/idea-parser';
 
 const customReader: Reader = (code, start, lexer) => {
@@ -405,7 +406,18 @@ const customReader: Reader = (code, start, lexer) => {
 lexer.define('custom', customReader);`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500',
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -446,36 +458,36 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
+    <aside className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
       {/* API Reference Navigation*/}
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('API Reference')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
-        <div className="text-blue-300 cursor-pointer">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
+        <div className="cursor-pointer text-blue-300">
           {_('Lexer API Reference')}
         </div>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler"
         >
           {_('Compiler API Reference')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast"
         >
           {_('AST Reference')}
         </a>
 
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/tokens"
         >
           {_('Token Reference')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling"
         >
           {_('Exception Handling')}
@@ -483,120 +495,120 @@ export function Right() {
       </nav>
 
       {/* On This Page Navigation */}
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-30 px-pb-10 uppercase">
+      <h6 className="px-fs-14 px-mb-0 px-mt-30 px-pb-10 theme-muted uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#lexer"
         >
           {_('A. Lexer')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#properties"
         >
           {_('1. Properties')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#methods"
         >
           {_('2. Methods')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#cloning"
         >
           {_('2.1 Cloning the Lexer')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#defining"
         >
           {_('2.2 Defining Token Patterns')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#expecting"
         >
           {_('2.3 Expecting Specific Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#getting"
         >
           {_('2.4 Getting Token Definitions')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#loading"
         >
           {_('2.5 Loading Code')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#matching"
         >
           {_('2.6 Matching Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#testing"
         >
           {_('2.7 Testing for Next Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#optional"
         >
           {_('2.8 Optional Token Parsing')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#reading-ahead"
         >
           {_('2.9 Reading Ahead')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#substrings"
         >
           {_('2.10 Getting Substrings')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#next-space"
         >
           {_('2.11 Finding Next Space')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#parsing-complex-data-structures"
         >
           {_('3. Parsing Complex Data Structures')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#error-handling"
         >
           {_('4. Error Handling')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#predefined-token-definitions"
         >
           {_('5. Predefined Token Definitions')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#usage-with-ast"
         >
           {_('6. Usage with AST')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#advanced-usage-patterns"
         >
           {_('7. Advanced Usage Patterns')}
@@ -611,9 +623,9 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Lexer Section Content */}
-      <section id='lexer'>
+      <section id="lexer">
         <H1>{_('Lexer')}</H1>
         <Translate>
           The Lexer class implements the Parser interface and provides
@@ -621,16 +633,16 @@ export function Body() {
           a dictionary of token definitions and handles the parsing
           process by matching patterns against the input code.
         </Translate>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[0]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Properties Section Content */}
-      <section id='properties'>
+      <section id="properties">
         <H1>{_('1. Properties')}</H1>
         <P>
           <Translate>
@@ -638,10 +650,10 @@ export function Body() {
           </Translate>
         </P>
 
-        <Table className="text-left mt-5">
-          <Thead className="theme-bg-bg2 text-left">{_('Property')}</Thead>
-          <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-          <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+        <Table className="mt-5 text-left">
+          <Thead className="text-left theme-bg-bg2">{_('Property')}</Thead>
+          <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+          <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
           <Trow>
             <Tcol><C>dictionary</C></Tcol>
             <Tcol><C>Record&#8249;string, Definition&#8250;</C> {_(
@@ -658,32 +670,33 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Methods Section Content */}
-      <section id='methods'>
+      <section id="methods">
         <H1>{_('2. Methods')}</H1>
         <P>
           <Translate>
-            The following methods are available when instantiating a Lexer.
+            The following methods are available when instantiating
+            a Lexer.
           </Translate>
         </P>
 
         {/* Cloning the Lexer Section Content */}
-        <section id='cloning'>
+        <section id="cloning">
           <H2>{_('2.1 Cloning the Lexer')}</H2>
           <P>
             <Translate>
-              The following example shows how to create an exact copy of the
-              lexer's current state.
+              The following example shows how to create an exact copy
+              of the Lexer's current state.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[1]}
           </Code>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
               A new Lexer instance with identical state to original
             </Translate>
@@ -691,23 +704,23 @@ export function Body() {
         </section>
 
         {/* Defining Token Patterns Section Content */}
-        <section id='defining'>
+        <section id="defining">
           <H2>{_('2.2 Defining Token Patterns')}</H2>
           <P>
             <Translate>
-              The following example shows how to register token definitions
-              for parsing.
+              The following example shows how to register token
+              definitions for parsing.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[2]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>key</C></Tcol>
               <Tcol><C>string</C></Tcol>
@@ -725,7 +738,7 @@ export function Body() {
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
               Void (modifies the lexer's internal dictionary).
             </Translate>
@@ -733,23 +746,23 @@ export function Body() {
         </section>
 
         {/* Expecting Specific Tokens Section Content */}
-        <section id='expecting'>
+        <section id="expecting">
           <H2>{_('2.3 Expecting Specific Tokens')}</H2>
           <P>
             <Translate>
-              The following example shows how to require specific tokens at
-              the current position.
+              The following example shows how to require specific
+              tokens at the current position.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[3]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>keys</C></Tcol>
               <Tcol><C>string | string[]</C></Tcol>
@@ -758,32 +771,32 @@ export function Body() {
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
-              The matched token object, or throws an exception if no match
-              is found.
+              The matched token object, or throws an exception if
+              no match is found.
             </Translate>
           </li>
         </section>
 
         {/* Getting Token Definitions Section Content */}
-        <section id='getting'>
+        <section id="getting">
           <H2>{_('2.4 Getting Token Definitions')}</H2>
           <P>
             <Translate>
-              The following example shows how to retrieve registered token
-              definitions.
+              The following example shows how to retrieve registered
+              token definitions.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[4]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>key</C></Tcol>
               <Tcol><C>string</C></Tcol>
@@ -792,7 +805,7 @@ export function Body() {
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
               The Definition object if found, undefined otherwise.
             </Translate>
@@ -800,22 +813,22 @@ export function Body() {
         </section>
 
         {/* Loading Code Section Content */}
-        <section id='loading'>
+        <section id="loading">
           <H2>{_('2.5 Loading Code')}</H2>
           <P>
             <Translate>
               The following example shows how to load code for parsing.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[5]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>code</C></Tcol>
               <Tcol><C>string</C></Tcol>
@@ -833,7 +846,7 @@ export function Body() {
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
               The Lexer instance to allow method chaining.
             </Translate>
@@ -841,23 +854,23 @@ export function Body() {
         </section>
 
         {/* Matching Tokens Section Content */}
-        <section id='matching'>
+        <section id="matching">
           <H2>{_('2.6 Matching Tokens')}</H2>
           <P>
             <Translate>
-              The following example shows how to find the first matching token
-              from available definitions.
+              The following example shows how to find the first
+              matching token from available definitions.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[6]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>code</C></Tcol>
               <Tcol><C>string</C></Tcol>
@@ -873,39 +886,40 @@ export function Body() {
               <Tcol><C>string[]</C></Tcol>
               <Tcol>
                 <Translate>
-                  Optional array of definition keys to try (default: all
-                  definitions)
+                  Optional array of definition keys to try (default:
+                  all definitions)
                 </Translate>
               </Tcol>
             </Trow>
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
-              The first matching token object, or null if no match is found.
+              The first matching token object, or null if no match
+              is found.
             </Translate>
           </li>
         </section>
 
         {/* Testing for Next Tokens Section Content */}
-        <section id='testing'>
+        <section id="testing">
           <H2>{_('2.7 Testing for Next Tokens')}</H2>
           <P>
             <Translate>
-              The following example shows how to check if the next tokens
-              match without consuming them.
+              The following example shows how to check if the next
+              tokens match without consuming them.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[7]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>names</C></Tcol>
               <Tcol><C>string | string[]</C></Tcol>
@@ -914,32 +928,32 @@ export function Body() {
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
-              true if the next token(s) match, false otherwise. Does not
-              advance the index.
+              true if the next token(s) match, false otherwise.
+              Does not advance the index.
             </Translate>
           </li>
         </section>
 
         {/* Optional Token Parsing Section Content */}
-        <section id='optional'>
+        <section id="optional">
           <H2>{_('2.8 Optional Token Parsing')}</H2>
           <P>
             <Translate>
-              The following example shows how to optionally parse tokens
-              without throwing errors.
+              The following example shows how to optionally parse
+              tokens without throwing errors.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[8]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>names</C></Tcol>
               <Tcol><C>string | string[]</C></Tcol>
@@ -948,7 +962,7 @@ export function Body() {
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
               The matched token object if found, undefined otherwise.
             </Translate>
@@ -956,44 +970,45 @@ export function Body() {
         </section>
 
         {/* Reading Ahead Section Content */}
-        <section id='reading-ahead'>
+        <section id="reading-ahead">
           <H2>{_('2.9 Reading Ahead')}</H2>
           <P>
             <Translate>
-              The following example shows how to read the next available token.
+              The following example shows how to read the next 
+              available token.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[9]}
           </Code>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
-              The next available token object, or undefined if no token can
-              be parsed.
+              The next available token object, or undefined if no 
+              token can be parsed.
             </Translate>
           </li>
         </section>
 
         {/* Getting Substrings Section Content */}
-        <section id='substrings'>
+        <section id="substrings">
           <H2>{_('2.10 Getting Substrings')}</H2>
           <P>
             <Translate>
-              The following example shows how to extract portions of the
-              source code.
+              The following example shows how to extract portions 
+              of the source code.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[10]}
           </Code>
 
           <H2>{_('Parameters')}</H2>
           <Table>
-            <Thead className="theme-bg-bg2 text-left">{_('Parameter')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Type')}</Thead>
-            <Thead className="theme-bg-bg2 text-left">{_('Description')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Parameter')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Type')}</Thead>
+            <Thead className="text-left theme-bg-bg2">{_('Description')}</Thead>
             <Trow>
               <Tcol><C>start</C></Tcol>
               <Tcol><C>number</C></Tcol>
@@ -1007,7 +1022,7 @@ export function Body() {
           </Table>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
               The substring of code between start and end positions.
             </Translate>
@@ -1015,85 +1030,86 @@ export function Body() {
         </section>
 
         {/* Finding Next Space Section Content */}
-        <section id='next-space'>
+        <section id="next-space">
           <H2>{_('2.11 Finding Next Space')}</H2>
           <P>
             <Translate>
-              The following example shows how to find the next whitespace
-              character (useful for error reporting).
+              The following example shows how to find the next 
+              whitespace character (useful for error reporting).
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {examples[11]}
           </Code>
 
           <SS>{_('Returns')}</SS>
-          <li className='my-2 list-none'>
+          <li className="my-2 list-none">
             <Translate>
-              The index of the next space character, or the code length if
-              no space is found.
+              The index of the next space character, or the code 
+              length if no space is found.
             </Translate>
           </li>
         </section>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Parsing Complex Data Structures Section Content */}
-      <section id='parsing-complex-data-structures'>
+      <section id="parsing-complex-data-structures">
         <H1>{_('3. Parsing Complex Data Structures')}</H1>
         <P>
           <Translate>
-            The Lexer can parse complex nested data structures using the
-            predefined token definitions:
+            The Lexer can parse complex nested data structures using 
+            the predefined token definitions:
           </Translate>
         </P>
 
         <H2>{_('Parsing Objects')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[12]}
         </Code>
 
         <H2>{_('Parsing Arrays')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[13]}
         </Code>
 
         <H2>{_('Parsing Comments')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[14]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Error Handling Section Content */}
-      <section id='error-handling'>
+      <section id="error-handling">
         <H1>{_('4. Error Handling')}</H1>
         <P>
           <Translate>
-            The Lexer provides detailed error information when parsing fails:
+            The Lexer provides detailed error information when 
+            parsing fails:
           </Translate>
         </P>
 
         <H2>{_('Unknown Definitions')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[15]}
         </Code>
 
         <H2>{_('Unexpected Tokens')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[16]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Predefined Token Definitions Section Content */}
-      <section id='predefined-token-definitions'>
+      <section id="predefined-token-definitions">
         <H1>{_('5. Predefined Token Definitions')}</H1>
         <P>
           <Translate>
@@ -1102,76 +1118,76 @@ export function Body() {
         </P>
 
         <H2>{_('Literals')}</H2>
-        <ul className='my-2 list-disc pl-5 '>
-          <li className='my-2'><C>Null</C>: {_('Matches null keyword')}</li>
-          <li className='my-2'><C>Boolean</C>: {_('Matches true and false')}</li>
-          <li className='my-2'><C>String</C>: {_(
+        <ul className="list-disc my-2 pl-5 ">
+          <li className="my-2"><C>Null</C>: {_('Matches null keyword')}</li>
+          <li className="my-2"><C>Boolean</C>: {_('Matches true and false')}</li>
+          <li className="my-2"><C>String</C>: {_(
             'Matches quoted strings "hello"'
           )}</li>
-          <li className='my-2'><C>Float</C>: {_(
+          <li className="my-2"><C>Float</C>: {_(
             'Matches decimal numbers 4.4, -3.14'
           )}</li>
-          <li className='my-2'><C>Integer</C>: {_(
+          <li className="my-2"><C>Integer</C>: {_(
             'Matches whole numbers 42, -10'
           )}</li>
-          <li className='my-2'><C>Environment</C>: {_(
+          <li className="my-2"><C>Environment</C>: {_(
             'Matches environment variables env("VAR_NAME")'
           )}</li>
         </ul>
 
         <H2>{_('Identifiers')}</H2>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'><C>AnyIdentifier</C>: {_(
+        <ul className="list-disc my-2 pl-5">
+          <li className="my-2"><C>AnyIdentifier</C>: {_(
             'Matches any valid identifier [a-z_][a-z0-9_]*'
           )}</li>
           <li><C>UpperIdentifier</C>: {_(
             'Matches uppercase identifiers [A-Z_][A-Z0-9_]*'
           )}</li>
-          <li className='my-2'><C>CapitalIdentifier</C>: {_(
+          <li className="my-2"><C>CapitalIdentifier</C>: {_(
             'Matches capitalized identifiers [A-Z_][a-zA-Z0-9_]*'
           )}</li>
-          <li className='my-2'><C>CamelIdentifier</C>: {_(
+          <li className="my-2"><C>CamelIdentifier</C>: {_(
             'Matches camelCase identifiers [a-z_][a-zA-Z0-9_]*'
           )}</li>
-          <li className='my-2'><C>LowerIdentifier</C>: {_(
+          <li className="my-2"><C>LowerIdentifier</C>: {_(
             'Matches lowercase identifiers [a-z_][a-z0-9_]*'
           )}</li>
-          <li className='my-2'><C>AttributeIdentifier</C>: {_(
+          <li className="my-2"><C>AttributeIdentifier</C>: {_(
             'Matches attribute identifiers @field.input'
           )}</li>
         </ul>
 
         <H2>{_('Structural')}</H2>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'><C>Array</C>: {_(
+        <ul className="list-disc my-2 pl-5">
+          <li className="my-2"><C>Array</C>: {_(
             'Matches array expressions [ ... ]'
           )}</li>
-          <li className='my-2'><C>Object</C>: {_(
+          <li className="my-2"><C>Object</C>: {_(
             'Matches object expressions &#123; ... &#125;'
           )}</li>
-          <li className='my-2'><C>&#123;, &#125;, [, ], (, )</C>: {_(
+          <li className="my-2"><C>&#123;, &#125;, [, ], (, )</C>: {_(
             'Bracket and brace tokens'
           )}</li>
-          <li className='my-2'><C>!</C>: {_('Final modifier token')}</li>
+          <li className="my-2"><C>!</C>: {_('Final modifier token')}</li>
         </ul>
 
         <H2>{_('Whitespace and Comments')}</H2>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'><C>whitespace</C>: {_(
+        <ul className="list-disc my-2 pl-5">
+          <li className="my-2"><C>whitespace</C>: {_(
             'Matches any whitespace \\s+'
           )}</li>
-          <li className='my-2'><C>space</C>: {_('Matches spaces only')}</li>
-          <li className='my-2'><C>line</C>: {_('Matches line breaks')}</li>
-          <li className='my-2'><C>note</C>: {_(
+          <li className="my-2"><C>space</C>: {_('Matches spaces only')}</li>
+          <li className="my-2"><C>line</C>: {_('Matches line breaks')}</li>
+          <li className="my-2"><C>note</C>: {_(
             'Matches block comments /* ... */'
           )}</li>
-          <li className='my-2'><C>comment</C>: {_(
+          <li className="my-2"><C>comment</C>: {_(
             'Matches line comments // ...'
           )}</li>
         </ul>
 
         <H2>{_('Data Groups')}</H2>
-        <ul className='my-2 list-disc pl-5'>
+        <ul className="list-disc my-2 pl-5">
           <li><C>scalar</C>: {_(
             'Array of scalar types [\'Null\', \'Boolean\', \'String\', ' +
             '\'Float\', \'Integer\', \'Environment\']'
@@ -1183,36 +1199,36 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Usage with AST Section Content */}
-      <section id='usage-with-ast'>
+      <section id="usage-with-ast">
         <H1>{_('6. Usage with AST')}</H1>
         <P>
           <Translate>
-            The Lexer is typically used by AST classes for parsing specific
-            language constructs:
+            The Lexer is typically used by AST classes for parsing 
+            specific language constructs:
           </Translate>
         </P>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[17]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Advanced Usage Patterns Section Content */}
-      <section id='advanced-usage-patterns'>
+      <section id="advanced-usage-patterns">
         <H1>{_('7. Advanced Usage Patterns')}</H1>
 
         <H2>{_('Backtracking with Clone')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[18]}
         </Code>
 
         <H2>{_('Conditional Parsing')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[19]}
         </Code>
 
@@ -1222,7 +1238,7 @@ export function Body() {
             Reader functions should follow this pattern:
           </Translate>
         </P>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {examples[20]}
         </Code>
       </section>
@@ -1231,11 +1247,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('API Reference'),
-          href: '/docs/parser/api-reference'
+          href: "/docs/parser/api-reference"
         }}
         next={{
           text: _('Compiler'),
-          href: '/docs/parser/api-references/compiler'
+          href: "/docs/parser/api-references/compiler"
         }}
       />
     </main>

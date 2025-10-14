@@ -11,14 +11,14 @@ import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const basicPluginExample =
   `import type { PluginWithCLIProps } from '@stackpress/idea';
 
-export default function generate(props: PluginWithCLIProps) {}`
+export default function generate(props: PluginWithCLIProps) {}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const basicPluginStructureExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -46,9 +46,9 @@ export default async function myPlugin(props: PluginProps<{}>) {
 function processSchema(schema: SchemaConfig): string {
   // Implementation for processing schema
   return '// Generated content';
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const cliPluginExample =
 `import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
@@ -78,9 +78,9 @@ export default async function cliPlugin(props: PluginWithCLIProps) {
   await fs.writeFile(outputPath, content, 'utf8');
   
   console.log(\`Generated: \${outputPath}\`);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customPluginPropsExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -109,9 +109,9 @@ await transformer.transform({
   timestamp: new Date().toISOString(),
   version: '1.0.0',
   debug: true
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -150,7 +150,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Idea Plugins Section Content */}
       <section>
         <H1>{_('Idea Plugins')}</H1>
@@ -166,7 +166,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Plugin Development Guide Section Content */}
       <section>
@@ -188,7 +188,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {basicPluginExample}
         </Code>
       </section>
@@ -206,7 +206,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {basicPluginStructureExample}
         </Code>
 
@@ -275,7 +275,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {cliPluginExample}
         </Code>
 
@@ -359,7 +359,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {customPluginPropsExample}
         </Code>
       </section>
@@ -368,11 +368,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Transformers'),
-          href: '/docs/transformers/introduction'
+          href: "/docs/transformers/introduction"
         }}
         next={{
           text: _('Plugin Examples'),
-          href: '/docs/plugin-development/plugin-examples'
+          href: "/docs/plugin-development/plugin-examples"
         }}
       />
     </main>

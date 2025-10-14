@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeSafetyExample = 
 `// Always use proper typing for plugin props
@@ -38,9 +38,9 @@ export default async function typedPlugin(
   // ✅ Type-safe
   const strict: boolean = config.strict ?? false; 
   // ✅ Type-safe with default
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const configurationValidationExample = 
 `function validateConfig(
@@ -70,9 +70,9 @@ export default async function validatedPlugin(
   
   // Now config is properly typed
   const { output, format } = props.config;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const fileOperationsExample = 
 `// Use transformer's file loader for consistent path resolution
@@ -95,9 +95,9 @@ export default async function filePlugin(props: PluginProps<{}>) {
       \`Failed to write output file: \${error.message}\`
     );
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const cliIntegrationExample = 
 `// Use CLI props when available
@@ -121,9 +121,9 @@ export default async function adaptivePlugin(
   const absoluteOutputDir = path.resolve(cli.cwd, outputDir);
   
   // Generate files...
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -163,7 +163,7 @@ export function Body() {
   const { _ } = useLanguage();
   
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Best Practices Section Content */}
       <section>
         <H1>{_('Best Practices')}</H1>
@@ -180,15 +180,15 @@ export function Body() {
         <H2>{_('5.1. Type Safety')}</H2>
         <P>
           <Translate>
-            Type safety is crucial for creating reliable plugins that catch 
-            errors at compile time rather than runtime. This section 
+            Type safety is crucial for creating reliable plugins that 
+            catch errors at compile time rather than runtime. This section 
             demonstrates how to use TypeScript effectively in plugin 
             development, including proper typing for configuration objects 
             and plugin properties.
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {typeSafetyExample}
         </Code>
       </section>
@@ -206,7 +206,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {configurationValidationExample}
         </Code>
       </section>
@@ -224,7 +224,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {fileOperationsExample}
         </Code>
       </section>
@@ -242,7 +242,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {cliIntegrationExample}
         </Code>
       </section>
@@ -251,11 +251,11 @@ export function Body() {
       <Nav
         prev={{ 
           text: _('Error Handling'), 
-          href: '/docs/plugin-development/error-handling' 
+          href: "/docs/plugin-development/error-handling" 
         }}
         next={{ 
           text: _('Available Tutorials'), 
-          href: '/docs/plugin-development/available-tutorials' 
+          href: "/docs/plugin-development/available-tutorials" 
         }}
       />
     </main>

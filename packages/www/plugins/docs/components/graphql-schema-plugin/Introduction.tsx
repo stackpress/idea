@@ -13,10 +13,10 @@ export default function Introduction() {
       <H1>{_('GraphQL Schema Generator Plugin Tutorial')}</H1>
       <P>
         <Translate>
-          This tutorial demonstrates how to create a plugin that generates 
-          GraphQL type definitions from <C>.idea</C> schema files. The plugin 
-          will transform your schema models, types, and enums into proper 
-          GraphQL schema definitions.
+          This tutorial demonstrates how to create a plugin that 
+          generates GraphQL type definitions from <C>.idea</C> schema 
+          files. The plugin will transform your schema models, types, 
+          and enums into proper GraphQL schema definitions.
         </Translate>
       </P>
     </>

@@ -5,10 +5,10 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const basicUsageExample = 
-`// schema.idea
+const basicUsageExample =
+  `// schema.idea
 enum UserRole {
   ADMIN "admin"
   USER "user"
@@ -38,9 +38,9 @@ plugin "./plugins/openapi-spec.js" {
   security {
     bearer true
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const advancedUsageExample = 
 `// schema.idea
@@ -175,9 +175,9 @@ plugin "./plugins/openapi-spec.js" {
     strict true
     examples true
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const cliIntegrationExample = 
 `# Generate OpenAPI specification
@@ -191,9 +191,9 @@ npx swagger-codegen validate -i docs/api-spec.json
 
 # Generate client SDKs
 npx swagger-codegen generate -i docs/api-spec.json -l typescript-fetch -o ./sdk/typescript
-npx swagger-codegen generate -i docs/api-spec.json -l python -o ./sdk/python`
+npx swagger-codegen generate -i docs/api-spec.json -l python -o ./sdk/python`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UsageExamples() {
   //hooks
@@ -224,7 +224,7 @@ export default function UsageExamples() {
           configuration, and the resulting API documentation structure.
         </Translate>
       </P>
-      <Code copy language='idea' className='bg-black text-white'>
+      <Code copy language="idea" className="bg-black text-white">
         {basicUsageExample}
       </Code>
 
@@ -238,7 +238,7 @@ export default function UsageExamples() {
           feature coverage.
         </Translate>
       </P>
-      <Code copy language='idea' className='bg-black text-white'>
+      <Code copy language="idea" className="bg-black text-white">
         {advancedUsageExample}
       </Code>
 
@@ -252,7 +252,7 @@ export default function UsageExamples() {
           tools.
         </Translate>
       </P>
-      <Code copy language='bash' className='bg-black text-white'>
+      <Code copy language="bash" className="bg-black text-white">
         {cliIntegrationExample}
       </Code>
       </section>

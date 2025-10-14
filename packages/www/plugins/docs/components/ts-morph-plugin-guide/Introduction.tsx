@@ -14,30 +14,32 @@ export default function Introduction() {
         <H1>{_('Creating Plugins with ts-morph: A Comprehensive Guide')}</H1>
         <P>
           <Translate>
-            This guide demonstrates how to create powerful code generation
-            plugins using ts-morph, a TypeScript library that provides an
-            easier way to programmatically navigate and manipulate TypeScript
-            and JavaScript code. We'll walk through creating a complete plugin
-            that generates TypeScript interfaces from schema definitions.
+            This guide demonstrates how to create powerful code 
+            generation plugins using ts-morph, a TypeScript library 
+            that provides an easier way to programmatically navigate 
+            and manipulate TypeScript and JavaScript code. We'll walk 
+            through creating a complete plugin that generates TypeScript 
+            interfaces from schema definitions.
           </Translate>
         </P>
 
         <H1>{_('1. Introduction')}</H1>
         <P>
           <Translate>
-            <C>ts-morph</C> is a powerful TypeScript library that wraps the
-            TypeScript Compiler API, making it much easier to work with
-            TypeScript Abstract Syntax Trees (AST). This introduction covers
-            the fundamental concepts and advantages of using <C>ts-morph</C>
-            for plugin development.
+            <C>ts-morph</C> is a powerful TypeScript library that 
+            wraps the TypeScript Compiler API, making it much easier 
+            to work with TypeScript Abstract Syntax Trees (AST). This 
+            introduction covers the fundamental concepts and advantages 
+            of using <C>ts-morph</C> for plugin development.
           </Translate>
         </P>
         <P>
           <Translate>
-            Unlike string-based code generation, <C>ts-morph</C> provides:
+            Unlike string-based code generation, <C>ts-morph</C> 
+            provides:
           </Translate>
         </P>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <SS>{_('Type-safe code manipulation:')}</SS>
             <Translate>
@@ -47,7 +49,8 @@ export default function Introduction() {
           <li className="my-2">
             <SS>{_('Automatic formatting:')}</SS>
             <Translate>
-              Generated code is properly formatted and follows TypeScript
+              Generated code is properly formatted and follows 
+              TypeScript
               conventions
             </Translate>
           </li>
@@ -74,10 +77,11 @@ export default function Introduction() {
         <H2>{_('Why Use ts-morph for Plugins?')}</H2>
         <P>
           <Translate>
-            Understanding the advantages of <C>ts-morph</C> over traditional
-            code generation approaches helps you make informed decisions about
-            plugin architecture. This comparison highlights the key benefits
-            that make <C>ts-morph</C> an excellent choice for TypeScript code
+            Understanding the advantages of <C>ts-morph</C> over 
+            traditional code generation approaches helps you make 
+            informed decisions about plugin architecture. This 
+            comparison highlights the key benefits that make <C>ts-
+            morph</C> an excellent choice for TypeScript code
             generation.
           </Translate>
         </P>
@@ -86,7 +90,7 @@ export default function Introduction() {
             Traditional code generation often involves:
           </Translate>
         </P>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Concatenating strings to build code
@@ -114,7 +118,7 @@ export default function Introduction() {
             With <C>ts-morph</C>, you can:
           </Translate>
         </P>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Create TypeScript constructs programmatically
@@ -127,7 +131,8 @@ export default function Introduction() {
           </li>
           <li className="my-2">
             <Translate>
-              Generate properly formatted, syntactically correct code
+              Generate properly formatted, syntactically correct 
+              code
             </Translate>
           </li>
           <li className="my-2">

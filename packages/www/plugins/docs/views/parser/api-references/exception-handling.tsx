@@ -4,18 +4,19 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
-import { H1, H2, H3, SS, Nav, P } from '../../../components/index.js';
+import { H1, H2, SS, Nav, P } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const examples = [
   `import { Exception } from '@stackpress/idea-parser';`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
   `import { parse, Exception } from '@stackpress/idea-parser';
 
 try {
@@ -28,7 +29,7 @@ try {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { EnumTree, Exception } from '@stackpress/idea-parser';
 
@@ -46,7 +47,7 @@ try {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `try {
   parse('enum Status { ACTIVE "Active"'); // Missing closing brace
@@ -54,7 +55,7 @@ try {
   console.log(error.message); // "Unexpected end of input expecting }"
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `try {
   parse('model user { id String }'); // Invalid - should be capitalized
@@ -62,7 +63,7 @@ try {
   console.log(error.message); // "Expected CapitalIdentifier but got something else"
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `try {
   parse('model User { name String @field.input(UnknownProp) }');
@@ -70,7 +71,7 @@ try {
   console.log(error.message); // "Unknown reference UnknownProp"
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `try {
   parse(\`
@@ -81,7 +82,7 @@ try {
   console.log(error.message); // "Duplicate Status"
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { SchemaTree, EnumTree, ModelTree, Exception } from '@stackpress/idea-parser';
 
@@ -100,7 +101,7 @@ try {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { parse, Exception } from '@stackpress/idea-parser';
 
@@ -116,7 +117,7 @@ function parseWithFallback(code: string, fallbackCode?: string) {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { parse, Exception } from '@stackpress/idea-parser';
 
@@ -142,7 +143,7 @@ function validateSchema(code: string) {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `try {
   parse(schemaCode);
@@ -156,7 +157,7 @@ function validateSchema(code: string) {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `function highlightError(code: string, error: Exception) {
   const lines = code.split('\\n');
@@ -178,7 +179,7 @@ function validateSchema(code: string) {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `function parseWithContext(code: string, filename?: string) {
   try {
@@ -196,7 +197,18 @@ function validateSchema(code: string) {
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500',
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -237,97 +249,101 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
+    <aside className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
       {/* API Reference Navigation */}
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+      <h6
+        className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase"
+      >
         {_('API Reference')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/lexer"
         >
           {_('Lexer API Reference')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler"
         >
           {_('Compiler API Reference')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast"
         >
           {_('AST Reference')}
         </a>
 
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/tokens"
         >
           {_('Token Reference')}
         </a>
-        <div className="text-blue-300 cursor-pointer">
+        <div className="cursor-pointer text-blue-300">
           {_('Exception Handling')}
         </div>
       </nav>
 
 
       {/* On This Page Navigation */}
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-50 px-pb-10 uppercase">
+      <h6
+        className="px-fs-14 px-mb-0 px-mt-50 px-pb-10 theme-muted uppercase"
+      >
         {_('On This Page')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling"
         >
           {_('A. Exception')}
         </a>
 
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling#overview"
         >
-          {_('B. Overview')}  
+          {_('B. Overview')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling#usage-examples"
         >
           {_('C. Usage Examples')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling#integration-with-ast"
         >
           {_('D. Integration with AST')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling#error-recovery"
         >
           {_('E. Error Recovery')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling#language-server-integration"
         >
           {_('F. Language Server Integration')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling#inherited-features"
         >
           {_('G. Inherited Features')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling#best-practices"
         >
           {_('H. Best Practices')}
-        </a>  
+        </a>
       </nav>
     </aside>
   );
@@ -338,9 +354,9 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Exception Section Content */}
-      <section id='exception'>
+      <section id="exception">
         <H1>{_('Exception')}</H1>
         <P>
           <Translate>
@@ -350,160 +366,160 @@ export function Body() {
             and better error reporting for parsing failures.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[0]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
-      
+      <hr className="mt-10" />
+
       {/* Overview Section Content */}
-      <section id='overview'>
+      <section id="overview">
         <H1>{_('Overview')}</H1>
         <Translate>
-          Exception is a specialized error class that extends the base
-          Exception class with additional functionality for parser-specific
-          error handling. It automatically includes position information
-          when parsing fails, making it easier to identify and fix syntax
-          errors in schema files.
+          Exception is a specialized error class that extends the 
+          base Exception class with additional functionality for 
+          parser-specific error handling. It automatically includes 
+          position information when parsing fails, making it easier 
+          to identify and fix syntax errors in schema files.
         </Translate>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
-      
+      <hr className="mt-10" />
+
       {/* Usage Examples Section Content */}
-      <section id='usage-examples'>
+      <section id="usage-examples">
         <H1>{_('Usage Examples')}</H1>
 
         <H2>{_('Basic Error Handling')}</H2>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[1]}
         </Code>
 
         <H2>{_('Position Information')}</H2>
         <Translate>
-          Exception includes position information to help locate errors in
-          the source code:
+          Exception includes position information to help locate 
+          errors in the source code:
         </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[2]}
         </Code>
 
         <H2>{_('Common Error Scenarios')}</H2>
 
         <SS>{_('Syntax Errors')}</SS>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[3]}
         </Code>
 
         <SS>{_('Invalid Token Types')}</SS>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[4]}
         </Code>
 
         <SS>{_('Unknown References')}</SS>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[5]}
         </Code>
 
         <SS>{_('Duplicate Declarations')}</SS>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[6]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
-      
+      <hr className="mt-10" />
+
       {/* Integration with AST Section Content */}
-      <section id='integration-with-ast'>
+      <section id="integration-with-ast">
         <H1>{_('Integration with AST')}</H1>
         <Translate>
           All AST classes throw Exception when parsing fails:
         </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[7]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Error Recovery Section Content */}
-      <section id='error-recovery'>
+      <section id="error-recovery">
         <H1>{_('Error Recovery')}</H1>
         <Translate>
-          While Exception indicates parsing failure, you can implement error
-          recovery strategies:
+          While Exception indicates parsing failure, you can 
+          implement error recovery strategies:
         </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[8]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Language Server Integration Section Content */}
-      <section id='language-server-integration'>
+      <section id="language-server-integration">
         <H1>{_('Language Server Integration')}</H1>
         <Translate>
           Exception's position information makes it ideal for language
           server implementations:
         </Translate>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[9]}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Inherited Features Section Content */}
-      <section id='inherited-features'>
+      <section id="inherited-features">
         <H1>{_('Inherited Features')}</H1>
         <Translate>
           Since Exception extends the base Exception class from
           @stackpress/lib, it inherits all the enhanced error handling
           features:
         </Translate>
-        <ul className='my-2 list-disc pl-5'>
-          <li className='my-2'>{_('Template-based error messages')}</li>
-          <li className='my-2'>{_('Enhanced stack trace parsing')}</li>
-          <li className='my-2'>{_('Position information support')}</li>
-          <li className='my-2'>{_('HTTP status code integration')}</li>
-          <li className='my-2'>{_('Validation error aggregation')}</li>
+        <ul className="list-disc my-2 pl-5">
+          <li className="my-2">{_('Template-based error messages')}</li>
+          <li className="my-2">{_('Enhanced stack trace parsing')}</li>
+          <li className="my-2">{_('Position information support')}</li>
+          <li className="my-2">{_('HTTP status code integration')}</li>
+          <li className="my-2">{_('Validation error aggregation')}</li>
         </ul>
         <Translate>
           For more details on the base Exception functionality, refer to the
           <a href="https://github.com/stackpress/lib#exception"
-            className="text-blue-400 hover:text-blue-300 underline">
+            className="hover:text-blue-300 text-blue-400 underline">
             {' '}@stackpress/lib Exception documentation
           </a>.
         </Translate>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Best Practices Section Content */}
-      <section id='best-practices'>
+      <section id="best-practices">
         <H1>{_('Best Practices')}</H1>
 
         <H2>{_('Always Check Error Type')}</H2>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[10]}
         </Code>
 
         <H2>{_('Use Position Information')}</H2>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[11]}
         </Code>
 
         <H2>{_('Provide Helpful Error Messages')}</H2>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {examples[12]}
         </Code>
       </section>
@@ -512,7 +528,7 @@ export function Body() {
       <Nav
         prev={{
           text: _('Tokens'),
-          href: '/docs/parser/pages/tokens'
+          href: "/docs/parser/pages/tokens"
         }}
       />
     </main>

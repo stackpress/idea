@@ -6,8 +6,8 @@ import Code from '../../../docs/components/Code.js';
 //code example
 //----------------------------------------------------------------------
 
-const exampleSchema = `
-// schema.idea
+const exampleSchema = 
+`// schema.idea
 enum UserRole {
   ADMIN     "Administrator"
   CUSTOMER  "Customer"

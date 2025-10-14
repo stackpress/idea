@@ -9,7 +9,7 @@ export default function References() {
 
   return (
     <>
-    {/* References Section Content */}
+      {/* References Section Content */}
       <section id="references">
         <H1>{_('10. References')}</H1>
         <P>
@@ -35,8 +35,8 @@ export default function References() {
         <P>
           <a
             href="https://ts-morph.com/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             ts-morph Documentation
           </a>:
@@ -45,8 +45,8 @@ export default function References() {
         <P>
           <a
             href="https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             TypeScript Compiler API
           </a>:
@@ -55,8 +55,8 @@ export default function References() {
         <P>
           <a
             href="https://ts-ast-viewer.com/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             TypeScript AST Viewer
           </a>:
@@ -77,8 +77,8 @@ export default function References() {
         <P>
           <a
             href="https://github.com/dsherret/ts-morph"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             ts-morph GitHub Repository
           </a>:
@@ -87,8 +87,8 @@ export default function References() {
         <P>
           <a
             href="https://www.typescriptlang.org/docs/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             TypeScript Handbook
           </a>:
@@ -97,8 +97,8 @@ export default function References() {
         <P>
           <a
             href="https://astexplorer.net/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >AST Explorer</a>:
           https://astexplorer.net/
         </P>
@@ -109,15 +109,16 @@ export default function References() {
         <H2>{_('10.3. Community Examples')}</H2>
         <P>
           <Translate>
-            Community examples showcase real-world usage patterns and
-            provide inspiration for advanced plugin development techniques.
+            Community examples showcase real-world usage patterns
+            and provide inspiration for advanced plugin development
+            techniques.
           </Translate>
         </P>
         <P>
           <a
             href="https://github.com/dsherret/ts-morph/tree/latest/packages/ts-morph/scripts"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             ts-morph Examples
           </a>:
@@ -126,8 +127,8 @@ export default function References() {
         <P>
           <a
             href="https://github.com/topics/code-generation"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             Code Generation Patterns
           </a>:
@@ -138,8 +139,8 @@ export default function References() {
         <P>
           <a
             href="https://typescript-eslint.io/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >
             TypeScript ESLint
           </a>:
@@ -150,8 +151,8 @@ export default function References() {
         <P>
           <a
             href="https://prettier.io/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >Prettier</a>:
           <Translate>
             For formatting generated code
@@ -160,8 +161,8 @@ export default function References() {
         <P>
           <a
             href="https://typestrong.org/ts-node/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >ts-node</a>:
           <Translate>
             For running TypeScript directly
@@ -170,8 +171,8 @@ export default function References() {
         <P>
           <a
             href="https://jestjs.io/"
-            target='_blank'
-            className='text-blue-500 hover:text-blue-700'
+            target="_blank"
+            className="hover:text-blue-700 text-blue-500"
           >Jest</a>:
           <Translate>
             For testing your plugins
@@ -180,11 +181,11 @@ export default function References() {
 
         <P>
           <Translate>
-            This comprehensive guide provides everything you need to create
-            powerful code generation plugins using ts-morph. The library's
-            type-safe approach to code manipulation makes it an excellent
-            choice for building robust, maintainable code generators that
-            produce high-quality TypeScript output.
+            This comprehensive guide provides everything you need
+            to create powerful code generation plugins using ts-morph.
+            The library's type-safe approach to code manipulation
+            makes it an excellent choice for building robust, maintainable
+            code generators that produce high-quality TypeScript output.
           </Translate>
         </P>
       </section>

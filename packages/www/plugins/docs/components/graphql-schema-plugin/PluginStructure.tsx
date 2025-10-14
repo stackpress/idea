@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, P, Code } from '../../../docs/components/index.js';
 
 //code examples
-//----------------------------------------------------------------------
+//----------------------------------------------------------------- 
 
 const pluginStructureExample = 
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -26,9 +26,9 @@ export default async function generateGraphQLSchema(
   const { config, schema, transformer } = props;
   
   // Implementation here...
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function PluginStructure() {
   //hooks
@@ -41,13 +41,14 @@ export default function PluginStructure() {
       <H1>{_('3. Plugin Structure')}</H1>
       <P>
         <Translate>
-          The plugin structure defines the core architecture and configuration 
-          interface for the GraphQL schema generator. This includes the main 
-          plugin function, configuration types, and the overall organization 
-          of the generated GraphQL schema definitions.
+          The plugin structure defines the core architecture and 
+          configuration interface for the GraphQL schema generator.
+          This includes the main plugin function, configuration types, 
+          and the overall organization of the generated GraphQL schema 
+          definitions.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {pluginStructureExample}
       </Code>
       </section>

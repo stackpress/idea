@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const formLayoutExample = 
-`function wrapFormGroup(element: string, label: string, name: string, required: boolean, validation: any, options: any): string {
+const formLayoutExample =
+  `function wrapFormGroup(element: string, label: string, name: string, required: boolean, validation: any, options: any): string {
   const requiredMark = required ? ' <span class="required">*</span>' : '';
   const helpText = generateHelpText(validation);
 
@@ -106,9 +106,9 @@ function getTextareaClasses(theme: string): string {
     default:
       return 'form-textarea';
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function ImplementFormLayoutAndStyling() {
   //hooks
@@ -118,25 +118,25 @@ export default function ImplementFormLayoutAndStyling() {
     <>
       {/* Implement Form Layout and Styling Section Content */}
       <section id="implement-form-layout-and-styling">
-      <H1>{_('6. Implement Form Layout and Styling')}</H1>
-      <P>
-        <Translate>
-          Form layout and styling ensure that generated forms are 
-          visually appealing and work well with different CSS 
-          frameworks. This section covers how to implement support 
-          for Bootstrap, Tailwind CSS, and custom styling, along with 
-          different layout options like vertical, horizontal, and 
-          inline forms.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Create functions for different themes and layouts:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {formLayoutExample}
-      </Code>
+        <H1>{_('6. Implement Form Layout and Styling')}</H1>
+        <P>
+          <Translate>
+            Form layout and styling ensure that generated forms are
+            visually appealing and work well with different CSS
+            frameworks. This section covers how to implement support
+            for Bootstrap, Tailwind CSS, and custom styling, along with
+            different layout options like vertical, horizontal, and
+            inline forms.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Create functions for different themes and layouts:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {formLayoutExample}
+        </Code>
       </section>
     </>
   );

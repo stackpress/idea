@@ -1,8 +1,8 @@
-//modules
-import { useLanguage, Translate } from 'r22n';
 //local
 import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
+//modules
+import { useLanguage, Translate } from 'r22n';
 
 //code examples
 //----------------------------------------------------------------------
@@ -121,7 +121,7 @@ export default function UsageExamples() {
           produces a functional REST API client.
         </Translate>
       </P>
-      <Code copy language='idea' className='bg-black text-white'>
+      <Code copy language="idea" className="bg-black text-white">
         {basicSchemaExample}
       </Code>
 
@@ -134,7 +134,7 @@ export default function UsageExamples() {
           with proper error handling and TypeScript support.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {generatedClientUsageExample}
       </Code>
       </section>

@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js'
 import Code from '../../../docs/components/Code.js'
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const examples = [
   `// tests/plugin.test.ts
@@ -128,12 +128,12 @@ describe("TypeScriptInterfaceGenerator", () => {
   });
 });`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `npm test`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function TestingYourPlugin() {
   //hooks
@@ -141,15 +141,15 @@ export default function TestingYourPlugin() {
 
   return (
     <>
-    {/* Testing Your Plugin Section Content */}
+      {/* Testing Your Plugin Section Content */}
       <section id="testing-your-plugin">
         <H1>{_('7. Testing Your Plugin')}</H1>
         <P>
           <Translate>
-            Comprehensive testing ensures your plugin works correctly 
-            across different scenarios and maintains reliability as it 
-            evolves. This section covers unit testing, integration testing, 
-            and validation strategies for ts-morph plugins.
+            Comprehensive testing ensures your plugin works correctly
+            across different scenarios and maintains reliability as
+            it evolves. This section covers unit testing, integration
+            testing, and validation strategies for ts-morph plugins.
           </Translate>
         </P>
 
@@ -160,7 +160,7 @@ export default function TestingYourPlugin() {
         </P>
         <Code
           copy
-          language='typescript'
+          language="typescript"
           className="bg-black text-white"
         >
           {examples[0]}
@@ -173,7 +173,7 @@ export default function TestingYourPlugin() {
         </P>
         <Code
           copy
-          language='bash'
+          language="bash"
           className="bg-black text-white"
         >
           {examples[1]}

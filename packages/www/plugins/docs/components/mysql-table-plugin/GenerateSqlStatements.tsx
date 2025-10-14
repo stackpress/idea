@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const mainSQLGeneration =
   `function generateSQL(schema: any, options: any): string {
@@ -31,9 +31,9 @@ const mainSQLGeneration =
   }
   
   return sql;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const tableSQLGeneration =
   `function generateTableSQL(tableName: string, model: any, options: any): string {
@@ -86,9 +86,9 @@ const tableSQLGeneration =
   sql += \`\\n) ENGINE=\${options.engine} DEFAULT CHARSET=\${options.charset} COLLATE=\${options.collation};\\n\`;
   
   return sql;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const columnDefinitionGeneration =
   `function generateColumnDefinition(column: any, options: any): any {
@@ -140,9 +140,9 @@ const columnDefinitionGeneration =
     isIndex: !!attributes.index || !!attributes.searchable || !!attributes.filterable,
     foreignKey: generateForeignKey(column, options)
   };
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const foreignKeyGeneration =
   `function generateForeignKey(column: any, options: any): string | null {
@@ -157,9 +157,9 @@ const foreignKeyGeneration =
   }
   
   return null;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function GenerateSqlStatements() {
   //hooks
@@ -191,7 +191,7 @@ export default function GenerateSqlStatements() {
         <Code
           copy
           language="typescript"
-          className='bg-black text-white'
+          className="bg-black text-white"
         >
           {tableSQLGeneration}
         </Code>
@@ -209,7 +209,7 @@ export default function GenerateSqlStatements() {
         <Code
           copy
           language="typescript"
-          className='bg-black text-white'
+          className="bg-black text-white"
         >
           {foreignKeyGeneration}
         </Code>

@@ -5,16 +5,16 @@ import { H1, H2, P, SS, C } from '../../../../docs/components/index.js';
 import Code from '../../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const useExamples = [
-`use "package/to/schema.idea"
+  `use "package/to/schema.idea"
 use "./relative/path/schema.idea"
 use "../parent/directory/schema.idea"`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`// Common types used across multiple schemas
+  `// Common types used across multiple schemas
 type Address {
   street String @required
   city String @required
@@ -34,9 +34,9 @@ prop Email {
   }
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`// Import common definitions
+  `// Import common definitions
 use "../shared/common.idea"
 
 // Extend the Status enum (will merge with imported one)
@@ -53,9 +53,9 @@ model User {
   status Status @default("PENDING")
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`// The Status enum now contains all values
+  `// The Status enum now contains all values
 enum Status {
   ACTIVE "Active"           // From common.idea
   INACTIVE "Inactive"       // From common.idea
@@ -63,16 +63,16 @@ enum Status {
   SUSPENDED "Temporarily Suspended" // From user-schema.idea
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`enum UserRole {
+  `enum UserRole {
   USER "Regular User"
   ADMIN "Administrator"
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`use "./base-schema.idea"
+  `use "./base-schema.idea"
 
 // This will NOT merge with the imported UserRole
 // Instead, it will override it completely
@@ -83,9 +83,9 @@ enum UserRole! {
   ADMIN "Administrator"
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`// ✅ Good - organize by domain
+  `// ✅ Good - organize by domain
 use "./shared/common-types.idea"
 use "./auth/user-types.idea"
 use "./commerce/product-types.idea"
@@ -100,7 +100,7 @@ use "./stuff.idea"
 use "./misc.idea"`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Use() {
   //hooks
@@ -127,7 +127,7 @@ export default function Use() {
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mx-10 px-mb-20"
+            className="bg-black px-mb-20 px-mx-10 text-white"
           >
             {useExamples[0]}
           </Code>
@@ -159,7 +159,7 @@ export default function Use() {
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mx-10 px-mb-20"
+            className="bg-black px-mb-20 px-mx-10 text-white"
           >
             {useExamples[1]}
           </Code>
@@ -168,7 +168,7 @@ export default function Use() {
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mx-10 px-mb-20"
+            className="bg-black px-mb-20 px-mx-10 text-white"
           >
             {useExamples[2]}
           </Code>
@@ -177,7 +177,7 @@ export default function Use() {
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mx-10 px-mb-20"
+            className="bg-black px-mb-20 px-mx-10 text-white"
           >
             {useExamples[3]}
           </Code>
@@ -197,7 +197,7 @@ export default function Use() {
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mx-10 px-mb-20"
+            className="bg-black px-mb-20 px-mx-10 text-white"
           >
             {useExamples[4]}
           </Code>
@@ -206,7 +206,7 @@ export default function Use() {
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mx-10 px-mb-20"
+            className="bg-black px-mb-20 px-mx-10 text-white"
           >
             {useExamples[5]}
           </Code>
@@ -241,7 +241,7 @@ export default function Use() {
           <Code
             copy
             language="javascript"
-            className="bg-black text-white px-mx-10 px-mb-20"
+            className="bg-black px-mb-20 px-mx-10 text-white"
           >
             {useExamples[6]}
           </Code>

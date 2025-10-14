@@ -4,6 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
 import { H1, P, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
@@ -12,6 +13,17 @@ import {
   Plugin,
   Use
 } from '../../components/specifications/schema-directives/index.js';
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -59,13 +71,13 @@ export function Right() {
       </h6>
       <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="#use"
         >
           {_('Use')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="#plugin"
         >
           {_('Plugin')}
@@ -86,8 +98,8 @@ export function Body() {
         <H1>{_('Schema Directives')}</H1>
         <P>
           <Translate>
-            Schema directives are special declarations that control how
-            the schema is processed and what outputs are generated.
+            Schema directives are special declarations that control 
+            how the schema is processed and what outputs are generated.
           </Translate>
         </P>
       </section>

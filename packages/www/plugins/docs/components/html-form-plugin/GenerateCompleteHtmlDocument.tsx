@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const htmlGenerationExample = 
-`function generateHTML(schema: any, options: any): string {
+const htmlGenerationExample =
+  `function generateHTML(schema: any, options: any): string {
   let html = generateHTMLHeader(options);
 
   // Generate forms for each model
@@ -142,36 +142,36 @@ function generateJavaScript(options: any): string {
   js += '  </script>\\n';
 
   return js;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function GenerateCompleteHtmlDocument() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <>
       {/* Generate Complete HTML Document Section Content */}
       <section id="generate-complete-html-document">
-      <H1>{_('7. Generate Complete HTML Document')}</H1>
-      <P>
-        <Translate>
-          Generating a complete HTML document involves combining all 
-          form elements into a properly structured HTML page. This 
-          section shows how to create the HTML structure, include 
-          necessary CSS and JavaScript files, and generate forms for 
-          multiple models within a single document.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Implement the main HTML generation function:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {htmlGenerationExample}
-      </Code>
+        <H1>{_('7. Generate Complete HTML Document')}</H1>
+        <P>
+          <Translate>
+            Generating a complete HTML document involves combining all
+            form elements into a properly structured HTML page. This
+            section shows how to create the HTML structure, include
+            necessary CSS and JavaScript files, and generate forms for
+            multiple models within a single document.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Implement the main HTML generation function:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {htmlGenerationExample}
+        </Code>
       </section>
     </>
   );

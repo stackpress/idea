@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const documentationGenerationExample = 
-`async function generateSingleFile(schema: any, options: any, transformer: any): Promise<void> {
+const documentationGenerationExample =
+  `async function generateSingleFile(schema: any, options: any, transformer: any): Promise<void> {
   let content = generateHeader(options);
   
   // Generate table of contents
@@ -49,9 +49,9 @@ const documentationGenerationExample =
   const outputPath = await transformer.loader.absolute(options.output);
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.writeFile(outputPath, content, 'utf8');
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function ImplementDocumentationGeneration() {
   //hooks
@@ -61,15 +61,15 @@ export default function ImplementDocumentationGeneration() {
     <>
       {/* Implement Documentation Generation Section Content */}
       <section id="implement-generation">
-      <H1>{_('5. Implement Documentation Generation')}</H1>
-      <P>
-        <Translate>
-          Create functions to generate different sections of documentation:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {documentationGenerationExample}
-      </Code>
+        <H1>{_('5. Implement Documentation Generation')}</H1>
+        <P>
+          <Translate>
+            Create functions to generate different sections of documentation:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {documentationGenerationExample}
+        </Code>
       </section>
     </>
   )

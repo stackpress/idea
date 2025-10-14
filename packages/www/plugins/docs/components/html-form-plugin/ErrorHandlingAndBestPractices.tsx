@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const errorHandlingExample = 
-`export default async function htmlFormPlugin(props: PluginProps<{}>) {
+const errorHandlingExample =
+  `export default async function htmlFormPlugin(props: PluginProps<{}>) {
   const { config, schema, transformer, cwd } = props;
 
   try {
@@ -56,35 +56,35 @@ function validateConfig(config: any): void {
   if (config.method && !['GET', 'POST'].includes(config.method)) {
     throw new Error(\`Unsupported HTTP method: \${config.method}\`);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function ErrorHandlingAndBestPractices() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <>
       {/* Error Handling and Best Practices Section Content */}
       <section id="error-handling-and-best-practices">
-      <H1>{_('10. Error Handling and Best Practices')}</H1>
-      <P>
-        <Translate>
-          Proper error handling and following best practices ensure 
-          that your plugin is robust and reliable. This section covers 
-          validation techniques, error reporting, and recommended 
-          patterns for plugin development.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Add proper error handling and validation:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {errorHandlingExample}
-      </Code>
+        <H1>{_('10. Error Handling and Best Practices')}</H1>
+        <P>
+          <Translate>
+            Proper error handling and following best practices ensure
+            that your plugin is robust and reliable. This section covers
+            validation techniques, error reporting, and recommended
+            patterns for plugin development.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Add proper error handling and validation:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {errorHandlingExample}
+        </Code>
       </section>
     </>
   );

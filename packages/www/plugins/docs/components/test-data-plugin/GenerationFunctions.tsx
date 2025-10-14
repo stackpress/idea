@@ -2,10 +2,10 @@
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const factoriesExample = 
-`function generateFactories(schema: any, config: TestDataConfig): string {
+const factoriesExample =
+  `function generateFactories(schema: any, config: TestDataConfig): string {
   let content = '// Data Factories\\n';
   
   // Generate enum factories
@@ -57,12 +57,12 @@ export function generate\${modelName}Array(count: number = \${config.count || 10
 \`;
   
   return content;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const fieldGeneratorExample = 
-`function generateFieldGenerator(column: any, config: TestDataConfig): string {
+const fieldGeneratorExample =
+  `function generateFieldGenerator(column: any, config: TestDataConfig): string {
   // Check for custom generators first
   if (config.customGenerators && config.customGenerators[column.type]) {
     return config.customGenerators[column.type];
@@ -195,12 +195,12 @@ function getBaseGenerator(column: any, config: TestDataConfig): string {
       }
       return 'faker.lorem.word()';
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const mockDataExample = 
-`function generateMockData(models: Record<string, any>, config: TestDataConfig): string {
+const mockDataExample =
+  `function generateMockData(models: Record<string, any>, config: TestDataConfig): string {
   if (config.format === 'json') {
     return generateJSONMockData(models, config);
   }
@@ -263,12 +263,12 @@ function generateMockValue(column: any, config: TestDataConfig): any {
     default:
       return 'mock_value';
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const fixturesExample = 
-`function generateFixtures(schema: any, config: TestDataConfig): string {
+const fixturesExample =
+  `function generateFixtures(schema: any, config: TestDataConfig): string {
   let content = '// Test Fixtures\\n';
   
   if (schema.model) {
@@ -305,12 +305,12 @@ function generateModelFixtures(modelName: string, model: any, config: TestDataCo
 };
 
 \`;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const fixtureUtilsExample = 
-`function generateMinimalFields(model: any): string {
+const fixtureUtilsExample =
+  `function generateMinimalFields(model: any): string {
   const requiredFields = model.columns?.filter((col: any) => 
     col.required && !col.attributes?.id && !col.attributes?.default
   ) || [];
@@ -337,12 +337,12 @@ function generateEdgeCaseFields(model: any): string {
     const edgeValue = getEdgeCaseValue(col);
     return \`\${col.name}: \${edgeValue}\`;
   }).join(',\\n    ');
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const valueGeneratorsExample = 
-`function getMinimalValue(column: any): string {
+const valueGeneratorsExample =
+  `function getMinimalValue(column: any): string {
   switch (column.type) {
     case 'String':
       return '"a"';
@@ -393,12 +393,12 @@ function getEdgeCaseValue(column: any): string {
     default:
       return '""';
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const mainExportExample = 
-`function generateMainExport(schema: any, config: TestDataConfig): string {
+const mainExportExample =
+  `function generateMainExport(schema: any, config: TestDataConfig): string {
   if (config.format === 'json') {
     return ''; // JSON format doesn't need exports
   }
@@ -450,36 +450,70 @@ function validateConfig(config: any): asserts config is TestDataConfig {
   if (config.count && (typeof config.count !== 'number' || config.count < 1)) {
     throw new Error('count must be a positive number');
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function GenerationFunctions() {
   return (
     <>
       {/* Generation Functions Section Content */}
       <section id="generation-functions">
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {factoriesExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
-        {fieldGeneratorExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5' >
-        {mockDataExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5' >
-        {fixturesExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5' >
-        {fixtureUtilsExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5' >
-        {valueGeneratorsExample}
-      </Code>
-      <Code copy language='typescript' className='bg-black text-white mb-5' >
-        {mainExportExample}
-      </Code>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black mb-5 text-white"
+        >
+          {factoriesExample}
+        </Code>
+
+        <Code
+          copy
+          language="typescript"
+          className="bg-black mb-5 text-white"
+        >
+          {fieldGeneratorExample}
+        </Code>
+
+        <Code
+          copy
+          language="typescript"
+          className="bg-black mb-5 text-white"
+        >
+          {mockDataExample}
+        </Code>
+
+        <Code
+          copy
+          language="typescript"
+          className="bg-black mb-5 text-white"
+        >
+          {fixturesExample}
+        </Code>
+
+        <Code
+          copy
+          language="typescript"
+          className="bg-black mb-5 text-white"
+        >
+          {fixtureUtilsExample}
+        </Code>
+
+        <Code
+          copy
+          language="typescript"
+          className="bg-black mb-5 text-white"
+        >
+          {valueGeneratorsExample}
+        </Code>
+        
+        <Code
+          copy
+          language="typescript"
+          className="bg-black mb-5 text-white"
+        >
+          {mainExportExample}
+        </Code>
       </section>
     </>
   );

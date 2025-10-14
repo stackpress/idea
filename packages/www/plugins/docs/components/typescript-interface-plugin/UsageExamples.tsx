@@ -5,10 +5,10 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const basicSchemaExample = 
-`enum UserRole {
+const basicSchemaExample =
+  `enum UserRole {
   ADMIN "admin"
   USER "user"
   GUEST "guest"
@@ -35,12 +35,12 @@ plugin "./plugins/typescript-interfaces.js" {
   output "./types.ts"
   generateUtilityTypes true
   includeComments true
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const generatedOutputExample = 
-`/**
+const generatedOutputExample =
+  `/**
  * Generated TypeScript interfaces
  * Generated at: 2024-01-15T10:30:00.000Z
  * 
@@ -93,9 +93,9 @@ export type UpdateUserInput = Partial<User>;
 
 export type AnyModel = User;
 
-export type UserKeys = keyof User;`
+export type UserKeys = keyof User;`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UsageExamples() {
   //hooks
@@ -105,47 +105,50 @@ export default function UsageExamples() {
     <>
       {/* Usage Examples Section Content */}
       <section id="usage-examples">
-      <H1>{_('6. Usage Examples')}</H1>
-      <P>
-        <Translate>
-          Usage examples demonstrate practical applications of the TypeScript
-          interface generator with real-world scenarios. These examples show
-          how to configure the plugin for different use cases and how the
-          generated TypeScript code integrates into development workflows.
-        </Translate>
-      </P>
+        <H1>{_('6. Usage Examples')}</H1>
+        <P>
+          <Translate>
+            Usage examples demonstrate practical applications of the
+            TypeScript interface generator with real-world scenarios.
+            These examples show how to configure the plugin for different
+            use cases and how the generated TypeScript code integrates
+            into development workflows.
+          </Translate>
+        </P>
 
-      <H2>{_('Basic Schema')}</H2>
-      <P>
-        <Translate>
-          A basic schema example shows the fundamental structure needed to
-          generate TypeScript interfaces. This includes model definitions with
-          proper attributes, enum declarations, and plugin configuration that
-          produces clean, type-safe TypeScript code.
-        </Translate>
-      </P>
-      <Code
-        language='typescript'
-        className='bg-black text-white'
-      >
-        {basicSchemaExample}
-      </Code>
+        <H2>{_('Basic Schema')}</H2>
+        <P>
+          <Translate>
+            A basic schema example shows the fundamental structure
+            needed to generate TypeScript interfaces. This includes
+            model definitions with proper attributes, enum declarations,
+            and plugin configuration that produces clean, type-safe
+            TypeScript code.
+          </Translate>
+        </P>
+        <Code
+          language="typescript"
+          className="bg-black text-white"
+        >
+          {basicSchemaExample}
+        </Code>
 
-      <H2>{_('Generated Output')}</H2>
-      <P>
-        <Translate>
-          The generated output demonstrates the TypeScript code produced by
-          the plugin from the basic schema example. This shows how schema
-          definitions are transformed into proper TypeScript interfaces with
-          full type safety and documentation.
-        </Translate>
-      </P>
-      <Code
-        language='typescript'
-        className='bg-black text-white'
-      >
-        {generatedOutputExample}
-      </Code>
+        <H2>{_('Generated Output')}</H2>
+        <P>
+          <Translate>
+            The generated output demonstrates the TypeScript code 
+            produced by the plugin from the basic schema example. 
+            This shows how schema definitions are transformed into 
+            proper TypeScript interfaces with full type safety and 
+            documentation.
+          </Translate>
+        </P>
+        <Code
+          language="typescript"
+          className="bg-black text-white"
+        >
+          {generatedOutputExample}
+        </Code>
       </section>
     </>
   );

@@ -11,16 +11,16 @@ export default function Introduction() {
     <>
       {/* Creating an HTML Form Plugin */}
       <section>
-      <H1>{_('Creating an HTML Form Plugin')}</H1>
-      <P>
-        <Translate>
-          This tutorial will guide you through creating a plugin that
-          generates HTML forms from a processed <C>.idea</C> schema.
-          You'll learn how to parse schema models, generate appropriate
-          form elements, handle validation, and create responsive forms
-          with multiple CSS framework support.
-        </Translate>
-      </P>
+        <H1>{_('Creating an HTML Form Plugin')}</H1>
+        <P>
+          <Translate>
+            This tutorial will guide you through creating a plugin that
+            generates HTML forms from a processed <C>.idea</C> schema.
+            You'll learn how to parse schema models, generate appropriate
+            form elements, handle validation, and create responsive forms
+            with multiple CSS framework support.
+          </Translate>
+        </P>
       </section>
     </>
   )

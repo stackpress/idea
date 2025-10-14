@@ -11,10 +11,10 @@ import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const examples = [`
-// Simple boolean attribute (sets value to true)
+const examples = [
+  `// Simple boolean attribute (sets value to true)
 @filterable
 
 // Function with single argument
@@ -31,7 +31,7 @@ const examples = [`
 @validation.required
 @ui.component("CustomInput")`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// Boolean (implicit true)
 @required
@@ -62,7 +62,7 @@ const examples = [`
 @between(1 100 "Value must be between 1 and 100")
 @pattern("^[a-zA-Z]+$" "Only letters allowed")`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// Model-level attributes
 model User @table("users") @index(["email" "created"]) {
@@ -77,7 +77,7 @@ type Address @serializable @cacheable(3600) {
   city String @required
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `model User {
   name String          // Required string
@@ -87,7 +87,7 @@ type Address @serializable @cacheable(3600) {
   metadata JSON?       // Optional JSON
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `model User {
   profile {
@@ -105,7 +105,7 @@ type Address @serializable @cacheable(3600) {
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -159,28 +159,28 @@ export function Body() {
         <P>
           <Translate>
             Attributes provide metadata and configuration for columns,
-            types, and models. They define validation rules, UI components,
-            relationships, and behavior. Attributes can be attached to any
-            schema element and are processed by plugins according to their
-            specific needs.
+            types, and models. They define validation rules, UI
+            components, relationships, and behavior. Attributes can
+            be attached to any schema element and are processed by
+            plugins according to their specific needs.
           </Translate>
         </P>
 
         <H>
           <SS>{_('Note:')}</SS>
           <Translate>
-            There are no reserved or pre-defined attributes in idea. You
-            can define any arbitrary attributes in your schema. It\'s up
-            to the plugins to recognize and process them.
+            There are no reserved or pre-defined attributes in idea.
+            You can define any arbitrary attributes in your schema.
+            It\'s up to the plugins to recognize and process them.
           </Translate>
         </H>
 
         <H2>{_('Attribute Syntax')}</H2>
         <P>
           <Translate>
-            Attributes always start with the at symbol (@) followed by
-            letters, numbers, and periods. They can be expressed in several
-            forms.
+            Attributes always start with the at symbol (@) followed
+            by letters, numbers, and periods. They can be expressed
+            in several forms.
           </Translate>
         </P>
         <Code
@@ -191,7 +191,11 @@ export function Body() {
         </Code>
 
         <H2>{_('Attribute Value Types')}</H2>
-        <P>{_('Attributes can hold different types of values:')}</P>
+        <P>
+          <Translate>
+            Attributes can hold different types of values:
+          </Translate>
+        </P>
         <Code
           copy
           language="javascript"
@@ -222,8 +226,8 @@ export function Body() {
         <H2>{_('Columns')}</H2>
         <P>
           <Translate>
-            Columns define the individual fields within models and types,
-            specifying their data type, constraints, and behavior.
+            Columns define the individual fields within models and 
+            types, specifying their data type, constraints, and behavior.
           </Translate>
         </P>
 

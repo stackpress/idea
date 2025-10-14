@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const commonPluginStructureExample = 
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -43,9 +43,9 @@ export default async function myPlugin(
   await fs.writeFile(outputPath, content, 'utf8');
   
   console.log(\`✅ Generated: \${outputPath}\`);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaStructureExample =
 `{
@@ -79,9 +79,9 @@ const schemaStructureExample =
       // Property configuration
     }
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeSafetyExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -95,9 +95,9 @@ export default async function myPlugin(
   props: PluginProps<{ config: MyPluginConfig }>
 ) {
   // TypeScript will enforce the config structure
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const configurationValidationExample =
   `function validateConfig(config: any): void {
@@ -110,9 +110,9 @@ const configurationValidationExample =
       \`Unsupported format: \${config.format}\`
     );
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const fileOperationsExample = 
 `// ✅ Good - uses transformer's file loader
@@ -130,9 +130,9 @@ try {
   throw new Error(
     \`Failed to write file: \${error.message}\`
   );
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const errorHandlingExample = 
 `export default async function myPlugin(props: PluginProps<{}>) {
@@ -160,9 +160,9 @@ const errorHandlingExample =
     console.error(\`❌ Plugin failed: \${error.message}\`);
     throw error;
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaProcessingExample = 
   `// ✅ Good - checks for existence before processing
@@ -177,9 +177,9 @@ if (schema.model) {
 // ✅ Good - provides defaults for optional attributes
 const attributes = column.attributes || {};
 const label = attributes.label || column.name;
-const description = attributes.description || '';`
+const description = attributes.description || '';`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const usageInSchemaFilesExample =
 `// schema.idea
@@ -214,9 +214,9 @@ model User {
 enum UserRole {
   ADMIN "Administrator"
   USER "Regular User"
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -256,7 +256,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Getting Started Section Content */}
       <section>
         <H1>{_('Getting Started')}</H1>
@@ -282,7 +282,7 @@ export function Body() {
           Before starting these tutorials, make sure you have:
         </Translate>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Basic understanding of TypeScript/JavaScript
@@ -317,7 +317,7 @@ export function Body() {
           similar pattern:
         </Translate>
 
-        <ol className="list-decimal pl-6 my-4">
+        <ol className="list-decimal my-4 pl-6">
           <li className="my-2">
             <Translate>
               <SS>Import Types:</SS> Use the provided TypeScript
@@ -367,7 +367,7 @@ export function Body() {
           components for robust plugin development.
         </Translate>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {commonPluginStructureExample}
         </Code>
       </section>
@@ -386,7 +386,7 @@ export function Body() {
           All plugins receive a processed schema with this structure:
         </Translate>
 
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {schemaStructureExample}
         </Code>
       </section>
@@ -413,7 +413,7 @@ export function Body() {
             Always use the provided TypeScript types:
           </Translate>
 
-          <Code copy language='typescript' className='bg-black text-white'>
+          <Code copy language="typescript" className="bg-black text-white">
             {typeSafetyExample}
           </Code>
         </section>
@@ -430,7 +430,7 @@ export function Body() {
             Validate all required configuration upfront:
           </Translate>
 
-          <Code copy language='typescript' className='bg-black text-white'>
+          <Code copy language="typescript" className="bg-black text-white">
             {configurationValidationExample}
           </Code>
         </section>
@@ -448,7 +448,7 @@ export function Body() {
             resolution:
           </Translate>
 
-          <Code copy language='typescript' className='bg-black text-white'>
+          <Code copy language="typescript" className="bg-black text-white">
             {fileOperationsExample}
           </Code>
         </section>
@@ -464,7 +464,7 @@ export function Body() {
             Provide meaningful error messages and handle edge cases:
           </Translate>
 
-          <Code copy language='typescript' className='bg-black text-white'>
+          <Code copy language="typescript" className="bg-black text-white">
             {errorHandlingExample}
           </Code>
         </section>
@@ -481,7 +481,7 @@ export function Body() {
             Handle optional schema elements gracefully:
           </Translate>
 
-          <Code copy language='typescript' className='bg-black text-white'>
+          <Code copy language="typescript" className="bg-black text-white">
             {schemaProcessingExample}
           </Code>
         </section>
@@ -501,7 +501,7 @@ export function Body() {
           To use any of these plugins in your schema file:
         </Translate>
 
-        <Code copy language='idea' className='bg-black text-white'>
+        <Code copy language="idea" className="bg-black text-white">
           {usageInSchemaFilesExample}
         </Code>
       </section>
@@ -516,7 +516,7 @@ export function Body() {
           proficient in plugin development.
         </Translate>
 
-        <ol className="list-decimal pl-6 my-4">
+        <ol className="list-decimal my-4 pl-6">
           <li className="my-2">
             <Translate>
               <SS>Choose a Tutorial:</SS> Start with the tutorial
@@ -553,7 +553,7 @@ export function Body() {
           covered in this documentation:
         </Translate>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               <SS>Database Migration Generator:</SS> Create
@@ -607,11 +607,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Advanced Tutorials'),
-          href: '/docs/plugin-development/advanced-tutorials'
+          href: "/docs/plugin-development/advanced-tutorials"
         }}
         next={{
           text: _('Tutorial'),
-          href: '/docs/tutorials/tsmorph-plugin-guide'
+          href: "/docs/tutorials/tsmorph-plugin-guide"
         }}
       />
     </main>

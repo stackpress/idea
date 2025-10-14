@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const documentationBestPracticesExample =
   `// Always include detailed descriptions
@@ -48,6 +48,8 @@ function generatePropertyDescription(column: any): string {
   
   return descriptions[column.name] || \`\${column.name} field\`;
 }`;
+
+//-----------------------------------------------------------------
 
 const errorResponsesExample = `function generateErrorResponses(): any {
   return {
@@ -126,6 +128,8 @@ const errorResponsesExample = `function generateErrorResponses(): any {
   };
 }`;
 
+//-----------------------------------------------------------------
+
 const securityBestPracticesExample = `function addSecurityToEndpoints(spec: any): void {
   // Add security requirements to all endpoints
   for (const [path, pathObj] of Object.entries(spec.paths)) {
@@ -154,6 +158,8 @@ function isPublicEndpoint(path: string, method: string): boolean {
     endpoint.path === path && endpoint.method === method.toLowerCase()
   );
 }`;
+
+//-----------------------------------------------------------------
 
 const validationExamplesExample = `function addValidationExamples(spec: any): void {
   // Add validation examples to request bodies
@@ -218,7 +224,7 @@ function generateInvalidExample(schema: any): any {
   return example;
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function BestPractices() {
   //hooks
@@ -249,7 +255,7 @@ export default function BestPractices() {
             the specification.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {documentationBestPracticesExample}
         </Code>
 
@@ -262,7 +268,7 @@ export default function BestPractices() {
             handle reliably, improving the overall developer experience.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {errorResponsesExample}
         </Code>
 
@@ -275,7 +281,7 @@ export default function BestPractices() {
             schemes to endpoints and documenting access control patterns.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {securityBestPracticesExample}
         </Code>
 
@@ -288,7 +294,7 @@ export default function BestPractices() {
             formats, and verifying specification compliance.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {validationExamplesExample}
         </Code>
       </section>

@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const utilityFunctionsExample = 
-`function formatType(type: string, multiple: boolean = false): string {
+const utilityFunctionsExample =
+  `function formatType(type: string, multiple: boolean = false): string {
   let formattedType = type;
   
   // Add array notation if multiple
@@ -26,9 +26,9 @@ const utilityFunctionsExample =
   }
   
   return formattedType;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UtilityFunctions() {
   //hooks
@@ -38,15 +38,15 @@ export default function UtilityFunctions() {
     <>
       {/* Utility Functions Section Content */}
       <section id="utility-functions">
-      <H1>{_('8. Utility Functions')}</H1>
-      <P>
-        <Translate>
-          Create helper functions for formatting and processing:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {utilityFunctionsExample}
-      </Code>
+        <H1>{_('8. Utility Functions')}</H1>
+        <P>
+          <Translate>
+            Create helper functions for formatting and processing:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {utilityFunctionsExample}
+        </Code>
       </section>
     </>
   )

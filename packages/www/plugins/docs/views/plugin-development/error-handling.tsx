@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const pluginErrorHandlingExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -53,9 +53,9 @@ export default async function safePlugin(props: PluginProps<{}>) {
     console.error(\`❌ Plugin failed:\`, error.message);
     throw error; // Re-throw to stop transformation
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const gracefulErrorRecoveryExample = 
 `export default async function resilientPlugin(
@@ -92,9 +92,9 @@ const gracefulErrorRecoveryExample =
       console.warn(\`  ⚠️  \${warning}\`)
     );
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -133,7 +133,7 @@ export function Body() {
   const { _ } = useLanguage();
   
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Error Handling Section Content */}
       <section>
         <H1>{_('Error Handling')}</H1>
@@ -160,7 +160,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {pluginErrorHandlingExample}
         </Code>
       </section>
@@ -178,7 +178,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {gracefulErrorRecoveryExample}
         </Code>
       </section>
@@ -187,11 +187,11 @@ export function Body() {
       <Nav
         prev={{ 
           text: _('Plugin Configuration'), 
-          href: '/docs/plugin-development/plugin-configuration' 
+          href: "/docs/plugin-development/plugin-configuration" 
         }}
         next={{ 
           text: _('Best Practices'), 
-          href: '/docs/plugin-development/best-practices' 
+          href: "/docs/plugin-development/best-practices" 
         }}
       />
     </main>

@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const errorHandlingExample = 
-`function validateConfig(config: any): void {
+const errorHandlingExample =
+  `function validateConfig(config: any): void {
   if (!config.output) {
     throw new Error('Markdown Documentation Plugin requires "output" configuration');
   }
@@ -20,9 +20,9 @@ const errorHandlingExample =
   if (config.template && !['default', 'api', 'guide'].includes(config.template)) {
     throw new Error(\`Unsupported template: \${config.template}\`);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function ErrorHandlingAndBestPractices() {
   //hooks
@@ -32,21 +32,21 @@ export default function ErrorHandlingAndBestPractices() {
     <>
       {/* Error Handling and Best Practices Section Content */}
       <section id="error-handling">
-      <H1>{_('11. Error Handling and Best Practices')}</H1>
-      <P>
-        <Translate>
-          Add proper error handling and validation:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {errorHandlingExample}
-      </Code>
-      <P>
-        <Translate>
-          Always validate configuration parameters and provide meaningful
-          error messages to help users troubleshoot issues.
-        </Translate>
-      </P>
+        <H1>{_('11. Error Handling and Best Practices')}</H1>
+        <P>
+          <Translate>
+            Add proper error handling and validation:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {errorHandlingExample}
+        </Code>
+        <P>
+          <Translate>
+            Always validate configuration parameters and provide meaningful
+            error messages to help users troubleshoot issues.
+          </Translate>
+        </P>
       </section>
     </>
   )

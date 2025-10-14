@@ -5,10 +5,10 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const examples = [
-`import { Project } from "ts-morph";
+  `import { Project } from "ts-morph";
 
 // Create a new project
 const project = new Project({
@@ -38,9 +38,9 @@ console.log(sourceFile.getFullText());
 //     name: string;
 // }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`// Add imports
+  `// Add imports
 sourceFile.addImportDeclaration({
   moduleSpecifier: "react",
   namedImports: ["useState", "useEffect"],
@@ -95,9 +95,9 @@ sourceFile.addEnum({
   ],
 });`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`import { Project } from "ts-morph";
+  `import { Project } from "ts-morph";
 
 const project = new Project();
 
@@ -117,17 +117,17 @@ myClass.addMethod({
 
 project.saveSync();`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`export default class MyClass {
+  `export default class MyClass {
   myMethod(param1: string): void {
     console.log(param1);
   }
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`import { Project } from "ts-morph";
+  `import { Project } from "ts-morph";
 
 const project = new Project();
 
@@ -150,16 +150,16 @@ source.addFunction({
 
 project.saveSync();`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`export async function myFunction(param1: string, param2: number): void {
+  `export async function myFunction(param1: string, param2: number): void {
   console.log(param1);
   console.log(param2);
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`import { VariableDeclarationKind } from 'ts-morph';
+  `import { VariableDeclarationKind } from 'ts-morph';
 
 source.addVariableStatement({
   isExported: true,
@@ -170,31 +170,31 @@ source.addVariableStatement({
   }]
 });`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`export const foo = 'bar';`,
+  `export const foo = 'bar';`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`source.addExportDeclaration({
+  `source.addExportDeclaration({
   namedExports: ['ComponentA', 'ComponentB', 'ComponentC']
 });`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`source.addTypeAlias({
+  `source.addTypeAlias({
   name: "ExampleType",
   isExported: true,
   type: "string | number"
 });`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`export type ExampleType = string | number;`,
+  `export type ExampleType = string | number;`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`source.addTypeAlias({
+  `source.addTypeAlias({
   name: "AnotherType",
   isExported: true,
   type: "boolean"
@@ -214,29 +214,29 @@ source.addExportDeclaration({
   namedExports: ["ExampleType", "AnotherType", "ExampleInterface"]
 });`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`export type ExampleType = string | number;
+  `export type ExampleType = string | number;
 export type AnotherType = boolean;
 export interface ExampleInterface {
   id: number;
   name: string;
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`source.addImportDeclaration({
+  `source.addImportDeclaration({
   moduleSpecifier: 'react',
   namedImports: [ 'useState', 'useEffect' ]
 });`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`import { useState, useEffect } from 'react';`,
+  `import { useState, useEffect } from 'react';`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`source.addImportDeclaration({
+  `source.addImportDeclaration({
   moduleSpecifier: 'next',
   namedImports: [ 
     'NextApiRequest as Request', 
@@ -244,27 +244,27 @@ export interface ExampleInterface {
   ]
 });`,
 
-//----------------------------------------------------------------------
+  //-----------------------------------------------------------------
 
-`import type { 
+  `import type { 
   NextApiRequest as Request, 
   NextApiResponse as Response
 } from 'next';`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`source.addImportDeclaration({
+  `source.addImportDeclaration({
   moduleSpecifier: 'react',
   defaultImport: 'React'
 });`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`import React from 'react';`,
+  `import React from 'react';`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`// Load existing files
+  `// Load existing files
 project.addSourceFilesAtPaths("src/**/*.ts");
 
 // Get a specific file
@@ -290,7 +290,7 @@ if (userInterface) {
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UnderstandingTsMorphBasics() {
   //hooks
@@ -298,7 +298,7 @@ export default function UnderstandingTsMorphBasics() {
 
   return (
     <>
-    {/* Understanding ts-morph Basics  Section Content*/}
+      {/* Understanding ts-morph Basics  Section Content*/}
       <section id="understanding-ts-morph-basics">
         <H1>{_('4. Understanding ts-morph Basics')}</H1>
         <P>
@@ -327,7 +327,7 @@ export default function UnderstandingTsMorphBasics() {
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20">
+          className="bg-black px-mb-20 px-mx-10 text-white">
           {examples[0]}
         </Code>
       </section>
@@ -338,15 +338,15 @@ export default function UnderstandingTsMorphBasics() {
         <P>
           <Translate>
             <C>ts-morph</C> provides comprehensive APIs for adding various
-            TypeScript constructs including imports, classes, functions, 
-            types, and enums. This section demonstrates the most commonly 
+            TypeScript constructs including imports, classes, functions,
+            types, and enums. This section demonstrates the most commonly
             used patterns for generating different types of TypeScript code.
           </Translate>
         </P>
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[1]}
         </Code>
@@ -357,37 +357,37 @@ export default function UnderstandingTsMorphBasics() {
         <H2>{_('4.3. Exporting a Class')}</H2>
         <P>
           <Translate>
-            Creating and exporting classes is a common requirement in 
-            TypeScript code generation. This example demonstrates the basic 
-            pattern for generating classes with methods, including proper 
+            Creating and exporting classes is a common requirement in
+            TypeScript code generation. This example demonstrates the basic
+            pattern for generating classes with methods, including proper
             export declarations and method implementations.
           </Translate>
         </P>
         <P>
           <Translate>
-            A simple example of how to create a new TypeScript file with a 
-            class and a method using <C>ts-morph</C> looks like the 
+            A simple example of how to create a new TypeScript file with a
+            class and a method using <C>ts-morph</C> looks like the
             following:
           </Translate>
         </P>
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[2]}
         </Code>
 
         <P>
           <Translate>
-            This code will create a new TypeScript file <C>newFile.ts</C> 
+            This code will create a new TypeScript file <C>newFile.ts</C>
             with the following content:
           </Translate>
         </P>
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[3]}
         </Code>
@@ -408,23 +408,23 @@ export default function UnderstandingTsMorphBasics() {
           <Translate>
             Function generation at the source file level provides flexibility
             for creating utility functions, API endpoints, and standalone
-            operations. This section shows how to create functions with 
-            various configurations including async operations, parameters, 
+            operations. This section shows how to create functions with
+            various configurations including async operations, parameters,
             and return types.
           </Translate>
         </P>
         <P>
           <Translate>
-            Similar to adding a method to a class, you can use 
-            <C>addFunction</C> to add a function at the source file level. 
-            An example of how to use <C>addFunction</C> to add a function 
+            Similar to adding a method to a class, you can use
+            <C>addFunction</C> to add a function at the source file level.
+            An example of how to use <C>addFunction</C> to add a function
             with arguments and a body looks like the following:
           </Translate>
         </P>
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[4]}
         </Code>
@@ -444,7 +444,7 @@ export default function UnderstandingTsMorphBasics() {
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[5]}
         </Code>
@@ -473,7 +473,7 @@ export default function UnderstandingTsMorphBasics() {
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[6]}
         </Code>
@@ -486,7 +486,7 @@ export default function UnderstandingTsMorphBasics() {
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[7]}
         </Code>
@@ -513,10 +513,10 @@ export default function UnderstandingTsMorphBasics() {
             typical TypeScript import-export patterns.
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[8]}
         </Code>
@@ -527,25 +527,25 @@ export default function UnderstandingTsMorphBasics() {
         <H2>{_('4.7. Exporting Types')}</H2>
         <P>
           <Translate>
-            Type exports are crucial for creating reusable type definitions 
-            that can be consumed by other modules. <C>ts-morph</C> provides 
-            dedicated methods for creating both type aliases and interfaces 
+            Type exports are crucial for creating reusable type definitions
+            that can be consumed by other modules. <C>ts-morph</C> provides
+            dedicated methods for creating both type aliases and interfaces
             with proper export configurations.
           </Translate>
         </P>
         <P>
           <Translate>
-            To export a single type, you can use the <C>addTypeAlias</C> or 
-            <C>addInterface</C> method (depending on whether you are defining 
-            an alias or an interface), and set the <C>isExported</C> property 
-            to true. An example of exporting a type alias looks like the 
+            To export a single type, you can use the <C>addTypeAlias</C> or
+            <C>addInterface</C> method (depending on whether you are defining
+            an alias or an interface), and set the <C>isExported</C> property
+            to true. An example of exporting a type alias looks like the
             following:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[9]}
         </Code>
@@ -554,27 +554,27 @@ export default function UnderstandingTsMorphBasics() {
             This will generate a file with the following content:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[10]}
         </Code>
         <P>
           <Translate>
-            To export multiple types at the same time, you can add multiple 
-            type declarations (either type aliases or interfaces) with the 
-            <C>isExported</C> property set to true for each. Alternatively, 
-            you can use the <C>addExportDeclaration</C> method to export 
-            previously declared types. An example of declaring and exporting 
+            To export multiple types at the same time, you can add multiple
+            type declarations (either type aliases or interfaces) with the
+            <C>isExported</C> property set to true for each. Alternatively,
+            you can use the <C>addExportDeclaration</C> method to export
+            previously declared types. An example of declaring and exporting
             multiple types looks like the following:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[11]}
         </Code>
@@ -583,10 +583,10 @@ export default function UnderstandingTsMorphBasics() {
             This will generate a file with the following content:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[12]}
         </Code>
@@ -597,40 +597,40 @@ export default function UnderstandingTsMorphBasics() {
         <H2>{_('4.8. Importing Values')}</H2>
         <P>
           <Translate>
-            Import declarations are essential for bringing external 
-            dependencies and modules into your generated code. The 
-            <C>addImportDeclaration</C> method provides comprehensive options 
-            for creating various types of import statements including named 
+            Import declarations are essential for bringing external
+            dependencies and modules into your generated code. The
+            <C>addImportDeclaration</C> method provides comprehensive options
+            for creating various types of import statements including named
             imports, default imports, and type imports.
           </Translate>
         </P>
         <P>
           <Translate>
-            To import a set of values from a module in <C>ts-morph</C>, you 
-            can use the <C>addImportDeclaration</C> method on a 
-            <C>SourceFile</C> object. This method allows you to add an import 
-            declaration to the code file you are working with. Here's how to 
-            use this method to import specific values from the <C>react</C> 
+            To import a set of values from a module in <C>ts-morph</C>, you
+            can use the <C>addImportDeclaration</C> method on a
+            <C>SourceFile</C> object. This method allows you to add an import
+            declaration to the code file you are working with. Here's how to
+            use this method to import specific values from the <C>react</C>
             module:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[13]}
         </Code>
         <P>
           <Translate>
-            The provided <C>ts-morph</C> script will generate the following 
+            The provided <C>ts-morph</C> script will generate the following
             code in the source file:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[14]}
         </Code>
@@ -639,10 +639,10 @@ export default function UnderstandingTsMorphBasics() {
             You can also import types like the following:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[15]}
         </Code>
@@ -651,10 +651,10 @@ export default function UnderstandingTsMorphBasics() {
             The above code renders the following:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[16]}
         </Code>
@@ -665,22 +665,22 @@ export default function UnderstandingTsMorphBasics() {
         <H2>{_('4.9. Importing Defaults')}</H2>
         <P>
           <Translate>
-            Default imports are commonly used for importing the main export 
-            from a module, such as React components or utility libraries. The 
-            same <C>addImportDeclaration</C> method handles default imports 
+            Default imports are commonly used for importing the main export
+            from a module, such as React components or utility libraries. The
+            same <C>addImportDeclaration</C> method handles default imports
             with a slightly different configuration.
           </Translate>
         </P>
         <P>
           <Translate>
-            To import a default from a module in <C>ts-morph</C>, you can 
+            To import a default from a module in <C>ts-morph</C>, you can
             also use the <C>addImportDeclaration</C> method:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[17]}
         </Code>
@@ -689,10 +689,10 @@ export default function UnderstandingTsMorphBasics() {
             This would create the following code:
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[18]}
         </Code>
@@ -703,17 +703,17 @@ export default function UnderstandingTsMorphBasics() {
         <H2>{_('4.10. Working with Existing Code')}</H2>
         <P>
           <Translate>
-            Working with existing code is a powerful feature of 
-            <C>ts-morph</C> that allows you to modify, extend, and refactor 
-            existing TypeScript files. This capability is essential for 
-            plugins that need to augment or update existing codebases rather 
+            Working with existing code is a powerful feature of
+            <C>ts-morph</C> that allows you to modify, extend, and refactor
+            existing TypeScript files. This capability is essential for
+            plugins that need to augment or update existing codebases rather
             than generating new files from scratch.
           </Translate>
         </P>
-        <Code 
-          copy 
-          language="typescript" 
-          className="bg-black text-white px-mx-10 px-mb-20"
+        <Code
+          copy
+          language="typescript"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples[19]}
         </Code>

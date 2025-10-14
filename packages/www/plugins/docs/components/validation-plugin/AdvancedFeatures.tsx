@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customValidatorsExample = 
 `// In plugin configuration
@@ -17,7 +17,7 @@ customValidators: {
   JSON: "z.string().transform(val => JSON.parse(val))"
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const conditionalValidationExample = 
 `// Generated schema with conditional validation
@@ -37,7 +37,7 @@ export const UserSchema = z.object({
   path: ["adminCode"],
 });`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const transformPreprocessExample = 
 `// Add transforms to generated schemas
@@ -58,7 +58,7 @@ function addTransforms(schema: string, column: any): string {
   return schema;
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const asyncValidationExample = 
 `// Generate async validation schemas
@@ -82,7 +82,7 @@ const validateUserAsync = async (data: unknown) => {
   }
 };`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function AdvancedFeatures() {
   //hooks
@@ -95,19 +95,19 @@ export default function AdvancedFeatures() {
       <H1>{_('7. Advanced Features')}</H1>
       <P>
         <Translate>
-          Advanced features extend the basic Zod schema generation with sophisticated 
-          validation patterns, conditional logic, data transformation, and asynchronous 
-          validation. These features enable production-ready validation that handles 
-          complex business requirements.
+          Advanced features extend basic Zod schema generation, adding
+          validation patterns, conditional logic, data transformation,
+          and async validation. These features enable production-ready
+          validation for complex business requirements.
         </Translate>
       </P>
 
       <H2>{_('7.1. Custom Validators')}</H2>
       <P>
         <Translate>
-          Custom validators allow you to define specialized validation logic for 
-          specific data types or business rules. This feature enables the creation 
-          of reusable validation patterns that can be applied across multiple 
+          Custom validators let you define specialized validation logic for 
+          certain data types or business rules. This feature lets you create 
+          reusable validation patterns that can be used across many 
           schema definitions.
         </Translate>
       </P>
@@ -118,10 +118,10 @@ export default function AdvancedFeatures() {
       <H2>{_('7.2. Conditional Validation')}</H2>
       <P>
         <Translate>
-          Conditional validation enables complex validation logic that depends on 
-          the values of other fields. This feature is essential for implementing 
-          business rules that require cross-field validation and context-dependent 
-          constraints.
+          Conditional validation enables complex validation logic that 
+          depends on the values of other fields. This feature is 
+          essential for implementing business rules that require 
+          cross-field validation and context-dependent constraints.
         </Translate>
       </P>
       <Code copy language='typescript' className='bg-black text-white'>
@@ -131,9 +131,10 @@ export default function AdvancedFeatures() {
       <H2>{_('7.3. Transform and Preprocess')}</H2>
       <P>
         <Translate>
-          Transform and preprocess capabilities allow you to modify data during 
-          validation, enabling data normalization, formatting, and cleanup. This 
-          feature ensures data consistency and proper formatting before validation.
+          Transform and preprocess capabilities allow you to modify data 
+          during validation. This enables data normalization, formatting, 
+          and cleanup. Using this feature ensures data consistency and 
+          proper formatting before validation occurs.
         </Translate>
       </P>
       <Code copy language='typescript' className='bg-black text-white'>
@@ -143,10 +144,11 @@ export default function AdvancedFeatures() {
       <H2>{_('7.4. Async Validation')}</H2>
       <P>
         <Translate>
-          Async validation enables validation rules that require external data 
-          sources or API calls, such as checking for unique values or validating 
-          against external services. This feature is crucial for comprehensive 
-          data validation in real applications.
+          Async validation enables validation rules that require 
+          external data sources or API calls, such as checking for 
+          unique values or validating against external services. 
+          This feature is crucial for comprehensive data validation 
+          in real applications.
         </Translate>
       </P>
       <Code copy language='typescript' className='bg-black text-white'>

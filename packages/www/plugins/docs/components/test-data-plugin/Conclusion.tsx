@@ -14,10 +14,10 @@ export default function Conclusion() {
       <H1>{_('Conclusion')}</H1>
       <P>
         <Translate>
-          This tutorial provides a comprehensive foundation for creating 
-          test data generation plugins that can handle complex schemas and 
-          generate realistic, useful test data for development and testing 
-          workflows.
+          This tutorial provides a comprehensive foundation for 
+          creating test data generation plugins that can handle 
+          complex schemas and generate realistic, useful test data 
+          for development and testing workflows.
         </Translate>
       </P>
       </section>

@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const advancedConfigExample =
   `interface AdvancedOpenAPIConfig extends OpenAPIConfig {
@@ -44,9 +44,9 @@ export default async function generateAdvancedOpenAPISpec(
   for (const format of formats) {
     await generateFormat(spec, format, outputBase, transformer);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const formatGenerationExample =
   `async function generateFormat(
@@ -79,9 +79,9 @@ const formatGenerationExample =
   const outputPath = await transformer.loader.absolute(\`\${outputBase}\${extension}\`);
   await fs.writeFile(outputPath, content, 'utf8');
   console.log(\`✅ Generated \${format.toUpperCase()} specification: \${outputPath}\`);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const exampleGenerationExample =
   `function addExamples(spec: any, schema: any): void {
@@ -154,9 +154,9 @@ function generatePropertyExample(propSchema: any): any {
     default:
       return null;
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const validationExample =
   `function validateSpecification(spec: any): void {
@@ -187,12 +187,12 @@ const validationExample =
   }
   
   console.log('✅ OpenAPI specification validation passed');
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const htmlGenerationExample =
-`function generateHTMLDocumentation(spec: any): string {
+  `function generateHTMLDocumentation(spec: any): string {
   return \`
 <!DOCTYPE html>
 <html lang="en">
@@ -240,9 +240,9 @@ const htmlGenerationExample =
     </script>
 </body>
 </html>\`;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function AdvancedFeatures() {
   //hooks
@@ -259,24 +259,44 @@ export default function AdvancedFeatures() {
           <Translate>
             Multiple output formats allow you to generate OpenAPI
             specifications in JSON, YAML, and HTML formats. This
-            flexibility ensures compatibility with different tools and
-            enables both machine-readable specifications and human-friendly
-            documentation.
+            flexibility ensures compatibility with different tools
+            and enables both machine-readable specifications and
+            human-friendly documentation.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white mb-5'>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white mb-5'
+        >
           {advancedConfigExample}
         </Code>
-        <Code copy language='typescript' className='bg-black text-white mb-5'>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white mb-5'
+        >
           {formatGenerationExample}
         </Code>
-        <Code copy language='typescript' className='bg-black text-white mb-5'>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white mb-5'
+        >
           {exampleGenerationExample}
         </Code>
-        <Code copy language='typescript' className='bg-black text-white mb-5'>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white mb-5'
+        >
           {validationExample}
         </Code>
-        <Code copy language='typescript' className='bg-black text-white mb-5'>
+        <Code
+          copy
+          language='typescript'
+          className='bg-black text-white mb-5'
+        >
           {htmlGenerationExample}
         </Code>
       </section>

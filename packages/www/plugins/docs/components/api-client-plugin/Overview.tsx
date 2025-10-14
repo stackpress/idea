@@ -19,7 +19,7 @@ export default function Overview() {
           from your schema, including:
         </Translate>
       </P>
-      <ul className="list-disc pl-6 my-4">
+      <ul className="list-disc my-4 pl-6">
         <li>
           <Translate>Type-safe REST and GraphQL client generation</Translate>
         </li>

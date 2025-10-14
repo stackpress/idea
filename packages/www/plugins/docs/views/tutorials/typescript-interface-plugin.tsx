@@ -4,22 +4,33 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage } from 'r22n';
+import clsx from 'clsx';
 //local
 import { Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 //components
 import {
-  Introduction,
-  Overview,
-  Prerequisites,
-  PluginStructure,
-  Implementation,
-  SchemaConfiguration,
-  UsageExamples,
   AdvancedFeatures,
   BestPractices,
+  Implementation,
+  Introduction,
+  Overview,
+  PluginStructure,
+  Prerequisites,
+  SchemaConfiguration,
   Troubleshooting,
+  UsageExamples,
 } from '../../components/typescript-interface-plugin/index.js';
+
+//styles
+//-----------------------------------------------------------------
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -29,7 +40,8 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   //variables
   const title = _('TypeScript Interface Generator Plugin Tutorial');
   const description = _(
-    'A comprehensive guide to creating a plugin that generates TypeScript interfaces from .idea schema files'
+    'A comprehensive guide to creating a plugin that generates'
+    + ' TypeScript interfaces from .idea schema files'
   );
   return (
     <>
@@ -56,62 +68,62 @@ export function Right() {
   //hooks
   const { _ } = useLanguage();
   return (
-    <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+    <menu className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-m-0 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-lh-28 px-m-0">
         <a
           href="#overview"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('1. Overview')}
         </a>
         <a
           href="#prerequisites"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('2. Prerequisites')}
         </a>
         <a
           href="#plugin-structure"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('3. Plugin Structure')}
         </a>
         <a
           href="#implementation"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('4. Implementation')}
         </a>
         <a
           href="#schema-configuration"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('5. Schema Configuration')}
         </a>
         <a
           href="#usage-examples"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('6. Usage Examples')}
         </a>
         <a
           href="#advanced-features"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('7. Advanced Features')}
         </a>
         <a
           href="#best-practices"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('8. Best Practices')}
         </a>
         <a
           href="#troubleshooting"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('9. Troubleshooting')}
         </a>
@@ -125,52 +137,52 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Page Section */}
       <Introduction />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <Overview />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <Prerequisites />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <PluginStructure />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <Implementation />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <SchemaConfiguration />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <UsageExamples />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <AdvancedFeatures />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <BestPractices />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <Troubleshooting />
 
@@ -178,11 +190,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('GraphQL Schema Plugin'),
-          href: '/docs/tutorials/graphql-schema-plugin'
+          href: "/docs/tutorials/graphql-schema-plugin"
         }}
         next={{
           text: _('API Client Plugin'),
-          href: '/docs/tutorials/api-client-plugin'
+          href: "/docs/tutorials/api-client-plugin"
         }}
       />
     </main>

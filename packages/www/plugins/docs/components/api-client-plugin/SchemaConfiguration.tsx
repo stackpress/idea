@@ -1,12 +1,12 @@
 //modules
 import { useLanguage, Translate } from 'r22n';
+import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 //local
 import { H1, H2, P, C, SS } from '../../../docs/components/index.js';
-import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaConfigExample = 
 `plugin "./plugins/api-client.js" {
@@ -23,7 +23,7 @@ const schemaConfigExample =
   errorHandling "return"
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function SchemaConfiguration() {
   //hooks
@@ -39,7 +39,7 @@ export default function SchemaConfiguration() {
           Add the API Client plugin to your <C>.idea</C> schema file:
         </Translate>
       </P>
-      <Code copy language='idea' className='bg-black text-white'>
+      <Code copy language="idea" className="bg-black text-white">
         {schemaConfigExample}
       </Code>
 

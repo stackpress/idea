@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const enhancedErrorHandling =
   `export default async function mysqlTablesPlugin(props: PluginProps<{}>) {
@@ -38,9 +38,9 @@ const enhancedErrorHandling =
     console.error(\`❌ MySQL Tables Plugin failed: \${error.message}\`);
     throw error;
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const configValidation =
   `function validateConfig(config: any): void {
@@ -51,9 +51,9 @@ const configValidation =
   if (config.engine && !['InnoDB', 'MyISAM', 'Memory'].includes(config.engine)) {
     throw new Error(\`Unsupported MySQL engine: \${config.engine}\`);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function BestPractices() {
   //hooks
@@ -66,8 +66,8 @@ export default function BestPractices() {
         <H1>{_('9. Error Handling and Best Practices')}</H1>
         <P>
           <Translate>
-            Add proper error handling and validation to make your plugin
-            robust and user-friendly.
+            Add proper error handling and validation to make your 
+            plugin robust and user-friendly.
           </Translate>
         </P>
 
@@ -75,7 +75,7 @@ export default function BestPractices() {
         <Code
           copy
           language="typescript"
-          className='bg-black text-white'
+          className="bg-black text-white"
         >{enhancedErrorHandling}
         </Code>
 
@@ -83,7 +83,7 @@ export default function BestPractices() {
         <Code
           copy
           language="typescript"
-          className='bg-black text-white'
+          className="bg-black text-white"
         >
           {configValidation}
         </Code>

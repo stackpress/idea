@@ -4,10 +4,20 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+import clsx from 'clsx';
 //local
 import { H1, H2, P, C, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
-import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -46,19 +56,19 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+    <menu className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('API Reference')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/transformers/api-references/transformer"
         >
           {_('Transformer')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/transformers/api-references/terminal"
         >
           {_('Terminal')}
@@ -73,7 +83,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* API Refernce Section Content */}
       <section>
         <H1>{_('API Reference')}</H1>
@@ -81,8 +91,8 @@ export function Body() {
           <Translate>
             The API reference provides detailed documentation for all
             components and interfaces available in the idea-transformer
-            library. This section covers the main classes and their methods
-            for schema processing and plugin execution.
+            library. This section covers the main classes and their 
+            methods for schema processing and plugin execution.
           </Translate>
         </P>
       </section>
@@ -96,8 +106,8 @@ export function Body() {
         <P>
           <Translate>
             The core components form the foundation of the transformation
-            system, providing the main classes and interfaces you'll use to
-            process schemas and execute plugins.
+            system, providing the main classes and interfaces you'll 
+            use to process schemas and execute plugins.
           </Translate>
         </P>
 
@@ -146,10 +156,10 @@ export function Body() {
         <H2>{_('Key Features')}</H2>
         <P>
           <Translate>
-            The idea-transformer library offers several key features that make
-            schema processing and code generation efficient and reliable. These
-            features work together to provide a comprehensive transformation
-            solution.
+            The idea-transformer library offers several key features 
+            that make schema processing and code generation efficient 
+            and reliable. These features work together to provide a 
+            comprehensive transformation solution.
           </Translate>
         </P>
       </section>
@@ -162,16 +172,18 @@ export function Body() {
         <H1>{_('Schema Loading and Processing')}</H1>
         <P>
           <Translate>
-            The transformer provides robust schema loading capabilities that
-            handle complex schema structures and dependencies. This includes
-            support for modular schemas and intelligent merging strategies.
+            The transformer provides robust schema loading capabilities 
+            that handle complex schema structures and dependencies. 
+            This includes support for modular schemas and intelligent 
+            merging strategies.
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
-              Support for both <C>.idea</C> and <C>.json</C> schema files
+              Support for both <C>.idea</C> and <C>.json</C> schema 
+              files
             </Translate>
           </li>
           <li className="my-2">
@@ -200,13 +212,14 @@ export function Body() {
         <H1>{_('Plugin System')}</H1>
         <P>
           <Translate>
-            The plugin system enables extensible code generation through a
-            type-safe and flexible architecture. Plugins can access the
-            complete schema context and generate any type of output.
+            The plugin system enables extensible code generation 
+            through a type-safe and flexible architecture. Plugins 
+            can access the complete schema context and generate any 
+            type of output.
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Type-safe plugin development with <C>PluginProps</C> and
@@ -240,14 +253,14 @@ export function Body() {
         <H1>{_('Command-Line Interface')}</H1>
         <P>
           <Translate>
-            The CLI provides convenient command-line access for integrating
-            schema processing into build pipelines and development workflows.
-            It supports various configuration options and batch processing
-            capabilities.
+            The CLI provides convenient command-line access for 
+            integrating schema processing into build pipelines and 
+            development workflows. It supports various configuration 
+            options and batch processing capabilities.
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Simple CLI for processing schemas in build pipelines
@@ -275,11 +288,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Introduction'),
-          href: '/docs/transformers/introduction'
+          href: "/docs/transformers/introduction"
         }}
         next={{
           text: _('Architecture'),
-          href: '/docs/transformers/architecture'
+          href: "/docs/transformers/architecture"
         }}
       />
     </main>

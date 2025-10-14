@@ -5,7 +5,7 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, P, Nav } from '../../components/index.js';
+import { H1, P, Nav } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
@@ -34,7 +34,7 @@ type Profile {
 
 plugin "./generate-types.js" {
   output "./generated/types.ts"
-}`
+}`;
 
 //----------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ export default async function generateTypes({ schema, config, transformer }) {
   
   const outputPath = await transformer.loader.absolute(config.output);
   await writeFile(outputPath, content);
-}`
+}`;
 
 //----------------------------------------------------------------------
 
@@ -79,10 +79,9 @@ const cliExample =
     "build": "npm run generate && tsc",
     "dev": "npm run generate && npm run build -- --watch"
   }
-}`
+}`;
 
 //----------------------------------------------------------------------
-
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -120,7 +119,7 @@ export function Body() {
   //hooks
   const { _ } = useLanguage();
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Examples Section Content */}
       <section>
         <H1>{_('Examples')}</H1>
@@ -135,7 +134,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* TypeScript Interface Generation Section Content */}
       <section>
@@ -143,42 +142,42 @@ export function Body() {
         <P>
           <Translate>
             This example shows how to create a plugin that generates
-            TypeScript interfaces from schema models. The example
-            includes both the schema definition and the plugin implementation.
+            TypeScript interfaces from schema models. The example includes 
+            both the schema definition and the plugin implementation.
           </Translate>
         </P>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Schema Definition Section Content */}
       <section>
         <H1>{_('Schema Definition')}</H1>
-        <Code copy language='idea' className='bg-black text-white'>
+        <Code copy language="idea" className="bg-black text-white">
           {schemaExample}
         </Code>
 
         <H1>{_('Plugin Implementation')}</H1>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {pluginExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* CLI Integration Section Content */}
       <section>
         <H1>{_('CLI Integration')}</H1>
         <P>
           <Translate>
-            This example demonstrates how to integrate the idea-transformer CLI
-            into your npm scripts for automated code generation during the
-            build process.
+            This example demonstrates how to integrate the idea-transformer 
+            CLI into your npm scripts for automated code generation during 
+            the build process.
           </Translate>
         </P>
-        <Code copy language='json' className='bg-black text-white'>
+        <Code copy language="json" className="bg-black text-white">
           {cliExample}
         </Code>
       </section>
@@ -187,11 +186,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Common Use Cases'),
-          href: '/docs/transformers/common-use-cases'
+          href: "/docs/transformers/common-use-cases"
         }}
         next={{
           text: _('Error Handling'),
-          href: '/docs/transformers/error-handling'
+          href: "/docs/transformers/error-handling"
         }}
       />
     </main>

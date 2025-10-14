@@ -5,13 +5,14 @@ import type {
 } from 'stackpress/view/client';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
 import { H1, H2, C, SS, Nav, P } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const examples = [
   `import { 
@@ -24,7 +25,7 @@ const examples = [
   UseTree 
 } from '@stackpress/idea-parser';`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { SchemaTree, Lexer } from '@stackpress/idea-parser';
 
@@ -34,7 +35,7 @@ SchemaTree.definitions(lexer);
 // Lexer now has definitions for all schema constructs:
 // enum, prop, type, model, plugin, use keywords and structures`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { SchemaTree } from '@stackpress/idea-parser';
 
@@ -62,7 +63,7 @@ console.log(ast.type); // 'Program'
 console.log(ast.kind); // 'schema'
 console.log(ast.body.length); // 4 (plugin, enum, prop, model)`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { SchemaTree } from '@stackpress/idea-parser';
 
@@ -72,7 +73,7 @@ const schemaCode = 'enum Status { ACTIVE "Active" }';
 const result = tree.parse(schemaCode, 0);
 console.log(result.body[0].kind); // 'enum'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { EnumTree, Lexer } from '@stackpress/idea-parser';
 
@@ -81,7 +82,7 @@ EnumTree.definitions(lexer);
 
 // Adds 'EnumWord' token definition for 'enum' keyword`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { EnumTree } from '@stackpress/idea-parser';
 
@@ -98,7 +99,7 @@ console.log(ast.declarations[0].init.properties.length); // 3
 console.log(ast.declarations[0].init.properties[0].key.name); // 'ADMIN'
 console.log(ast.declarations[0].init.properties[0].value.value); // 'Admin'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const tree = new EnumTree();
 tree._lexer.load('enum Status { ACTIVE "Active" INACTIVE "Inactive" }');
@@ -108,13 +109,13 @@ console.log(enumToken.declarations[0].id.name); // 'Status'
 console.log(enumToken.declarations[0].init.properties[0].key.name); // 'ACTIVE'
 console.log(enumToken.declarations[0].init.properties[0].value.value); // 'Active'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// Inside enum parsing, after opening brace
 const property = tree.property();
 console.log(property.key.name); // e.g., 'ADMIN'
 console.log(property.value.value); // e.g., 'Admin'`,
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { ModelTree } from '@stackpress/idea-parser';
 
@@ -134,7 +135,7 @@ console.log(ast.kind); // 'model'
 console.log(ast.mutable); // false (because of '!' modifier)
 console.log(ast.declarations[0].id.name); // 'User'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const tree = new ModelTree();
 tree._lexer.load('model User { id String @id }');
@@ -143,7 +144,7 @@ const modelToken = tree.model();
 console.log(modelToken.kind); // 'model'
 console.log(modelToken.mutable); // false (immutable due to '!')`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { TypeTree } from '@stackpress/idea-parser';
 
@@ -159,7 +160,7 @@ console.log(ast.kind); // 'type'
 console.log(ast.mutable); // true (mutable by default)
 console.log(ast.declarations[0].id.name); // 'Address'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const tree = new TypeTree();
 tree._lexer.load('type Address { street String city String }');
@@ -168,21 +169,21 @@ const typeToken = tree.type();
 console.log(typeToken.kind); // 'type'
 console.log(typeToken.mutable); // true (default for types)`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// Inside type parsing
 const property = tree.property();
 console.log(property.key.name); // e.g., 'street'
 console.log(property.value); // Object containing type and attributes`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// For parsing generic type parameters
 const parameter = tree.parameter();
 console.log(parameter.key.name); // Parameter name
 console.log(parameter.value); // Parameter type/constraint`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { PropTree } from '@stackpress/idea-parser';
 
@@ -197,7 +198,7 @@ const ast = PropTree.parse(propCode);
 console.log(ast.kind); // 'prop'
 console.log(ast.declarations[0].id.name); // 'EmailInput'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const tree = new PropTree();
 tree._lexer.load('prop Text { type "text" format "lowercase" }');
@@ -206,7 +207,7 @@ const propToken = tree.prop();
 console.log(propToken.kind); // 'prop'
 console.log(propToken.declarations[0].id.name); // 'Text'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { PluginTree } from '@stackpress/idea-parser';
 
@@ -220,7 +221,7 @@ const ast = PluginTree.parse(pluginCode);
 console.log(ast.kind); // 'plugin'
 console.log(ast.declarations[0].id.name); // './database-plugin'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const tree = new PluginTree();
 tree._lexer.load('plugin "./custom" { provider "custom-provider" }');
@@ -229,7 +230,7 @@ const pluginToken = tree.plugin();
 console.log(pluginToken.kind); // 'plugin'
 console.log(pluginToken.declarations[0].id.name); // './custom'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { UseTree } from '@stackpress/idea-parser';
 
@@ -239,7 +240,7 @@ const ast = UseTree.parse(useCode);
 console.log(ast.type); // 'ImportDeclaration'
 console.log(ast.source.value); // './shared/types.idea'`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const tree = new UseTree();
 tree._lexer.load('use "./another.idea"');
@@ -248,7 +249,7 @@ const useToken = tree.use();
 console.log(useToken.type); // 'ImportDeclaration'
 console.log(useToken.source.value); // './another.idea'`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { EnumTree, ModelTree, TypeTree } from '@stackpress/idea-parser';
 
@@ -271,7 +272,7 @@ const typeAST = TypeTree.parse(\`type Address {
   city String
 }\`);`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { EnumTree, Compiler } from '@stackpress/idea-parser';
 
@@ -285,7 +286,7 @@ const [enumName, enumConfig] = Compiler.enum(enumAST);
 console.log(enumName); // 'Status'
 console.log(enumConfig); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { AbstractTree, Lexer } from '@stackpress/idea-parser';
 import type { DeclarationToken } from '@stackpress/idea-parser';
@@ -324,7 +325,7 @@ class CustomTree extends AbstractTree<DeclarationToken> {
   }
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { SchemaTree, Exception } from '@stackpress/idea-parser';
 
@@ -338,7 +339,7 @@ try {
   }
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `try {
   // Invalid - 'enum' keyword expected but found 'model'
@@ -347,7 +348,7 @@ try {
   console.log('Expected enum but found model');
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { EnumTree } from '@stackpress/idea-parser';
 
@@ -358,7 +359,7 @@ try {
   console.log('Error:', error.message); // 'Unexpected end of input'
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { ModelTree } from '@stackpress/idea-parser';
 
@@ -369,7 +370,7 @@ try {
   console.log('Expected CapitalIdentifier but got something else');
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// This is what happens internally:
 import { SchemaTree, Compiler } from '@stackpress/idea-parser';
@@ -384,7 +385,7 @@ export function final(code: string) {
   return Compiler.final(ast);          // Compile and clean up
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import { Lexer, SchemaTree } from '@stackpress/idea-parser';
 
@@ -399,7 +400,7 @@ const result1 = tree.parse(code1);
 const result2 = tree.parse(code2);
 const result3 = tree.parse(code3);`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// Inside tree parsing methods
 const checkpoint = this._lexer.clone();
@@ -413,7 +414,7 @@ try {
   return this.parseAlternativeStructure();
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const enumCode = \`enum Roles {
   ADMIN "Admin"
@@ -424,7 +425,7 @@ try {
 const ast = EnumTree.parse(enumCode);
 // Produces a complete AST with all three enum values`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `const modelCode = \`model User @label("User" "Users") {
   id       String       @label("ID")         @id @default("nanoid(20)")
@@ -444,7 +445,18 @@ const ast = ModelTree.parse(modelCode);
 // Produces a complete model AST with all columns and attributes`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -492,13 +504,13 @@ export function Right() {
       </h6>
       <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/lexer"
         >
           {_('Lexer API Reference')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler"
         >
           {_('Compiler API Reference')}
@@ -509,13 +521,13 @@ export function Right() {
         </div>
 
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/tokens"
         >
           {_('Token Reference')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling"
         >
           {_('Exception Handling')}
@@ -528,80 +540,80 @@ export function Right() {
       </h6>
       <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#syntax-trees"
         >
           {_('A. Syntax Trees')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#schema-tree"
         >
           {_('1. Schema Tree')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#enum-tree"
         >
           {_('2. Enum Tree')}
         </a>
 
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#model-tree"
         >
           {_('3. Model Tree')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#type-tree"
         >
           {_('4. Type Tree')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#prop-tree"
         >
           {_('5. Prop Tree')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#plugin-tree"
         >
           {_('6. Plugin Tree')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#use-tree"
         >
           {_('7. Use Tree')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#usage-patterns"
         >
           {_('8. Usage Patterns')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#error-handling"
         >
           {_('9. Error Handling')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#integration-with-main-functions"
         >
           {_('10. Integration with Main Function')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#performance-considerations"
         >
           {_('11. Performance Considerations')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast#test-driven-examples"
         >
           {_('12. Test Driven Examples')}
@@ -682,7 +694,8 @@ export function Body() {
         <section id="parsing-complete-schemas">
           <H2>{_('1.1.2 Parsing Complete Schemas')}</H2>
           <Translate>
-            The following example shows how to parse a complete schema file.
+            The following example shows how to parse a complete 
+            schema file.
           </Translate>
           <Code copy language="javascript" className="bg-black text-white">
             {examples[2]}
@@ -704,7 +717,9 @@ export function Body() {
 
           <SS>{_('Returns')}</SS>
           <ul className="my-2 list-disc pl-5">
-            <li>{_('A SchemaToken representing the entire parsed schema.')}</li>
+            <li>
+              {_('A SchemaToken representing the entire parsed schema.')}
+            </li>
           </ul>
         </section>
 
@@ -714,8 +729,8 @@ export function Body() {
 
           <H2>{_('1.2.1 Parsing Schema Content')}</H2>
           <Translate>
-            The following example shows how to parse schema content with
-            custom starting position.
+            The following example shows how to parse schema content 
+            with custom starting position.
           </Translate>
           <Code copy language="javascript" className="bg-black text-white">
             {examples[3]}
@@ -820,7 +835,8 @@ export function Body() {
 
         <H2>{_('2.2.2 Parsing Enum Properties')}</H2>
         <Translate>
-          The following example shows how individual enum properties are parsed.
+          The following example shows how individual enum properties 
+          are parsed.
         </Translate>
         <Code copy language="javascript" className="bg-black text-white">
           {examples[7]}
@@ -830,7 +846,8 @@ export function Body() {
         <ul className="my-2 list-disc pl-5">
           <li>
             <Translate>
-              A PropertyToken representing a single enum key-value pair.
+              A PropertyToken representing a single enum key-value 
+              pair.
             </Translate>
           </li>
         </ul>
@@ -843,7 +860,8 @@ export function Body() {
       <section id="model-tree">
         <H1>{_('3. ModelTree')}</H1>
         <Translate>
-          Parses model declarations (extends TypeTree for shared functionality).
+          Parses model declarations (extends TypeTree for shared 
+          functionality).
         </Translate>
 
         <H2>{_('3.1 Static Methods')}</H2>
@@ -972,7 +990,8 @@ export function Body() {
 
         <H2>{_('4.2.2 Parsing Type Properties')}</H2>
         <Translate>
-          The following example shows how type properties (columns) are parsed.
+          The following example shows how type properties (columns) 
+          are parsed.
         </Translate>
         <Code copy language="javascript" className="bg-black text-white">
           {examples[12]}
@@ -1232,7 +1251,8 @@ export function Body() {
       <section id="error-handling">
         <H1>{_('9. Error Handling')}</H1>
         <Translate>
-          AST classes provide detailed error information when parsing fails:
+          AST classes provide detailed error information when 
+          parsing fails:
         </Translate>
 
         <H2>{_('Syntax Errors')}</H2>
@@ -1263,7 +1283,8 @@ export function Body() {
       <section id="integration-with-main-functions">
         <H1>{_('10. Integration with Main Functions')}</H1>
         <Translate>
-          AST classes are used internally by the main parse and final functions:
+          AST classes are used internally by the main parse and 
+          final functions:
         </Translate>
         <Code copy language="javascript" className="bg-black text-white">
           {examples[27]}
@@ -1349,7 +1370,8 @@ export function Body() {
           </li>
           <li>
             <Translate>
-              Complex attribute parameters (@field.input(Text), @is.clt(80))
+              Complex attribute parameters (@field.input(Text), 
+              @is.clt(80))
             </Translate>
           </li>
         </ul>
@@ -1366,7 +1388,6 @@ export function Body() {
           href: "/docs/parser/api-references/tokens"
         }}
       />
-
     </main>
   );
 }

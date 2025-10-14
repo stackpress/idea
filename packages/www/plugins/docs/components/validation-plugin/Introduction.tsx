@@ -11,15 +11,15 @@ export default function Introduction() {
     <>
       {/* Creating a Validation Schema Generator Plugin */}
       <section id="introduction">
-      <H1>{_('Validation Schema Generator Plugin Tutorial')}</H1>
-      <P>
-        <Translate>
-          This tutorial demonstrates how to create a plugin that generates
-          Zod validation schemas from <C>.idea</C> schema files. The plugin
-          will transform your schema models into type-safe validation
-          schemas with comprehensive validation rules.
-        </Translate>
-      </P>
+        <H1>{_('Validation Schema Generator Plugin Tutorial')}</H1>
+        <P>
+          <Translate>
+            This tutorial guides you through building a plugin that creates
+            Zod validation schemas from <C>.idea</C> schema files. With this
+            plugin, your schema models become type-safe validation schemas
+            with complete validation rules.
+          </Translate>
+        </P>
       </section>
     </>
   );

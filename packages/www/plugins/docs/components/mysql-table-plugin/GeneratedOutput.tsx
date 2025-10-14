@@ -5,9 +5,10 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const generatedOutputExample = `-- Generated MySQL Tables
+const generatedOutputExample =
+  `-- Generated MySQL Tables
 -- Database: my_app
 -- Generated at: 2024-01-15T10:30:00.000Z
 
@@ -26,9 +27,9 @@ CREATE TABLE \`User\` (
   PRIMARY KEY (\`id\`),
   UNIQUE KEY \`uk_User_email\` (\`email\`),
   KEY \`idx_User_age\` (\`age\`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function GeneratedOutput() {
   //hooks
@@ -50,7 +51,7 @@ export default function GeneratedOutput() {
         <Code
           copy
           language="sql"
-          className='bg-black text-white'
+          className="bg-black text-white"
         >
           {generatedOutputExample}
         </Code>

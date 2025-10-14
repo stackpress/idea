@@ -10,13 +10,12 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const processingFlow = `
-Raw Schema Code → SchemaTree → Compiler → JSON Output
-`;
+const processingFlow = 
+`Raw Schema Code → SchemaTree → Compiler → JSON Output`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

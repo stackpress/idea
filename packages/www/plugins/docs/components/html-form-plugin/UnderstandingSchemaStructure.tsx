@@ -5,9 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const schemaExample = `// Example processed schema
+const schemaExample =
+  `// Example processed schema
 {
   model: {
     User: {
@@ -67,9 +68,9 @@ const schemaExample = `// Example processed schema
       GUEST: 'Guest User'
     }
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UnderstandingSchemaStructure() {
   //hooks
@@ -79,24 +80,24 @@ export default function UnderstandingSchemaStructure() {
     <>
       {/* Understanding the Schema Structure Section Content */}
       <section id="understanding-the-schema-structure">
-      <H1>{_('3. Understanding the Schema Structure')}</H1>
-      <P>
-        <Translate>
-          Understanding how schema attributes map to form elements is 
-          crucial for creating effective form generation. This section 
-          explains the processed schema structure and how different 
-          field types and attributes translate into HTML form elements.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Before creating the plugin, let's understand how schema 
-          attributes map to form elements:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {schemaExample}
-      </Code>
+        <H1>{_('3. Understanding the Schema Structure')}</H1>
+        <P>
+          <Translate>
+            Understanding how schema attributes map to form elements is
+            crucial for creating effective form generation. This section
+            explains the processed schema structure and how different
+            field types and attributes translate into HTML form elements.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Before creating the plugin, let's understand how schema
+            attributes map to form elements:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {schemaExample}
+        </Code>
       </section>
     </>
   );

@@ -9,7 +9,7 @@ export default function Conclusion() {
 
   return (
     <>
-    {/* Conclusion Section Content */}
+      {/* Conclusion Section Content */}
       <section>
         <H1>{_('10. Conclusion')}</H1>
         <P>
@@ -17,7 +17,7 @@ export default function Conclusion() {
             This MySQL Tables Plugin demonstrates how to:
           </Translate>
         </P>
-        <ul className="px-ml-20 my-4 list-disc">
+        <ul className="list-disc my-4 px-ml-20">
           <li>
             <Translate>
               Parse schema models and columns
@@ -46,9 +46,9 @@ export default function Conclusion() {
         </ul>
         <P>
           <Translate>
-            The plugin is flexible and can be extended to support 
-            additional MySQL features like partitioning, triggers, or 
-            stored procedures.
+            The plugin is flexible and can be extended to support
+            additional MySQL features like partitioning, triggers, 
+            or stored procedures.
           </Translate>
         </P>
       </section>

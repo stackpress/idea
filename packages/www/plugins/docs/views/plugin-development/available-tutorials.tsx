@@ -4,9 +4,21 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
 import { H1, H2, H3, P, C, Nav, SS } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
+
+//styles
+//----------------------------------------------------------------------
+
+const anchorStyles = clsx([
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500',
+]);
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -45,31 +57,31 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+    <menu className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('Available Tutorials')}
       </h6>
-      <nav className="px-fs-14 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/tsmorph-plugin-guide"
         >
           {_('1. TSMorph Plugin Guide')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/mysql-tables-plugin-tutorial"
         >
           {_('2. MySQL Tables Plugin Tutorial')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/html-form-plugin-tutorial"
         >
           {_('3. HTML Form Plugin Tutorial')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/markdown-documentation-plugin-tutorial"
         >
           {_('4. Markdown Documentation Plugin Tutorial')}
@@ -84,7 +96,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Available Tutorials Section Content */}
       <section>
         <H1>{_('Available Tutorials')}</H1>
@@ -133,7 +145,7 @@ export function Body() {
         </P>
 
         <H3>{_("What you'll learn:")}</H3>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Parse schema models and their columns
@@ -185,7 +197,7 @@ export function Body() {
         </P>
 
         <H3>{_("What you'll learn:")}</H3>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Generate HTML form elements based on field types
@@ -238,7 +250,7 @@ export function Body() {
         </P>
 
         <H3>{_("What you'll learn:")}</H3>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Parse all schema elements (models, types, enums, props)
@@ -278,11 +290,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Best Practices'),
-          href: '/docs/plugin-development/best-practices'
+          href: "/docs/plugin-development/best-practices"
         }}
         next={{
           text: _('Advanced Tutorials'),
-          href: '/docs/plugin-development/advanced-tutorials'
+          href: "/docs/plugin-development/advanced-tutorials"
         }}
       />
     </main>

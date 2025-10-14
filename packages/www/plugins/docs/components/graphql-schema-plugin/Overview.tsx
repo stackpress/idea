@@ -27,7 +27,7 @@ export default function Overview() {
           <C>.idea</C> schema, including:
         </Translate>
       </P>
-      <ul className="list-disc pl-6 my-4">
+      <ul className="list-disc my-4 pl-6">
         <li className="my-2">
           <Translate>
             <SS>Types</SS>: GraphQL object types from schema models

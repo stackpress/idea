@@ -4,23 +4,34 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage } from 'r22n';
+import clsx from 'clsx';
 //local
 import { Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 //components
 import {
+  BestPractices,
+  Conclusion,
+  CreatePluginStructure,
+  GenerateSqlStatements,
+  GeneratedOutput,
+  ImplementTypeMapping,
   Introduction,
   Overview,
   Prerequisites,
   UnderstandingSchemaStructure,
-  CreatePluginStructure,
-  ImplementTypeMapping,
-  GenerateSqlStatements,
-  UsageInSchema,
-  GeneratedOutput,
-  BestPractices,
-  Conclusion
+  UsageInSchema
 } from '../../components/mysql-table-plugin/index.js';
+
+//styles
+//-----------------------------------------------------------------
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -59,62 +70,62 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+    <menu className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-m-0 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-lh-28 px-m-0">
         <a
           href="#overview"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('1. Overview')}
         </a>
         <a
           href="#prerequisites"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('2. Prerequisites')}
         </a>
         <a
           href="#understanding-schema"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('3. Understanding the Schema Structure')}
         </a>
         <a
           href="#create-plugin-structure"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('4. Create the Plugin Structure')}
         </a>
         <a
           href="#implement-type-mapping"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('5. Implement Type Mapping')}
         </a>
         <a
           href="#generate-sql-statements"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('6. Generate SQL Statements')}
         </a>
         <a
           href="#usage-in-schema"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('7. Usage in Schema')}
         </a>
         <a
           href="#generated-output"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('8. Generated Output')}
         </a>
         <a
           href="#best-practices"
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('9. Error Handling and Best Practices')}
         </a>
@@ -128,57 +139,57 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Page Section */}
       <Introduction />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10" />
 
       <Overview />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <Prerequisites />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <UnderstandingSchemaStructure />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <CreatePluginStructure />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <ImplementTypeMapping />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <GenerateSqlStatements />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <UsageInSchema />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <GeneratedOutput />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <BestPractices />
 
-       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      {/* Horizontal Rule */}
+      <hr className="mt-10" />
 
       <Conclusion />
 
@@ -186,11 +197,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Ts-morph Plugin Guide'),
-          href: '/docs/tutorials/tsmorph-plugin-guide'
+          href: "/docs/tutorials/tsmorph-plugin-guide"
         }}
         next={{
           text: _('HTML Form Plugin'),
-          href: '/docs/tutorials/html-form-plugin'
+          href: "/docs/tutorials/html-form-plugin"
         }}
       />
     </main>

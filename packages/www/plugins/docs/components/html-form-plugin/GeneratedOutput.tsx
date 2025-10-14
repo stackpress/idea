@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const generatedOutputExample = 
-`<!DOCTYPE html>
+const generatedOutputExample =
+  `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -122,35 +122,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 </body>
-</html>`
+</html>`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function GeneratedOutput() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <>
       {/* Generated Output Section Content */}
       <section id="generated-output">
-      <H1>{_('9. Generated Output')}</H1>
-      <P>
-        <Translate>
-          The generated output section shows examples of the HTML code 
-          that the plugin produces. This helps you understand what to 
-          expect from the plugin and how the various configuration 
-          options affect the final output.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          The plugin will generate HTML like this:
-        </Translate>
-      </P>
-      <Code copy language='html' className='bg-black text-white'>
-        {generatedOutputExample}
-      </Code>
+        <H1>{_('9. Generated Output')}</H1>
+        <P>
+          <Translate>
+            The generated output section shows examples of the HTML code
+            that the plugin produces. This helps you understand what to
+            expect from the plugin and how the various configuration
+            options affect the final output.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            The plugin will generate HTML like this:
+          </Translate>
+        </P>
+        <Code copy language="html" className="bg-black text-white">
+          {generatedOutputExample}
+        </Code>
       </section>
     </>
   );

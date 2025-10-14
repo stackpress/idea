@@ -6,10 +6,10 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const basicConfigurationExample = 
-`plugin "./plugins/typescript-interfaces.js" {
+const basicConfigurationExample =
+  `plugin "./plugins/typescript-interfaces.js" {
   output "./generated/types.ts"
   namespace "MyApp"
   exportType "named"
@@ -18,9 +18,9 @@ const basicConfigurationExample =
   strictNullChecks true
   generateEnums true
   enumType "enum"
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const configurationTableData = [
   {
@@ -73,6 +73,8 @@ const configurationTableData = [
   }
 ];
 
+//-----------------------------------------------------------------
+
 export default function SchemaConfiguration() {
   //hooks
   const { _ } = useLanguage();
@@ -81,61 +83,61 @@ export default function SchemaConfiguration() {
     <>
       {/* Schema Configuration Section Content */}
       <section id="schema-configuration">
-      <H1>{_('5. Schema Configuration')}</H1>
-      <P>
-        <Translate>
-          Schema configuration demonstrates how to integrate the TypeScript
-          interface generator into your <C>.idea</C> schema files. This
-          section covers plugin configuration options and their effects on
-          the generated TypeScript output.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Add the TypeScript plugin to your <C>.idea</C> schema file:
-        </Translate>
-      </P>
-      <Code
-        language='idea'
-        className='bg-black text-white'
-      >
-        {basicConfigurationExample}
-      </Code>
+        <H1>{_('5. Schema Configuration')}</H1>
+        <P>
+          <Translate>
+            Schema configuration demonstrates how to integrate the
+            TypeScript interface generator into your <C>.idea</C>
+            schema files. This section covers plugin configuration
+            options and their effects on the generated TypeScript output.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Add the TypeScript plugin to your <C>.idea</C> schema file:
+          </Translate>
+        </P>
+        <Code
+          language="idea"
+          className='bg-black text-white'
+        >
+          {basicConfigurationExample}
+        </Code>
 
-      <H2>{_('Configuration Options')}</H2>
-      <P>
-        <Translate>
-          Configuration options control how TypeScript interfaces are
-          generated, including output formatting, type handling, and feature
-          enablement. Understanding these options helps you customize the
-          plugin to meet your specific project requirements.
-        </Translate>
-      </P>
+        <H2>{_('Configuration Options')}</H2>
+        <P>
+          <Translate>
+            Configuration options control how TypeScript interfaces are
+            generated, including output formatting, type handling, and
+            feature enablement. Understanding these options helps you
+            customize the plugin to meet your specific project requirements.
+          </Translate>
+        </P>
 
-      <Table>
-        <Trow className="theme-bg-bg1 text-left font-bold">
-          <Thead>Option</Thead>
-          <Thead>Type</Thead>
-          <Thead>Default</Thead>
-          <Thead>Description</Thead>
-        </Trow>
-        {configurationTableData.map((row, index) => (
-          <Trow key={index}>
-            <Tcol>
-              <C>{row.option}</C>
-            </Tcol>
-            <Tcol>
-              <C>{row.type}</C>
-            </Tcol>
-            <Tcol>
-              <C>{row.defaultValue}</C>
-            </Tcol>
-            <Tcol>
-              <Translate>{row.description}</Translate>
-            </Tcol>
+        <Table>
+          <Trow className="theme-bg-bg1 text-left font-bold">
+            <Thead>Option</Thead>
+            <Thead>Type</Thead>
+            <Thead>Default</Thead>
+            <Thead>Description</Thead>
           </Trow>
-        ))}
-      </Table>
+          {configurationTableData.map((row, index) => (
+            <Trow key={index}>
+              <Tcol>
+                <C>{row.option}</C>
+              </Tcol>
+              <Tcol>
+                <C>{row.type}</C>
+              </Tcol>
+              <Tcol>
+                <C>{row.defaultValue}</C>
+              </Tcol>
+              <Tcol>
+                <Translate>{row.description}</Translate>
+              </Tcol>
+            </Trow>
+          ))}
+        </Table>
       </section>
     </>
   );

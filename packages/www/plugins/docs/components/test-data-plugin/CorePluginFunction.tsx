@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const corePluginExample = 
 `export default async function generateTestData(
@@ -53,9 +53,9 @@ const corePluginExample =
     console.error('❌ Test data generation failed:', error.message);
     throw error;
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const headerAndImportsExample = 
 `function generateFileHeader(config: TestDataConfig): string {
@@ -89,9 +89,9 @@ function generateImports(config: TestDataConfig): string {
   }
   
   return imports;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function CorePluginFunction() {
   //hooks
@@ -104,23 +104,23 @@ export default function CorePluginFunction() {
       <H1>{_('4. Implementation')}</H1>
       <P>
         <Translate>
-          The implementation section covers the core plugin function and 
-          supporting utilities that handle test data generation. This 
-          includes the main plugin entry point, data generation functions, 
-          and configuration validation.
+          The implementation section covers the core plugin function 
+          and supporting utilities that handle test data generation. 
+          This includes the main plugin entry point, data generation 
+          functions, and configuration validation.
         </Translate>
       </P>
 
       <H2>{_('4.1. Core Plugin Function')}</H2>
       <P>
         <Translate>
-          The core plugin function serves as the main entry point for test 
-          data generation. It orchestrates the entire process from 
+          The core plugin function serves as the main entry point for 
+          test data generation. It orchestrates the entire process from 
           configuration validation to file output, handling different 
           formats and generation options.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {corePluginExample}
       </Code>
 
@@ -133,7 +133,7 @@ export default function CorePluginFunction() {
           generation patterns based on schema definitions.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white mb-5'>
+      <Code copy language="typescript" className="bg-black mb-5 text-white">
         {headerAndImportsExample}
       </Code>
       </section>

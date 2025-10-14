@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const examples = [
   `interface PluginOptions {
@@ -30,7 +30,7 @@ function validateOptions(options: unknown): asserts options is PluginOptions {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `class PluginError extends Error {
   constructor(
@@ -67,7 +67,7 @@ async function safeGenerate(config: PluginConfig): Promise<void> {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `class OptimizedGenerator {
   private typeCache = new Map<string, string>();
@@ -100,7 +100,7 @@ async function safeGenerate(config: PluginConfig): Promise<void> {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `// generators/interface-generator.ts
 export class InterfaceGenerator {
@@ -136,7 +136,7 @@ export class MainPlugin {
   }
 }`,
 
-  //----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `function generateJSDocComment(
   property: SchemaProperty,
@@ -164,7 +164,7 @@ export class MainPlugin {
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function BestPractices() {
   //hooks
@@ -172,7 +172,7 @@ export default function BestPractices() {
 
   return (
     <>
-    {/* Best Practices Section Content */}
+      {/* Best Practices Section Content */}
       <section id="best-practices">
         <H1>{_('8. Best Practices')}</H1>
         <P>
@@ -187,21 +187,21 @@ export default function BestPractices() {
         <H2>{_('8.1. Type Safety')}</H2>
         <P>
           <Translate>
-            Type safety is fundamental to building reliable plugins that catch
-            errors at compile time rather than runtime. Always use TypeScript
-            interfaces and proper type validation throughout your plugin
-            implementation.
+            Type safety is fundamental to building reliable plugins
+            that catch errors at compile time rather than runtime.
+            Always use TypeScript interfaces and proper type validation
+            throughout your plugin implementation.
           </Translate>
         </P>
         <P>
           <Translate>
-            Always use TypeScript interfaces for your plugin configuration
-            and data structures:
+            Always use TypeScript interfaces for your plugin 
+            configuration and data structures:
           </Translate>
         </P>
         <Code
           copy
-          language='typescript'
+          language="typescript"
           className="bg-black text-white"
         >
           {examples[0]}
@@ -210,10 +210,10 @@ export default function BestPractices() {
         <H2>{_('8.2. Error Handling')}</H2>
         <P>
           <Translate>
-            Comprehensive error handling provides clear feedback to users and
-            helps with debugging when things go wrong. Implement custom error
-            types and meaningful error messages to improve the developer
-            experience.
+            Comprehensive error handling provides clear feedback to
+            users and helps with debugging when things go wrong.
+            Implement custom error types and meaningful error 
+            messages to improve the developer experience.
           </Translate>
         </P>
         <P>
@@ -223,7 +223,7 @@ export default function BestPractices() {
         </P>
         <Code
           copy
-          language='typescript'
+          language="typescript"
           className="bg-black text-white"
         >
           {examples[1]}
@@ -232,10 +232,10 @@ export default function BestPractices() {
         <H2>{_('8.3. Performance Optimization')}</H2>
         <P>
           <Translate>
-            Performance optimization becomes crucial when dealing with large
-            schemas or generating substantial amounts of code. Implement
-            caching strategies and batch processing to maintain reasonable
-            execution times.
+            Performance optimization becomes crucial when dealing
+            with large schemas or generating substantial amounts of
+            code. Implement caching strategies and batch processing
+            to maintain reasonable execution times.
           </Translate>
         </P>
         <P>
@@ -245,7 +245,7 @@ export default function BestPractices() {
         </P>
         <Code
           copy
-          language='typescript'
+          language="typescript"
           className="bg-black text-white"
         >
           {examples[2]}
@@ -254,10 +254,10 @@ export default function BestPractices() {
         <H2>{_('8.4. Code Organization')}</H2>
         <P>
           <Translate>
-            Proper code organization makes your plugin easier to maintain,
-            test, and extend. Separate concerns into focused classes and
-            modules that each handle specific aspects of the generation
-            process.
+            Proper code organization makes your plugin easier to
+            maintain, test, and extend. Separate concerns into focused
+            classes and modules that each handle specific aspects of
+            the generation process.
           </Translate>
         </P>
         <P>
@@ -267,7 +267,7 @@ export default function BestPractices() {
         </P>
         <Code
           copy
-          language='typescript'
+          language="typescript"
           className="bg-black text-white"
         >
           {examples[3]}
@@ -289,7 +289,7 @@ export default function BestPractices() {
         </P>
         <Code
           copy
-          language='typescript'
+          language="typescript"
           className="bg-black text-white"
         >
           {examples[4]}

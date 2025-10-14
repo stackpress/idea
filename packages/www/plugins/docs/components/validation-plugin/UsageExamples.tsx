@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const basicSchemaExample = 
 `enum UserRole {
@@ -30,7 +30,7 @@ plugin "./plugins/zod-validation.js" {
   strictMode true
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const generatedValidationUsage = `import { 
   UserSchema, 
@@ -79,7 +79,7 @@ const userData = {
 
 const validUser = validateCreateUser(userData);`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const formValidationExample = 
 `import { CreateUserSchema } from './validation';
@@ -125,7 +125,7 @@ function UserForm() {
   );
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UsageExamples() {
   //hooks

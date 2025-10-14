@@ -20,7 +20,7 @@ export default function Prerequisites() {
           successfully create and use the plugin.
         </Translate>
       </P>
-      <ul className="list-disc pl-6 my-4">
+      <ul className="list-disc my-4 pl-6">
         <li>
           <Translate>Node.js and npm/yarn package manager</Translate>
         </li>

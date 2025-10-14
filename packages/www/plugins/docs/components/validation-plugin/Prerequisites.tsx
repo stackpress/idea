@@ -20,7 +20,7 @@ export default function Prerequisites() {
             for successful plugin creation and Zod integration.
           </Translate>
         </P>
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li>
             <Translate>Node.js 16+ and npm/yarn</Translate>
           </li>

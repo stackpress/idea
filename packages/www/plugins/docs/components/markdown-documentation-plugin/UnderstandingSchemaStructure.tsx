@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const exampleProcessedSchema = 
-`// Example processed schema
+const exampleProcessedSchema =
+  `// Example processed schema
 {
   model: {
     User: {
@@ -71,9 +71,9 @@ const exampleProcessedSchema =
       maxLength: 255
     }
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UnderstandingSchemaStructure() {
   //hooks
@@ -83,16 +83,16 @@ export default function UnderstandingSchemaStructure() {
     <>
       {/* Understanding the Schema Structure Section Content */}
       <section id="understanding-schema">
-      <H1>{_('3. Understanding the Schema Structure')}</H1>
-      <P>
-        <Translate>
-          Before creating the plugin, let's understand what documentation
-          we can generate from a schema:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {exampleProcessedSchema}
-      </Code>
+        <H1>{_('3. Understanding the Schema Structure')}</H1>
+        <P>
+          <Translate>
+            Before creating the plugin, let's understand what documentation
+            we can generate from a schema:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {exampleProcessedSchema}
+        </Code>
       </section>
     </>
   )

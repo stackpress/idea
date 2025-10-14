@@ -11,7 +11,7 @@ import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const pluginDeclaration = [`
   plugin "./path/to/plugin.js" {
@@ -23,7 +23,7 @@ const pluginDeclaration = [`
   }
 }`,
 
-  //--------------------------------------------------------------------
+  //---------------------------------------------------------------
 
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
 
@@ -39,7 +39,7 @@ export default async function myPlugin(props: PluginProps<{}>) {
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

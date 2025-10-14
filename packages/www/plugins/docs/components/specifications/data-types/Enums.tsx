@@ -5,7 +5,7 @@ import { H1, H2, P, SS } from '../../../../docs/components/index.js';
 import Code from '../../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const enumsExamples = [
   `enum EnumName {
@@ -14,9 +14,9 @@ const enumsExamples = [
   KEY3 "Display Value 3"
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`enum UserRole {
+  `enum UserRole {
   ADMIN "Administrator"
   MODERATOR "Moderator"
   USER "Regular User"
@@ -38,18 +38,18 @@ enum Priority {
   URGENT "Urgent"
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`export enum UserRole {
+  `export enum UserRole {
   ADMIN = "Administrator",
   MODERATOR = "Moderator",
   USER = "Regular User",
   GUEST = "Guest User"
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`{
+  `{
   "enum": {
     "UserRole": {
       "ADMIN": "Administrator",
@@ -61,7 +61,7 @@ enum Priority {
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Enums() {
   //hooks
@@ -86,7 +86,7 @@ export default function Enums() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20">
+          className="bg-black px-mb-20 text-white">
           {enumsExamples[0]}
         </Code>
 
@@ -94,15 +94,21 @@ export default function Enums() {
         <ul className="px-lh-30 px-px-20 list-disc">
           <li>
             <SS>{_('EnumName: ')}</SS>
-            <Translate>The identifier used to reference this enum</Translate>
+            <Translate>
+              The identifier used to reference this enum
+            </Translate>
           </li>
           <li>
             <SS>{_('KEY: ')}</SS>
-            <Translate>The constant name (typically uppercase)</Translate>
+            <Translate>
+              The constant name (typically uppercase)
+            </Translate>
           </li>
           <li>
             <SS>{_('"Display Value": ')}</SS>
-            <Translate>Human-readable label for the constant</Translate>
+            <Translate>
+              Human-readable label for the constant
+            </Translate>
           </li>
         </ul>
 
@@ -111,7 +117,7 @@ export default function Enums() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20">
+          className="bg-black px-mb-20 text-white">
           {enumsExamples[1]}
         </Code>
 
@@ -128,7 +134,7 @@ export default function Enums() {
         <Code
           copy
           language="typescript"
-          className="bg-black text-white px-mb-20">
+          className="bg-black px-mb-20 text-white">
           {enumsExamples[2]}
         </Code>
 
@@ -137,7 +143,7 @@ export default function Enums() {
         <Code
           copy
           language="json"
-          className="bg-black text-white  px-mb-20">
+          className="bg-black px-mb-20 text-white">
           {enumsExamples[3]}
         </Code>
       </section>

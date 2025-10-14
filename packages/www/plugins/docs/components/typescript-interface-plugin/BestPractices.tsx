@@ -11,9 +11,9 @@ const typeSafetyInterface =
   multiple: boolean;
   description?: string;
   attributes?: Record<string, any>;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const columnValidation =
   `function validateColumn(column: any): column is TypeScriptColumn {
@@ -22,9 +22,9 @@ const columnValidation =
     typeof column.type === 'string' &&
     typeof column.required === 'boolean'
   );
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeNameSanitization =
   `function sanitizeTypeName(name: string): string {
@@ -33,9 +33,9 @@ const typeNameSanitization =
     .replace(/[^a-zA-Z0-9_]/g, '_')
     .replace(/^[0-9]/, '_$&')
     .replace(/^_+|_+$/g, '');
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const pascalCaseConversion =
   `function toPascalCase(str: string): string {
@@ -45,9 +45,9 @@ const pascalCaseConversion =
       word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     )
     .join('');
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const jsDocGeneration =
   `function generateJSDocComment(
@@ -77,9 +77,9 @@ const jsDocGeneration =
   
   return \`  /**\\n\${lines.map(line => 
     \`   * \${line}\`).join('\\n')}\\n   */\\n\`;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeCacheOptimization =
   `// Cache type mappings
@@ -102,9 +102,9 @@ function getCachedTypeMapping(
   typeCache.set(cacheKey, mappedType);
   
   return mappedType;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//---------------------------------------------------------------
 
 export default function BestPractices() {
   //hooks
@@ -117,10 +117,10 @@ export default function BestPractices() {
         <H1>{_('8. Best Practices')}</H1>
         <P>
           <Translate>
-            Best practices ensure your generated TypeScript interfaces are
-            maintainable, reliable, and follow industry standards. These
-            guidelines cover type safety, naming conventions, documentation
-            generation, and performance optimization.
+            Best practices ensure your generated TypeScript interfaces 
+            are maintainable, reliable, and follow industry standards. 
+            These guidelines cover type safety, naming conventions, 
+            documentation generation, and performance optimization.
           </Translate>
         </P>
       </section>
@@ -131,15 +131,15 @@ export default function BestPractices() {
         <P>
           <Translate>
             Type safety is crucial for preventing runtime errors and
-            improving developer experience. Always validate input data and
-            use proper TypeScript types throughout the plugin implementation
-            to ensure reliable code generation.
+            improving developer experience. Always validate input data 
+            and use proper TypeScript types throughout the plugin 
+            implementation to ensure reliable code generation.
           </Translate>
         </P>
-        <Code lang='typescript'>
+        <Code lang="typescript">
           {typeSafetyInterface}
         </Code>
-        <Code lang='typescript'>
+        <Code lang="typescript">
           {columnValidation}
         </Code>
       </section>
@@ -155,10 +155,10 @@ export default function BestPractices() {
             or invalid characters.
           </Translate>
         </P>
-        <Code lang='typescript'>
+        <Code lang="typescript">
           {typeNameSanitization}
         </Code>
-        <Code lang='typescript'>
+        <Code lang="typescript">
           {pascalCaseConversion}
         </Code>
       </section>
@@ -168,13 +168,13 @@ export default function BestPractices() {
         <H2>{_('Documentation Generation')}</H2>
         <P>
           <Translate>
-            Documentation generation creates comprehensive JSDoc comments that
-            provide context and examples for the generated types. This
-            improves the developer experience by providing inline
-            documentation in IDEs and code editors.
+            Documentation generation creates comprehensive JSDoc 
+            comments that provide context and examples for the generated 
+            types. This improves the developer experience by providing 
+            inline documentation in IDEs and code editors.
           </Translate>
         </P>
-        <Code lang='typescript'>
+        <Code lang="typescript">
           {jsDocGeneration}
         </Code>
       </section>
@@ -189,7 +189,7 @@ export default function BestPractices() {
             well with complex type hierarchies.
           </Translate>
         </P>
-        <Code lang='typescript'>
+        <Code lang="typescript">
           {typeCacheOptimization}
         </Code>
       </section>

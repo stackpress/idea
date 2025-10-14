@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, C, Code } from '../../../docs/components/index.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const corePluginFunctionExample =
   `export default async function generateTypeScriptInterfaces(
@@ -62,9 +62,9 @@ const corePluginFunctionExample =
     );
     throw error;
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//---------------------------------------------------------------
 
 const typeMappingFunctionsExample =
   `function mapSchemaTypeToTypeScript(
@@ -118,7 +118,7 @@ function formatPropertyType(
   return type;
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const generationFunctionsExample =
   `function generateFileHeader(): string {
@@ -220,9 +220,9 @@ function generateInterfaces(
   }
   
   return content;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//---------------------------------------------------------------
 
 const validationFunctionsExample =
   `function validateConfig(config: any): asserts config is TypeScriptConfig {
@@ -245,7 +245,7 @@ const validationFunctionsExample =
   }
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Implementation() {
   //hooks
@@ -275,7 +275,7 @@ export default function Implementation() {
           throughout.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {corePluginFunctionExample}
       </Code>
 
@@ -288,7 +288,7 @@ export default function Implementation() {
           nullable types, arrays, and custom type references.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {typeMappingFunctionsExample}
       </Code>
 
@@ -301,7 +301,7 @@ export default function Implementation() {
           syntax construction.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {generationFunctionsExample}
       </Code>
 
@@ -314,7 +314,7 @@ export default function Implementation() {
           output generation.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {validationFunctionsExample}
       </Code>
       </section>

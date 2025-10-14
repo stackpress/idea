@@ -10,7 +10,7 @@ export default function Overview() {
 
   return (
     <>
-    {/* Overview Section Content */}
+      {/* Overview Section Content */}
       <section id="overview">
         <H1>{_('1. Overview')}</H1>
         <P>
@@ -18,7 +18,7 @@ export default function Overview() {
             The MySQL Tables Plugin will:
           </Translate>
         </P>
-        <ul className="px-ml-20 list-disc">
+        <ul className="list-disc px-ml-20">
           <li>
             <Translate>
               Parse schema models and their columns
@@ -41,8 +41,8 @@ export default function Overview() {
           </li>
           <li>
             <Translate>
-              Output SQL files that can be executed to create database 
-              tables
+              Output SQL files that can be executed to create 
+              database tables
             </Translate>
           </li>
         </ul>

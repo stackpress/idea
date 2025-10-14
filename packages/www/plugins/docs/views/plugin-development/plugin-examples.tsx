@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typescriptInterfaceGeneratorExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -87,9 +87,9 @@ function mapToTypeScript(schemaType: string): string {
   };
   
   return typeMap[schemaType] || 'any';
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const enumGeneratorExample =
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -119,9 +119,9 @@ export default async function generateEnums(props: PluginProps<{}>) {
   await fs.writeFile(outputPath, content, 'utf8');
   
   console.log(\`Generated enums: \${outputPath}\`);
-}`
+}`; 
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const cliInteractivePluginExample =
 `import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
@@ -178,9 +178,9 @@ function generateModels(models: Record<string, any>): string {
 function generateEnums(enums: Record<string, any>): string {
   // Implementation for generating enums
   return '// Generated enums\\n';
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -219,7 +219,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Plugin Examples Section Content */}
       <section>
         <H1>{_('Plugin Examples')}</H1>
@@ -247,7 +247,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {typescriptInterfaceGeneratorExample}
         </Code>
       </section>
@@ -265,7 +265,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {enumGeneratorExample}
         </Code>
       </section>
@@ -283,7 +283,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {cliInteractivePluginExample}
         </Code>
       </section>  
@@ -292,11 +292,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Plugin Development Guide'),
-          href: '/docs/plugin-development/plugin-development-guide'
+          href: "/docs/plugin-development/plugin-development-guide"
         }}
         next={{
           text: _('Plugin Configuration'),
-          href: '/docs/plugin-development/plugin-configuration'
+          href: "/docs/plugin-development/plugin-configuration"
         }}
       />
     </main>

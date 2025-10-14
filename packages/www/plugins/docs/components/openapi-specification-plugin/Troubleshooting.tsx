@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const circularReferencesExample =
   `// Problem: Circular references in schemas
@@ -41,9 +41,9 @@ function handleCircularReferences(spec: any): void {
   for (const [name, schema] of Object.entries(spec.components.schemas)) {
     checkSchema(schema, name);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const validationErrorsExample =
   `// Problem: Generated spec doesn't validate
@@ -92,9 +92,9 @@ function validateOpenAPISpec(spec: any): void {
   }
   
   console.log('✅ OpenAPI specification validation passed');
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const dependenciesExample =
   `# Install required dependencies
@@ -106,7 +106,7 @@ npm install --save-dev swagger-parser
 # For code generation
 npm install --save-dev @openapitools/openapi-generator-cli`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const performanceOptimizationExample =
   `// Problem: Large schemas cause performance issues
@@ -147,9 +147,9 @@ function optimizeSchema(spec: any): any {
       schemas: optimizedSchemas
     }
   };
-}\n`
+}\n`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const debugModeExample =
   `interface DebugOpenAPIConfig extends AdvancedOpenAPIConfig {
@@ -205,9 +205,9 @@ export default async function generateOpenAPISpecWithDebug(
     }
     throw error;
   }
-}\n`
+}\n`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Troubleshooting() {
   //hooks
@@ -248,7 +248,7 @@ export default function Troubleshooting() {
             relationships.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {circularReferencesExample}
         </Code>
 
@@ -262,7 +262,7 @@ export default function Troubleshooting() {
             validation during generation.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {validationErrorsExample}
         </Code>
 
@@ -275,7 +275,7 @@ export default function Troubleshooting() {
             for reliable operation.
           </Translate>
         </P>
-        <Code copy language='bash' className='bg-black text-white'>
+        <Code copy language="bash" className="bg-black text-white">
           {dependenciesExample}
         </Code>
 
@@ -288,7 +288,7 @@ export default function Troubleshooting() {
             times and manageable output file sizes.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {performanceOptimizationExample}
         </Code>
 
@@ -301,7 +301,7 @@ export default function Troubleshooting() {
             and optimize plugin configuration for better results.
           </Translate>
         </P>
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {debugModeExample}
         </Code>
       </section>

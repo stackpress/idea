@@ -4,16 +4,17 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
 import { H1, H2, P, Nav } from '../components/index.js';
 import Layout from '../components/Layout.js';
 import Code from '../components/Code.js';
 
 //code example
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const schemaExample = `
-// schema.idea
+const schemaExample = 
+`// schema.idea
 enum UserRole {
   ADMIN "Administrator"
   CUSTOMER "Customer"
@@ -63,7 +64,19 @@ plugin "./plugins/api-generator.js" {
   includeValidation true
 }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
+
+//styles
+//-----------------------------------------------------------------
+
+const iconStyle = clsx(
+  'fa-circle-check',
+  'fa-solid',
+  'mx-2',
+  'text-green-500'
+);
+
+//-----------------------------------------------------------------
 
 export function DocumentationHead(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -176,15 +189,15 @@ export function DocumentationBody() {
           <li>
             <H2>{_('Junior Developers')}</H2>
             <Translate>
-              Easy syntax, rapid prototyping, learn best practices through
-              generated code.
+              Easy syntax, rapid prototyping, learn best practices 
+              through generated code.
             </Translate>
           </li>
           <li>
             <H2>{_('Senior Developers')}</H2>
             <Translate>
-              Powerful features, extensible plugins, maintain consistency
-              across large codebases.
+              Powerful features, extensible plugins, maintain 
+              consistency across large codebases.
             </Translate>
           </li>
           <li>
@@ -206,8 +219,8 @@ export function DocumentationBody() {
 
         <P>
           <Translate>
-            The power of .idea comes from its plugin system. Generate code
-            for any technology:
+            The power of .idea comes from its plugin system. Generate 
+            code for any technology:
           </Translate>
         </P>
 
@@ -221,8 +234,8 @@ export function DocumentationBody() {
           <li>
             <H2>{_('Frameworks')}</H2>
             <Translate>
-              React, Vue, Angular, Next.js, Express, FastAPI, Django, and
-              more.
+              React, Vue, Angular, Next.js, Express, FastAPI, Django, 
+              and more.
             </Translate>
           </li>
           <li>
@@ -264,27 +277,27 @@ export function DocumentationBody() {
 
         <ul className="flex-wrap flex flex-col px-lh-30">
           <li>
-            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            <i className={iconStyle}></i>
             {_('TypeScript interfaces')}
           </li>
           <li>
-            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            <i className={iconStyle}></i>
             {_('PostgreSQL schema')}
           </li>
           <li>
-            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            <i className={iconStyle}></i>
             {_('React components')}
           </li>
           <li>
-            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            <i className={iconStyle}></i>
             {_('API documentation')}
           </li>
           <li>
-            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            <i className={iconStyle}></i>
             {_('Validation schemas')}
           </li>
           <li>
-            <i className="fa-solid fa-circle-check mx-2 text-green-500"></i>
+            <i className={iconStyle}></i>
             {_('Test data')}
           </li>
         </ul>

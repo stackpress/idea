@@ -4,9 +4,21 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
 import { H1, H2, H3, P, SS, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
+
+//styles
+//----------------------------------------------------------------------
+
+const anchorStyles = clsx([
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500',
+]);
+
+//----------------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -51,37 +63,37 @@ export function Right() {
       </h6>
       <nav className="px-m-14 px-lh-28 flex flex-col">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/graphql-schema-plugin-tutorial"
         >
           {_('1. GraphQL Schema Plugin Tutorial')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/typescript-interface-plugin-tutorial"
         >
           {_('2. TypeScript Interface Plugin Tutorial')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/api-client-plugin-tutorial"
         >
           {_('3. API Client Plugin Tutorial')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/validation-plugin-tutorial"
         >
           {_('4. Validation Plugin Tutorial')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/test-data-plugin-tutorial"
         >
           {_('5. Test Data Plugin Tutorial')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/tutorials/openapi-specification-plugin-tutorial"
         >
           {_('6. OpenAPI Specification Plugin Tutorial')}
@@ -97,7 +109,7 @@ export function Body() {
 
   return (
     <main className="px-h-100-0 overflow-auto px-p-10">
-      {/* Advanced Tutorials Section Content */}  
+      {/* Advanced Tutorials Section Content */}
       <section>
         <H1>{_('Advanced Tutorials')}</H1>
         <P>
@@ -390,8 +402,8 @@ export function Body() {
           </Translate>
         </P>
 
-        <H3>{_("What you'll learn:")}</H3>
-        <ul className="list-disc pl-6 my-4">
+        <H3>{_('What you\'ll learn:')}</H3>
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <Translate>
               Generate OpenAPI 3.0 compliant specifications
@@ -428,14 +440,14 @@ export function Body() {
       </section>
 
       {/* Page Navigation */}
-      <Nav  
+      <Nav
         prev={{
           text: _('Available Tutorials'),
-          href: '/docs/plugin-development/available-tutorials'
+          href: "/docs/plugin-development/available-tutorials"
         }}
         next={{
           text: _('Getting Started'),
-          href: '/docs/plugin-development/getting-started'
+          href: "/docs/plugin-development/getting-started"
         }}
       />
     </main>

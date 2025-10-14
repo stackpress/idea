@@ -4,6 +4,7 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
 import { H1, P, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
@@ -14,6 +15,17 @@ import {
   Props,
   Type
 } from '../../components/specifications/data-types/index.js';
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -64,25 +76,25 @@ export function Right() {
       </h6>
       <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="#enums"
         >
           {_('Enums')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="#props-1"
         >
           {_('Props')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="#type"
         >
           {_('Type')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="#models"
         >
           {_('Models')}
@@ -103,8 +115,8 @@ export function Body() {
         <H1>{_('Data Types')}</H1>
         <P>
           <Translate>
-            The .idea format supports four primary data types that form
-            the building blocks of your application schema.
+            The .idea format supports four primary data types that 
+            form the building blocks of your application schema.
           </Translate>
         </P>
       </section>

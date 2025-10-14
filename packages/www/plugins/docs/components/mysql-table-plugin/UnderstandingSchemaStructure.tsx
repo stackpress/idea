@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaStructureExample =
   `// Example processed schema
@@ -54,9 +54,9 @@ const schemaStructureExample =
       USER: 'user'
     }
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UnderstandingSchemaStructure() {
   //hooks
@@ -78,7 +78,7 @@ export default function UnderstandingSchemaStructure() {
         <Code
           copy
           language="typescript"
-          className='bg-black text-white p-2'
+          className="bg-black p-2 text-white"
         >
           {schemaStructureExample}
         </Code>

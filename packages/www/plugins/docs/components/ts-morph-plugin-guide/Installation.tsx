@@ -5,7 +5,7 @@ import { H1, P, C, SS } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const examples =
   `# Using npm
@@ -15,9 +15,9 @@ npm install --save-dev ts-morph
 yarn add --dev ts-morph
 
 # Using Deno
-deno add ts-morph@jsr:@ts-morph/ts-morph`
+deno add ts-morph@jsr:@ts-morph/ts-morph`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function installation() {
   //hooks
@@ -25,14 +25,14 @@ export default function installation() {
 
   return (
     <>
-    {/* Installation Section Content */}
+      {/* Installation Section Content */}
       <section id="installation">
         <H1>{_('2. Installation')}</H1>
         <P>
           <Translate>
-            Before starting with <C>ts-morph</C> plugin development, 
-            ensure you have the necessary tools and knowledge. This 
-            section outlines the essential requirements for successful 
+            Before starting with <C>ts-morph</C> plugin development,
+            ensure you have the necessary tools and knowledge. This
+            section outlines the essential requirements for successful
             plugin creation and provides installation guidance.
           </Translate>
         </P>
@@ -43,7 +43,7 @@ export default function installation() {
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             <SS>{_('Node.js 16+')}</SS>
             <Translate>
@@ -63,7 +63,7 @@ export default function installation() {
           </li>
           <li className="my-2">
             <Translate>
-              Familiarity with TypeScript interfaces, classes, and 
+              Familiarity with TypeScript interfaces, classes, and
               modules
             </Translate>
           </li>
@@ -71,9 +71,9 @@ export default function installation() {
 
         <P>
           <Translate>
-            Installing <C>ts-morph</C> is straightforward and can be 
-            done using your preferred package manager. The library is 
-            available through npm, yarn, and even Deno for different 
+            Installing <C>ts-morph</C> is straightforward and can be
+            done using your preferred package manager. The library is
+            available through npm, yarn, and even Deno for different
             development environments.
           </Translate>
         </P>
@@ -86,7 +86,7 @@ export default function installation() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mx-10 px-mb-20"
+          className="bg-black px-mb-20 px-mx-10 text-white"
         >
           {examples}
         </Code>

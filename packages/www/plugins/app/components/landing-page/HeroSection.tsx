@@ -12,8 +12,8 @@ const installCommand = `npm i -D @stackpress/idea`
 
 //----------------------------------------------------------------------
 
-const schemaExample = `
-model User {
+const schemaExample = 
+`model User {
   id String @id @default("nanoid()")
   name String @required
   email String @unique @required

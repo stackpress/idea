@@ -5,10 +5,10 @@ import { H1, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const pluginStructureExample = 
-`import type { PluginProps } from '@stackpress/idea-transformer/types';
+const pluginStructureExample =
+  `import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -54,35 +54,35 @@ export default async function htmlFormPlugin(
   await fs.writeFile(outputPath, htmlContent, 'utf8');
 
   console.log(\`✅ HTML form generated: \${outputPath}\`);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function CreatePluginStructure() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <>
       {/* Create the Plugin Structure Section Content */}
       <section id="create-the-plugin-structure">
-      <H1>{_('4. Create the Plugin Structure')}</H1>
-      <P>
-        <Translate>
-          The plugin structure provides the foundation for the HTML 
-          form generator. This section covers the main plugin function, 
-          configuration interface, and the basic workflow for 
-          processing schemas and generating HTML output.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Create a new file
-        </Translate> <C>html-form-plugin.js</C>:
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {pluginStructureExample}
-      </Code>
+        <H1>{_('4. Create the Plugin Structure')}</H1>
+        <P>
+          <Translate>
+            The plugin structure provides the foundation for the HTML
+            form generator. This section covers the main plugin function,
+            configuration interface, and the basic workflow for
+            processing schemas and generating HTML output.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Create a new file
+          </Translate> <C>html-form-plugin.js</C>:
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {pluginStructureExample}
+        </Code>
       </section>
     </>
   );

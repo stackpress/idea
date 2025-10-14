@@ -5,21 +5,22 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+import clsx from 'clsx';
 //local
 import { H1, H2, P, C, Nav } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const basicExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
 
 const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const loadExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -33,15 +34,15 @@ const terminal = await Terminal.load(args, {
   cwd: '/custom/working/directory',
   extname: '.schema',
   brand: '[MY-TOOL]'
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const runExample =
   `const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const basicCommandExecutionExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -49,9 +50,9 @@ const basicCommandExecutionExample =
 // Process a schema file
 const args = ['transform', '--input', './schema.idea'];
 const terminal = await Terminal.load(args);
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const shortFlagExample =
   `// Using the short flag alias
@@ -59,34 +60,34 @@ const args = ['transform', '--i', './schema.idea'];
 const terminal = await Terminal.load(args);
 await terminal.run();`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customWorkingDirectoryExample =
   `// Set custom working directory
 const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
   cwd: '/path/to/project'
 });
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customFileExtensionExample =
   `// Use custom file extension
 const terminal = await Terminal.load(['transform', '--i', './schema.custom'], {
   extname: '.custom'
 });
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customBrandExample =
   `// Use custom terminal brand
 const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
   brand: '[MY-SCHEMA-TOOL]'
 });
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const directCommandLineExample =
   `## Basic usage
@@ -96,9 +97,9 @@ node cli.js transform --input ./schema.idea
 node cli.js transform --i ./schema.idea
 
 ## With custom working directory
-cd /path/to/project && node cli.js transform --i ./schema.idea`
+cd /path/to/project && node cli.js transform --i ./schema.idea`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const cliScriptExample =
   `#!/usr/bin/env node
@@ -118,9 +119,9 @@ async function main() {
   }
 }
 
-main();`
+main();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const packageJsonIntegrationExample =
   `{
@@ -132,16 +133,16 @@ const packageJsonIntegrationExample =
     "build": "schema transform --i ./schema.idea",
     "dev": "schema transform --i ./dev-schema.idea"
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const defaultPathExample =
   `// Default file path construction
 const defaultPath = \`\${terminal.cwd}/schema\${terminal.extname}\`;
 // Example: "/current/directory/schema.idea"`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const flagProcessingExample =
   `// These are equivalent:
@@ -149,9 +150,9 @@ const flagProcessingExample =
 ['transform', '--i', './schema.idea']
 
 // Uses default path: ./schema.idea
-['transform']`
+['transform']`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const missingSchemaFileExample =
   `try {
@@ -159,9 +160,9 @@ const missingSchemaFileExample =
   await terminal.run();
 } catch (error) {
   console.error('File not found:', error.message);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const invalidCommandExample =
   `try {
@@ -169,9 +170,9 @@ const invalidCommandExample =
   await terminal.run();
 } catch (error) {
   console.error('Unknown command:', error.message);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const pluginErrorsExample =
   `// If plugins fail during transformation
@@ -180,9 +181,9 @@ try {
   await terminal.run();
 } catch (error) {
   console.error('Transformation failed:', error.message);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customEventHandlersExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -195,9 +196,9 @@ terminal.on('custom-command', async (event) => {
   // Custom logic here
 });
 
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const programmaticCLIExample =
   `// Build CLI arguments programmatically
@@ -213,9 +214,9 @@ function buildCLIArgs(schemaFile: string, options: any = {}) {
 
 const args = buildCLIArgs('./my-schema.idea');
 const terminal = await Terminal.load(args);
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const batchProcessingExample =
   `import { glob } from 'glob';
@@ -234,9 +235,9 @@ async function processAllSchemas(pattern: string) {
 }
 
 // Process all .idea files in a directory
-await processAllSchemas('./schemas/**/*.idea');`
+await processAllSchemas('./schemas/**/*.idea');`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const environmentBasedConfigExample =
   `const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
@@ -245,9 +246,9 @@ const environmentBasedConfigExample =
   brand: process.env.CLI_BRAND || '[IDEA]'
 });
 
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 
 const webpackPluginExample =
@@ -267,9 +268,9 @@ const webpackPluginExample =
       }
     });
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const gulpTaskExample =
   `import gulp from 'gulp';
@@ -278,9 +279,9 @@ import Terminal from '@stackpress/idea-transformer/Terminal';
 gulp.task('transform-schema', async () => {
   const terminal = await Terminal.load(['transform', '--i', './schema.idea']);
   await terminal.run();
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const npmScriptsExample =
   `{
@@ -289,9 +290,9 @@ const npmScriptsExample =
     "schema:dev": "node -e \"import('./cli.js').then(m => m.default(['transform', '--i', './dev-schema.idea']))\"",
     "schema:watch": "nodemon --watch schema.idea --exec \"npm run schema:build\""
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const unitTestingExample =
   `import { expect } from 'chai';
@@ -318,9 +319,9 @@ describe('Terminal Tests', () => {
     expect(terminal.extname).to.equal('.idea');
     expect(terminal.cwd).to.be.a('string');
   });
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const integrationTestingExample =
   `import fs from 'fs';
@@ -347,9 +348,9 @@ describe('Terminal Integration', () => {
       expect(fs.existsSync(filePath)).to.be.true;
     }
   });
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const errorHandlingBestPracticeExample =
   `// Always wrap terminal execution in try-catch
@@ -362,9 +363,9 @@ async function safeTransform(schemaFile: string) {
     console.error(\`❌ Failed to process \${schemaFile}:\`, error.message);
     throw error;
   }
-}`
+}`;     
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 
 const configurationManagementExample =
@@ -377,9 +378,9 @@ const defaultConfig = {
 
 async function createTerminal(args: string[], config = defaultConfig) {
   return await Terminal.load(args, config);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const loggingAndDebuggingExample =
   `// Add logging for better debugging
@@ -390,9 +391,20 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 console.log(\`Working directory: \${terminal.cwd}\`);
 console.log(\`File extension: \${terminal.extname}\`);
 
-await terminal.run();`
+await terminal.run();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -431,94 +443,94 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+    <menu className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('API Reference')}
       </h6>
-      <nav className="px-m-0 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-lh-28 px-m-0">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/transformers/api-references/transformer"
         >
           {_('Transformer')}
         </a>
-        <div className="text-blue-300 cursor-pointer">
+        <div className="cursor-pointer text-blue-300">
           {_('Terminal')}
         </div>
       </nav>
 
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-30 px-pb-10 uppercase">
+      <h6 className="px-fs-14 px-mb-0 px-mt-30 px-pb-10 theme-muted uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-m-0 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-lh-28 px-m-0">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#overview-1"
         >
           {_('1. Overview')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#loading-a-terminal-instance-2"
         >
           {_('2. Loading a Terminal Instance')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#properties-3"
         >
           {_('3. Properties')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#running-terminal-commands-4"
         >
           {_('4. Running Terminal Commands')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#usage-examples-5"
         >
           {_('5. Usage Examples')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#command-line-integration-6"
         >
           {_('6. Command-Line Integration')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#default-behavior-7"
         >
           {_('7. Default Behavior')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#error-handling-8"
         >
           {_('8. Error Handling')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#advanced-usage-9"
         >
           {_('9. Advanced Usage')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#integration-with-build-tools-10"
         >
           {_('10. Integration with Build Tools')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#testing-11"
         >
           {_('11. Testing')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="#best-practices-12"
         >
           {_('12. Best Practices')}
@@ -533,30 +545,31 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Overview Section */}
       <section>
         <H1>{_('Terminal')}</H1>
         <P>
           <Translate>
             A command-line interface for processing schema files and
-            executing transformations through terminal commands. The Terminal
-            class provides a comprehensive CLI interface for the idea-transformer
-            library, enabling developers to process schema files and execute
-            transformations from the command line.
+            executing transformations through terminal commands. The 
+            Terminal class provides a comprehensive CLI interface for 
+            the idea-transformer library, enabling developers to process 
+            schema files and execute transformations from the command 
+            line.
           </Translate>
         </P>
 
         <Code
           copy
-          language='typescript'
-          className='bg-black text-white'>
+          language="typescript"
+          className="bg-black text-white">
           {basicExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Overview Section */}
       <section id="overview-1">
@@ -579,7 +592,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">{_('Command-line argument parsing')}</li>
           <li className="my-2">{_('Schema file resolution')}</li>
           <li className="my-2">{_('Transformation execution')}</li>
@@ -588,7 +601,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Loading a Terminal Instance Section */}
       <section id="loading-a-terminal-instance-2">
@@ -609,7 +622,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {loadExample}
         </Code>
 
@@ -651,7 +664,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Properties Section */}
       <section id="properties-3">
@@ -701,7 +714,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Running Terminal Commands Section */}
       <section id="running-terminal-commands-4">
@@ -722,7 +735,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {runExample}
         </Code>
 
@@ -732,7 +745,7 @@ export function Body() {
             The terminal expects commands in the following format:
           </Translate>
         </P>
-        <Code copy language='bash' className='bg-black text-white'>
+        <Code copy language="bash" className="bg-black text-white">
           transform --input &lt;schema-file&gt; [--i &lt;schema-file&gt;]
         </Code>
 
@@ -757,7 +770,7 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Usage Examples Section */}
       <section id="usage-examples-5">
@@ -780,7 +793,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {basicCommandExecutionExample}
         </Code>
 
@@ -793,7 +806,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {shortFlagExample}
         </Code>
 
@@ -807,7 +820,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {customWorkingDirectoryExample}
         </Code>
 
@@ -821,7 +834,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {customFileExtensionExample}
         </Code>
 
@@ -835,13 +848,13 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {customBrandExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Command-Line Integration Section */}
       <section id="command-line-integration-6">
@@ -864,7 +877,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='bash' className='bg-black text-white'>
+        <Code copy language="bash" className="bg-black text-white">
           {directCommandLineExample}
         </Code>
 
@@ -878,7 +891,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {cliScriptExample}
         </Code>
 
@@ -892,13 +905,13 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='json' className='bg-black text-white'>
+        <Code copy language="json" className="bg-black text-white">
           {packageJsonIntegrationExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Default Behavior Section */}
       <section id="default-behavior-7">
@@ -929,7 +942,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {defaultPathExample}
         </Code>
 
@@ -950,7 +963,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <ol className="list-decimal pl-6 my-4">
+        <ol className="list-decimal my-4 pl-6">
           <li className="my-2">
             <Translate><C>--input</C> (full flag name)</Translate>
           </li>
@@ -962,13 +975,13 @@ export function Body() {
           </li>
         </ol>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {flagProcessingExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Error Handling Section */}
       <section id="error-handling-8">
@@ -992,7 +1005,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {missingSchemaFileExample}
         </Code>
 
@@ -1006,7 +1019,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {invalidCommandExample}
         </Code>
 
@@ -1020,13 +1033,13 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {pluginErrorsExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Advanced Usage Section */}
       <section id="advanced-usage-9">
@@ -1050,7 +1063,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {customEventHandlersExample}
         </Code>
 
@@ -1064,7 +1077,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {programmaticCLIExample}
         </Code>
 
@@ -1078,7 +1091,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {batchProcessingExample}
         </Code>
 
@@ -1087,18 +1100,18 @@ export function Body() {
           <Translate>
             Environment-based configuration demonstrates how to use
             environment variables to configure Terminal behavior. This
-            approach enables flexible deployment and configuration management
-            across different environments.
+            approach enables flexible deployment and configuration 
+            management across different environments.
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {environmentBasedConfigExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Integration with Build Tools Section */}
       <section id="integration-with-build-tools-10">
@@ -1122,20 +1135,21 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {webpackPluginExample}
         </Code>
 
         <H2>{_('Gulp Task')}</H2>
         <P>
           <Translate>
-            Gulp task integration demonstrates how to create Gulp tasks
-            that use the Terminal class for schema processing. This pattern
-            is useful for projects that use Gulp as their primary build tool.
+            Gulp task integration demonstrates how to create Gulp 
+            tasks that use the Terminal class for schema processing. 
+            This pattern is useful for projects that use Gulp as their 
+            primary build tool.
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {gulpTaskExample}
         </Code>
 
@@ -1149,13 +1163,13 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='json' className='bg-black text-white'>
+        <Code copy language="json" className="bg-black text-white">
           {npmScriptsExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Testing Section */}
       <section id="testing-11">
@@ -1173,13 +1187,13 @@ export function Body() {
         <P>
           <Translate>
             Unit testing examples show how to test Terminal functionality
-            in isolation. These tests verify that the Terminal class behaves
-            correctly with different command-line arguments and configuration
-            options.
+            in isolation. These tests verify that the Terminal class 
+            behaves correctly with different command-line arguments 
+            and configuration options.
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {unitTestingExample}
         </Code>
 
@@ -1193,13 +1207,13 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {integrationTestingExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Best Practices Section */}
       <section id="best-practices-12">
@@ -1223,7 +1237,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {errorHandlingBestPracticeExample}
         </Code>
 
@@ -1237,7 +1251,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {configurationManagementExample}
         </Code>
 
@@ -1251,7 +1265,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {loggingAndDebuggingExample}
         </Code>
       </section>
@@ -1260,11 +1274,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Transformer'),
-          href: '/docs/transformers/pages/transformer'
+          href: "/docs/transformers/pages/transformer"
         }}
         next={{
           text: _('API Reference'),
-          href: '/docs/transformers/api-reference'
+          href: "/docs/transformers/api-reference"
         }}
       />
     </main>

@@ -10,10 +10,10 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code example
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const schemaExample = `
-// 1. Plugin declarations
+const schemaExample = 
+`// 1. Plugin declarations
 plugin "./plugins/generate-types.js" {
   output "./generated/types.ts"
 }
@@ -62,7 +62,7 @@ model User! {
   created Date @default("now()")
 }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

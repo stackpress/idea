@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code example
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const errorHandlingExample =
   `import { Exception } from '@stackpress/idea-parser';
@@ -25,9 +25,9 @@ try {
   } else {
     console.error('Unexpected error:', error);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -65,27 +65,27 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Error Handling Section Content */}
       <section>
         <H1>{_('Error Handling')}</H1>
         <P>
           <Translate>
             The idea-transformer library provides comprehensive error
-            handling to help you identify and resolve issues during schema
-            processing. This section covers error types and handling
-            strategies.
+            handling to help you identify and resolve issues during 
+            schema processing. This section covers error types and 
+            handling strategies.
           </Translate>
         </P>
 
         <P>
           <Translate>
-            The library provides comprehensive error handling with detailed
-            error messages:
+            The library provides comprehensive error handling with 
+            detailed error messages:
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {errorHandlingExample}
         </Code>
       </section>
@@ -94,11 +94,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Examples'),
-          href: '/docs/transformers/examples'
+          href: "/docs/transformers/examples"
         }}
         next={{
           text: _('Best Practices'),
-          href: '/docs/transformers/best-practices'
+          href: "/docs/transformers/best-practices"
         }}
       />
     </main>

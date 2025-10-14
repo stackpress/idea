@@ -4,21 +4,32 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage } from 'r22n';
+import clsx from 'clsx';
 //local
 import { Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 import {
-  Introduction,
-  Installation,
-  SettingUpProject,
-  UnderstandingTsMorphBasics,
-  CreateFirstPlugin,
   AdvanceTsMorphPlugin,
-  TestingYourPlugin,
   BestPractices,
+  CreateFirstPlugin,
+  Installation,
+  Introduction,
+  References,
+  SettingUpProject,
+  TestingYourPlugin,
   Troubleshooting,
-  References
+  UnderstandingTsMorphBasics
 } from '../../components/ts-morph-plugin-guide/index.js';
+
+//styles
+//-----------------------------------------------------------------
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -56,78 +67,68 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <menu className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase ">
+    <menu className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
+      <h6 className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase">
         {_('On this page')}
       </h6>
-      <nav className="px-m-0 px-lh-28 flex flex-col">
+      <nav className="flex flex-col px-lh-28 px-m-0">
         <a
           href="#introduction"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('1. Introduction')}
         </a>
         <a
           href="#installation"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('2. Installation')}
         </a>
         <a
           href="#setting-up-the-project"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('3. Setting up the Project')}
         </a>
         <a
           href="#understanding-ts-morph-basics"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('4. Understanding ts-morph Basics')}
         </a>
         <a
           href="#creating-your-first-plugin"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('5. Creating Your First Plugin')}
         </a>
         <a
           href="#advanced-ts-morph-features"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('6. Advanced ts-morph Features')}
         </a>
         <a
           href="#testing-your-plugin"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('7. Testing Your Plugin')}
         </a>
         <a
           href="#best-practices"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('8. Best Practices')}
         </a>
         <a
           href="#troubleshooting"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('9. Troubleshooting')}
         </a>
         <a
           href="#references"
-          className="text-blue-500 cursor-pointer 
-          hover:text-blue-700"
+          className={anchorStyles}
         >
           {_('10. References')}
         </a>
@@ -137,65 +138,68 @@ export function Right() {
 }
 
 export function Body() {
+  //hooks
+  const { _ } = useLanguage();
+
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Page Content Section */}
       <Introduction />
 
       {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <Installation />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <SettingUpProject />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <UnderstandingTsMorphBasics />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <CreateFirstPlugin />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <AdvanceTsMorphPlugin />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <TestingYourPlugin />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <BestPractices />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <Troubleshooting />
 
        {/* Horizontal Rule */}
-      <hr className='mt-10'/>
+      <hr className="mt-10"/>
 
       <References />
 
       {/* Page Navigation */}
       <Nav
         prev={{
-          text: 'Available Tutorials',
-          href: '/docs/plugin-development/available-tutorials'
+          text: _('Available Tutorials'),
+          href: "/docs/plugin-development/available-tutorials"
         }}
         next={{
-          text: 'MySQL Tables Plugin Tutorial',
-          href: '/docs/tutorials/mysql-table-plugin'
+          text: _('MySQL Tables Plugin Tutorial'),
+          href: "/docs/tutorials/mysql-table-plugin"
         }}
       />
     </main>

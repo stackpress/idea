@@ -5,9 +5,10 @@ import { H1, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const usageExample = `// schema.idea
+const usageExample =
+  `// schema.idea
 plugin "./plugins/html-form-plugin.js" {
   output "./forms/user-form.html"
   title "User Registration Form"
@@ -33,9 +34,9 @@ enum UserRole {
   ADMIN "Administrator"
   USER "Regular User"
   GUEST "Guest User"
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function UsageInSchema() {
   //hooks
@@ -45,25 +46,25 @@ export default function UsageInSchema() {
     <>
       {/* Usage in Schema Section Content */}
       <section id="usage-in-schema">
-      <H1>{_('8. Usage in Schema')}</H1>
-      <P>
-        <Translate>
-          This section demonstrates how to configure and use the HTML 
-          Form Plugin within your
-        </Translate> <C>.idea</C> <Translate>
-          schema files. You'll learn about the available configuration 
-          options and how to set up your schema to generate the desired 
-          form output.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          To use this plugin in your schema file:
-        </Translate>
-      </P>
-      <Code copy language='idea' className='bg-black text-white'>
-        {usageExample}
-      </Code>
+        <H1>{_('8. Usage in Schema')}</H1>
+        <P>
+          <Translate>
+            This section demonstrates how to configure and use the HTML
+            Form Plugin within your
+          </Translate> <C>.idea</C> <Translate>
+            schema files. You'll learn about the available configuration
+            options and how to set up your schema to generate the desired
+            form output.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            To use this plugin in your schema file:
+          </Translate>
+        </P>
+        <Code copy language="idea" className="bg-black text-white">
+          {usageExample}
+        </Code>
       </section>
     </>
   );

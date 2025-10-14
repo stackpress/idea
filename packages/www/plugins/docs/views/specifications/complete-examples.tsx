@@ -10,10 +10,10 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const ecommerceSchema = `
-// E-commerce application schema
+const ecommerceSchema =
+  `// E-commerce application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/schema.ts"
 }
@@ -185,10 +185,10 @@ model OrderItem {
   total Money @required
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const blogSchema = `
-// Blog application schema
+const blogSchema =
+  `// Blog application schema
 plugin "./plugins/generate-types.js" {
   output "./src/types/blog.ts"
 }
@@ -312,7 +312,7 @@ model Comment {
   created Date @default("now()")
 }`
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

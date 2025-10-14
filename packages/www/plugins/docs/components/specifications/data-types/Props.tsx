@@ -5,19 +5,19 @@ import { H1, H2, P, SS, C } from '../../../../docs/components/index.js';
 import Code from '../../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const propsExamples = [
-`prop PropName {
+  `prop PropName {
   property "value"
   nested {
     property "value"
   }
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`prop Email {
+  `prop Email {
   type "email"
   format "email"
   validation {
@@ -59,15 +59,15 @@ prop Currency {
   }
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`model User {
+  `model User {
   email String @field.input(Email)
   password String @field.input(Password)
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Props() {
   //hooks
@@ -91,7 +91,7 @@ export default function Props() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {propsExamples[0]}
         </Code>
@@ -119,7 +119,7 @@ export default function Props() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {propsExamples[1]}
         </Code>
@@ -132,7 +132,7 @@ export default function Props() {
         <Code
           copy
           language="javascript"
-          className="bg-black text-white px-mb-20"
+          className="bg-black px-mb-20 text-white"
         >
           {propsExamples[2]}
         </Code>

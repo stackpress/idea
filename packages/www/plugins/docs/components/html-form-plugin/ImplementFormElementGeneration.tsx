@@ -5,9 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const formElementExample = `function generateFormElement(column: any, schema: any, options: any): string {
+const formElementExample =
+  `function generateFormElement(column: any, schema: any, options: any): string {
   const { name, type, required, attributes = {} } = column;
   const fieldConfig = attributes.field || {};
   const label = attributes.label || name;
@@ -201,36 +202,36 @@ function autoGenerateElement(column: any, schema: any, options: any): string {
       // Default to text input
       return generateInputElement(column, { type: 'text' }, options);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function ImplementFormElementGeneration() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <>
       {/* Implement Form Element Generation Section Content */}
       <section id="implement-form-element-generation">
-      <H1>{_('5. Implement Form Element Generation')}</H1>
-      <P>
-        <Translate>
-          Form element generation is the core functionality of the 
-          plugin. This section demonstrates how to create functions 
-          that generate different types of HTML form elements based 
-          on schema column definitions, including inputs, textareas, 
-          selects, checkboxes, radio buttons, and file inputs.
-        </Translate>
-      </P>
-      <P>
-        <Translate>
-          Create functions to generate different form elements:
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {formElementExample}
-      </Code>
+        <H1>{_('5. Implement Form Element Generation')}</H1>
+        <P>
+          <Translate>
+            Form element generation is the core functionality of the
+            plugin. This section demonstrates how to create functions
+            that generate different types of HTML form elements based
+            on schema column definitions, including inputs, textareas,
+            selects, checkboxes, radio buttons, and file inputs.
+          </Translate>
+        </P>
+        <P>
+          <Translate>
+            Create functions to generate different form elements:
+          </Translate>
+        </P>
+        <Code copy language="typescript" className="bg-black text-white">
+          {formElementExample}
+        </Code>
       </section>
     </>
   );

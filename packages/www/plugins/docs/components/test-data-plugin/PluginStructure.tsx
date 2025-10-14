@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const pluginStructureExample = 
-`import type { PluginProps } from '@stackpress/idea-transformer/types';
+const pluginStructureExample =
+  `import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -30,28 +30,32 @@ export default async function generateTestData(
   const { config, schema, transformer } = props;
   
   // Implementation here...
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function PluginStructure() {
   //hooks
   const { _ } = useLanguage();
-  
+
   return (
     <>
       {/* Plugin Structure Section Content */}
       <section id="plugin-structure">
-      <H1>{_('3. Plugin Structure')}</H1>
-      <P>
-        <Translate>
-          The following code shows how to generally layout the plugin so 
-          you can focus on the implementation.
-        </Translate>
-      </P>
-      <Code copy language='typescript' className='bg-black text-white'>
-        {pluginStructureExample}
-      </Code>
+        <H1>{_('3. Plugin Structure')}</H1>
+        <P>
+          <Translate>
+            The following code shows how to generally layout the
+            plugin so you can focus on the implementation.
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white"
+        >
+          {pluginStructureExample}
+        </Code>
       </section>
     </>
   );

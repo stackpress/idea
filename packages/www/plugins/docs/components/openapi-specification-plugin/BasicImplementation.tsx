@@ -5,10 +5,10 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const basicPluginExample = 
-`// plugins/openapi-spec.ts
+const basicPluginExample =
+  `// plugins/openapi-spec.ts
 import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
@@ -63,9 +63,9 @@ export default async function generateOpenAPISpec(
   await fs.writeFile(outputPath, JSON.stringify(spec, null, 2), 'utf8');
   
   console.log(\`✅ Generated OpenAPI specification: \${outputPath}\`);
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaGenerationExample = 
 `function generateSpecification(schema: any, config: OpenAPIConfig) {
@@ -127,9 +127,9 @@ const schemaGenerationExample =
   }
   
   return spec;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const modelSchemaExample = 
 `function generateModelSchema(model: any): any {
@@ -181,9 +181,9 @@ function generateEnumSchema(enumDef: any): any {
     enum: values,
     example: values[0]
   };
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const propertySchemaExample = 
 `function generatePropertySchema(column: any): any {
@@ -263,9 +263,9 @@ function addValidationRules(property: any, attributes: any): void {
   if (attributes.format) {
     property.format = attributes.format;
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function BasicImplementation() {
   //hooks
@@ -278,12 +278,12 @@ export default function BasicImplementation() {
       <H1>{_('2. Basic Implementation')}</H1>
       <P>
         <Translate>
-          The basic implementation provides the foundation for generating
-          OpenAPI specifications from
-        </Translate> <C>.idea</C> <Translate>
-          schema files. This section covers the core plugin structure,
-          configuration interface, and essential generation functions
-          needed to create functional API documentation.
+          The basic implementation provides the foundation for 
+          generating OpenAPI specifications from <C>.idea</C> 
+          schema files. This section covers the core plugin 
+          structure, configuration interface, and essential 
+          generation functions needed to create functional API 
+          documentation.
         </Translate>
       </P>
       <P>
@@ -302,10 +302,10 @@ export default function BasicImplementation() {
           generation logic.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {basicPluginExample}
       </Code>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {schemaGenerationExample}
       </Code>
 
@@ -320,10 +320,10 @@ export default function BasicImplementation() {
           that integrate with OpenAPI tooling.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {modelSchemaExample}
       </Code>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {propertySchemaExample}
       </Code>
       </section>

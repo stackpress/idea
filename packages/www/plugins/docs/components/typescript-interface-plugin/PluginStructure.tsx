@@ -5,10 +5,10 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const pluginStructureExample = 
-`import type { PluginProps } from '@stackpress/idea-transformer/types';
+const pluginStructureExample =
+  `import type { PluginProps } from '@stackpress/idea-transformer/types';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -29,9 +29,9 @@ export default async function generateTypeScriptInterfaces(
   const { config, schema, transformer } = props;
   
   // Implementation here...
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function PluginStructure() {
   //hooks
@@ -40,23 +40,24 @@ export default function PluginStructure() {
   return (
     <>
       {/* Plugin Structure Section Content */}
-      <section id="plugin-structure">
-      <H1>{_('3. Plugin Structure')}</H1>
-      <P>
-        <Translate>
-          The plugin structure defines the core architecture and 
-          configuration interface for the TypeScript interface generator. 
-          This includes the main plugin function, configuration types, and 
-          the overall organization of the generated TypeScript code.
-        </Translate>
-      </P>
-      <Code 
-      language='typescript'
-      className='bg-black text-white'
-      >
+        <section id="plugin-structure">
+        <H1>{_('3. Plugin Structure')}</H1>
+        <P>
+          <Translate>
+            The plugin structure defines the core architecture and
+            configuration interface for the TypeScript interface generator.
+            This includes the main plugin function, configuration types, 
+            and the overall organization of the generated TypeScript code.
+          </Translate>
+        </P>
+        <Code
+          copy
+          language="typescript"
+          className="bg-black text-white"
+        >
         {pluginStructureExample}
-      </Code>
-      </section>
+        </Code>
+        </section>
     </>
   );
 }

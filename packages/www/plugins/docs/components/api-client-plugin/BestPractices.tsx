@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeSafety = 
 `// Always use generated types
@@ -22,9 +22,9 @@ function handleUserResponse(response: APIResponse<User>) {
     // TypeScript knows response.error exists
     console.error(response.error);
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const errorHandlingPattern = 
 `// Centralized error handling
@@ -46,9 +46,9 @@ class APIErrorHandler {
 
 // Usage
 const response = await client.user.create(userData);
-APIErrorHandler.handle(response);`
+APIErrorHandler.handle(response);`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const clientExtension = 
 `// Extend base client for custom behavior
@@ -66,9 +66,9 @@ class CustomAPIClient extends APIClient {
       return originalRequest.call(this, method, url, data, options);
     };
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const cachingPattern = 
 `// Simple in-memory cache
@@ -94,9 +94,9 @@ class CachedAPIClient extends APIClient {
     
     return response;
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function BestPractices() {
   //hooks
@@ -111,8 +111,8 @@ export default function BestPractices() {
         <Translate>
           Following best practices ensures your API client is maintainable,
           performant, and robust. These patterns have been proven in
-          production environments and help avoid common pitfalls when working
-          with generated API clients.
+          production environments and help avoid common pitfalls when 
+          working with generated API clients.
         </Translate>
       </P>
 
@@ -124,7 +124,7 @@ export default function BestPractices() {
           and interfaces to maintain type safety throughout your application.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {typeSafety}
       </Code>
 
@@ -136,7 +136,7 @@ export default function BestPractices() {
           code duplication and ensure consistent error presentation to users.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {errorHandlingPattern}
       </Code>
 
@@ -148,19 +148,20 @@ export default function BestPractices() {
           composition patterns to add logging, metrics, or custom behavior.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {clientExtension}
       </Code>
 
       <H2>{_('8.4. Caching Strategies')}</H2>
       <P>
         <Translate>
-          Implement appropriate caching strategies to improve performance and
-          reduce server load. Consider using in-memory caches for frequently
-          accessed data and implement cache invalidation strategies.
+          Implement appropriate caching strategies to improve performance 
+          and reduce server load. Consider using in-memory caches for 
+          frequently accessed data and implement cache invalidation 
+          strategies.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {cachingPattern}
       </Code>
       </section>

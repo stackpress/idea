@@ -4,16 +4,17 @@ import type {
   ServerPageProps
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
+import clsx from 'clsx';
 //local
 import { H1, H2, P, C, Nav, SS } from '../../components/index.js';
 import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const parseExample = `
-import { parse } from '@stackpress/idea-parser';
+const parseExample = 
+`import { parse } from '@stackpress/idea-parser';
 
 const result = parse(\`
 prop Text { type "text" }
@@ -25,10 +26,10 @@ model User {
 console.log(result);
 // Output includes prop references: { prop: { Text: { type: "text" } }, ... }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const finalExample = `
-import { final } from '@stackpress/idea-parser';
+const finalExample = 
+`import { final } from '@stackpress/idea-parser';
 
 const result = final(\`
 prop Text { type "text" }
@@ -41,10 +42,10 @@ console.log(result);
 // Output has resolved references: { model: { User: { ... } } }
 // No 'prop' section in output`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------  
 
-const exceptionExample = `
-import { Exception } from '@stackpress/idea-parser';
+const exceptionExample = 
+`import { Exception } from '@stackpress/idea-parser';
 
 try {
   const result = parse(invalidCode);
@@ -54,7 +55,18 @@ try {
   }
 }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx(
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500'
+);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -109,32 +121,32 @@ export function Right() {
       </h6>
       <nav className="flex flex-col px-fs-14 px-lh-28">
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/lexer"
         >
           {_('Lexer API Reference')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler"
         >
           {_('Compiler API Reference')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast"
         >
           {_('AST Reference')}
         </a>
 
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/tokens"
         >
           {_('Token Reference')}
         </a>
         <a
-          className="cursor-pointer hover:text-blue-700 text-blue-500"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling"
         >
           {_('Exception Handling')}

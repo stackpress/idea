@@ -10,10 +10,10 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const completeSchemaExamples = `
-import { final } from '@stackpress/idea-parser';
+const completeSchemaExamples = 
+`import { final } from '@stackpress/idea-parser';
 
 const schemaCode = \`
 plugin "./database-plugin" {
@@ -52,10 +52,10 @@ model User! {
 const result = final(schemaCode);
 console.log(JSON.stringify(result, null, 2));`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const individualComponentsExample = `
-import { Compiler, EnumTree, ModelTree } from '@stackpress/idea-parser';
+const individualComponentsExample = 
+`import { Compiler, EnumTree, ModelTree } from '@stackpress/idea-parser';
 
 // Parse individual enum
 const enumCode = \`enum Status { ACTIVE "Active" INACTIVE "Inactive" }\`;
@@ -67,7 +67,7 @@ const modelCode = \`model User { id String @id name String }\`;
 const modelAST = ModelTree.parse(modelCode);
 const [modelName, modelConfig] = Compiler.model(modelAST);`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

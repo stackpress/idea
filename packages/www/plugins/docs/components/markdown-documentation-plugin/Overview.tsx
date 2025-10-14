@@ -11,39 +11,39 @@ export default function Overview() {
     <>
       {/* Overview Section Content */}
       <section id="overview">
-      <H1>{_('1. Overview')}</H1>
-      <P>
-        <Translate>
-          The Markdown Documentation Plugin will:
-        </Translate>
-      </P>
-      <ul className="list-disc pl-6 my-4">
-        <li className="my-2">
+        <H1>{_('1. Overview')}</H1>
+        <P>
           <Translate>
-            Parse schema models, types, enums, and props
+            The Markdown Documentation Plugin will:
           </Translate>
-        </li>
-        <li className="my-2">
-          <Translate>
-            Generate structured markdown documentation
-          </Translate>
-        </li>
-        <li className="my-2">
-          <Translate>
-            Include examples and usage notes
-          </Translate>
-        </li>
-        <li className="my-2">
-          <Translate>
-            Create navigation and cross-references
-          </Translate>
-        </li>
-        <li className="my-2">
-          <Translate>
-            Support different documentation formats and styles
-          </Translate>
-        </li>
-      </ul>
+        </P>
+        <ul className="list-disc my-4 pl-6">
+          <li className="my-2">
+            <Translate>
+              Parse schema models, types, enums, and props
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Generate structured markdown documentation
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Include examples and usage notes
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Create navigation and cross-references
+            </Translate>
+          </li>
+          <li className="my-2">
+            <Translate>
+              Support different documentation formats and styles
+            </Translate>
+          </li>
+        </ul>
       </section>
     </>
   )

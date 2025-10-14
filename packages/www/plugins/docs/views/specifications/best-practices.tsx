@@ -239,7 +239,9 @@ export function Body() {
             {bestPractices[0]}
           </Code>
 
-          <P><Translate>Group Related Elements</Translate></P>
+          <P>
+            <Translate>Group Related Elements</Translate>
+          </P>
           <Code
             copy
             language="typescript"

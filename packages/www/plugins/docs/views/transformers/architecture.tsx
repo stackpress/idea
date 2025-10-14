@@ -10,11 +10,12 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code example
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const architectureDiagram = `
+const architectureDiagram = 
+`
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Schema File   │───▶│   Transformer   │───▶│    Plugins      │
+│   Schema File   │───▶│   Transformer  │───▶│    Plugins      │
 │   (.idea/.json) │    │                 │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                               │                        │
@@ -25,7 +26,7 @@ const architectureDiagram = `
                        └─────────────────┘    └─────────────────┘
 `
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -61,26 +62,24 @@ export function Head(props: ServerPageProps<ServerConfigProps>) {
   )
 }
 
-
-
 export function Body() {
   //hooks
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Architecture Section Content */}
       <section>
         <H1>{_('Architecture')}</H1>
         <P>
           <Translate>
-            The idea-transformer follows a clear architectural pattern 
+            The idea-transformer follows a clear architectural pattern
             that separates concerns between schema loading, processing,
             and output generation. This design enables flexible plugin
             development and maintainable code generation workflows.
           </Translate>
         </P>
-        <Code copy language='text' className='bg-black text-white'>
+        <Code copy language="text" className="bg-black text-white">
           {architectureDiagram}
         </Code>
       </section>
@@ -89,11 +88,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('API Reference'),
-          href: '/docs/transformers/api-reference'
+          href: "/docs/transformers/api-reference"
         }}
         next={{
           text: _('Usage Patterns'),
-          href: '/docs/transformers/usage-patterns'
+          href: "/docs/transformers/usage-patterns"
         }}
       />
     </main>

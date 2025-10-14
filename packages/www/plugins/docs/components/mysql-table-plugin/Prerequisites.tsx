@@ -18,7 +18,7 @@ export default function Prerequisites() {
             knowledge and tools:
           </Translate>
         </P>
-        <ul className="px-ml-20 list-disc">
+        <ul className="list-disc px-ml-20">
           <li>
             <Translate>
               Basic understanding of TypeScript/JavaScript

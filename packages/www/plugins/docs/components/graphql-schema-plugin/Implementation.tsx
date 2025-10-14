@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, C, Code } from '../../../docs/components/index.js';
 
 //code examples
-//----------------------------------------------------------------------
+//----------------------------------------------------------------- 
 
 const corePluginFunctionExample = 
 `export default async function generateGraphQLSchema(
@@ -67,9 +67,9 @@ const corePluginFunctionExample =
     console.error('❌ GraphQL schema generation failed:', error.message);
     throw error;
   }
-}`
+}`; 
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeMappingFunctionsExample = 
 `function mapSchemaTypeToGraphQL(schemaType: string, customScalars: Record<string, string> = {}): string {
@@ -106,9 +106,9 @@ function formatFieldType(column: any, customScalars: Record<string, string> = {}
   }
   
   return type;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customScalarsExample = 
 `function generateCustomScalars(customScalars: Record<string, string>): string {
@@ -129,9 +129,9 @@ scalar JSON
   }
   
   return content + '\\n';
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const enumsAndTypesExample = 
 `function generateEnums(enums: Record<string, any>): string {
@@ -165,9 +165,9 @@ function generateTypes(models: Record<string, any>): string {
   }
   
   return content;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const inputTypesAndQueriesExample = 
 `function generateInputTypes(models: Record<string, any>): string {
@@ -222,9 +222,9 @@ function generateQueries(models: Record<string, any>): string {
   
   content += '}\\n\\n';
   return content;
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Implementation() {
   //hooks
@@ -237,55 +237,57 @@ export default function Implementation() {
       <H1>{_('4. Implementation')}</H1>
       <P>
         <Translate>
-          The implementation section covers the core plugin function and 
-          supporting utilities that handle GraphQL schema generation. This 
-          includes configuration validation, content generation, file writing, 
-          and error handling throughout the generation process.
+          The implementation section covers the core plugin function 
+          and supporting utilities that handle GraphQL schema generation. 
+          This includes configuration validation, content generation, 
+          file writing, and error handling throughout the generation 
+          process.
         </Translate>
       </P>
 
       <H2>{_('Core Plugin Function')}</H2>
       <P>
         <Translate>
-          The core plugin function serves as the main entry point for GraphQL 
-          schema generation. It orchestrates the entire process from 
-          configuration validation through content generation to file output, 
-          ensuring proper error handling and logging throughout.
+          The core plugin function serves as the main entry point for 
+          GraphQL schema generation. It orchestrates the entire process 
+          from configuration validation through content generation to 
+          file output, ensuring proper error handling and logging 
+          throughout.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {corePluginFunctionExample}
       </Code>
 
       <H2>{_('Type Mapping Functions')}</H2>
       <P>
         <Translate>
-          Type mapping functions handle the conversion of <C>.idea</C> schema 
-          types to their GraphQL equivalents. These functions ensure proper 
-          type safety and handle complex scenarios like arrays, required 
-          fields, and custom scalar types.
+          Type mapping functions handle the conversion of <C>.idea</C> 
+          schema types to their GraphQL equivalents. These functions 
+          ensure proper type safety and handle complex scenarios like 
+          arrays, required fields, and custom scalar types.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {typeMappingFunctionsExample}
       </Code>
 
       <H2>{_('Schema Generation Functions')}</H2>
       <P>
         <Translate>
-          Schema generation functions create specific parts of the GraphQL 
-          schema including custom scalars, enums, types, input types, and root 
-          operation types. These functions handle proper GraphQL syntax 
-          construction and type relationships.
+          Schema generation functions create specific parts of the 
+          GraphQL schema including custom scalars, enums, types, input 
+          types, and root operation types. These functions handle proper 
+          GraphQL syntax construction and type relationships.
         </Translate>
       </P>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {customScalarsExample}
       </Code>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {enumsAndTypesExample}
       </Code>
-      <Code lang='typescript'>
+      <Code lang="typescript">
         {inputTypesAndQueriesExample}
       </Code>
       </section>

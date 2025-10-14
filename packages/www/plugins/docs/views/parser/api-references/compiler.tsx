@@ -5,18 +5,19 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
+import clsx from 'clsx';
 //local
 import { H1, H2, P, C, Nav } from '../../../components/index.js';
 import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const basicImportExample =
-  `import { Compiler } from '@stackpress/idea-parser';`
+  `import { Compiler } from '@stackpress/idea-parser';`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const arrayTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -32,9 +33,9 @@ const arrayToken = {
 };
 
 const result = Compiler.array(arrayToken);
-console.log(result); // ['value1', 'value2', 'value3']`
+console.log(result); // ['value1', 'value2', 'value3']`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const dataTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -52,9 +53,9 @@ const objectResult = Compiler.data({
     }
   ]
 });
-console.log(objectResult); // { name: 'John' }`
+console.log(objectResult); // { name: 'John' }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const enumTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -82,9 +83,9 @@ const enumToken = {
 
 const [name, config] = Compiler.enum(enumToken);
 console.log(name); // 'Status'
-console.log(config); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }`
+console.log(config); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const finalSchemaExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -92,9 +93,9 @@ const finalSchemaExample =
 // This method removes prop and use references for a clean final output
 const finalSchema = Compiler.final(schemaToken);
 console.log(finalSchema);
-// Output will not contain 'prop' or 'use' sections`
+// Output will not contain 'prop' or 'use' sections`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const identifierTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -113,9 +114,9 @@ try {
   Compiler.identifier({ name: 'UnknownProp' }, {});
 } catch (error) {
   console.log(error.message); // 'Unknown reference UnknownProp'
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const literalTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -127,9 +128,9 @@ const numberLiteral = Compiler.literal({ type: 'Literal', value: 42 });
 console.log(numberLiteral); // 42
 
 const booleanLiteral = Compiler.literal({ type: 'Literal', value: true });
-console.log(booleanLiteral); // true`
+console.log(booleanLiteral); // true`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const modelTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -172,9 +173,9 @@ const modelToken = {
 const [name, config] = Compiler.model(modelToken);
 console.log(name); // 'User'
 console.log(config.mutable); // false
-console.log(config.columns); // Array of column configurations`
+console.log(config.columns); // Array of column configurations`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const objectTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -189,9 +190,9 @@ const objectToken = {
 };
 
 const result = Compiler.object(objectToken);
-console.log(result); // { name: 'John', age: 30 }`
+console.log(result); // { name: 'John', age: 30 }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const pluginTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -215,9 +216,9 @@ const pluginToken = {
 
 const [name, config] = Compiler.plugin(pluginToken);
 console.log(name); // './database'
-console.log(config); // { provider: 'postgresql' }`
+console.log(config); // { provider: 'postgresql' }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const propTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -242,9 +243,9 @@ const propToken = {
 
 const [name, config] = Compiler.prop(propToken);
 console.log(name); // 'Text'
-console.log(config); // { type: 'text', format: 'lowercase' }`
+console.log(config); // { type: 'text', format: 'lowercase' }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaDeclarationExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -257,9 +258,9 @@ console.log(schemaConfig);
 // Compile with finalization (resolves references)
 const finalizedConfig = Compiler.schema(schemaToken, true);
 console.log(finalizedConfig);
-// References are resolved in the output`
+// References are resolved in the output`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -298,9 +299,9 @@ const typeToken = {
 const [name, config] = Compiler.type(typeToken);
 console.log(name); // 'Address'
 console.log(config.mutable); // true
-console.log(config.columns); // Array of column configurations`
+console.log(config.columns); // Array of column configurations`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const useTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -312,9 +313,9 @@ const useToken = {
 };
 
 const importPath = Compiler.use(useToken);
-console.log(importPath); // './another.idea'`
+console.log(importPath); // './another.idea'`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const invalidTokenTypesExample =
   `// Throws: "Invalid data token type"
@@ -336,9 +337,9 @@ Compiler.schema({ kind: 'notASchema' });
 Compiler.type({ kind: 'notAType' });
 
 // Throws: "Invalid Import"
-Compiler.use({ type: 'NotAnImportDeclaration' });`
+Compiler.use({ type: 'NotAnImportDeclaration' });`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const missingPropertiesExample =
   `// Throws: "Expecting a columns property"
@@ -348,28 +349,28 @@ Compiler.model({
     id: { name: 'User' },
     init: { properties: [] } // Missing columns
   }]
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const unknownReferencesExample =
   `// Throws: "Unknown reference MyProp"
-Compiler.identifier({ name: 'MyProp' }, {});`
+Compiler.identifier({ name: 'MyProp' }, {});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const duplicateDeclarationsExample =
   `// Throws: "Duplicate MyEnum" when compiling schema with duplicate names
-Compiler.schema(schemaWithDuplicates);`
+Compiler.schema(schemaWithDuplicates);`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const typeModifiersExample =
   `Optional types: String? → { type: 'String', required: false }
 Array types: String[] → { type: 'String', multiple: true }
-Combined: String[]? → { type: 'String', required: false, multiple: true }`
+Combined: String[]? → { type: 'String', required: false, multiple: true }`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const columnConfigurationExample =
   `// Input object format
@@ -388,9 +389,9 @@ const columnConfigurationExample =
     { name: 'name', type: 'String', required: true, multiple: false, 
       attributes: { required: true } }
   ]
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const usageWithASTExample =
   `import { Compiler, EnumTree, ModelTree, SchemaTree } from '@stackpress/idea-parser';
@@ -404,9 +405,20 @@ const [modelName, modelConfig] = Compiler.model(modelAST);
 
 // Parse and compile complete schema
 const schemaAST = SchemaTree.parse(schemaCode);
-const schemaConfig = Compiler.schema(schemaAST);`
+const schemaConfig = Compiler.schema(schemaAST);`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
+
+//styles
+//-----------------------------------------------------------------
+
+const anchorStyles = clsx([
+  'cursor-pointer',
+  'hover:text-blue-700',
+  'text-blue-500',
+]);
+
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -455,36 +467,38 @@ export function Right() {
   const { _ } = useLanguage();
 
   return (
-    <aside className="px-m-0 px-px-10 px-py-20 px-h-100-40 overflow-auto">
+    <aside className="overflow-auto px-h-100-40 px-m-0 px-px-10 px-py-20">
       {/* API Reference Navigation */}
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-0 px-pb-10 uppercase">
+      <h6
+        className="px-fs-14 px-mb-0 px-mt-0 px-pb-10 theme-muted uppercase"
+      >
         {_('API Reference')}
       </h6>
       <nav className="px-fs-14 px-lh-28 flex flex-col">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/lexer"
         >
           {_('Lexer API Reference')}
         </a>
-        <div className="text-blue-300 cursor-pointer">
+        <div className="cursor-pointer text-blue-300">
           {_('Compiler API Reference')}
         </div>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/ast"
         >
           {_('AST Reference')}
         </a>
 
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/tokens"
         >
           {_('Token Reference')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/exception-handling"
         >
           {_('Exception Handling')}
@@ -493,114 +507,114 @@ export function Right() {
 
 
       {/* On This Page Navigation */}
-      <h6 className="theme-muted px-fs-14 px-mb-0 px-mt-50 px-pb-10 uppercase">
+      <h6 className="px-fs-14 px-mb-0 px-mt-50 px-pb-10 theme-muted uppercase">
         {_('On This Page')}
       </h6>
       <nav className="px-fs-14 px-lh-28 flex flex-col">
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#compiler"
         >
           {_('A. Compiler')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#static-methods"
         >
           {_('1. Static Methods')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-array-tokens"
         >
           {_('1.1 Array Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-data-tokens"
         >
           {_('1.2 Data Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-enum-declarations"
         >
           {_('1.3 Enum Declarations')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-final-schema"
         >
           {_('1.4 Schema to Final JSON')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-identifier-tokens"
         >
           {_('1.5 Identifier Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-literal-tokens"
         >
           {_('1.6 Literal Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-model-declarations"
         >
           {_('1.7 Model Declarations')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-object-tokens"
         >
           {_('1.8 Object Tokens')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-plugin-declarations"
         >
           {_('1.9 Plugin Declarations')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-prop-declarations"
         >
           {_('1.10 Prop Declarations')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-schema-declarations"
         >
           {_('1.11 Schema Declarations')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-type-declarations"
         >
           {_('1.12 Type Declarations')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#converting-use-declarations"
         >
           {_('1.13 Use Declarations')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#error-handling"
         >
           {_('B. Error Handling')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#type-processing"
         >
           {_('C. Type Processing')}
         </a>
         <a
-          className="text-blue-500 cursor-pointer hover:text-blue-700"
+          className={anchorStyles}
           href="/docs/parser/api-references/compiler#usage-with-ast"
         >
           {_('D. Usage with AST')}
@@ -615,7 +629,7 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Compiler Section Content */}
       <section id="compiler">
         <H1>{_('Compiler')}</H1>
@@ -623,8 +637,8 @@ export function Body() {
           <Translate>
             The Compiler class provides static methods for converting
             Abstract Syntax Tree (AST) tokens into structured JSON
-            configurations. It serves as the bridge between parsed tokens
-            and the final JSON output.
+            configurations. It serves as the bridge between parsed
+            tokens and the final JSON output.
           </Translate>
         </P>
         <Code copy language="javascript" className="bg-black text-white">
@@ -650,8 +664,8 @@ export function Body() {
           <H2>{_('1.1 Converting Array Tokens')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile array tokens into
-              actual arrays.
+              The following example shows how to compile array tokens
+              into actual arrays.
             </Translate>
           </P>
           <Code copy language="javascript" className="bg-black text-white">
@@ -699,8 +713,8 @@ export function Body() {
           <H2>{_('1.2 Converting Data Tokens')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile data tokens into
-              JavaScript values.
+              The following example shows how to compile data tokens
+              into JavaScript values.
             </Translate>
           </P>
           <Code copy language="javascript" className="bg-black text-white">
@@ -708,8 +722,8 @@ export function Body() {
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
-            <Trow className="theme-bg-bg2 text-left">
+          <Table className="mt-5 text-left">
+            <Trow className="text-left theme-bg-bg2">
               <Thead>Parameter</Thead>
               <Thead>Type</Thead>
               <Thead>Description</Thead>
@@ -719,17 +733,18 @@ export function Body() {
               <Tcol><C>DataToken</C></Tcol>
               <Tcol>
                 <Translate>
-                  The data token to compile (can be object, array, literal,
-                  or identifier)
+                  The data token to compile (can be object, array,
+                  literal, or identifier)
                 </Translate>
               </Tcol>
             </Trow>
-            <Trow className='theme-bg-bg2'>
+            <Trow className="theme-bg-bg2">
               <Tcol><C>references</C></Tcol>
               <Tcol><C>UseReferences</C></Tcol>
               <Tcol>
                 <Translate>
-                  Reference map for resolving identifiers (default: false)
+                  Reference map for resolving identifiers (default:
+                  false)
                 </Translate>
               </Tcol>
             </Trow>
@@ -744,23 +759,23 @@ export function Body() {
         </section>
 
         {/* Converting Enum Declarations Section Content */}
-        <section id='converting-enum-declarations'>
+        <section id="converting-enum-declarations">
           <H2>{_('1.3 Converting Enum Declarations')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile enum declarations
-              into JSON configurations.
+              The following example shows how to compile enum
+              declarations into JSON configurations.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {enumTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
-            <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
-            <Thead className="theme-bg-bg2 text-left">Type</Thead>
-            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+          <Table className="mt-5 text-left">
+            <Thead className="text-left theme-bg-bg2">Parameter</Thead>
+            <Thead className="text-left theme-bg-bg2">Type</Thead>
+            <Thead className="text-left theme-bg-bg2">Description</Thead>
             <Trow>
               <Tcol><C>token</C></Tcol>
               <Tcol><C>DeclarationToken</C></Tcol>
@@ -775,13 +790,14 @@ export function Body() {
           <H2>{_('Returns')}</H2>
           <P>
             <Translate>
-              A tuple containing the enum name and its configuration object.
+              A tuple containing the enum name and its configuration
+              object.
             </Translate>
           </P>
         </section>
 
         {/* Converting Final Schema Section Content */}
-        <section id='converting-final-schema'>
+        <section id="converting-final-schema">
           <H2>{_('1.4 Converting Schema to Final JSON')}</H2>
           <P>
             <Translate>
@@ -789,7 +805,7 @@ export function Body() {
               into a final JSON configuration.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {finalSchemaExample}
           </Code>
 
@@ -819,15 +835,15 @@ export function Body() {
         </section>
 
         {/* Converting Identifier Tokens Section Content */}
-        <section id='converting-identifier-tokens'>
+        <section id="converting-identifier-tokens">
           <H2>{_('1.5 Converting Identifier Tokens')}</H2>
           <P>
             <Translate>
-              The following example shows how to resolve identifier tokens
-              to their actual values.
+              The following example shows how to resolve identifier
+              tokens to their actual values.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {identifierTokenExample}
           </Code>
 
@@ -847,7 +863,7 @@ export function Body() {
                 </Translate>
               </Tcol>
             </Trow>
-            <Trow className='theme-bg-bg2'>
+            <Trow className="theme-bg-bg2">
               <Tcol><C>references</C></Tcol>
               <Tcol><C>UseReferences</C></Tcol>
               <Tcol>
@@ -868,7 +884,7 @@ export function Body() {
         </section>
 
         {/* Converting Literal Tokens Section Content */}
-        <section id='converting-literal-tokens'>
+        <section id="converting-literal-tokens">
           <H2>{_('1.6 Converting Literal Tokens')}</H2>
           <P>
             <Translate>
@@ -876,13 +892,13 @@ export function Body() {
               literal tokens.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {literalTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
-            <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
+          <Table className="mt-5 text-left">
+            <Thead className="text-left theme-bg-bg2">Parameter</Thead>
             <Thead className="theme-bg-bg2 text-left">Type</Thead>
             <Thead className="theme-bg-bg2 text-left">Description</Thead>
             <Trow>
@@ -905,20 +921,20 @@ export function Body() {
         </section>
 
         {/* Converting Model Declarations Section Content */}
-        <section id='converting-model-declarations'>
+        <section id="converting-model-declarations">
           <H2>{_('1.7 Converting Model Declarations')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile model declarations
-              into JSON configurations.
+              The following example shows how to compile model
+              declarations into JSON configurations.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {modelTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
+          <Table className="mt-5 text-left">
             <Trow className="theme-bg-bg2 text-left">
               <Thead>Parameter</Thead>
               <Thead>Type</Thead>
@@ -933,12 +949,13 @@ export function Body() {
                 </Translate>
               </Tcol>
             </Trow>
-            <Trow className='theme-bg-bg2'>
+            <Trow className="theme-bg-bg2">
               <Tcol><C>references</C></Tcol>
               <Tcol><C>UseReferences</C></Tcol>
               <Tcol>
                 <Translate>
-                  Reference map for resolving identifiers (default: false)
+                  Reference map for resolving identifiers (default:
+                  false)
                 </Translate>
               </Tcol>
             </Trow>
@@ -947,13 +964,14 @@ export function Body() {
           <H2>{_('Returns')}</H2>
           <P>
             <Translate>
-              A tuple containing the model name and its configuration object.
+              A tuple containing the model name and its configuration
+              object.
             </Translate>
           </P>
         </section>
 
         {/* Converting Object Tokens Section Content */}
-        <section id='converting-object-tokens'>
+        <section id="converting-object-tokens">
           <H2>{_('1.8 Converting Object Tokens')}</H2>
           <P>
             <Translate>
@@ -961,13 +979,13 @@ export function Body() {
               into actual objects.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {objectTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
-            <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
+          <Table className="mt-5 text-left">
+            <Thead className="text-left theme-bg-bg2">Parameter</Thead>
             <Thead className="theme-bg-bg2 text-left">Type</Thead>
             <Thead className="theme-bg-bg2 text-left">Description</Thead>
             <Trow>
@@ -984,7 +1002,8 @@ export function Body() {
               <Tcol><C>UseReferences</C></Tcol>
               <Tcol>
                 <Translate>
-                  Reference map for resolving identifiers (default: false)
+                  Reference map for resolving identifiers (default:
+                  false)
                 </Translate>
               </Tcol>
             </Trow>
@@ -999,20 +1018,20 @@ export function Body() {
         </section>
 
         {/* Converting Plugin Declarations Section Content */}
-        <section id='converting-plugin-declarations'>
+        <section id="converting-plugin-declarations">
           <H2>{_('1.9 Converting Plugin Declarations')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile plugin declarations
-              into JSON configurations.
+              The following example shows how to compile plugin
+              declarations into JSON configurations.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {pluginTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
+          <Table className="mt-5 text-left">
             <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
             <Thead className="theme-bg-bg2 text-left">Type</Thead>
             <Thead className="theme-bg-bg2 text-left">Description</Thead>
@@ -1030,26 +1049,27 @@ export function Body() {
           <H2>{_('Returns')}</H2>
           <P>
             <Translate>
-              A tuple containing the plugin name and its configuration object.
+              A tuple containing the plugin name and its configuration
+              object.
             </Translate>
           </P>
         </section>
 
         {/* Converting Prop Declarations Section Content */}
-        <section id='converting-prop-declarations'>
+        <section id="converting-prop-declarations">
           <H2>{_('1.10 Converting Prop Declarations')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile prop declarations
-              into JSON configurations.
+              The following example shows how to compile prop
+              declarations into JSON configurations.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {propTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
+          <Table className="mt-5 text-left">
             <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
             <Thead className="theme-bg-bg2 text-left">Type</Thead>
             <Thead className="theme-bg-bg2 text-left">Description</Thead>
@@ -1067,7 +1087,8 @@ export function Body() {
               <Tcol><C>UseReferences</C></Tcol>
               <Tcol>
                 <Translate>
-                  Reference map for resolving identifiers (default: false)
+                  Reference map for resolving identifiers (default:
+                  false)
                 </Translate>
               </Tcol>
             </Trow>
@@ -1076,26 +1097,27 @@ export function Body() {
           <H2>{_('Returns')}</H2>
           <P>
             <Translate>
-              A tuple containing the prop name and its configuration object.
+              A tuple containing the prop name and its configuration
+              object.
             </Translate>
           </P>
         </section>
 
         {/* Converting Schema Declarations Section Content */}
-        <section id='converting-schema-declarations'>
+        <section id="converting-schema-declarations">
           <H2>{_('1.11 Converting Schema Declarations')}</H2>
           <P>
             <Translate>
-              The following example shows how to compile complete schema
-              tokens into JSON configurations.
+              The following example shows how to compile complete
+              schema tokens into JSON configurations.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {schemaDeclarationExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
+          <Table className="mt-5 text-left">
             <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
             <Thead className="theme-bg-bg2 text-left">Type</Thead>
             <Thead className="theme-bg-bg2 text-left">Description</Thead>
@@ -1122,13 +1144,14 @@ export function Body() {
           <H2>{_('Returns')}</H2>
           <P>
             <Translate>
-              A <C>SchemaConfig</C> object containing all compiled declarations.
+              A <C>SchemaConfig</C> object containing all compiled
+              declarations.
             </Translate>
           </P>
         </section>
 
         {/* Converting Type Declarations Section Content */}
-        <section id='converting-type-declarations'>
+        <section id="converting-type-declarations">
           <H2>{_('1.12 Converting Type Declarations')}</H2>
           <P>
             <Translate>
@@ -1136,18 +1159,22 @@ export function Body() {
               into JSON configurations.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {typeTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
+          <Table className="mt-5 text-left">
             <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
             <Thead className="theme-bg-bg2 text-left">Type</Thead>
             <Thead className="theme-bg-bg2 text-left">Description</Thead>
             <Trow>
-              <Tcol><C>token</C></Tcol>
-              <Tcol><C>DeclarationToken</C></Tcol>
+              <Tcol>
+                <C>token</C>
+              </Tcol>
+              <Tcol>
+                <C>DeclarationToken</C>
+              </Tcol>
               <Tcol>
                 <Translate>
                   The type declaration token to compile
@@ -1159,7 +1186,8 @@ export function Body() {
               <Tcol><C>UseReferences</C></Tcol>
               <Tcol>
                 <Translate>
-                  Reference map for resolving identifiers (default: false)
+                  Reference map for resolving identifiers (default:
+                  false)
                 </Translate>
               </Tcol>
             </Trow>
@@ -1168,13 +1196,14 @@ export function Body() {
           <H2>{_('Returns')}</H2>
           <P>
             <Translate>
-              A tuple containing the type name and its configuration object.
+              A tuple containing the type name and its configuration
+              object.
             </Translate>
           </P>
         </section>
 
         {/* Converting Use Declarations Section Content */}
-        <section id='converting-use-declarations'>
+        <section id="converting-use-declarations">
           <H2>{_('1.13 Converting Use Declarations')}</H2>
           <P>
             <Translate>
@@ -1182,18 +1211,22 @@ export function Body() {
               declarations.
             </Translate>
           </P>
-          <Code copy language='javascript' className='bg-black text-white'>
+          <Code copy language="javascript" className="bg-black text-white">
             {useTokenExample}
           </Code>
 
           <H2>{_('Parameters')}</H2>
-          <Table className="text-left mt-5">
-            <Thead className="theme-bg-bg2 text-left">Parameter</Thead>
-            <Thead className="theme-bg-bg2 text-left">Type</Thead>
-            <Thead className="theme-bg-bg2 text-left">Description</Thead>
+          <Table className="mt-5 text-left">
+            <Thead className="text-left theme-bg-bg2">Parameter</Thead>
+            <Thead className="text-left theme-bg-bg2">Type</Thead>
+            <Thead className="text-left theme-bg-bg2">Description</Thead>
             <Trow>
-              <Tcol><C>token</C></Tcol>
-              <Tcol><C>ImportToken</C></Tcol>
+              <Tcol>
+                <C>token</C>
+              </Tcol>
+              <Tcol>
+                <C>ImportToken</C>
+              </Tcol>
               <Tcol>
                 <Translate>
                   The import declaration token to compile
@@ -1212,10 +1245,10 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Error Handling Section Content */}
-      <section id='error-handling'>
+      <section id="error-handling">
         <H1>{_('Error Handling')}</H1>
         <P>
           <Translate>
@@ -1225,31 +1258,31 @@ export function Body() {
         </P>
 
         <H2>{_('Invalid Token Types')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {invalidTokenTypesExample}
         </Code>
 
         <H2>{_('Missing Required Properties')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {missingPropertiesExample}
         </Code>
 
         <H2>{_('Unknown References')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {unknownReferencesExample}
         </Code>
 
         <H2>{_('Duplicate Declarations')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {duplicateDeclarationsExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Type Processing Section Content */}
-      <section id='type-processing'>
+      <section id="type-processing">
         <H1>{_('Type Processing')}</H1>
         <P>
           <Translate>
@@ -1259,7 +1292,7 @@ export function Body() {
         </P>
 
         <H2>{_('Type Modifiers')}</H2>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {typeModifiersExample}
         </Code>
 
@@ -1270,23 +1303,24 @@ export function Body() {
             format to preserve column order:
           </Translate>
         </P>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {columnConfigurationExample}
         </Code>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Usage with AST Section Content */}
-      <section id='usage-with-ast'>
+      <section id="usage-with-ast">
         <H1>{_('Usage with AST')}</H1>
         <P>
           <Translate>
-            The Compiler is typically used in conjunction with AST classes:
+            The Compiler is typically used in conjunction with AST
+            classes:
           </Translate>
         </P>
-        <Code copy language='javascript' className='bg-black text-white'>
+        <Code copy language="javascript" className="bg-black text-white">
           {usageWithASTExample}
         </Code>
       </section>
@@ -1294,12 +1328,12 @@ export function Body() {
       {/* Page Navigation */}
       <Nav
         prev={{
-          text: 'Lexer',
-          href: '/docs/parser/api-references/lexer'
+          text: _('Lexer'),
+          href: "/docs/parser/api-references/lexer"
         }}
         next={{
-          text: 'Syntax Trees',
-          href: '/docs/parser/api-references/ast'
+          text: _('Syntax Trees'),
+          href: "/docs/parser/api-references/ast"
         }}
       />
     </main>

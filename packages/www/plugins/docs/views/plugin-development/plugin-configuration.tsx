@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const schemaPluginDefinitionExample = 
 `// schema.idea
@@ -21,9 +21,9 @@ plugin "./plugins/my-plugin.js" {
     strict true
     comments true
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const pluginConfigurationAccessExample =
 `export default async function myPlugin(props: PluginProps<{}>) {
@@ -46,9 +46,9 @@ const pluginConfigurationAccessExample =
   if (comments) {
     // Add comments to generated code
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -87,7 +87,7 @@ export function Body() {
   const { _ } = useLanguage();
   
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Plugin Configuration Section Content */}
       <section>
         <H1>{_('Plugin Configuration')}</H1>
@@ -115,7 +115,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='idea' className='bg-black text-white'>
+        <Code copy language="idea" className="bg-black text-white">
           {schemaPluginDefinitionExample}
         </Code>
       </section>
@@ -133,7 +133,7 @@ export function Body() {
           </Translate>
         </P>
 
-        <Code copy language='typescript' className='bg-black text-white'>
+        <Code copy language="typescript" className="bg-black text-white">
           {pluginConfigurationAccessExample}
         </Code>
       </section>
@@ -142,11 +142,11 @@ export function Body() {
       <Nav
         prev={{ 
           text: _('Plugin Examples'), 
-          href: '/docs/plugin-development/plugin-examples' 
+          href: "/docs/plugin-development/plugin-examples" 
         }}
         next={{ 
           text: _('Error Handling'), 
-          href: '/docs/plugin-development/error-handling' 
+          href: "/docs/plugin-development/error-handling" 
         }}
       />
     </main>

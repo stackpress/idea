@@ -5,7 +5,7 @@ import { H1, H2, P, SS, C } from '../../../../docs/components/index.js';
 import Code from '../../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const modelsExamples = [
   `model ModelName {
@@ -17,9 +17,9 @@ model ModelName! {  // Mutable model
   // columns...
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`// base-schema.idea
+  `// base-schema.idea
 model User {
   id String @id
   name String @required
@@ -41,9 +41,9 @@ model User! {
   password String @required
 }`,
 
-//----------------------------------------------------------------------
+  //---------------------------------------------------------------
 
-`model User! {
+  `model User! {
   id String @id @default("nanoid()")
   email String @unique @required @field.input(Email)
   username String @unique @required @field.input(Text)
@@ -94,7 +94,7 @@ enum PostStatus {
 }`
 ];
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function Models() {
   //hooks
@@ -109,9 +109,9 @@ export default function Models() {
         <P>
           <Translate>
             Models represent the core entities in your application,
-            typically corresponding to database tables or API resources.
-            They define the structure, relationships, and behavior of your
-            data.
+            typically corresponding to database tables or API
+            resources. They define the structure, relationships, and
+            behavior of your data.
           </Translate>
         </P>
 
@@ -120,7 +120,7 @@ export default function Models() {
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {modelsExamples[0]}
           </Code>
@@ -169,7 +169,7 @@ export default function Models() {
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {modelsExamples[1]}
           </Code>
@@ -178,7 +178,7 @@ export default function Models() {
           <Code
             copy
             language="typescript"
-            className="bg-black text-white px-mb-20"
+            className="bg-black px-mb-20 text-white"
           >
             {modelsExamples[2]}
           </Code>

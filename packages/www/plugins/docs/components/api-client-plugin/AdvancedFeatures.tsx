@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const authenticationStrategies = 
 `// Bearer token authentication
@@ -30,9 +30,9 @@ authentication: {
 authentication: {
   type: "custom",
   headerName: "X-Custom-Auth"
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const errorHandlingStrategies = 
 `// Return errors in response (default)
@@ -54,9 +54,9 @@ try {
 errorHandling: "callback"
 const response = await client.user.getById('123', {
   onError: (error) => console.error(error)
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const requestCancellation = 
 `// Using AbortController for request cancellation
@@ -66,9 +66,9 @@ const response = await client.user.getAll({}, {
   signal: controller.signal
 });
  
-controller.abort();`
+controller.abort();`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const customHeaders = 
 `// Add custom headers to requests
@@ -77,9 +77,9 @@ const response = await client.user.getById('123', {
     'X-Custom-Header': 'value',
     'Accept-Language': 'en-US'
   }
-});`
+});`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function AdvancedFeatures() {
   //hooks
@@ -101,7 +101,7 @@ export default function AdvancedFeatures() {
       </P>
 
       <H2>{_('7.1. Authentication Strategies')}</H2>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {authenticationStrategies}
       </Code>
 
@@ -115,7 +115,7 @@ export default function AdvancedFeatures() {
           management.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {errorHandlingStrategies}
       </Code>
 
@@ -129,7 +129,7 @@ export default function AdvancedFeatures() {
           unmounting.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {requestCancellation}
       </Code>
 
@@ -142,7 +142,7 @@ export default function AdvancedFeatures() {
           header management for each request.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {customHeaders}
       </Code>
       </section>

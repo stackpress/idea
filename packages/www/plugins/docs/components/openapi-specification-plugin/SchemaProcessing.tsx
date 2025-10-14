@@ -5,10 +5,10 @@ import { H1, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
-const securitySchemesExample = 
-`function generateSecuritySchemes(spec: any, security: any): void {
+const securitySchemesExample =
+  `function generateSecuritySchemes(spec: any, security: any): void {
   if (security.apiKey) {
     spec.components.securitySchemes.ApiKeyAuth = {
       type: 'apiKey',
@@ -41,9 +41,9 @@ const securitySchemesExample =
       }
     };
   }
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const crudEndpointsExample = 
 `function generateCRUDEndpoints(spec: any, modelName: string, model: any): void {
@@ -239,9 +239,9 @@ const crudEndpointsExample =
       security: [{ BearerAuth: [] }]
     }
   };
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function SchemaProcessing() {
   //hooks
@@ -254,18 +254,17 @@ export default function SchemaProcessing() {
       <H1>{_('4. Schema Processing')}</H1>
       <P>
         <Translate>
-          Schema processing handles the transformation of
-        </Translate> <C>.idea</C> <Translate>
+          Schema processing handles the transformation of <C>.idea</C> 
           definitions into OpenAPI components and endpoints. This
           includes generating security schemes, creating CRUD endpoints
           for models, and handling complex schema relationships and
           validations.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {securitySchemesExample}
       </Code>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {crudEndpointsExample}
       </Code>
       </section>

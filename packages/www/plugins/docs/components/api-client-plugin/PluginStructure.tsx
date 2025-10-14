@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 const pluginStructureExample = 
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -32,9 +32,9 @@ export default async function generateAPIClient(
   const { config, schema, transformer } = props;
   
   // Implementation here...
-}`
+}`;
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------
 
 export default function PluginStructure() {
   //hooks
@@ -49,11 +49,11 @@ export default function PluginStructure() {
         <Translate>
           The plugin structure defines the core architecture and 
           configuration interface for the API client generator. This
-          includes the main plugin function, configuration types, and the
-          overall organization of the generated client code.
+          includes the main plugin function, configuration types, and 
+          the overall organization of the generated client code.
         </Translate>
       </P>
-      <Code copy language='typescript' className='bg-black text-white'>
+      <Code copy language="typescript" className="bg-black text-white">
         {pluginStructureExample}
       </Code>
       </section>

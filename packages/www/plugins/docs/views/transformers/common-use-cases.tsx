@@ -5,7 +5,7 @@ import type {
 } from 'stackpress/view/client';
 import { useLanguage, Translate } from 'r22n';
 //local
-import { H1, H2, P, C, Nav } from '../../components/index.js';
+import { H1, P, C, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
@@ -45,34 +45,36 @@ export function Body() {
   const { _ } = useLanguage();
 
   return (
-    <main className="px-h-100-0 overflow-auto px-p-10">
+    <main className="overflow-auto px-h-100-0 px-p-10">
       {/* Common Use Cases Section Content */}
       <section>
         <H1>{_('Common Use Cases')}</H1>
         <P>
           <Translate>
-            The idea-transformer library supports a wide variety of use cases
-            for code generation and schema processing. These use cases
-            demonstrate the flexibility and power of the transformation system.
+            The idea-transformer library supports a wide variety of 
+            use cases for code generation and schema processing. 
+            These use cases demonstrate the flexibility and power 
+            of the transformation system.
           </Translate>
         </P>
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mT-10' />
+      <hr className="mt-10" />
 
       {/* Code Generation Section Content */}
       <section>
         <H1>{_('Code Generation')}</H1>
         <P>
           <Translate>
-            Generate various code artifacts from your schema definitions to
-            maintain consistency across your application. This use case covers
-            the most common code generation scenarios.
+            Generate various code artifacts from your schema 
+            definitions to maintain consistency across your 
+            application. This use case covers the most common 
+            code generation scenarios.
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             {_('Generate TypeScript interfaces from schema models')}
           </li>
@@ -89,20 +91,20 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Documentation Section Content */}
       <section>
         <H1>{_('Documentation')}</H1>
         <P>
           <Translate>
-            Create comprehensive documentation from your schemas to improve
-            developer experience and API usability. This use case focuses on
-            generating human-readable documentation.
+            Create comprehensive documentation from your schemas to 
+            improve developer experience and API usability. This use 
+            case focuses on generating human-readable documentation.
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             {_('Create API documentation from schema')}
           </li>
@@ -119,20 +121,20 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Validation Section Content */}
       <section>
         <H1>{_('Validation')}</H1>
         <P>
           <Translate>
-            Build validation systems from your schema definitions to ensure
-            data integrity across your application. This use case covers
-            various validation library integrations.
+            Build validation systems from your schema definitions to 
+            ensure data integrity across your application. This use 
+            case covers various validation library integrations.
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             {_('Generate validation schemas (')}
             <C>{_('Joi')}</C>{_(', ')}
@@ -152,20 +154,20 @@ export function Body() {
       </section>
 
       {/* Horizontal Rule */}
-      <hr className='mt-10' />
+      <hr className="mt-10" />
 
       {/* Build Integration Section Content */}
       <section>
         <H1>{_('Build Integration')}</H1>
         <P>
           <Translate>
-            Integrate schema processing into your build pipeline for automated
-            code generation and consistent development workflows. This use case
-            covers various build system integrations.
+            Integrate schema processing into your build pipeline for 
+            automated code generation and consistent development work
+            flows. This use case covers various build system integrations.
           </Translate>
         </P>
 
-        <ul className="list-disc pl-6 my-4">
+        <ul className="list-disc my-4 pl-6">
           <li className="my-2">
             {_('Integrate with webpack, rollup, or other bundlers')}
           </li>
@@ -185,11 +187,11 @@ export function Body() {
       <Nav
         prev={{
           text: _('Usage Patterns'),
-          href: '/docs/transformers/usage-patterns'
+          href: "/docs/transformers/usage-patterns"
         }}
         next={{
           text: _('Examples'),
-          href: '/docs/transformers/examples'
+          href: "/docs/transformers/examples"
         }}
       />
     </main>
