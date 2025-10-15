@@ -41,6 +41,7 @@ const headlineStyle = clsx(
   'sm:text-6xl',
   'text-5xl',
   'text-white',
+  'theme-tx1',
   'xs:text-4xl'
 );
 
@@ -49,7 +50,7 @@ const subheadlineStyle = clsx(
   'mb-6',
   'mx-auto',
   'text-lg',
-  'text-white',
+  'theme-tx1',
   'theme-color-text-muted'
 );
 
@@ -66,8 +67,6 @@ const ctaButtonStyle = clsx(
 );
 
 //----------------------------------------------------------------------
-
-
 
 export default function HeroSection() {
   //hooks
@@ -127,25 +126,25 @@ export default function HeroSection() {
           <div className="gap-8 grid grid-cols-3 max-w-md mx-auto">
             <div className="text-center">
               <div className="mb-2 text-7xl">
-                <i className="fa-solid fa-bolt text-white"></i>
+                <i className="fa-solid fa-bolt theme-tx1"></i>
               </div>
-              <div className="text-lg text-white">
+              <div className="text-lg theme-tx1">
                 {_('Fast')}
               </div>
             </div>
             <div className="text-center">
               <div className="mb-2 text-7xl">
-                <i className="fa-solid fa-shield text-white"></i>
+                <i className="fa-solid fa-shield theme-tx1"></i>
               </div>
-              <div className="text-lg text-white">
+              <div className="text-lg theme-tx1">
                 {_('Safe')}
               </div>
             </div>
             <div className="text-center">
               <div className="mb-2 text-7xl">
-                <i className="fa-solid fa-wrench text-white"></i>
+                <i className="fa-solid fa-wrench theme-tx1"></i>
               </div>
-              <div className="text-lg text-white">
+              <div className="text-lg theme-tx1">
                 {_('Flexible')}
               </div>
             </div>

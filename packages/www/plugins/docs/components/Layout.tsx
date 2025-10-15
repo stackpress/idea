@@ -2,6 +2,7 @@
 import type { ReactNode } from 'react';
 import { useState, useEffect } from 'react';
 import { useLanguage } from 'r22n';
+import clsx from 'clsx';
 //stackpress
 import type {
   LayoutProviderProps,
@@ -19,6 +20,38 @@ import {
 import '../styles/styles.css';
 //components
 import Search from '../../app/components/Search.js';
+
+//styles
+//----------------------------------------------------------------------
+
+const menuAnchorTagStyles = clsx(
+  'flex',
+  'font-semibold',
+  'items-center',
+  'px-fs-16',
+  'px-mb-0',
+  'px-mt-0',
+  'px-px-20',
+  'px-py-12',
+  'theme-bc-bd1',
+  'theme-bg-bg2',
+  'theme-tx1',
+  'uppercase'
+);
+
+const rightNavStyles = clsx(
+  'absolute',
+  'duration-200',
+  'px-b-0',
+  'px-r-0',
+  'px-t-0',
+  'px-t-60',
+  'px-w-220',
+  'px-z-100',
+  'rlg-hidden'
+);
+
+//----------------------------------------------------------------------
 
 export function LayoutHead(props: {
   open?: boolean,
@@ -44,31 +77,62 @@ export function LayoutHead(props: {
   const themeIcon = theme === 'dark' ? 'fa-moon' : 'fa-sun';
   return (
     <header
-      className={`theme-bg-bg1 duration-200 absolute px-h-60 px-r-0 px-t-0 ${full} ${left}`}
+      className={
+        clsx(
+          'absolute',
+          'duration-200',
+          'px-h-60',
+          'px-r-0',
+          'px-t-0',
+          'theme-bg-bg1',
+          full,
+          left
+        )
+      }
     >
-      <div className="flex items-center px-px-20 px-h-100-0">
+      <div className="flex items-center px-h-100-0 px-px-20">
         {toggleLeft && (
-          <button className="theme-tx1 md-hidden b-0 p-0 bg-transparent text-xl" onClick={toggleLeft}>
+          <button
+            className="b-0 bg-transparent md-hidden p-0 text-xl theme-tx1"
+            onClick={toggleLeft}
+          >
             <i className="fas fa-bars"></i>
           </button>
         )}
         <div className="flex-grow">
           {base ? (
-            <a className="theme-tx1 flex items-center no-underline" href={base}>
-              {logo && <img src={logo} alt={brand} className="px-w-30 px-h-30 px-mr-10" />}
-              {brand && <span className="uppercase px-fs-16">{brand}</span>}
+            <a className="flex items-center no-underline theme-tx1" href={base}>
+              {logo && <img src={logo} alt={brand} className="px-h-30 px-mr-10 px-w-30" />}
+              {brand && <span className="px-fs-16 uppercase">{brand}</span>}
             </a>
           ) : brand || logo ? (
             <span>
-              {logo && <img src={logo} alt={brand} className="px-w-30 px-h-30 px-mr-10" />}
-              {brand && <span className="uppercase px-fs-16">{brand}</span>}
+              {logo && <img src={logo} alt={brand} className="px-h-30 px-mr-10 px-w-30" />}
+              {brand && <span className="px-fs-16 uppercase">{brand}</span>}
             </span>
           ) : undefined}
         </div>
+
+        {/* Search Component */}
         <Search />
+
         {toggleTheme && (
           <button
-            className={`flex justify-center items-center b-0 px-mr-10 px-h-26 px-w-26 px-fs-18 rounded-full text-white ${themeColor}`}
+            className={
+              clsx(
+                'b-0',
+                'flex',
+                'items-center',
+                'justify-center',
+                'px-fs-18',
+                'px-h-26',
+                'px-mr-10',
+                'px-w-26',
+                'rounded-full',
+                'text-white',
+                themeColor
+              )
+            }
             onClick={() => toggleTheme()}
           >
             <i className={`fas ${themeIcon}`}></i>
@@ -344,33 +408,51 @@ export function LayoutLeft(props: {
 
   ];
   return (
-    <aside className={`duration-200 flex flex-col px-h-100-0 px-z-100 absolute px-w-220 px-b-0 px-l-0 px-t-0 ${left}`}>
-      <header className="px-p-10 px-h-60 flex items-center theme-bg-bg0">
+    <aside
+      className={
+        clsx(
+          'absolute',
+          'duration-200',
+          'flex',
+          'flex-col',
+          'px-b-0',
+          'px-h-100-0',
+          'px-l-0',
+          'px-t-0',
+          'px-w-220',
+          'px-z-100',
+          left
+        )
+      }
+    >
+      <header className="flex items-center px-h-60 px-p-10 theme-bg-bg0">
         <h3 className="flex-grow px-m-0">
-          <a className="theme-tx1 flex items-center no-underline" href="/">
-            <i className="fas fa-lightbulb px-mr-10 text-yellow-500 text-2xl"></i>
+          <a className="flex items-center no-underline theme-tx1" href="/">
+            <i className="fas fa-lightbulb px-mr-10 text-2xl text-yellow-500"></i>
             <span className="font-extrabold px-fs-20">{_('idea')}</span>
-            <span className="px-ml-5 mt-2 text-gray-400">{_('v0.6.1')}</span>
+            <span className="mt-2 px-ml-5 text-gray-400">{_('v0.6.1')}</span>
           </a>
         </h3>
-        <button className="theme-tx1 md-hidden b-0 p-0 bg-transparent text-xl" onClick={toggle}>
+        <button
+          className="b-0 bg-transparent md-hidden p-0 text-xl theme-tx1"
+          onClick={toggle}
+        >
           <i className="fas fa-chevron-left"></i>
         </button>
       </header>
-      <main className="theme-bg-bg1 flex-grow overflow-auto px-pt-10 px-pb-40">
+      <main className="flex-grow overflow-auto px-pb-40 px-pt-10 theme-bg-bg1">
         {menu.map((section, i) => (
           <div key={i}>
             {section.label.length ? (
-              <a href={section.children[0].href}
-                className="theme-tx1 theme-bg-bg2 theme-bc-bd1 font-semibold 
-                px-fs-16 uppercase px-mb-0 px-mt-0 px-py-12 px-px-20 flex 
-                items-center"
+              <a
+                href={section.children[0].href}
+                className={menuAnchorTagStyles}
               >
                 <span className="flex-grow">{_(section.label)}</span>
                 {pathname.startsWith(section.search) ? (
-                  <i className="theme-muted px-fs-12 fas fa-caret-down"></i>
+                  <i className="fas fa-caret-down px-fs-12 theme-muted"></i>
                 ) : (
-                  <i className="theme-muted px-fs-12 fas fa-caret-left"></i>
+                  <i className="fas fa-caret-left px-fs-12 theme-muted"></i>
                 )}
 
               </a>
@@ -379,11 +461,19 @@ export function LayoutLeft(props: {
               const left = section.label.length ? 'px-pl-40' : 'px-pl-20';
               return pathname.startsWith(section.search) ? (
                 (pathname === item.search || pathname.startsWith(`${item.search}/`)) ? (
-                  <a key={j} className={`theme-tx1 block px-py-10 ${left} font-bold`} href={item.href}>
+                  <a
+                    key={j}
+                    className={`block font-bold px-py-10 theme-tx1 ${left}`}
+                    href={item.href}
+                  >
                     {_(item.label)}
                   </a>
                 ) : (
-                  <a key={j} className={`theme-muted block px-py-10 ${left}`} href={item.href}>
+                  <a
+                    key={j}
+                    className={`block px-py-10 theme-muted ${left}`}
+                    href={item.href}
+                  >
                     {_(item.label)}
                   </a>
                 )
@@ -406,7 +496,20 @@ export function LayoutMain(props: {
   const right = props.right ? 'px-r-220 rlg-px-r-0' : 'px-r-0';
   const full = typeof open === 'undefined' ? 'px-l-0' : 'px-l-220';
   return (
-    <main className={`theme-bg-bg0 duration-200 absolute px-b-0 px-t-60 ${full} ${left} ${right}`}>
+    <main
+      className={
+        clsx(
+          'absolute',
+          'duration-200',
+          'px-b-0',
+          'px-t-60',
+          'theme-bg-bg0',
+          full,
+          left,
+          right
+        )
+      }
+    >
       {children}
     </main>
   );
@@ -416,8 +519,8 @@ export function LayoutRight({ children }: {
   children: ReactNode
 }) {
   return (
-    <aside className="duration-200 absolute px-w-220 px-b-0 px-t-0 px-t-60 px-z-100 px-r-0 rlg-hidden ">
-      <div className="px-h-100-0 theme-bg-bg1 flex flex-col">
+    <aside className={rightNavStyles}>
+      <div className="flex flex-col px-h-100-0 theme-bg-bg1">
         {children}
       </div>
     </aside>
@@ -434,7 +537,19 @@ export function LayoutApp(props: {
   const { theme, toggle: toggleTheme } = useTheme();
   const pathname = request?.url?.pathname || '/';
   return (
-    <div className={`${theme} relative overflow-hidden px-w-100-0 px-h-100-0 theme-bg-bg0 theme-tx1`}>
+    <div
+      className={
+        clsx(
+          'overflow-hidden',
+          'px-h-100-0',
+          'px-w-100-0',
+          'relative',
+          'bg0',
+          'theme-tx1',
+          theme
+        )
+      }
+    >
       <LayoutHead
         open={left}
         theme={theme}
@@ -478,7 +593,7 @@ export default function Layout(props: LayoutProviderProps & PanelAppProps) {
     }
     unload();
   }, []);
-  
+
   return (
     <LayoutProvider
       data={data}

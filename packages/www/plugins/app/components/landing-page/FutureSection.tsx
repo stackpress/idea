@@ -44,6 +44,8 @@ const readTheSpecButtonStyle = clsx(
   'transition'
 );
 
+//----------------------------------------------------------------------
+
 export default function FutureSection() {
   //hooks
   const { _ } = useLanguage();

@@ -1,5 +1,6 @@
 //modules
 import { useState, useEffect } from 'react';
+import clsx from 'clsx';
 //views
 import type {
   PanelAppProps,
@@ -20,18 +21,64 @@ import './styles/page.css';
 //components
 import SearchField from './components/Search.js';
 
+//styles
+//----------------------------------------------------------------------
+
+const headerStyles = clsx(
+  'absolute',
+  'border-b',
+  'duration-200',
+  'px-h-60',
+  'px-l-0',
+  'px-r-0',
+  'px-t-0',
+  'theme-bc-bd0',
+  'theme-bg-bg1'
+);
+
+const headerContainerStyles = clsx(
+  'align-middle',
+  'flex',
+  'items-center',
+  'justify-between',
+  'px-h-100-0',
+  'px-px-20'
+);
+
+const docsAnchorTagStyles = clsx(
+  'flex',
+  'hover:text-yellow-500',
+  'items-center',
+  'mt-1',
+  'no-underline',
+  'theme-tx1',
+  'uppercase'
+);
+
+const npmAnchorTagStyles = clsx(
+  'flex',
+  'hex-bg-CB3837',
+  'items-center',
+  'justify-center',
+  'px-h-26',
+  'px-mr-10',
+  'px-w-26',
+  'rounded-full'
+);
+
+//----------------------------------------------------------------------
+
 export function Head(props: LayoutHeadProps) {
   const { theme, toggleTheme } = props;
   const { _ } = useLanguage();
   const themeColor = theme === 'dark' ? 'bg-gray-600' : 'bg-orange-600';
   const themeIcon = theme === 'dark' ? 'fa-moon' : 'fa-sun';
   return (
-    <header className="theme-bg-bg1 theme-bc-bd0 duration-200 absolute 
-    px-h-60 px-l-0 px-r-0 px-t-0 border-b">
-      <div className="flex justify-between align-middle items-center px-px-20 px-h-100-0">
+    <header className={headerStyles}>
+      <div className={headerContainerStyles}>
         <div className='flex items-center'>
           <a
-            className="theme-tx1 flex items-center no-underline px-mr-10"
+            className="flex items-center no-underline px-mr-10 theme-tx1"
             href="/"
           >
             <img
@@ -43,8 +90,7 @@ export function Head(props: LayoutHeadProps) {
           </a>
           <nav>
             <a
-              className="theme-tx1 flex items-center no-underline 
-          uppercase mt-1 hover:text-yellow-500"
+              className={docsAnchorTagStyles}
               href="/docs/introduction"
             >
               {_('Docs')}
@@ -52,30 +98,43 @@ export function Head(props: LayoutHeadProps) {
           </nav>
         </div>
         <div className='flex items-center'>
+
           {/* Search Field Component */}
           <SearchField />
 
-          <nav className="rmd-hidden flex items-center">
+          <nav className="flex items-center rmd-hidden">
             <a
               href="https://marketplace.visualstudio.com/items?itemName=stackpress.idea-schema"
-              className="px-mr-10 hover:text-yellow-500 theme-tx1"
+              className="hover:text-yellow-500 px-mr-10 theme-tx1"
             >
-              <i className="px-fs-22 fa-solid fa-puzzle-piece"></i>
+              <i className="fa-solid fa-puzzle-piece px-fs-22"></i>
             </a>
             <a className="px-mr-10" href="https://github.com/stackpress/idea">
-              <i className="px-fs-26 fab fa-github"></i>
+              <i className="fab fa-github px-fs-26"></i>
             </a>
             <a
-              className="px-mr-10 px-w-26 px-h-26 hex-bg-CB3837 rounded-full 
-            flex justify-center items-center"
+              className={npmAnchorTagStyles}
               href="https://www.npmjs.com/package/@stackpress/idea"
             >
-              <i className="px-fs-16 fab fa-npm text-white"></i>
+              <i className="fab fa-npm px-fs-16 text-white"></i>
             </a>
             {toggleTheme && (
               <button
-                className={`flex justify-center items-center b-0 px-mr-10 
-              px-h-26 px-w-26 px-fs-20 rounded-full text-white ${themeColor}`}
+                className={
+                  clsx(
+                    'b-0',
+                    'flex',
+                    'items-center',
+                    'justify-center',
+                    'px-fs-20',
+                    'px-h-26',
+                    'px-mr-10',
+                    'px-w-26',
+                    'rounded-full',
+                    'text-white',
+                    themeColor
+                  )
+                }
                 onClick={() => toggleTheme()}
               >
                 <i className={`fas ${themeIcon}`}></i>
@@ -92,8 +151,19 @@ export function App(props: PanelAppProps) {
   const { children } = props;
   const { theme, toggle: toggleTheme } = useTheme();
   return (
-    <div className={`${theme} relative overflow-hidden px-w-100-0 px-h-100-0 
-    theme-bg-bg0 theme-tx1`}>
+    <div
+      className={
+        clsx(
+          'overflow-hidden',
+          'px-h-100-0',
+          'px-w-100-0',
+          'relative',
+          'theme-bg-bg0',
+          'theme-tx1',
+          theme
+        )
+      }
+    >
       <Head theme={theme} toggleTheme={toggleTheme} />
       <LayoutMain head>{children}</LayoutMain>
     </div>
