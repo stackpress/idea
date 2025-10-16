@@ -3,6 +3,9 @@ import { useLanguage, Translate } from 'r22n';
 //local
 import { H1, H2, P, Code } from '../../../docs/components/index.js';
 
+//code examples
+//--------------------------------------------------------------------//
+
 const typeSafetyInterface =
   `interface TypeScriptColumn {
   name: string;
@@ -13,7 +16,7 @@ const typeSafetyInterface =
   attributes?: Record<string, any>;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const columnValidation =
   `function validateColumn(column: any): column is TypeScriptColumn {
@@ -24,7 +27,7 @@ const columnValidation =
   );
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeNameSanitization =
   `function sanitizeTypeName(name: string): string {
@@ -35,7 +38,7 @@ const typeNameSanitization =
     .replace(/^_+|_+$/g, '');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pascalCaseConversion =
   `function toPascalCase(str: string): string {
@@ -47,7 +50,7 @@ const pascalCaseConversion =
     .join('');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const jsDocGeneration =
   `function generateJSDocComment(
@@ -79,7 +82,7 @@ const jsDocGeneration =
     \`   * \${line}\`).join('\\n')}\\n   */\\n\`;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeCacheOptimization =
   `// Cache type mappings
@@ -104,7 +107,7 @@ function getCachedTypeMapping(
   return mappedType;
 }`;
 
-//---------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function BestPractices() {
   //hooks

@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const authenticationStrategies = 
 `// Bearer token authentication
@@ -32,7 +32,7 @@ authentication: {
   headerName: "X-Custom-Auth"
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingStrategies = 
 `// Return errors in response (default)
@@ -56,7 +56,7 @@ const response = await client.user.getById('123', {
   onError: (error) => console.error(error)
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const requestCancellation = 
 `// Using AbortController for request cancellation
@@ -68,7 +68,7 @@ const response = await client.user.getAll({}, {
  
 controller.abort();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customHeaders = 
 `// Add custom headers to requests
@@ -79,7 +79,7 @@ const response = await client.user.getById('123', {
   }
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function AdvancedFeatures() {
   //hooks
@@ -108,11 +108,11 @@ export default function AdvancedFeatures() {
       <H2>{_('7.2. Error Handling Strategies')}</H2>
       <P>
         <Translate>
-          Error handling strategies determine how the API client responds to
-          and manages different types of errors. The plugin supports multiple
-          approaches including returning errors in responses, throwing
-          exceptions, and using callback functions for flexible error
-          management.
+          Error handling strategies determine how the API client responds 
+          to and manages different types of errors. The plugin supports
+          multiple approaches including returning errors in responses, 
+          throwing exceptions, and using callback functions for flexible 
+          error management.
         </Translate>
       </P>
       <Code copy language="typescript" className="bg-black text-white">
@@ -122,8 +122,8 @@ export default function AdvancedFeatures() {
       <H2>{_('7.3. Request Cancellation')}</H2>
       <P>
         <Translate>
-          Request cancellation allows you to abort ongoing API requests when
-          they are no longer needed. This is essential for preventing
+          Request cancellation allows you to abort ongoing API requests 
+          when they are no longer needed. This is essential for preventing
           unnecessary network traffic and improving application performance,
           especially in scenarios with user navigation or component
           unmounting.

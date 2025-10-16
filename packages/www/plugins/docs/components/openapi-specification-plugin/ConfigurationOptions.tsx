@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configurationExample =
   `// schema.idea
@@ -100,7 +100,7 @@ plugin "./plugins/openapi-spec.js" {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function ConfigurationOptions() {
   //hooks

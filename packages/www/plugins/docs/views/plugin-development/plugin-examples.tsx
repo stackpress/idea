@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typescriptInterfaceGeneratorExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -89,7 +89,7 @@ function mapToTypeScript(schemaType: string): string {
   return typeMap[schemaType] || 'any';
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const enumGeneratorExample =
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -121,7 +121,7 @@ export default async function generateEnums(props: PluginProps<{}>) {
   console.log(\`Generated enums: \${outputPath}\`);
 }`; 
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cliInteractivePluginExample =
 `import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
@@ -180,7 +180,7 @@ function generateEnums(enums: Record<string, any>): string {
   return '// Generated enums\\n';
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

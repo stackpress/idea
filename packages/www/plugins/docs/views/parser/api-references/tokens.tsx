@@ -12,7 +12,7 @@ import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `import type { 
@@ -26,7 +26,7 @@ const examples = [
   ImportToken
 } from '@stackpress/idea-parser';`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const unknownToken: UnknownToken = {
   type: 'CustomType',
@@ -36,7 +36,7 @@ const examples = [
   raw: 'raw text'
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const identifierToken: IdentifierToken = {
   type: 'Identifier',
@@ -45,7 +45,7 @@ const examples = [
   end: 13
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// From enum.json fixture
 {
@@ -63,7 +63,7 @@ const examples = [
   "name": "ADMIN"
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const stringLiteral: LiteralToken = {
   type: 'Literal',
@@ -81,7 +81,7 @@ const numberLiteral: LiteralToken = {
   raw: '42'
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// From enum.json fixture
 {
@@ -92,7 +92,7 @@ const numberLiteral: LiteralToken = {
   "raw": "'Admin'"
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const objectToken: ObjectToken = {
   type: 'ObjectExpression',
@@ -119,7 +119,7 @@ const numberLiteral: LiteralToken = {
   ]
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const arrayToken: ArrayToken = {
   type: 'ArrayExpression',
@@ -131,7 +131,7 @@ const numberLiteral: LiteralToken = {
   ]
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const propertyToken: PropertyToken = {
   type: 'Property',
@@ -156,7 +156,7 @@ const numberLiteral: LiteralToken = {
   }
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const enumDeclaration: DeclarationToken = {
   type: 'VariableDeclaration',
@@ -182,7 +182,7 @@ const numberLiteral: LiteralToken = {
   }]
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const declaratorToken: DeclaratorToken = {
   type: 'VariableDeclarator',
@@ -202,7 +202,7 @@ const numberLiteral: LiteralToken = {
   }
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const importToken: ImportToken = {
   type: 'ImportDeclaration',
@@ -218,7 +218,7 @@ const numberLiteral: LiteralToken = {
   }
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const schemaToken: SchemaToken = {
   type: 'Program',
@@ -245,15 +245,15 @@ const numberLiteral: LiteralToken = {
   ]
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `type Token = DataToken | UnknownToken;`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `type DataToken = IdentifierToken | LiteralToken | ObjectToken | ArrayToken;`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `type Reader = (
   code: string, 
@@ -261,14 +261,14 @@ const numberLiteral: LiteralToken = {
   lexer: Parser
 ) => Token | undefined;`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `type Definition = { 
   key: string, 
   reader: Reader 
 };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `interface Parser {
   get dictionary(): Record<string, Definition>;
@@ -284,19 +284,19 @@ const numberLiteral: LiteralToken = {
   read(): Token | undefined;
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `type UseReferences = Record<string, any> | false;`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `type Scalar = string | number | null | boolean;`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `type Data = Scalar | Data[] | { [key: string]: Data };`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { EnumTree } from '@stackpress/idea-parser';
 
@@ -311,7 +311,7 @@ const enumToken = EnumTree.parse(enumCode);
 console.log(enumToken.kind); // 'enum'
 console.log(enumToken.declarations[0].id.name); // 'Roles'`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Compiler } from '@stackpress/idea-parser';
 
@@ -320,7 +320,7 @@ const [enumName, enumConfig] = Compiler.enum(enumToken);
 console.log(enumName); // 'Roles'
 console.log(enumConfig); // { ADMIN: 'Admin', MANAGER: 'Manager', USER: 'User' }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// ObjectToken processing
 const objectToken: ObjectToken = {
@@ -345,7 +345,7 @@ const objectToken: ObjectToken = {
 const compiled = Compiler.object(objectToken);
 console.log(compiled); // { type: 'text' }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Exception } from '@stackpress/idea-parser';
 
@@ -358,7 +358,7 @@ try {
   }
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Position information for error highlighting
 const token: IdentifierToken = {
@@ -372,10 +372,10 @@ const token: IdentifierToken = {
 const errorRange = { start: token.start, end: token.end };`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -383,7 +383,7 @@ const anchorStyles = clsx(
   'text-blue-500',
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

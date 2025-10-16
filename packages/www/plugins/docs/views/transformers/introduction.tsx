@@ -10,11 +10,11 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const installationExample = `npm install @stackpress/idea-transformer`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicUsageExample =
   `import Transformer from '@stackpress/idea-transformer';
@@ -24,7 +24,7 @@ const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
 await transformer.transform();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

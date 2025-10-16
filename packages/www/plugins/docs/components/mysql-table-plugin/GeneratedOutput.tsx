@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const generatedOutputExample =
   `-- Generated MySQL Tables
@@ -29,7 +29,7 @@ CREATE TABLE \`User\` (
   KEY \`idx_User_age\` (\`age\`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function GeneratedOutput() {
   //hooks

@@ -12,12 +12,12 @@ import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicImportExample =
   `import { Compiler } from '@stackpress/idea-parser';`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const arrayTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -35,7 +35,7 @@ const arrayToken = {
 const result = Compiler.array(arrayToken);
 console.log(result); // ['value1', 'value2', 'value3']`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const dataTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -55,7 +55,7 @@ const objectResult = Compiler.data({
 });
 console.log(objectResult); // { name: 'John' }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const enumTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -85,7 +85,7 @@ const [name, config] = Compiler.enum(enumToken);
 console.log(name); // 'Status'
 console.log(config); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const finalSchemaExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -95,7 +95,7 @@ const finalSchema = Compiler.final(schemaToken);
 console.log(finalSchema);
 // Output will not contain 'prop' or 'use' sections`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const identifierTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -116,7 +116,7 @@ try {
   console.log(error.message); // 'Unknown reference UnknownProp'
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const literalTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -130,7 +130,7 @@ console.log(numberLiteral); // 42
 const booleanLiteral = Compiler.literal({ type: 'Literal', value: true });
 console.log(booleanLiteral); // true`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const modelTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -175,7 +175,7 @@ console.log(name); // 'User'
 console.log(config.mutable); // false
 console.log(config.columns); // Array of column configurations`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const objectTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -192,7 +192,7 @@ const objectToken = {
 const result = Compiler.object(objectToken);
 console.log(result); // { name: 'John', age: 30 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -218,7 +218,7 @@ const [name, config] = Compiler.plugin(pluginToken);
 console.log(name); // './database'
 console.log(config); // { provider: 'postgresql' }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const propTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -245,7 +245,7 @@ const [name, config] = Compiler.prop(propToken);
 console.log(name); // 'Text'
 console.log(config); // { type: 'text', format: 'lowercase' }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaDeclarationExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -260,7 +260,7 @@ const finalizedConfig = Compiler.schema(schemaToken, true);
 console.log(finalizedConfig);
 // References are resolved in the output`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -301,7 +301,7 @@ console.log(name); // 'Address'
 console.log(config.mutable); // true
 console.log(config.columns); // Array of column configurations`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const useTokenExample =
   `import { Compiler } from '@stackpress/idea-parser';
@@ -315,7 +315,7 @@ const useToken = {
 const importPath = Compiler.use(useToken);
 console.log(importPath); // './another.idea'`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const invalidTokenTypesExample =
   `// Throws: "Invalid data token type"
@@ -339,7 +339,7 @@ Compiler.type({ kind: 'notAType' });
 // Throws: "Invalid Import"
 Compiler.use({ type: 'NotAnImportDeclaration' });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const missingPropertiesExample =
   `// Throws: "Expecting a columns property"
@@ -351,26 +351,26 @@ Compiler.model({
   }]
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const unknownReferencesExample =
   `// Throws: "Unknown reference MyProp"
 Compiler.identifier({ name: 'MyProp' }, {});`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const duplicateDeclarationsExample =
   `// Throws: "Duplicate MyEnum" when compiling schema with duplicate names
 Compiler.schema(schemaWithDuplicates);`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeModifiersExample =
   `Optional types: String? → { type: 'String', required: false }
 Array types: String[] → { type: 'String', multiple: true }
 Combined: String[]? → { type: 'String', required: false, multiple: true }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const columnConfigurationExample =
   `// Input object format
@@ -391,7 +391,7 @@ const columnConfigurationExample =
   ]
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const usageWithASTExample =
   `import { Compiler, EnumTree, ModelTree, SchemaTree } from '@stackpress/idea-parser';
@@ -407,10 +407,10 @@ const [modelName, modelConfig] = Compiler.model(modelAST);
 const schemaAST = SchemaTree.parse(schemaCode);
 const schemaConfig = Compiler.schema(schemaAST);`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx([
   'cursor-pointer',
@@ -418,7 +418,7 @@ const anchorStyles = clsx([
   'text-blue-500',
 ]);
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

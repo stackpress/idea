@@ -5,7 +5,7 @@ import { H1, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const securitySchemesExample =
   `function generateSecuritySchemes(spec: any, security: any): void {
@@ -43,7 +43,7 @@ const securitySchemesExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const crudEndpointsExample = 
 `function generateCRUDEndpoints(spec: any, modelName: string, model: any): void {
@@ -241,7 +241,7 @@ const crudEndpointsExample =
   };
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function SchemaProcessing() {
   //hooks

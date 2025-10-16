@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const formElementExample =
   `function generateFormElement(column: any, schema: any, options: any): string {
@@ -204,7 +204,7 @@ function autoGenerateElement(column: any, schema: any, options: any): string {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function ImplementFormElementGeneration() {
   //hooks

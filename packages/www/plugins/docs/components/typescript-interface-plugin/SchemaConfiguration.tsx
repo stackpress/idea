@@ -6,7 +6,7 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicConfigurationExample =
   `plugin "./plugins/typescript-interfaces.js" {
@@ -20,7 +20,7 @@ const basicConfigurationExample =
   enumType "enum"
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configurationTableData = [
   {

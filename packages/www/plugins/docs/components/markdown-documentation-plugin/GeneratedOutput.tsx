@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const generatedOutputExample =
   `# My Application Schema
@@ -61,7 +61,7 @@ Enums define sets of named constants with associated values.
 
 *Documentation generated on 1/15/2024, 10:30:00 AM*`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function GeneratedOutput() {
   //hooks

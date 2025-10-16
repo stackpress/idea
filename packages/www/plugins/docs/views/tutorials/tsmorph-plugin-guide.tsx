@@ -22,14 +22,15 @@ import {
 } from '../../components/ts-morph-plugin-guide/index.js';
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
+
 const anchorStyles = clsx(
   'cursor-pointer',
   'hover:text-blue-700',
   'text-blue-500'
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

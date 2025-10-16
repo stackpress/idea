@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginStructureExample = 
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -34,7 +34,7 @@ export default async function generateAPIClient(
   // Implementation here...
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function PluginStructure() {
   //hooks

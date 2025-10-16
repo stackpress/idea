@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, Code } from '../../../docs/components/index.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const invalidGraphQLNamesExample = 
 `function sanitizeGraphQLName(name: string): string {
@@ -12,7 +12,7 @@ const invalidGraphQLNamesExample =
   return name.replace(/[^_A-Za-z0-9]/g, '_').replace(/^[0-9]/, '_$&');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const circularDependenciesExample = 
 `function detectCircularDependencies(models: Record<string, any>): string[] {
@@ -25,7 +25,7 @@ const circularDependenciesExample =
   return cycles;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const missingRequiredFieldsExample = 
 `function validateRequiredFields(model: any): void {
@@ -34,7 +34,7 @@ const missingRequiredFieldsExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const verboseLoggingExample = 
 `const DEBUG = process.env.DEBUG === 'true';
@@ -45,7 +45,7 @@ function debugLog(message: string, data?: any) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const validateGeneratedSchemaExample = 
 `import { buildSchema } from 'graphql';
@@ -59,7 +59,7 @@ function validateGeneratedSchema(schemaContent: string): void {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Troubleshooting() {
   //hooks

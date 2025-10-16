@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const formLayoutExample =
   `function wrapFormGroup(element: string, label: string, name: string, required: boolean, validation: any, options: any): string {
@@ -108,7 +108,7 @@ function getTextareaClasses(theme: string): string {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function ImplementFormLayoutAndStyling() {
   //hooks

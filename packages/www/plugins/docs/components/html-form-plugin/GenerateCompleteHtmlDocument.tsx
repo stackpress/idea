@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const htmlGenerationExample =
   `function generateHTML(schema: any, options: any): string {
@@ -144,7 +144,7 @@ function generateJavaScript(options: any): string {
   return js;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function GenerateCompleteHtmlDocument() {
   //hooks

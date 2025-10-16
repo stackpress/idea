@@ -5,7 +5,7 @@ import { H1, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `mkdir ts-morph-plugin-tutorial
@@ -13,7 +13,7 @@ cd ts-morph-plugin-tutorial
 npm init -y
 npm install --save-dev typescript ts-morph @types/node`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `{
   "compilerOptions": {
@@ -34,7 +34,7 @@ npm install --save-dev typescript ts-morph @types/node`,
   "exclude": ["node_modules", "dist"]
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `ts-morph-plugin-tutorial/
 ├── src/
@@ -50,7 +50,7 @@ npm install --save-dev typescript ts-morph @types/node`,
 └── tsconfig.json`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function SettingUpProject() {
   //hooks

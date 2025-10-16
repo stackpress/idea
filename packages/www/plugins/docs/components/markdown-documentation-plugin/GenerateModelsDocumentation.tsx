@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const modelsGenerationExample =
   `function generateModelsSection(models: any, schema: any, options: any): string {
@@ -19,7 +19,7 @@ const modelsGenerationExample =
   return content;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function GenerateModelsDocumentation() {
   //hooks

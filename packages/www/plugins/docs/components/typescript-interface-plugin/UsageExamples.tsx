@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicSchemaExample =
   `enum UserRole {
@@ -37,7 +37,7 @@ plugin "./plugins/typescript-interfaces.js" {
   includeComments true
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const generatedOutputExample =
   `/**
@@ -95,7 +95,7 @@ export type AnyModel = User;
 
 export type UserKeys = keyof User;`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UsageExamples() {
   //hooks

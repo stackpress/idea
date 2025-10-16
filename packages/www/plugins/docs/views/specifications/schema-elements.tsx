@@ -11,7 +11,7 @@ import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `// Simple boolean attribute (sets value to true)
@@ -31,7 +31,7 @@ const examples = [
 @validation.required
 @ui.component("CustomInput")`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Boolean (implicit true)
 @required
@@ -62,7 +62,7 @@ const examples = [
 @between(1 100 "Value must be between 1 and 100")
 @pattern("^[a-zA-Z]+$" "Only letters allowed")`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Model-level attributes
 model User @table("users") @index(["email" "created"]) {
@@ -77,7 +77,7 @@ type Address @serializable @cacheable(3600) {
   city String @required
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `model User {
   name String          // Required string
@@ -87,7 +87,7 @@ type Address @serializable @cacheable(3600) {
   metadata JSON?       // Optional JSON
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `model User {
   profile {
@@ -105,7 +105,7 @@ type Address @serializable @cacheable(3600) {
 }`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

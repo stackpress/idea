@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code example
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const architectureDiagram = 
 `
@@ -26,7 +26,7 @@ const architectureDiagram =
                        └─────────────────┘    └─────────────────┘
 `
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

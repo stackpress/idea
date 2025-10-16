@@ -3,6 +3,8 @@ import { Translate, useLanguage } from 'r22n';
 import clsx from 'clsx';
 
 //benefit cards data
+//--------------------------------------------------------------------//
+
 const benefitCards = [
   {
     title: 'Single Source of Truth',
@@ -42,10 +44,11 @@ const benefitCards = [
   }
 ];
 
+//--------------------------------------------------------------------//
+
 export default function BenefitsSection() {
   //hooks
   const { _ } = useLanguage();
-
   return (
     <>
       {/* Benefits Section Content */}

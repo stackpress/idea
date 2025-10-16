@@ -5,7 +5,7 @@ import Code from '../../../docs/components/Code.js';
 import { useLanguage, Translate } from 'r22n';
 
 //code examples
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicSchemaExample = 
 `enum UserRole {
@@ -40,7 +40,7 @@ plugin "./plugins/api-client.js" {
   generateTypes true
 }`
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const generatedClientUsageExample = 
 `import APIClient from './api-client';
@@ -92,7 +92,7 @@ async function example() {
   const deleteResponse = await client.user.delete('user-123');
 }`
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UsageExamples() {
   //hooks

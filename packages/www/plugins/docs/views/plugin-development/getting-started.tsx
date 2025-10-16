@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const commonPluginStructureExample = 
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -45,7 +45,7 @@ export default async function myPlugin(
   console.log(\`✅ Generated: \${outputPath}\`);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaStructureExample =
 `{
@@ -81,7 +81,7 @@ const schemaStructureExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeSafetyExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -97,7 +97,7 @@ export default async function myPlugin(
   // TypeScript will enforce the config structure
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configurationValidationExample =
   `function validateConfig(config: any): void {
@@ -112,7 +112,7 @@ const configurationValidationExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const fileOperationsExample = 
 `// ✅ Good - uses transformer's file loader
@@ -132,7 +132,7 @@ try {
   );
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingExample = 
 `export default async function myPlugin(props: PluginProps<{}>) {
@@ -162,7 +162,7 @@ const errorHandlingExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaProcessingExample = 
   `// ✅ Good - checks for existence before processing
@@ -179,7 +179,7 @@ const attributes = column.attributes || {};
 const label = attributes.label || column.name;
 const description = attributes.description || '';`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const usageInSchemaFilesExample =
 `// schema.idea
@@ -216,7 +216,7 @@ enum UserRole {
   USER "Regular User"
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const utilityFunctionsExample =
   `function formatType(type: string, multiple: boolean = false): string {
@@ -28,7 +28,7 @@ const utilityFunctionsExample =
   return formattedType;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UtilityFunctions() {
   //hooks

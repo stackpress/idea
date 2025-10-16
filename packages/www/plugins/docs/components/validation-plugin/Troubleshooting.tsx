@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const circularDependenciesExample =
   `// Handle circular references with lazy evaluation
@@ -19,7 +19,7 @@ const PostSchema: z.ZodSchema<Post> = z.lazy(() => z.object({
   author: UserSchema,
 }));`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const complexValidationExample =
   `// Use refinements for complex validation
@@ -35,7 +35,7 @@ const PasswordSchema = z.string()
     message: "Password must contain at least one number",
   });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const performanceOptimizationExample =
   `// Use preprocess for expensive operations
@@ -49,7 +49,7 @@ const OptimizedSchema = z.preprocess(
   })
 );`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaTestingExample =
   `// Test schemas with various inputs
@@ -75,7 +75,7 @@ describe('UserSchema', () => {
   });
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorCustomizationExample =
   `// Customize error messages for better UX
@@ -84,7 +84,7 @@ const UserSchema = z.object({
   age: z.number().min(18, "You must be at least 18 years old"),
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Troubleshooting() {
   //hooks

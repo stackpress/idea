@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const enhancedErrorHandling =
   `export default async function mysqlTablesPlugin(props: PluginProps<{}>) {
@@ -40,7 +40,7 @@ const enhancedErrorHandling =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configValidation =
   `function validateConfig(config: any): void {
@@ -53,7 +53,7 @@ const configValidation =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function BestPractices() {
   //hooks

@@ -4,7 +4,6 @@ import { Translate, useLanguage } from 'r22n';
 export default function AudienceSection() {
   //hooks
   const { _ } = useLanguage();
-
   return (
     <>
       {/* Audience Section Content */}

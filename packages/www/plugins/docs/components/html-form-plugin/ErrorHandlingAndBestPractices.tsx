@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingExample =
   `export default async function htmlFormPlugin(props: PluginProps<{}>) {
@@ -58,7 +58,7 @@ function validateConfig(config: any): void {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function ErrorHandlingAndBestPractices() {
   //hooks

@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaExample =
   `// schema.idea
@@ -36,7 +36,7 @@ plugin "./generate-types.js" {
   output "./generated/types.ts"
 }`;
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginExample =
   `// generate-types.js
@@ -70,7 +70,7 @@ export default async function generateTypes({ schema, config, transformer }) {
   await writeFile(outputPath, content);
 }`;
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cliExample =
   `{
@@ -81,7 +81,7 @@ const cliExample =
   }
 }`;
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

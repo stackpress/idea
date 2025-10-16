@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorsExamples = [`
 // ❌ Invalid - missing quotes around enum values
@@ -25,7 +25,7 @@ enum Status {
   INACTIVE "Inactive"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// ❌ Invalid - empty model
 model User {
@@ -37,7 +37,7 @@ model User {
   name String @required
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// ❌ Invalid - duplicate model names
 model User {
@@ -57,7 +57,7 @@ model UserProfile {
   name String
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// ❌ Invalid - EmailInput prop not defined
 model User {
@@ -74,7 +74,7 @@ model User {
   email String @field.input(EmailInput)
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// ❌ Invalid - Boolean can't have @minLength
 model User {
@@ -88,7 +88,7 @@ model User {
 }`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorPrevention = [`
 import type { PluginProps, SchemaConfig } from '@stackpress/idea-transformer/types';
@@ -110,7 +110,7 @@ export default async function myPlugin(props: PluginProps<{}>) {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Always validate required fields
 model User {
@@ -126,7 +126,7 @@ model Product {
   created Date @default("now()") // Not String
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Consistent ID patterns
 model User {
@@ -143,7 +143,7 @@ model User {
   updated Date @default("updated()")
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `# Parse schema to check for errors
 npm run idea:parse schema.idea
@@ -155,7 +155,7 @@ npm run idea:transform schema.idea
 npm run idea:generate`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

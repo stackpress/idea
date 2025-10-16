@@ -4,7 +4,7 @@ import { Translate, useLanguage } from 'r22n';
 import clsx from 'clsx';
 
 //styles
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const headlineBarStyle = clsx(
   'bg-green-800',
@@ -44,7 +44,7 @@ const readTheSpecButtonStyle = clsx(
   'transition'
 );
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function FutureSection() {
   //hooks
@@ -68,7 +68,7 @@ export default function FutureSection() {
 
             <p className="text-lg mb-6 max-w-3xl mx-auto">
               <Translate>
-                Define intent once. Generate apps, APIs, and docs in 
+                Define intent once. Generate apps, APIs, and docs in
                 seconds.
               </Translate>
             </p>
@@ -161,16 +161,20 @@ export default function FutureSection() {
                   </a>
                 </li>
                 <li>
-                  <a href="/docs/plugin-development/plugin-development-guide"
-                    className="text-blue-500 hover:text-blue-600 underline">
+                  <a
+                    href="/docs/plugin-development/plugin-development-guide"
+                    className="text-blue-500 hover:text-blue-600 underline"
+                  >
                     <Translate>
                       Plugin tutorials
                     </Translate>
                   </a>
                 </li>
                 <li>
-                  <a href="/docs/getting-started"
-                    className="text-blue-500 hover:text-blue-600 underline">
+                  <a
+                    href="/docs/getting-started"
+                    className="text-blue-500 hover:text-blue-600 underline"
+                  >
                     <Translate>
                       Build something
                     </Translate>
@@ -186,7 +190,8 @@ export default function FutureSection() {
               </h3>
               <blockquote className="text-sm  italic mb-2">
                 <Translate>
-                  "The fastest, safest line of code is the one you never write."
+                  "The fastest, safest line of code is the one you never 
+                  write."
                 </Translate>
               </blockquote>
               <h6 className="text-xs">

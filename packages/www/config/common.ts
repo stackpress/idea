@@ -44,12 +44,12 @@ export const session = {
   key: 'session',
   //used to generate the session id
   seed: 'abc123',
-  access: { GUEST: [ { method: 'ALL', route: '/**' } ] }
+  access: { GUEST: [{ method: 'ALL', route: '/**' }] }
 };
 
-export const cookie = { 
+export const cookie = {
   //see: https://github.com/jshttp/cookie?tab=readme-ov-file#options-1
-  path: '/' 
+  path: '/'
 };
 
 export const language = {
@@ -64,16 +64,14 @@ export const language = {
       label: 'EN',
       translations: {
         'Sign In': 'Signin',
-        'Home Page': 'Home Page',
-        'From %s Idea to Code' : 'From %s Idea to Code!!!',
-        'Introduction' : 'Introduction',
+        'Home Page': 'Home Page'
       }
     },
     th_TH: {
       label: 'TH',
       translations: {
-        'Sign In': 'Signin',
-        'Home Page': 'Home Pages'
+        'Sign In': 'เข้าสู่ระบบ',
+        'Home Page': 'หน้าหลัก'
       }
     }
   }

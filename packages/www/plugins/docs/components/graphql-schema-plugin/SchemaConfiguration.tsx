@@ -5,7 +5,7 @@ import { H1, H2, P, C, SS, Code } from '../../../docs/components/index.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaConfigurationExample = 
 `plugin "./plugins/graphql-schema.js" {
@@ -21,7 +21,7 @@ const schemaConfigurationExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function SchemaConfiguration() {
   //hooks

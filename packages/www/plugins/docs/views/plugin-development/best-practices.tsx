@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeSafetyExample = 
 `// Always use proper typing for plugin props
@@ -40,7 +40,7 @@ export default async function typedPlugin(
   // ✅ Type-safe with default
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configurationValidationExample = 
 `function validateConfig(
@@ -72,7 +72,7 @@ export default async function validatedPlugin(
   const { output, format } = props.config;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const fileOperationsExample = 
 `// Use transformer's file loader for consistent path resolution
@@ -97,7 +97,7 @@ export default async function filePlugin(props: PluginProps<{}>) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cliIntegrationExample = 
 `// Use CLI props when available
@@ -123,7 +123,7 @@ export default async function adaptivePlugin(
   // Generate files...
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

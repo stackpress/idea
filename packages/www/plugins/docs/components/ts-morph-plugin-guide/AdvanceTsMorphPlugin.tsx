@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `// Add a class with decorators
@@ -45,7 +45,7 @@ sourceFile.addClass({
   ],
 });`,
 
-  //-----------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Generate mapped types
 sourceFile.addTypeAlias({
@@ -67,7 +67,7 @@ sourceFile.addTypeAlias({
   type: \`on\${Capitalize<T>}\`,
 });`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Add module declaration
 sourceFile.addModule({
@@ -94,7 +94,7 @@ sourceFile.addModule({
   ],
 });`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Find and modify existing interfaces
 const existingInterface = sourceFile.getInterface("User");
@@ -121,7 +121,7 @@ const deprecatedMethod = sourceFile.getFunction("oldFunction");
 deprecatedMethod?.remove();`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function AdvanceTsMorphPlugin() {
   //hooks

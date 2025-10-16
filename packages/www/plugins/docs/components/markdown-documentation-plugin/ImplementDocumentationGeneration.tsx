@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const documentationGenerationExample =
   `async function generateSingleFile(schema: any, options: any, transformer: any): Promise<void> {
@@ -51,7 +51,7 @@ const documentationGenerationExample =
   await fs.writeFile(outputPath, content, 'utf8');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function ImplementDocumentationGeneration() {
   //hooks

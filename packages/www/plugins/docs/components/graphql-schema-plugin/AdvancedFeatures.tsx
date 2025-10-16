@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, P, Code, H2 } from '../../../docs/components/index.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customScalarTypesExample = 
 `// In your plugin configuration
@@ -15,7 +15,7 @@ customScalars: {
   BigInt: "String"
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const relationshipHandlingExample = 
 `function handleRelationships(column: any, models: Record<string, any>): string {
@@ -37,7 +37,7 @@ const relationshipHandlingExample =
   return formatFieldType(column);
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const directiveSupportExample = 
 `function generateDirectives(column: any): string {
@@ -54,7 +54,7 @@ const directiveSupportExample =
   return directives.length > 0 ? \` \${directives.join(' ')}\` : '';
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function AdvancedFeatures() {
   //hooks

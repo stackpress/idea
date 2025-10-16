@@ -5,7 +5,7 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicPluginExample =
   `// plugins/openapi-spec.ts
@@ -65,7 +65,7 @@ export default async function generateOpenAPISpec(
   console.log(\`✅ Generated OpenAPI specification: \${outputPath}\`);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaGenerationExample = 
 `function generateSpecification(schema: any, config: OpenAPIConfig) {
@@ -129,7 +129,7 @@ const schemaGenerationExample =
   return spec;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const modelSchemaExample = 
 `function generateModelSchema(model: any): any {
@@ -183,7 +183,7 @@ function generateEnumSchema(enumDef: any): any {
   };
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const propertySchemaExample = 
 `function generatePropertySchema(column: any): any {
@@ -265,7 +265,7 @@ function addValidationRules(property: any, attributes: any): void {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function BasicImplementation() {
   //hooks

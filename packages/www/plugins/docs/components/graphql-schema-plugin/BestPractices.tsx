@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, Code } from '../../../docs/components/index.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeSafetyExample = 
 `interface GraphQLColumn {
@@ -23,7 +23,7 @@ function validateColumn(column: any): column is GraphQLColumn {
   );
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingExample = 
 `function generateTypes(models: Record<string, any>): string {
@@ -45,7 +45,7 @@ const errorHandlingExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configurationValidationExample = 
 `function validateConfig(config: any): asserts config is GraphQLConfig {
@@ -58,7 +58,7 @@ const configurationValidationExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const performanceOptimizationExample = 
 `// Cache type mappings
@@ -77,7 +77,7 @@ function getCachedType(schemaType: string, customScalars: Record<string, string>
   return mappedType;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function BestPractices() {
   //hooks

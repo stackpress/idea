@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaPluginDefinitionExample = 
 `// schema.idea
@@ -23,7 +23,7 @@ plugin "./plugins/my-plugin.js" {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginConfigurationAccessExample =
 `export default async function myPlugin(props: PluginProps<{}>) {
@@ -48,7 +48,7 @@ const pluginConfigurationAccessExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

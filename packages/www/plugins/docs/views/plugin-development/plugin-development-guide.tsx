@@ -11,14 +11,14 @@ import Layout from '../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicPluginExample =
   `import type { PluginWithCLIProps } from '@stackpress/idea';
 
 export default function generate(props: PluginWithCLIProps) {}`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicPluginStructureExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -48,7 +48,7 @@ function processSchema(schema: SchemaConfig): string {
   return '// Generated content';
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cliPluginExample =
 `import type { PluginWithCLIProps } from '@stackpress/idea-transformer/types';
@@ -80,7 +80,7 @@ export default async function cliPlugin(props: PluginWithCLIProps) {
   console.log(\`Generated: \${outputPath}\`);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customPluginPropsExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -111,7 +111,7 @@ await transformer.transform({
   debug: true
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

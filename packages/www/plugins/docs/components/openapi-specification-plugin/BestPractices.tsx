@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const documentationBestPracticesExample =
   `// Always include detailed descriptions
@@ -49,7 +49,7 @@ function generatePropertyDescription(column: any): string {
   return descriptions[column.name] || \`\${column.name} field\`;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorResponsesExample = `function generateErrorResponses(): any {
   return {
@@ -128,7 +128,7 @@ const errorResponsesExample = `function generateErrorResponses(): any {
   };
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const securityBestPracticesExample = `function addSecurityToEndpoints(spec: any): void {
   // Add security requirements to all endpoints
@@ -159,7 +159,7 @@ function isPublicEndpoint(path: string, method: string): boolean {
   );
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const validationExamplesExample = `function addValidationExamples(spec: any): void {
   // Add validation examples to request bodies
@@ -224,7 +224,7 @@ function generateInvalidExample(schema: any): any {
   return example;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function BestPractices() {
   //hooks

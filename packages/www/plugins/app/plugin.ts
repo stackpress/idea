@@ -6,10 +6,6 @@ export default function plugin(server: Server) {
     //on error, show error page
     server.on('error', () => import('./pages/error.js'));
     server.on('error', '@/plugins/app/views/error', -100);
-    server.on('request', async (_req, res, _ctx) => {
-      const languages = server.config.path('language.languages', {});
-      res.data.set('languages', languages);
-    });
     //on response, check for errors
     server.on('response', async (req, res, ctx) => {
       if (res.error) {
@@ -21,4 +17,4 @@ export default function plugin(server: Server) {
     server.get('/', '@/plugins/app/views/home', -100);
     server.get('/future', '@/plugins/app/views/future', -100);
   });
-};
+}; 

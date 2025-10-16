@@ -5,7 +5,7 @@ import { H1, H2, H3, P } from '../../../docs/components/index.js'
 import Code from '../../../docs/components/Code.js'
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
 `function validateGeneratedCode(sourceFile: SourceFile): void {
@@ -22,7 +22,7 @@ const examples = [
   }
 }`,
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 `function detectCircularReferences(schemas: Schema[]): string[] {
   const graph = new Map<string, Set<string>>();
@@ -76,7 +76,7 @@ const examples = [
   return cycles;
 }`,
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 `class StreamingGenerator {
   async generateLargeSchema(schemas: Schema[]): Promise<void> {
@@ -100,7 +100,7 @@ const examples = [
   }
 }`,
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 `const DEBUG = process.env.DEBUG === 'true';
 
@@ -114,7 +114,7 @@ function debugLog(message: string, data?: any): void {
 debugLog('Processing schema', schema);
 debugLog('Generated interface', interfaceDeclaration.getText());`,
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 `async function saveIntermediateResults(
   sourceFile: SourceFile,
@@ -127,7 +127,7 @@ debugLog('Generated interface', interfaceDeclaration.getText());`,
   }
 }`,
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 `function validateStep(
   sourceFile: SourceFile,
@@ -146,7 +146,7 @@ debugLog('Generated interface', interfaceDeclaration.getText());`,
 }`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Troubleshooting() {
   //hooks

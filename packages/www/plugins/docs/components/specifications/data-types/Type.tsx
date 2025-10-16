@@ -5,7 +5,7 @@ import { H1, H2, P, SS } from '../../../../docs/components/index.js';
 import Code from '../../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeExamples = [
   `type TypeName {
@@ -13,7 +13,7 @@ const typeExamples = [
   anotherColumn DataType @attribute
 }`,
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 `type Address {
   street String @required @field.input(Text)
@@ -44,7 +44,7 @@ type Money {
   exchangeRate Number @field.input(Number)
 }`,
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 `model Company {
   name String @required

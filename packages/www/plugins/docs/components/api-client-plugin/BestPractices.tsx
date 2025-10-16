@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeSafety = 
 `// Always use generated types
@@ -24,7 +24,7 @@ function handleUserResponse(response: APIResponse<User>) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingPattern = 
 `// Centralized error handling
@@ -48,7 +48,7 @@ class APIErrorHandler {
 const response = await client.user.create(userData);
 APIErrorHandler.handle(response);`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const clientExtension = 
 `// Extend base client for custom behavior
@@ -68,7 +68,7 @@ class CustomAPIClient extends APIClient {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cachingPattern = 
 `// Simple in-memory cache
@@ -96,7 +96,7 @@ class CachedAPIClient extends APIClient {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function BestPractices() {
   //hooks

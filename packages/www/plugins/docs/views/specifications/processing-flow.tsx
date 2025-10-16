@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //processing flow diagram example
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const processingFlowDiagram = `
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -37,7 +37,7 @@ const processingFlowDiagram = `
                                               └─────────────────┘
 `
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

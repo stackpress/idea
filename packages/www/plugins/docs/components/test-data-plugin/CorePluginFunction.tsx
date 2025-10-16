@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const corePluginExample = 
 `export default async function generateTestData(
@@ -55,7 +55,7 @@ const corePluginExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const headerAndImportsExample = 
 `function generateFileHeader(config: TestDataConfig): string {
@@ -91,7 +91,7 @@ function generateImports(config: TestDataConfig): string {
   return imports;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function CorePluginFunction() {
   //hooks

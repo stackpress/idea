@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const circularReferencesExample =
   `// Problem: Circular references in schemas
@@ -43,7 +43,7 @@ function handleCircularReferences(spec: any): void {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const validationErrorsExample =
   `// Problem: Generated spec doesn't validate
@@ -94,7 +94,7 @@ function validateOpenAPISpec(spec: any): void {
   console.log('✅ OpenAPI specification validation passed');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const dependenciesExample =
   `# Install required dependencies
@@ -106,7 +106,7 @@ npm install --save-dev swagger-parser
 # For code generation
 npm install --save-dev @openapitools/openapi-generator-cli`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const performanceOptimizationExample =
   `// Problem: Large schemas cause performance issues
@@ -149,7 +149,7 @@ function optimizeSchema(spec: any): any {
   };
 }\n`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const debugModeExample =
   `interface DebugOpenAPIConfig extends AdvancedOpenAPIConfig {
@@ -207,7 +207,7 @@ export default async function generateOpenAPISpecWithDebug(
   }
 }\n`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Troubleshooting() {
   //hooks

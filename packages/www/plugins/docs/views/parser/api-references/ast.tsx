@@ -12,7 +12,7 @@ import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `import { 
@@ -445,10 +445,10 @@ const ast = ModelTree.parse(modelCode);
 // Produces a complete model AST with all columns and attributes`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -456,7 +456,7 @@ const anchorStyles = clsx(
   'text-blue-500'
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -638,7 +638,11 @@ export function Body() {
           class handles a different type of declaration or construct
           in the schema language.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[0]}
         </Code>
       </section>
@@ -666,7 +670,11 @@ export function Body() {
               schema parsing.
             </Translate>
           </P>
-          <Code copy language="javascript" className="bg-black text-white">
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white"
+          >
             {examples[1]}
           </Code>
 
@@ -694,10 +702,14 @@ export function Body() {
         <section id="parsing-complete-schemas">
           <H2>{_('1.1.2 Parsing Complete Schemas')}</H2>
           <Translate>
-            The following example shows how to parse a complete 
+            The following example shows how to parse a complete
             schema file.
           </Translate>
-          <Code copy language="javascript" className="bg-black text-white">
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white"
+          >
             {examples[2]}
           </Code>
 
@@ -729,10 +741,14 @@ export function Body() {
 
           <H2>{_('1.2.1 Parsing Schema Content')}</H2>
           <Translate>
-            The following example shows how to parse schema content 
+            The following example shows how to parse schema content
             with custom starting position.
           </Translate>
-          <Code copy language="javascript" className="bg-black text-white">
+          <Code
+            copy
+            language="javascript"
+            className="bg-black text-white"
+          >
             {examples[3]}
           </Code>
 
@@ -779,7 +795,11 @@ export function Body() {
           The following example shows how to configure a lexer for
           enum parsing.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[4]}
         </Code>
 
@@ -788,7 +808,11 @@ export function Body() {
           The following example shows how to parse enum declarations
           based on the test fixtures.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[5]}
         </Code>
 
@@ -822,7 +846,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse the enum structure.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[6]}
         </Code>
 
@@ -835,10 +863,14 @@ export function Body() {
 
         <H2>{_('2.2.2 Parsing Enum Properties')}</H2>
         <Translate>
-          The following example shows how individual enum properties 
+          The following example shows how individual enum properties
           are parsed.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[7]}
         </Code>
 
@@ -846,7 +878,7 @@ export function Body() {
         <ul className="my-2 list-disc pl-5">
           <li>
             <Translate>
-              A PropertyToken representing a single enum key-value 
+              A PropertyToken representing a single enum key-value
               pair.
             </Translate>
           </li>
@@ -860,7 +892,7 @@ export function Body() {
       <section id="model-tree">
         <H1>{_('3. ModelTree')}</H1>
         <Translate>
-          Parses model declarations (extends TypeTree for shared 
+          Parses model declarations (extends TypeTree for shared
           functionality).
         </Translate>
 
@@ -871,7 +903,11 @@ export function Body() {
           The following example shows how to parse model declarations
           based on the test fixtures.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[8]}
         </Code>
 
@@ -909,7 +945,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse the model structure.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[9]}
         </Code>
 
@@ -939,7 +979,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse type declarations.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[10]}
         </Code>
 
@@ -977,7 +1021,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse the type structure.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[11]}
         </Code>
 
@@ -990,10 +1038,14 @@ export function Body() {
 
         <H2>{_('4.2.2 Parsing Type Properties')}</H2>
         <Translate>
-          The following example shows how type properties (columns) 
+          The following example shows how type properties (columns)
           are parsed.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[12]}
         </Code>
 
@@ -1008,7 +1060,11 @@ export function Body() {
         <Translate>
           The following example shows how type parameters are parsed.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[13]}
         </Code>
 
@@ -1038,7 +1094,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse prop declarations.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[14]}
         </Code>
 
@@ -1076,7 +1136,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse the prop structure.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[15]}
         </Code>
 
@@ -1106,7 +1170,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse plugin declarations.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[16]}
         </Code>
 
@@ -1140,7 +1208,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse the plugin structure.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[17]}
         </Code>
 
@@ -1170,7 +1242,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse use declarations.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[18]}
         </Code>
 
@@ -1204,7 +1280,11 @@ export function Body() {
         <Translate>
           The following example shows how to parse the use structure.
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[19]}
         </Code>
 
@@ -1224,12 +1304,20 @@ export function Body() {
         <H1>{_('8. Usage Patterns')}</H1>
 
         <H2>{_('8.1 Parsing Individual Components')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[20]}
         </Code>
 
         <H2>{_('8.2 Using with Compiler')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[21]}
         </Code>
 
@@ -1239,7 +1327,11 @@ export function Body() {
             You can extend AbstractTree to create custom parsers:
           </Translate>
         </P>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[22]}
         </Code>
       </section>
@@ -1251,27 +1343,43 @@ export function Body() {
       <section id="error-handling">
         <H1>{_('9. Error Handling')}</H1>
         <Translate>
-          AST classes provide detailed error information when 
+          AST classes provide detailed error information when
           parsing fails:
         </Translate>
 
         <H2>{_('Syntax Errors')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[23]}
         </Code>
 
         <H2>{_('Unexpected Tokens')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[24]}
         </Code>
 
         <H2>{_('Empty Input Handling')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[25]}
         </Code>
 
         <H2>{_('Invalid Identifiers')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[26]}
         </Code>
       </section>
@@ -1283,10 +1391,14 @@ export function Body() {
       <section id="integration-with-main-functions">
         <H1>{_('10. Integration with Main Functions')}</H1>
         <Translate>
-          AST classes are used internally by the main parse and 
+          AST classes are used internally by the main parse and
           final functions:
         </Translate>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[27]}
         </Code>
       </section>
@@ -1304,7 +1416,11 @@ export function Body() {
             AST classes can share lexer instances for better performance:
           </Translate>
         </P>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[28]}
         </Code>
 
@@ -1314,7 +1430,11 @@ export function Body() {
             AST classes use lexer cloning for safe parsing attempts:
           </Translate>
         </P>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[29]}
         </Code>
       </section>
@@ -1332,12 +1452,20 @@ export function Body() {
         </P>
 
         <H2>{_('Enum with Multiple Values')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[30]}
         </Code>
 
         <H2>{_('Complex Model with Attributes')}</H2>
-        <Code copy language="javascript" className="bg-black text-white">
+        <Code
+          copy
+          language="javascript"
+          className="bg-black text-white"
+        >
           {examples[31]}
         </Code>
 
@@ -1370,7 +1498,7 @@ export function Body() {
           </li>
           <li>
             <Translate>
-              Complex attribute parameters (@field.input(Text), 
+              Complex attribute parameters (@field.input(Text),
               @is.clt(80))
             </Translate>
           </li>

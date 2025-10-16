@@ -98,11 +98,7 @@ export function Head(props: LayoutHeadProps) {
           </nav>
         </div>
         <div className='flex items-center'>
-
-          {/* Search Field Component */}
-          <SearchField />
-
-          <nav className="flex items-center rmd-hidden">
+          <nav className="flex items-center">
             <a
               href="https://marketplace.visualstudio.com/items?itemName=stackpress.idea-schema"
               className="hover:text-yellow-500 px-mr-10 theme-tx1"

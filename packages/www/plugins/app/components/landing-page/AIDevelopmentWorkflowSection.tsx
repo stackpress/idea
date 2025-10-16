@@ -3,7 +3,7 @@ import { Translate, useLanguage } from 'r22n';
 import clsx from 'clsx';
 
 //styles
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const headlineBarStyle = clsx(
   'bg-yellow-100',
@@ -73,7 +73,7 @@ const stepFiveStyle = clsx(
   'w-8'
 );  
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function AIDevelopmentWorkflowSection() {
   //hooks
@@ -196,9 +196,9 @@ export default function AIDevelopmentWorkflowSection() {
         <div className="text-center mt-10">
           <p className="text-lg">
             <Translate>
-              This workflow enables rapid prototyping and development and
-              goes from idea to working application in minutes rather than
-              days.
+              This workflow enables rapid prototyping and development
+              and goes from idea to working application in minutes rather
+              than days.
             </Translate>
           </p>
         </div>

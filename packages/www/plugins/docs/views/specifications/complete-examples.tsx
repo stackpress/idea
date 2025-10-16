@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const ecommerceSchema =
   `// E-commerce application schema
@@ -185,7 +185,7 @@ model OrderItem {
   total Money @required
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const blogSchema =
   `// Blog application schema
@@ -312,7 +312,7 @@ model Comment {
   created Date @default("now()")
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

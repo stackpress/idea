@@ -6,7 +6,7 @@ import { H1, H2, P, C, SS } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaConfigExample =
   `plugin "./plugins/test-data.js" {
@@ -25,7 +25,7 @@ const schemaConfigExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function SchemaConfiguration() {
   //hooks

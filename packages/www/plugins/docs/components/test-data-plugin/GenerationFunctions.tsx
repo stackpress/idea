@@ -2,7 +2,7 @@
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const factoriesExample =
   `function generateFactories(schema: any, config: TestDataConfig): string {
@@ -59,7 +59,7 @@ export function generate\${modelName}Array(count: number = \${config.count || 10
   return content;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const fieldGeneratorExample =
   `function generateFieldGenerator(column: any, config: TestDataConfig): string {
@@ -197,7 +197,7 @@ function getBaseGenerator(column: any, config: TestDataConfig): string {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const mockDataExample =
   `function generateMockData(models: Record<string, any>, config: TestDataConfig): string {
@@ -265,7 +265,7 @@ function generateMockValue(column: any, config: TestDataConfig): any {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const fixturesExample =
   `function generateFixtures(schema: any, config: TestDataConfig): string {
@@ -307,7 +307,7 @@ function generateModelFixtures(modelName: string, model: any, config: TestDataCo
 \`;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const fixtureUtilsExample =
   `function generateMinimalFields(model: any): string {
@@ -339,7 +339,7 @@ function generateEdgeCaseFields(model: any): string {
   }).join(',\\n    ');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const valueGeneratorsExample =
   `function getMinimalValue(column: any): string {
@@ -395,7 +395,7 @@ function getEdgeCaseValue(column: any): string {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const mainExportExample =
   `function generateMainExport(schema: any, config: TestDataConfig): string {
@@ -452,7 +452,7 @@ function validateConfig(config: any): asserts config is TestDataConfig {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function GenerationFunctions() {
   return (

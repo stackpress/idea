@@ -12,7 +12,7 @@ import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicExample = 
   `import Transformer from '@stackpress/idea-transformer';
@@ -21,7 +21,7 @@ const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
 await transformer.transform();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const loadExample = 
   `import Transformer from '@stackpress/idea-transformer';
@@ -35,7 +35,7 @@ const transformer = await Transformer.load('./schema.idea', {
   fs: customFileSystem
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaExample = 
   `const transformer = await Transformer.load('./schema.idea');
@@ -47,7 +47,7 @@ console.log(schema.type); // Access type definitions
 console.log(schema.prop); // Access prop definitions
 console.log(schema.plugin); // Access plugin configurations`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const transformExample = 
   `const transformer = await Transformer.load('./schema.idea');
@@ -61,7 +61,7 @@ await transformer.transform({
   debug: true
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginContextExample = 
   `{
@@ -72,7 +72,7 @@ const pluginContextExample =
   ...extras                 // Any additional context passed to transform()
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicSchemaLoadingExample = 
   `import Transformer from '@stackpress/idea-transformer';
@@ -85,7 +85,7 @@ console.log('Models:', Object.keys(schema.model || {}));
 console.log('Enums:', Object.keys(schema.enum || {}));
 console.log('Types:', Object.keys(schema.type || {}));`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const multipleSchemaFilesExample = 
   `// main.idea
@@ -107,7 +107,7 @@ const schema = await transformer.schema();
 console.log(schema.type?.Profile);  // Available from shared/types.idea
 console.log(schema.enum?.UserRole); // Available from shared/enums.idea`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginDevelopmentExample = 
   `// schema.idea
@@ -147,7 +147,7 @@ await transformer.transform({
   timestamp: new Date().toISOString()
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingExample = 
   `import { Exception } from '@stackpress/idea-parser';
@@ -165,7 +165,7 @@ try {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customFileSystemExample = 
   `import { NodeFS } from '@stackpress/lib';
@@ -177,28 +177,28 @@ const transformer = await Transformer.load('./schema.idea', {
   cwd: '/custom/working/directory'
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const fileNotFoundExample = 
   `// Throws: "Input file /path/to/nonexistent.idea does not exist"
 const transformer = await Transformer.load('./nonexistent.idea');
 await transformer.schema(); // Error thrown here`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const noPluginsExample = 
   `// If schema has no plugins defined
 const transformer = await Transformer.load('./schema-without-plugins.idea');
 await transformer.transform(); // Throws: "No plugins defined in schema file"`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const invalidPluginExample = 
   `// If plugin file doesn't export a function
 const transformer = await Transformer.load('./schema.idea');
 await transformer.transform(); // Plugin is silently skipped if not a function`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaOrganizationExample = 
   `// Organize schemas hierarchically
@@ -215,7 +215,7 @@ model Application {
   users User[]
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginDevelopmentBestPracticeExample = 
   `// Always validate plugin configuration
@@ -235,7 +235,7 @@ export default async function myPlugin({ config, schema, transformer, cwd }) {
   // Generate output...
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorRecoveryExample = 
   `// Implement graceful error handling
@@ -251,7 +251,7 @@ async function processSchema(schemaPath) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const buildSystemIntegrationExample = 
   `// Integration with build tools
@@ -266,7 +266,7 @@ export async function buildSchemas(inputDir, outputDir) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const testingExample = 
   `// Testing schema transformations
@@ -282,10 +282,10 @@ describe('Schema Transformation', () => {
   });
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -293,7 +293,7 @@ const anchorStyles = clsx(
   'text-blue-500'
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

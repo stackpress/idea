@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicPluginStructure =
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -50,7 +50,7 @@ export default async function mysqlTablesPlugin(
   console.log(\`✅ MySQL tables generated: \${outputPath}\`);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function CreatePluginStructure() {
   //hooks

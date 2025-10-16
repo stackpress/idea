@@ -3,6 +3,9 @@ import { useLanguage, Translate } from 'r22n';
 //local
 import { H1, H2, P, Code } from '../../../docs/components/index.js';
 
+//code examples
+//--------------------------------------------------------------------//
+
 const namespaceConfigurationExample =
   `// With namespace configuration
 namespace: "MyApp"
@@ -23,7 +26,7 @@ export namespace MyApp {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const standardEnumExample =
   `// Standard enum (default)
@@ -33,14 +36,14 @@ export enum UserRole {
   USER = "user",
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const unionTypeExample =
   `// Union type
 enumType: "union"
 export type UserRole = "admin" | "user";`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const constAssertionExample =
   `// Const assertion
@@ -51,7 +54,7 @@ export const UserRole = {
 } as const;
 export type UserRole = typeof UserRole[keyof typeof UserRole];`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const relationshipHandlingExample =
   `function handleRelationships(
@@ -77,7 +80,7 @@ const relationshipHandlingExample =
   return formatPropertyType(column, config, availableTypes);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const genericTypeSupportExample =
   `function generateGenericTypes(
@@ -105,7 +108,7 @@ const genericTypeSupportExample =
   return content;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function AdvancedFeatures() {
   //hooks

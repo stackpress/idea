@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicTransformationExample =
   `import Transformer from '@stackpress/idea-transformer';
@@ -19,7 +19,7 @@ const basicTransformationExample =
 const transformer = await Transformer.load('./schema.idea');
 await transformer.transform();`
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cliUsageExample =
   `# Process schema file
@@ -28,7 +28,7 @@ node cli.js transform --input ./schema.idea
 # Using short flag
 node cli.js transform --i ./schema.idea`
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginDevelopmentExample =
   `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -42,7 +42,7 @@ export default async function myPlugin(props: PluginProps<{}>) {
   await writeFile(outputPath, content);
 }`
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

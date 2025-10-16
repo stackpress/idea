@@ -11,7 +11,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const parseExample = 
 `import { parse } from '@stackpress/idea-parser';
@@ -26,7 +26,7 @@ model User {
 console.log(result);
 // Output includes prop references: { prop: { Text: { type: "text" } }, ... }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const finalExample = 
 `import { final } from '@stackpress/idea-parser';
@@ -42,7 +42,7 @@ console.log(result);
 // Output has resolved references: { model: { User: { ... } } }
 // No 'prop' section in output`;
 
-//-----------------------------------------------------------------  
+//--------------------------------------------------------------------//
 
 const exceptionExample = 
 `import { Exception } from '@stackpress/idea-parser';
@@ -55,10 +55,10 @@ try {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -66,7 +66,7 @@ const anchorStyles = clsx(
   'text-blue-500'
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

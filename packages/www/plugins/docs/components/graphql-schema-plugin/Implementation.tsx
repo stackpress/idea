@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, C, Code } from '../../../docs/components/index.js';
 
 //code examples
-//----------------------------------------------------------------- 
+//--------------------------------------------------------------------// 
 
 const corePluginFunctionExample = 
 `export default async function generateGraphQLSchema(
@@ -69,7 +69,7 @@ const corePluginFunctionExample =
   }
 }`; 
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeMappingFunctionsExample = 
 `function mapSchemaTypeToGraphQL(schemaType: string, customScalars: Record<string, string> = {}): string {
@@ -108,7 +108,7 @@ function formatFieldType(column: any, customScalars: Record<string, string> = {}
   return type;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customScalarsExample = 
 `function generateCustomScalars(customScalars: Record<string, string>): string {
@@ -131,7 +131,7 @@ scalar JSON
   return content + '\\n';
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const enumsAndTypesExample = 
 `function generateEnums(enums: Record<string, any>): string {
@@ -167,7 +167,7 @@ function generateTypes(models: Record<string, any>): string {
   return content;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const inputTypesAndQueriesExample = 
 `function generateInputTypes(models: Record<string, any>): string {
@@ -224,7 +224,7 @@ function generateQueries(models: Record<string, any>): string {
   return content;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Implementation() {
   //hooks

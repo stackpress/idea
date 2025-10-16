@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaUsageExample =
   `// schema.idea
@@ -33,7 +33,7 @@ enum UserRole {
   USER "user"
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UsageInSchema() {
   //hooks

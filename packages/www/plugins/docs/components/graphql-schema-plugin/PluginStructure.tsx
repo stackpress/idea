@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, P, Code } from '../../../docs/components/index.js';
 
 //code examples
-//----------------------------------------------------------------- 
+//--------------------------------------------------------------------//
 
 const pluginStructureExample = 
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -28,7 +28,7 @@ export default async function generateGraphQLSchema(
   // Implementation here...
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function PluginStructure() {
   //hooks

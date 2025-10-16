@@ -12,7 +12,7 @@ import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -20,7 +20,7 @@ const basicExample =
 const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const loadExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -36,13 +36,13 @@ const terminal = await Terminal.load(args, {
   brand: '[MY-TOOL]'
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const runExample =
   `const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicCommandExecutionExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -52,7 +52,7 @@ const args = ['transform', '--input', './schema.idea'];
 const terminal = await Terminal.load(args);
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const shortFlagExample =
   `// Using the short flag alias
@@ -60,7 +60,7 @@ const args = ['transform', '--i', './schema.idea'];
 const terminal = await Terminal.load(args);
 await terminal.run();`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customWorkingDirectoryExample =
   `// Set custom working directory
@@ -69,7 +69,7 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 });
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customFileExtensionExample =
   `// Use custom file extension
@@ -78,7 +78,7 @@ const terminal = await Terminal.load(['transform', '--i', './schema.custom'], {
 });
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customBrandExample =
   `// Use custom terminal brand
@@ -87,7 +87,7 @@ const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
 });
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const directCommandLineExample =
   `## Basic usage
@@ -99,7 +99,7 @@ node cli.js transform --i ./schema.idea
 ## With custom working directory
 cd /path/to/project && node cli.js transform --i ./schema.idea`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cliScriptExample =
   `#!/usr/bin/env node
@@ -121,7 +121,7 @@ async function main() {
 
 main();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const packageJsonIntegrationExample =
   `{
@@ -135,14 +135,14 @@ const packageJsonIntegrationExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const defaultPathExample =
   `// Default file path construction
 const defaultPath = \`\${terminal.cwd}/schema\${terminal.extname}\`;
 // Example: "/current/directory/schema.idea"`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const flagProcessingExample =
   `// These are equivalent:
@@ -152,7 +152,7 @@ const flagProcessingExample =
 // Uses default path: ./schema.idea
 ['transform']`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const missingSchemaFileExample =
   `try {
@@ -162,7 +162,7 @@ const missingSchemaFileExample =
   console.error('File not found:', error.message);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const invalidCommandExample =
   `try {
@@ -172,7 +172,7 @@ const invalidCommandExample =
   console.error('Unknown command:', error.message);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginErrorsExample =
   `// If plugins fail during transformation
@@ -183,7 +183,7 @@ try {
   console.error('Transformation failed:', error.message);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customEventHandlersExample =
   `import Terminal from '@stackpress/idea-transformer/Terminal';
@@ -198,7 +198,7 @@ terminal.on('custom-command', async (event) => {
 
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const programmaticCLIExample =
   `// Build CLI arguments programmatically
@@ -216,7 +216,7 @@ const args = buildCLIArgs('./my-schema.idea');
 const terminal = await Terminal.load(args);
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const batchProcessingExample =
   `import { glob } from 'glob';
@@ -237,7 +237,7 @@ async function processAllSchemas(pattern: string) {
 // Process all .idea files in a directory
 await processAllSchemas('./schemas/**/*.idea');`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const environmentBasedConfigExample =
   `const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
@@ -248,7 +248,7 @@ const environmentBasedConfigExample =
 
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 
 const webpackPluginExample =
@@ -270,7 +270,7 @@ const webpackPluginExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const gulpTaskExample =
   `import gulp from 'gulp';
@@ -281,7 +281,7 @@ gulp.task('transform-schema', async () => {
   await terminal.run();
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const npmScriptsExample =
   `{
@@ -292,7 +292,7 @@ const npmScriptsExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const unitTestingExample =
   `import { expect } from 'chai';
@@ -321,7 +321,7 @@ describe('Terminal Tests', () => {
   });
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const integrationTestingExample =
   `import fs from 'fs';
@@ -350,7 +350,7 @@ describe('Terminal Integration', () => {
   });
 });`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingBestPracticeExample =
   `// Always wrap terminal execution in try-catch
@@ -365,8 +365,7 @@ async function safeTransform(schemaFile: string) {
   }
 }`;     
 
-//-----------------------------------------------------------------
-
+//--------------------------------------------------------------------//
 
 const configurationManagementExample =
   `// Use configuration objects for reusable settings
@@ -380,7 +379,7 @@ async function createTerminal(args: string[], config = defaultConfig) {
   return await Terminal.load(args, config);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const loggingAndDebuggingExample =
   `// Add logging for better debugging
@@ -393,10 +392,10 @@ console.log(\`File extension: \${terminal.extname}\`);
 
 await terminal.run();`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -404,7 +403,7 @@ const anchorStyles = clsx(
   'text-blue-500'
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

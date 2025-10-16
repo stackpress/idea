@@ -10,7 +10,7 @@ import { H1, H2, H3, P, SS, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 
 //styles
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx([
   'cursor-pointer',
@@ -18,7 +18,7 @@ const anchorStyles = clsx([
   'text-blue-500',
 ]);
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

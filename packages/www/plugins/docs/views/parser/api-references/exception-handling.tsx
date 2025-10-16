@@ -11,12 +11,12 @@ import Code from '../../../components/Code.js';
 import Layout from '../../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `import { Exception } from '@stackpress/idea-parser';`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
   `import { parse, Exception } from '@stackpress/idea-parser';
 
 try {
@@ -29,7 +29,7 @@ try {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { EnumTree, Exception } from '@stackpress/idea-parser';
 
@@ -47,7 +47,7 @@ try {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `try {
   parse('enum Status { ACTIVE "Active"'); // Missing closing brace
@@ -55,7 +55,7 @@ try {
   console.log(error.message); // "Unexpected end of input expecting }"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `try {
   parse('model user { id String }'); // Invalid - should be capitalized
@@ -63,7 +63,7 @@ try {
   console.log(error.message); // "Expected CapitalIdentifier but got something else"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `try {
   parse('model User { name String @field.input(UnknownProp) }');
@@ -71,7 +71,7 @@ try {
   console.log(error.message); // "Unknown reference UnknownProp"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `try {
   parse(\`
@@ -82,7 +82,7 @@ try {
   console.log(error.message); // "Duplicate Status"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { SchemaTree, EnumTree, ModelTree, Exception } from '@stackpress/idea-parser';
 
@@ -101,7 +101,7 @@ try {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { parse, Exception } from '@stackpress/idea-parser';
 
@@ -117,7 +117,7 @@ function parseWithFallback(code: string, fallbackCode?: string) {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { parse, Exception } from '@stackpress/idea-parser';
 
@@ -143,7 +143,7 @@ function validateSchema(code: string) {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `try {
   parse(schemaCode);
@@ -157,7 +157,7 @@ function validateSchema(code: string) {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `function highlightError(code: string, error: Exception) {
   const lines = code.split('\\n');
@@ -179,7 +179,7 @@ function validateSchema(code: string) {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `function parseWithContext(code: string, filename?: string) {
   try {
@@ -197,10 +197,10 @@ function validateSchema(code: string) {
 }`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -208,7 +208,7 @@ const anchorStyles = clsx(
   'text-blue-500',
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -378,10 +378,10 @@ export function Body() {
       <section id="overview">
         <H1>{_('Overview')}</H1>
         <Translate>
-          Exception is a specialized error class that extends the 
-          base Exception class with additional functionality for 
-          parser-specific error handling. It automatically includes 
-          position information when parsing fails, making it easier 
+          Exception is a specialized error class that extends the
+          base Exception class with additional functionality for
+          parser-specific error handling. It automatically includes
+          position information when parsing fails, making it easier
           to identify and fix syntax errors in schema files.
         </Translate>
       </section>
@@ -400,7 +400,7 @@ export function Body() {
 
         <H2>{_('Position Information')}</H2>
         <Translate>
-          Exception includes position information to help locate 
+          Exception includes position information to help locate
           errors in the source code:
         </Translate>
         <Code copy language="typescript" className="bg-black text-white">
@@ -451,7 +451,7 @@ export function Body() {
       <section id="error-recovery">
         <H1>{_('Error Recovery')}</H1>
         <Translate>
-          While Exception indicates parsing failure, you can 
+          While Exception indicates parsing failure, you can
           implement error recovery strategies:
         </Translate>
         <Code copy language="typescript" className="bg-black text-white">

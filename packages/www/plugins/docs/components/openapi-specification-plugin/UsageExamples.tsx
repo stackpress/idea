@@ -5,7 +5,7 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicUsageExample =
   `// schema.idea
@@ -40,7 +40,7 @@ plugin "./plugins/openapi-spec.js" {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const advancedUsageExample = 
 `// schema.idea
@@ -177,7 +177,7 @@ plugin "./plugins/openapi-spec.js" {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const cliIntegrationExample = 
 `# Generate OpenAPI specification
@@ -193,7 +193,7 @@ npx swagger-codegen validate -i docs/api-spec.json
 npx swagger-codegen generate -i docs/api-spec.json -l typescript-fetch -o ./sdk/typescript
 npx swagger-codegen generate -i docs/api-spec.json -l python -o ./sdk/python`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UsageExamples() {
   //hooks

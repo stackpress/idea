@@ -4,7 +4,7 @@ import { Translate, useLanguage } from 'r22n';
 import Code from '../../../docs/components/Code.js';
 
 //code example
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const exampleSchema = 
 `// schema.idea
@@ -71,7 +71,7 @@ plugin "./plugins/api-generator.js" {
   includeValidation true
 }`;
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function RealWorldExampleSection() {
   //hooks

@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const mainSQLGeneration =
   `function generateSQL(schema: any, options: any): string {
@@ -33,7 +33,7 @@ const mainSQLGeneration =
   return sql;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const tableSQLGeneration =
   `function generateTableSQL(tableName: string, model: any, options: any): string {
@@ -88,7 +88,7 @@ const tableSQLGeneration =
   return sql;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const columnDefinitionGeneration =
   `function generateColumnDefinition(column: any, options: any): any {
@@ -142,7 +142,7 @@ const columnDefinitionGeneration =
   };
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const foreignKeyGeneration =
   `function generateForeignKey(column: any, options: any): string | null {
@@ -159,7 +159,7 @@ const foreignKeyGeneration =
   return null;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function GenerateSqlStatements() {
   //hooks

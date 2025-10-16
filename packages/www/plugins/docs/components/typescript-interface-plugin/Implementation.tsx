@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, C, Code } from '../../../docs/components/index.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const corePluginFunctionExample =
   `export default async function generateTypeScriptInterfaces(
@@ -64,7 +64,7 @@ const corePluginFunctionExample =
   }
 }`;
 
-//---------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeMappingFunctionsExample =
   `function mapSchemaTypeToTypeScript(
@@ -118,7 +118,7 @@ function formatPropertyType(
   return type;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const generationFunctionsExample =
   `function generateFileHeader(): string {
@@ -222,7 +222,7 @@ function generateInterfaces(
   return content;
 }`;
 
-//---------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const validationFunctionsExample =
   `function validateConfig(config: any): asserts config is TypeScriptConfig {
@@ -245,7 +245,7 @@ const validationFunctionsExample =
   }
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Implementation() {
   //hooks

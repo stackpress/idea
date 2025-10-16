@@ -5,7 +5,7 @@ import { H1, P, C, SS } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples =
   `# Using npm
@@ -17,7 +17,7 @@ yarn add --dev ts-morph
 # Using Deno
 deno add ts-morph@jsr:@ts-morph/ts-morph`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function installation() {
   //hooks

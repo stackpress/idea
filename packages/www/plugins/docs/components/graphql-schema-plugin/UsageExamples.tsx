@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, Code } from '../../../docs/components/index.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicSchemaExample =
   `enum UserRole {
@@ -28,7 +28,7 @@ plugin "./plugins/graphql-schema.js" {
   includeMutations true
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const generatedOutputExample =
   `# Custom Scalars
@@ -81,7 +81,7 @@ type Mutation {
   deleteUser(id: ID!): Boolean
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UsageExamples() {
   //hooks

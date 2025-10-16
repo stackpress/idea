@@ -19,14 +19,15 @@ import {
 } from '../../components/test-data-plugin/index.js';
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
+
 const anchorStyles = clsx(
   'cursor-pointer',
   'hover:text-blue-700',
   'text-blue-500'
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

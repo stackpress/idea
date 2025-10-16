@@ -27,7 +27,7 @@ import {
 } from '../../components/markdown-documentation-plugin/index.js';
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -35,7 +35,7 @@ const anchorStyles = clsx(
   'text-blue-500'
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

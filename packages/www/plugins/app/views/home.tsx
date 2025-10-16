@@ -70,6 +70,7 @@ function HomeContent() {
       const backgroundColor = theme === 'dark' ? '#121212' : '#EFEFEF';
       const pointColor = theme === 'dark' ? '#FFC107' : '#FF9800';
 
+      //vanta configuration
       const effect = (window as any).VANTA.NET({
         backgroundColor: backgroundColor,
         color: pointColor,

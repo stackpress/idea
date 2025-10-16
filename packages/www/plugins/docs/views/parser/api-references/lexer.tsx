@@ -12,12 +12,12 @@ import Layout from '../../../components/Layout.js';
 import { Table, Thead, Trow, Tcol } from 'frui/element/Table';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `import { Lexer } from '@stackpress/idea-parser';`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -30,7 +30,7 @@ const clonedLexer = lexer.clone();
 console.log(clonedLexer.index); // Same index as original
 console.log(clonedLexer.dictionary); // Same definitions as original`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions from '@stackpress/idea-parser/definitions';
@@ -55,7 +55,7 @@ lexer.define('customKeyword', (code, start, lexer) => {
   return undefined;
 });`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions, { data } from '@stackpress/idea-parser/definitions';
@@ -82,7 +82,7 @@ lexer.load('true');
 const booleanToken = lexer.expect(['Boolean', 'String', 'Integer']);
 console.log(booleanToken.value); // true`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -97,7 +97,7 @@ if (definition) {
   console.log('Definition not found');
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -112,7 +112,7 @@ lexer.load('enum Status { ACTIVE "Active" }', 5);
 console.log(lexer.index); // 5
 console.log(lexer.substring(5, 11)); // 'Status'`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -139,7 +139,7 @@ if (match2) {
   console.log('Matched:', match2.type); // 'Literal'
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions from '@stackpress/idea-parser/definitions';
@@ -162,7 +162,7 @@ if (lexer.next(['String', 'Integer', 'Boolean'])) {
   console.log('Next token is a literal value');
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 import definitions from '@stackpress/idea-parser/definitions';
@@ -187,7 +187,7 @@ lexer.optional('whitespace');
 const enumToken = lexer.expect('AnyIdentifier');
 console.log(enumToken.name); // 'enum'`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -207,7 +207,7 @@ if (token) {
   console.log('Token value:', token.value); // 42
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -222,7 +222,7 @@ console.log(substring); // 'code'
 const empty = lexer.substring(5, 5);
 console.log(empty); // ''`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 
@@ -238,7 +238,7 @@ lexer.load('enumStatus');
 const endIndex = lexer.nextSpace();
 console.log(endIndex); // 10 (length of code)`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer } from '@stackpress/idea-parser';
 import { Compiler } from '@stackpress/idea-parser';
@@ -262,7 +262,7 @@ const nestedCompiled = Compiler.object(nestedToken);
 console.log(nestedCompiled.zoo.foo); // false
 console.log(nestedCompiled.zoo.bar); // null`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Parse a simple array
 lexer.load('[ 4.4 "bar" false null ]');
@@ -283,7 +283,7 @@ const objectArray = Compiler.array(objectArrayToken);
 console.log(objectArray[0].label); // 'US'
 console.log(objectArray[1].value); // 'Canada'`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Parse block comments
 lexer.load('/* some comment */');
@@ -305,7 +305,7 @@ lexer.load("/*
 const multilineToken = lexer.expect('note');
 console.log(multilineToken.value); // Contains newlines and nested //`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `const lexer = new Lexer();
 
@@ -323,7 +323,7 @@ try {
   console.log(error.message); // "Unknown definition missingKey"
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Exception } from '@stackpress/idea-parser';
 
@@ -341,7 +341,7 @@ try {
   }
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `import { Lexer, EnumTree } from '@stackpress/idea-parser';
 
@@ -354,7 +354,7 @@ lexer.load('enum Status { ACTIVE "Active" INACTIVE "Inactive" }');
 const enumTree = new EnumTree(lexer);
 const result = enumTree.enum(); // Parse enum using configured lexer`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Save current state for potential backtracking
 const checkpoint = lexer.clone();
@@ -369,7 +369,7 @@ try {
   return parseAlternativeStructure(restoredLexer);
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Parse different types based on lookahead
 if (lexer.next('AnyIdentifier')) {
@@ -381,7 +381,7 @@ if (lexer.next('AnyIdentifier')) {
   }
 }`,
 
-  //--------------------------------------------------------------------
+  //------------------------------------------------------------------//
   `import type { Reader } from '@stackpress/idea-parser';
 
 const customReader: Reader = (code, start, lexer) => {
@@ -406,10 +406,10 @@ const customReader: Reader = (code, start, lexer) => {
 lexer.define('custom', customReader);`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//  
 
 const anchorStyles = clsx(
   'cursor-pointer',
@@ -417,7 +417,7 @@ const anchorStyles = clsx(
   'text-blue-500',
 );
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

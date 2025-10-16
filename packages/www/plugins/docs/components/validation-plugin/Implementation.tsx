@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const corePluginFunction =
   `export default async function generateZodSchemas(
@@ -58,7 +58,7 @@ const corePluginFunction =
   }
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const enumGeneration =
   `function generateEnumSchemas(enums: Record<string, any>, config: ZodConfig): string {
@@ -80,7 +80,7 @@ const enumGeneration =
   return content + '\\n';
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeGeneration =
   `function generateTypeSchemas(types: Record<string, any>, config: ZodConfig): string {
@@ -113,7 +113,7 @@ const typeGeneration =
   return content;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const modelGeneration =
   `function generateModelSchemas(models: Record<string, any>, config: ZodConfig): string {
@@ -149,7 +149,7 @@ const modelGeneration =
   return content;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const fieldMapping =
   `function generateFieldSchema(column: any, config: ZodConfig): string {
@@ -192,7 +192,7 @@ function mapTypeToZod(schemaType: string, config: ZodConfig): string {
   return typeMap[schemaType] || \`\${schemaType}Schema\`;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const attributeValidations =
   `function addAttributeValidations(schema: string, attributes: any, config: ZodConfig): string {
@@ -274,7 +274,7 @@ function extractFieldName(schema: string): string | null {
   return match ? match[1] : null;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const inputSchemas =
   `function generateInputSchemas(modelName: string, model: any, config: ZodConfig): string {
@@ -322,7 +322,7 @@ const inputSchemas =
   return content;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const utilitySchemas =
   `function generateUtilitySchemas(schema: any, config: ZodConfig): string {
@@ -367,7 +367,7 @@ export const PaginatedResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =
   return content;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const exportFunctions =
   `function generateMainExport(schema: any, config: ZodConfig): string {
@@ -450,7 +450,7 @@ export default schemas;
   return content;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configValidation = 
 `function validateConfig(config: any): asserts config is ZodConfig {
@@ -463,7 +463,7 @@ const configValidation =
   }
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Implementation() {
   //hooks

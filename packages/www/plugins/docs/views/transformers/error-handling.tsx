@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code example
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingExample =
   `import { Exception } from '@stackpress/idea-parser';
@@ -27,7 +27,7 @@ try {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

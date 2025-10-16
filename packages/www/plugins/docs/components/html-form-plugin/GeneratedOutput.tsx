@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const generatedOutputExample =
   `<!DOCTYPE html>
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 </html>`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function GeneratedOutput() {
   //hooks

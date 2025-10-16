@@ -6,7 +6,7 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const basicConfiguration =
   `plugin "./plugins/zod-validation.js" {
@@ -27,7 +27,7 @@ const basicConfiguration =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const configurationOptions = [
   {
@@ -74,7 +74,7 @@ const configurationOptions = [
   }
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function SchemaConfiguration() {
   //hooks

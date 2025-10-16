@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const corsIssues = 
 `// Ensure your API server allows CORS
@@ -14,7 +14,7 @@ const corsIssues =
 // For development, you might need to proxy requests
 const client = new APIClient('/api/proxy');`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const authenticationIssues = 
 `// Check token format and expiration
@@ -30,7 +30,7 @@ function isTokenValid(token: string): boolean {
 // Refresh token automatically
 client.setAuthToken(await refreshToken());`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const networkIssues = 
 `// Implement retry logic
@@ -53,7 +53,7 @@ async function withRetry<T>(
   throw new Error('Max retries exceeded');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const debuggingTips = 
 `// Add to base client
@@ -65,7 +65,7 @@ private logRequest(method: string, url: string, data?: any) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const responseValidation = 
 `// Validate response structure
@@ -77,7 +77,7 @@ function validateResponse<T>(response: any): response is APIResponse<T> {
   );
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Troubleshooting() {
   //hooks

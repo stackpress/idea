@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `interface PluginOptions {
@@ -30,7 +30,7 @@ function validateOptions(options: unknown): asserts options is PluginOptions {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `class PluginError extends Error {
   constructor(
@@ -67,7 +67,7 @@ async function safeGenerate(config: PluginConfig): Promise<void> {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `class OptimizedGenerator {
   private typeCache = new Map<string, string>();
@@ -100,7 +100,7 @@ async function safeGenerate(config: PluginConfig): Promise<void> {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// generators/interface-generator.ts
 export class InterfaceGenerator {
@@ -136,7 +136,7 @@ export class MainPlugin {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `function generateJSDocComment(
   property: SchemaProperty,
@@ -164,7 +164,7 @@ export class MainPlugin {
 }`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function BestPractices() {
   //hooks

@@ -10,11 +10,11 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const installCommand = `npm install @stackpress/idea-parser`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const usageExample = 
 `import { parse, final } from '@stackpress/idea-parser';
@@ -39,7 +39,7 @@ const parsedSchema = parse(schemaCode);
 // Parse and clean up references (final version)
 const finalSchema = final(schemaCode);`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props
@@ -129,8 +129,8 @@ export function Body() {
         <H1>{_('Quick Start')}</H1>
         <P>
           <Translate>
-            The library provides two main functions for parsing 
-            schema files:
+            The library provides two main functions for parsing schema 
+            files:
           </Translate>
         </P>
 

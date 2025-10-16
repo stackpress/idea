@@ -24,13 +24,15 @@ import {
 } from '../../components/html-form-plugin/index.js';
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
   'hover:text-blue-700',
   'text-blue-500'
 );
+
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

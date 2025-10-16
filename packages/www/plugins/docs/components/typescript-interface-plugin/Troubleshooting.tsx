@@ -4,7 +4,7 @@ import { useLanguage, Translate } from 'r22n';
 import { H1, H2, P, C, Code } from '../../../docs/components/index.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeNameValidation =
   `function validateTypeName(name: string): void {
@@ -13,7 +13,7 @@ const typeNameValidation =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const circularReferenceDetection =
   `function detectCircularReferences(
@@ -46,7 +46,7 @@ const circularReferenceDetection =
   return cycles;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const dependencyValidation =
   `function validateTypeDependencies(
@@ -61,7 +61,7 @@ const dependencyValidation =
   // Validate all type references...
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const verboseLogging =
   `const VERBOSE = process.env.TS_PLUGIN_VERBOSE === 'true';
@@ -72,7 +72,7 @@ function verboseLog(message: string, data?: any) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeScriptValidation =
   `import { transpile, ScriptTarget } from 'typescript';
@@ -89,7 +89,7 @@ function validateGeneratedTypeScript(content: string): void {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Troubleshooting() {
   //hooks

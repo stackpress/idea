@@ -5,7 +5,7 @@ import { H1, H2, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const examples = [
   `// src/types.ts
@@ -34,7 +34,7 @@ export interface PluginConfig {
   exportType?: 'named' | 'default' | 'namespace';
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// src/plugin.ts
 import { Project, SourceFile, InterfaceDeclaration } from "ts-morph";
@@ -279,7 +279,7 @@ export class TypeScriptInterfaceGenerator {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// src/index.ts
 import { TypeScriptInterfaceGenerator } from "./plugin";
@@ -306,7 +306,7 @@ if (require.main === module) {
   generateTypeScriptInterfaces(config).catch(console.error);
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// examples/input.json
 [
@@ -397,11 +397,11 @@ if (require.main === module) {
   }
 ]`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `npx ts-node src/index.ts examples/input.json examples/output.ts`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------// 
 
   `// examples/output.ts
 /**
@@ -497,7 +497,7 @@ export type PostKeys = keyof Post;
 export type AnyModel = User | Post;`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function CreateFirstPlugin() {
   //hooks

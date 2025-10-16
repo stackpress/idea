@@ -22,7 +22,7 @@ import '../styles/styles.css';
 import Search from '../../app/components/Search.js';
 
 //styles
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const menuAnchorTagStyles = clsx(
   'flex',
@@ -51,7 +51,7 @@ const rightNavStyles = clsx(
   'rlg-hidden'
 );
 
-//----------------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function LayoutHead(props: {
   open?: boolean,
@@ -135,7 +135,7 @@ export function LayoutHead(props: {
             }
             onClick={() => toggleTheme()}
           >
-            <i className={`fas ${themeIcon}`}></i>
+            <i className={`fas ${themeIcon} p-2`}></i>
           </button>
         )}
       </div>
@@ -428,7 +428,7 @@ export function LayoutLeft(props: {
       <header className="flex items-center px-h-60 px-p-10 theme-bg-bg0">
         <h3 className="flex-grow px-m-0">
           <a className="flex items-center no-underline theme-tx1" href="/">
-            <i className="fas fa-lightbulb px-mr-10 text-2xl text-yellow-500"></i>
+            <img src="/icon.png" alt="logo" className='h-8 w-8 mr-2'/>
             <span className="font-extrabold px-fs-20">{_('idea')}</span>
             <span className="mt-2 px-ml-5 text-gray-400">{_('v0.6.1')}</span>
           </a>
@@ -440,7 +440,9 @@ export function LayoutLeft(props: {
           <i className="fas fa-chevron-left"></i>
         </button>
       </header>
-      <main className="flex-grow overflow-auto px-pb-40 px-pt-10 theme-bg-bg1">
+      <main
+        className="flex-grow overflow-auto px-pb-40 px-pt-10 theme-bg-bg1"
+      >
         {menu.map((section, i) => (
           <div key={i}>
             {section.label.length ? (

@@ -11,6 +11,8 @@ type SearchItem = {
 };
 
 //styles
+//--------------------------------------------------------------------//
+
 const searchFieldStyle = clsx(
   "border",
   "border-gray-500",
@@ -52,6 +54,7 @@ const noResultsStyle = clsx(
   "z-200"
 );
 
+//--------------------------------------------------------------------//
 
 export default function Search() {
   //hooks

@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginErrorHandlingExample =
 `import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -55,7 +55,7 @@ export default async function safePlugin(props: PluginProps<{}>) {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const gracefulErrorRecoveryExample = 
 `export default async function resilientPlugin(
@@ -94,7 +94,7 @@ const gracefulErrorRecoveryExample =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

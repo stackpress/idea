@@ -5,14 +5,14 @@ import { H1, H2, P, SS, C } from '../../../../docs/components/index.js';
 import Code from '../../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const useExamples = [
   `use "package/to/schema.idea"
 use "./relative/path/schema.idea"
 use "../parent/directory/schema.idea"`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Common types used across multiple schemas
 type Address {
@@ -34,7 +34,7 @@ prop Email {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Import common definitions
 use "../shared/common.idea"
@@ -53,7 +53,7 @@ model User {
   status Status @default("PENDING")
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// The Status enum now contains all values
 enum Status {
@@ -63,14 +63,14 @@ enum Status {
   SUSPENDED "Temporarily Suspended" // From user-schema.idea
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `enum UserRole {
   USER "Regular User"
   ADMIN "Administrator"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `use "./base-schema.idea"
 
@@ -83,7 +83,7 @@ enum UserRole! {
   ADMIN "Administrator"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// ✅ Good - organize by domain
 use "./shared/common-types.idea"
@@ -100,7 +100,7 @@ use "./stuff.idea"
 use "./misc.idea"`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Use() {
   //hooks

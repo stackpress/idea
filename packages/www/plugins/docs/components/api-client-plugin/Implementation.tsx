@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const corePluginFunction = 
 `export default async function generateAPIClient(
@@ -59,7 +59,7 @@ const corePluginFunction =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const headerAndImports = 
 `function generateFileHeader(config: APIClientConfig): string {
@@ -112,7 +112,7 @@ interface RequestOptions {
   return imports;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeGeneration = 
 `function generateTypes(schema: any, config: APIClientConfig): string {
@@ -159,7 +159,7 @@ const typeGeneration =
   return content;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const baseClientGeneration = 
 `function generateBaseClient(config: APIClientConfig): string {
@@ -194,7 +194,7 @@ export class BaseAPIClient {
 \`;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const restClientGeneration = 
 `function generateRESTClients(models: Record<string, any>, config: APIClientConfig): string {
@@ -251,7 +251,7 @@ export class \${modelName}Client extends BaseAPIClient {
   return content;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Implementation() {
   //hooks

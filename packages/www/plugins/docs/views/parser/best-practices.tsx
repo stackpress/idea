@@ -10,14 +10,14 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const typeSafetyExample =
   `import type { SchemaConfig, ModelConfig } from '@stackpress/idea-parser';
 
 const schema: SchemaConfig = parse(code);`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorHandlingExample =
   `import { parse, Exception } from '@stackpress/idea-parser';
@@ -35,7 +35,7 @@ try {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaStructureExample =
   `// Good: Proper model structure
@@ -49,7 +49,7 @@ model User {
   // Missing columns - will throw error
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const namingExample =
   `// Good
@@ -60,7 +60,7 @@ prop EmailInput { type "email" format "email" }
 enum Status { A "Active" S "Suspended" }
 prop Input { type "email" }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const errorExamples = {
   invalidSchema: 'Error: "Invalid Schema"',
@@ -69,7 +69,7 @@ const errorExamples = {
   unknownReference: 'Error: "Unknown reference [name]"'
 };
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

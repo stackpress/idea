@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const customValidatorsExample = 
 `// In plugin configuration
@@ -17,7 +17,7 @@ customValidators: {
   JSON: "z.string().transform(val => JSON.parse(val))"
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const conditionalValidationExample = 
 `// Generated schema with conditional validation
@@ -37,7 +37,7 @@ export const UserSchema = z.object({
   path: ["adminCode"],
 });`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const transformPreprocessExample = 
 `// Add transforms to generated schemas
@@ -58,7 +58,7 @@ function addTransforms(schema: string, column: any): string {
   return schema;
 }`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const asyncValidationExample = 
 `// Generate async validation schemas
@@ -82,7 +82,7 @@ const validateUserAsync = async (data: unknown) => {
   }
 };`
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function AdvancedFeatures() {
   //hooks

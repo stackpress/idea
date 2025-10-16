@@ -5,7 +5,7 @@ import { H1, P, C } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const usageExample =
   `// schema.idea
@@ -36,7 +36,7 @@ enum UserRole {
   GUEST "Guest User"
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UsageInSchema() {
   //hooks

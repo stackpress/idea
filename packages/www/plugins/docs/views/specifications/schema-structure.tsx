@@ -10,7 +10,7 @@ import Code from '../../components/Code.js';
 import Layout from '../../components/Layout.js';
 
 //code example
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const schemaExample = 
 `// 1. Plugin declarations
@@ -62,7 +62,7 @@ model User! {
   created Date @default("now()")
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export function Head(props: ServerPageProps<ServerConfigProps>) {
   //props

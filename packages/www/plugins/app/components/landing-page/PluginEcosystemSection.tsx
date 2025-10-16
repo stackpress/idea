@@ -1,6 +1,34 @@
 //modules
 import { Translate, useLanguage } from 'r22n';
 
+//data samples
+//--------------------------------------------------------------------//
+
+const iconData = [
+  { 
+    icon: 'fa-earth-asia fa-solid hover:animate-spin', 
+    color: 'text-blue-400', 
+    title: 'Multi‑Language Support' 
+  },
+  { 
+    icon: 'fa-brands fa-react hover:animate-spin', 
+    color: 'text-blue-400', 
+    title: 'Framework Integration' 
+  },
+  { 
+    icon: 'fa-solid fa-database hover:animate-bounce', 
+    color: 'text-green-400', 
+    title: 'Database Support' 
+  },
+  { 
+    icon: 'fa-solid fa-book-open hover:animate-bounce', 
+    color: 'text-purple-400', 
+    title: 'Documentation & Tools' 
+  }
+];
+
+//--------------------------------------------------------------------//
+
 export default function PluginEcosystemSection() {
   //hooks
   const { _ } = useLanguage();
@@ -22,45 +50,16 @@ export default function PluginEcosystemSection() {
         </p>
 
         <div className="gap-8 grid grid-cols-1 md:grid-cols-2">
-          {/* Multi-Language Support */}
-          <div className="flex flex-col items-center p-8 rounded-lg">
-            <span className="mb-4 text-6xl text-blue-400">
-              <i className="fa-earth-asia fa-solid hover:animate-spin"></i>
-            </span>
-            <h3 className="font-bold text-center text-xl">
-              {_('Multi‑Language Support')}
-            </h3>
-          </div>
-
-          {/* Framework Integration */}
-          <div className="flex flex-col items-center p-8 rounded-lg">
-            <span className="mb-4 text-6xl text-blue-400">
-              <i className="fa-brands fa-react hover:animate-spin"></i>
-            </span>
-            <h3 className="font-bold text-center text-xl">
-              {_('Framework Integration')}
-            </h3>
-          </div>
-
-          {/* Database Support */}
-          <div className="flex flex-col items-center p-8 rounded-lg">
-            <span className="mb-4 text-6xl text-green-400">
-              <i className="fa-database fa-solid hover:animate-bounce"></i>
-            </span>
-            <h3 className="font-bold text-center text-xl">
-              {_('Database Support')}
-            </h3>
-          </div>
-
-          {/* Documentation & Tools */}
-          <div className="flex flex-col items-center p-8 rounded-lg">
-            <span className="mb-4 text-6xl text-purple-400">
-              <i className="fa-book-open fa-solid hover:animate-bounce"></i>
-            </span>
-            <h3 className="font-bold text-center text-xl">
-              {_('Documentation & Tools')}
-            </h3>
-          </div>
+          {iconData.map((item) => (
+            <div className="flex flex-col items-center p-8 rounded-lg">
+              <span className={`mb-4 text-6xl ${item.color}`}>
+                <i className={item.icon}></i>
+              </span>
+              <h3 className="font-bold text-center text-xl">
+                {_(item.title)}
+              </h3>
+            </div>
+          ))}
         </div>
       </section>
     </>

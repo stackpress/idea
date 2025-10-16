@@ -5,7 +5,7 @@ import { H1, H2, P, SS, C } from '../../../../docs/components/index.js';
 import Code from '../../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const pluginExamples = [
   `plugin "path/to/plugin.js" {
@@ -16,7 +16,7 @@ const pluginExamples = [
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// TypeScript interface generation
 plugin "./plugins/typescript-generator.js" {
@@ -85,7 +85,7 @@ plugin "./plugins/form-generator.js" {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `plugin "./plugins/my-plugin.js" {
   // Output configuration
@@ -119,7 +119,7 @@ plugin "./plugins/form-generator.js" {
   }
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Generate TypeScript types
 plugin "./plugins/typescript.js" {
@@ -150,7 +150,7 @@ plugin "./plugins/validation.js" {
   library "zod"
 }`,
 
-  //---------------------------------------------------------------
+  //------------------------------------------------------------------//
 
   `// Example plugin structure
 import type { PluginProps } from '@stackpress/idea-transformer/types';
@@ -182,7 +182,7 @@ export default async function myPlugin(
 }`
 ];
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function Plugin() {
   //hooks

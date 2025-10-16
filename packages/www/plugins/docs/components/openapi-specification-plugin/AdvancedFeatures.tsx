@@ -5,7 +5,7 @@ import { H1, H2, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const advancedConfigExample =
   `interface AdvancedOpenAPIConfig extends OpenAPIConfig {
@@ -46,7 +46,7 @@ export default async function generateAdvancedOpenAPISpec(
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const formatGenerationExample =
   `async function generateFormat(
@@ -81,7 +81,7 @@ const formatGenerationExample =
   console.log(\`✅ Generated \${format.toUpperCase()} specification: \${outputPath}\`);
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const exampleGenerationExample =
   `function addExamples(spec: any, schema: any): void {
@@ -156,7 +156,7 @@ function generatePropertyExample(propSchema: any): any {
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const validationExample =
   `function validateSpecification(spec: any): void {
@@ -189,7 +189,7 @@ const validationExample =
   console.log('✅ OpenAPI specification validation passed');
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const htmlGenerationExample =
   `function generateHTMLDocumentation(spec: any): string {
@@ -242,7 +242,7 @@ const htmlGenerationExample =
 </html>\`;
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function AdvancedFeatures() {
   //hooks

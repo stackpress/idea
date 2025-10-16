@@ -5,7 +5,7 @@ import { H1, P } from '../../../docs/components/index.js';
 import Code from '../../../docs/components/Code.js';
 
 //code examples
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const exampleProcessedSchema =
   `// Example processed schema
@@ -73,7 +73,7 @@ const exampleProcessedSchema =
   }
 }`;
 
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 export default function UnderstandingSchemaStructure() {
   //hooks

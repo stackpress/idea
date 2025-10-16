@@ -11,7 +11,7 @@ import { H1, H2, P, C, Nav } from '../../components/index.js';
 import Layout from '../../components/Layout.js';
 
 //styles
-//-----------------------------------------------------------------
+//--------------------------------------------------------------------//
 
 const anchorStyles = clsx(
   'cursor-pointer',
