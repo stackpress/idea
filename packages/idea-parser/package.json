@@ -120,15 +120,15 @@
   },
   "devDependencies": {
     "@types/chai": "4.3.20",
-    "@types/deep-equal-in-any-order": "1.0.3",
+    "@types/deep-equal-in-any-order": "1.0.4",
     "@types/mocha": "10.0.10",
-    "@types/node": "22.9.3",
+    "@types/node": "25.0.3",
     "chai": "4.5.0",
     "deep-equal-in-any-order": "1.1.20",
     "mocha": "10.8.2",
     "ts-mocha": "10.0.0",
     "ts-node": "10.9.2",
-    "tsx": "4.19.3",
-    "typescript": "5.7.2"
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
   }
 }
