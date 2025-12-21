@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@types/node": "25.0.3",
-    "@stackpress/idea": "0.6.4",
+    "@stackpress/idea": "0.6.5",
     "ts-morph": "27.0.2",
     "ts-node": "10.9.2",
     "typescript": "5.9.3"

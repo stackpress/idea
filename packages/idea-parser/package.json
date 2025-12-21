@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "@stackpress/idea-parser",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "license": "Apache-2.0",
   "description": "Parses ideas to AST and readable JSON.",
   "author": "Chris <chris@incept.asia>",
@@ -116,7 +116,7 @@
     "test": "DATABASE_URL=test ts-mocha -r tsx tests/*.test.ts"
   },
   "dependencies": {
-    "@stackpress/lib": "0.6.4"
+    "@stackpress/lib": "0.6.5"
   },
   "devDependencies": {
     "@types/chai": "4.3.20",
