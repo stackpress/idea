@@ -94,6 +94,7 @@ export type UseReferences = Record<string, any>|false;
 
 export type Scalar = string|number|null|boolean;
 export type Data = Scalar|Data[]|{ [key: string]: Data };
+export type AttributeValue = boolean|Data[];
 
 export interface Parser {
   get dictionary(): Record<string, Definition>;
@@ -115,7 +116,7 @@ export type PropConfig = Record<string, Data>;
 export type ColumnConfig = {
   name: string,
   type: string,
-  attributes: Record<string, Data>,
+  attributes: Record<string, AttributeValue>,
   required: boolean,
   multiple: boolean
 };
@@ -123,7 +124,7 @@ export type ColumnConfig = {
 export type TypeConfig = {
   name: string,
   mutable: boolean,
-  attributes: Record<string, Data>,
+  attributes: Record<string, AttributeValue>,
   columns: ColumnConfig[]
 };
 
