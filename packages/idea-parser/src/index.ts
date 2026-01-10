@@ -16,6 +16,7 @@ export type {
   UseReferences,
   Scalar,
   Data,
+  AttributeValue,
   Parser,
   EnumConfig,
   PluginConfig,
