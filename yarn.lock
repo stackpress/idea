@@ -743,10 +743,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@stackpress/lib@0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.9.1.tgz#68a046d86ccbbe701fabde22b82981dc4e2468a8"
-  integrity sha512-wxJEZqMBsB3rFVQ1GfwCr8dTa1pxy6Yx8llZLq6ua4E1drkLDgg2d0Aga1cRPkR+8S3SWg2HYI1WbbOCwGpD1Q==
+"@stackpress/lib@0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.9.2.tgz#8133272252cdf28dd61c4bdcd23da4950edd626d"
+  integrity sha512-VIG21iazbpafkiKKMfu+VHXkvTmm3TgzHWY7VXbWLhpf2bwKxcFVUxvvRtMPlYXpEeRsK4pc5O1HB73UlpVS/A==
   dependencies:
     "@inquirer/prompts" "8.1.0"
 
