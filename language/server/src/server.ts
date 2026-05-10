@@ -1,212 +1,223 @@
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
 import {
-	createConnection,
-	TextDocuments,
-	Diagnostic,
-	DiagnosticSeverity,
-	ProposedFeatures,
-	InitializeParams,
-	DidChangeConfigurationNotification,
-	CompletionItem,
-	CompletionItemKind,
-	TextDocumentPositionParams,
-	TextDocumentSyncKind,
-	InitializeResult
+  createConnection,
+  type CompletionItem,
+  DidChangeConfigurationNotification,
+  type DidChangeWatchedFilesParams,
+  type DocumentFormattingParams,
+  type DocumentSymbolParams,
+  type HoverParams,
+  InitializeParams,
+  InitializeResult,
+  type Location,
+  type TextDocumentPositionParams,
+  type WorkspaceSymbolParams,
+  ProposedFeatures,
+  TextDocuments
 } from 'vscode-languageserver/node';
+import { TextDocument } from 'vscode-languageserver-textdocument';
+import { serverCapabilities } from './lsp/capabilities';
+import { IdeaProject } from './core/project';
+import { toLspRange } from './syntax/ranges';
 
-import {
-	TextDocument
-} from 'vscode-languageserver-textdocument';
-
-import { Exception, parse } from '@stackpress/idea-parser';
-
-// Create a connection for the server, using Node's IPC as a transport.
-// Also include all preview / proposed LSP features.
+/**
+ * The server entry point is intentionally thin. All language semantics live
+ * in the project layer so the LSP wiring stays boring and easy to audit.
+ */
 const connection = createConnection(ProposedFeatures.all);
-
-// Create a simple text document manager.
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+const project = new IdeaProject();
 
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
-let hasDiagnosticRelatedInformationCapability = false;
 
 connection.onInitialize((params: InitializeParams) => {
-	const capabilities = params.capabilities;
+  const capabilities = params.capabilities;
+  hasConfigurationCapability = !!(capabilities.workspace && capabilities.workspace.configuration);
+  hasWorkspaceFolderCapability = !!(capabilities.workspace && capabilities.workspace.workspaceFolders);
 
-	// Does the client support the `workspace/configuration` request?
-	// If not, we fall back using global settings.
-	hasConfigurationCapability = !!(
-		capabilities.workspace && !!capabilities.workspace.configuration
-	);
-	hasWorkspaceFolderCapability = !!(
-		capabilities.workspace && !!capabilities.workspace.workspaceFolders
-	);
-	hasDiagnosticRelatedInformationCapability = !!(
-		capabilities.textDocument &&
-		capabilities.textDocument.publishDiagnostics &&
-		capabilities.textDocument.publishDiagnostics.relatedInformation
-	);
+  const result: InitializeResult = {
+    capabilities: serverCapabilities
+  };
 
-	const result: InitializeResult = {
-		capabilities: {
-			textDocumentSync: TextDocumentSyncKind.Incremental,
-			// Tell the client that this server supports code completion.
-			completionProvider: {
-				resolveProvider: true
-			}
-		}
-	};
-	if (hasWorkspaceFolderCapability) {
-		result.capabilities.workspace = {
-			workspaceFolders: {
-				supported: true
-			}
-		};
-	}
-	return result;
+  if (hasWorkspaceFolderCapability) {
+    result.capabilities.workspace = {
+      workspaceFolders: {
+        supported: true
+      }
+    };
+  }
+
+  return result;
 });
 
 connection.onInitialized(() => {
-	if (hasConfigurationCapability) {
-		// Register for all configuration changes.
-		connection.client.register(DidChangeConfigurationNotification.type, undefined);
-	}
-	if (hasWorkspaceFolderCapability) {
-		connection.workspace.onDidChangeWorkspaceFolders(_event => {
-			connection.console.log('Workspace folder change event received.');
-		});
-	}
+  if (hasConfigurationCapability) {
+    connection.client.register(DidChangeConfigurationNotification.type, undefined);
+  }
 });
 
-// The example settings
-interface ExampleSettings {
-	maxNumberOfProblems: number;
+/**
+ * Each text change fully refreshes the in-memory model for that document.
+ * The files are small enough that simplicity is worth more than incremental
+ * AST bookkeeping right now.
+ */
+function syncDocument(textDocument: TextDocument) {
+  project.update(textDocument.uri, textDocument.getText(), textDocument.version);
+  publishDiagnostics(textDocument);
 }
 
-// The global settings, used when the `workspace/configuration` request is not supported by the client.
-// Please note that this is not the case when using this server with the client provided in this example
-// but could happen with other clients.
-const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
-let globalSettings: ExampleSettings = defaultSettings;
-
-// Cache the settings of all open documents
-const documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
-
-connection.onDidChangeConfiguration(change => {
-	if (hasConfigurationCapability) {
-		// Reset all cached document settings
-		documentSettings.clear();
-	} else {
-		globalSettings = <ExampleSettings>(
-			(change.settings.languageServerExample || defaultSettings)
-		);
-	}
-
-	// Revalidate all open text documents
-	documents.all().forEach(validateTextDocument);
-});
-
-function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
-	if (!hasConfigurationCapability) {
-		return Promise.resolve(globalSettings);
-	}
-	let result = documentSettings.get(resource);
-	if (!result) {
-		result = connection.workspace.getConfiguration({
-			scopeUri: resource,
-			section: 'languageServerExample'
-		});
-		documentSettings.set(resource, result);
-	}
-	return result;
+/**
+ * Diagnostics are published from the normalized project state so every LSP
+ * feature sees the same interpretation of the file.
+ */
+function publishDiagnostics(textDocument: TextDocument) {
+  connection.sendDiagnostics({
+    uri: textDocument.uri,
+    diagnostics: project.diagnostics(textDocument.uri).map(diagnostic => ({
+      severity: diagnostic.severity,
+      message: diagnostic.message,
+      range: toLspRange(textDocument, diagnostic.range)
+    }))
+  });
 }
 
-// Only keep settings for open documents
-documents.onDidClose(e => {
-	documentSettings.delete(e.document.uri);
+documents.onDidOpen(event => {
+  syncDocument(event.document);
 });
 
-// The content of a text document has changed. This event is emitted
-// when the text document first opened or when its content has changed.
-documents.onDidChangeContent(change => {
-	validateTextDocument(change.document);
+documents.onDidChangeContent(event => {
+  syncDocument(event.document);
 });
 
-async function validateTextDocument(textDocument: TextDocument): Promise<void> {
-	// In this simple example we get the settings for every validate run.
-	const settings = await getDocumentSettings(textDocument.uri);
-
-	// The validator creates diagnostics for all uppercase words length 2 and more
-	const text = textDocument.getText();
-
-	const diagnostics: Diagnostic[] = [];
-	try {
-		parse(text);
-	} catch (e) {
-		const error = e as Exception;
-		const diagnostic: Diagnostic = {
-			severity: DiagnosticSeverity.Error,
-			message: error.message,
-			range: {
-				start: textDocument.positionAt(error.start),
-				end: textDocument.positionAt(error.end)
-			}
-		};
-		diagnostics.push(diagnostic);
-	}
-
-	// Send the computed diagnostics to VSCode.
-	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
-}
-
-connection.onDidChangeWatchedFiles(_change => {
-	// Monitored files have change in VSCode
-	connection.console.log('We received an file change event');
+documents.onDidClose(event => {
+  project.close(event.document.uri);
+  connection.sendDiagnostics({ uri: event.document.uri, diagnostics: [] });
 });
 
-// This handler provides the initial list of the completion items.
-connection.onCompletion(
-	(_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-		// The pass parameter contains the position of the text document in
-		// which code complete got requested. For the example we ignore this
-		// info and always provide the same completion items.
-		return [
-			{
-				label: 'TypeScript',
-				kind: CompletionItemKind.Text,
-				data: 1
-			},
-			{
-				label: 'JavaScript',
-				kind: CompletionItemKind.Text,
-				data: 2
-			}
-		];
-	}
-);
+connection.onDidChangeWatchedFiles((change: DidChangeWatchedFilesParams) => {
+  // Imported files may change underneath an open editor document, so every
+  // open document is resynchronized after the dependency graph refreshes.
+  for (const changed of change.changes) {
+    project.refreshFromDisk(changed.uri);
+  }
 
-// This handler resolves additional information for the item selected in
-// the completion list.
-connection.onCompletionResolve(
-	(item: CompletionItem): CompletionItem => {
-		if (item.data === 1) {
-			item.detail = 'TypeScript details';
-			item.documentation = 'TypeScript documentation';
-		} else if (item.data === 2) {
-			item.detail = 'JavaScript details';
-			item.documentation = 'JavaScript documentation';
-		}
-		return item;
-	}
-);
+  for (const document of documents.all()) {
+    syncDocument(document);
+  }
+});
 
-// Make the text document manager listen on the connection
-// for open, change and close text document events
+connection.onCompletion((params: TextDocumentPositionParams) => {
+  const document = documents.get(params.textDocument.uri);
+  if (!document) {
+    return [];
+  }
+
+  return project.getCompletions(
+    document.uri,
+    document.offsetAt(params.position)
+  );
+});
+
+connection.onCompletionResolve((item: CompletionItem) => project.resolveCompletion(item) as CompletionItem);
+
+connection.onHover((params: HoverParams) => {
+  const document = documents.get(params.textDocument.uri);
+  if (!document) {
+    return null;
+  }
+
+  const hover = project.getHover(document.uri, document.offsetAt(params.position));
+  if (!hover) {
+    return null;
+  }
+
+  return {
+    range: toLspRange(document, hover.range),
+    contents: {
+      kind: 'markdown',
+      value: hover.markdown
+    }
+  };
+});
+
+connection.onDefinition((params: TextDocumentPositionParams): Location | null => {
+  const document = documents.get(params.textDocument.uri);
+  if (!document) {
+    return null;
+  }
+
+  const definition = project.getDefinition(document.uri, document.offsetAt(params.position));
+  if (!definition) {
+    return null;
+  }
+
+  const target = documents.get(definition.uri);
+  return {
+    uri: definition.uri,
+    range: target ? toLspRange(target, definition.range) : {
+      start: { line: 0, character: 0 },
+      end: { line: 0, character: 0 }
+    }
+  };
+});
+
+connection.onDocumentSymbol((params: DocumentSymbolParams) => {
+  const document = documents.get(params.textDocument.uri);
+  if (!document) {
+    return [];
+  }
+
+  return project.documentSymbols(document.uri).map(declaration => ({
+    name: declaration.name,
+    kind: IdeaProject.symbolKind(declaration.kind),
+    range: toLspRange(document, declaration.range),
+    selectionRange: toLspRange(document, declaration.nameRange),
+    children: declaration.kind === 'type' || declaration.kind === 'model'
+      ? declaration.columns.map(column => ({
+        name: column.name,
+        kind: IdeaProject.symbolKind('column'),
+        range: toLspRange(document, column.range),
+        selectionRange: toLspRange(document, column.nameRange)
+      }))
+      : []
+  }));
+});
+
+connection.onWorkspaceSymbol((params: WorkspaceSymbolParams) => {
+  return project.allSymbols(params.query).map(symbol => ({
+    name: symbol.name,
+    kind: IdeaProject.symbolKind(symbol.kind),
+    location: {
+      uri: symbol.uri,
+      range: documents.get(symbol.uri)
+        ? toLspRange(documents.get(symbol.uri) as TextDocument, symbol.nameRange)
+        : {
+          start: { line: 0, character: 0 },
+          end: { line: 0, character: 0 }
+        }
+    }
+  }));
+});
+
+connection.onDocumentFormatting((params: DocumentFormattingParams) => {
+  const document = documents.get(params.textDocument.uri);
+  if (!document) {
+    return [];
+  }
+
+  const formatted = project.format(document.uri);
+  if (formatted === null || formatted === document.getText()) {
+    return [];
+  }
+
+  return [{
+    range: {
+      start: document.positionAt(0),
+      end: document.positionAt(document.getText().length)
+    },
+    newText: formatted
+  }];
+});
+
 documents.listen(connection);
-
-// Listen on the connection
 connection.listen();

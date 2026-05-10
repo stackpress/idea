@@ -5,7 +5,6 @@
 
 import * as path from 'path';
 import { workspace, ExtensionContext } from 'vscode';
-
 import {
 	LanguageClient,
 	LanguageClientOptions,
@@ -15,14 +14,15 @@ import {
 
 let client: LanguageClient;
 
+/**
+ * The client stays intentionally small so all schema semantics live on the
+ * server side, where they can also be tested in isolation.
+ */
 export function activate(context: ExtensionContext) {
-	// The server is implemented in node
 	const serverModule = context.asAbsolutePath(
 		path.join('server', 'out', 'server.js')
 	);
 
-	// If the extension is launched in debug mode then the debug server options are used
-	// Otherwise the run options are used
 	const serverOptions: ServerOptions = {
 		run: { module: serverModule, transport: TransportKind.ipc },
 		debug: {
@@ -31,17 +31,19 @@ export function activate(context: ExtensionContext) {
 		}
 	};
 
-	// Options to control the language client
 	const clientOptions: LanguageClientOptions = {
-		// Register the server for plain text documents
-		documentSelector: [{ scheme: 'file', language: 'idea' }],
+		// Untitled support matters for scratch buffers and new unsaved schema files.
+		documentSelector: [
+			{ scheme: 'file', language: 'idea' },
+			{ scheme: 'untitled', language: 'idea' }
+		],
 		synchronize: {
-			// Notify the server about file changes to '.clientrc files contained in the workspace
-			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')
+			// Watching all Idea files lets the server refresh imported schemas when
+			// related files change outside the active editor buffer.
+			fileEvents: workspace.createFileSystemWatcher('**/*.idea')
 		}
 	};
 
-	// Create the language client and start the client.
 	client = new LanguageClient(
 		'ideaLanguageServer',
 		'Idea Language Server',
@@ -49,10 +51,13 @@ export function activate(context: ExtensionContext) {
 		clientOptions
 	);
 
-	// Start the client. This will also launch the server
 	client.start();
 }
 
+/**
+ * VS Code calls deactivate during shutdown or reload so the server process
+ * can exit cleanly instead of hanging around as an orphan.
+ */
 export function deactivate(): Thenable<void> | undefined {
 	if (!client) {
 		return undefined;

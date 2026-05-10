@@ -2,8 +2,8 @@
 	"name": "idea-schema",
 	"displayName": "Idea Schema",
 	"description": "Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for .idea files.",
-	"version": "0.4.6",
-  "license": "Apache-2.0",
+	"version": "0.9.2",
+	"license": "Apache-2.0",
 	"icon": "idea.png",
 	"repository": {
 		"type": "git",
@@ -20,19 +20,21 @@
 		"vscode": "^1.75.0"
 	},
 	"main": "./client/out/extension.js",
-	"activationEvents": [],
+	"activationEvents": [
+		"onLanguage:idea"
+	],
 	"contributes": {
 		"configuration": {
 			"type": "object",
 			"title": "Basic configuration",
 			"properties": {
-				"languageServerExample.maxNumberOfProblems": {
+				"idea.maxNumberOfProblems": {
 					"scope": "resource",
 					"type": "number",
 					"default": 100,
 					"description": "Controls the maximum number of problems produced by the server."
 				},
-				"languageServerExample.trace.server": {
+				"idea.trace.server": {
 					"scope": "window",
 					"type": "string",
 					"enum": [
@@ -46,24 +48,29 @@
 			}
 		},
 		"languages": [
-      {
-        "id": "idea",
-        "aliases": [ "Idea", "idea" ],
-        "icon": {
-          "light": "./icon.png",
-          "dark": "./icon.png"
-        },
-        "extensions": [ ".idea" ],
-        "configuration": "./config/schema.language.json"
-      }
-    ],
+			{
+				"id": "idea",
+				"aliases": [
+					"Idea",
+					"idea"
+				],
+				"icon": {
+					"light": "./icon.png",
+					"dark": "./icon.png"
+				},
+				"extensions": [
+					".idea"
+				],
+				"configuration": "./config/schema.language.json"
+			}
+		],
 		"grammars": [
-      {
-        "language": "idea",
-        "scopeName": "source.idea",
-        "path": "./config/schema.grammar.json"
-      }
-    ]
+			{
+				"language": "idea",
+				"scopeName": "source.idea",
+				"path": "./config/schema.grammar.json"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -74,7 +81,7 @@
 		"test": "sh ./scripts/e2e.sh"
 	},
 	"dependencies": {
-		"@stackpress/idea-parser": "0.4.6"
+		"@stackpress/idea-parser": "^0.9.2"
 	},
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",
