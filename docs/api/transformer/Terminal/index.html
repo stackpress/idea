@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Terminal | Idea</title>
+  <link rel="icon" type="image/png" href="../../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../../index.html">
+        <img src="../../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../../getting-started/index.html">Start</a>
+          <a href="../../../concepts/overview/index.html">Concepts</a>
+          <a href="../../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../../reference/specification/index.html">Reference</a>
+          <a href="../../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Terminal</h1>
+      <p>A command-line interface for processing schema files and executing transformations through terminal commands. The Terminal class provides a comprehensive CLI interface for the idea-transformer library, enabling developers to process schema files and execute transformations from the command line.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/api/transformer/Terminal.md">View source</a>
+        <a href="../../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>A command-line interface for processing schema files and executing transformations through terminal commands. The Terminal class provides a comprehensive CLI interface for the idea-transformer library, enabling developers to process schema files and execute transformations from the command line.</p>
+<pre><code class="language-typescript">import Terminal from '@stackpress/idea-transformer/Terminal';
+
+const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
+await terminal.run();</code></pre>
+<ol><li><a href="#1-overview">Overview</a></li><li><a href="#2-loading-a-terminal-instance">Loading a Terminal Instance</a></li><li><a href="#3-properties">Properties</a></li><li><a href="#4-running-terminal-commands">Running Terminal Commands</a></li><li><a href="#5-usage-examples">Usage Examples</a></li><li><a href="#6-command-line-integration">Command-Line Integration</a></li><li><a href="#7-default-behavior">Default Behavior</a></li><li><a href="#8-error-handling">Error Handling</a></li><li><a href="#9-advanced-usage">Advanced Usage</a></li><li><a href="#10-integration-with-build-tools">Integration with Build Tools</a></li><li><a href="#11-testing">Testing</a></li><li><a href="#12-best-practices">Best Practices</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>The Terminal class provides a command-line interface for processing schema files and executing transformations. This section outlines the core capabilities and features of the Terminal class, which extends the base Terminal functionality to provide schema-specific command-line operations.</p>
+<p>The <code>Terminal</code> class (exported as <code>IdeaTerminal</code>) extends the base Terminal class from <code>@stackpress/lib</code> to provide command-line functionality for the idea-transformer library. It handles:</p>
+<ul><li>Command-line argument parsing</li><li>Schema file transformation via CLI commands</li><li>Integration with the Transformer class for processing</li><li>Configurable working directories and file extensions</li></ul>
+<h2 id="2-loading-a-terminal-instance">2. Loading a Terminal Instance</h2>
+<p>The load method creates a new Terminal instance from command-line arguments and optional configuration. This is the primary way to create a terminal instance for processing schema files from the command line.</p>
+<p>The following example shows how to create a new Terminal instance from command-line arguments.</p>
+<pre><code class="language-typescript">import Terminal from '@stackpress/idea-transformer/Terminal';
+
+// Load with command-line arguments
+const args = ['transform', '--input', './schema.idea'];
+const terminal = await Terminal.load(args);
+
+// Load with custom options
+const terminal = await Terminal.load(args, {
+  cwd: '/custom/working/directory',
+  extname: '.schema',
+  brand: '[MY-TOOL]'
+});</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>options</code></td><td><code>TerminalOptions</code></td><td>Optional configuration for terminal behavior</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A promise that resolves to a new Terminal instance configured with the specified arguments and options.</p>
+<h2 id="3-properties">3. Properties</h2>
+<p>The properties section describes the instance variables available on Terminal objects. These properties provide access to configuration details and runtime information needed for command-line operations.</p>
+<p><strong>Properties</strong></p>
+<p>The following properties are available when instantiating a Terminal.</p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>extname</code></td><td><code>string</code></td><td>Default file extension for schema files (default: '.idea')</td></tr>
+      </tbody>
+    </table>
+  
+<h2 id="4-running-terminal-commands">4. Running Terminal Commands</h2>
+<p>The run method executes the configured terminal command and processes the specified schema file. This method handles the complete workflow from command parsing to schema transformation execution.</p>
+<p>The Terminal automatically sets up event handlers for processing commands. The main command supported is <code>transform</code>.</p>
+<pre><code class="language-typescript">const terminal = await Terminal.load(['transform', '--input', './schema.idea']);
+await terminal.run();</code></pre>
+<p><strong>Command Structure</strong></p>
+<p>The terminal expects commands in the following format:</p>
+<pre><code class="language-bash">transform --input &lt;schema-file&gt; [--i &lt;schema-file&gt;]</code></pre>
+<p><strong>Flags</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Flag</th><th>Alias</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<h2 id="5-usage-examples">5. Usage Examples</h2>
+<p>This section provides practical examples of how to use the Terminal class in various scenarios. These examples demonstrate common patterns and use cases for command-line schema processing.</p>
+<h3 id="5-1-basic-command-execution">5.1. Basic Command Execution</h3>
+<p>Basic command execution demonstrates the fundamental workflow for processing schema files through the Terminal interface. This example shows the simplest way to transform a schema file using command-line arguments.</p>
+<pre><code class="language-typescript">import Terminal from '@stackpress/idea-transformer/Terminal';
+
+// Process a schema file
+const args = ['transform', '--input', './schema.idea'];
+const terminal = await Terminal.load(args);
+await terminal.run();</code></pre>
+<h3 id="5-2-using-short-flag-syntax">5.2. Using Short Flag Syntax</h3>
+<p>Short flag syntax provides convenient aliases for common command-line options. This example shows how to use abbreviated flags to make command-line usage more efficient.</p>
+<pre><code class="language-typescript">// Using the short flag alias
+const args = ['transform', '--i', './schema.idea'];
+const terminal = await Terminal.load(args);
+await terminal.run();</code></pre>
+<h3 id="5-3-custom-working-directory">5.3. Custom Working Directory</h3>
+<p>Custom working directory configuration allows you to specify where the Terminal should operate. This is useful when processing schema files from different locations or when integrating with build systems.</p>
+<pre><code class="language-typescript">// Set custom working directory
+const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
+  cwd: '/path/to/project'
+});
+await terminal.run();</code></pre>
+<h3 id="5-4-custom-file-extension">5.4. Custom File Extension</h3>
+<p>Custom file extension support enables the Terminal to work with schema files that use non-standard extensions. This flexibility allows integration with different naming conventions and file organization strategies.</p>
+<pre><code class="language-typescript">// Use custom file extension
+const terminal = await Terminal.load(['transform', '--i', './schema.custom'], {
+  extname: '.custom'
+});
+await terminal.run();</code></pre>
+<h3 id="5-5-custom-brand-label">5.5. Custom Brand/Label</h3>
+<p>Custom brand configuration allows you to customize the Terminal's display name and branding. This is useful when building custom CLI tools based on the idea-transformer library.</p>
+<pre><code class="language-typescript">// Use custom terminal brand
+const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
+  brand: '[MY-SCHEMA-TOOL]'
+});
+await terminal.run();</code></pre>
+<h2 id="6-command-line-integration">6. Command-Line Integration</h2>
+<p>This section demonstrates how to integrate the Terminal class with actual command-line environments and build systems. These examples show practical applications for creating CLI tools and automating schema processing.</p>
+<h3 id="6-1-direct-command-line-usage">6.1. Direct Command-Line Usage</h3>
+<p>Direct command-line usage shows how to invoke the Terminal functionality from shell commands. This section provides examples of the actual command syntax and available options.</p>
+<pre><code class="language-bash">## Basic usage
+node cli.js transform --input ./schema.idea
+
+## Using short flag
+node cli.js transform --i ./schema.idea
+
+## With custom working directory
+cd /path/to/project &amp;&amp; node cli.js transform --i ./schema.idea</code></pre>
+<h3 id="6-2-cli-script-example">6.2. CLI Script Example</h3>
+<p>CLI script examples demonstrate how to create executable scripts that use the Terminal class. This pattern is useful for creating standalone CLI tools and integrating with package managers.</p>
+<pre><code class="language-typescript">#!/usr/bin/env node
+import Terminal from '@stackpress/idea-transformer/Terminal';
+
+async function main() {
+  try {
+    const args = process.argv.slice(2);
+    const terminal = await Terminal.load(args, {
+      cwd: process.cwd(),
+      brand: '[SCHEMA-CLI]'
+    });
+    await terminal.run();
+  } catch (error) {
+    console.error('CLI Error:', error.message);
+    process.exit(1);
+  }
+}
+
+main();</code></pre>
+<h3 id="6-3-package-json-integration">6.3. Package.json Integration</h3>
+<p>Package.json integration shows how to configure npm scripts and binary commands using the Terminal class. This enables seamless integration with Node.js project workflows and package distribution.</p>
+<pre><code class="language-json">{
+  "name": "my-schema-tool",
+  "bin": {
+    "schema": "./cli.js"
+  },
+  "scripts": {
+    "build": "schema transform --i ./schema.idea",
+    "dev": "schema transform --i ./dev-schema.idea"
+  }
+}</code></pre>
+<h2 id="7-default-behavior">7. Default Behavior</h2>
+<p>This section explains the default behavior and conventions used by the Terminal class. Understanding these defaults helps developers predict how the Terminal will behave in different scenarios and configure it appropriately.</p>
+<h3 id="7-1-file-path-resolution">7.1. File Path Resolution</h3>
+<p>File path resolution describes how the Terminal determines which schema file to process when no explicit path is provided. This automatic resolution simplifies common use cases while maintaining flexibility.</p>
+<p>When no input file is specified, the terminal uses a default path:</p>
+<pre><code class="language-typescript">// Default file path construction
+const defaultPath = `${terminal.cwd}/schema${terminal.extname}`;
+// Example: "/current/directory/schema.idea"</code></pre>
+<h3 id="7-2-flag-processing">7.2. Flag Processing</h3>
+<p>Flag processing explains how the Terminal parses and prioritizes command-line flags. Understanding this order of precedence helps developers use the most appropriate flag syntax for their needs.</p>
+<p>The terminal processes the following flags in order of preference:</p>
+<ol><li><code>--input</code> (full flag name)</li><li><code>--i</code> (short alias)</li><li>Default file path if no flags provided</li></ol>
+<pre><code class="language-typescript">// These are equivalent:
+['transform', '--input', './schema.idea']
+['transform', '--i', './schema.idea']
+
+// Uses default path: ./schema.idea
+['transform']</code></pre>
+<h2 id="8-error-handling">8. Error Handling</h2>
+<p>This section covers common error conditions that can occur when using the Terminal class. Understanding these error scenarios helps developers implement proper error handling and provide better user experiences.</p>
+<h3 id="8-1-missing-schema-file">8.1. Missing Schema File</h3>
+<p>Missing schema file errors occur when the specified schema file doesn't exist or isn't accessible. This section shows how these errors are reported and how to handle them appropriately in CLI applications.</p>
+<pre><code class="language-typescript">try {
+  const terminal = await Terminal.load(['transform', '--i', './nonexistent.idea']);
+  await terminal.run();
+} catch (error) {
+  console.error('File not found:', error.message);
+}</code></pre>
+<h3 id="8-2-invalid-command">8.2. Invalid Command</h3>
+<p>Invalid command errors occur when unsupported commands are passed to the Terminal. This section explains how the Terminal handles unknown commands and provides guidance for error recovery.</p>
+<pre><code class="language-typescript">try {
+  const terminal = await Terminal.load(['invalid-command']);
+  await terminal.run();
+} catch (error) {
+  console.error('Unknown command:', error.message);
+}</code></pre>
+<h3 id="8-3-plugin-errors">8.3. Plugin Errors</h3>
+<p>Plugin errors can occur during the transformation process when plugins fail to execute properly. This section covers how to handle and debug plugin-related issues in CLI environments.</p>
+<pre><code class="language-typescript">// If plugins fail during transformation
+try {
+  const terminal = await Terminal.load(['transform', '--i', './schema.idea']);
+  await terminal.run();
+} catch (error) {
+  console.error('Transformation failed:', error.message);
+}</code></pre>
+<h2 id="9-advanced-usage">9. Advanced Usage</h2>
+<p>This section covers advanced patterns and techniques for using the Terminal class in complex scenarios. These examples demonstrate sophisticated use cases and integration patterns for power users.</p>
+<h3 id="9-1-custom-event-handlers">9.1. Custom Event Handlers</h3>
+<p>Custom event handlers allow you to extend the Terminal's functionality with additional commands and behaviors. This pattern enables building specialized CLI tools with custom functionality.</p>
+<pre><code class="language-typescript">import Terminal from '@stackpress/idea-transformer/Terminal';
+
+const terminal = await Terminal.load(['transform', '--i', './schema.idea']);
+
+// Add custom event handler
+terminal.on('custom-command', async (event) =&gt; {
+  console.log('Custom command executed');
+  // Custom logic here
+});
+
+await terminal.run();</code></pre>
+<h3 id="9-2-programmatic-cli-building">9.2. Programmatic CLI Building</h3>
+<p>Programmatic CLI building demonstrates how to construct command-line arguments dynamically in code. This approach is useful for building tools that generate CLI commands based on configuration or user input.</p>
+<pre><code class="language-typescript">// Build CLI arguments programmatically
+function buildCLIArgs(schemaFile: string, options: any = {}) {
+  const args = ['transform'];
+  
+  if (schemaFile) {
+    args.push('--input', schemaFile);
+  }
+  
+  return args;
+}
+
+const args = buildCLIArgs('./my-schema.idea');
+const terminal = await Terminal.load(args);
+await terminal.run();</code></pre>
+<h3 id="9-3-batch-processing">9.3. Batch Processing</h3>
+<p>Batch processing shows how to use the Terminal class to process multiple schema files in sequence. This pattern is essential for build systems and automation tools that need to handle multiple schemas.</p>
+<pre><code class="language-typescript">import { glob } from 'glob';
+
+async function processAllSchemas(pattern: string) {
+  const schemaFiles = await glob(pattern);
+  
+  for (const schemaFile of schemaFiles) {
+    console.log(`Processing ${schemaFile}...`);
+    
+    const terminal = await Terminal.load(['transform', '--i', schemaFile]);
+    await terminal.run();
+    
+    console.log(`Completed ${schemaFile}`);
+  }
+}
+
+// Process all .idea files in a directory
+await processAllSchemas('./schemas/**/*.idea');</code></pre>
+<h3 id="9-4-environment-based-configuration">9.4. Environment-Based Configuration</h3>
+<p>Environment-based configuration demonstrates how to use environment variables to configure Terminal behavior. This approach enables flexible deployment and configuration management across different environments.</p>
+<pre><code class="language-typescript">const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
+  cwd: process.env.SCHEMA_CWD || process.cwd(),
+  extname: process.env.SCHEMA_EXT || '.idea',
+  brand: process.env.CLI_BRAND || '[IDEA]'
+});
+
+await terminal.run();</code></pre>
+<h2 id="10-integration-with-build-tools">10. Integration with Build Tools</h2>
+<p>This section demonstrates how to integrate the Terminal class with popular build tools and development workflows. These examples show practical applications for automating schema processing in development and deployment pipelines.</p>
+<h3 id="10-1-webpack-plugin">10.1. Webpack Plugin</h3>
+<p>Webpack plugin integration shows how to incorporate schema transformation into Webpack build processes. This enables automatic schema processing as part of the application build pipeline.</p>
+<pre><code class="language-typescript">class SchemaTransformPlugin {
+  constructor(options = {}) {
+    this.options = options;
+  }
+  
+  apply(compiler) {
+    compiler.hooks.beforeCompile.tapAsync('SchemaTransformPlugin', async (params, callback) =&gt; {
+      try {
+        const terminal = await Terminal.load(['transform', '--i', this.options.schemaFile]);
+        await terminal.run();
+        callback();
+      } catch (error) {
+        callback(error);
+      }
+    });
+  }
+}</code></pre>
+<h3 id="10-2-gulp-task">10.2. Gulp Task</h3>
+<p>Gulp task integration demonstrates how to create Gulp tasks that use the Terminal class for schema processing. This pattern is useful for projects that use Gulp as their primary build tool.</p>
+<pre><code class="language-typescript">import gulp from 'gulp';
+import Terminal from '@stackpress/idea-transformer/Terminal';
+
+gulp.task('transform-schema', async () =&gt; {
+  const terminal = await Terminal.load(['transform', '--i', './schema.idea']);
+  await terminal.run();
+});</code></pre>
+<h3 id="10-3-npm-scripts">10.3. NPM Scripts</h3>
+<p>NPM scripts integration shows how to configure package.json scripts that use the Terminal class. This approach enables easy schema processing through standard npm commands and supports development workflows.</p>
+<pre><code class="language-json">{
+  "scripts": {
+    "schema:build": "node -e \"import('./cli.js').then(m =&gt; m.default(['transform', '--i', './schema.idea']))\"",
+    "schema:dev": "node -e \"import('./cli.js').then(m =&gt; m.default(['transform', '--i', './dev-schema.idea']))\"",
+    "schema:watch": "nodemon --watch schema.idea --exec \"npm run schema:build\""
+  }
+}</code></pre>
+<h2 id="11-testing">11. Testing</h2>
+<p>This section covers testing strategies and patterns for applications that use the Terminal class. These examples demonstrate how to write effective tests for CLI functionality and ensure reliable schema processing.</p>
+<h3 id="11-1-unit-testing">11.1. Unit Testing</h3>
+<p>Unit testing examples show how to test Terminal functionality in isolation. These tests verify that the Terminal class behaves correctly with different command-line arguments and configuration options.</p>
+<pre><code class="language-typescript">import { expect } from 'chai';
+import Terminal from '@stackpress/idea-transformer/Terminal';
+
+describe('Terminal Tests', () =&gt; {
+  it('should process schema file', async () =&gt; {
+    const terminal = await Terminal.load(['transform', '--i', './test-schema.idea'], {
+      cwd: './test-fixtures'
+    });
+    
+    expect(terminal.cwd).to.include('test-fixtures');
+    
+    // Run the terminal command
+    await terminal.run();
+    
+    // Verify output files were created
+    // ... assertions here
+  });
+  
+  it('should use default options', async () =&gt; {
+    const terminal = await Terminal.load(['transform']);
+    
+    expect(terminal.extname).to.equal('.idea');
+    expect(terminal.cwd).to.be.a('string');
+  });
+});</code></pre>
+<h3 id="11-2-integration-testing">11.2. Integration Testing</h3>
+<p>Integration testing demonstrates how to test the complete workflow from command-line input to generated output files. These tests ensure that the entire transformation pipeline works correctly in realistic scenarios.</p>
+<pre><code class="language-typescript">import fs from 'fs';
+import path from 'path';
+
+describe('Terminal Integration', () =&gt; {
+  it('should generate expected output files', async () =&gt; {
+    const outputDir = './test-output';
+    const schemaFile = './test-schema.idea';
+    
+    // Clean output directory
+    if (fs.existsSync(outputDir)) {
+      fs.rmSync(outputDir, { recursive: true });
+    }
+    
+    // Run transformation
+    const terminal = await Terminal.load(['transform', '--i', schemaFile]);
+    await terminal.run();
+    
+    // Verify expected files were created
+    const expectedFiles = ['types.ts', 'enums.ts', 'models.ts'];
+    for (const file of expectedFiles) {
+      const filePath = path.join(outputDir, file);
+      expect(fs.existsSync(filePath)).to.be.true;
+    }
+  });
+});</code></pre>
+<h2 id="12-best-practices">12. Best Practices</h2>
+<p>This section outlines recommended approaches for using the Terminal class effectively. Following these practices helps ensure reliable, maintainable, and user-friendly CLI applications.</p>
+<h3 id="12-1-error-handling">12.1. Error Handling</h3>
+<p>Error handling best practices ensure that CLI applications provide clear feedback when issues occur. This section demonstrates patterns for implementing robust error handling and user-friendly error messages.</p>
+<pre><code class="language-typescript">// Always wrap terminal execution in try-catch
+async function safeTransform(schemaFile: string) {
+  try {
+    const terminal = await Terminal.load(['transform', '--i', schemaFile]);
+    await terminal.run();
+    console.log(`✅ Successfully processed ${schemaFile}`);
+  } catch (error) {
+    console.error(`❌ Failed to process ${schemaFile}:`, error.message);
+    throw error;
+  }
+}</code></pre>
+<h3 id="12-2-configuration-management">12.2. Configuration Management</h3>
+<p>Configuration management best practices help maintain clean, reusable configuration patterns. This section provides guidance on organizing configuration options and providing sensible defaults.</p>
+<pre><code class="language-typescript">// Use configuration objects for reusable settings
+const defaultConfig = {
+  cwd: process.cwd(),
+  extname: '.idea',
+  brand: '[SCHEMA-TOOL]'
+};
+
+async function createTerminal(args: string[], config = defaultConfig) {
+  return await Terminal.load(args, config);
+}</code></pre>
+<h3 id="12-3-logging-and-debugging">12.3. Logging and Debugging</h3>
+<p>Logging and debugging practices help developers troubleshoot issues and understand Terminal behavior. This section demonstrates effective logging strategies and debugging techniques for CLI applications.</p>
+<pre><code class="language-typescript">// Add logging for better debugging
+const terminal = await Terminal.load(['transform', '--i', './schema.idea'], {
+  cwd: process.cwd()
+});
+
+console.log(`Working directory: ${terminal.cwd}`);
+console.log(`File extension: ${terminal.extname}`);
+
+await terminal.run();</code></pre>
+    </div>
+    <nav class="pager">
+  <a href="../index.html"><span>Previous</span>Transformer API Docs</a>
+
+  <a href="../Transformer/index.html"><span>Next</span>Transformer</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#terminal">Terminal</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-loading-a-terminal-instance">2. Loading a Terminal Instance</a></li>
+<li><a href="#3-properties">3. Properties</a></li>
+<li><a href="#4-running-terminal-commands">4. Running Terminal Commands</a></li>
+<li><a href="#5-usage-examples">5. Usage Examples</a></li>
+<li><a href="#5-1-basic-command-execution">5.1. Basic Command Execution</a></li>
+<li><a href="#5-2-using-short-flag-syntax">5.2. Using Short Flag Syntax</a></li>
+<li><a href="#5-3-custom-working-directory">5.3. Custom Working Directory</a></li>
+<li><a href="#5-4-custom-file-extension">5.4. Custom File Extension</a></li>
+<li><a href="#5-5-custom-brand-label">5.5. Custom Brand/Label</a></li>
+<li><a href="#6-command-line-integration">6. Command-Line Integration</a></li>
+<li><a href="#6-1-direct-command-line-usage">6.1. Direct Command-Line Usage</a></li>
+<li><a href="#6-2-cli-script-example">6.2. CLI Script Example</a></li>
+<li><a href="#6-3-package-json-integration">6.3. Package.json Integration</a></li>
+<li><a href="#7-default-behavior">7. Default Behavior</a></li>
+<li><a href="#7-1-file-path-resolution">7.1. File Path Resolution</a></li>
+<li><a href="#7-2-flag-processing">7.2. Flag Processing</a></li>
+<li><a href="#8-error-handling">8. Error Handling</a></li>
+<li><a href="#8-1-missing-schema-file">8.1. Missing Schema File</a></li>
+<li><a href="#8-2-invalid-command">8.2. Invalid Command</a></li>
+<li><a href="#8-3-plugin-errors">8.3. Plugin Errors</a></li>
+<li><a href="#9-advanced-usage">9. Advanced Usage</a></li>
+<li><a href="#9-1-custom-event-handlers">9.1. Custom Event Handlers</a></li>
+<li><a href="#9-2-programmatic-cli-building">9.2. Programmatic CLI Building</a></li>
+<li><a href="#9-3-batch-processing">9.3. Batch Processing</a></li>
+<li><a href="#9-4-environment-based-configuration">9.4. Environment-Based Configuration</a></li>
+<li><a href="#10-integration-with-build-tools">10. Integration with Build Tools</a></li>
+<li><a href="#10-1-webpack-plugin">10.1. Webpack Plugin</a></li>
+<li><a href="#10-2-gulp-task">10.2. Gulp Task</a></li>
+<li><a href="#10-3-npm-scripts">10.3. NPM Scripts</a></li>
+<li><a href="#11-testing">11. Testing</a></li>
+<li><a href="#11-1-unit-testing">11.1. Unit Testing</a></li>
+<li><a href="#11-2-integration-testing">11.2. Integration Testing</a></li>
+<li><a href="#12-best-practices">12. Best Practices</a></li>
+<li><a href="#12-1-error-handling">12.1. Error Handling</a></li>
+<li><a href="#12-2-configuration-management">12.2. Configuration Management</a></li>
+<li><a href="#12-3-logging-and-debugging">12.3. Logging and Debugging</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

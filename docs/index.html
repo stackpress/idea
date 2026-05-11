@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Idea Documentation</title>
+  <link rel="icon" type="image/png" href="./assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="./assets/site.css" />
+</head>
+<body class="page-home">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="./index.html">
+        <img src="./assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="./getting-started/index.html">Start</a>
+          <a href="./concepts/overview/index.html">Concepts</a>
+          <a href="./how-to/run-a-schema/index.html">How-To</a>
+          <a href="./reference/specification/index.html">Reference</a>
+          <a href="./examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+  <article class="hero-card hero-copy">
+    <div class="eyebrow">Write the schema. Ship the artifact.</div>
+    <h1>Transform your ideas to reality</h1>
+    <p>Idea is a schema file specification and a transformation toolchain. You describe models and metadata in a <code>.idea</code> file, then run plugins to generate code or other artifacts. Many ideas. Many outputs.</p>
+    <div class="hero-actions">
+      <a class="button-link is-accent" href="./getting-started/index.html">Start here</a>
+      <a class="button-link" href="./examples/index.html">See examples</a>
+      <a class="button-link" href="https://github.com/stackpress/idea/tree/main/specs">Browse specs</a>
+    </div>
+  </article>
+  <aside class="hero-card hero-preview">
+    <img src="assets/brand/idea.svg" alt="Idea logo" />
+    <h2>Schema sketch</h2>
+    <pre><code class="language-idea"><span class="token-keyword">model</span> User {
+  id <span class="token-type">String</span> <span class="token-attr">@id</span>
+  name <span class="token-type">String</span>
+  email <span class="token-type">String</span>
+}
+
+<span class="token-keyword">plugin</span> <span class="token-string">"./schema-diagram.mjs"</span> {
+  output <span class="token-string">"./generated/schema.mmd"</span>
+}</code></pre>
+  </aside>
+</section>
+
+<section class="section-grid">
+  <div class="workflow">
+    <article class="promo-card">
+  <p class="kicker">Define</p>
+  <h3>Define your idea</h3>
+  <p>Model your domain in a permissive .idea schema that stays readable as the project grows.</p>
+</article>
+<article class="promo-card">
+  <p class="kicker">Transform</p>
+  <h3>Transform your idea</h3>
+  <p>Run the transformer with local or package plugins to interpret metadata and create output.</p>
+</article>
+<article class="promo-card">
+  <p class="kicker">Generate</p>
+  <h3>Generate your idea</h3>
+  <p>Ship diagrams, docs, interfaces, APIs, forms, or any project-specific artifact from one source.</p>
+</article>
+
+  </div>
+</section>
+
+<section class="section-grid columns-3">
+  <article class="nav-card">
+  <p class="kicker">Start</p>
+  <h3><a href="./getting-started/index.html">Getting Started</a></h3>
+  <p>This guide takes you from an empty folder to a generated file.</p>
+</article>
+<article class="nav-card">
+  <p class="kicker">Concepts</p>
+  <h3><a href="./concepts/overview/index.html">Concepts Overview</a></h3>
+  <p>Idea is a schema language plus a transformation runtime.</p>
+</article>
+<article class="nav-card">
+  <p class="kicker">How-To</p>
+  <h3><a href="./how-to/run-a-schema/index.html">Run A Schema</a></h3>
+  <p>This guide shows the normal CLI workflow.</p>
+</article>
+<article class="nav-card">
+  <p class="kicker">Reference</p>
+  <h3><a href="./reference/specification/index.html">Specification Reference</a></h3>
+  <p>This page describes the core `.idea` file format as implemented by the parser in this repository.</p>
+</article>
+<article class="nav-card">
+  <p class="kicker">Examples</p>
+  <h3><a href="./examples/index.html">Examples</a></h3>
+  <p>This section collects longer tutorials that show different ways you can use Idea.</p>
+</article>
+
+</section>
+
+<section class="section-grid columns-3">
+  <article class="stat-card">
+    <p class="kicker">Parser</p>
+    <h3>Keep the schema permissive</h3>
+    <p>The parser handles declarations, literals, arrays, objects, comments, and schema composition without forcing every attribute into one rigid meaning.</p>
+  </article>
+  <article class="stat-card">
+    <p class="kicker">Transformer</p>
+    <h3>Generate many outputs</h3>
+    <p>Use plugins to turn one schema into interfaces, diagrams, docs, forms, API contracts, or project-specific artifacts that fit your stack.</p>
+  </article>
+  <article class="stat-card">
+    <p class="kicker">Tooling</p>
+    <h3>Author, inspect, extend</h3>
+    <p>The CLI, plugin API, examples, and VS Code extension give the schema format a practical workflow instead of leaving it as a bare specification.</p>
+  </article>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

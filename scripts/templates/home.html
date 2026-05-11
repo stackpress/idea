@@ -1,0 +1,45 @@
+<section class="hero">
+  <article class="hero-card hero-copy">
+    <div class="eyebrow">Write the schema. Ship the artifact.</div>
+    <h1>Transform your ideas to reality</h1>
+    <p>Idea is a schema file specification and a transformation toolchain. You describe models and metadata in a <code>.idea</code> file, then run plugins to generate code or other artifacts. Many ideas. Many outputs.</p>
+    <div class="hero-actions">
+      <a class="button-link is-accent" href="{{startHref}}">Start here</a>
+      <a class="button-link" href="{{examplesHref}}">See examples</a>
+      <a class="button-link" href="https://github.com/stackpress/idea/tree/main/specs">Browse specs</a>
+    </div>
+  </article>
+  <aside class="hero-card hero-preview">
+    <img src="{{heroBrandHref}}" alt="Idea logo" />
+    <h2>Schema sketch</h2>
+    <pre><code class="language-idea">{{heroCode}}</code></pre>
+  </aside>
+</section>
+
+<section class="section-grid">
+  <div class="workflow">
+    {{workflow}}
+  </div>
+</section>
+
+<section class="section-grid columns-3">
+  {{cards}}
+</section>
+
+<section class="section-grid columns-3">
+  <article class="stat-card">
+    <p class="kicker">Parser</p>
+    <h3>Keep the schema permissive</h3>
+    <p>The parser handles declarations, literals, arrays, objects, comments, and schema composition without forcing every attribute into one rigid meaning.</p>
+  </article>
+  <article class="stat-card">
+    <p class="kicker">Transformer</p>
+    <h3>Generate many outputs</h3>
+    <p>Use plugins to turn one schema into interfaces, diagrams, docs, forms, API contracts, or project-specific artifacts that fit your stack.</p>
+  </article>
+  <article class="stat-card">
+    <p class="kicker">Tooling</p>
+    <h3>Author, inspect, extend</h3>
+    <p>The CLI, plugin API, examples, and VS Code extension give the schema format a practical workflow instead of leaving it as a bare specification.</p>
+  </article>
+</section>

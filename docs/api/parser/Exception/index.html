@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Exception | Idea</title>
+  <link rel="icon" type="image/png" href="../../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../../index.html">
+        <img src="../../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../../getting-started/index.html">Start</a>
+          <a href="../../../concepts/overview/index.html">Concepts</a>
+          <a href="../../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../../reference/specification/index.html">Reference</a>
+          <a href="../../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Exception</h1>
+      <p>The Exception class extends the Exception class from `@stackpress/lib` to provide enhanced error handling specific to the idea parser library. It includes position information and better error reporting for parsing failures.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/api/parser/Exception.md">View source</a>
+        <a href="../../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>The Exception class extends the Exception class from <code>@stackpress/lib</code> to provide enhanced error handling specific to the idea parser library. It includes position information and better error reporting for parsing failures.</p>
+<pre><code class="language-typescript">import { Exception } from '@stackpress/idea-parser';</code></pre>
+<ol><li><a href="#1-overview">Overview</a></li><li><a href="#2-usage-examples">Usage Examples</a></li><li><a href="#3-integration-with-ast">Integration with AST</a></li><li><a href="#4-error-recovery">Error Recovery</a></li><li><a href="#5-language-server-integration">Language Server Integration</a></li><li><a href="#6-inherited-features">Inherited Features</a></li><li><a href="#7-best-practices">Best Practices</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>Exception is a specialized error class that extends the base Exception class with additional functionality for parser-specific error handling. It automatically includes position information when parsing fails, making it easier to identify and fix syntax errors in schema files.</p>
+<h2 id="2-usage-examples">2. Usage Examples</h2>
+<p>The following examples demonstrates how to use exceptions.</p>
+<h3 id="2-1-basic-error-handling">2.1. Basic Error Handling</h3>
+<pre><code class="language-typescript">import { parse, Exception } from '@stackpress/idea-parser';
+
+try {
+  const result = parse('invalid schema syntax');
+} catch (error) {
+  if (error instanceof Exception) {
+    console.log('Parser error:', error.message);
+    console.log('Error position:', error.start, '-', error.end);
+    console.log('Stack trace:', error.stack);
+  }
+}</code></pre>
+<h3 id="2-2-position-information">2.2. Position Information</h3>
+<p>Exception includes position information to help locate errors in the source code:</p>
+<pre><code class="language-typescript">import { EnumTree, Exception } from '@stackpress/idea-parser';
+
+try {
+  // Missing closing brace
+  EnumTree.parse('enum Status { ACTIVE "Active"');
+} catch (error) {
+  if (error instanceof Exception) {
+    console.log('Error message:', error.message);
+    console.log('Error starts at character:', error.start);
+    console.log('Error ends at character:', error.end);
+    
+    // Can be used for syntax highlighting in editors
+    const errorRange = { start: error.start, end: error.end };
+  }
+}</code></pre>
+<h3 id="2-3-common-error-scenarios">2.3. Common Error Scenarios</h3>
+<p>The following examples demonstrate common error scenarios that can occur during parsing. Each scenario shows the type of error that triggers an Exception and how to handle it appropriately.</p>
+<h4 id="2-3-1-syntax-errors">2.3.1. Syntax Errors</h4>
+<p>Syntax errors occur when the parser encounters invalid syntax in the schema code. These are the most common type of parsing errors and typically involve missing brackets, braces, or other structural elements.</p>
+<pre><code class="language-typescript">try {
+  parse('enum Status { ACTIVE "Active"'); // Missing closing brace
+} catch (error) {
+  console.log(error.message); // "Unexpected end of input expecting }"
+}</code></pre>
+<h4 id="2-3-2-invalid-token-types">2.3.2. Invalid Token Types</h4>
+<p>Invalid token type errors occur when the parser encounters tokens that don't match the expected grammar rules. This commonly happens with incorrect capitalization or using reserved keywords incorrectly.</p>
+<pre><code class="language-typescript">try {
+  parse('model user { id String }'); // Invalid - should be capitalized
+} catch (error) {
+  console.log(error.message); // "Expected CapitalIdentifier but got something else"
+}</code></pre>
+<h4 id="2-3-3-unknown-references">2.3.3. Unknown References</h4>
+<p>Unknown reference errors occur when the parser encounters references to types, properties, or other identifiers that haven't been defined in the schema. This typically happens when referencing custom types or properties that don't exist.</p>
+<pre><code class="language-typescript">try {
+  parse('model User { name String @field.input(UnknownProp) }');
+} catch (error) {
+  console.log(error.message); // "Unknown reference UnknownProp"
+}</code></pre>
+<h4 id="2-3-4-duplicate-declarations">2.3.4. Duplicate Declarations</h4>
+<p>Duplicate declaration errors occur when the same identifier is declared multiple times within the same scope. This prevents ambiguity in the schema and ensures each type, enum, or model has a unique name.</p>
+<pre><code class="language-typescript">try {
+  parse(`
+    enum Status { ACTIVE "Active" }
+    enum Status { INACTIVE "Inactive" }
+  `);
+} catch (error) {
+  console.log(error.message); // "Duplicate Status"
+}</code></pre>
+<h2 id="3-integration-with-ast">3. Integration with AST</h2>
+<p>All AST classes throw Exception when parsing fails:</p>
+<pre><code class="language-typescript">import { SchemaTree, EnumTree, ModelTree, Exception } from '@stackpress/idea-parser';
+
+// Any parsing operation can throw Exception
+try {
+  const schema = SchemaTree.parse(schemaCode);
+  const enumAST = EnumTree.parse(enumCode);
+  const modelAST = ModelTree.parse(modelCode);
+} catch (error) {
+  if (error instanceof Exception) {
+    // Handle parser-specific errors
+    console.error('Parsing failed:', error.message);
+  } else {
+    // Handle other types of errors
+    console.error('Unexpected error:', error);
+  }
+}</code></pre>
+<h2 id="4-error-recovery">4. Error Recovery</h2>
+<p>While Exception indicates parsing failure, you can implement error recovery strategies:</p>
+<pre><code class="language-typescript">import { parse, Exception } from '@stackpress/idea-parser';
+
+function parseWithFallback(code: string, fallbackCode?: string) {
+  try {
+    return parse(code);
+  } catch (error) {
+    if (error instanceof Exception &amp;&amp; fallbackCode) {
+      console.warn('Primary parsing failed, trying fallback:', error.message);
+      return parse(fallbackCode);
+    }
+    throw error; // Re-throw if no fallback or different error type
+  }
+}</code></pre>
+<h2 id="5-language-server-integration">5. Language Server Integration</h2>
+<p>Exception's position information makes it ideal for language server implementations:</p>
+<pre><code class="language-typescript">import { parse, Exception } from '@stackpress/idea-parser';
+
+function validateSchema(code: string) {
+  try {
+    parse(code);
+    return { valid: true, errors: [] };
+  } catch (error) {
+    if (error instanceof Exception) {
+      return {
+        valid: false,
+        errors: [{
+          message: error.message,
+          range: {
+            start: error.start,
+            end: error.end
+          },
+          severity: 'error'
+        }]
+      };
+    }
+    throw error;
+  }
+}</code></pre>
+<h2 id="6-inherited-features">6. Inherited Features</h2>
+<p>Since Exception extends the base Exception class from <code>@stackpress/lib</code>, it inherits all the enhanced error handling features:</p>
+<ul><li>Template-based error messages</li><li>Enhanced stack trace parsing</li><li>Position information support</li><li>HTTP status code integration</li><li>Validation error aggregation</li></ul>
+<p>For more details on the base Exception functionality, refer to the <a href="https://github.com/stackpress/lib#exception" target="_blank" rel="noreferrer">@stackpress/lib Exception documentation</a>.</p>
+<h2 id="7-best-practices">7. Best Practices</h2>
+<p>The following best practices help ensure robust error handling when working with the Exception class. These guidelines promote consistent error handling patterns and improve debugging capabilities.</p>
+<h3 id="7-1-always-check-error-type">7.1. Always Check Error Type</h3>
+<p>Always check if an error is an instance of Exception before accessing parser-specific properties. This ensures your code can handle both parser errors and other types of errors gracefully.</p>
+<pre><code class="language-typescript">try {
+  parse(schemaCode);
+} catch (error) {
+  if (error instanceof Exception) {
+    // Handle parser errors specifically
+    handleParserError(error);
+  } else {
+    // Handle other errors (network, file system, etc.)
+    handleGenericError(error);
+  }
+}</code></pre>
+<h3 id="7-2-use-position-information">7.2. Use Position Information</h3>
+<p>Leverage the position information provided by Exception to create helpful error displays and debugging tools. This information is particularly useful for IDE integrations and syntax highlighting.</p>
+<pre><code class="language-typescript">function highlightError(code: string, error: Exception) {
+  const lines = code.split('\n');
+  let currentPos = 0;
+  
+  for (let i = 0; i &lt; lines.length; i++) {
+    const lineEnd = currentPos + lines[i].length;
+    
+    if (error.start &gt;= currentPos &amp;&amp; error.start &lt;= lineEnd) {
+      const lineStart = error.start - currentPos;
+      const lineEnd = Math.min(error.end - currentPos, lines[i].length);
+      
+      console.log(`Line ${i + 1}: ${lines[i]}`);
+      console.log(' '.repeat(lineStart + 8) + '^'.repeat(lineEnd - lineStart));
+      break;
+    }
+    
+    currentPos = lineEnd + 1; // +1 for newline
+  }
+}</code></pre>
+<h3 id="7-3-provide-helpful-error-messages">7.3. Provide Helpful Error Messages</h3>
+<p>Enhance error messages with additional context such as file names, line numbers, or suggestions for fixing the error. This makes debugging easier and improves the developer experience.</p>
+<pre><code class="language-typescript">function parseWithContext(code: string, filename?: string) {
+  try {
+    return parse(code);
+  } catch (error) {
+    if (error instanceof Exception) {
+      const context = filename ? ` in ${filename}` : '';
+      throw new Exception(
+        `Parse error${context}: ${error.message}`,
+        error.code
+      ).withPosition(error.start, error.end);
+    }
+    throw error;
+  }
+}</code></pre>
+    </div>
+    <nav class="pager">
+  <a href="../Compiler/index.html"><span>Previous</span>Compiler</a>
+
+  <a href="../Lexer/index.html"><span>Next</span>Lexer</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#exception">Exception</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-usage-examples">2. Usage Examples</a></li>
+<li><a href="#2-1-basic-error-handling">2.1. Basic Error Handling</a></li>
+<li><a href="#2-2-position-information">2.2. Position Information</a></li>
+<li><a href="#2-3-common-error-scenarios">2.3. Common Error Scenarios</a></li>
+<li><a href="#3-integration-with-ast">3. Integration with AST</a></li>
+<li><a href="#4-error-recovery">4. Error Recovery</a></li>
+<li><a href="#5-language-server-integration">5. Language Server Integration</a></li>
+<li><a href="#6-inherited-features">6. Inherited Features</a></li>
+<li><a href="#7-best-practices">7. Best Practices</a></li>
+<li><a href="#7-1-always-check-error-type">7.1. Always Check Error Type</a></li>
+<li><a href="#7-2-use-position-information">7.2. Use Position Information</a></li>
+<li><a href="#7-3-provide-helpful-error-messages">7.3. Provide Helpful Error Messages</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

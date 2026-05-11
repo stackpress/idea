@@ -1,0 +1,27 @@
+<section class="docs-layout">
+  <aside class="panel sidebar">
+    {{nav}}
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>{{section}}</span>
+      </div>
+      <h1>{{title}}</h1>
+      <p>{{lead}}</p>
+      <div class="page-meta">
+        <a href="{{sourceUrl}}">View source</a>
+        <a href="{{homeHref}}">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      {{content}}
+    </div>
+    {{pager}}
+  </article>
+  <aside class="panel toc">
+    {{toc}}
+  </aside>
+</section>

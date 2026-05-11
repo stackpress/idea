@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Tutorial: Creating an HTML Form Plugin | Idea</title>
+  <link rel="icon" type="image/png" href="../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <img src="../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../getting-started/index.html">Start</a>
+          <a href="../../concepts/overview/index.html">Concepts</a>
+          <a href="../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../reference/specification/index.html">Reference</a>
+          <a href="../index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Examples</span>
+      </div>
+      <h1>Tutorial: Creating an HTML Form Plugin</h1>
+      <p>This tutorial will guide you through creating a plugin that generates HTML forms from a processed `.idea` schema. You'll learn how to parse schema models, generate appropriate form elements, handle validation, and create responsive forms with multiple CSS framework support.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/examples/html-form-plugin.md">View source</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>This tutorial will guide you through creating a plugin that generates HTML forms from a processed <code>.idea</code> schema. You'll learn how to parse schema models, generate appropriate form elements, handle validation, and create responsive forms with multiple CSS framework support.</p>
+<ol><li><a href="#1-overview">Overview</a></li><li><a href="#2-prerequisites">Prerequisites</a></li><li><a href="#3-understanding-the-schema-structure">Understanding the Schema Structure</a></li><li><a href="#4-create-the-plugin-structure">Create the Plugin Structure</a></li><li><a href="#5-implement-form-element-generation">Implement Form Element Generation</a></li><li><a href="#6-implement-form-layout-and-styling">Implement Form Layout and Styling</a></li><li><a href="#7-generate-complete-html-document">Generate Complete HTML Document</a></li><li><a href="#8-usage-in-schema">Usage in Schema</a></li><li><a href="#9-generated-output">Generated Output</a></li><li><a href="#10-error-handling-and-best-practices">Error Handling and Best Practices</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>This section provides an overview of what the HTML Form Plugin accomplishes and its key features. The plugin transforms schema definitions into fully functional HTML forms with proper validation, styling, and accessibility features.</p>
+<p>The HTML Form Plugin will:</p>
+<ul><li>Parse schema models and their columns</li><li>Generate HTML form elements based on field types and attributes</li><li>Include validation attributes and constraints</li><li>Create responsive, accessible forms with proper styling</li><li>Support different form layouts and themes</li></ul>
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<p>Before starting this tutorial, ensure you have the necessary knowledge and tools to successfully implement the HTML Form Plugin. These prerequisites will help you understand the concepts and follow along with the implementation.</p>
+<ul><li>Basic understanding of TypeScript/JavaScript</li><li>Familiarity with HTML forms and CSS</li><li>Understanding of the <code>idea-transformer</code> plugin system</li></ul>
+<h2 id="3-understanding-the-schema-structure">3. Understanding the Schema Structure</h2>
+<p>Understanding how schema attributes map to form elements is crucial for creating effective form generation. This section explains the processed schema structure and how different field types and attributes translate into HTML form elements.</p>
+<p>Before creating the plugin, let's understand how schema attributes map to form elements:</p>
+<pre><code class="language-typescript">// Example processed schema
+{
+  model: {
+    User: {
+      mutable: false,
+      columns: [
+        {
+          name: 'name',
+          type: 'String',
+          required: true,
+          multiple: false,
+          attributes: {
+            field: { input: { type: 'text', placeholder: 'Enter your name' } },
+            label: 'Full Name',
+            is: { required: true, minLength: 2, maxLength: 50 }
+          }
+        },
+        {
+          name: 'email',
+          type: 'String',
+          required: true,
+          multiple: false,
+          attributes: {
+            field: { input: { type: 'email' } },
+            label: 'Email Address',
+            is: { required: true, email: true }
+          }
+        },
+        {
+          name: 'age',
+          type: 'Number',
+          required: false,
+          multiple: false,
+          attributes: {
+            field: { number: { min: 18, max: 100 } },
+            label: 'Age',
+            is: { min: 18, max: 100 }
+          }
+        },
+        {
+          name: 'role',
+          type: 'UserRole',
+          required: true,
+          multiple: false,
+          attributes: {
+            field: { select: true },
+            label: 'User Role',
+            default: 'USER'
+          }
+        }
+      ]
+    }
+  },
+  enum: {
+    UserRole: {
+      ADMIN: 'Administrator',
+      USER: 'Regular User',
+      GUEST: 'Guest User'
+    }
+  }
+}</code></pre>
+<h2 id="4-create-the-plugin-structure">4. Create the Plugin Structure</h2>
+<p>The plugin structure provides the foundation for the HTML form generator. This section covers the main plugin function, configuration interface, and the basic workflow for processing schemas and generating HTML output.</p>
+<p>Create a new file <code>html-form-plugin.js</code>:</p>
+<pre><code class="language-typescript">import type { PluginProps } from '@stackpress/idea-transformer/types';
+import fs from 'fs/promises';
+import path from 'path';
+
+interface HTMLFormConfig {
+  output: string;
+  title?: string;
+  theme?: 'bootstrap' | 'tailwind' | 'custom';
+  layout?: 'vertical' | 'horizontal' | 'inline';
+  includeCSS?: boolean;
+  includeJS?: boolean;
+  submitUrl?: string;
+  method?: 'GET' | 'POST';
+}
+
+export default async function htmlFormPlugin(
+  props: PluginProps&lt;{ config: HTMLFormConfig }&gt;
+) {
+  const { config, schema, transformer, cwd } = props;
+  
+  // Validate configuration
+  if (!config.output) {
+    throw new Error('HTML Form Plugin requires "output" configuration');
+  }
+  
+  // Set defaults
+  const options = {
+    title: config.title || 'Generated Form',
+    theme: config.theme || 'bootstrap',
+    layout: config.layout || 'vertical',
+    includeCSS: config.includeCSS !== false,
+    includeJS: config.includeJS !== false,
+    submitUrl: config.submitUrl || '#',
+    method: config.method || 'POST',
+    ...config
+  };
+  
+  // Generate HTML content
+  const htmlContent = generateHTML(schema, options);
+  
+  // Write to output file
+  const outputPath = await transformer.loader.absolute(config.output);
+  await fs.mkdir(path.dirname(outputPath), { recursive: true });
+  await fs.writeFile(outputPath, htmlContent, 'utf8');
+  
+  console.log(`✅ HTML form generated: ${outputPath}`);
+}</code></pre>
+<h2 id="5-implement-form-element-generation">5. Implement Form Element Generation</h2>
+<p>Form element generation is the core functionality of the plugin. This section demonstrates how to create functions that generate different types of HTML form elements based on schema column definitions, including inputs, textareas, selects, checkboxes, radio buttons, and file inputs.</p>
+<p>Create functions to generate different form elements:</p>
+<pre><code class="language-typescript">function generateFormElement(column: any, schema: any, options: any): string {
+  const { name, type, required, attributes = {} } = column;
+  const fieldConfig = attributes.field || {};
+  const label = attributes.label || name;
+  const validation = attributes.is || {};
+  
+  // Determine form element type
+  let element = '';
+  
+  if (fieldConfig.input) {
+    element = generateInputElement(column, fieldConfig.input, options);
+  } else if (fieldConfig.textarea) {
+    element = generateTextareaElement(column, fieldConfig.textarea, options);
+  } else if (fieldConfig.select) {
+    element = generateSelectElement(column, schema, fieldConfig.select, options);
+  } else if (fieldConfig.checkbox) {
+    element = generateCheckboxElement(column, fieldConfig.checkbox, options);
+  } else if (fieldConfig.radio) {
+    element = generateRadioElement(column, schema, fieldConfig.radio, options);
+  } else if (fieldConfig.file) {
+    element = generateFileElement(column, fieldConfig.file, options);
+  } else {
+    // Auto-detect based on type and attributes
+    element = autoGenerateElement(column, schema, options);
+  }
+  
+  // Wrap in form group
+  return wrapFormGroup(element, label, name, required, validation, options);
+}
+
+function generateInputElement(column: any, inputConfig: any, options: any): string {
+  const { name, required, attributes = {} } = column;
+  const validation = attributes.is || {};
+  
+  const inputType = inputConfig.type || 'text';
+  const placeholder = inputConfig.placeholder || '';
+  const defaultValue = attributes.default || '';
+  
+  let input = `&lt;input type="${inputType}" `;
+  input += `id="${name}" name="${name}" `;
+  input += `class="${getInputClasses(options.theme)}" `;
+  
+  if (placeholder) {
+    input += `placeholder="${escapeHtml(placeholder)}" `;
+  }
+  
+  if (defaultValue) {
+    input += `value="${escapeHtml(defaultValue)}" `;
+  }
+  
+  if (required) {
+    input += 'required ';
+  }
+  
+  // Add validation attributes
+  if (validation.minLength) {
+    input += `minlength="${validation.minLength}" `;
+  }
+  if (validation.maxLength) {
+    input += `maxlength="${validation.maxLength}" `;
+  }
+  if (validation.pattern) {
+    input += `pattern="${validation.pattern}" `;
+  }
+  if (validation.min) {
+    input += `min="${validation.min}" `;
+  }
+  if (validation.max) {
+    input += `max="${validation.max}" `;
+  }
+  
+  input += '/&gt;';
+  
+  return input;
+}
+
+function generateTextareaElement(column: any, textareaConfig: any, options: any): string {
+  const { name, required, attributes = {} } = column;
+  const validation = attributes.is || {};
+  const defaultValue = attributes.default || '';
+  
+  const rows = textareaConfig.rows || 4;
+  const cols = textareaConfig.cols || 50;
+  const placeholder = textareaConfig.placeholder || '';
+  
+  let textarea = `&lt;textarea `;
+  textarea += `id="${name}" name="${name}" `;
+  textarea += `class="${getTextareaClasses(options.theme)}" `;
+  textarea += `rows="${rows}" cols="${cols}" `;
+  
+  if (placeholder) {
+    textarea += `placeholder="${escapeHtml(placeholder)}" `;
+  }
+  
+  if (required) {
+    textarea += 'required ';
+  }
+  
+  // Add validation attributes
+  if (validation.minLength) {
+    textarea += `minlength="${validation.minLength}" `;
+  }
+  if (validation.maxLength) {
+    textarea += `maxlength="${validation.maxLength}" `;
+  }
+  
+  textarea += `&gt;${escapeHtml(defaultValue)}&lt;/textarea&gt;`;
+  
+  return textarea;
+}
+
+function generateSelectElement(column: any, schema: any, selectConfig: any, options: any): string {
+  const { name, type, required, attributes = {} } = column;
+  const defaultValue = attributes.default || '';
+  
+  let select = `&lt;select `;
+  select += `id="${name}" name="${name}" `;
+  select += `class="${getSelectClasses(options.theme)}" `;
+  
+  if (required) {
+    select += 'required ';
+  }
+  
+  select += '&gt;\n';
+  
+  // Add empty option if not required
+  if (!required) {
+    select += '    &lt;option value=""&gt;-- Select an option --&lt;/option&gt;\n';
+  }
+  
+  // Generate options
+  if (schema.enum &amp;&amp; schema.enum[type]) {
+    // Enum-based options
+    const enumValues = schema.enum[type];
+    for (const [key, value] of Object.entries(enumValues)) {
+      const selected = defaultValue === key ? ' selected' : '';
+      select += `    &lt;option value="${key}"${selected}&gt;${escapeHtml(value)}&lt;/option&gt;\n`;
+    }
+  } else if (selectConfig.options) {
+    // Custom options
+    for (const option of selectConfig.options) {
+      const value = typeof option === 'string' ? option : option.value;
+      const label = typeof option === 'string' ? option : option.label;
+      const selected = defaultValue === value ? ' selected' : '';
+      select += `    &lt;option value="${value}"${selected}&gt;${escapeHtml(label)}&lt;/option&gt;\n`;
+    }
+  }
+  
+  select += '  &lt;/select&gt;';
+  
+  return select;
+}
+
+function generateCheckboxElement(column: any, checkboxConfig: any, options: any): string {
+  const { name, attributes = {} } = column;
+  const defaultValue = attributes.default || false;
+  const label = checkboxConfig.label || 'Check this box';
+  
+  let checkbox = `&lt;div class="${getCheckboxWrapperClasses(options.theme)}"&gt;\n`;
+  checkbox += `    &lt;input type="checkbox" `;
+  checkbox += `id="${name}" name="${name}" `;
+  checkbox += `class="${getCheckboxClasses(options.theme)}" `;
+  checkbox += `value="true" `;
+  
+  if (defaultValue) {
+    checkbox += 'checked ';
+  }
+  
+  checkbox += '/&gt;\n';
+  checkbox += `    &lt;label for="${name}" class="${getCheckboxLabelClasses(options.theme)}"&gt;${escapeHtml(label)}&lt;/label&gt;\n`;
+  checkbox += '  &lt;/div&gt;';
+  
+  return checkbox;
+}
+
+function generateRadioElement(column: any, schema: any, radioConfig: any, options: any): string {
+  const { name, type, attributes = {} } = column;
+  const defaultValue = attributes.default || '';
+  
+  let radio = `&lt;div class="${getRadioGroupClasses(options.theme)}"&gt;\n`;
+  
+  // Generate radio options
+  if (schema.enum &amp;&amp; schema.enum[type]) {
+    // Enum-based options
+    const enumValues = schema.enum[type];
+    for (const [key, value] of Object.entries(enumValues)) {
+      const checked = defaultValue === key ? ' checked' : '';
+      radio += `    &lt;div class="${getRadioWrapperClasses(options.theme)}"&gt;\n`;
+      radio += `      &lt;input type="radio" `;
+      radio += `id="${name}_${key}" name="${name}" `;
+      radio += `class="${getRadioClasses(options.theme)}" `;
+      radio += `value="${key}"${checked} /&gt;\n`;
+      radio += `      &lt;label for="${name}_${key}" class="${getRadioLabelClasses(options.theme)}"&gt;${escapeHtml(value)}&lt;/label&gt;\n`;
+      radio += '    &lt;/div&gt;\n';
+    }
+  } else if (radioConfig.options) {
+    // Custom options
+    for (const option of radioConfig.options) {
+      const value = typeof option === 'string' ? option : option.value;
+      const label = typeof option === 'string' ? option : option.label;
+      const checked = defaultValue === value ? ' checked' : '';
+      radio += `    &lt;div class="${getRadioWrapperClasses(options.theme)}"&gt;\n`;
+      radio += `      &lt;input type="radio" `;
+      radio += `id="${name}_${value}" name="${name}" `;
+      radio += `class="${getRadioClasses(options.theme)}" `;
+      radio += `value="${value}"${checked} /&gt;\n`;
+      radio += `      &lt;label for="${name}_${value}" class="${getRadioLabelClasses(options.theme)}"&gt;${escapeHtml(label)}&lt;/label&gt;\n`;
+      radio += '    &lt;/div&gt;\n';
+    }
+  }
+  
+  radio += '  &lt;/div&gt;';
+  
+  return radio;
+}
+
+function generateFileElement(column: any, fileConfig: any, options: any): string {
+  const { name, required } = column;
+  const accept = fileConfig.accept || '';
+  const multiple = fileConfig.multiple || false;
+  
+  let file = `&lt;input type="file" `;
+  file += `id="${name}" name="${name}" `;
+  file += `class="${getFileClasses(options.theme)}" `;
+  
+  if (accept) {
+    file += `accept="${accept}" `;
+  }
+  
+  if (multiple) {
+    file += 'multiple ';
+  }
+  
+  if (required) {
+    file += 'required ';
+  }
+  
+  file += '/&gt;';
+  
+  return file;
+}
+
+function autoGenerateElement(column: any, schema: any, options: any): string {
+  const { type, attributes = {} } = column;
+  
+  // Auto-detect based on type
+  switch (type) {
+    case 'String':
+      if (attributes.email) {
+        return generateInputElement(column, { type: 'email' }, options);
+      }
+      if (attributes.password) {
+        return generateInputElement(column, { type: 'password' }, options);
+      }
+      if (attributes.url) {
+        return generateInputElement(column, { type: 'url' }, options);
+      }
+      if (attributes.text || attributes.textarea) {
+        return generateTextareaElement(column, {}, options);
+      }
+      return generateInputElement(column, { type: 'text' }, options);
+      
+    case 'Number':
+      return generateInputElement(column, { type: 'number' }, options);
+      
+    case 'Boolean':
+      return generateCheckboxElement(column, {}, options);
+      
+    case 'Date':
+      if (attributes.time) {
+        return generateInputElement(column, { type: 'datetime-local' }, options);
+      }
+      return generateInputElement(column, { type: 'date' }, options);
+      
+    default:
+      // Check if it's an enum type
+      if (schema.enum &amp;&amp; schema.enum[type]) {
+        return generateSelectElement(column, schema, {}, options);
+      }
+      
+      // Default to text input
+      return generateInputElement(column, { type: 'text' }, options);
+  }
+}</code></pre>
+<h2 id="6-implement-form-layout-and-styling">6. Implement Form Layout and Styling</h2>
+<p>Form layout and styling ensure that generated forms are visually appealing and work well with different CSS frameworks. This section covers how to implement support for Bootstrap, Tailwind CSS, and custom styling, along with different layout options like vertical, horizontal, and inline forms.</p>
+<p>Create functions for different themes and layouts:</p>
+<pre><code class="language-typescript">function wrapFormGroup(element: string, label: string, name: string, required: boolean, validation: any, options: any): string {
+  const requiredMark = required ? ' &lt;span class="required"&gt;*&lt;/span&gt;' : '';
+  const helpText = generateHelpText(validation);
+  
+  switch (options.theme) {
+    case 'bootstrap':
+      return wrapBootstrapFormGroup(element, label, name, requiredMark, helpText, options);
+    case 'tailwind':
+      return wrapTailwindFormGroup(element, label, name, requiredMark, helpText, options);
+    default:
+      return wrapCustomFormGroup(element, label, name, requiredMark, helpText, options);
+  }
+}
+
+function wrapBootstrapFormGroup(element: string, label: string, name: string, requiredMark: string, helpText: string, options: any): string {
+  let group = '';
+  
+  if (options.layout === 'horizontal') {
+    group += '  &lt;div class="row mb-3"&gt;\n';
+    group += `    &lt;label for="${name}" class="col-sm-3 col-form-label"&gt;${escapeHtml(label)}${requiredMark}&lt;/label&gt;\n`;
+    group += '    &lt;div class="col-sm-9"&gt;\n';
+    group += `      ${element}\n`;
+    if (helpText) {
+      group += `      &lt;div class="form-text"&gt;${helpText}&lt;/div&gt;\n`;
+    }
+    group += '    &lt;/div&gt;\n';
+    group += '  &lt;/div&gt;\n';
+  } else {
+    group += '  &lt;div class="mb-3"&gt;\n';
+    group += `    &lt;label for="${name}" class="form-label"&gt;${escapeHtml(label)}${requiredMark}&lt;/label&gt;\n`;
+    group += `    ${element}\n`;
+    if (helpText) {
+      group += `    &lt;div class="form-text"&gt;${helpText}&lt;/div&gt;\n`;
+    }
+    group += '  &lt;/div&gt;\n';
+  }
+  
+  return group;
+}
+
+function wrapTailwindFormGroup(element: string, label: string, name: string, requiredMark: string, helpText: string, options: any): string {
+  let group = '';
+  
+  if (options.layout === 'horizontal') {
+    group += '  &lt;div class="flex flex-wrap items-center mb-4"&gt;\n';
+    group += `    &lt;label for="${name}" class="w-full md:w-1/3 mb-2 md:mb-0 text-sm font-medium text-gray-700"&gt;${escapeHtml(label)}${requiredMark}&lt;/label&gt;\n`;
+    group += '    &lt;div class="w-full md:w-2/3"&gt;\n';
+    group += `      ${element}\n`;
+    if (helpText) {
+      group += `      &lt;p class="mt-1 text-sm text-gray-500"&gt;${helpText}&lt;/p&gt;\n`;
+    }
+    group += '    &lt;/div&gt;\n';
+    group += '  &lt;/div&gt;\n';
+  } else {
+    group += '  &lt;div class="mb-4"&gt;\n';
+    group += `    &lt;label for="${name}" class="block text-sm font-medium text-gray-700 mb-2"&gt;${escapeHtml(label)}${requiredMark}&lt;/label&gt;\n`;
+    group += `    ${element}\n`;
+    if (helpText) {
+      group += `    &lt;p class="mt-1 text-sm text-gray-500"&gt;${helpText}&lt;/p&gt;\n`;
+    }
+    group += '  &lt;/div&gt;\n';
+  }
+  
+  return group;
+}
+
+function wrapCustomFormGroup(element: string, label: string, name: string, requiredMark: string, helpText: string, options: any): string {
+  let group = '  &lt;div class="form-group"&gt;\n';
+  group += `    &lt;label for="${name}"&gt;${escapeHtml(label)}${requiredMark}&lt;/label&gt;\n`;
+  group += `    ${element}\n`;
+  if (helpText) {
+    group += `    &lt;div class="help-text"&gt;${helpText}&lt;/div&gt;\n`;
+  }
+  group += '  &lt;/div&gt;\n';
+  
+  return group;
+}
+
+// CSS class generators for different themes
+function getInputClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-control';
+    case 'tailwind':
+      return 'block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500';
+    default:
+      return 'form-input';
+  }
+}
+
+function getSelectClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-select';
+    case 'tailwind':
+      return 'block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500';
+    default:
+      return 'form-select';
+  }
+}
+
+function getTextareaClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-control';
+    case 'tailwind':
+      return 'block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500';
+    default:
+      return 'form-textarea';
+  }
+}
+
+function getCheckboxClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-check-input';
+    case 'tailwind':
+      return 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded';
+    default:
+      return 'form-checkbox';
+  }
+}
+
+function getRadioClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-check-input';
+    case 'tailwind':
+      return 'h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300';
+    default:
+      return 'form-radio';
+  }
+}
+
+function getFileClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-control';
+    case 'tailwind':
+      return 'block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100';
+    default:
+      return 'form-file';
+  }
+}</code></pre>
+<h2 id="7-generate-complete-html-document">7. Generate Complete HTML Document</h2>
+<p>Generating a complete HTML document involves combining all form elements into a properly structured HTML page. This section shows how to create the HTML structure, include necessary CSS and JavaScript files, and generate forms for multiple models within a single document.</p>
+<p>Implement the main HTML generation function:</p>
+<pre><code class="language-typescript">function generateHTML(schema: any, options: any): string {
+  let html = generateHTMLHeader(options);
+  
+  // Generate forms for each model
+  if (schema.model) {
+    for (const [modelName, model] of Object.entries(schema.model)) {
+      html += generateFormHTML(modelName, model, schema, options);
+      html += '\n';
+    }
+  }
+  
+  html += generateHTMLFooter(options);
+  
+  return html;
+}
+
+function generateHTMLHeader(options: any): string {
+  let html = '&lt;!DOCTYPE html&gt;\n';
+  html += '&lt;html lang="en"&gt;\n';
+  html += '&lt;head&gt;\n';
+  html += '  &lt;meta charset="UTF-8"&gt;\n';
+  html += '  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;\n';
+  html += `  &lt;title&gt;${escapeHtml(options.title)}&lt;/title&gt;\n`;
+  
+  // Include CSS
+  if (options.includeCSS) {
+    html += generateCSS(options);
+  }
+  
+  html += '&lt;/head&gt;\n';
+  html += '&lt;body&gt;\n';
+  html += '&lt;div class="container"&gt;\n';
+  html += `  &lt;h1&gt;${escapeHtml(options.title)}&lt;/h1&gt;\n`;
+  
+  return html;
+}
+
+function generateFormHTML(modelName: string, model: any, schema: any, options: any): string {
+  let html = `&lt;div class="form-container"&gt;\n`;
+  html += `  &lt;h2&gt;${escapeHtml(modelName)} Form&lt;/h2&gt;\n`;
+  html += `  &lt;form action="${options.submitUrl}" method="${options.method}" class="${getFormClasses(options.theme)}"&gt;\n`;
+  
+  // Generate form fields
+  for (const column of model.columns || []) {
+    // Skip hidden fields or system fields
+    if (column.attributes?.list?.hide || column.attributes?.view?.hide) {
+      continue;
+    }
+    
+    html += generateFormElement(column, schema, options);
+  }
+  
+  // Add submit button
+  html += generateSubmitButton(options);
+  
+  html += '  &lt;/form&gt;\n';
+  html += '&lt;/div&gt;\n';
+  
+  return html;
+}
+
+function generateSubmitButton(options: any): string {
+  let button = '  &lt;div class="';
+  
+  switch (options.theme) {
+    case 'bootstrap':
+      button += 'mb-3"&gt;\n';
+      button += '    &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;\n';
+      button += '    &lt;button type="reset" class="btn btn-secondary ms-2"&gt;Reset&lt;/button&gt;\n';
+      break;
+    case 'tailwind':
+      button += 'mt-6"&gt;\n';
+      button += '    &lt;button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"&gt;Submit&lt;/button&gt;\n';
+      button += '    &lt;button type="reset" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md ml-2 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"&gt;Reset&lt;/button&gt;\n';
+      break;
+    default:
+      button += 'form-actions"&gt;\n';
+      button += '    &lt;button type="submit" class="btn-primary"&gt;Submit&lt;/button&gt;\n';
+      button += '    &lt;button type="reset" class="btn-secondary"&gt;Reset&lt;/button&gt;\n';
+  }
+  
+  button += '  &lt;/div&gt;\n';
+  
+  return button;
+}
+
+function generateHTMLFooter(options: any): string {
+  let html = '&lt;/div&gt;\n';
+  
+  // Include JavaScript
+  if (options.includeJS) {
+    html += generateJavaScript(options);
+  }
+  
+  html += '&lt;/body&gt;\n';
+  html += '&lt;/html&gt;\n';
+  
+  return html;
+}
+
+function generateCSS(options: any): string {
+  let css = '';
+  
+  switch (options.theme) {
+    case 'bootstrap':
+      css += '  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;\n';
+      break;
+    case 'tailwind':
+      css += '  &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;\n';
+      break;
+    default:
+      css += '  &lt;style&gt;\n';
+      css += generateCustomCSS();
+      css += '  &lt;/style&gt;\n';
+  }
+  
+  return css;
+}
+
+function generateCustomCSS(): string {
+  return `
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .form-container {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .required {
+      color: #e74c3c;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    }
+    
+    .form-checkbox,
+    .form-radio {
+      margin-right: 8px;
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .form-actions {
+      margin-top: 30px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    
+    .btn-primary {
+      background: #3498db;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #2980b9;
+    }
+    
+    .btn-secondary {
+      background: #95a5a6;
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #7f8c8d;
+    }
+  `;
+}
+
+function generateJavaScript(options: any): string {
+  let js = '';
+  
+  switch (options.theme) {
+    case 'bootstrap':
+      js += '  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;\n';
+      break;
+  }
+  
+  // Add form validation JavaScript
+  js += '  &lt;script&gt;\n';
+  js += generateFormValidationJS();
+  js += '  &lt;/script&gt;\n';
+  
+  return js;
+}
+
+function generateFormValidationJS(): string {
+  return `
+    // Form validation and enhancement
+    document.addEventListener('DOMContentLoaded', function() {
+      const forms = document.querySelectorAll('form');
+      
+      forms.forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+          if (!validateForm(form)) {
+            e.preventDefault();
+            return false;
+          }
+        });
+      });
+      
+      function validateForm(form) {
+        let isValid = true;
+        const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+        
+        inputs.forEach(function(input) {
+          if (!input.value.trim()) {
+            showError(input, 'This field is required');
+            isValid = false;
+          } else {
+            clearError(input);
+          }
+        });
+        
+        return isValid;
+      }
+      
+      function showError(input, message) {
+        clearError(input);
+        input.classList.add('error');
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        errorDiv.style.color = '#e74c3c';
+        errorDiv.style.fontSize = '12px';
+        errorDiv.style.marginTop = '5px';
+        
+        input.parentNode.appendChild(errorDiv);
+      }
+      
+      function clearError(input) {
+        input.classList.remove('error');
+        const errorMessage = input.parentNode.querySelector('.error-message');
+        if (errorMessage) {
+          errorMessage.remove();
+        }
+      }
+    });
+  `;
+}
+
+// Utility functions
+function escapeHtml(text: string): string {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function generateHelpText(validation: any): string {
+  const hints: string[] = [];
+  
+  if (validation.minLength) {
+    hints.push(`Minimum ${validation.minLength} characters`);
+  }
+  if (validation.maxLength) {
+    hints.push(`Maximum ${validation.maxLength} characters`);
+  }
+  if (validation.min) {
+    hints.push(`Minimum value: ${validation.min}`);
+  }
+  if (validation.max) {
+    hints.push(`Maximum value: ${validation.max}`);
+  }
+  if (validation.pattern) {
+    hints.push('Must match the required format');
+  }
+  
+  return hints.length &gt; 0 ? hints.join('. ') : '';
+}
+
+function getFormClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'needs-validation';
+    case 'tailwind':
+      return 'space-y-4';
+    default:
+      return 'form';
+  }
+}
+
+function getCheckboxWrapperClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-check';
+    case 'tailwind':
+      return 'flex items-center';
+    default:
+      return 'checkbox-wrapper';
+  }
+}
+
+function getCheckboxLabelClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-check-label';
+    case 'tailwind':
+      return 'ml-2 text-sm text-gray-700';
+    default:
+      return 'checkbox-label';
+  }
+}
+
+function getRadioGroupClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return '';
+    case 'tailwind':
+      return 'space-y-2';
+    default:
+      return 'radio-group';
+  }
+}
+
+function getRadioWrapperClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-check';
+    case 'tailwind':
+      return 'flex items-center';
+    default:
+      return 'radio-wrapper';
+  }
+}
+
+function getRadioLabelClasses(theme: string): string {
+  switch (theme) {
+    case 'bootstrap':
+      return 'form-check-label';
+    case 'tailwind':
+      return 'ml-2 text-sm text-gray-700';
+    default:
+      return 'radio-label';
+  }
+}</code></pre>
+<h2 id="8-usage-in-schema">8. Usage in Schema</h2>
+<p>This section demonstrates how to configure and use the HTML Form Plugin within your <code>.idea</code> schema files. You'll learn about the available configuration options and how to set up your schema to generate the desired form output.</p>
+<p>To use this plugin in your schema file:</p>
+<pre><code class="language-typescript">// schema.idea
+plugin "./plugins/html-form-plugin.js" {
+  output "./forms/user-form.html"
+  title "User Registration Form"
+  theme "bootstrap"
+  layout "vertical"
+  includeCSS true
+  includeJS true
+  submitUrl "/api/users"
+  method "POST"
+}
+
+model User {
+  name String @label("Full Name") @field.input(Text) @is.required @is.minLength(2) @is.maxLength(50)
+  email String @label("Email Address") @field.input(Email) @is.required @is.email
+  age Number @label("Age") @field.number @is.min(18) @is.max(100)
+  role UserRole @label("User Role") @field.select @default("USER")
+  bio String @label("Biography") @field.textarea @is.maxLength(500)
+  active Boolean @label("Active Account") @field.checkbox @default(true)
+  created Date @label("Registration Date") @field.date @default("now()")
+}
+
+enum UserRole {
+  ADMIN "Administrator"
+  USER "Regular User"
+  GUEST "Guest User"
+}</code></pre>
+<h2 id="9-generated-output">9. Generated Output</h2>
+<p>The generated output section shows examples of the HTML code that the plugin produces. This helps you understand what to expect from the plugin and how the various configuration options affect the final output.</p>
+<p>The plugin will generate HTML like this:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;User Registration Form&lt;/title&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;h1&gt;User Registration Form&lt;/h1&gt;
+  &lt;div class="form-container"&gt;
+    &lt;h2&gt;User Form&lt;/h2&gt;
+    &lt;form action="/api/users" method="POST" class="needs-validation"&gt;
+      &lt;div class="mb-3"&gt;
+        &lt;label for="name" class="form-label"&gt;Full Name &lt;span class="required"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" class="form-control" required minlength="2" maxlength="50" /&gt;
+        &lt;div class="form-text"&gt;Minimum 2 characters. Maximum 50 characters&lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;div class="mb-3"&gt;
+        &lt;label for="email" class="form-label"&gt;Email Address &lt;span class="required"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" class="form-control" required /&gt;
+      &lt;/div&gt;
+      
+      &lt;div class="mb-3"&gt;
+        &lt;label for="age" class="form-label"&gt;Age&lt;/label&gt;
+        &lt;input type="number" id="age" name="age" class="form-control" min="18" max="100" /&gt;
+        &lt;div class="form-text"&gt;Minimum value: 18. Maximum value: 100&lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;div class="mb-3"&gt;
+        &lt;label for="role" class="form-label"&gt;User Role &lt;span class="required"&gt;*&lt;/span&gt;&lt;/label&gt;
+        &lt;select id="role" name="role" class="form-select" required&gt;
+          &lt;option value="ADMIN"&gt;Administrator&lt;/option&gt;
+          &lt;option value="USER" selected&gt;Regular User&lt;/option&gt;
+          &lt;option value="GUEST"&gt;Guest User&lt;/option&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+      
+      &lt;div class="mb-3"&gt;
+        &lt;label for="bio" class="form-label"&gt;Biography&lt;/label&gt;
+        &lt;textarea id="bio" name="bio" class="form-control" rows="4" cols="50" maxlength="500"&gt;&lt;/textarea&gt;
+        &lt;div class="form-text"&gt;Maximum 500 characters&lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;div class="form-check"&gt;
+        &lt;input type="checkbox" id="active" name="active" class="form-check-input" value="true" checked /&gt;
+        &lt;label for="active" class="form-check-label"&gt;Active Account&lt;/label&gt;
+      &lt;/div&gt;
+      
+      &lt;div class="mb-3"&gt;
+        &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+        &lt;button type="reset" class="btn btn-secondary ms-2"&gt;Reset&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+// Form validation and enhancement
+document.addEventListener('DOMContentLoaded', function() {
+  const forms = document.querySelectorAll('form');
+  
+  forms.forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      if (!validateForm(form)) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  });
+  
+  function validateForm(form) {
+    let isValid = true;
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    
+    inputs.forEach(function(input) {
+      if (!input.value.trim()) {
+        showError(input, 'This field is required');
+        isValid = false;
+      } else {
+        clearError(input);
+      }
+    });
+    
+    return isValid;
+  }
+  
+  function showError(input, message) {
+    clearError(input);
+    input.classList.add('error');
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    errorDiv.style.color = '#e74c3c';
+    errorDiv.style.fontSize = '12px';
+    errorDiv.style.marginTop = '5px';
+    
+    input.parentNode.appendChild(errorDiv);
+  }
+  
+  function clearError(input) {
+    input.classList.remove('error');
+    const errorMessage = input.parentNode.querySelector('.error-message');
+    if (errorMessage) {
+      errorMessage.remove();
+    }
+  }
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2 id="10-error-handling-and-best-practices">10. Error Handling and Best Practices</h2>
+<p>Proper error handling and following best practices ensure that your plugin is robust and reliable. This section covers validation techniques, error reporting, and recommended patterns for plugin development.</p>
+<p>Add proper error handling and validation:</p>
+<pre><code class="language-typescript">export default async function htmlFormPlugin(props: PluginProps&lt;{}&gt;) {
+  const { config, schema, transformer, cwd } = props;
+  
+  try {
+    // Validate configuration
+    validateConfig(config);
+    
+    // Validate schema has models
+    if (!schema.model || Object.keys(schema.model).length === 0) {
+      console.warn('⚠️  No models found in schema. Skipping HTML form generation.');
+      return;
+    }
+    
+    // Generate HTML
+    const htmlContent = generateHTML(schema, config);
+    
+    // Ensure output directory exists
+    const outputPath = await transformer.loader.absolute(config.output);
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+    
+    // Write file
+    await fs.writeFile(outputPath, htmlContent, 'utf8');
+    
+    console.log(`✅ HTML form generated: ${outputPath}`);
+    console.log(`📊 Generated forms for ${Object.keys(schema.model).length} model(s)`);
+    
+  } catch (error) {
+    console.error(`❌ HTML Form Plugin failed: ${error.message}`);
+    throw error;
+  }
+}
+
+function validateConfig(config: any): void {
+  if (!config.output) {
+    throw new Error('HTML Form Plugin requires "output" configuration');
+  }
+  
+  if (config.theme &amp;&amp; !['bootstrap', 'tailwind', 'custom'].includes(config.theme)) {
+    throw new Error(`Unsupported theme: ${config.theme}`);
+  }
+  
+  if (config.layout &amp;&amp; !['vertical', 'horizontal', 'inline'].includes(config.layout)) {
+    throw new Error(`Unsupported layout: ${config.layout}`);
+  }
+  
+  if (config.method &amp;&amp; !['GET', 'POST'].includes(config.method)) {
+    throw new Error(`Unsupported HTTP method: ${config.method}`);
+  }
+}</code></pre>
+<h2 id="11-conclusion">11. Conclusion</h2>
+<p>This conclusion summarizes the key concepts covered in the tutorial and provides guidance on extending the plugin with additional features. Understanding these patterns will help you create more sophisticated form generation plugins.</p>
+<p>This HTML Form Plugin demonstrates how to:</p>
+<ul><li>Parse schema models and generate appropriate form elements</li><li>Support multiple CSS frameworks (Bootstrap, Tailwind, Custom)</li><li>Handle different form layouts and validation</li><li>Generate accessible, responsive forms</li><li>Include client-side validation and enhancement</li></ul>
+<p>The plugin is flexible and can be extended to support additional form features like:</p>
+<ul><li>File upload handling</li><li>Multi-step forms</li><li>Dynamic field dependencies</li><li>Custom validation rules</li><li>Integration with form libraries</li></ul>
+    </div>
+    <nav class="pager">
+  <a href="../graphql-schema-plugin/index.html"><span>Previous</span>GraphQL Schema Generator Plugin Tutorial</a>
+
+  <a href="../markdown-docs-plugin/index.html"><span>Next</span>Tutorial: Creating a Markdown Documentation Plugin</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#tutorial-creating-an-html-form-plugin">Tutorial: Creating an HTML Form Plugin</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-prerequisites">2. Prerequisites</a></li>
+<li><a href="#3-understanding-the-schema-structure">3. Understanding the Schema Structure</a></li>
+<li><a href="#4-create-the-plugin-structure">4. Create the Plugin Structure</a></li>
+<li><a href="#5-implement-form-element-generation">5. Implement Form Element Generation</a></li>
+<li><a href="#6-implement-form-layout-and-styling">6. Implement Form Layout and Styling</a></li>
+<li><a href="#7-generate-complete-html-document">7. Generate Complete HTML Document</a></li>
+<li><a href="#8-usage-in-schema">8. Usage in Schema</a></li>
+<li><a href="#9-generated-output">9. Generated Output</a></li>
+<li><a href="#10-error-handling-and-best-practices">10. Error Handling and Best Practices</a></li>
+<li><a href="#11-conclusion">11. Conclusion</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

@@ -38,5 +38,5 @@ npx idea transform --input schema.idea
 ## Learn More
 
 - [Root README](https://github.com/stackpress/idea/blob/main/README.md)
-- [Getting Started](https://github.com/stackpress/idea/blob/main/docs/getting-started.md)
-- [CLI Reference](https://github.com/stackpress/idea/blob/main/docs/reference/cli.md)
+- [Getting Started](https://github.com/stackpress/idea/blob/main/specs/getting-started.md)
+- [CLI Reference](https://github.com/stackpress/idea/blob/main/specs/reference/cli.md)

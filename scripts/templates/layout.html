@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>{{pageTitle}}</title>
+  <link rel="icon" type="image/png" href="{{iconHref}}" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="{{siteCssHref}}" />
+</head>
+<body class="{{bodyClass}}">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="{{homeHref}}">
+        <img src="{{brandImageHref}}" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="{{startHref}}">Start</a>
+          <a href="{{conceptsHref}}">Concepts</a>
+          <a href="{{howToHref}}">How-To</a>
+          <a href="{{referenceHref}}">Reference</a>
+          <a href="{{examplesHref}}">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          {{githubIcon}}
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          {{themeIcon}}
+        </button>
+      </div>
+    </header>
+    <main>
+      {{main}}
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

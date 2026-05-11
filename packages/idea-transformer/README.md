@@ -47,6 +47,6 @@ When started through the CLI, plugins also receive `cli`.
 
 ## Learn More
 
-- [Write a Plugin](https://github.com/stackpress/idea/blob/main/docs/how-to/write-a-plugin.md)
-- [Plugin API Reference](https://github.com/stackpress/idea/blob/main/docs/reference/plugin-api.md)
-- [Transformer API Docs](https://github.com/stackpress/idea/blob/main/docs/api/transformer/README.md)
+- [Write a Plugin](https://github.com/stackpress/idea/blob/main/specs/how-to/write-a-plugin.md)
+- [Plugin API Reference](https://github.com/stackpress/idea/blob/main/specs/reference/plugin-api.md)
+- [Transformer API Docs](https://github.com/stackpress/idea/blob/main/specs/api/transformer/README.md)

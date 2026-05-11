@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>TypeScript Interface Generator Plugin Tutorial | Idea</title>
+  <link rel="icon" type="image/png" href="../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <img src="../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../getting-started/index.html">Start</a>
+          <a href="../../concepts/overview/index.html">Concepts</a>
+          <a href="../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../reference/specification/index.html">Reference</a>
+          <a href="../index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Examples</span>
+      </div>
+      <h1>TypeScript Interface Generator Plugin Tutorial</h1>
+      <p>This tutorial demonstrates how to create a plugin that generates TypeScript interfaces and types from `.idea` schema files. The plugin will transform your schema models, types, and enums into proper TypeScript definitions with full type safety.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/examples/typescript-interfaces-plugin.md">View source</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>This tutorial demonstrates how to create a plugin that generates TypeScript interfaces and types from <code>.idea</code> schema files. The plugin will transform your schema models, types, and enums into proper TypeScript definitions with full type safety.</p>
+<ol><li><a href="#1-overview">Overview</a></li><li><a href="#2-prerequisites">Prerequisites</a></li><li><a href="#3-plugin-structure">Plugin Structure</a></li><li><a href="#4-implementation">Implementation</a></li><li><a href="#5-schema-configuration">Schema Configuration</a></li><li><a href="#6-usage-examples">Usage Examples</a></li><li><a href="#7-advanced-features">Advanced Features</a></li><li><a href="#8-best-practices">Best Practices</a></li><li><a href="#9-troubleshooting">Troubleshooting</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>TypeScript interfaces provide compile-time type checking and excellent IDE support. This plugin transforms your <code>.idea</code> schema definitions into comprehensive TypeScript type definitions that integrate seamlessly with your development workflow and provide robust type safety throughout your application.</p>
+<p>This plugin generates TypeScript definitions from your <code>.idea</code> schema, including:</p>
+<ul><li><strong>Interfaces</strong>: TypeScript interfaces from schema models</li><li><strong>Types</strong>: Type aliases from schema types</li><li><strong>Enums</strong>: TypeScript enums from schema enums</li><li><strong>Utility Types</strong>: Helper types for common operations</li><li><strong>Namespace Support</strong>: Organized type definitions</li></ul>
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<p>Before implementing the TypeScript interface generator plugin, ensure you have the necessary development environment and knowledge. This section covers the essential requirements for successful plugin creation and TypeScript integration.</p>
+<ul><li>Node.js 16+ and npm/yarn</li><li>TypeScript 4.0+</li><li>Basic understanding of TypeScript</li><li>Familiarity with the <code>@stackpress/idea-transformer</code> library</li><li>Understanding of <code>.idea</code> schema format</li></ul>
+<h2 id="3-plugin-structure">3. Plugin Structure</h2>
+<p>The plugin structure defines the core architecture and configuration interface for the TypeScript interface generator. This includes the main plugin function, configuration types, and the overall organization of the generated TypeScript code.</p>
+<pre><code class="language-typescript">import type { PluginProps } from '@stackpress/idea-transformer/types';
+import fs from 'fs/promises';
+import path from 'path';
+
+interface TypeScriptConfig {
+  output: string;
+  namespace?: string;
+  exportType?: 'named' | 'default' | 'namespace';
+  generateUtilityTypes?: boolean;
+  includeComments?: boolean;
+  strictNullChecks?: boolean;
+  generateEnums?: boolean;
+  enumType?: 'enum' | 'union' | 'const';
+}
+
+export default async function generateTypeScriptInterfaces(
+  props: PluginProps&lt;{ config: TypeScriptConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  // Implementation here...
+}</code></pre>
+<h2 id="4-implementation">4. Implementation</h2>
+<p>The implementation section covers the core plugin function and supporting utilities that handle TypeScript interface generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.</p>
+<h3 id="4-1-core-plugin-function">4.1. Core Plugin Function</h3>
+<p>The core plugin function serves as the main entry point for TypeScript interface generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.</p>
+<pre><code class="language-typescript">export default async function generateTypeScriptInterfaces(
+  props: PluginProps&lt;{ config: TypeScriptConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  try {
+    // Validate configuration
+    validateConfig(config);
+    
+    // Generate TypeScript content
+    let content = '';
+    
+    // Add file header
+    content += generateFileHeader();
+    
+    // Generate enums
+    if (config.generateEnums !== false &amp;&amp; schema.enum) {
+      content += generateEnums(schema.enum, config);
+    }
+    
+    // Generate custom types
+    if (schema.type) {
+      content += generateCustomTypes(schema.type, config);
+    }
+    
+    // Generate interfaces from models
+    if (schema.model) {
+      content += generateInterfaces(schema.model, config);
+    }
+    
+    // Generate utility types
+    if (config.generateUtilityTypes) {
+      content += generateUtilityTypes(schema, config);
+    }
+    
+    // Wrap in namespace if specified
+    if (config.namespace) {
+      content = wrapInNamespace(content, config.namespace, config.exportType);
+    }
+    
+    // Write to output file
+    const outputPath = await transformer.loader.absolute(config.output);
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+    await fs.writeFile(outputPath, content, 'utf8');
+    
+    console.log(`✅ TypeScript interfaces generated: ${outputPath}`);
+    
+  } catch (error) {
+    console.error('❌ TypeScript interface generation failed:', error.message);
+    throw error;
+  }
+}</code></pre>
+<h3 id="4-2-type-mapping-functions">4.2. Type Mapping Functions</h3>
+<p>Type mapping functions handle the conversion of <code>.idea</code> schema types to their TypeScript equivalents. These functions ensure proper type safety and handle complex scenarios like nullable types, arrays, and custom type references.</p>
+<pre><code class="language-typescript">function mapSchemaTypeToTypeScript(
+  schemaType: string, 
+  strictNullChecks: boolean = true
+): string {
+  const typeMap: Record&lt;string, string&gt; = {
+    'String': 'string',
+    'Number': 'number',
+    'Integer': 'number',
+    'Boolean': 'boolean',
+    'Date': 'Date',
+    'JSON': 'any',
+    'ID': 'string'
+  };
+  
+  const baseType = typeMap[schemaType] || schemaType;
+  
+  // Handle strict null checks
+  if (!strictNullChecks &amp;&amp; baseType !== 'any') {
+    return `${baseType} | null | undefined`;
+  }
+  
+  return baseType;
+}
+
+function formatPropertyType(
+  column: any, 
+  config: TypeScriptConfig,
+  availableTypes: Set&lt;string&gt; = new Set()
+): string {
+  let type = column.type;
+  
+  // Check if it's a reference to another type
+  if (availableTypes.has(column.type)) {
+    type = column.type;
+  } else {
+    type = mapSchemaTypeToTypeScript(column.type, config.strictNullChecks);
+  }
+  
+  // Handle arrays
+  if (column.multiple) {
+    type = `${type}[]`;
+  }
+  
+  // Handle optional properties
+  if (!column.required &amp;&amp; config.strictNullChecks) {
+    type = `${type} | null`;
+  }
+  
+  return type;
+}</code></pre>
+<h3 id="4-3-generation-functions">4.3. Generation Functions</h3>
+<p>Generation functions create specific parts of the TypeScript output including enums, interfaces, and utility types. These functions handle formatting, documentation generation, and proper TypeScript syntax construction.</p>
+<pre><code class="language-typescript">function generateFileHeader(): string {
+  const timestamp = new Date().toISOString();
+  return `/**
+ * Generated TypeScript interfaces
+ * Generated at: ${timestamp}
+ * 
+ * This file is auto-generated. Do not edit manually.
+ */
+
+`;
+}
+
+function generateEnums(
+  enums: Record&lt;string, any&gt;, 
+  config: TypeScriptConfig
+): string {
+  let content = '// Enums\n';
+  
+  for (const [enumName, enumDef] of Object.entries(enums)) {
+    if (config.includeComments) {
+      content += `/**\n * ${enumName} enumeration\n */\n`;
+    }
+    
+    switch (config.enumType) {
+      case 'union':
+        content += generateUnionEnum(enumName, enumDef);
+        break;
+      case 'const':
+        content += generateConstEnum(enumName, enumDef);
+        break;
+      default:
+        content += generateStandardEnum(enumName, enumDef);
+    }
+    
+    content += '\n';
+  }
+  
+  return content + '\n';
+}
+
+function generateStandardEnum(enumName: string, enumDef: any): string {
+  let content = `export enum ${enumName} {\n`;
+  
+  for (const [key, value] of Object.entries(enumDef)) {
+    content += `  ${key} = "${value}",\n`;
+  }
+  
+  content += '}';
+  return content;
+}
+
+function generateUnionEnum(enumName: string, enumDef: any): string {
+  const values = Object.values(enumDef).map(v =&gt; `"${v}"`).join(' | ');
+  return `export type ${enumName} = ${values};`;
+}
+
+function generateConstEnum(enumName: string, enumDef: any): string {
+  let content = `export const ${enumName} = {\n`;
+  
+  for (const [key, value] of Object.entries(enumDef)) {
+    content += `  ${key}: "${value}",\n`;
+  }
+  
+  content += '} as const;\n\n';
+  content += `export type ${enumName} = typeof ${enumName}[keyof typeof ${enumName}];`;
+  
+  return content;
+}
+
+function generateCustomTypes(
+  types: Record&lt;string, any&gt;, 
+  config: TypeScriptConfig
+): string {
+  let content = '// Custom Types\n';
+  const availableTypes = new Set(Object.keys(types));
+  
+  for (const [typeName, typeDef] of Object.entries(types)) {
+    if (config.includeComments) {
+      content += `/**\n * ${typeName} type definition\n */\n`;
+    }
+    
+    content += `export interface ${typeName} {\n`;
+    
+    for (const column of typeDef.columns || []) {
+      const propertyType = formatPropertyType(column, config, availableTypes);
+      const optional = !column.required ? '?' : '';
+      
+      if (config.includeComments &amp;&amp; column.description) {
+        content += `  /** ${column.description} */\n`;
+      }
+      
+      content += `  ${column.name}${optional}: ${propertyType};\n`;
+    }
+    
+    content += '}\n\n';
+  }
+  
+  return content;
+}
+
+function generateInterfaces(
+  models: Record&lt;string, any&gt;, 
+  config: TypeScriptConfig
+): string {
+  let content = '// Model Interfaces\n';
+  const availableTypes = new Set([
+    ...Object.keys(models),
+    ...(config.namespace ? [] : Object.keys(models))
+  ]);
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    if (config.includeComments) {
+      content += `/**\n * ${modelName} model interface\n`;
+      if (model.description) {
+        content += ` * ${model.description}\n`;
+      }
+      content += ` */\n`;
+    }
+    
+    content += `export interface ${modelName} {\n`;
+    
+    for (const column of model.columns || []) {
+      const propertyType = formatPropertyType(column, config, availableTypes);
+      const optional = !column.required ? '?' : '';
+      
+      if (config.includeComments) {
+        let comment = '';
+        if (column.description) {
+          comment += column.description;
+        }
+        if (column.attributes?.default) {
+          comment += comment ? ` (default: ${column.attributes.default})` : `Default: ${column.attributes.default}`;
+        }
+        if (comment) {
+          content += `  /** ${comment} */\n`;
+        }
+      }
+      
+      content += `  ${column.name}${optional}: ${propertyType};\n`;
+    }
+    
+    content += '}\n\n';
+  }
+  
+  return content;
+}
+
+function generateUtilityTypes(
+  schema: any, 
+  config: TypeScriptConfig
+): string {
+  let content = '// Utility Types\n';
+  
+  if (schema.model) {
+    const modelNames = Object.keys(schema.model);
+    
+    // Generate create input types (omit auto-generated fields)
+    for (const modelName of modelNames) {
+      const model = schema.model[modelName];
+      const autoFields = model.columns
+        ?.filter((col: any) =&gt; col.attributes?.id || col.attributes?.default)
+        .map((col: any) =&gt; `'${col.name}'`)
+        .join(' | ');
+      
+      if (autoFields) {
+        content += `export type Create${modelName}Input = Omit&lt;${modelName}, ${autoFields}&gt;;\n`;
+      } else {
+        content += `export type Create${modelName}Input = ${modelName};\n`;
+      }
+    }
+    
+    content += '\n';
+    
+    // Generate update input types (all fields optional)
+    for (const modelName of modelNames) {
+      content += `export type Update${modelName}Input = Partial&lt;${modelName}&gt;;\n`;
+    }
+    
+    content += '\n';
+    
+    // Generate union types
+    const allModels = modelNames.join(' | ');
+    content += `export type AnyModel = ${allModels};\n\n`;
+    
+    // Generate key types
+    for (const modelName of modelNames) {
+      content += `export type ${modelName}Keys = keyof ${modelName};\n`;
+    }
+    
+    content += '\n';
+  }
+  
+  return content;
+}
+
+function wrapInNamespace(
+  content: string, 
+  namespace: string, 
+  exportType?: string
+): string {
+  const exportKeyword = exportType === 'default' ? 'export default' : 'export';
+  
+  return `${exportKeyword} namespace ${namespace} {
+${content.split('\n').map(line =&gt; line ? `  ${line}` : line).join('\n')}
+}
+`;
+}</code></pre>
+<h3 id="4-4-validation-functions">4.4. Validation Functions</h3>
+<p>Validation functions ensure that the plugin configuration is correct and that the generated TypeScript code meets quality standards. These functions catch configuration errors early and prevent invalid output generation.</p>
+<pre><code class="language-typescript">function validateConfig(config: any): asserts config is TypeScriptConfig {
+  if (!config.output || typeof config.output !== 'string') {
+    throw new Error('TypeScript plugin requires "output" configuration as string');
+  }
+  
+  if (config.exportType &amp;&amp; !['named', 'default', 'namespace'].includes(config.exportType)) {
+    throw new Error('exportType must be one of: named, default, namespace');
+  }
+  
+  if (config.enumType &amp;&amp; !['enum', 'union', 'const'].includes(config.enumType)) {
+    throw new Error('enumType must be one of: enum, union, const');
+  }
+}</code></pre>
+<h2 id="5-schema-configuration">5. Schema Configuration</h2>
+<p>Schema configuration demonstrates how to integrate the TypeScript interface generator into your <code>.idea</code> schema files. This section covers plugin configuration options and their effects on the generated TypeScript output.</p>
+<p>Add the TypeScript plugin to your <code>.idea</code> schema file:</p>
+<pre><code class="language-typescript">plugin "./plugins/typescript-interfaces.js" {
+  output "./generated/types.ts"
+  namespace "MyApp"
+  exportType "named"
+  generateUtilityTypes true
+  includeComments true
+  strictNullChecks true
+  generateEnums true
+  enumType "enum"
+}</code></pre>
+<p><strong>Configuration Options</strong></p>
+<p>Configuration options control how TypeScript interfaces are generated, including output formatting, type handling, and feature enablement. Understanding these options helps you customize the plugin to meet your specific project requirements.</p>
+
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>namespace</code></td><td><code>string</code></td><td><code>undefined</code></td><td>Wrap types in a namespace</td></tr><tr><td><code>exportType</code></td><td>`'named'\</td><td>'default'\</td><td>'namespace'`</td><td><code>'named'</code></td><td>Export style for types</td></tr><tr><td><code>generateUtilityTypes</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Generate helper utility types</td></tr><tr><td><code>includeComments</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Include JSDoc comments</td></tr><tr><td><code>strictNullChecks</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Handle null/undefined types</td></tr><tr><td><code>generateEnums</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Generate enum definitions</td></tr><tr><td><code>enumType</code></td><td>`'enum'\</td><td>'union'\</td><td>'const'`</td><td><code>'enum'</code></td><td>Enum generation style</td></tr>
+      </tbody>
+    </table>
+  
+<h2 id="6-usage-examples">6. Usage Examples</h2>
+<p>Usage examples demonstrate practical applications of the TypeScript interface generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated TypeScript code integrates into development workflows.</p>
+<h3 id="6-1-basic-schema">6.1. Basic Schema</h3>
+<p>A basic schema example shows the fundamental structure needed to generate TypeScript interfaces. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces clean, type-safe TypeScript code.</p>
+<pre><code class="language-typescript">enum UserRole {
+  ADMIN "admin"
+  USER "user"
+  GUEST "guest"
+}
+
+type Address {
+  street String @required
+  city String @required
+  country String @required
+  postal String
+}
+
+model User {
+  id String @id @default("nanoid()")
+  email String @unique @required
+  name String @required
+  role UserRole @default("USER")
+  address Address?
+  active Boolean @default(true)
+  createdAt Date @default("now()")
+}
+
+plugin "./plugins/typescript-interfaces.js" {
+  output "./types.ts"
+  generateUtilityTypes true
+  includeComments true
+}</code></pre>
+<h3 id="6-2-generated-output">6.2. Generated Output</h3>
+<p>The generated output demonstrates the TypeScript code produced by the plugin from the basic schema example. This shows how schema definitions are transformed into proper TypeScript interfaces with full type safety and documentation.</p>
+<pre><code class="language-typescript">/**
+ * Generated TypeScript interfaces
+ * Generated at: 2024-01-15T10:30:00.000Z
+ * 
+ * This file is auto-generated. Do not edit manually.
+ */
+
+// Enums
+/**
+ * UserRole enumeration
+ */
+export enum UserRole {
+  ADMIN = "admin",
+  USER = "user",
+  GUEST = "guest",
+}
+
+// Custom Types
+/**
+ * Address type definition
+ */
+export interface Address {
+  street: string;
+  city: string;
+  country: string;
+  postal?: string | null;
+}
+
+// Model Interfaces
+/**
+ * User model interface
+ */
+export interface User {
+  /** Default: nanoid() */
+  id: string;
+  email: string;
+  name: string;
+  /** Default: USER */
+  role: UserRole;
+  address?: Address | null;
+  /** Default: true */
+  active: boolean;
+  /** Default: now() */
+  createdAt: Date;
+}
+
+// Utility Types
+export type CreateUserInput = Omit&lt;User, 'id' | 'createdAt'&gt;;
+
+export type UpdateUserInput = Partial&lt;User&gt;;
+
+export type AnyModel = User;
+
+export type UserKeys = keyof User;</code></pre>
+<h2 id="7-advanced-features">7. Advanced Features</h2>
+<p>Advanced features extend the basic TypeScript interface generation with sophisticated organization, multiple enum types, relationship handling, and generic type support. These features enable production-ready TypeScript definitions that handle complex scenarios.</p>
+<h3 id="7-1-namespace-support">7.1. Namespace Support</h3>
+<p>Namespace support allows you to organize generated types within TypeScript namespaces, preventing naming conflicts and providing better code organization. This feature is particularly useful for large projects with multiple schema files.</p>
+<pre><code class="language-typescript">// With namespace configuration
+namespace: "MyApp"
+exportType: "namespace"
+
+// Generated output:
+export namespace MyApp {
+  export enum UserRole {
+    ADMIN = "admin",
+    USER = "user",
+  }
+  
+  export interface User {
+    id: string;
+    name: string;
+    role: UserRole;
+  }
+}</code></pre>
+<h3 id="7-2-different-enum-types">7.2. Different Enum Types</h3>
+<p>Different enum types provide flexibility in how enumerations are represented in TypeScript. The plugin supports standard enums, union types, and const assertions, each with different runtime characteristics and use cases.</p>
+<pre><code class="language-typescript">// Standard enum (default)
+enumType: "enum"
+export enum UserRole {
+  ADMIN = "admin",
+  USER = "user",
+}
+
+// Union type
+enumType: "union"
+export type UserRole = "admin" | "user";
+
+// Const assertion
+enumType: "const"
+export const UserRole = {
+  ADMIN: "admin",
+  USER: "user",
+} as const;
+export type UserRole = typeof UserRole[keyof typeof UserRole];</code></pre>
+<h3 id="7-3-relationship-handling">7.3. Relationship Handling</h3>
+<p>Relationship handling manages references between different types and models in your schema. This ensures that type relationships are properly represented in the generated TypeScript code with correct type references and nullability handling.</p>
+<pre><code class="language-typescript">function handleRelationships(
+  column: any, 
+  config: TypeScriptConfig,
+  availableTypes: Set&lt;string&gt;
+): string {
+  // Check if the column type is another model/type
+  if (availableTypes.has(column.type)) {
+    let type = column.type;
+    
+    if (column.multiple) {
+      type = `${type}[]`;
+    }
+    
+    if (!column.required &amp;&amp; config.strictNullChecks) {
+      type = `${type} | null`;
+    }
+    
+    return type;
+  }
+  
+  return formatPropertyType(column, config, availableTypes);
+}</code></pre>
+<h3 id="7-4-generic-type-support">7.4. Generic Type Support</h3>
+<p>Generic type support enables the generation of reusable type definitions that work with multiple data types. This includes common patterns like paginated responses and API response wrappers that enhance type safety across your application.</p>
+<pre><code class="language-typescript">function generateGenericTypes(
+  models: Record&lt;string, any&gt;, 
+  config: TypeScriptConfig
+): string {
+  let content = '// Generic Types\n';
+  
+  // Generate paginated response type
+  content += `export interface PaginatedResponse&lt;T&gt; {
+  data: T[];
+  total: number;
+  page: number;
+  limit: number;
+}\n\n`;
+  
+  // Generate API response type
+  content += `export interface ApiResponse&lt;T = any&gt; {
+  success: boolean;
+  data?: T;
+  error?: string;
+  errors?: Record&lt;string, string[]&gt;;
+}\n\n`;
+  
+  return content;
+}</code></pre>
+<h2 id="8-best-practices">8. Best Practices</h2>
+<p>Best practices ensure your generated TypeScript interfaces are maintainable, reliable, and follow industry standards. These guidelines cover type safety, naming conventions, documentation generation, and performance optimization.</p>
+<h3 id="8-1-type-safety">8.1. Type Safety</h3>
+<p>Type safety is crucial for preventing runtime errors and improving developer experience. Always validate input data and use proper TypeScript types throughout the plugin implementation to ensure reliable code generation.</p>
+<pre><code class="language-typescript">interface TypeScriptColumn {
+  name: string;
+  type: string;
+  required: boolean;
+  multiple: boolean;
+  description?: string;
+  attributes?: Record&lt;string, any&gt;;
+}
+
+function validateColumn(column: any): column is TypeScriptColumn {
+  return (
+    typeof column.name === 'string' &amp;&amp;
+    typeof column.type === 'string' &amp;&amp;
+    typeof column.required === 'boolean'
+  );
+}</code></pre>
+<h3 id="8-2-naming-conventions">8.2. Naming Conventions</h3>
+<p>Naming conventions ensure that generated TypeScript identifiers are valid and follow established patterns. Proper naming improves code readability and prevents conflicts with reserved keywords or invalid characters.</p>
+<pre><code class="language-typescript">function sanitizeTypeName(name: string): string {
+  // Ensure TypeScript-valid names
+  return name
+    .replace(/[^a-zA-Z0-9_]/g, '_')
+    .replace(/^[0-9]/, '_%samp;')
+    .replace(/^_+|_+$/g, '');
+}
+
+function toPascalCase(str: string): string {
+  return str
+    .split(/[-_\s]+/)
+    .map(word =&gt; word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('');
+}</code></pre>
+<h3 id="8-3-documentation-generation">8.3. Documentation Generation</h3>
+<p>Documentation generation creates comprehensive JSDoc comments that provide context and examples for the generated types. This improves the developer experience by providing inline documentation in IDEs and code editors.</p>
+<pre><code class="language-typescript">function generateJSDocComment(
+  column: any, 
+  includeAttributes: boolean = true
+): string {
+  const lines: string[] = [];
+  
+  if (column.description) {
+    lines.push(column.description);
+  }
+  
+  if (includeAttributes &amp;&amp; column.attributes) {
+    if (column.attributes.default) {
+      lines.push(`@default ${column.attributes.default}`);
+    }
+    if (column.attributes.example) {
+      lines.push(`@example ${column.attributes.example}`);
+    }
+  }
+  
+  if (lines.length === 0) return '';
+  
+  if (lines.length === 1) {
+    return `  /** ${lines[0]} */\n`;
+  }
+  
+  return `  /**\n${lines.map(line =&gt; `   * ${line}`).join('\n')}\n   */\n`;
+}</code></pre>
+<h3 id="8-4-performance-optimization">8.4. Performance Optimization</h3>
+<p>Performance optimization techniques help maintain reasonable generation times when working with large schemas. Caching strategies and efficient algorithms ensure the plugin scales well with complex type hierarchies.</p>
+<pre><code class="language-typescript">// Cache type mappings
+const typeCache = new Map&lt;string, string&gt;();
+
+function getCachedTypeMapping(
+  schemaType: string, 
+  strictNullChecks: boolean
+): string {
+  const cacheKey = `${schemaType}:${strictNullChecks}`;
+  
+  if (typeCache.has(cacheKey)) {
+    return typeCache.get(cacheKey)!;
+  }
+  
+  const mappedType = mapSchemaTypeToTypeScript(schemaType, strictNullChecks);
+  typeCache.set(cacheKey, mappedType);
+  
+  return mappedType;
+}</code></pre>
+<h2 id="9-troubleshooting">9. Troubleshooting</h2>
+<p>This section addresses common issues encountered when generating TypeScript interfaces and provides solutions for debugging and resolving problems. Understanding these troubleshooting techniques helps ensure reliable interface generation.</p>
+<h3 id="9-1-common-issues">9.1. Common Issues</h3>
+<p>Common issues include invalid TypeScript identifiers, circular type references, and missing dependencies. These problems typically arise from schema complexity or configuration mismatches that can be resolved with proper validation and error handling.</p>
+<h4 id="9-1-1-invalid-typescript-names">9.1.1. Invalid TypeScript Names</h4>
+<p>Invalid TypeScript names occur when schema identifiers contain characters that are not valid in TypeScript. The plugin should validate and sanitize names to ensure they conform to TypeScript identifier rules.</p>
+<pre><code class="language-typescript">   function validateTypeName(name: string): void {
+     if (!/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(name)) {
+       throw new Error(`Invalid TypeScript identifier: ${name}`);
+     }
+   }</code></pre>
+<h4 id="9-1-2-circular-type-references">9.1.2. Circular Type References</h4>
+<p>Circular type references can cause infinite loops during generation or compilation errors in the generated TypeScript code. Detecting and handling these scenarios is essential for robust type generation.</p>
+<pre><code class="language-typescript">   function detectCircularReferences(
+     types: Record&lt;string, any&gt;
+   ): string[] {
+     const visited = new Set&lt;string&gt;();
+     const recursionStack = new Set&lt;string&gt;();
+     const cycles: string[] = [];
+     
+     function visit(typeName: string): void {
+       if (recursionStack.has(typeName)) {
+         cycles.push(typeName);
+         return;
+       }
+       
+       if (visited.has(typeName)) return;
+       
+       visited.add(typeName);
+       recursionStack.add(typeName);
+       
+       // Check type dependencies...
+       
+       recursionStack.delete(typeName);
+     }
+     
+     for (const typeName of Object.keys(types)) {
+       visit(typeName);
+     }
+     
+     return cycles;
+   }</code></pre>
+<h4 id="9-1-3-missing-type-dependencies">9.1.3. Missing Type Dependencies</h4>
+<p>Missing type dependencies occur when a type references another type that doesn't exist in the schema. Validating type dependencies ensures all references are resolvable and prevents compilation errors.</p>
+<pre><code class="language-typescript">   function validateTypeDependencies(
+     schema: any
+   ): void {
+     const availableTypes = new Set([
+       ...Object.keys(schema.model || {}),
+       ...Object.keys(schema.type || {}),
+       ...Object.keys(schema.enum || {})
+     ]);
+     
+     // Validate all type references...
+   }</code></pre>
+<h3 id="9-2-debugging-tips">9.2. Debugging Tips</h3>
+<p>Debugging tips help identify and resolve issues during TypeScript interface generation. These techniques provide visibility into the generation process and help diagnose problems with schema processing or output generation.</p>
+<h4 id="9-2-1-enable-verbose-output">9.2.1. Enable Verbose Output</h4>
+<p>Verbose output provides detailed logging during the generation process, helping identify where issues occur and what data is being processed at each step.</p>
+<pre><code class="language-typescript">   const VERBOSE = process.env.TS_PLUGIN_VERBOSE === 'true';
+   
+   function verboseLog(message: string, data?: any) {
+     if (VERBOSE) {
+       console.log(`[TypeScript Plugin] ${message}`, data || '');
+     }
+   }</code></pre>
+<h4 id="9-2-2-validate-generated-typescript">9.2.2. Validate Generated TypeScript</h4>
+<p>Validating generated TypeScript ensures that the output is syntactically correct and will compile successfully. This validation step catches generation errors before the code is used in development.</p>
+<pre><code class="language-typescript">   import { transpile, ScriptTarget } from 'typescript';
+   
+   function validateGeneratedTypeScript(content: string): void {
+     try {
+       transpile(content, {
+         target: ScriptTarget.ES2020,
+         strict: true
+       });
+       console.log('✅ Generated TypeScript is valid');
+     } catch (error) {
+       throw new Error(`Invalid TypeScript: ${error.message}`);
+     }
+   }</code></pre>
+<p>This tutorial provides a comprehensive foundation for creating TypeScript interface generators from <code>.idea</code> files. The generated types can be used throughout your TypeScript projects for compile-time type checking and enhanced IDE support.</p>
+    </div>
+    <nav class="pager">
+  <a href="../ts-morph-plugin-guide/index.html"><span>Previous</span>Creating Plugins with ts-morph: A Comprehensive Guide</a>
+
+  <a href="../validation-plugin/index.html"><span>Next</span>Validation Schema Generator Plugin Tutorial</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#typescript-interface-generator-plugin-tutorial">TypeScript Interface Generator Plugin Tutorial</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-prerequisites">2. Prerequisites</a></li>
+<li><a href="#3-plugin-structure">3. Plugin Structure</a></li>
+<li><a href="#4-implementation">4. Implementation</a></li>
+<li><a href="#4-1-core-plugin-function">4.1. Core Plugin Function</a></li>
+<li><a href="#4-2-type-mapping-functions">4.2. Type Mapping Functions</a></li>
+<li><a href="#4-3-generation-functions">4.3. Generation Functions</a></li>
+<li><a href="#4-4-validation-functions">4.4. Validation Functions</a></li>
+<li><a href="#5-schema-configuration">5. Schema Configuration</a></li>
+<li><a href="#6-usage-examples">6. Usage Examples</a></li>
+<li><a href="#6-1-basic-schema">6.1. Basic Schema</a></li>
+<li><a href="#6-2-generated-output">6.2. Generated Output</a></li>
+<li><a href="#7-advanced-features">7. Advanced Features</a></li>
+<li><a href="#7-1-namespace-support">7.1. Namespace Support</a></li>
+<li><a href="#7-2-different-enum-types">7.2. Different Enum Types</a></li>
+<li><a href="#7-3-relationship-handling">7.3. Relationship Handling</a></li>
+<li><a href="#7-4-generic-type-support">7.4. Generic Type Support</a></li>
+<li><a href="#8-best-practices">8. Best Practices</a></li>
+<li><a href="#8-1-type-safety">8.1. Type Safety</a></li>
+<li><a href="#8-2-naming-conventions">8.2. Naming Conventions</a></li>
+<li><a href="#8-3-documentation-generation">8.3. Documentation Generation</a></li>
+<li><a href="#8-4-performance-optimization">8.4. Performance Optimization</a></li>
+<li><a href="#9-troubleshooting">9. Troubleshooting</a></li>
+<li><a href="#9-1-common-issues">9.1. Common Issues</a></li>
+<li><a href="#9-2-debugging-tips">9.2. Debugging Tips</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

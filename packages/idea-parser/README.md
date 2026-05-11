@@ -51,5 +51,5 @@ const normalized = final(code);
 
 ## Learn More
 
-- [Parser API Docs](https://github.com/stackpress/idea/blob/main/docs/api/parser/README.md)
-- [Specification Reference](https://github.com/stackpress/idea/blob/main/docs/reference/specification.md)
+- [Parser API Docs](https://github.com/stackpress/idea/blob/main/specs/api/parser/README.md)
+- [Specification Reference](https://github.com/stackpress/idea/blob/main/specs/reference/specification.md)

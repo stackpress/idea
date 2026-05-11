@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Syntax Trees | Idea</title>
+  <link rel="icon" type="image/png" href="../../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../../index.html">
+        <img src="../../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../../getting-started/index.html">Start</a>
+          <a href="../../../concepts/overview/index.html">Concepts</a>
+          <a href="../../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../../reference/specification/index.html">Reference</a>
+          <a href="../../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Syntax Trees</h1>
+      <p>The AST classes are responsible for parsing specific parts of schema code into Abstract Syntax Trees (ASTs). Each AST class handles a different type of declaration or construct in the schema language.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/api/parser/Trees.md">View source</a>
+        <a href="../../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>The AST classes are responsible for parsing specific parts of schema code into Abstract Syntax Trees (ASTs). Each AST class handles a different type of declaration or construct in the schema language.</p>
+<pre><code class="language-typescript">import { 
+  SchemaTree, 
+  EnumTree, 
+  ModelTree, 
+  TypeTree, 
+  PropTree, 
+  PluginTree, 
+  UseTree 
+} from '@stackpress/idea-parser';</code></pre>
+<ol><li><a href="#1-schematree">SchemaTree</a></li><li><a href="#2-enumtree">EnumTree</a></li><li><a href="#3-modeltree">ModelTree</a></li><li><a href="#4-typetree">TypeTree</a></li><li><a href="#5-proptree">PropTree</a></li><li><a href="#6-plugintree">PluginTree</a></li><li><a href="#7-usetree">UseTree</a></li><li><a href="#8-usage-patterns">Usage Patterns</a></li><li><a href="#9-error-handling">Error Handling</a></li><li><a href="#10-integration-with-main-functions">Integration with Main Functions</a></li><li><a href="#11-performance-considerations">Performance Considerations</a></li><li><a href="#12-test-driven-examples">Test-Driven Examples</a></li></ol>
+<h2 id="1-schematree">1. SchemaTree</h2>
+<p>Parses complete schema files containing multiple declarations.</p>
+<h3 id="1-1-static-methods">1.1. Static Methods</h3>
+<p>The static methods provide convenient ways to configure lexers and parse complete schema files without needing to instantiate the SchemaTree class directly.</p>
+<h4 id="1-1-1-setting-up-schema-definitions">1.1.1. Setting Up Schema Definitions</h4>
+<p>The following example shows how to configure a lexer for schema parsing.</p>
+<pre><code class="language-typescript">import { SchemaTree, Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+SchemaTree.definitions(lexer);
+
+// Lexer now has definitions for all schema constructs:
+// enum, prop, type, model, plugin, use keywords and structures</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The configured lexer instance.</p>
+<h4 id="1-1-2-parsing-complete-schemas">1.1.2. Parsing Complete Schemas</h4>
+<p>The following example shows how to parse a complete schema file.</p>
+<pre><code class="language-typescript">import { SchemaTree } from '@stackpress/idea-parser';
+
+const schemaCode = `
+plugin "./database" {
+  provider "postgresql"
+}
+
+enum Status {
+  ACTIVE "Active"
+  INACTIVE "Inactive"
+}
+
+prop Text { type "text" }
+
+model User {
+  id String @id
+  name String @field.input(Text)
+  status Status
+}
+`;
+
+const ast = SchemaTree.parse(schemaCode);
+console.log(ast.type); // 'Program'
+console.log(ast.kind); // 'schema'
+console.log(ast.body.length); // 4 (plugin, enum, prop, model)</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A SchemaToken representing the entire parsed schema.</p>
+<h3 id="1-2-methods">1.2. Methods</h3>
+<p>The instance methods allow for more granular control over the parsing process, including custom starting positions and reusing configured lexer instances.</p>
+<h4 id="1-2-1-parsing-schema-content">1.2.1. Parsing Schema Content</h4>
+<p>The following example shows how to parse schema content with custom starting position.</p>
+<pre><code class="language-typescript">import { SchemaTree } from '@stackpress/idea-parser';
+
+const tree = new SchemaTree();
+const schemaCode = 'enum Status { ACTIVE "Active" }';
+
+const result = tree.parse(schemaCode, 0);
+console.log(result.body[0].kind); // 'enum'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A SchemaToken containing all parsed declarations.</p>
+<h2 id="2-enumtree">2. EnumTree</h2>
+<p>Parses enum declarations into AST tokens.</p>
+<h3 id="2-1-static-methods">2.1. Static Methods</h3>
+<p>The static methods provide convenient ways to configure lexers and parse enum declarations without needing to instantiate the EnumTree class directly.</p>
+<h4 id="2-1-1-setting-up-enum-definitions">2.1.1. Setting Up Enum Definitions</h4>
+<p>The following example shows how to configure a lexer for enum parsing.</p>
+<pre><code class="language-typescript">import { EnumTree, Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+EnumTree.definitions(lexer);
+
+// Adds 'EnumWord' token definition for 'enum' keyword</code></pre>
+<h4 id="2-1-2-parsing-enum-declarations">2.1.2. Parsing Enum Declarations</h4>
+<p>The following example shows how to parse enum declarations based on the test fixtures.</p>
+<pre><code class="language-typescript">import { EnumTree } from '@stackpress/idea-parser';
+
+const enumCode = `enum Roles {
+  ADMIN "Admin"
+  MANAGER "Manager"
+  USER "User"
+}`;
+
+const ast = EnumTree.parse(enumCode);
+console.log(ast.kind); // 'enum'
+console.log(ast.declarations[0].id.name); // 'Roles'
+console.log(ast.declarations[0].init.properties.length); // 3
+console.log(ast.declarations[0].init.properties[0].key.name); // 'ADMIN'
+console.log(ast.declarations[0].init.properties[0].value.value); // 'Admin'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the parsed enum.</p>
+<h3 id="2-2-methods">2.2. Methods</h3>
+<p>The instance methods allow for more granular control over the enum parsing process, including parsing individual enum structures and properties.</p>
+<h4 id="2-2-1-parsing-enum-structure">2.2.1. Parsing Enum Structure</h4>
+<p>The following example shows how to parse the enum structure.</p>
+<pre><code class="language-typescript">const tree = new EnumTree();
+tree._lexer.load('enum Status { ACTIVE "Active" INACTIVE "Inactive" }');
+
+const enumToken = tree.enum();
+console.log(enumToken.declarations[0].id.name); // 'Status'
+console.log(enumToken.declarations[0].init.properties[0].key.name); // 'ACTIVE'
+console.log(enumToken.declarations[0].init.properties[0].value.value); // 'Active'</code></pre>
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the enum structure.</p>
+<h4 id="2-2-2-parsing-enum-properties">2.2.2. Parsing Enum Properties</h4>
+<p>The following example shows how individual enum properties are parsed.</p>
+<pre><code class="language-typescript">// Inside enum parsing, after opening brace
+const property = tree.property();
+console.log(property.key.name); // e.g., 'ADMIN'
+console.log(property.value.value); // e.g., 'Admin'</code></pre>
+<p><strong>Returns</strong></p>
+<p>A PropertyToken representing a single enum key-value pair.</p>
+<h2 id="3-modeltree">3. ModelTree</h2>
+<p>Parses model declarations (extends TypeTree for shared functionality).</p>
+<h3 id="3-1-static-methods">3.1. Static Methods</h3>
+<p>The static methods provide convenient ways to parse model declarations directly without needing to instantiate the ModelTree class.</p>
+<h4 id="3-1-1-parsing-model-declarations">3.1.1. Parsing Model Declarations</h4>
+<p>The following example shows how to parse model declarations based on the test fixtures.</p>
+<pre><code class="language-typescript">import { ModelTree } from '@stackpress/idea-parser';
+
+const modelCode = `model User @label("User" "Users") {
+  id       String       @label("ID")         @id @default("nanoid(20)")
+  username String       @label("Username")   @searchable @field.input(Text) @is.required
+  password String       @label("Password")   @field.password @is.clt(80) @is.cgt(8) @is.required @list.hide @view.hide
+  role     Roles        @label("Role")       @filterable @field.select @list.text(Uppercase) @view.text(Uppercase)
+  address  Address?     @label("Address")    @list.hide
+  age      Number       @label("Age")        @unsigned @filterable @sortable @field.number(Age) @is.gt(0) @is.lt(150)
+  active   Boolean      @label("Active")     @default(true) @filterable @field.switch @list.yesno @view.yesno
+  created  Date         @label("Created")    @default("now()") @filterable @sortable @list.date(Pretty)
+}`;
+
+const ast = ModelTree.parse(modelCode);
+console.log(ast.kind); // 'model'
+console.log(ast.mutable); // false (because of '!' modifier)
+console.log(ast.declarations[0].id.name); // 'User'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the parsed model.</p>
+<h3 id="3-2-methods">3.2. Methods</h3>
+<p>The instance methods allow for more granular control over the model parsing process, including parsing model structures and their properties.</p>
+<h4 id="3-2-1-parsing-model-structure">3.2.1. Parsing Model Structure</h4>
+<p>The following example shows how to parse the model structure.</p>
+<pre><code class="language-typescript">const tree = new ModelTree();
+tree._lexer.load('model User { id String @id }');
+
+const modelToken = tree.model();
+console.log(modelToken.kind); // 'model'
+console.log(modelToken.mutable); // false (immutable due to '!')</code></pre>
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the model structure.</p>
+<h2 id="4-typetree">4. TypeTree</h2>
+<p>Parses type declarations.</p>
+<h3 id="4-1-static-methods">4.1. Static Methods</h3>
+<p>The static methods provide convenient ways to parse type declarations directly without needing to instantiate the TypeTree class.</p>
+<h4 id="4-1-1-parsing-type-declarations">4.1.1. Parsing Type Declarations</h4>
+<p>The following example shows how to parse type declarations.</p>
+<pre><code class="language-typescript">import { TypeTree } from '@stackpress/idea-parser';
+
+const typeCode = `type Address @label("Address" "Addresses") {
+  street String @field.input @is.required
+  city String @field.input @is.required
+  country String @field.select
+  postal String @field.input
+}`;
+
+const ast = TypeTree.parse(typeCode);
+console.log(ast.kind); // 'type'
+console.log(ast.mutable); // true (mutable by default)
+console.log(ast.declarations[0].id.name); // 'Address'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the parsed type.</p>
+<h3 id="4-2-methods">4.2. Methods</h3>
+<p>The instance methods allow for more granular control over the type parsing process, including parsing type structures, properties, and parameters.</p>
+<h4 id="4-2-1-parsing-type-structure">4.2.1. Parsing Type Structure</h4>
+<p>The following example shows how to parse the type structure.</p>
+<pre><code class="language-typescript">const tree = new TypeTree();
+tree._lexer.load('type Address { street String city String }');
+
+const typeToken = tree.type();
+console.log(typeToken.kind); // 'type'
+console.log(typeToken.mutable); // true (default for types)</code></pre>
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the type structure.</p>
+<h4 id="4-2-2-parsing-type-properties">4.2.2. Parsing Type Properties</h4>
+<p>The following example shows how type properties (columns) are parsed.</p>
+<pre><code class="language-typescript">// Inside type parsing
+const property = tree.property();
+console.log(property.key.name); // e.g., 'street'
+console.log(property.value); // Object containing type and attributes</code></pre>
+<p><strong>Returns</strong></p>
+<p>A PropertyToken representing a type column definition.</p>
+<h4 id="4-2-3-parsing-type-parameters">4.2.3. Parsing Type Parameters</h4>
+<p>The following example shows how type parameters are parsed.</p>
+<pre><code class="language-typescript">// For parsing generic type parameters
+const parameter = tree.parameter();
+console.log(parameter.key.name); // Parameter name
+console.log(parameter.value); // Parameter type/constraint</code></pre>
+<p><strong>Returns</strong></p>
+<p>A PropertyToken representing a type parameter.</p>
+<h2 id="5-proptree">5. PropTree</h2>
+<p>Parses prop (property configuration) declarations.</p>
+<h3 id="5-1-static-methods">5.1. Static Methods</h3>
+<p>The static methods provide convenient ways to parse prop declarations directly without needing to instantiate the PropTree class.</p>
+<h4 id="5-1-1-parsing-prop-declarations">5.1.1. Parsing Prop Declarations</h4>
+<p>The following example shows how to parse prop declarations.</p>
+<pre><code class="language-typescript">import { PropTree } from '@stackpress/idea-parser';
+
+const propCode = `prop EmailInput {
+  type "email"
+  format "email"
+  placeholder "Enter your email"
+  required true
+}`;
+
+const ast = PropTree.parse(propCode);
+console.log(ast.kind); // 'prop'
+console.log(ast.declarations[0].id.name); // 'EmailInput'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the parsed prop.</p>
+<h3 id="5-2-methods">5.2. Methods</h3>
+<p>The instance methods allow for more granular control over the prop parsing process, including parsing prop structures and their configurations.</p>
+<h4 id="5-2-1-parsing-prop-structure">5.2.1. Parsing Prop Structure</h4>
+<p>The following example shows how to parse the prop structure.</p>
+<pre><code class="language-typescript">const tree = new PropTree();
+tree._lexer.load('prop Text { type "text" format "lowercase" }');
+
+const propToken = tree.prop();
+console.log(propToken.kind); // 'prop'
+console.log(propToken.declarations[0].id.name); // 'Text'</code></pre>
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the prop configuration.</p>
+<h2 id="6-plugintree">6. PluginTree</h2>
+<p>Parses plugin declarations.</p>
+<h3 id="6-1-static-methods">6.1. Static Methods</h3>
+<p>The static methods provide convenient ways to parse plugin declarations directly without needing to instantiate the PluginTree class.</p>
+<h4 id="6-1-1-parsing-plugin-declarations">6.1.1. Parsing Plugin Declarations</h4>
+<p>The following example shows how to parse plugin declarations.</p>
+<pre><code class="language-typescript">import { PluginTree } from '@stackpress/idea-parser';
+
+const pluginCode = `plugin "./database-plugin" {
+  provider "postgresql"
+  url env("DATABASE_URL")
+  previewFeatures ["fullTextSearch"]
+}`;
+
+const ast = PluginTree.parse(pluginCode);
+console.log(ast.kind); // 'plugin'
+console.log(ast.declarations[0].id.name); // './database-plugin'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the parsed plugin.</p>
+<h3 id="6-2-methods">6.2. Methods</h3>
+<p>The instance methods allow for more granular control over the plugin parsing process, including parsing plugin structures and their configurations.</p>
+<h4 id="6-2-1-parsing-plugin-structure">6.2.1. Parsing Plugin Structure</h4>
+<p>The following example shows how to parse the plugin structure.</p>
+<pre><code class="language-typescript">const tree = new PluginTree();
+tree._lexer.load('plugin "./custom" { provider "custom-provider" }');
+
+const pluginToken = tree.plugin();
+console.log(pluginToken.kind); // 'plugin'
+console.log(pluginToken.declarations[0].id.name); // './custom'</code></pre>
+<p><strong>Returns</strong></p>
+<p>A DeclarationToken representing the plugin configuration.</p>
+<h2 id="7-usetree">7. UseTree</h2>
+<p>Parses use (import) declarations.</p>
+<h3 id="7-1-static-methods">7.1. Static Methods</h3>
+<p>The static methods provide convenient ways to parse use (import) declarations directly without needing to instantiate the UseTree class.</p>
+<h4 id="7-1-1-parsing-use-declarations">7.1.1. Parsing Use Declarations</h4>
+<p>The following example shows how to parse use declarations.</p>
+<pre><code class="language-typescript">import { UseTree } from '@stackpress/idea-parser';
+
+const useCode = 'use "./shared/types.idea"';
+
+const ast = UseTree.parse(useCode);
+console.log(ast.type); // 'ImportDeclaration'
+console.log(ast.source.value); // './shared/types.idea'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>An ImportToken representing the parsed use statement.</p>
+<h3 id="7-2-methods">7.2. Methods</h3>
+<p>The instance methods allow for more granular control over the use statement parsing process, including parsing import structures and their sources.</p>
+<h4 id="7-2-1-parsing-use-structure">7.2.1. Parsing Use Structure</h4>
+<p>The following example shows how to parse the use structure.</p>
+<pre><code class="language-typescript">const tree = new UseTree();
+tree._lexer.load('use "./another.idea"');
+
+const useToken = tree.use();
+console.log(useToken.type); // 'ImportDeclaration'
+console.log(useToken.source.value); // './another.idea'</code></pre>
+<p><strong>Returns</strong></p>
+<p>An ImportToken representing the import statement.</p>
+<h2 id="8-usage-patterns">8. Usage Patterns</h2>
+<p>This section demonstrates common patterns for using the AST classes in real-world scenarios, including parsing individual components, integration with the compiler, and creating custom AST classes.</p>
+<h3 id="8-1-parsing-individual-components">8.1. Parsing Individual Components</h3>
+<p>The following examples show how to parse individual schema components using their respective AST classes for targeted parsing operations.</p>
+<pre><code class="language-typescript">import { EnumTree, ModelTree, TypeTree } from '@stackpress/idea-parser';
+
+// Parse individual enum
+const enumAST = EnumTree.parse(`enum Roles {
+  ADMIN "Admin"
+  MANAGER "Manager"
+  USER "User"
+}`);
+
+// Parse individual model
+const modelAST = ModelTree.parse(`model User {
+  id String @id
+  username String @is.required
+}`);
+
+// Parse individual type
+const typeAST = TypeTree.parse(`type Address {
+  street String
+  city String
+}`);</code></pre>
+<h3 id="8-2-using-with-compiler">8.2. Using with Compiler</h3>
+<p>The following examples show how AST classes integrate with the Compiler to transform parsed ASTs into usable configuration objects.</p>
+<pre><code class="language-typescript">import { EnumTree, Compiler } from '@stackpress/idea-parser';
+
+// Parse and compile in one step
+const enumAST = EnumTree.parse(`enum Status {
+  ACTIVE "Active"
+  INACTIVE "Inactive"
+}`);
+const [enumName, enumConfig] = Compiler.enum(enumAST);
+
+console.log(enumName); // 'Status'
+console.log(enumConfig); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }</code></pre>
+<h3 id="8-3-custom-ast-classes">8.3. Custom AST Classes</h3>
+<p>You can extend AbstractTree to create custom parsers:</p>
+<pre><code class="language-typescript">import { AbstractTree, Lexer } from '@stackpress/idea-parser';
+import type { DeclarationToken } from '@stackpress/idea-parser';
+
+class CustomTree extends AbstractTree&lt;DeclarationToken&gt; {
+  static definitions(lexer: Lexer) {
+    super.definitions(lexer);
+    // Add custom token definitions
+    lexer.define('CustomKeyword', (code, index) =&gt; {
+      // Custom token reader implementation
+    });
+    return lexer;
+  }
+
+  static parse(code: string, start = 0) {
+    return new this().parse(code, start);
+  }
+
+  parse(code: string, start = 0): DeclarationToken {
+    this._lexer.load(code, start);
+    return this.customDeclaration();
+  }
+
+  customDeclaration(): DeclarationToken {
+    // Custom parsing logic
+    const keyword = this._lexer.expect('CustomKeyword');
+    // ... more parsing logic
+    
+    return {
+      type: 'VariableDeclaration',
+      kind: 'custom',
+      start: keyword.start,
+      end: this._lexer.index,
+      declarations: [/* ... */]
+    };
+  }
+}</code></pre>
+<h2 id="9-error-handling">9. Error Handling</h2>
+<p>AST classes provide detailed error information when parsing fails:</p>
+<p><strong>Syntax Errors</strong></p>
+<pre><code class="language-typescript">import { SchemaTree, Exception } from '@stackpress/idea-parser';
+
+try {
+  // Invalid syntax - missing closing brace
+  SchemaTree.parse('enum Status { ACTIVE "Active"');
+} catch (error) {
+  if (error instanceof Exception) {
+    console.log('Parse error:', error.message);
+    console.log('Position:', error.start, '-', error.end);
+  }
+}</code></pre>
+<p><strong>Unexpected Tokens</strong></p>
+<pre><code class="language-typescript">try {
+  // Invalid - 'enum' keyword expected but found 'model'
+  EnumTree.parse('model User { id String }');
+} catch (error) {
+  console.log('Expected enum but found model');
+}</code></pre>
+<p><strong>Empty Input Handling</strong></p>
+<pre><code class="language-typescript">import { EnumTree } from '@stackpress/idea-parser';
+
+try {
+  // Empty string will throw an error
+  EnumTree.parse('');
+} catch (error) {
+  console.log('Error:', error.message); // 'Unexpected end of input'
+}</code></pre>
+<p><strong>Invalid Identifiers</strong></p>
+<pre><code class="language-typescript">import { ModelTree } from '@stackpress/idea-parser';
+
+try {
+  // Invalid - model names must be capitalized
+  ModelTree.parse('model user { id String }');
+} catch (error) {
+  console.log('Expected CapitalIdentifier but got something else');
+}</code></pre>
+<h2 id="10-integration-with-main-functions">10. Integration with Main Functions</h2>
+<p>AST classes are used internally by the main <code>parse</code> and <code>final</code> functions:</p>
+<pre><code class="language-typescript">// This is what happens internally:
+import { SchemaTree, Compiler } from '@stackpress/idea-parser';
+
+export function parse(code: string) {
+  const ast = SchemaTree.parse(code);  // Parse to AST
+  return Compiler.schema(ast);         // Compile to JSON
+}
+
+export function final(code: string) {
+  const ast = SchemaTree.parse(code);  // Parse to AST
+  return Compiler.final(ast);          // Compile and clean up
+}</code></pre>
+<h2 id="11-performance-considerations">11. Performance Considerations</h2>
+<p>This section covers optimization techniques and best practices for using AST classes efficiently, including lexer reuse and cloning strategies for better performance.</p>
+<h3 id="11-1-lexer-reuse">11.1. Lexer Reuse</h3>
+<p>AST classes can share lexer instances for better performance:</p>
+<pre><code class="language-typescript">import { Lexer, SchemaTree } from '@stackpress/idea-parser';
+
+// Create and configure lexer once
+const lexer = new Lexer();
+SchemaTree.definitions(lexer);
+
+// Reuse for multiple parses
+const tree = new SchemaTree(lexer);
+
+const result1 = tree.parse(code1);
+const result2 = tree.parse(code2);
+const result3 = tree.parse(code3);</code></pre>
+<h3 id="11-2-cloning-for-backtracking">11.2. Cloning for Backtracking</h3>
+<p>AST classes use lexer cloning for safe parsing attempts:</p>
+<pre><code class="language-typescript">// Inside tree parsing methods
+const checkpoint = this._lexer.clone();
+
+try {
+  // Try to parse optional structure
+  return this.parseOptionalStructure();
+} catch (error) {
+  // Restore lexer state and continue
+  this._lexer = checkpoint;
+  return this.parseAlternativeStructure();
+}</code></pre>
+<h2 id="12-test-driven-examples">12. Test-Driven Examples</h2>
+<p>Based on the test fixtures, here are real-world examples:</p>
+<p><strong>Enum with Multiple Values</strong></p>
+<pre><code class="language-typescript">const enumCode = `enum Roles {
+  ADMIN "Admin"
+  MANAGER "Manager"
+  USER "User"
+}`;
+
+const ast = EnumTree.parse(enumCode);
+// Produces a complete AST with all three enum values</code></pre>
+<p><strong>Complex Model with Attributes</strong></p>
+<pre><code class="language-typescript">const modelCode = `model User @label("User" "Users") {
+  id       String       @label("ID")         @id @default("nanoid(20)")
+  username String       @label("Username")   @searchable @field.input(Text) @is.required
+  password String       @label("Password")   @field.password @is.clt(80) @is.cgt(8) @is.required @list.hide @view.hide
+  role     Roles        @label("Role")       @filterable @field.select @list.text(Uppercase) @view.text(Uppercase)
+  address  Address?     @label("Address")    @list.hide
+  age      Number       @label("Age")        @unsigned @filterable @sortable @field.number(Age) @is.gt(0) @is.lt(150)
+  balance  Number[]     @label("Balance")    @filterable @sortable @field.number() @list.number() @view.number
+  active   Boolean      @label("Active")     @default(true) @filterable @field.switch @list.yesno @view.yesno
+  created  Date         @label("Created")    @default("now()") @filterable @sortable @list.date(Pretty)
+  updated  Date         @label("Updated")    @default("updated()") @filterable @sortable @list.date(Pretty)
+  company  Company?     @label("My Company") 
+}`;
+
+const ast = ModelTree.parse(modelCode);
+// Produces a complete model AST with all columns and attributes</code></pre>
+<p>This demonstrates the parser's ability to handle:</p>
+<ul><li>Model mutability (<code>!</code> modifier)</li><li>Attributes (<code>@label</code>, <code>@id</code>, <code>@default</code>, etc.)</li><li>Optional types (<code>Address?</code>, <code>Company?</code>)</li><li>Array types (<code>Number[]</code>)</li><li>Complex attribute parameters (<code>@field.input(Text)</code>, <code>@is.clt(80)</code>)</li></ul>
+    </div>
+    <nav class="pager">
+  <a href="../Tokens/index.html"><span>Previous</span>Tokens</a>
+
+  <a href="../../transformer/index.html"><span>Next</span>Transformer API Docs</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#syntax-trees">Syntax Trees</a></li>
+<li><a href="#1-schematree">1. SchemaTree</a></li>
+<li><a href="#1-1-static-methods">1.1. Static Methods</a></li>
+<li><a href="#1-2-methods">1.2. Methods</a></li>
+<li><a href="#2-enumtree">2. EnumTree</a></li>
+<li><a href="#2-1-static-methods">2.1. Static Methods</a></li>
+<li><a href="#2-2-methods">2.2. Methods</a></li>
+<li><a href="#3-modeltree">3. ModelTree</a></li>
+<li><a href="#3-1-static-methods">3.1. Static Methods</a></li>
+<li><a href="#3-2-methods">3.2. Methods</a></li>
+<li><a href="#4-typetree">4. TypeTree</a></li>
+<li><a href="#4-1-static-methods">4.1. Static Methods</a></li>
+<li><a href="#4-2-methods">4.2. Methods</a></li>
+<li><a href="#5-proptree">5. PropTree</a></li>
+<li><a href="#5-1-static-methods">5.1. Static Methods</a></li>
+<li><a href="#5-2-methods">5.2. Methods</a></li>
+<li><a href="#6-plugintree">6. PluginTree</a></li>
+<li><a href="#6-1-static-methods">6.1. Static Methods</a></li>
+<li><a href="#6-2-methods">6.2. Methods</a></li>
+<li><a href="#7-usetree">7. UseTree</a></li>
+<li><a href="#7-1-static-methods">7.1. Static Methods</a></li>
+<li><a href="#7-2-methods">7.2. Methods</a></li>
+<li><a href="#8-usage-patterns">8. Usage Patterns</a></li>
+<li><a href="#8-1-parsing-individual-components">8.1. Parsing Individual Components</a></li>
+<li><a href="#8-2-using-with-compiler">8.2. Using with Compiler</a></li>
+<li><a href="#8-3-custom-ast-classes">8.3. Custom AST Classes</a></li>
+<li><a href="#9-error-handling">9. Error Handling</a></li>
+<li><a href="#10-integration-with-main-functions">10. Integration with Main Functions</a></li>
+<li><a href="#11-performance-considerations">11. Performance Considerations</a></li>
+<li><a href="#11-1-lexer-reuse">11.1. Lexer Reuse</a></li>
+<li><a href="#11-2-cloning-for-backtracking">11.2. Cloning for Backtracking</a></li>
+<li><a href="#12-test-driven-examples">12. Test-Driven Examples</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

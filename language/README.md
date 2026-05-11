@@ -40,4 +40,4 @@ Idea repository work requires Node.js 22 or newer.
 ## Learn More
 
 - [Root README](https://github.com/stackpress/idea/blob/main/README.md)
-- [Use the VS Code Extension](https://github.com/stackpress/idea/blob/main/docs/how-to/use-the-vscode-extension.md)
+- [Use the VS Code Extension](https://github.com/stackpress/idea/blob/main/specs/how-to/use-the-vscode-extension.md)

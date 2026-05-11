@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Validation Schema Generator Plugin Tutorial | Idea</title>
+  <link rel="icon" type="image/png" href="../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <img src="../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../getting-started/index.html">Start</a>
+          <a href="../../concepts/overview/index.html">Concepts</a>
+          <a href="../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../reference/specification/index.html">Reference</a>
+          <a href="../index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Examples</span>
+      </div>
+      <h1>Validation Schema Generator Plugin Tutorial</h1>
+      <p>This tutorial demonstrates how to create a plugin that generates Zod validation schemas from `.idea` schema files. The plugin will transform your schema models into type-safe validation schemas with comprehensive validation rules.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/examples/validation-plugin.md">View source</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>This tutorial demonstrates how to create a plugin that generates Zod validation schemas from <code>.idea</code> schema files. The plugin will transform your schema models into type-safe validation schemas with comprehensive validation rules.</p>
+<ol><li><a href="#1-overview">Overview</a></li><li><a href="#2-prerequisites">Prerequisites</a></li><li><a href="#3-plugin-structure">Plugin Structure</a></li><li><a href="#4-implementation">Implementation</a></li><li><a href="#5-schema-configuration">Schema Configuration</a></li><li><a href="#6-usage-examples">Usage Examples</a></li><li><a href="#7-advanced-features">Advanced Features</a></li><li><a href="#8-best-practices">Best Practices</a></li><li><a href="#9-troubleshooting">Troubleshooting</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>Zod is a TypeScript-first schema validation library that provides runtime type checking and validation. This plugin transforms your <code>.idea</code> schema definitions into comprehensive Zod validation schemas that provide robust runtime validation with excellent TypeScript integration.</p>
+<p>This plugin generates Zod schemas from your <code>.idea</code> schema, including:</p>
+<ul><li><strong>Schema Validation</strong>: Zod schemas for all models and types</li><li><strong>Type Inference</strong>: TypeScript types inferred from Zod schemas</li><li><strong>Custom Validators</strong>: Support for custom validation rules</li><li><strong>Error Messages</strong>: Customizable validation error messages</li><li><strong>Nested Validation</strong>: Support for nested objects and arrays</li></ul>
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<p>Before implementing the Zod validation schema generator plugin, ensure you have the necessary development environment and knowledge. This section covers the essential requirements for successful plugin creation and Zod integration.</p>
+<ul><li>Node.js 16+ and npm/yarn</li><li>TypeScript 4.0+</li><li>Zod 3.0+</li><li>Basic understanding of validation concepts</li><li>Familiarity with the <code>@stackpress/idea-transformer</code> library</li><li>Understanding of <code>.idea</code> schema format</li></ul>
+<h2 id="3-plugin-structure">3. Plugin Structure</h2>
+<p>The plugin structure defines the core architecture and configuration interface for the Zod validation schema generator. This includes the main plugin function, configuration types, and the overall organization of the generated validation code.</p>
+<pre><code class="language-typescript">import type { PluginProps } from '@stackpress/idea-transformer/types';
+import fs from 'fs/promises';
+import path from 'path';
+
+interface ZodConfig {
+  output: string;
+  generateTypes?: boolean;
+  includeEnums?: boolean;
+  customValidators?: Record&lt;string, string&gt;;
+  errorMessages?: Record&lt;string, string&gt;;
+  strictMode?: boolean;
+  exportStyle?: 'named' | 'default' | 'namespace';
+}
+
+export default async function generateZodSchemas(
+  props: PluginProps&lt;{ config: ZodConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  // Implementation here...
+}</code></pre>
+<h2 id="4-implementation">4. Implementation</h2>
+<p>The implementation section covers the core plugin function and supporting utilities that handle Zod schema generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.</p>
+<h3 id="4-1-core-plugin-function">4.1. Core Plugin Function</h3>
+<p>The core plugin function serves as the main entry point for Zod schema generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.</p>
+<pre><code class="language-typescript">export default async function generateZodSchemas(
+  props: PluginProps&lt;{ config: ZodConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  try {
+    // Validate configuration
+    validateConfig(config);
+    
+    // Generate Zod content
+    let content = '';
+    
+    // Add file header and imports
+    content += generateFileHeader();
+    content += generateImports(config);
+    
+    // Generate enums if requested
+    if (config.includeEnums &amp;&amp; schema.enum) {
+      content += generateEnumSchemas(schema.enum, config);
+    }
+    
+    // Generate custom type schemas
+    if (schema.type) {
+      content += generateTypeSchemas(schema.type, config);
+    }
+    
+    // Generate model schemas
+    if (schema.model) {
+      content += generateModelSchemas(schema.model, config);
+    }
+    
+    // Generate utility schemas
+    content += generateUtilitySchemas(schema, config);
+    
+    // Generate main export
+    content += generateMainExport(schema, config);
+    
+    // Write to output file
+    const outputPath = await transformer.loader.absolute(config.output);
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+    await fs.writeFile(outputPath, content, 'utf8');
+    
+    console.log(`✅ Zod validation schemas generated: ${outputPath}`);
+    
+  } catch (error) {
+    console.error('❌ Zod schema generation failed:', error.message);
+    throw error;
+  }
+}</code></pre>
+<h3 id="4-2-generation-functions">4.2. Generation Functions</h3>
+<p>Generation functions create specific parts of the Zod validation output including enum schemas, type schemas, model schemas, and utility schemas. These functions handle proper Zod syntax construction and validation rule application.</p>
+<pre><code class="language-typescript">function generateFileHeader(): string {
+  const timestamp = new Date().toISOString();
+  return `/**
+ * Generated Zod Validation Schemas
+ * Generated at: ${timestamp}
+ * 
+ * This file is auto-generated. Do not edit manually.
+ */
+
+`;
+}
+
+function generateImports(config: ZodConfig): string {
+  let imports = `import { z } from 'zod';\n\n`;
+  
+  if (config.generateTypes) {
+    imports += `// Type inference helpers\ntype Infer&lt;T&gt; = z.infer&lt;T&gt;;\n\n`;
+  }
+  
+  return imports;
+}
+
+function generateEnumSchemas(enums: Record&lt;string, any&gt;, config: ZodConfig): string {
+  let content = '// Enum Schemas\n';
+  
+  for (const [enumName, enumDef] of Object.entries(enums)) {
+    const values = Object.values(enumDef);
+    const zodValues = values.map(v =&gt; `"${v}"`).join(', ');
+    
+    content += `export const ${enumName}Schema = z.enum([${zodValues}]);\n`;
+    
+    if (config.generateTypes) {
+      content += `export type ${enumName} = z.infer&lt;typeof ${enumName}Schema&gt;;\n`;
+    }
+    
+    content += '\n';
+  }
+  
+  return content + '\n';
+}
+
+function generateTypeSchemas(types: Record&lt;string, any&gt;, config: ZodConfig): string {
+  let content = '// Type Schemas\n';
+  
+  for (const [typeName, typeDef] of Object.entries(types)) {
+    content += `export const ${typeName}Schema = z.object({\n`;
+    
+    for (const column of typeDef.columns || []) {
+      const fieldSchema = generateFieldSchema(column, config);
+      content += `  ${column.name}: ${fieldSchema},\n`;
+    }
+    
+    content += '})';
+    
+    // Add strict mode if enabled
+    if (config.strictMode) {
+      content += '.strict()';
+    }
+    
+    content += ';\n';
+    
+    if (config.generateTypes) {
+      content += `export type ${typeName} = z.infer&lt;typeof ${typeName}Schema&gt;;\n`;
+    }
+    
+    content += '\n';
+  }
+  
+  return content;
+}
+
+function generateModelSchemas(models: Record&lt;string, any&gt;, config: ZodConfig): string {
+  let content = '// Model Schemas\n';
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    content += `export const ${modelName}Schema = z.object({\n`;
+    
+    for (const column of model.columns || []) {
+      const fieldSchema = generateFieldSchema(column, config);
+      content += `  ${column.name}: ${fieldSchema},\n`;
+    }
+    
+    content += '})';
+    
+    // Add strict mode if enabled
+    if (config.strictMode) {
+      content += '.strict()';
+    }
+    
+    content += ';\n';
+    
+    if (config.generateTypes) {
+      content += `export type ${modelName} = z.infer&lt;typeof ${modelName}Schema&gt;;\n`;
+    }
+    
+    // Generate input schemas
+    content += generateInputSchemas(modelName, model, config);
+    
+    content += '\n';
+  }
+  
+  return content;
+}
+
+function generateFieldSchema(column: any, config: ZodConfig): string {
+  let schema = mapTypeToZod(column.type, config);
+  
+  // Handle arrays
+  if (column.multiple) {
+    schema = `z.array(${schema})`;
+  }
+  
+  // Handle optional fields
+  if (!column.required) {
+    schema += '.optional()';
+  }
+  
+  // Add custom validations based on attributes
+  if (column.attributes) {
+    schema = addAttributeValidations(schema, column.attributes, config);
+  }
+  
+  return schema;
+}
+
+function mapTypeToZod(schemaType: string, config: ZodConfig): string {
+  // Check for custom validators first
+  if (config.customValidators &amp;&amp; config.customValidators[schemaType]) {
+    return config.customValidators[schemaType];
+  }
+  
+  const typeMap: Record&lt;string, string&gt; = {
+    'String': 'z.string()',
+    'Number': 'z.number()',
+    'Integer': 'z.number().int()',
+    'Boolean': 'z.boolean()',
+    'Date': 'z.date()',
+    'JSON': 'z.any()',
+    'ID': 'z.string()'
+  };
+  
+  return typeMap[schemaType] || `${schemaType}Schema`;
+}
+
+function addAttributeValidations(schema: string, attributes: any, config: ZodConfig): string {
+  let validatedSchema = schema;
+  
+  // String validations
+  if (attributes.min &amp;&amp; schema.includes('z.string()')) {
+    validatedSchema += `.min(${attributes.min})`;
+  }
+  
+  if (attributes.max &amp;&amp; schema.includes('z.string()')) {
+    validatedSchema += `.max(${attributes.max})`;
+  }
+  
+  if (attributes.email &amp;&amp; schema.includes('z.string()')) {
+    validatedSchema += '.email()';
+  }
+  
+  if (attributes.url &amp;&amp; schema.includes('z.string()')) {
+    validatedSchema += '.url()';
+  }
+  
+  if (attributes.uuid &amp;&amp; schema.includes('z.string()')) {
+    validatedSchema += '.uuid()';
+  }
+  
+  if (attributes.regex &amp;&amp; schema.includes('z.string()')) {
+    validatedSchema += `.regex(/${attributes.regex}/)`;
+  }
+  
+  // Number validations
+  if (attributes.min &amp;&amp; schema.includes('z.number()')) {
+    validatedSchema += `.min(${attributes.min})`;
+  }
+  
+  if (attributes.max &amp;&amp; schema.includes('z.number()')) {
+    validatedSchema += `.max(${attributes.max})`;
+  }
+  
+  if (attributes.positive &amp;&amp; schema.includes('z.number()')) {
+    validatedSchema += '.positive()';
+  }
+  
+  if (attributes.negative &amp;&amp; schema.includes('z.number()')) {
+    validatedSchema += '.negative()';
+  }
+  
+  if (attributes.nonnegative &amp;&amp; schema.includes('z.number()')) {
+    validatedSchema += '.nonnegative()';
+  }
+  
+  // Array validations
+  if (attributes.minLength &amp;&amp; schema.includes('z.array(')) {
+    validatedSchema += `.min(${attributes.minLength})`;
+  }
+  
+  if (attributes.maxLength &amp;&amp; schema.includes('z.array(')) {
+    validatedSchema += `.max(${attributes.maxLength})`;
+  }
+  
+  if (attributes.nonempty &amp;&amp; schema.includes('z.array(')) {
+    validatedSchema += '.nonempty()';
+  }
+  
+  // Custom error messages
+  if (config.errorMessages) {
+    const fieldName = extractFieldName(schema);
+    if (fieldName &amp;&amp; config.errorMessages[fieldName]) {
+      validatedSchema += `.describe("${config.errorMessages[fieldName]}")`;
+    }
+  }
+  
+  return validatedSchema;
+}
+
+function extractFieldName(schema: string): string | null {
+  // Extract field name from schema for error message lookup
+  const match = schema.match(/(\w+)Schema/);
+  return match ? match[1] : null;
+}
+
+function generateInputSchemas(modelName: string, model: any, config: ZodConfig): string {
+  let content = '';
+  
+  // Generate create input schema (omit auto-generated fields)
+  const createFields = model.columns?.filter((col: any) =&gt; 
+    !col.attributes?.id &amp;&amp; !col.attributes?.default
+  ) || [];
+  
+  if (createFields.length &gt; 0) {
+    content += `export const Create${modelName}Schema = z.object({\n`;
+    
+    for (const column of createFields) {
+      const fieldSchema = generateFieldSchema(column, config);
+      content += `  ${column.name}: ${fieldSchema},\n`;
+    }
+    
+    content += '})';
+    
+    if (config.strictMode) {
+      content += '.strict()';
+    }
+    
+    content += ';\n';
+    
+    if (config.generateTypes) {
+      content += `export type Create${modelName}Input = z.infer&lt;typeof Create${modelName}Schema&gt;;\n`;
+    }
+  }
+  
+  // Generate update input schema (all fields optional)
+  content += `export const Update${modelName}Schema = ${modelName}Schema.partial()`;
+  
+  if (config.strictMode) {
+    content += '.strict()';
+  }
+  
+  content += ';\n';
+  
+  if (config.generateTypes) {
+    content += `export type Update${modelName}Input = z.infer&lt;typeof Update${modelName}Schema&gt;;\n`;
+  }
+  
+  return content;
+}
+
+function generateUtilitySchemas(schema: any, config: ZodConfig): string {
+  let content = '// Utility Schemas\n';
+  
+  // Generate pagination schema
+  content += `export const PaginationSchema = z.object({
+  page: z.number().int().positive().default(1),
+  limit: z.number().int().positive().max(100).default(10),
+  search: z.string().optional(),
+  sort: z.string().optional(),
+});
+
+`;
+  
+  if (config.generateTypes) {
+    content += `export type PaginationParams = z.infer&lt;typeof PaginationSchema&gt;;\n\n`;
+  }
+  
+  // Generate API response schemas
+  content += `export const APIResponseSchema = &lt;T extends z.ZodTypeAny&gt;(dataSchema: T) =&gt;
+  z.object({
+    success: z.boolean(),
+    data: dataSchema.optional(),
+    error: z.string().optional(),
+    errors: z.record(z.array(z.string())).optional(),
+  });
+
+export const PaginatedResponseSchema = &lt;T extends z.ZodTypeAny&gt;(dataSchema: T) =&gt;
+  z.object({
+    success: z.boolean(),
+    data: z.array(dataSchema).optional(),
+    total: z.number().int().nonnegative(),
+    page: z.number().int().positive(),
+    limit: z.number().int().positive(),
+    error: z.string().optional(),
+    errors: z.record(z.array(z.string())).optional(),
+  });
+
+`;
+  
+  return content;
+}
+
+function generateMainExport(schema: any, config: ZodConfig): string {
+  if (config.exportStyle === 'namespace') {
+    return generateNamespaceExport(schema, config);
+  }
+  
+  if (config.exportStyle === 'default') {
+    return generateDefaultExport(schema, config);
+  }
+  
+  // Named exports (default)
+  return '// All schemas are exported as named exports above\n';
+}
+
+function generateNamespaceExport(schema: any, config: ZodConfig): string {
+  let content = 'export namespace Schemas {\n';
+  
+  // Export enums
+  if (config.includeEnums &amp;&amp; schema.enum) {
+    for (const enumName of Object.keys(schema.enum)) {
+      content += `  export const ${enumName} = ${enumName}Schema;\n`;
+    }
+  }
+  
+  // Export types
+  if (schema.type) {
+    for (const typeName of Object.keys(schema.type)) {
+      content += `  export const ${typeName} = ${typeName}Schema;\n`;
+    }
+  }
+  
+  // Export models
+  if (schema.model) {
+    for (const modelName of Object.keys(schema.model)) {
+      content += `  export const ${modelName} = ${modelName}Schema;\n`;
+      content += `  export const Create${modelName} = Create${modelName}Schema;\n`;
+      content += `  export const Update${modelName} = Update${modelName}Schema;\n`;
+    }
+  }
+  
+  content += '}\n\n';
+  return content;
+}
+
+function generateDefaultExport(schema: any, config: ZodConfig): string {
+  let content = 'const schemas = {\n';
+  
+  // Add enums
+  if (config.includeEnums &amp;&amp; schema.enum) {
+    for (const enumName of Object.keys(schema.enum)) {
+      content += `  ${enumName}: ${enumName}Schema,\n`;
+    }
+  }
+  
+  // Add types
+  if (schema.type) {
+    for (const typeName of Object.keys(schema.type)) {
+      content += `  ${typeName}: ${typeName}Schema,\n`;
+    }
+  }
+  
+  // Add models
+  if (schema.model) {
+    for (const modelName of Object.keys(schema.model)) {
+      content += `  ${modelName}: ${modelName}Schema,\n`;
+      content += `  Create${modelName}: Create${modelName}Schema,\n`;
+      content += `  Update${modelName}: Update${modelName}Schema,\n`;
+    }
+  }
+  
+  content += `  Pagination: PaginationSchema,
+  APIResponse: APIResponseSchema,
+  PaginatedResponse: PaginatedResponseSchema,
+};
+
+export default schemas;
+`;
+  
+  return content;
+}
+
+function validateConfig(config: any): asserts config is ZodConfig {
+  if (!config.output || typeof config.output !== 'string') {
+    throw new Error('Zod plugin requires "output" configuration as string');
+  }
+  
+  if (config.exportStyle &amp;&amp; !['named', 'default', 'namespace'].includes(config.exportStyle)) {
+    throw new Error('exportStyle must be one of: named, default, namespace');
+  }
+}</code></pre>
+<h2 id="5-schema-configuration">5. Schema Configuration</h2>
+<p>Schema configuration demonstrates how to integrate the Zod validation generator into your <code>.idea</code> schema files. This section covers plugin configuration options and their effects on the generated validation schemas.</p>
+<p>Add the Zod validation plugin to your <code>.idea</code> schema file:</p>
+<pre><code class="language-typescript">plugin "./plugins/zod-validation.js" {
+  output "./generated/validation.ts"
+  generateTypes true
+  includeEnums true
+  strictMode true
+  exportStyle "named"
+  customValidators {
+    Email "z.string().email()"
+    Password "z.string().min(8).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)/)"
+    PhoneNumber "z.string().regex(/^\\+?[1-9]\\d{1,14}$/)"
+  }
+  errorMessages {
+    email "Please enter a valid email address"
+    password "Password must be at least 8 characters with uppercase, lowercase, and number"
+    required "This field is required"
+  }
+}</code></pre>
+<p><strong>Configuration Options</strong></p>
+<p>Configuration options control how Zod validation schemas are generated, including output formatting, validation strictness, and feature enablement. Understanding these options helps you customize the plugin to meet your specific validation requirements.</p>
+
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>generateTypes</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Generate TypeScript types from schemas</td></tr><tr><td><code>includeEnums</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Generate enum validation schemas</td></tr><tr><td><code>customValidators</code></td><td><code>object</code></td><td><code>{}</code></td><td>Custom Zod validators for specific types</td></tr><tr><td><code>errorMessages</code></td><td><code>object</code></td><td><code>{}</code></td><td>Custom error messages for validation</td></tr><tr><td><code>strictMode</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Use strict object validation</td></tr><tr><td><code>exportStyle</code></td><td>`'named'\</td><td>'default'\</td><td>'namespace'`</td><td><code>'named'</code></td><td>Export style for schemas</td></tr>
+      </tbody>
+    </table>
+  
+<h2 id="6-usage-examples">6. Usage Examples</h2>
+<p>Usage examples demonstrate practical applications of the Zod validation generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated validation schemas integrate into development workflows.</p>
+<h3 id="6-1-basic-schema">6.1. Basic Schema</h3>
+<p>A basic schema example shows the fundamental structure needed to generate Zod validation schemas. This includes model definitions with proper validation attributes and plugin configuration that produces comprehensive validation rules.</p>
+<pre><code class="language-typescript">enum UserRole {
+  ADMIN "admin"
+  USER "user"
+  GUEST "guest"
+}
+
+model User {
+  id String @id @default("nanoid()")
+  email String @email @required
+  name String @min(2) @max(50) @required
+  age Number @min(18) @max(120)
+  role UserRole @default("USER")
+  active Boolean @default(true)
+  createdAt Date @default("now()")
+}
+
+plugin "./plugins/zod-validation.js" {
+  output "./validation.ts"
+  generateTypes true
+  strictMode true
+}</code></pre>
+<h3 id="6-2-generated-validation-usage">6.2. Generated Validation Usage</h3>
+<p>The generated validation usage demonstrates how to use the Zod schemas produced by the plugin in real applications. This shows practical patterns for data validation, error handling, and type safety in TypeScript applications.</p>
+<pre><code class="language-typescript">import { 
+  UserSchema, 
+  CreateUserSchema, 
+  UpdateUserSchema,
+  UserRole 
+} from './validation';
+
+// Validate complete user object
+const validateUser = (data: unknown) =&gt; {
+  try {
+    const user = UserSchema.parse(data);
+    console.log('Valid user:', user);
+    return { success: true, data: user };
+  } catch (error) {
+    console.error('Validation failed:', error.errors);
+    return { success: false, errors: error.errors };
+  }
+};
+
+// Validate user creation data
+const validateCreateUser = (data: unknown) =&gt; {
+  const result = CreateUserSchema.safeParse(data);
+  
+  if (result.success) {
+    console.log('Valid create data:', result.data);
+    return result.data;
+  } else {
+    console.error('Validation errors:', result.error.errors);
+    throw new Error('Invalid user data');
+  }
+};
+
+// Validate user update data
+const validateUpdateUser = (data: unknown) =&gt; {
+  return UpdateUserSchema.parse(data);
+};
+
+// Example usage
+const userData = {
+  email: 'john@example.com',
+  name: 'John Doe',
+  age: 30,
+  role: 'user' as UserRole
+};
+
+const validUser = validateCreateUser(userData);</code></pre>
+<h3 id="6-3-form-validation-example">6.3. Form Validation Example</h3>
+<p>Form validation examples show how to integrate the generated Zod schemas with frontend frameworks for user input validation. This demonstrates real-world usage patterns for form handling and user feedback.</p>
+<pre><code class="language-typescript">import { CreateUserSchema } from './validation';
+
+// React form validation
+function UserForm() {
+  const [errors, setErrors] = useState&lt;Record&lt;string, string&gt;&gt;({});
+  
+  const handleSubmit = (formData: FormData) =&gt; {
+    const data = Object.fromEntries(formData);
+    
+    const result = CreateUserSchema.safeParse(data);
+    
+    if (!result.success) {
+      const fieldErrors: Record&lt;string, string&gt; = {};
+      
+      result.error.errors.forEach((error) =&gt; {
+        const field = error.path[0] as string;
+        fieldErrors[field] = error.message;
+      });
+      
+      setErrors(fieldErrors);
+      return;
+    }
+    
+    // Submit valid data
+    submitUser(result.data);
+  };
+  
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input name="email" type="email" /&gt;
+      {errors.email &amp;&amp; &lt;span&gt;{errors.email}&lt;/span&gt;}
+      
+      &lt;input name="name" type="text" /&gt;
+      {errors.name &amp;&amp; &lt;span&gt;{errors.name}&lt;/span&gt;}
+      
+      &lt;input name="age" type="number" /&gt;
+      {errors.age &amp;&amp; &lt;span&gt;{errors.age}&lt;/span&gt;}
+      
+      &lt;button type="submit"&gt;Create User&lt;/button&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+<h2 id="7-advanced-features">7. Advanced Features</h2>
+<p>Advanced features extend the basic Zod schema generation with sophisticated validation patterns, conditional logic, data transformation, and asynchronous validation. These features enable production-ready validation that handles complex business requirements.</p>
+<h3 id="7-1-custom-validators">7.1. Custom Validators</h3>
+<p>Custom validators allow you to define specialized validation logic for specific data types or business rules. This feature enables the creation of reusable validation patterns that can be applied across multiple schema definitions.</p>
+<pre><code class="language-typescript">// In plugin configuration
+customValidators: {
+  Email: "z.string().email().transform(val =&gt; val.toLowerCase())",
+  Password: "z.string().min(8).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)/)",
+  Slug: "z.string().regex(/^[a-z0-9-]+$/)",
+  Color: "z.string().regex(/^#[0-9A-F]{6}$/i)",
+  JSON: "z.string().transform(val =&gt; JSON.parse(val))"
+}</code></pre>
+<h3 id="7-2-conditional-validation">7.2. Conditional Validation</h3>
+<p>Conditional validation enables complex validation logic that depends on the values of other fields. This feature is essential for implementing business rules that require cross-field validation and context-dependent constraints.</p>
+<pre><code class="language-typescript">// Generated schema with conditional validation
+export const UserSchema = z.object({
+  id: z.string(),
+  email: z.string().email(),
+  role: UserRoleSchema,
+  adminCode: z.string().optional(),
+}).refine((data) =&gt; {
+  // Admin users must have admin code
+  if (data.role === 'admin' &amp;&amp; !data.adminCode) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Admin users must provide an admin code",
+  path: ["adminCode"],
+});</code></pre>
+<h3 id="7-3-transform-and-preprocess">7.3. Transform and Preprocess</h3>
+<p>Transform and preprocess capabilities allow you to modify data during validation, enabling data normalization, formatting, and cleanup. This feature ensures data consistency and proper formatting before validation.</p>
+<pre><code class="language-typescript">// Add transforms to generated schemas
+function addTransforms(schema: string, column: any): string {
+  if (column.attributes?.transform) {
+    switch (column.attributes.transform) {
+      case 'lowercase':
+        return schema + '.transform(val =&gt; val.toLowerCase())';
+      case 'uppercase':
+        return schema + '.transform(val =&gt; val.toUpperCase())';
+      case 'trim':
+        return schema + '.transform(val =&gt; val.trim())';
+      case 'slug':
+        return schema + '.transform(val =&gt; val.toLowerCase().replace(/\\s+/g, "-"))';
+    }
+  }
+  
+  return schema;
+}</code></pre>
+<h3 id="7-4-async-validation">7.4. Async Validation</h3>
+<p>Async validation enables validation rules that require external data sources or API calls, such as checking for unique values or validating against external services. This feature is crucial for comprehensive data validation in real applications.</p>
+<pre><code class="language-typescript">// Generate async validation schemas
+export const UserSchemaAsync = UserSchema.extend({
+  email: z.string().email().refine(async (email) =&gt; {
+    // Check if email is unique
+    const exists = await checkEmailExists(email);
+    return !exists;
+  }, {
+    message: "Email already exists",
+  }),
+});
+
+// Usage
+const validateUserAsync = async (data: unknown) =&gt; {
+  try {
+    const user = await UserSchemaAsync.parseAsync(data);
+    return { success: true, data: user };
+  } catch (error) {
+    return { success: false, errors: error.errors };
+  }
+};</code></pre>
+<h2 id="8-best-practices">8. Best Practices</h2>
+<p>Best practices ensure your generated Zod validation schemas are maintainable, performant, and provide excellent developer experience. These guidelines cover error handling, schema composition, type safety, and API integration patterns.</p>
+<h3 id="8-1-error-handling">8.1. Error Handling</h3>
+<p>Proper error handling ensures that validation failures provide clear, actionable feedback to users and developers. Implement centralized error handling patterns and meaningful error messages to improve the overall user experience.</p>
+<pre><code class="language-typescript">// Centralized validation error handling
+class ValidationError extends Error {
+  constructor(public errors: z.ZodError) {
+    super('Validation failed');
+    this.name = 'ValidationError';
+  }
+  
+  getFieldErrors(): Record&lt;string, string&gt; {
+    const fieldErrors: Record&lt;string, string&gt; = {};
+    
+    this.errors.errors.forEach((error) =&gt; {
+      const field = error.path.join('.');
+      fieldErrors[field] = error.message;
+    });
+    
+    return fieldErrors;
+  }
+}
+
+// Usage
+function validateWithErrorHandling&lt;T&gt;(schema: z.ZodSchema&lt;T&gt;, data: unknown): T {
+  const result = schema.safeParse(data);
+  
+  if (!result.success) {
+    throw new ValidationError(result.error);
+  }
+  
+  return result.data;
+}</code></pre>
+<h3 id="8-2-schema-composition">8.2. Schema Composition</h3>
+<p>Schema composition enables the creation of reusable validation components that can be combined to build complex validation schemas. This approach promotes code reuse and maintains consistency across your validation logic.</p>
+<pre><code class="language-typescript">// Compose schemas for reusability
+const BaseEntitySchema = z.object({
+  id: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
+
+const UserSchema = BaseEntitySchema.extend({
+  email: z.string().email(),
+  name: z.string().min(1),
+});
+
+const PostSchema = BaseEntitySchema.extend({
+  title: z.string().min(1),
+  content: z.string(),
+  authorId: z.string(),
+});</code></pre>
+<h3 id="8-3-type-guards">8.3. Type Guards</h3>
+<p>Type guards provide runtime type checking that integrates seamlessly with TypeScript's type system. Generated type guards enable safe type narrowing and improve code reliability by ensuring data conforms to expected types.</p>
+<pre><code class="language-typescript">// Generate type guards from schemas
+export const isUser = (data: unknown): data is User =&gt; {
+  return UserSchema.safeParse(data).success;
+};
+
+export const isCreateUserInput = (data: unknown): data is CreateUserInput =&gt; {
+  return CreateUserSchema.safeParse(data).success;
+};
+
+// Usage
+function processUserData(data: unknown) {
+  if (isUser(data)) {
+    // TypeScript knows data is User
+    console.log(data.email);
+  }
+}</code></pre>
+<h3 id="8-4-api-integration">8.4. API Integration</h3>
+<p>API integration patterns show how to use generated Zod schemas for request validation in web applications. This includes middleware creation, error response formatting, and type-safe request handling.</p>
+<pre><code class="language-typescript">// Middleware for API validation
+function validateBody&lt;T&gt;(schema: z.ZodSchema&lt;T&gt;) {
+  return (req: Request, res: Response, next: NextFunction) =&gt; {
+    const result = schema.safeParse(req.body);
+    
+    if (!result.success) {
+      return res.status(400).json({
+        success: false,
+        error: 'Validation failed',
+        errors: result.error.errors.reduce((acc, err) =&gt; {
+          const field = err.path.join('.');
+          acc[field] = err.message;
+          return acc;
+        }, {} as Record&lt;string, string&gt;)
+      });
+    }
+    
+    req.body = result.data;
+    next();
+  };
+}
+
+// Usage
+app.post('/users', validateBody(CreateUserSchema), (req, res) =&gt; {
+  // req.body is now typed and validated
+  const user = req.body; // Type: CreateUserInput
+});</code></pre>
+<h2 id="9-troubleshooting">9. Troubleshooting</h2>
+<p>This section addresses common issues encountered when generating Zod validation schemas and provides solutions for debugging and resolving problems. Understanding these troubleshooting techniques helps ensure reliable validation schema generation.</p>
+<h3 id="9-1-common-issues">9.1. Common Issues</h3>
+<p>Common issues include circular dependencies, complex validation rules, and performance problems with large schemas. These problems typically arise from schema complexity or validation requirements that need specialized handling.</p>
+<h4 id="9-1-1-circular-dependencies">9.1.1. Circular Dependencies</h4>
+<p>Circular dependencies occur when schemas reference each other in a way that creates infinite loops. Zod provides lazy evaluation to handle these scenarios while maintaining type safety and validation integrity.</p>
+<pre><code class="language-typescript">   // Handle circular references with lazy evaluation
+   const UserSchema: z.ZodSchema&lt;User&gt; = z.lazy(() =&gt; z.object({
+     id: z.string(),
+     posts: z.array(PostSchema),
+   }));
+   
+   const PostSchema: z.ZodSchema&lt;Post&gt; = z.lazy(() =&gt; z.object({
+     id: z.string(),
+     author: UserSchema,
+   }));</code></pre>
+<h4 id="9-1-2-complex-validation-rules">9.1.2. Complex Validation Rules</h4>
+<p>Complex validation rules require sophisticated logic that goes beyond simple type checking. Use Zod's refinement capabilities to implement business rules and cross-field validation while maintaining clear error messages.</p>
+<pre><code class="language-typescript">   // Use refinements for complex validation
+   const PasswordSchema = z.string()
+     .min(8, "Password must be at least 8 characters")
+     .refine((password) =&gt; /[A-Z]/.test(password), {
+       message: "Password must contain at least one uppercase letter",
+     })
+     .refine((password) =&gt; /[a-z]/.test(password), {
+       message: "Password must contain at least one lowercase letter",
+     })
+     .refine((password) =&gt; /\d/.test(password), {
+       message: "Password must contain at least one number",
+     });</code></pre>
+<h4 id="9-1-3-performance-issues">9.1.3. Performance Issues</h4>
+<p>Performance issues can arise when validation schemas are complex or when processing large amounts of data. Optimize validation performance using preprocessing, caching, and efficient schema design patterns.</p>
+<pre><code class="language-typescript">   // Use preprocess for expensive operations
+   const OptimizedSchema = z.preprocess(
+     (data) =&gt; {
+       // Expensive preprocessing
+       return normalizeData(data);
+     },
+     z.object({
+       // Schema definition
+     })
+   );</code></pre>
+<h3 id="9-2-debugging-tips">9.2. Debugging Tips</h3>
+<p>Debugging tips help identify and resolve issues during Zod schema generation and usage. These techniques provide visibility into validation behavior and help diagnose problems with schema logic or performance.</p>
+<h4 id="9-2-1-schema-testing">9.2.1. Schema Testing</h4>
+<p>Schema testing ensures that your validation logic works correctly across different input scenarios. Comprehensive testing helps catch edge cases and ensures validation behaves as expected in production.</p>
+<pre><code class="language-typescript">   // Test schemas with various inputs
+   describe('UserSchema', () =&gt; {
+     it('should validate valid user data', () =&gt; {
+       const validData = {
+         email: 'test@example.com',
+         name: 'Test User',
+         age: 25
+       };
+       
+       expect(() =&gt; UserSchema.parse(validData)).not.toThrow();
+     });
+     
+     it('should reject invalid email', () =&gt; {
+       const invalidData = {
+         email: 'invalid-email',
+         name: 'Test User',
+         age: 25
+       };
+       
+       expect(() =&gt; UserSchema.parse(invalidData)).toThrow();
+     });
+   });</code></pre>
+<h4 id="9-2-2-error-message-customization">9.2.2. Error Message Customization</h4>
+<p>Error message customization improves user experience by providing clear, actionable feedback when validation fails. Well-crafted error messages help users understand what went wrong and how to fix it.</p>
+<pre><code class="language-typescript">   // Customize error messages for better UX
+   const UserSchema = z.object({
+     email: z.string().email("Please enter a valid email address"),
+     age: z.number().min(18, "You must be at least 18 years old"),
+   });</code></pre>
+<p>This tutorial provides a comprehensive foundation for creating Zod validation schemas from <code>.idea</code> files. The generated schemas provide runtime type checking and validation with excellent TypeScript integration.</p>
+    </div>
+    <nav class="pager">
+  <a href="../typescript-interfaces-plugin/index.html"><span>Previous</span>TypeScript Interface Generator Plugin Tutorial</a>
+
+  <span></span>
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#validation-schema-generator-plugin-tutorial">Validation Schema Generator Plugin Tutorial</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-prerequisites">2. Prerequisites</a></li>
+<li><a href="#3-plugin-structure">3. Plugin Structure</a></li>
+<li><a href="#4-implementation">4. Implementation</a></li>
+<li><a href="#4-1-core-plugin-function">4.1. Core Plugin Function</a></li>
+<li><a href="#4-2-generation-functions">4.2. Generation Functions</a></li>
+<li><a href="#5-schema-configuration">5. Schema Configuration</a></li>
+<li><a href="#6-usage-examples">6. Usage Examples</a></li>
+<li><a href="#6-1-basic-schema">6.1. Basic Schema</a></li>
+<li><a href="#6-2-generated-validation-usage">6.2. Generated Validation Usage</a></li>
+<li><a href="#6-3-form-validation-example">6.3. Form Validation Example</a></li>
+<li><a href="#7-advanced-features">7. Advanced Features</a></li>
+<li><a href="#7-1-custom-validators">7.1. Custom Validators</a></li>
+<li><a href="#7-2-conditional-validation">7.2. Conditional Validation</a></li>
+<li><a href="#7-3-transform-and-preprocess">7.3. Transform and Preprocess</a></li>
+<li><a href="#7-4-async-validation">7.4. Async Validation</a></li>
+<li><a href="#8-best-practices">8. Best Practices</a></li>
+<li><a href="#8-1-error-handling">8.1. Error Handling</a></li>
+<li><a href="#8-2-schema-composition">8.2. Schema Composition</a></li>
+<li><a href="#8-3-type-guards">8.3. Type Guards</a></li>
+<li><a href="#8-4-api-integration">8.4. API Integration</a></li>
+<li><a href="#9-troubleshooting">9. Troubleshooting</a></li>
+<li><a href="#9-1-common-issues">9.1. Common Issues</a></li>
+<li><a href="#9-2-debugging-tips">9.2. Debugging Tips</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

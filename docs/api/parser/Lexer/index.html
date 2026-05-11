@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Lexer | Idea</title>
+  <link rel="icon" type="image/png" href="../../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../../index.html">
+        <img src="../../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../../getting-started/index.html">Start</a>
+          <a href="../../../concepts/overview/index.html">Concepts</a>
+          <a href="../../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../../reference/specification/index.html">Reference</a>
+          <a href="../../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Lexer</h1>
+      <p>The Lexer class implements the Parser interface and provides tokenization and parsing utilities for schema code. It manages a dictionary of token definitions and handles the parsing process by matching patterns against the input code.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/api/parser/Lexer.md">View source</a>
+        <a href="../../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>The Lexer class implements the Parser interface and provides tokenization and parsing utilities for schema code. It manages a dictionary of token definitions and handles the parsing process by matching patterns against the input code.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';</code></pre>
+<ol><li><a href="#1-properties">Properties</a></li><li><a href="#2-methods">Methods</a></li><li><a href="#3-parsing-complex-data-structures">Parsing Complex Data Structures</a></li><li><a href="#4-error-handling">Error Handling</a></li><li><a href="#5-predefined-token-definitions">Predefined Token Definitions</a></li><li><a href="#6-usage-with-ast">Usage with AST</a></li><li><a href="#7-advanced-usage-patterns">Advanced Usage Patterns</a></li></ol>
+<h2 id="1-properties">1. Properties</h2>
+<p>The following properties are available when instantiating a Lexer.</p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>index</code></td><td><code>number</code></td><td>Current parsing position in the code</td></tr>
+      </tbody>
+    </table>
+  
+<h2 id="2-methods">2. Methods</h2>
+<p>The following methods are available when instantiating a Lexer.</p>
+<h3 id="2-1-cloning-the-lexer">2.1. Cloning the Lexer</h3>
+<p>The following example shows how to create an exact copy of the lexer's current state.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+lexer.load('enum Status { ACTIVE "Active" }');
+lexer.define('enum', enumReader);
+
+// Clone preserves code, index position, and all definitions
+const clonedLexer = lexer.clone();
+console.log(clonedLexer.index); // Same index as original
+console.log(clonedLexer.dictionary); // Same definitions as original</code></pre>
+<p><strong>Returns</strong></p>
+<p>A new Lexer instance with identical state to the original.</p>
+<h3 id="2-2-defining-token-patterns">2.2. Defining Token Patterns</h3>
+<p>The following example shows how to register token definitions for parsing.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+import definitions from '@stackpress/idea-parser/definitions';
+
+const lexer = new Lexer();
+
+// Load all predefined token definitions
+Object.keys(definitions).forEach((key) =&gt; {
+  lexer.define(key, definitions[key]);
+});
+
+// Define a custom token
+lexer.define('customKeyword', (code, start, lexer) =&gt; {
+  if (code.substring(start, start + 6) === 'custom') {
+    return {
+      type: 'Keyword',
+      value: 'custom',
+      start: start,
+      end: start + 6
+    };
+  }
+  return undefined;
+});</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>reader</code></td><td><code>Reader</code></td><td>Function that attempts to match and parse the token</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>Void (modifies the lexer's internal dictionary).</p>
+<h3 id="2-3-expecting-specific-tokens">2.3. Expecting Specific Tokens</h3>
+<p>The following example shows how to require specific tokens at the current position.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+import definitions, { data } from '@stackpress/idea-parser/definitions';
+
+const lexer = new Lexer();
+Object.keys(definitions).forEach((key) =&gt; {
+  lexer.define(key, definitions[key]);
+});
+
+// Parse a float literal
+lexer.load('4.4');
+const floatToken = lexer.expect('Float');
+console.log(floatToken.value); // 4.4
+console.log(floatToken.start); // 0
+console.log(floatToken.end); // 3
+
+// Parse any data type (scalar, object, or array)
+lexer.load('"hello world"');
+const stringToken = lexer.expect(data);
+console.log(stringToken.value); // 'hello world'
+
+// Expect one of multiple token types
+lexer.load('true');
+const booleanToken = lexer.expect(['Boolean', 'String', 'Integer']);
+console.log(booleanToken.value); // true</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The matched token object, or throws an exception if no match is found.</p>
+<h3 id="2-4-getting-token-definitions">2.4. Getting Token Definitions</h3>
+<p>The following example shows how to retrieve registered token definitions.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+lexer.define('String', definitions['String']);
+
+const definition = lexer.get('String');
+if (definition) {
+  console.log('Definition key:', definition.key); // 'String'
+  console.log('Reader function:', typeof definition.reader); // 'function'
+} else {
+  console.log('Definition not found');
+}</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The Definition object if found, undefined otherwise.</p>
+<h3 id="2-5-loading-code">2.5. Loading Code</h3>
+<p>The following example shows how to load code for parsing.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+
+// Load code from the beginning
+lexer.load('enum Status { ACTIVE "Active" }');
+console.log(lexer.index); // 0
+
+// Load code starting from a specific position
+lexer.load('enum Status { ACTIVE "Active" }', 5);
+console.log(lexer.index); // 5
+console.log(lexer.substring(5, 11)); // 'Status'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>index</code></td><td><code>number</code></td><td>Starting position in the code (default: 0)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The Lexer instance to allow method chaining.</p>
+<h3 id="2-6-matching-tokens">2.6. Matching Tokens</h3>
+<p>The following example shows how to find the first matching token from available definitions.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+lexer.define('literal', (code, start) =&gt; {
+  if (code.startsWith('42', start)) {
+    return { type: 'Literal', value: 42, start, end: start + 2 };
+  }
+  return undefined;
+});
+
+const code = '42';
+
+// Match against specific token types
+const match = lexer.match(code, 0, ['literal']);
+if (match) {
+  console.log('Matched:', match.type); // 'Literal'
+  console.log('Value:', match.value); // 42
+}
+
+// Match against all available definitions (pass undefined for keys)
+const match2 = lexer.match('42', 0, undefined);
+if (match2) {
+  console.log('Matched:', match2.type); // 'Literal'
+}</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position for matching</td></tr><tr><td><code>keys</code></td><td><code>string[]</code></td><td>Optional array of definition keys to try (default: all definitions)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The first matching token object, or null if no match is found.</p>
+<h3 id="2-7-testing-for-next-tokens">2.7. Testing for Next Tokens</h3>
+<p>The following example shows how to check if the next tokens match without consuming them.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+import definitions from '@stackpress/idea-parser/definitions';
+
+const lexer = new Lexer();
+Object.keys(definitions).forEach((key) =&gt; {
+  lexer.define(key, definitions[key]);
+});
+
+lexer.load('enum Status { ACTIVE "Active" }');
+
+// Test if next token matches (doesn't advance index)
+if (lexer.next('AnyIdentifier')) {
+  console.log('Next token is an identifier');
+  console.log(lexer.index); // Still 0
+}
+
+// Test for multiple possible tokens
+if (lexer.next(['String', 'Integer', 'Boolean'])) {
+  console.log('Next token is a literal value');
+}</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p><code>true</code> if the next token(s) match, <code>false</code> otherwise. Does not advance the index.</p>
+<h3 id="2-8-optional-token-parsing">2.8. Optional Token Parsing</h3>
+<p>The following example shows how to optionally parse tokens without throwing errors.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+import definitions from '@stackpress/idea-parser/definitions';
+
+const lexer = new Lexer();
+Object.keys(definitions).forEach((key) =&gt; {
+  lexer.define(key, definitions[key]);
+});
+
+lexer.load('/* some comment */ enum Status');
+
+// Try to parse optional whitespace/comments
+const comment = lexer.optional('note');
+if (comment) {
+  console.log('Found comment:', comment.value); // '/* some comment */'
+}
+
+// Skip optional whitespace
+lexer.optional('whitespace');
+
+// Now parse the enum keyword
+const enumToken = lexer.expect('AnyIdentifier');
+console.log(enumToken.name); // 'enum'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The matched token object if found, undefined otherwise.</p>
+<h3 id="2-9-reading-ahead">2.9. Reading Ahead</h3>
+<p>The following example shows how to read the next available token.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+lexer.load(''); // Empty string
+
+// Read the next token (tries all definitions)
+const nextToken = lexer.read();
+console.log(nextToken); // undefined (no tokens in empty string)
+
+lexer.load('42');
+lexer.define('Integer', definitions['Integer']);
+
+const token = lexer.read();
+if (token) {
+  console.log('Token type:', token.type); // 'Literal'
+  console.log('Token value:', token.value); // 42
+}</code></pre>
+<p><strong>Returns</strong></p>
+<p>The next available token object, or undefined if no token can be parsed.</p>
+<h3 id="2-10-getting-substrings">2.10. Getting Substrings</h3>
+<p>The following example shows how to extract portions of the source code.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+lexer.load('some code');
+
+// Extract specific portions of code
+const substring = lexer.substring(5, 9);
+console.log(substring); // 'code'
+
+// Return empty string when start and end are the same
+const empty = lexer.substring(5, 5);
+console.log(empty); // ''</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>end</code></td><td><code>number</code></td><td>Ending position in the code</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The substring of code between start and end positions.</p>
+<h3 id="2-11-finding-next-space">2.11. Finding Next Space</h3>
+<p>The following example shows how to find the next whitespace character (useful for error reporting).</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+lexer.load('enum Status { ACTIVE "Active" }');
+
+// Find next space from current position
+const spaceIndex = lexer.nextSpace();
+console.log(spaceIndex); // 4 (position of space after 'enum')
+
+// If no space found, returns code length
+lexer.load('enumStatus');
+const endIndex = lexer.nextSpace();
+console.log(endIndex); // 10 (length of code)</code></pre>
+<p><strong>Returns</strong></p>
+<p>The index of the next space character, or the code length if no space is found.</p>
+<h2 id="3-parsing-complex-data-structures">3. Parsing Complex Data Structures</h2>
+<p>The Lexer can parse complex nested data structures using the predefined token definitions:</p>
+<h3 id="3-1-parsing-objects">3.1. Parsing Objects</h3>
+<p>The following examples demonstrate how to parse object literals using the Lexer. Objects in the schema language use key-value pairs without colons, where keys are identifiers and values can be any data type.</p>
+<pre><code class="language-typescript">import { Lexer } from '@stackpress/idea-parser';
+import { Compiler } from '@stackpress/idea-parser';
+import definitions, { data } from '@stackpress/idea-parser/definitions';
+
+const lexer = new Lexer();
+Object.keys(definitions).forEach((key) =&gt; {
+  lexer.define(key, definitions[key]);
+});
+
+// Parse a simple object
+lexer.load('{ foo "bar" bar 4.4 }');
+const objectToken = lexer.expect('Object');
+const compiled = Compiler.object(objectToken);
+console.log(compiled); // { foo: 'bar', bar: 4.4 }
+
+// Parse nested objects
+lexer.load('{ foo "bar" zoo { foo false bar null } }');
+const nestedToken = lexer.expect('Object');
+const nestedCompiled = Compiler.object(nestedToken);
+console.log(nestedCompiled.zoo.foo); // false
+console.log(nestedCompiled.zoo.bar); // null</code></pre>
+<h3 id="3-2-parsing-arrays">3.2. Parsing Arrays</h3>
+<pre><code class="language-typescript">// Parse a simple array
+lexer.load('[ 4.4 "bar" false null ]');
+const arrayToken = lexer.expect('Array');
+const compiledArray = Compiler.array(arrayToken);
+console.log(compiledArray); // [4.4, 'bar', false, null]
+
+// Parse nested arrays
+lexer.load('[ 4.4 "bar" [ 4 true ] ]');
+const nestedArrayToken = lexer.expect('Array');
+const nestedArray = Compiler.array(nestedArrayToken);
+console.log(nestedArray[2]); // [4, true]
+
+// Parse array of objects
+lexer.load('[ { label "US" value "United States" } { label "CA" value "Canada" } ]');
+const objectArrayToken = lexer.expect('Array');
+const objectArray = Compiler.array(objectArrayToken);
+console.log(objectArray[0].label); // 'US'
+console.log(objectArray[1].value); // 'Canada'</code></pre>
+<h3 id="3-3-parsing-comments">3.3. Parsing Comments</h3>
+<p>The following examples show how to parse different types of comments in the schema language. Comments can be either single-line comments starting with <code>//</code> or multi-line block comments enclosed in <code>/* */</code>.</p>
+<pre><code class="language-typescript">// Parse block comments
+lexer.load('/* some comment */');
+const noteToken = lexer.expect('note');
+console.log(noteToken.type); // '_Note'
+console.log(noteToken.value); // '/* some comment */'
+
+// Parse line comments
+lexer.load('//some comment');
+const commentToken = lexer.expect('comment');
+console.log(commentToken.type); // '_Comment'
+console.log(commentToken.value); // '//some comment'
+
+// Parse multiline block comments
+lexer.load(`/* 
+  some 
+  // comment
+*/`);
+const multilineToken = lexer.expect('note');
+console.log(multilineToken.value); // Contains newlines and nested //</code></pre>
+<h2 id="4-error-handling">4. Error Handling</h2>
+<p>The Lexer provides detailed error information when parsing fails:</p>
+<p><strong>Unknown Definitions</strong></p>
+<pre><code class="language-typescript">const lexer = new Lexer();
+
+// Throws: "Unknown definition unknownKey"
+try {
+  lexer.expect('unknownKey');
+} catch (error) {
+  console.log(error.message); // "Unknown definition unknownKey"
+}
+
+// Throws: "Unknown definition missingKey"
+try {
+  lexer.match('some code', 0, ['missingKey']);
+} catch (error) {
+  console.log(error.message); // "Unknown definition missingKey"
+}</code></pre>
+<p><strong>Unexpected Tokens</strong></p>
+<pre><code class="language-typescript">import { Exception } from '@stackpress/idea-parser';
+
+const lexer = new Lexer();
+lexer.define('String', definitions['String']);
+lexer.load('42'); // Number, not string
+
+try {
+  lexer.expect('String'); // Expecting string but found number
+} catch (error) {
+  if (error instanceof Exception) {
+    console.log(error.message); // "Unexpected 42 expecting String"
+    console.log(error.start); // Position where error occurred
+    console.log(error.end); // End position for error highlighting
+  }
+}</code></pre>
+<h2 id="5-predefined-token-definitions">5. Predefined Token Definitions</h2>
+<p>The library comes with comprehensive predefined token definitions:</p>
+<p><strong>Literals</strong></p>
+<ul><li><strong><code>Null</code></strong>: Matches <code>null</code> keyword</li><li><strong><code>Boolean</code></strong>: Matches <code>true</code> and <code>false</code></li><li><strong><code>String</code></strong>: Matches quoted strings <code>"hello"</code></li><li><strong><code>Float</code></strong>: Matches decimal numbers <code>4.4</code>, <code>-3.14</code></li><li><strong><code>Integer</code></strong>: Matches whole numbers <code>42</code>, <code>-10</code></li><li><strong><code>Environment</code></strong>: Matches environment variables <code>env("VAR_NAME")</code></li></ul>
+<p><strong>Identifiers</strong></p>
+<ul><li><strong><code>AnyIdentifier</code></strong>: Matches any valid identifier <code>[a-z_][a-z0-9_]*</code></li><li><strong><code>UpperIdentifier</code></strong>: Matches uppercase identifiers <code>[A-Z_][A-Z0-9_]*</code></li><li><strong><code>CapitalIdentifier</code></strong>: Matches capitalized identifiers <code>[A-Z_][a-zA-Z0-9_]*</code></li><li><strong><code>CamelIdentifier</code></strong>: Matches camelCase identifiers <code>[a-z_][a-zA-Z0-9_]*</code></li><li><strong><code>LowerIdentifier</code></strong>: Matches lowercase identifiers <code>[a-z_][a-z0-9_]*</code></li><li><strong><code>AttributeIdentifier</code></strong>: Matches attribute identifiers <code>@field.input</code></li></ul>
+<p><strong>Structural</strong></p>
+<ul><li><strong><code>Array</code></strong>: Matches array expressions <code>[ ... ]</code></li><li><strong><code>Object</code></strong>: Matches object expressions <code>{ ... }</code></li><li><strong><code>{</code>, <code>}</code>, <code>[</code>, <code>]</code>, <code>(</code>, <code>)</code></strong>: Bracket and brace tokens</li><li><strong><code>!</code></strong>: Final modifier token</li></ul>
+<p><strong>Whitespace and Comments</strong></p>
+<ul><li><strong><code>whitespace</code></strong>: Matches any whitespace <code>\s+</code></li><li><strong><code>space</code></strong>: Matches spaces only</li><li><strong><code>line</code></strong>: Matches line breaks</li><li><strong><code>note</code></strong>: Matches block comments <code>/* ... */</code></li><li><strong><code>comment</code></strong>: Matches line comments <code>// ...</code></li></ul>
+<p><strong>Data Groups</strong></p>
+<ul><li><strong><code>scalar</code></strong>: Array of scalar types <code>['Null', 'Boolean', 'String', 'Float', 'Integer', 'Environment']</code></li><li><strong><code>data</code></strong>: Array of all data types <code>[...scalar, 'Object', 'Array']</code></li></ul>
+<h2 id="6-usage-with-ast">6. Usage with AST</h2>
+<p>The Lexer is typically used by AST classes for parsing specific language constructs:</p>
+<pre><code class="language-typescript">import { Lexer, EnumTree } from '@stackpress/idea-parser';
+
+// AST classes configure lexers with appropriate definitions
+const lexer = new Lexer();
+EnumTree.definitions(lexer); // Adds enum-specific token definitions
+
+lexer.load('enum Status { ACTIVE "Active" INACTIVE "Inactive" }');
+
+const enumTree = new EnumTree(lexer);
+const result = enumTree.enum(); // Parse enum using configured lexer</code></pre>
+<h2 id="7-advanced-usage-patterns">7. Advanced Usage Patterns</h2>
+<p>The following patterns demonstrate advanced techniques for using the Lexer in complex parsing scenarios. These patterns are useful for implementing sophisticated parsing logic and error recovery mechanisms.</p>
+<h3 id="7-1-backtracking-with-clone">7.1. Backtracking with Clone</h3>
+<p>Backtracking allows you to save the lexer's state and restore it if parsing fails. This is useful for trying alternative parsing strategies without losing your position in the code.</p>
+<pre><code class="language-typescript">// Save current state for potential backtracking
+const checkpoint = lexer.clone();
+
+try {
+  // Try to parse complex structure
+  const result = parseComplexStructure(lexer);
+  return result;
+} catch (error) {
+  // Restore state and try alternative parsing
+  const restoredLexer = checkpoint;
+  return parseAlternativeStructure(restoredLexer);
+}</code></pre>
+<h3 id="7-2-conditional-parsing">7.2. Conditional Parsing</h3>
+<p>Conditional parsing allows you to make parsing decisions based on lookahead tokens. This technique is useful for parsing languages with context-sensitive grammar rules.</p>
+<pre><code class="language-typescript">// Parse different types based on lookahead
+if (lexer.next('AnyIdentifier')) {
+  const identifier = lexer.expect('AnyIdentifier');
+  if (identifier.name === 'enum') {
+    // Parse enum declaration
+  } else if (identifier.name === 'model') {
+    // Parse model declaration
+  }
+}</code></pre>
+<h3 id="7-3-custom-reader-functions">7.3. Custom Reader Functions</h3>
+<p>Reader functions should follow this pattern:</p>
+<pre><code class="language-typescript">import type { Reader } from '@stackpress/idea-parser';
+
+const customReader: Reader = (code, start, lexer) =&gt; {
+  // Check if pattern matches at current position
+  if (!code.startsWith('custom', start)) {
+    return undefined; // No match
+  }
+  
+  // Calculate end position
+  const end = start + 6;
+  
+  // Return token object
+  return {
+    type: 'CustomToken',
+    value: 'custom',
+    start: start,
+    end: end
+  };
+};
+
+// Register the custom reader
+lexer.define('custom', customReader);</code></pre>
+    </div>
+    <nav class="pager">
+  <a href="../Exception/index.html"><span>Previous</span>Exception</a>
+
+  <a href="../Tokens/index.html"><span>Next</span>Tokens</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#lexer">Lexer</a></li>
+<li><a href="#1-properties">1. Properties</a></li>
+<li><a href="#2-methods">2. Methods</a></li>
+<li><a href="#2-1-cloning-the-lexer">2.1. Cloning the Lexer</a></li>
+<li><a href="#2-2-defining-token-patterns">2.2. Defining Token Patterns</a></li>
+<li><a href="#2-3-expecting-specific-tokens">2.3. Expecting Specific Tokens</a></li>
+<li><a href="#2-4-getting-token-definitions">2.4. Getting Token Definitions</a></li>
+<li><a href="#2-5-loading-code">2.5. Loading Code</a></li>
+<li><a href="#2-6-matching-tokens">2.6. Matching Tokens</a></li>
+<li><a href="#2-7-testing-for-next-tokens">2.7. Testing for Next Tokens</a></li>
+<li><a href="#2-8-optional-token-parsing">2.8. Optional Token Parsing</a></li>
+<li><a href="#2-9-reading-ahead">2.9. Reading Ahead</a></li>
+<li><a href="#2-10-getting-substrings">2.10. Getting Substrings</a></li>
+<li><a href="#2-11-finding-next-space">2.11. Finding Next Space</a></li>
+<li><a href="#3-parsing-complex-data-structures">3. Parsing Complex Data Structures</a></li>
+<li><a href="#3-1-parsing-objects">3.1. Parsing Objects</a></li>
+<li><a href="#3-2-parsing-arrays">3.2. Parsing Arrays</a></li>
+<li><a href="#3-3-parsing-comments">3.3. Parsing Comments</a></li>
+<li><a href="#4-error-handling">4. Error Handling</a></li>
+<li><a href="#5-predefined-token-definitions">5. Predefined Token Definitions</a></li>
+<li><a href="#6-usage-with-ast">6. Usage with AST</a></li>
+<li><a href="#7-advanced-usage-patterns">7. Advanced Usage Patterns</a></li>
+<li><a href="#7-1-backtracking-with-clone">7.1. Backtracking with Clone</a></li>
+<li><a href="#7-2-conditional-parsing">7.2. Conditional Parsing</a></li>
+<li><a href="#7-3-custom-reader-functions">7.3. Custom Reader Functions</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

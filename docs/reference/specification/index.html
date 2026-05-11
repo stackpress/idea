@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Specification Reference | Idea</title>
+  <link rel="icon" type="image/png" href="../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <img src="../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../getting-started/index.html">Start</a>
+          <a href="../../concepts/overview/index.html">Concepts</a>
+          <a href="../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="./index.html">Reference</a>
+          <a href="../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="is-active" href="./index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Specification Reference</h1>
+      <p>This page describes the core `.idea` file format as implemented by the parser in this repository.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/reference/specification.md">View source</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>This page describes the core <code>.idea</code> file format as implemented by the parser in this repository.</p>
+<p>It is a reference page, not a tutorial.</p>
+<h2 id="scope">Scope</h2>
+<p>This specification covers:</p>
+<ul><li>declarations</li><li>literals</li><li>arrays and objects</li><li>comments</li><li>schema composition with <code>use</code></li></ul>
+<p>It does not define the semantics of every possible attribute or plugin.</p>
+<h2 id="lexical-elements">Lexical Elements</h2>
+<h3 id="strings">Strings</h3>
+<p>Strings use double quotes:</p>
+<pre><code class="language-typescript">label "User"</code></pre>
+<h3 id="numbers">Numbers</h3>
+<p>Integers and floats are supported:</p>
+<pre><code class="language-typescript">count 1
+price 9.99
+offset -1</code></pre>
+<h3 id="booleans">Booleans</h3>
+<pre><code class="language-typescript">enabled true
+hidden false</code></pre>
+<h3 id="null">Null</h3>
+<pre><code class="language-typescript">value null</code></pre>
+<h3 id="arrays">Arrays</h3>
+<p>Arrays are space-separated:</p>
+<pre><code class="language-typescript">roles ["ADMIN" "USER"]</code></pre>
+<h3 id="objects">Objects</h3>
+<p>Objects contain nested key-value pairs:</p>
+<pre><code class="language-typescript">options {
+  width 20
+  height 20
+}</code></pre>
+<h3 id="comments">Comments</h3>
+<p>Both line and block comments are supported:</p>
+<pre><code class="language-typescript">// line comment
+/*
+  block comment
+*/</code></pre>
+<h2 id="declaration-forms">Declaration Forms</h2>
+<h3 id="use"><code>use</code></h3>
+<pre><code class="language-typescript">use "./shared.idea"</code></pre>
+<p>Loads another schema file and merges it into the current schema.</p>
+<p>Package-based imports are also valid:</p>
+<pre><code class="language-typescript">use "stackpress/stackpress.idea"</code></pre>
+<h3 id="plugin"><code>plugin</code></h3>
+<pre><code class="language-typescript">plugin "./schema-diagram.mjs" {
+  output "./generated/schema.mmd"
+}</code></pre>
+<p>The declaration key is the module path. The block is stored as the plugin config object.</p>
+<p>Plugin modules can also be resolved from installed packages:</p>
+<pre><code class="language-typescript">plugin "stackpress-schema/transform" {
+  output "./generated/schema.json"
+}</code></pre>
+<h3 id="prop"><code>prop</code></h3>
+<pre><code class="language-typescript">prop EmailField {
+  type "email"
+  required true
+}</code></pre>
+<h3 id="enum"><code>enum</code></h3>
+<pre><code class="language-typescript">enum Role {
+  ADMIN "ADMIN"
+  USER "USER"
+}</code></pre>
+<h3 id="type"><code>type</code></h3>
+<pre><code class="language-typescript">type Address {
+  street String
+  city String
+}</code></pre>
+<h3 id="model"><code>model</code></h3>
+<pre><code class="language-typescript">model User {
+  id String @id
+  email String @unique
+}</code></pre>
+<h2 id="attributes">Attributes</h2>
+<p>Attributes attach metadata to declarations and fields:</p>
+<pre><code class="language-typescript">email String @required @field.email @db.varchar(255)</code></pre>
+<p>Declaration-level attributes are also valid on <code>model</code> and <code>type</code>:</p>
+<pre><code class="language-typescript">model User @icon("user") {}
+
+type Address @label("Address") {
+  street String
+}</code></pre>
+<p>The parser preserves attributes and their values. The core format does not assign fixed semantics to every attribute namespace.</p>
+<h2 id="schema-composition">Schema Composition</h2>
+<p>When the transformer loads a schema with <code>use</code>, it loads child schemas first and merges them into the parent schema.</p>
+<p>The merge behavior includes:</p>
+<ul><li>soft merge for <code>prop</code></li><li>soft merge for <code>enum</code></li><li>name-based merge for <code>type</code></li><li>name-based merge for <code>model</code></li><li>local definitions can extend imported <code>type</code> and <code>model</code> entries</li><li><code>!</code> marks a local <code>type</code> or <code>model</code> as an overwrite boundary</li></ul>
+<p>Mutable parent types and models can absorb child columns instead of being replaced.</p>
+<h2 id="parser-guarantees">Parser Guarantees</h2>
+<p>The parser guarantees:</p>
+<ul><li>declaration structure</li><li>supported literal parsing</li><li>array and object parsing</li><li>preservation of parsed schema metadata</li></ul>
+<h2 id="non-goals">Non-Goals</h2>
+<p>This specification does not define:</p>
+<ul><li>what every <code>@field.*</code> attribute means</li><li>what every <code>@db.*</code> attribute means</li><li>what files plugins generate</li><li>framework-specific or database-specific output contracts</li></ul>
+<p>Those belong to plugin or project documentation.</p>
+<h2 id="see-also">See Also</h2>
+<ul><li><a href="../../concepts/the-idea-file/index.html">The <code>.idea</code> File</a></li><li><a href="../../concepts/schema-building/index.html">Schema Building</a></li><li><a href="../../api/parser/index.html">Parser API Docs</a></li></ul>
+    </div>
+    <nav class="pager">
+  <a href="../../how-to/use-the-vscode-extension/index.html"><span>Previous</span>Use The VS Code Extension</a>
+
+  <a href="../cli/index.html"><span>Next</span>CLI Reference</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#specification-reference">Specification Reference</a></li>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#lexical-elements">Lexical Elements</a></li>
+<li><a href="#strings">Strings</a></li>
+<li><a href="#numbers">Numbers</a></li>
+<li><a href="#booleans">Booleans</a></li>
+<li><a href="#null">Null</a></li>
+<li><a href="#arrays">Arrays</a></li>
+<li><a href="#objects">Objects</a></li>
+<li><a href="#comments">Comments</a></li>
+<li><a href="#declaration-forms">Declaration Forms</a></li>
+<li><a href="#use">use</a></li>
+<li><a href="#plugin">plugin</a></li>
+<li><a href="#prop">prop</a></li>
+<li><a href="#enum">enum</a></li>
+<li><a href="#type">type</a></li>
+<li><a href="#model">model</a></li>
+<li><a href="#attributes">Attributes</a></li>
+<li><a href="#schema-composition">Schema Composition</a></li>
+<li><a href="#parser-guarantees">Parser Guarantees</a></li>
+<li><a href="#non-goals">Non-Goals</a></li>
+<li><a href="#see-also">See Also</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

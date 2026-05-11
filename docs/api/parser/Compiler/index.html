@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Compiler | Idea</title>
+  <link rel="icon" type="image/png" href="../../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../../index.html">
+        <img src="../../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../../getting-started/index.html">Start</a>
+          <a href="../../../concepts/overview/index.html">Concepts</a>
+          <a href="../../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../../reference/specification/index.html">Reference</a>
+          <a href="../../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Compiler</h1>
+      <p>The Compiler class provides static methods for converting Abstract Syntax Tree (AST) tokens into structured JSON configurations. It serves as the bridge between parsed tokens and the final JSON output.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/api/parser/Compiler.md">View source</a>
+        <a href="../../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>The Compiler class provides static methods for converting Abstract Syntax Tree (AST) tokens into structured JSON configurations. It serves as the bridge between parsed tokens and the final JSON output.</p>
+<ol><li><a href="#1-static-methods">Static Methods</a></li><li><a href="#2-error-handling">Error Handling</a></li><li><a href="#3-type-processing">Type Processing</a></li></ol>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';</code></pre>
+<h2 id="1-static-methods">1. Static Methods</h2>
+<p>The following methods can be accessed directly from the Compiler class.</p>
+<h3 id="1-1-converting-array-tokens">1.1. Converting Array Tokens</h3>
+<p>The <code>array()</code> method compiles array tokens into actual JavaScript arrays.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example array token from parsing ["value1", "value2", "value3"]
+const arrayToken = {
+  type: 'ArrayExpression',
+  elements: [
+    { type: 'Literal', value: 'value1' },
+    { type: 'Literal', value: 'value2' },
+    { type: 'Literal', value: 'value3' }
+  ]
+};
+
+const result = Compiler.array(arrayToken);
+console.log(result); // ['value1', 'value2', 'value3']</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>references</code></td><td><code>UseReferences</code></td><td>Reference map for resolving identifiers (default: false)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>An array containing the compiled elements.</p>
+<h3 id="1-2-converting-data-tokens">1.2. Converting Data Tokens</h3>
+<p>The <code>data()</code> method compiles various data tokens into their actual values, handling objects, arrays, literals, and identifiers.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Compile different types of data tokens
+const literalResult = Compiler.data({ type: 'Literal', value: 'hello' });
+console.log(literalResult); // 'hello'
+
+const objectResult = Compiler.data({
+  type: 'ObjectExpression',
+  properties: [
+    {
+      key: { name: 'name' },
+      value: { type: 'Literal', value: 'John' }
+    }
+  ]
+});
+console.log(objectResult); // { name: 'John' }</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>references</code></td><td><code>UseReferences</code></td><td>Reference map for resolving identifiers (default: false)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The compiled data value based on the token type.</p>
+<h3 id="1-3-converting-enum-declarations">1.3. Converting Enum Declarations</h3>
+<p>The <code>enum()</code> method compiles enum declarations into JSON configurations with key-value pairs.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example enum token from parsing: enum Status { ACTIVE "Active" INACTIVE "Inactive" }
+const enumToken = {
+  kind: 'enum',
+  declarations: [{
+    id: { name: 'Status' },
+    init: {
+      properties: [
+        { key: { name: 'ACTIVE' }, value: { type: 'Literal', value: 'Active' } },
+        { key: { name: 'INACTIVE' }, value: { type: 'Literal', value: 'Inactive' } }
+      ]
+    }
+  }]
+};
+
+const [name, config] = Compiler.enum(enumToken);
+console.log(name); // 'Status'
+console.log(config); // { ACTIVE: 'Active', INACTIVE: 'Inactive' }</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A tuple containing the enum name and its configuration object.</p>
+<h3 id="1-4-converting-schema-to-final-json">1.4. Converting Schema to Final JSON</h3>
+<p>The <code>final()</code> method compiles a schema token into a final JSON configuration with all references resolved and removed.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// This method removes prop and use references for a clean final output
+const finalSchema = Compiler.final(schemaToken);
+console.log(finalSchema);
+// Output will not contain 'prop' or 'use' sections</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A <code>FinalSchemaConfig</code> object with references resolved and removed.</p>
+<h3 id="1-5-converting-identifier-tokens">1.5. Converting Identifier Tokens</h3>
+<p>The <code>identifier()</code> method resolves identifier tokens to their actual values using the provided reference map.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// With references provided
+const references = { MyProp: { type: 'text' } };
+const result1 = Compiler.identifier({ name: 'MyProp' }, references);
+console.log(result1); // { type: 'text' }
+
+// Without references (returns template string)
+const result2 = Compiler.identifier({ name: 'MyProp' }, false);
+console.log(result2); // '${MyProp}'
+
+// With empty references (throws error)
+try {
+  Compiler.identifier({ name: 'UnknownProp' }, {});
+} catch (error) {
+  console.log(error.message); // 'Unknown reference UnknownProp'
+}</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>references</code></td><td><code>UseReferences</code></td><td>Reference map for resolving the identifier</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The resolved value from references, a template string, or throws an error.</p>
+<h3 id="1-6-converting-literal-tokens">1.6. Converting Literal Tokens</h3>
+<p>The <code>literal()</code> method extracts values from literal tokens, handling strings, numbers, booleans, and other primitive types.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+const stringLiteral = Compiler.literal({ type: 'Literal', value: 'hello' });
+console.log(stringLiteral); // 'hello'
+
+const numberLiteral = Compiler.literal({ type: 'Literal', value: 42 });
+console.log(numberLiteral); // 42
+
+const booleanLiteral = Compiler.literal({ type: 'Literal', value: true });
+console.log(booleanLiteral); // true</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The literal value (string, number, boolean, etc.).</p>
+<h3 id="1-7-converting-model-declarations">1.7. Converting Model Declarations</h3>
+<p>The <code>model()</code> method compiles model declarations into JSON configurations with column definitions and metadata.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example model token from parsing: model User { id String @id name String }
+const modelToken = {
+  kind: 'model',
+  mutable: false, // model User! would be true
+  declarations: [{
+    id: { name: 'User' },
+    init: {
+      properties: [
+        {
+          key: { name: 'columns' },
+          value: {
+            type: 'ObjectExpression',
+            properties: [
+              {
+                key: { name: 'id' },
+                value: {
+                  type: 'ObjectExpression',
+                  properties: [
+                    { key: { name: 'type' }, value: { type: 'Literal', value: 'String' } },
+                    { key: { name: 'attributes' }, value: { /* attributes */ } }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }]
+};
+
+const [name, config] = Compiler.model(modelToken);
+console.log(name); // 'User'
+console.log(config.mutable); // false
+console.log(config.columns); // Array of column configurations</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>references</code></td><td><code>UseReferences</code></td><td>Reference map for resolving identifiers (default: false)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A tuple containing the model name and its configuration object.</p>
+<h3 id="1-8-converting-object-tokens">1.8. Converting Object Tokens</h3>
+<p>The <code>object()</code> method compiles object tokens into actual JavaScript objects with key-value pairs.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example object token from parsing { name "John" age 30 }
+const objectToken = {
+  type: 'ObjectExpression',
+  properties: [
+    { key: { name: 'name' }, value: { type: 'Literal', value: 'John' } },
+    { key: { name: 'age' }, value: { type: 'Literal', value: 30 } }
+  ]
+};
+
+const result = Compiler.object(objectToken);
+console.log(result); // { name: 'John', age: 30 }</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>references</code></td><td><code>UseReferences</code></td><td>Reference map for resolving identifiers (default: false)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>An object with compiled key-value pairs.</p>
+<h3 id="1-9-converting-plugin-declarations">1.9. Converting Plugin Declarations</h3>
+<p>The <code>plugin()</code> method compiles plugin declarations into JSON configurations with plugin paths and settings.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example plugin token from parsing: plugin "./database" { provider "postgresql" }
+const pluginToken = {
+  kind: 'plugin',
+  declarations: [{
+    id: { name: './database' },
+    init: {
+      properties: [
+        { key: { name: 'provider' }, value: { type: 'Literal', value: 'postgresql' } }
+      ]
+    }
+  }]
+};
+
+const [name, config] = Compiler.plugin(pluginToken);
+console.log(name); // './database'
+console.log(config); // { provider: 'postgresql' }</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A tuple containing the plugin name and its configuration object.</p>
+<h3 id="1-10-converting-prop-declarations">1.10. Converting Prop Declarations</h3>
+<p>The <code>prop()</code> method compiles prop declarations into JSON configurations for reusable property definitions.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example prop token from parsing: prop Text { type "text" format "lowercase" }
+const propToken = {
+  kind: 'prop',
+  declarations: [{
+    id: { name: 'Text' },
+    init: {
+      properties: [
+        { key: { name: 'type' }, value: { type: 'Literal', value: 'text' } },
+        { key: { name: 'format' }, value: { type: 'Literal', value: 'lowercase' } }
+      ]
+    }
+  }]
+};
+
+const [name, config] = Compiler.prop(propToken);
+console.log(name); // 'Text'
+console.log(config); // { type: 'text', format: 'lowercase' }</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>references</code></td><td><code>UseReferences</code></td><td>Reference map for resolving identifiers (default: false)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A tuple containing the prop name and its configuration object.</p>
+<h3 id="1-11-converting-schema-declarations">1.11. Converting Schema Declarations</h3>
+<p>The <code>schema()</code> method compiles complete schema tokens into JSON configurations containing all declaration types.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Compile a complete schema with all declaration types
+const schemaConfig = Compiler.schema(schemaToken);
+console.log(schemaConfig);
+// Output contains: { enum: {...}, prop: {...}, type: {...}, model: {...}, plugin: {...}, use: [...] }
+
+// Compile with finalization (resolves references)
+const finalizedConfig = Compiler.schema(schemaToken, true);
+console.log(finalizedConfig);
+// References are resolved in the output</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>finalize</code></td><td><code>boolean</code></td><td>Whether to resolve references (default: false)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A <code>SchemaConfig</code> object containing all compiled declarations.</p>
+<h3 id="1-12-converting-type-declarations">1.12. Converting Type Declarations</h3>
+<p>The <code>type()</code> method compiles type declarations into JSON configurations for custom data structures.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example type token from parsing: type Address { street String city String }
+const typeToken = {
+  kind: 'type',
+  mutable: true, // type Address (mutable) vs type Address! (immutable)
+  declarations: [{
+    id: { name: 'Address' },
+    init: {
+      properties: [
+        {
+          key: { name: 'columns' },
+          value: {
+            type: 'ObjectExpression',
+            properties: [
+              {
+                key: { name: 'street' },
+                value: {
+                  type: 'ObjectExpression',
+                  properties: [
+                    { key: { name: 'type' }, value: { type: 'Literal', value: 'String' } }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }]
+};
+
+const [name, config] = Compiler.type(typeToken);
+console.log(name); // 'Address'
+console.log(config.mutable); // true
+console.log(config.columns); // Array of column configurations</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>references</code></td><td><code>UseReferences</code></td><td>Reference map for resolving identifiers (default: false)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A tuple containing the type name and its configuration object.</p>
+<h3 id="1-13-converting-use-declarations">1.13. Converting Use Declarations</h3>
+<p>The <code>use()</code> method compiles use (import) declarations to extract import paths for schema dependencies.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Example use token from parsing: use "./another.idea"
+const useToken = {
+  type: 'ImportDeclaration',
+  source: { type: 'Literal', value: './another.idea' }
+};
+
+const importPath = Compiler.use(useToken);
+console.log(importPath); // './another.idea'</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>The import path as a string.</p>
+<h2 id="2-error-handling">2. Error Handling</h2>
+<p>The Compiler class throws <code>Exception</code> errors for various invalid conditions to help developers identify and fix schema issues.</p>
+<h3 id="2-1-invalid-token-types">2.1. Invalid Token Types</h3>
+<p>The Compiler validates token types and throws descriptive errors for invalid or unexpected token structures.</p>
+<p><strong>Common Invalid Token Errors</strong></p>
+<pre><code class="language-typescript">// Throws: "Invalid data token type"
+Compiler.data({ type: 'UnknownType' });
+
+// Throws: "Invalid Enum"
+Compiler.enum({ kind: 'notAnEnum' });
+
+// Throws: "Invalid Plugin"
+Compiler.plugin({ kind: 'notAPlugin' });
+
+// Throws: "Invalid Prop"
+Compiler.prop({ kind: 'notAProp' });
+
+// Throws: "Invalid Schema"
+Compiler.schema({ kind: 'notASchema' });
+
+// Throws: "Invalid Type"
+Compiler.type({ kind: 'notAType' });
+
+// Throws: "Invalid Import"
+Compiler.use({ type: 'NotAnImportDeclaration' });</code></pre>
+<h3 id="2-2-missing-required-properties">2.2. Missing Required Properties</h3>
+<p>The Compiler validates that required properties are present in declaration tokens.</p>
+<p><strong>Missing Properties Example</strong></p>
+<pre><code class="language-typescript">// Throws: "Expecting a columns property"
+Compiler.model({
+  kind: 'model',
+  declarations: [{
+    id: { name: 'User' },
+    init: { properties: [] } // Missing columns
+  }]
+});</code></pre>
+<h3 id="2-3-unknown-references">2.3. Unknown References</h3>
+<p>The Compiler validates that all identifier references can be resolved using the provided reference map.</p>
+<p><strong>Unknown Reference Example</strong></p>
+<pre><code class="language-typescript">// Throws: "Unknown reference MyProp"
+Compiler.identifier({ name: 'MyProp' }, {});</code></pre>
+<h3 id="2-4-duplicate-declarations">2.4. Duplicate Declarations</h3>
+<p>The Compiler detects and prevents duplicate declarations within the same schema.</p>
+<p><strong>Duplicate Declaration Example</strong></p>
+<pre><code class="language-typescript">// Throws: "Duplicate MyEnum" when compiling schema with duplicate names
+Compiler.schema(schemaWithDuplicates);</code></pre>
+<h2 id="3-type-processing">3. Type Processing</h2>
+<p>The Compiler automatically processes type information for models and types, handling various type modifiers and transformations.</p>
+<h3 id="3-1-type-modifiers">3.1. Type Modifiers</h3>
+<p>The Compiler recognizes and processes type modifiers to generate appropriate configuration objects:</p>
+<ul><li><strong>Optional types</strong>: <code>String?</code> → <code>{ type: 'String', required: false }</code></li><li><strong>Array types</strong>: <code>String[]</code> → <code>{ type: 'String', multiple: true }</code></li><li><strong>Combined</strong>: <code>String[]?</code> → <code>{ type: 'String', required: false, multiple: true }</code></li></ul>
+<h3 id="3-2-column-configuration">3.2. Column Configuration</h3>
+<p>Models and types are converted from object format to array format to preserve column order and provide consistent structure.</p>
+<p><strong>Format Transformation</strong></p>
+<pre><code class="language-typescript">// Input object format
+{
+  columns: {
+    id: { type: 'String', attributes: { id: true } },
+    name: { type: 'String', attributes: { required: true } }
+  }
+}
+
+// Output array format
+{
+  columns: [
+    { name: 'id', type: 'String', required: true, multiple: false, attributes: { id: true } },
+    { name: 'name', type: 'String', required: true, multiple: false, attributes: { required: true } }
+  ]
+}</code></pre>
+<h3 id="3-3-usage-with-ast">3.3. Usage with AST</h3>
+<p>The Compiler is typically used in conjunction with AST classes to parse and compile schema components.</p>
+<p><strong>Integration Example</strong></p>
+<pre><code class="language-typescript">import { Compiler, EnumTree, ModelTree, SchemaTree } from '@stackpress/idea-parser';
+
+// Parse and compile individual components
+const enumAST = EnumTree.parse('enum Status { ACTIVE "Active" }');
+const [enumName, enumConfig] = Compiler.enum(enumAST);
+
+const modelAST = ModelTree.parse('model User { id String @id }');
+const [modelName, modelConfig] = Compiler.model(modelAST);
+
+// Parse and compile complete schema
+const schemaAST = SchemaTree.parse(schemaCode);
+const schemaConfig = Compiler.schema(schemaAST);</code></pre>
+    </div>
+    <nav class="pager">
+  <a href="../index.html"><span>Previous</span>Parser API Docs</a>
+
+  <a href="../Exception/index.html"><span>Next</span>Exception</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#compiler">Compiler</a></li>
+<li><a href="#1-static-methods">1. Static Methods</a></li>
+<li><a href="#1-1-converting-array-tokens">1.1. Converting Array Tokens</a></li>
+<li><a href="#1-2-converting-data-tokens">1.2. Converting Data Tokens</a></li>
+<li><a href="#1-3-converting-enum-declarations">1.3. Converting Enum Declarations</a></li>
+<li><a href="#1-4-converting-schema-to-final-json">1.4. Converting Schema to Final JSON</a></li>
+<li><a href="#1-5-converting-identifier-tokens">1.5. Converting Identifier Tokens</a></li>
+<li><a href="#1-6-converting-literal-tokens">1.6. Converting Literal Tokens</a></li>
+<li><a href="#1-7-converting-model-declarations">1.7. Converting Model Declarations</a></li>
+<li><a href="#1-8-converting-object-tokens">1.8. Converting Object Tokens</a></li>
+<li><a href="#1-9-converting-plugin-declarations">1.9. Converting Plugin Declarations</a></li>
+<li><a href="#1-10-converting-prop-declarations">1.10. Converting Prop Declarations</a></li>
+<li><a href="#1-11-converting-schema-declarations">1.11. Converting Schema Declarations</a></li>
+<li><a href="#1-12-converting-type-declarations">1.12. Converting Type Declarations</a></li>
+<li><a href="#1-13-converting-use-declarations">1.13. Converting Use Declarations</a></li>
+<li><a href="#2-error-handling">2. Error Handling</a></li>
+<li><a href="#2-1-invalid-token-types">2.1. Invalid Token Types</a></li>
+<li><a href="#2-2-missing-required-properties">2.2. Missing Required Properties</a></li>
+<li><a href="#2-3-unknown-references">2.3. Unknown References</a></li>
+<li><a href="#2-4-duplicate-declarations">2.4. Duplicate Declarations</a></li>
+<li><a href="#3-type-processing">3. Type Processing</a></li>
+<li><a href="#3-1-type-modifiers">3.1. Type Modifiers</a></li>
+<li><a href="#3-2-column-configuration">3.2. Column Configuration</a></li>
+<li><a href="#3-3-usage-with-ast">3.3. Usage with AST</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

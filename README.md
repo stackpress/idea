@@ -5,12 +5,12 @@
   <a href="https://github.com/stackpress/idea/commits/main/"><img src="https://img.shields.io/github/last-commit/stackpress/idea" /></a>
   <a href="https://github.com/stackpress/idea/actions"><img src="https://img.shields.io/github/actions/workflow/status/stackpress/idea/test.yml" /></a>
   <a href="https://coveralls.io/github/stackpress/idea?branch=main"><img src="https://coveralls.io/repos/github/stackpress/idea/badge.svg?branch=main" /></a>
-  <a href="https://github.com/stackpress/idea/blob/main/docs/contribute.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
+  <a href="https://github.com/stackpress/idea/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <br />
   <br />
-  <a href="https://github.com/stackpress/idea/blob/main/docs/getting-started.md">Form an Idea</a>
+  <a href="https://github.com/stackpress/idea/blob/main/specs/getting-started.md">Form an Idea</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://github.com/stackpress/idea/blob/main/docs/examples/README.md">Transform an Idea</a>
+  <a href="https://github.com/stackpress/idea/blob/main/specs/examples/README.md">Transform an Idea</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://marketplace.visualstudio.com/items?itemName=stackpress.idea-schema">VSCode Extension</a>
   <br />
@@ -66,7 +66,7 @@ As well as database, forms, views, docs, etc... Idea can turn a schema
 file into generated artifacts through plugins.
 
 To build this example yourself, go to
-[Getting Started](https://github.com/stackpress/idea/blob/main/docs/getting-started.md).
+[Getting Started](https://github.com/stackpress/idea/blob/main/specs/getting-started.md).
 
 ## Learn The Format
 
@@ -76,26 +76,26 @@ metadata interpreted by plugins.
 
 Read these next:
 
-- [Getting Started](https://github.com/stackpress/idea/blob/main/docs/getting-started.md)
-- [Concepts Overview](https://github.com/stackpress/idea/blob/main/docs/concepts/overview.md)
-- [The `.idea` File](https://github.com/stackpress/idea/blob/main/docs/concepts/the-idea-file.md)
-- [Schema Building](https://github.com/stackpress/idea/blob/main/docs/concepts/schema-building.md)
-- [Specification Reference](https://github.com/stackpress/idea/blob/main/docs/reference/specification.md)
+- [Getting Started](https://github.com/stackpress/idea/blob/main/specs/getting-started.md)
+- [Concepts Overview](https://github.com/stackpress/idea/blob/main/specs/concepts/overview.md)
+- [The `.idea` File](https://github.com/stackpress/idea/blob/main/specs/concepts/the-idea-file.md)
+- [Schema Building](https://github.com/stackpress/idea/blob/main/specs/concepts/schema-building.md)
+- [Specification Reference](https://github.com/stackpress/idea/blob/main/specs/reference/specification.md)
 
 ## Common Tasks
 
-- [Run a Schema](https://github.com/stackpress/idea/blob/main/docs/how-to/run-a-schema.md)
-- [Split Schemas with `use`](https://github.com/stackpress/idea/blob/main/docs/how-to/split-schemas-with-use.md)
-- [Write a Plugin](https://github.com/stackpress/idea/blob/main/docs/how-to/write-a-plugin.md)
-- [Use the VS Code Extension](https://github.com/stackpress/idea/blob/main/docs/how-to/use-the-vscode-extension.md)
+- [Run a Schema](https://github.com/stackpress/idea/blob/main/specs/how-to/run-a-schema.md)
+- [Split Schemas with `use`](https://github.com/stackpress/idea/blob/main/specs/how-to/split-schemas-with-use.md)
+- [Write a Plugin](https://github.com/stackpress/idea/blob/main/specs/how-to/write-a-plugin.md)
+- [Use the VS Code Extension](https://github.com/stackpress/idea/blob/main/specs/how-to/use-the-vscode-extension.md)
 
 ## Reference
 
-- [CLI Reference](https://github.com/stackpress/idea/blob/main/docs/reference/cli.md)
-- [Plugin API Reference](https://github.com/stackpress/idea/blob/main/docs/reference/plugin-api.md)
-- [Parser API Docs](https://github.com/stackpress/idea/blob/main/docs/api/parser/README.md)
-- [Transformer API Docs](https://github.com/stackpress/idea/blob/main/docs/api/transformer/README.md)
-- [Examples](https://github.com/stackpress/idea/blob/main/docs/examples/README.md)
+- [CLI Reference](https://github.com/stackpress/idea/blob/main/specs/reference/cli.md)
+- [Plugin API Reference](https://github.com/stackpress/idea/blob/main/specs/reference/plugin-api.md)
+- [Parser API Docs](https://github.com/stackpress/idea/blob/main/specs/api/parser/README.md)
+- [Transformer API Docs](https://github.com/stackpress/idea/blob/main/specs/api/transformer/README.md)
+- [Examples](https://github.com/stackpress/idea/blob/main/specs/examples/README.md)
 
 ## Repository Map
 

@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>GraphQL Schema Generator Plugin Tutorial | Idea</title>
+  <link rel="icon" type="image/png" href="../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <img src="../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../getting-started/index.html">Start</a>
+          <a href="../../concepts/overview/index.html">Concepts</a>
+          <a href="../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../reference/specification/index.html">Reference</a>
+          <a href="../index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Examples</span>
+      </div>
+      <h1>GraphQL Schema Generator Plugin Tutorial</h1>
+      <p>This tutorial demonstrates how to create a plugin that generates GraphQL type definitions from `.idea` schema files. The plugin will transform your schema models, types, and enums into proper GraphQL schema definitions.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/examples/graphql-schema-plugin.md">View source</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>This tutorial demonstrates how to create a plugin that generates GraphQL type definitions from <code>.idea</code> schema files. The plugin will transform your schema models, types, and enums into proper GraphQL schema definitions.</p>
+<ol><li><a href="#1-overview">Overview</a></li><li><a href="#2-prerequisites">Prerequisites</a></li><li><a href="#3-plugin-structure">Plugin Structure</a></li><li><a href="#4-implementation">Implementation</a></li><li><a href="#5-schema-configuration">Schema Configuration</a></li><li><a href="#6-usage-examples">Usage Examples</a></li><li><a href="#7-advanced-features">Advanced Features</a></li><li><a href="#8-best-practices">Best Practices</a></li><li><a href="#9-troubleshooting">Troubleshooting</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>GraphQL is a query language and runtime for APIs that provides a complete and understandable description of the data in your API. This plugin transforms your <code>.idea</code> schema definitions into comprehensive GraphQL type definitions that enable type-safe API development with excellent tooling support.</p>
+<p>This plugin generates GraphQL type definitions from your <code>.idea</code> schema, including:</p>
+<ul><li><strong>Types</strong>: GraphQL object types from schema models</li><li><strong>Inputs</strong>: GraphQL input types for mutations</li><li><strong>Enums</strong>: GraphQL enum types from schema enums</li><li><strong>Scalars</strong>: Custom scalar types when needed</li><li><strong>Queries and Mutations</strong>: Basic CRUD operations</li></ul>
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<p>Before implementing the GraphQL schema generator plugin, ensure you have the necessary development environment and knowledge. This section covers the essential requirements for successful plugin creation and GraphQL integration.</p>
+<ul><li>Node.js 16+ and npm/yarn</li><li>Basic understanding of GraphQL</li><li>Familiarity with the <code>@stackpress/idea-transformer</code> library</li><li>Understanding of <code>.idea</code> schema format</li></ul>
+<h2 id="3-plugin-structure">3. Plugin Structure</h2>
+<p>The plugin structure defines the core architecture and configuration interface for the GraphQL schema generator. This includes the main plugin function, configuration types, and the overall organization of the generated GraphQL schema definitions.</p>
+<pre><code class="language-typescript">import type { PluginProps } from '@stackpress/idea-transformer/types';
+import fs from 'fs/promises';
+import path from 'path';
+
+interface GraphQLConfig {
+  output: string;
+  includeQueries?: boolean;
+  includeMutations?: boolean;
+  includeSubscriptions?: boolean;
+  customScalars?: Record&lt;string, string&gt;;
+  generateInputTypes?: boolean;
+}
+
+export default async function generateGraphQLSchema(
+  props: PluginProps&lt;{ config: GraphQLConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  // Implementation here...
+}</code></pre>
+<h2 id="4-implementation">4. Implementation</h2>
+<p>The implementation section covers the core plugin function and supporting utilities that handle GraphQL schema generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.</p>
+<h3 id="4-1-core-plugin-function">4.1. Core Plugin Function</h3>
+<p>The core plugin function serves as the main entry point for GraphQL schema generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.</p>
+<pre><code class="language-typescript">export default async function generateGraphQLSchema(
+  props: PluginProps&lt;{ config: GraphQLConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  try {
+    // Validate configuration
+    if (!config.output) {
+      throw new Error('GraphQL plugin requires "output" configuration');
+    }
+    
+    // Generate GraphQL schema
+    let schemaContent = '';
+    
+    // Add custom scalars
+    schemaContent += generateCustomScalars(config.customScalars || {});
+    
+    // Generate enums
+    if (schema.enum) {
+      schemaContent += generateEnums(schema.enum);
+    }
+    
+    // Generate types
+    if (schema.model) {
+      schemaContent += generateTypes(schema.model);
+      
+      if (config.generateInputTypes) {
+        schemaContent += generateInputTypes(schema.model);
+      }
+    }
+    
+    // Generate custom types
+    if (schema.type) {
+      schemaContent += generateCustomTypes(schema.type);
+    }
+    
+    // Generate root types
+    if (config.includeQueries) {
+      schemaContent += generateQueries(schema.model || {});
+    }
+    
+    if (config.includeMutations) {
+      schemaContent += generateMutations(schema.model || {});
+    }
+    
+    if (config.includeSubscriptions) {
+      schemaContent += generateSubscriptions(schema.model || {});
+    }
+    
+    // Write to output file
+    const outputPath = await transformer.loader.absolute(config.output);
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+    await fs.writeFile(outputPath, schemaContent, 'utf8');
+    
+    console.log(`✅ GraphQL schema generated: ${outputPath}`);
+    
+  } catch (error) {
+    console.error('❌ GraphQL schema generation failed:', error.message);
+    throw error;
+  }
+}</code></pre>
+<h3 id="4-2-type-mapping-functions">4.2. Type Mapping Functions</h3>
+<p>Type mapping functions handle the conversion of <code>.idea</code> schema types to their GraphQL equivalents. These functions ensure proper type safety and handle complex scenarios like arrays, required fields, and custom scalar types.</p>
+<pre><code class="language-typescript">function mapSchemaTypeToGraphQL(schemaType: string, customScalars: Record&lt;string, string&gt; = {}): string {
+  // Check for custom scalar mappings first
+  if (customScalars[schemaType]) {
+    return customScalars[schemaType];
+  }
+  
+  // Standard type mappings
+  const typeMap: Record&lt;string, string&gt; = {
+    'String': 'String',
+    'Number': 'Float',
+    'Integer': 'Int',
+    'Boolean': 'Boolean',
+    'Date': 'DateTime',
+    'JSON': 'JSON',
+    'ID': 'ID'
+  };
+  
+  return typeMap[schemaType] || schemaType;
+}
+
+function formatFieldType(column: any, customScalars: Record&lt;string, string&gt; = {}): string {
+  let type = mapSchemaTypeToGraphQL(column.type, customScalars);
+  
+  // Handle arrays
+  if (column.multiple) {
+    type = `[${type}]`;
+  }
+  
+  // Handle required fields
+  if (column.required) {
+    type += '!';
+  }
+  
+  return type;
+}</code></pre>
+<h3 id="4-3-schema-generation-functions">4.3. Schema Generation Functions</h3>
+<p>Schema generation functions create specific parts of the GraphQL schema including custom scalars, enums, types, input types, and root operation types. These functions handle proper GraphQL syntax construction and type relationships.</p>
+<pre><code class="language-typescript">function generateCustomScalars(customScalars: Record&lt;string, string&gt;): string {
+  if (Object.keys(customScalars).length === 0) {
+    return `# Custom Scalars
+scalar DateTime
+scalar JSON
+
+`;
+  }
+  
+  let content = '# Custom Scalars\n';
+  content += 'scalar DateTime\n';
+  content += 'scalar JSON\n';
+  
+  for (const [name, description] of Object.entries(customScalars)) {
+    content += `scalar ${name}\n`;
+  }
+  
+  return content + '\n';
+}
+
+function generateEnums(enums: Record&lt;string, any&gt;): string {
+  let content = '# Enums\n';
+  
+  for (const [enumName, enumDef] of Object.entries(enums)) {
+    content += `enum ${enumName} {\n`;
+    
+    for (const [key, value] of Object.entries(enumDef)) {
+      content += `  ${key}\n`;
+    }
+    
+    content += '}\n\n';
+  }
+  
+  return content;
+}
+
+function generateTypes(models: Record&lt;string, any&gt;): string {
+  let content = '# Types\n';
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    content += `type ${modelName} {\n`;
+    
+    for (const column of model.columns || []) {
+      const fieldType = formatFieldType(column);
+      content += `  ${column.name}: ${fieldType}\n`;
+    }
+    
+    content += '}\n\n';
+  }
+  
+  return content;
+}
+
+function generateInputTypes(models: Record&lt;string, any&gt;): string {
+  let content = '# Input Types\n';
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    // Create input type
+    content += `input ${modelName}Input {\n`;
+    
+    for (const column of model.columns || []) {
+      // Skip auto-generated fields like ID for input types
+      if (column.attributes?.id) continue;
+      
+      let fieldType = formatFieldType(column);
+      // Remove required constraint for input types (make them optional)
+      fieldType = fieldType.replace('!', '');
+      
+      content += `  ${column.name}: ${fieldType}\n`;
+    }
+    
+    content += '}\n\n';
+    
+    // Create update input type
+    content += `input ${modelName}UpdateInput {\n`;
+    
+    for (const column of model.columns || []) {
+      let fieldType = formatFieldType(column);
+      // All fields are optional in update input
+      fieldType = fieldType.replace('!', '');
+      
+      content += `  ${column.name}: ${fieldType}\n`;
+    }
+    
+    content += '}\n\n';
+  }
+  
+  return content;
+}
+
+function generateCustomTypes(types: Record&lt;string, any&gt;): string {
+  let content = '# Custom Types\n';
+  
+  for (const [typeName, typeDef] of Object.entries(types)) {
+    content += `type ${typeName} {\n`;
+    
+    for (const column of typeDef.columns || []) {
+      const fieldType = formatFieldType(column);
+      content += `  ${column.name}: ${fieldType}\n`;
+    }
+    
+    content += '}\n\n';
+  }
+  
+  return content;
+}
+
+function generateQueries(models: Record&lt;string, any&gt;): string {
+  let content = '# Queries\ntype Query {\n';
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    const lowerName = modelName.toLowerCase();
+    
+    // Get single item
+    content += `  ${lowerName}(id: ID!): ${modelName}\n`;
+    
+    // Get multiple items
+    content += `  ${lowerName}s(limit: Int, offset: Int): [${modelName}]\n`;
+  }
+  
+  content += '}\n\n';
+  return content;
+}
+
+function generateMutations(models: Record&lt;string, any&gt;): string {
+  let content = '# Mutations\ntype Mutation {\n';
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    const lowerName = modelName.toLowerCase();
+    
+    // Create
+    content += `  create${modelName}(input: ${modelName}Input!): ${modelName}\n`;
+    
+    // Update
+    content += `  update${modelName}(id: ID!, input: ${modelName}UpdateInput!): ${modelName}\n`;
+    
+    // Delete
+    content += `  delete${modelName}(id: ID!): Boolean\n`;
+  }
+  
+  content += '}\n\n';
+  return content;
+}
+
+function generateSubscriptions(models: Record&lt;string, any&gt;): string {
+  let content = '# Subscriptions\ntype Subscription {\n';
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    const lowerName = modelName.toLowerCase();
+    
+    // Subscribe to changes
+    content += `  ${lowerName}Created: ${modelName}\n`;
+    content += `  ${lowerName}Updated: ${modelName}\n`;
+    content += `  ${lowerName}Deleted: ID\n`;
+  }
+  
+  content += '}\n\n';
+  return content;
+}</code></pre>
+<h2 id="5-schema-configuration">5. Schema Configuration</h2>
+<p>Schema configuration demonstrates how to integrate the GraphQL schema generator into your <code>.idea</code> schema files. This section covers plugin configuration options and their effects on the generated GraphQL schema definitions.</p>
+<p>Add the GraphQL plugin to your <code>.idea</code> schema file:</p>
+<pre><code class="language-typescript">plugin "./plugins/graphql-schema.js" {
+  output "./generated/schema.graphql"
+  includeQueries true
+  includeMutations true
+  includeSubscriptions false
+  generateInputTypes true
+  customScalars {
+    Email "String"
+    URL "String"
+    PhoneNumber "String"
+  }
+}</code></pre>
+<p><strong>Configuration Options</strong></p>
+<p>Configuration options control how GraphQL schema definitions are generated, including operation types, input generation, and custom scalar handling. Understanding these options helps you customize the plugin to meet your specific GraphQL requirements.</p>
+
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>includeQueries</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Generate Query type with CRUD operations</td></tr><tr><td><code>includeMutations</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Generate Mutation type with CRUD operations</td></tr><tr><td><code>includeSubscriptions</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Generate Subscription type for real-time updates</td></tr><tr><td><code>generateInputTypes</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Generate input types for mutations</td></tr><tr><td><code>customScalars</code></td><td><code>object</code></td><td><code>{}</code></td><td>Custom scalar type mappings</td></tr>
+      </tbody>
+    </table>
+  
+<h2 id="6-usage-examples">6. Usage Examples</h2>
+<p>Usage examples demonstrate practical applications of the GraphQL schema generator with real-world scenarios. These examples show how to configure the plugin for different use cases and how the generated GraphQL schemas integrate into development workflows.</p>
+<h3 id="6-1-basic-schema">6.1. Basic Schema</h3>
+<p>A basic schema example shows the fundamental structure needed to generate GraphQL type definitions. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces comprehensive GraphQL schemas.</p>
+<pre><code class="language-typescript">enum UserRole {
+  ADMIN "admin"
+  USER "user"
+  GUEST "guest"
+}
+
+model User {
+  id String @id @default("nanoid()")
+  email String @unique @required
+  name String @required
+  role UserRole @default("USER")
+  active Boolean @default(true)
+  createdAt Date @default("now()")
+}
+
+plugin "./plugins/graphql-schema.js" {
+  output "./schema.graphql"
+  includeQueries true
+  includeMutations true
+}</code></pre>
+<h3 id="6-2-generated-output">6.2. Generated Output</h3>
+<p>The generated output demonstrates the GraphQL schema produced by the plugin from the basic schema example. This shows how schema definitions are transformed into proper GraphQL type definitions with full type safety and operation support.</p>
+<pre><code class="language-graphql"># Custom Scalars
+scalar DateTime
+scalar JSON
+
+# Enums
+enum UserRole {
+  ADMIN
+  USER
+  GUEST
+}
+
+# Types
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  role: UserRole!
+  active: Boolean!
+  createdAt: DateTime!
+}
+
+# Input Types
+input UserInput {
+  email: String
+  name: String
+  role: UserRole
+  active: Boolean
+}
+
+input UserUpdateInput {
+  email: String
+  name: String
+  role: UserRole
+  active: Boolean
+  createdAt: DateTime
+}
+
+# Queries
+type Query {
+  user(id: ID!): User
+  users(limit: Int, offset: Int): [User]
+}
+
+# Mutations
+type Mutation {
+  createUser(input: UserInput!): User
+  updateUser(id: ID!, input: UserUpdateInput!): User
+  deleteUser(id: ID!): Boolean
+}</code></pre>
+<h2 id="7-advanced-features">7. Advanced Features</h2>
+<p>Advanced features extend the basic GraphQL schema generation with sophisticated type handling, relationship management, directive support, and custom scalar types. These features enable production-ready GraphQL schemas that handle complex requirements.</p>
+<h3 id="7-1-custom-scalar-types">7.1. Custom Scalar Types</h3>
+<p>Custom scalar types allow you to define specialized data types that map to specific validation or formatting requirements. This feature enables the creation of domain-specific types that enhance type safety and API clarity.</p>
+<pre><code class="language-typescript">// In your plugin configuration
+customScalars: {
+  Email: "String",
+  URL: "String", 
+  PhoneNumber: "String",
+  BigInt: "String"
+}</code></pre>
+<h3 id="7-2-relationship-handling">7.2. Relationship Handling</h3>
+<p>Relationship handling manages references between different types and models in your schema. This ensures that type relationships are properly represented in the generated GraphQL schema with correct type references and nullability handling.</p>
+<pre><code class="language-typescript">function handleRelationships(column: any, models: Record&lt;string, any&gt;): string {
+  // Check if the column type is another model
+  if (models[column.type]) {
+    let type = column.type;
+    
+    if (column.multiple) {
+      type = `[${type}]`;
+    }
+    
+    if (column.required) {
+      type += '!';
+    }
+    
+    return type;
+  }
+  
+  return formatFieldType(column);
+}</code></pre>
+<h3 id="7-3-directive-support">7.3. Directive Support</h3>
+<p>Directive support enables the addition of GraphQL directives to fields and types, providing metadata and behavior hints for GraphQL servers and tools. This feature enhances schema expressiveness and enables advanced GraphQL features.</p>
+<pre><code class="language-typescript">function generateDirectives(column: any): string {
+  const directives: string[] = [];
+  
+  if (column.attributes?.unique) {
+    directives.push('@unique');
+  }
+  
+  if (column.attributes?.deprecated) {
+    directives.push('@deprecated(reason: "Use alternative field")');
+  }
+  
+  return directives.length &gt; 0 ? ` ${directives.join(' ')}` : '';
+}</code></pre>
+<h2 id="8-best-practices">8. Best Practices</h2>
+<p>Best practices ensure your generated GraphQL schemas are maintainable, performant, and follow GraphQL conventions. These guidelines cover type safety, error handling, configuration validation, and performance optimization.</p>
+<h3 id="8-1-type-safety">8.1. Type Safety</h3>
+<p>Type safety is crucial for preventing runtime errors and ensuring reliable GraphQL schema generation. Always validate input data and use proper TypeScript types throughout the plugin implementation to ensure consistent output.</p>
+<pre><code class="language-typescript">interface GraphQLColumn {
+  name: string;
+  type: string;
+  required: boolean;
+  multiple: boolean;
+  attributes?: Record&lt;string, any&gt;;
+}
+
+function validateColumn(column: any): column is GraphQLColumn {
+  return (
+    typeof column.name === 'string' &amp;&amp;
+    typeof column.type === 'string' &amp;&amp;
+    typeof column.required === 'boolean'
+  );
+}</code></pre>
+<h3 id="8-2-error-handling">8.2. Error Handling</h3>
+<p>Proper error handling ensures that schema generation failures provide clear, actionable feedback to developers. Implement comprehensive error handling patterns and meaningful error messages to improve the debugging experience.</p>
+<pre><code class="language-typescript">function generateTypes(models: Record&lt;string, any&gt;): string {
+  try {
+    let content = '# Types\n';
+    
+    for (const [modelName, model] of Object.entries(models)) {
+      if (!model.columns || !Array.isArray(model.columns)) {
+        console.warn(`⚠️  Model ${modelName} has no valid columns`);
+        continue;
+      }
+      
+      content += generateSingleType(modelName, model);
+    }
+    
+    return content;
+  } catch (error) {
+    throw new Error(`Failed to generate GraphQL types: ${error.message}`);
+  }
+}</code></pre>
+<h3 id="8-3-configuration-validation">8.3. Configuration Validation</h3>
+<p>Configuration validation ensures that plugin settings are correct and complete before schema generation begins. This prevents runtime errors and provides early feedback about configuration issues.</p>
+<pre><code class="language-typescript">function validateConfig(config: any): asserts config is GraphQLConfig {
+  if (!config.output || typeof config.output !== 'string') {
+    throw new Error('GraphQL plugin requires "output" configuration as string');
+  }
+  
+  if (config.customScalars &amp;&amp; typeof config.customScalars !== 'object') {
+    throw new Error('customScalars must be an object');
+  }
+}</code></pre>
+<h3 id="8-4-performance-optimization">8.4. Performance Optimization</h3>
+<p>Performance optimization techniques help maintain reasonable generation times when working with large schemas. Implement caching strategies and efficient algorithms to ensure the plugin scales well with complex type hierarchies.</p>
+<pre><code class="language-typescript">// Cache type mappings
+const typeCache = new Map&lt;string, string&gt;();
+
+function getCachedType(schemaType: string, customScalars: Record&lt;string, string&gt;): string {
+  const cacheKey = `${schemaType}:${JSON.stringify(customScalars)}`;
+  
+  if (typeCache.has(cacheKey)) {
+    return typeCache.get(cacheKey)!;
+  }
+  
+  const mappedType = mapSchemaTypeToGraphQL(schemaType, customScalars);
+  typeCache.set(cacheKey, mappedType);
+  
+  return mappedType;
+}</code></pre>
+<h2 id="9-troubleshooting">9. Troubleshooting</h2>
+<p>This section addresses common issues encountered when generating GraphQL schemas and provides solutions for debugging and resolving problems. Understanding these troubleshooting techniques helps ensure reliable schema generation.</p>
+<h3 id="9-1-common-issues">9.1. Common Issues</h3>
+<p>Common issues include invalid GraphQL identifiers, circular dependencies, and missing required fields. These problems typically arise from schema complexity or naming conflicts that can be resolved with proper validation and sanitization.</p>
+<h4 id="9-1-1-invalid-graphql-names">9.1.1. Invalid GraphQL Names</h4>
+<p>Invalid GraphQL names occur when schema identifiers contain characters that are not valid in GraphQL. The plugin should validate and sanitize names to ensure they conform to GraphQL naming conventions.</p>
+<pre><code class="language-typescript">   function sanitizeGraphQLName(name: string): string {
+     // GraphQL names must match /^[_A-Za-z][_0-9A-Za-z]*$/
+     return name.replace(/[^_A-Za-z0-9]/g, '_').replace(/^[0-9]/, '_%samp;');
+   }</code></pre>
+<h4 id="9-1-2-circular-dependencies">9.1.2. Circular Dependencies</h4>
+<p>Circular dependencies can cause infinite loops during generation or invalid GraphQL schemas. Detecting and handling these scenarios is essential for robust schema generation, especially with complex type relationships.</p>
+<pre><code class="language-typescript">   function detectCircularDependencies(models: Record&lt;string, any&gt;): string[] {
+     const visited = new Set&lt;string&gt;();
+     const recursionStack = new Set&lt;string&gt;();
+     const cycles: string[] = [];
+     
+     // Implementation for cycle detection...
+     
+     return cycles;
+   }</code></pre>
+<h4 id="9-1-3-missing-required-fields">9.1.3. Missing Required Fields</h4>
+<p>Missing required fields can result in invalid GraphQL types that fail validation. Ensure all models have proper field definitions and handle edge cases where schema definitions might be incomplete.</p>
+<pre><code class="language-typescript">   function validateRequiredFields(model: any): void {
+     if (!model.columns || model.columns.length === 0) {
+       throw new Error(`Model must have at least one column`);
+     }
+   }</code></pre>
+<h3 id="9-2-debugging-tips">9.2. Debugging Tips</h3>
+<p>Debugging tips help identify and resolve issues during GraphQL schema generation. These techniques provide visibility into the generation process and help diagnose problems with schema logic or output formatting.</p>
+<h4 id="9-2-1-enable-verbose-logging">9.2.1. Enable Verbose Logging</h4>
+<p>Verbose logging provides detailed information about the schema generation process, helping identify where issues occur and what data is being processed at each step.</p>
+<pre><code class="language-typescript">   const DEBUG = process.env.DEBUG === 'true';
+   
+   function debugLog(message: string, data?: any) {
+     if (DEBUG) {
+       console.log(`[GraphQL Plugin] ${message}`, data || '');
+     }
+   }</code></pre>
+<h4 id="9-2-2-validate-generated-schema">9.2.2. Validate Generated Schema</h4>
+<p>Validating the generated GraphQL schema ensures that the output is syntactically correct and will work with GraphQL servers and tools. This validation step catches generation errors before deployment.</p>
+<pre><code class="language-typescript">   import { buildSchema } from 'graphql';
+   
+   function validateGeneratedSchema(schemaContent: string): void {
+     try {
+       buildSchema(schemaContent);
+       console.log('✅ Generated GraphQL schema is valid');
+     } catch (error) {
+       throw new Error(`Invalid GraphQL schema: ${error.message}`);
+     }
+   }</code></pre>
+<p>This tutorial provides a comprehensive foundation for creating GraphQL schema generators from <code>.idea</code> files. The generated schemas can be used with any GraphQL server implementation like Apollo Server, GraphQL Yoga, or others.</p>
+    </div>
+    <nav class="pager">
+  <a href="../api-client-plugin/index.html"><span>Previous</span>API Client Generator Plugin Tutorial</a>
+
+  <a href="../html-form-plugin/index.html"><span>Next</span>Tutorial: Creating an HTML Form Plugin</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#graphql-schema-generator-plugin-tutorial">GraphQL Schema Generator Plugin Tutorial</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-prerequisites">2. Prerequisites</a></li>
+<li><a href="#3-plugin-structure">3. Plugin Structure</a></li>
+<li><a href="#4-implementation">4. Implementation</a></li>
+<li><a href="#4-1-core-plugin-function">4.1. Core Plugin Function</a></li>
+<li><a href="#4-2-type-mapping-functions">4.2. Type Mapping Functions</a></li>
+<li><a href="#4-3-schema-generation-functions">4.3. Schema Generation Functions</a></li>
+<li><a href="#5-schema-configuration">5. Schema Configuration</a></li>
+<li><a href="#6-usage-examples">6. Usage Examples</a></li>
+<li><a href="#6-1-basic-schema">6.1. Basic Schema</a></li>
+<li><a href="#6-2-generated-output">6.2. Generated Output</a></li>
+<li><a href="#7-advanced-features">7. Advanced Features</a></li>
+<li><a href="#7-1-custom-scalar-types">7.1. Custom Scalar Types</a></li>
+<li><a href="#7-2-relationship-handling">7.2. Relationship Handling</a></li>
+<li><a href="#7-3-directive-support">7.3. Directive Support</a></li>
+<li><a href="#8-best-practices">8. Best Practices</a></li>
+<li><a href="#8-1-type-safety">8.1. Type Safety</a></li>
+<li><a href="#8-2-error-handling">8.2. Error Handling</a></li>
+<li><a href="#8-3-configuration-validation">8.3. Configuration Validation</a></li>
+<li><a href="#8-4-performance-optimization">8.4. Performance Optimization</a></li>
+<li><a href="#9-troubleshooting">9. Troubleshooting</a></li>
+<li><a href="#9-1-common-issues">9.1. Common Issues</a></li>
+<li><a href="#9-2-debugging-tips">9.2. Debugging Tips</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

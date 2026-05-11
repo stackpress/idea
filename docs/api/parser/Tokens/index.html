@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Tokens | Idea</title>
+  <link rel="icon" type="image/png" href="../../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../../index.html">
+        <img src="../../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../../getting-started/index.html">Start</a>
+          <a href="../../../concepts/overview/index.html">Concepts</a>
+          <a href="../../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../../reference/specification/index.html">Reference</a>
+          <a href="../../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Tokens</h1>
+      <p>Token types define the Abstract Syntax Tree (AST) structures used by the idea parser to represent parsed schema code. These types form the foundation of the parsing system, providing type-safe representations of schema elements.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/api/parser/Tokens.md">View source</a>
+        <a href="../../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>Token types define the Abstract Syntax Tree (AST) structures used by the idea parser to represent parsed schema code. These types form the foundation of the parsing system, providing type-safe representations of schema elements.</p>
+<pre><code class="language-typescript">import type { 
+  SchemaToken, 
+  DeclarationToken, 
+  IdentifierToken,
+  LiteralToken,
+  ObjectToken,
+  ArrayToken,
+  PropertyToken,
+  ImportToken
+} from '@stackpress/idea-parser';</code></pre>
+<ol><li><a href="#1-core-token-types">Core Token Types</a></li><li><a href="#2-declaration-tokens">Declaration Tokens</a></li><li><a href="#3-union-types">Union Types</a></li><li><a href="#4-parser-interface">Parser Interface</a></li><li><a href="#5-reference-types">Reference Types</a></li><li><a href="#6-usage-examples">Usage Examples</a></li><li><a href="#7-token-validation">Token Validation</a></li><li><a href="#8-integration-with-ast">Integration with AST</a></li></ol>
+<h2 id="1-core-token-types">1. Core Token Types</h2>
+<p>The following types define the fundamental token structures used throughout the parsing system.</p>
+<h3 id="1-1-unknowntoken">1.1. UnknownToken</h3>
+<p>Base token structure for unrecognized or generic tokens during parsing.</p>
+<pre><code class="language-typescript">const unknownToken: UnknownToken = {
+  type: 'CustomType',
+  start: 0,
+  end: 10,
+  value: 'some value',
+  raw: 'raw text'
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position in source code</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position in source code</td></tr><tr><td><code>value</code></td><td><code>any</code></td><td>Parsed value of the token</td></tr><tr><td><code>raw</code></td><td><code>string</code></td><td>Raw text from source code</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used as a fallback for tokens that don't match specific patterns and as a base structure for other token types.</p>
+<h3 id="1-2-identifiertoken">1.2. IdentifierToken</h3>
+<p>Represents identifiers such as variable names, type names, and property keys.</p>
+<pre><code class="language-typescript">const identifierToken: IdentifierToken = {
+  type: 'Identifier',
+  name: 'UserRole',
+  start: 5,
+  end: 13
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>name</code></td><td><code>string</code></td><td>The identifier name</td></tr><tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used throughout the parser for:</p>
+<ul><li>Enum names: <code>enum UserRole</code></li><li>Model names: <code>model User</code></li><li>Property names: <code>name String</code></li><li>Type references: <code>role UserRole</code></li></ul>
+<p><strong>Examples from Tests</strong></p>
+<pre><code class="language-typescript">// From enum.json fixture
+{
+  "type": "Identifier",
+  "start": 5,
+  "end": 10,
+  "name": "Roles"
+}
+
+// Property key identifier
+{
+  "type": "Identifier", 
+  "start": 15,
+  "end": 20,
+  "name": "ADMIN"
+}</code></pre>
+<h3 id="1-3-literaltoken">1.3. LiteralToken</h3>
+<p>Represents literal values such as strings, numbers, booleans, and null.</p>
+<pre><code class="language-typescript">const stringLiteral: LiteralToken = {
+  type: 'Literal',
+  start: 21,
+  end: 28,
+  value: 'Admin',
+  raw: '"Admin"'
+};
+
+const numberLiteral: LiteralToken = {
+  type: 'Literal',
+  start: 10,
+  end: 12,
+  value: 42,
+  raw: '42'
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>value</code></td><td><code>any</code></td><td>The parsed literal value</td></tr><tr><td><code>raw</code></td><td><code>string</code></td><td>Raw text representation from source</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used for all scalar values in schema definitions:</p>
+<ul><li>String literals: <code>"Admin"</code>, <code>"localhost"</code></li><li>Number literals: <code>5432</code>, <code>3.14</code></li><li>Boolean literals: <code>true</code>, <code>false</code></li><li>Null literals: <code>null</code></li></ul>
+<p><strong>Examples from Tests</strong></p>
+<pre><code class="language-typescript">// From enum.json fixture
+{
+  "type": "Literal",
+  "start": 21,
+  "end": 28,
+  "value": "Admin",
+  "raw": "'Admin'"
+}</code></pre>
+<h3 id="1-4-objecttoken">1.4. ObjectToken</h3>
+<p>Represents object expressions containing key-value pairs.</p>
+<pre><code class="language-typescript">const objectToken: ObjectToken = {
+  type: 'ObjectExpression',
+  start: 0,
+  end: 64,
+  properties: [
+    {
+      type: 'Property',
+      kind: 'init',
+      start: 15,
+      end: 28,
+      method: false,
+      shorthand: false,
+      computed: false,
+      key: { type: 'Identifier', name: 'ADMIN', start: 15, end: 20 },
+      value: { type: 'Literal', value: 'Admin', start: 21, end: 28, raw: '"Admin"' }
+    }
+  ]
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>properties</code></td><td><code>PropertyToken[]</code></td><td>Array of property tokens</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used for:</p>
+<ul><li>Enum definitions: <code>{ ADMIN "Admin", USER "User" }</code></li><li>Model column definitions: <code>{ id String @id, name String }</code></li><li>Plugin configurations: <code>{ provider "postgresql", url env("DATABASE_URL") }</code></li><li>Attribute parameters: <code>@field.input({ type "text" })</code></li></ul>
+<p><strong>Examples from Tests</strong></p>
+<p>The enum fixture shows an ObjectToken containing three PropertyTokens for ADMIN, MANAGER, and USER enum values.</p>
+<h3 id="1-5-arraytoken">1.5. ArrayToken</h3>
+<p>Represents array expressions containing ordered elements.</p>
+<pre><code class="language-typescript">const arrayToken: ArrayToken = {
+  type: 'ArrayExpression',
+  start: 0,
+  end: 25,
+  elements: [
+    { type: 'Literal', value: 'item1', start: 2, end: 9, raw: '"item1"' },
+    { type: 'Literal', value: 'item2', start: 11, end: 18, raw: '"item2"' }
+  ]
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>elements</code></td><td><code>DataToken[]</code></td><td>Array of data tokens</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used for:</p>
+<ul><li>Array type definitions: <code>String[]</code></li><li>Plugin feature lists: <code>previewFeatures ["fullTextSearch", "metrics"]</code></li><li>Attribute arrays: <code>@is.oneOf(["admin", "user", "guest"])</code></li></ul>
+<h3 id="1-6-propertytoken">1.6. PropertyToken</h3>
+<p>Represents key-value pairs within object expressions.</p>
+<pre><code class="language-typescript">const propertyToken: PropertyToken = {
+  type: 'Property',
+  kind: 'init',
+  start: 15,
+  end: 28,
+  method: false,
+  shorthand: false,
+  computed: false,
+  key: {
+    type: 'Identifier',
+    name: 'ADMIN',
+    start: 15,
+    end: 20
+  },
+  value: {
+    type: 'Literal',
+    value: 'Admin',
+    start: 21,
+    end: 28,
+    raw: '"Admin"'
+  }
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>kind</code></td><td><code>'init'</code></td><td>Always 'init' for initialization properties</td></tr><tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>method</code></td><td><code>boolean</code></td><td>Always false (not used for method properties)</td></tr><tr><td><code>shorthand</code></td><td><code>boolean</code></td><td>Always false (not used for shorthand properties)</td></tr><tr><td><code>computed</code></td><td><code>boolean</code></td><td>Always false (not used for computed properties)</td></tr><tr><td><code>key</code></td><td><code>IdentifierToken</code></td><td>Property key identifier</td></tr><tr><td><code>value</code></td><td><code>DataToken</code></td><td>Property value (literal, object, array, or identifier)</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used within ObjectTokens for:</p>
+<ul><li>Enum key-value pairs: <code>ADMIN "Admin"</code></li><li>Model column definitions: <code>id String</code></li><li>Plugin configuration options: <code>provider "postgresql"</code></li><li>Attribute parameters: <code>type "text"</code></li></ul>
+<p><strong>Examples from Tests</strong></p>
+<p>From the enum fixture, each enum value is represented as a PropertyToken with an IdentifierToken key and LiteralToken value.</p>
+<h2 id="2-declaration-tokens">2. Declaration Tokens</h2>
+<p>The following types represent top-level declarations in schema files.</p>
+<h3 id="2-1-declarationtoken">2.1. DeclarationToken</h3>
+<p>Represents variable declarations for enums, props, types, models, and plugins.</p>
+<pre><code class="language-typescript">const enumDeclaration: DeclarationToken = {
+  type: 'VariableDeclaration',
+  kind: 'enum',
+  start: 0,
+  end: 64,
+  declarations: [{
+    type: 'VariableDeclarator',
+    start: 5,
+    end: 64,
+    id: {
+      type: 'Identifier',
+      name: 'Roles',
+      start: 5,
+      end: 10
+    },
+    init: {
+      type: 'ObjectExpression',
+      start: 0,
+      end: 64,
+      properties: [/* property tokens */]
+    }
+  }]
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>kind</code></td><td><code>string</code></td><td>Declaration type: 'enum', 'prop', 'type', 'model', 'plugin'</td></tr><tr><td><code>mutable</code></td><td><code>boolean</code></td><td>Optional mutability flag (for types and models)</td></tr><tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>declarations</code></td><td><code>[DeclaratorToken]</code></td><td>Array with single declarator token</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used by all tree parsers (EnumTree, PropTree, TypeTree, ModelTree, PluginTree) to represent their respective declarations. The <code>kind</code> property determines how the Compiler processes the declaration.</p>
+<p><strong>Examples from Tests</strong></p>
+<p>The enum fixture shows a complete DeclarationToken with kind 'enum' containing the Roles enum definition.</p>
+<h3 id="2-2-declaratortoken">2.2. DeclaratorToken</h3>
+<p>Represents the declarator part of a variable declaration, containing the identifier and initialization.</p>
+<pre><code class="language-typescript">const declaratorToken: DeclaratorToken = {
+  type: 'VariableDeclarator',
+  start: 5,
+  end: 64,
+  id: {
+    type: 'Identifier',
+    name: 'Roles',
+    start: 5,
+    end: 10
+  },
+  init: {
+    type: 'ObjectExpression',
+    start: 0,
+    end: 64,
+    properties: [/* property tokens */]
+  }
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>id</code></td><td><code>IdentifierToken</code></td><td>Declaration identifier (name)</td></tr><tr><td><code>init</code></td><td><code>ObjectToken</code></td><td>Initialization object containing the declaration body</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used within DeclarationTokens to separate the declaration name from its body. The <code>id</code> contains the name (e.g., "Roles", "User") and <code>init</code> contains the definition object.</p>
+<h3 id="2-3-importtoken">2.3. ImportToken</h3>
+<p>Represents use statements for importing other schema files.</p>
+<pre><code class="language-typescript">const importToken: ImportToken = {
+  type: 'ImportDeclaration',
+  start: 0,
+  end: 25,
+  specifiers: [],
+  source: {
+    type: 'Literal',
+    value: './shared/types.idea',
+    start: 4,
+    end: 25,
+    raw: '"./shared/types.idea"'
+  }
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>specifiers</code></td><td><code>[]</code></td><td>Always empty array (not used for named imports)</td></tr><tr><td><code>source</code></td><td><code>LiteralToken</code></td><td>Source file path as literal token</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used by UseTree to represent <code>use "./path/to/file.idea"</code> statements. The Compiler extracts the source path for dependency resolution.</p>
+<h3 id="2-4-schematoken">2.4. SchemaToken</h3>
+<p>Represents the complete parsed schema file containing all declarations and imports.</p>
+<pre><code class="language-typescript">const schemaToken: SchemaToken = {
+  type: 'Program',
+  kind: 'schema',
+  start: 0,
+  end: 150,
+  body: [
+    // ImportTokens for use statements
+    {
+      type: 'ImportDeclaration',
+      start: 0,
+      end: 25,
+      specifiers: [],
+      source: { type: 'Literal', value: './types.idea', start: 4, end: 25, raw: '"./types.idea"' }
+    },
+    // DeclarationTokens for enums, props, types, models, plugins
+    {
+      type: 'VariableDeclaration',
+      kind: 'enum',
+      start: 27,
+      end: 91,
+      declarations: [/* declarator */]
+    }
+  ]
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>kind</code></td><td><code>'schema'</code></td><td>Always 'schema' for schema files</td></tr><tr><td><code>start</code></td><td><code>number</code></td><td>Starting character position (usually 0)</td></tr><tr><td><code>end</code></td><td><code>number</code></td><td>Ending character position</td></tr><tr><td><code>body</code></td><td>`(DeclarationToken\</td><td>ImportToken)[]`</td><td>Array of all declarations and imports</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used by SchemaTree as the root token representing the entire parsed schema file. The Compiler processes the body array to generate the final schema configuration.</p>
+<h2 id="3-union-types">3. Union Types</h2>
+<p>The following types provide flexible token handling for different contexts.</p>
+<h3 id="3-1-token">3.1. Token</h3>
+<p>Union type for all possible token types that can be returned by readers.</p>
+<pre><code class="language-typescript">type Token = DataToken | UnknownToken;</code></pre>
+<p><strong>Usage</strong></p>
+<p>Used as the return type for lexer operations and reader functions. Allows handling both recognized data tokens and unknown tokens.</p>
+<h3 id="3-2-datatoken">3.2. DataToken</h3>
+<p>Union type for tokens representing data values.</p>
+<pre><code class="language-typescript">type DataToken = IdentifierToken | LiteralToken | ObjectToken | ArrayToken;</code></pre>
+<p><strong>Usage</strong></p>
+<p>Used throughout the Compiler for processing data values. These tokens can be converted to actual JavaScript values using <code>Compiler.data()</code>.</p>
+<h2 id="4-parser-interface">4. Parser Interface</h2>
+<p>The following types define the parser interface and reader functions.</p>
+<h3 id="4-1-reader">4.1. Reader</h3>
+<p>Function type for token readers that attempt to parse specific patterns.</p>
+<pre><code class="language-typescript">type Reader = (
+  code: string, 
+  start: number, 
+  lexer: Parser
+) =&gt; Token | undefined;</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>start</code></td><td><code>number</code></td><td>Starting position to attempt parsing</td></tr><tr><td><code>lexer</code></td><td><code>Parser</code></td><td>Parser instance for recursive parsing</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>Token object if pattern matches, undefined otherwise.</p>
+<p><strong>Usage</strong></p>
+<p>Used to define token recognition patterns in the definitions system. Each token type has a corresponding reader function.</p>
+<h3 id="4-2-definition">4.2. Definition</h3>
+<p>Pairs a token key with its reader function for lexer registration.</p>
+<pre><code class="language-typescript">type Definition = { 
+  key: string, 
+  reader: Reader 
+};</code></pre>
+<p><strong>Properties</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>reader</code></td><td><code>Reader</code></td><td>Function that attempts to parse the token</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Usage</strong></p>
+<p>Used by the Lexer to register and manage token definitions. The key identifies the token type, and the reader attempts to parse it.</p>
+<h3 id="4-3-parser">4.3. Parser</h3>
+<p>Interface defining the contract for parser implementations.</p>
+<pre><code class="language-typescript">interface Parser {
+  get dictionary(): Record&lt;string, Definition&gt;;
+  get index(): number;
+  clone(): Parser;
+  define(key: string, reader: Reader, type?: string): void;
+  expect&lt;T = Token&gt;(keys: string | string[]): T;
+  get(key: string): Definition | undefined;
+  load(code: string, index: number): this;
+  match(code: string, start: number, keys?: string[]): Token | null;
+  next(keys: string | string[]): boolean;
+  optional&lt;T = Token&gt;(keys: string | string[]): T | undefined;
+  read(): Token | undefined;
+}</code></pre>
+<p><strong>Usage</strong></p>
+<p>Implemented by the Lexer class to provide consistent parsing operations across all tree parsers.</p>
+<h2 id="5-reference-types">5. Reference Types</h2>
+<p>The following types handle reference resolution and data processing.</p>
+<h3 id="5-1-usereferences">5.1. UseReferences</h3>
+<p>Type for managing prop and type references during compilation.</p>
+<pre><code class="language-typescript">type UseReferences = Record&lt;string, any&gt; | false;</code></pre>
+<p><strong>Usage</strong></p>
+<p>Used by the Compiler to resolve identifier references:</p>
+<ul><li><code>false</code>: Return template strings like <code>${PropName}</code></li><li><code>Record&amp;lt;string, any&amp;gt;</code>: Resolve identifiers to actual values</li><li>Empty object <code>{}</code>: Throw error for unknown references</li></ul>
+<h3 id="5-2-scalar">5.2. Scalar</h3>
+<p>Union type for primitive values that can be stored in schema configurations.</p>
+<pre><code class="language-typescript">type Scalar = string | number | null | boolean;</code></pre>
+<p><strong>Usage</strong></p>
+<p>Used in enum configurations and other places where only primitive values are allowed.</p>
+<h3 id="5-3-data">5.3. Data</h3>
+<p>Recursive type for nested data structures in schema configurations.</p>
+<pre><code class="language-typescript">type Data = Scalar | Data[] | { [key: string]: Data };</code></pre>
+<p><strong>Usage</strong></p>
+<p>Used throughout the system for representing complex nested data structures in plugin configurations, attributes, and other schema elements.</p>
+<h2 id="6-usage-examples">6. Usage Examples</h2>
+<h3 id="6-1-parsing-and-token-generation">6.1. Parsing and Token Generation</h3>
+<pre><code class="language-typescript">import { EnumTree } from '@stackpress/idea-parser';
+
+const enumCode = `enum Roles {
+  ADMIN "Admin"
+  MANAGER "Manager"
+  USER "User"
+}`;
+
+// Parse generates a DeclarationToken
+const enumToken = EnumTree.parse(enumCode);
+console.log(enumToken.kind); // 'enum'
+console.log(enumToken.declarations[0].id.name); // 'Roles'</code></pre>
+<h3 id="6-2-token-processing-with-compiler">6.2. Token Processing with Compiler</h3>
+<pre><code class="language-typescript">import { Compiler } from '@stackpress/idea-parser';
+
+// Convert DeclarationToken to configuration
+const [enumName, enumConfig] = Compiler.enum(enumToken);
+console.log(enumName); // 'Roles'
+console.log(enumConfig); // { ADMIN: 'Admin', MANAGER: 'Manager', USER: 'User' }</code></pre>
+<h3 id="6-3-working-with-complex-tokens">6.3. Working with Complex Tokens</h3>
+<pre><code class="language-typescript">// ObjectToken processing
+const objectToken: ObjectToken = {
+  type: 'ObjectExpression',
+  start: 0,
+  end: 30,
+  properties: [
+    {
+      type: 'Property',
+      kind: 'init',
+      start: 2,
+      end: 15,
+      method: false,
+      shorthand: false,
+      computed: false,
+      key: { type: 'Identifier', name: 'type', start: 2, end: 6 },
+      value: { type: 'Literal', value: 'text', start: 7, end: 13, raw: '"text"' }
+    }
+  ]
+};
+
+const compiled = Compiler.object(objectToken);
+console.log(compiled); // { type: 'text' }</code></pre>
+<h3 id="6-4-error-handling-with-tokens">6.4. Error Handling with Tokens</h3>
+<pre><code class="language-typescript">import { Exception } from '@stackpress/idea-parser';
+
+try {
+  const invalidToken = { kind: 'invalid' } as DeclarationToken;
+  Compiler.enum(invalidToken);
+} catch (error) {
+  if (error instanceof Exception) {
+    console.log('Token error:', error.message); // 'Invalid Enum'
+  }
+}</code></pre>
+<h2 id="7-token-validation">7. Token Validation</h2>
+<p>Tokens include position information for error reporting and validation:</p>
+<pre><code class="language-typescript">// Position information for error highlighting
+const token: IdentifierToken = {
+  type: 'Identifier',
+  name: 'InvalidName',
+  start: 10,
+  end: 21
+};
+
+// Can be used to highlight errors in editors
+const errorRange = { start: token.start, end: token.end };</code></pre>
+<h2 id="8-integration-with-ast">8. Integration with AST</h2>
+<p>AST classes generate specific token types:</p>
+<ul><li><strong>EnumTree</strong>: Generates <code>DeclarationToken</code> with <code>kind: 'enum'</code></li><li><strong>PropTree</strong>: Generates <code>DeclarationToken</code> with <code>kind: 'prop'</code></li><li><strong>TypeTree</strong>: Generates <code>DeclarationToken</code> with <code>kind: 'type'</code></li><li><strong>ModelTree</strong>: Generates <code>DeclarationToken</code> with <code>kind: 'model'</code></li><li><strong>PluginTree</strong>: Generates <code>DeclarationToken</code> with <code>kind: 'plugin'</code></li><li><strong>UseTree</strong>: Generates <code>ImportToken</code></li><li><strong>SchemaTree</strong>: Generates <code>SchemaToken</code> containing all other tokens</li></ul>
+<p>Each AST class uses the Lexer to generate appropriate tokens, which are then processed by the Compiler to produce the final JSON configuration.</p>
+    </div>
+    <nav class="pager">
+  <a href="../Lexer/index.html"><span>Previous</span>Lexer</a>
+
+  <a href="../Trees/index.html"><span>Next</span>Syntax Trees</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#tokens">Tokens</a></li>
+<li><a href="#1-core-token-types">1. Core Token Types</a></li>
+<li><a href="#1-1-unknowntoken">1.1. UnknownToken</a></li>
+<li><a href="#1-2-identifiertoken">1.2. IdentifierToken</a></li>
+<li><a href="#1-3-literaltoken">1.3. LiteralToken</a></li>
+<li><a href="#1-4-objecttoken">1.4. ObjectToken</a></li>
+<li><a href="#1-5-arraytoken">1.5. ArrayToken</a></li>
+<li><a href="#1-6-propertytoken">1.6. PropertyToken</a></li>
+<li><a href="#2-declaration-tokens">2. Declaration Tokens</a></li>
+<li><a href="#2-1-declarationtoken">2.1. DeclarationToken</a></li>
+<li><a href="#2-2-declaratortoken">2.2. DeclaratorToken</a></li>
+<li><a href="#2-3-importtoken">2.3. ImportToken</a></li>
+<li><a href="#2-4-schematoken">2.4. SchemaToken</a></li>
+<li><a href="#3-union-types">3. Union Types</a></li>
+<li><a href="#3-1-token">3.1. Token</a></li>
+<li><a href="#3-2-datatoken">3.2. DataToken</a></li>
+<li><a href="#4-parser-interface">4. Parser Interface</a></li>
+<li><a href="#4-1-reader">4.1. Reader</a></li>
+<li><a href="#4-2-definition">4.2. Definition</a></li>
+<li><a href="#4-3-parser">4.3. Parser</a></li>
+<li><a href="#5-reference-types">5. Reference Types</a></li>
+<li><a href="#5-1-usereferences">5.1. UseReferences</a></li>
+<li><a href="#5-2-scalar">5.2. Scalar</a></li>
+<li><a href="#5-3-data">5.3. Data</a></li>
+<li><a href="#6-usage-examples">6. Usage Examples</a></li>
+<li><a href="#6-1-parsing-and-token-generation">6.1. Parsing and Token Generation</a></li>
+<li><a href="#6-2-token-processing-with-compiler">6.2. Token Processing with Compiler</a></li>
+<li><a href="#6-3-working-with-complex-tokens">6.3. Working with Complex Tokens</a></li>
+<li><a href="#6-4-error-handling-with-tokens">6.4. Error Handling with Tokens</a></li>
+<li><a href="#7-token-validation">7. Token Validation</a></li>
+<li><a href="#8-integration-with-ast">8. Integration with AST</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

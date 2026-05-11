@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Transformer | Idea</title>
+  <link rel="icon" type="image/png" href="../../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../../index.html">
+        <img src="../../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../../getting-started/index.html">Start</a>
+          <a href="../../../concepts/overview/index.html">Concepts</a>
+          <a href="../../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../../reference/specification/index.html">Reference</a>
+          <a href="../../../examples/index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../../../examples/index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../../../examples/api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../../../examples/openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../../../examples/typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../../../examples/validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Reference</span>
+      </div>
+      <h1>Transformer</h1>
+      <p>A class for loading, processing, and transforming schema files with plugin support and schema merging capabilities. The Transformer class serves as the core component of the idea-transformer library, providing comprehensive functionality for schema processing, plugin execution, and file management.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/api/transformer/Transformer.md">View source</a>
+        <a href="../../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>A class for loading, processing, and transforming schema files with plugin support and schema merging capabilities. The Transformer class serves as the core component of the idea-transformer library, providing comprehensive functionality for schema processing, plugin execution, and file management.</p>
+<pre><code class="language-typescript">import { Transformer } from '@stackpress/idea-transformer';
+
+const transformer = await Transformer.load('./schema.idea');
+const schema = await transformer.schema();
+await transformer.transform();</code></pre>
+<ol><li><a href="#1-overview">Overview</a></li><li><a href="#2-loading-a-transformer">Loading a Transformer</a></li><li><a href="#3-properties">Properties</a></li><li><a href="#4-methods">Methods</a></li><li><a href="#5-usage-examples">Usage Examples</a></li><li><a href="#6-error-scenarios">Error Scenarios</a></li><li><a href="#7-best-practices">Best Practices</a></li><li><a href="#8-integration-with-other-tools">Integration with Other Tools</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>The Transformer class provides a comprehensive solution for processing schema files and executing transformations. This section outlines the core capabilities and responsibilities of the Transformer class within the idea-transformer ecosystem.</p>
+<p>The <code>Transformer</code> class is the core component of the idea-transformer library. It handles:</p>
+<ul><li>Loading schema files (both <code>.idea</code> and <code>.json</code> formats)</li><li>Processing and merging schema configurations from multiple files</li><li>Executing plugins defined in the schema</li><li>Managing file dependencies and imports</li></ul>
+<h2 id="2-loading-a-transformer">2. Loading a Transformer</h2>
+<p>The load method creates a new Transformer instance configured with the specified input file and options. This is the primary way to create a transformer and begin working with schema files.</p>
+<p>The following example shows how to create a new Transformer instance.</p>
+<pre><code class="language-typescript">import { Transformer } from '@stackpress/idea-transformer';
+
+// Load with default options
+const transformer = await Transformer.load('./schema.idea');
+
+// Load with custom options
+const transformer = await Transformer.load('./schema.idea', {
+  cwd: '/custom/working/directory',
+  fs: customFileSystem
+});</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>options</code></td><td><code>FileLoaderOptions</code></td><td>Optional configuration for file loading</td></tr>
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A promise that resolves to a new Transformer instance configured with the specified input file and options.</p>
+<h2 id="3-properties">3. Properties</h2>
+<p>The properties section describes the instance variables available on Transformer objects. These properties provide access to the underlying file system operations and configuration details needed for schema processing.</p>
+<p><strong>Properties</strong></p>
+<p>The following properties are available when instantiating a Transformer.</p>
+
+    <table>
+      <thead>
+        <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>input</code></td><td><code>string</code></td><td>Absolute path to the input schema file</td></tr>
+      </tbody>
+    </table>
+  
+<h2 id="4-methods">4. Methods</h2>
+<p>The methods section covers the instance methods available on Transformer objects. These methods provide the core functionality for loading schema configurations, processing dependencies, and executing plugin transformations.</p>
+<h3 id="4-1-loading-schema-configuration">4.1. Loading Schema Configuration</h3>
+<p>The schema method loads and processes the complete schema configuration, including all dependencies and imports. This method handles the complex process of merging multiple schema files and resolving all references.</p>
+<p>The following example shows how to load and process the schema configuration.</p>
+<pre><code class="language-typescript">const transformer = await Transformer.load('./schema.idea');
+const schema = await transformer.schema();
+
+console.log(schema.model); // Access model definitions
+console.log(schema.enum); // Access enum definitions
+console.log(schema.type); // Access type definitions
+console.log(schema.prop); // Access prop definitions
+console.log(schema.plugin); // Access plugin configurations</code></pre>
+<p><strong>Returns</strong></p>
+<p>A promise that resolves to a <code>SchemaConfig</code> object containing all processed schema definitions.</p>
+<p><strong>Features</strong></p>
+<ul><li><strong>File Format Support</strong>: Automatically detects and handles both <code>.idea</code> and <code>.json</code> schema files</li><li><strong>Dependency Resolution</strong>: Processes <code>use</code> directives to import and merge external schema files</li><li><strong>Schema Merging</strong>: Intelligently merges child schemas into parent schemas based on mutability rules</li><li><strong>Caching</strong>: Caches the processed schema to avoid redundant processing</li></ul>
+<p><strong>Schema Merging Rules</strong></p>
+<p>When processing <code>use</code> directives, the transformer applies these merging rules:</p>
+<ol><li><strong>Props and Enums</strong>: Simple merge where parent takes precedence</li><li><strong>Types and Models</strong>:</li><li>If parent doesn't exist or is immutable: child is added</li><li>If parent is mutable: attributes and columns are merged</li><li>Child columns are prepended to parent columns</li><li>Parent attributes take precedence over child attributes</li></ol>
+<h3 id="4-2-transforming-with-plugins">4.2. Transforming with Plugins</h3>
+<p>The transform method executes all plugins defined in the schema configuration. This method coordinates the plugin execution process, providing each plugin with the necessary context and handling any errors that occur during transformation.</p>
+<p>The following example shows how to execute all plugins defined in the schema.</p>
+<pre><code class="language-typescript">const transformer = await Transformer.load('./schema.idea');
+
+// Transform with no additional context
+await transformer.transform();
+
+// Transform with additional context
+await transformer.transform({
+  outputDir: './generated',
+  debug: true
+});</code></pre>
+<p><strong>Parameters</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
+    </table>
+  
+<p><strong>Returns</strong></p>
+<p>A promise that resolves when all plugins have been executed.</p>
+<p><strong>Plugin Execution Process</strong></p>
+<ol><li><strong>Validation</strong>: Ensures plugins are defined in the schema</li><li><strong>Module Resolution</strong>: Resolves plugin file paths relative to the schema file</li><li><strong>Dynamic Import</strong>: Loads plugin modules dynamically</li><li><strong>Context Injection</strong>: Passes context including transformer, schema, config, and extras</li><li><strong>Execution</strong>: Calls each plugin function with the injected context</li></ol>
+<p><strong>Plugin Context</strong></p>
+<p>Each plugin receives a context object with the following properties:</p>
+<pre><code class="language-typescript">{
+  transformer: Transformer,  // The transformer instance
+  config: PluginConfig,      // Plugin-specific configuration
+  schema: SchemaConfig,      // Complete processed schema
+  cwd: string,              // Current working directory
+  ...extras                 // Any additional context passed to transform()
+}</code></pre>
+<h2 id="5-usage-examples">5. Usage Examples</h2>
+<p>This section provides practical examples of how to use the Transformer class in various scenarios. These examples demonstrate common patterns and best practices for working with schema files, plugins, and transformations.</p>
+<h3 id="5-1-basic-schema-loading">5.1. Basic Schema Loading</h3>
+<p>Basic schema loading demonstrates the fundamental workflow for loading and accessing schema configurations. This example shows how to create a transformer instance and retrieve different parts of the processed schema.</p>
+<pre><code class="language-typescript">import { Transformer } from '@stackpress/idea-transformer';
+
+const transformer = await Transformer.load('./schema.idea');
+const schema = await transformer.schema();
+
+// Access different parts of the schema
+console.log('Models:', Object.keys(schema.model || {}));
+console.log('Enums:', Object.keys(schema.enum || {}));
+console.log('Types:', Object.keys(schema.type || {}));</code></pre>
+<h3 id="5-2-working-with-multiple-schema-files">5.2. Working with Multiple Schema Files</h3>
+<p>Working with multiple schema files shows how the Transformer handles complex schema hierarchies with imports and dependencies. This example demonstrates how the use directive enables modular schema organization.</p>
+<pre><code class="language-typescript">// main.idea
+/*
+use "./shared/types.idea"
+use "./shared/enums.idea"
+
+model User {
+  id String @id
+  profile Profile  // From shared/types.idea
+  role UserRole    // From shared/enums.idea
+}
+*/
+
+const transformer = await Transformer.load('./main.idea');
+const schema = await transformer.schema();
+
+// The schema now includes definitions from all imported files
+console.log(schema.type?.Profile);  // Available from shared/types.idea
+console.log(schema.enum?.UserRole); // Available from shared/enums.idea</code></pre>
+<h3 id="5-3-plugin-development-and-execution">5.3. Plugin Development and Execution</h3>
+<p>Plugin development and execution demonstrates how to create and use plugins with the Transformer. This example shows both the schema configuration and plugin implementation, illustrating the complete plugin workflow.</p>
+<pre><code class="language-typescript">// schema.idea
+/*
+plugin "./plugins/generate-types.js" {
+  output "./generated/types.ts"
+  format "typescript"
+}
+*/
+
+// plugins/generate-types.js
+export default function generateTypes({ transformer, config, schema, cwd }) {
+  const outputPath = config.output;
+  const format = config.format;
+  
+  // Generate TypeScript types based on schema
+  let content = '';
+  
+  if (schema.model) {
+    for (const [name, model] of Object.entries(schema.model)) {
+      content += `export interface ${name} {\n`;
+      for (const column of model.columns) {
+        const optional = column.required ? '' : '?';
+        content += `  ${column.name}${optional}: ${column.type};\n`;
+      }
+      content += '}\n\n';
+    }
+  }
+  
+  // Write generated content to file
+  await writeFile(path.resolve(cwd, outputPath), content);
+}
+
+// Execute the transformation
+const transformer = await Transformer.load('./schema.idea');
+await transformer.transform({
+  timestamp: new Date().toISOString()
+});</code></pre>
+<h3 id="5-4-error-handling">5.4. Error Handling</h3>
+<p>Error handling examples show how to properly catch and handle different types of errors that can occur during schema processing and transformation. This includes both expected errors from the idea-parser and unexpected runtime errors.</p>
+<pre><code class="language-typescript">import { Exception } from '@stackpress/idea-parser';
+
+try {
+  const transformer = await Transformer.load('./schema.idea');
+  const schema = await transformer.schema();
+  await transformer.transform();
+} catch (error) {
+  if (error instanceof Exception) {
+    console.error('Schema processing error:', error.message);
+    console.error('Error code:', error.code);
+  } else {
+    console.error('Unexpected error:', error);
+  }
+}</code></pre>
+<h3 id="5-5-custom-file-system">5.5. Custom File System</h3>
+<p>Custom file system usage demonstrates how to configure the Transformer to work with different file system implementations. This is useful for testing, custom storage backends, or specialized deployment scenarios.</p>
+<pre><code class="language-typescript">import { NodeFS } from '@stackpress/lib';
+
+// Using custom file system
+const customFS = new NodeFS();
+const transformer = await Transformer.load('./schema.idea', {
+  fs: customFS,
+  cwd: '/custom/working/directory'
+});</code></pre>
+<h2 id="6-error-scenarios">6. Error Scenarios</h2>
+<p>This section covers common error conditions that can occur when using the Transformer class. Understanding these scenarios helps developers implement proper error handling and debugging strategies.</p>
+<h3 id="6-1-file-not-found">6.1. File Not Found</h3>
+<p>File not found errors occur when the specified schema file doesn't exist or isn't accessible. This section shows how these errors are reported and how to handle them appropriately.</p>
+<pre><code class="language-typescript">// Throws: "Input file /path/to/nonexistent.idea does not exist"
+const transformer = await Transformer.load('./nonexistent.idea');
+await transformer.schema(); // Error thrown here</code></pre>
+<h3 id="6-2-no-plugins-defined">6.2. No Plugins Defined</h3>
+<p>No plugins defined errors occur when attempting to execute transformations on schemas that don't have any plugin configurations. This section explains when this error occurs and how to handle it.</p>
+<pre><code class="language-typescript">// If schema has no plugins defined
+const transformer = await Transformer.load('./schema-without-plugins.idea');
+await transformer.transform(); // Throws: "No plugins defined in schema file"</code></pre>
+<h3 id="6-3-invalid-plugin-module">6.3. Invalid Plugin Module</h3>
+<p>Invalid plugin module scenarios occur when plugin files exist but don't export the expected function interface. This section covers how the Transformer handles these situations and what developers should expect.</p>
+<pre><code class="language-typescript">// If plugin file doesn't export a function
+const transformer = await Transformer.load('./schema.idea');
+await transformer.transform(); // Plugin is silently skipped if not a function</code></pre>
+<h2 id="7-best-practices">7. Best Practices</h2>
+<p>This section outlines recommended approaches for using the Transformer class effectively. Following these practices helps ensure reliable, maintainable, and efficient schema processing workflows.</p>
+<h3 id="7-1-schema-organization">7.1. Schema Organization</h3>
+<p>Schema organization best practices help maintain clean, modular, and reusable schema files. This section provides guidance on structuring schema hierarchies and managing dependencies effectively.</p>
+<pre><code class="language-typescript">// Organize schemas hierarchically
+// shared/base.idea - Common types and enums
+// modules/user.idea - User-specific models
+// main.idea - Main schema that imports others
+
+use "./shared/base.idea"
+use "./modules/user.idea"
+
+// Additional models specific to this schema
+model Application {
+  id String @id
+  users User[]
+}</code></pre>
+<h3 id="7-2-plugin-development">7.2. Plugin Development</h3>
+<p>Plugin development best practices ensure that plugins are robust, reliable, and integrate well with the Transformer ecosystem. This section covers validation, error handling, and proper use of the plugin context.</p>
+<pre><code class="language-typescript">// Always validate plugin configuration
+export default async function myPlugin({ config, schema, transformer, cwd }) {
+  // Validate required configuration
+  if (!config.output) {
+    throw new Error('Plugin requires output configuration');
+  }
+  
+  // Use transformer's file loader for consistent path resolution
+  const outputPath = await transformer.loader.absolute(config.output);
+  
+  // Process schema safely
+  const models = schema.model || {};
+  const enums = schema.enum || {};
+  
+  // Generate output...
+}</code></pre>
+<h3 id="7-3-error-recovery">7.3. Error Recovery</h3>
+<p>Error recovery strategies help build resilient applications that can handle schema processing failures gracefully. This section demonstrates patterns for implementing robust error handling and recovery mechanisms.</p>
+<pre><code class="language-typescript">// Implement graceful error handling
+async function processSchema(schemaPath) {
+  try {
+    const transformer = await Transformer.load(schemaPath);
+    const schema = await transformer.schema();
+    await transformer.transform();
+    return { success: true, schema };
+  } catch (error) {
+    console.error(`Failed to process ${schemaPath}:`, error.message);
+    return { success: false, error: error.message };
+  }
+}</code></pre>
+<h2 id="8-integration-with-other-tools">8. Integration with Other Tools</h2>
+<p>This section demonstrates how to integrate the Transformer class with other development tools and workflows. These examples show practical applications in build systems, testing frameworks, and development environments.</p>
+<h3 id="8-1-build-systems">8.1. Build Systems</h3>
+<p>Build system integration shows how to incorporate schema transformation into automated build processes. This enables continuous generation of code, documentation, and other artifacts from schema definitions.</p>
+<pre><code class="language-typescript">// Integration with build tools
+import { Transformer } from '@stackpress/idea-transformer';
+
+export async function buildSchemas(inputDir, outputDir) {
+  const schemaFiles = await glob(`${inputDir}/**/*.idea`);
+  
+  for (const schemaFile of schemaFiles) {
+    const transformer = await Transformer.load(schemaFile);
+    await transformer.transform({ outputDir });
+  }
+}</code></pre>
+<h3 id="8-2-testing">8.2. Testing</h3>
+<p>Testing integration demonstrates how to write tests for schema transformations and validate that schemas are processed correctly. This is essential for maintaining schema quality and catching regressions.</p>
+<pre><code class="language-typescript">// Testing schema transformations
+import { expect } from 'chai';
+
+describe('Schema Transformation', () =&gt; {
+  it('should process schema correctly', async () =&gt; {
+    const transformer = await Transformer.load('./test-schema.idea');
+    const schema = await transformer.schema();
+    
+    expect(schema.model).to.have.property('User');
+    expect(schema.model.User.columns).to.have.length.greaterThan(0);
+  });
+});</code></pre>
+    </div>
+    <nav class="pager">
+  <a href="../Terminal/index.html"><span>Previous</span>Terminal</a>
+
+  <a href="../../../examples/index.html"><span>Next</span>Examples</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#transformer">Transformer</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-loading-a-transformer">2. Loading a Transformer</a></li>
+<li><a href="#3-properties">3. Properties</a></li>
+<li><a href="#4-methods">4. Methods</a></li>
+<li><a href="#4-1-loading-schema-configuration">4.1. Loading Schema Configuration</a></li>
+<li><a href="#4-2-transforming-with-plugins">4.2. Transforming with Plugins</a></li>
+<li><a href="#5-usage-examples">5. Usage Examples</a></li>
+<li><a href="#5-1-basic-schema-loading">5.1. Basic Schema Loading</a></li>
+<li><a href="#5-2-working-with-multiple-schema-files">5.2. Working with Multiple Schema Files</a></li>
+<li><a href="#5-3-plugin-development-and-execution">5.3. Plugin Development and Execution</a></li>
+<li><a href="#5-4-error-handling">5.4. Error Handling</a></li>
+<li><a href="#5-5-custom-file-system">5.5. Custom File System</a></li>
+<li><a href="#6-error-scenarios">6. Error Scenarios</a></li>
+<li><a href="#6-1-file-not-found">6.1. File Not Found</a></li>
+<li><a href="#6-2-no-plugins-defined">6.2. No Plugins Defined</a></li>
+<li><a href="#6-3-invalid-plugin-module">6.3. Invalid Plugin Module</a></li>
+<li><a href="#7-best-practices">7. Best Practices</a></li>
+<li><a href="#7-1-schema-organization">7.1. Schema Organization</a></li>
+<li><a href="#7-2-plugin-development">7.2. Plugin Development</a></li>
+<li><a href="#7-3-error-recovery">7.3. Error Recovery</a></li>
+<li><a href="#8-integration-with-other-tools">8. Integration with Other Tools</a></li>
+<li><a href="#8-1-build-systems">8.1. Build Systems</a></li>
+<li><a href="#8-2-testing">8.2. Testing</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

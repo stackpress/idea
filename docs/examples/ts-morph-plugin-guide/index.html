@@ -1,0 +1,1732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>Creating Plugins with ts-morph: A Comprehensive Guide | Idea</title>
+  <link rel="icon" type="image/png" href="../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <img src="../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../getting-started/index.html">Start</a>
+          <a href="../../concepts/overview/index.html">Concepts</a>
+          <a href="../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../reference/specification/index.html">Reference</a>
+          <a href="../index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../index.html">Examples</a>
+</li>
+<li>
+  <a class="" href="../api-client-plugin/index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Examples</span>
+      </div>
+      <h1>Creating Plugins with ts-morph: A Comprehensive Guide</h1>
+      <p>This guide demonstrates how to create powerful code generation plugins using `ts-morph`, a TypeScript library that provides an easier way to programmatically navigate and manipulate TypeScript and JavaScript code. We'll walk through creating a complete plugin that generates TypeScript interfaces from schema definitions.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/examples/ts-morph-plugin-guide.md">View source</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>This guide demonstrates how to create powerful code generation plugins using <code>ts-morph</code>, a TypeScript library that provides an easier way to programmatically navigate and manipulate TypeScript and JavaScript code. We'll walk through creating a complete plugin that generates TypeScript interfaces from schema definitions.</p>
+<ol><li><a href="#1-introduction">Introduction</a></li><li><a href="#2-prerequisites">Prerequisites</a></li><li><a href="#3-setting-up-the-project">Setting Up the Project</a></li><li><a href="#4-understanding-ts-morph-basics">Understanding ts-morph Basics</a></li><li><a href="#5-creating-your-first-plugin">Creating Your First Plugin</a></li><li><a href="#6-advanced-ts-morph-features">Advanced ts-morph Features</a></li><li><a href="#7-testing-your-plugin">Testing Your Plugin</a></li><li><a href="#8-best-practices">Best Practices</a></li><li><a href="#9-troubleshooting">Troubleshooting</a></li><li><a href="#10-references">References</a></li></ol>
+<h2 id="1-introduction">1. Introduction</h2>
+<p><code>ts-morph</code> is a powerful TypeScript library that wraps the TypeScript Compiler API, making it much easier to work with TypeScript Abstract Syntax Trees (AST). This introduction covers the fundamental concepts and advantages of using <code>ts-morph</code> for plugin development.</p>
+<p>Unlike string-based code generation, <code>ts-morph</code> provides:</p>
+<ul><li><strong>Type-safe code manipulation</strong>: Work with actual TypeScript nodes instead of strings</li><li><strong>Automatic formatting</strong>: Generated code is properly formatted and follows TypeScript conventions</li><li><strong>IntelliSense support</strong>: Full IDE support when writing your plugins</li><li><strong>AST navigation</strong>: Easy traversal and modification of code structures</li><li><strong>Validation</strong>: Automatic syntax validation of generated code</li></ul>
+<p><strong>Why Use ts-morph for Plugins?</strong></p>
+<p>Understanding the advantages of <code>ts-morph</code> over traditional code generation approaches helps you make informed decisions about plugin architecture. This comparison highlights the key benefits that make <code>ts-morph</code> an excellent choice for TypeScript code generation.</p>
+<p>Traditional code generation often involves:</p>
+<ul><li>Concatenating strings to build code</li><li>Manual indentation and formatting</li><li>Error-prone syntax construction</li><li>Difficulty maintaining complex code structures</li></ul>
+<p>With <code>ts-morph</code>, you can:</p>
+<ul><li>Create TypeScript constructs programmatically</li><li>Leverage the compiler's knowledge for validation</li><li>Generate properly formatted, syntactically correct code</li><li>Easily modify existing code structures</li></ul>
+<h2 id="2-installation">2. Installation</h2>
+<p>Before starting with <code>ts-morph</code> plugin development, ensure you have the necessary tools and knowledge. This section outlines the essential requirements for successful plugin creation and provides installation guidance.</p>
+<p>Before starting, ensure you have:</p>
+<ul><li><strong>Node.js 16+</strong> and npm/yarn installed</li><li><strong>TypeScript 4.0+</strong> knowledge</li><li>Basic understanding of Abstract Syntax Trees (AST)</li><li>Familiarity with TypeScript interfaces, classes, and modules</li></ul>
+<p>Installing <code>ts-morph</code> is straightforward and can be done using your preferred package manager. The library is available through npm, yarn, and even Deno for different development environments.</p>
+<p>Install <code>ts-morph</code> in your project:</p>
+<pre><code class="language-bash"># Using npm
+npm install --save-dev ts-morph
+
+# Using yarn
+yarn add --dev ts-morph
+
+# Using Deno
+deno add ts-morph@jsr:@ts-morph/ts-morph</code></pre>
+<h2 id="3-setting-up-the-project">3. Setting Up the Project</h2>
+<p>Setting up a proper project structure is crucial for maintainable plugin development. This section guides you through creating a well-organized TypeScript project with all necessary configurations and dependencies.</p>
+<p>Let's create a new TypeScript project for our plugin:</p>
+<pre><code class="language-bash">mkdir ts-morph-plugin-tutorial
+cd ts-morph-plugin-tutorial
+npm init -y
+npm install --save-dev typescript ts-morph @types/node</code></pre>
+<p>Create a basic <code>tsconfig.json</code>:</p>
+<pre><code class="language-json">{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}</code></pre>
+<p>Create the project structure:</p>
+<pre><code class="language-plain">ts-morph-plugin-tutorial/
+├── src/
+│   ├── index.ts
+│   ├── plugin.ts
+│   └── types.ts
+├── examples/
+│   ├── input.json
+│   └── output.ts
+├── tests/
+│   └── plugin.test.ts
+├── package.json
+└── tsconfig.json</code></pre>
+<h2 id="4-understanding-ts-morph-basics">4. Understanding ts-morph Basics</h2>
+<p>Understanding the fundamental concepts of <code>ts-morph</code> is essential for effective plugin development. This section covers the core APIs, project management, source file manipulation, and code generation patterns that form the foundation of all <code>ts-morph</code> operations.</p>
+<p>Before creating our plugin, let's understand the core concepts of <code>ts-morph</code>:</p>
+<h3 id="4-1-project-and-source-files">4.1. Project and Source Files</h3>
+<p>The Project class is the entry point for all <code>ts-morph</code> operations, providing methods to create, load, and manage TypeScript source files. Understanding how to work with projects and source files is fundamental to building effective code generation plugins.</p>
+<pre><code class="language-typescript">import { Project } from "ts-morph";
+
+// Create a new project
+const project = new Project({
+  compilerOptions: {
+    target: ScriptTarget.ES2020,
+    module: ModuleKind.CommonJS,
+  },
+});
+
+// Create a source file
+const sourceFile = project.createSourceFile("example.ts", "");
+
+// Add content to the file
+sourceFile.addInterface({
+  name: "User",
+  properties: [
+    { name: "id", type: "string" },
+    { name: "name", type: "string" },
+  ],
+});
+
+// Get the generated code
+console.log(sourceFile.getFullText());
+// Output:
+// interface User {
+//     id: string;
+//     name: string;
+// }</code></pre>
+<h3 id="4-2-adding-different-constructs">4.2. Adding Different Constructs</h3>
+<p><code>ts-morph</code> provides comprehensive APIs for adding various TypeScript constructs including imports, classes, functions, types, and enums. This section demonstrates the most commonly used patterns for generating different types of TypeScript code.</p>
+<pre><code class="language-typescript">// Add imports
+sourceFile.addImportDeclaration({
+  moduleSpecifier: "react",
+  namedImports: ["useState", "useEffect"],
+});
+
+// Add a class
+sourceFile.addClass({
+  name: "UserService",
+  isExported: true,
+  methods: [
+    {
+      name: "getUser",
+      parameters: [{ name: "id", type: "string" }],
+      returnType: "Promise&lt;User&gt;",
+      statements: "return fetch(`/api/users/${id}`).then(r =&gt; r.json());",
+    },
+  ],
+});
+
+// Add a function
+sourceFile.addFunction({
+  name: "createUser",
+  isExported: true,
+  isAsync: true,
+  parameters: [{ name: "userData", type: "Partial&lt;User&gt;" }],
+  returnType: "Promise&lt;User&gt;",
+  statements: [
+    "const response = await fetch('/api/users', {",
+    "  method: 'POST',",
+    "  headers: { 'Content-Type': 'application/json' },",
+    "  body: JSON.stringify(userData)",
+    "});",
+    "return response.json();",
+  ],
+});
+
+// Add type aliases
+sourceFile.addTypeAlias({
+  name: "UserId",
+  isExported: true,
+  type: "string",
+});
+
+// Add enums
+sourceFile.addEnum({
+  name: "UserRole",
+  isExported: true,
+  members: [
+    { name: "ADMIN", value: "admin" },
+    { name: "USER", value: "user" },
+    { name: "GUEST", value: "guest" },
+  ],
+});</code></pre>
+<h3 id="4-3-exporting-a-class">4.3. Exporting a Class</h3>
+<p>Creating and exporting classes is a common requirement in TypeScript code generation. This example demonstrates the basic pattern for generating classes with methods, including proper export declarations and method implementations.</p>
+<p>A simple example of how to create a new TypeScript file with a class and a method using <code>ts-morph</code> looks like the following:</p>
+<pre><code class="language-javascript">import { Project } from "ts-morph";
+
+const project = new Project();
+
+const source = project.createSourceFile("newFile.ts", null, { overwrite: true });
+
+const myClass = source.addClass({
+  name: "MyClass",
+});
+
+myClass.addMethod({
+  name: "myMethod",
+  isDefaultExport: true
+  parameters: [{ name: "param1", type: "string" }],
+  returnType: "void",
+  statements: "console.log(param1);"
+});
+
+project.saveSync();</code></pre>
+<p>This code will create a new TypeScript file <code>newFile.ts</code> with the following content.</p>
+<pre><code class="language-javascript">export default class MyClass {
+  myMethod(param1: string): void {
+    console.log(param1);
+  }
+}</code></pre>
+<p>You can use <code>isExported</code> or <code>isDefaultExport</code> to <code>export</code> or <code>export default</code> respectively. Also <code>statements</code> can be a string or an array of strings (<code>string[]</code>),</p>
+<h3 id="4-4-exporting-a-function">4.4. Exporting a Function</h3>
+<p>Function generation at the source file level provides flexibility for creating utility functions, API endpoints, and standalone operations. This section shows how to create functions with various configurations including async operations, parameters, and return types.</p>
+<p>Similar to adding a method to a class, you can use <code>addFunction</code> to add a function at the source file level. An example of how to use <code>addFunction</code> to add a function with arguments and a body looks like the following:</p>
+<pre><code class="language-javascript">import { Project } from "ts-morph";
+
+const project = new Project();
+
+const source = project.createSourceFile("newFile.ts", null, { overwrite: true });
+
+source.addFunction({
+  name: "myFunction",
+  isExported: true,
+  isAsync: true,
+  parameters: [
+    { name: "param1", type: "string" },
+    { name: "param2", type: "number" }
+  ],
+  returnType: "void",
+  statements: [
+    "console.log(param1);",
+    "console.log(param2);"
+  ]
+});
+
+project.saveSync();</code></pre>
+<p>In the above example, <code>myFunction</code> takes two parameters, <code>param1</code> of type string and <code>param2</code> of type number. The function body contains two <code>console.log</code> statements.</p>
+<p>After running the above code, the content of <code>newFile.ts</code> would look like the following.</p>
+<pre><code class="language-javascript">export async function myFunction(param1: string, param2: number): void {
+  console.log(param1);
+  console.log(param2);
+}</code></pre>
+<h3 id="4-5-exporting-a-const">4.5. Exporting a Const</h3>
+<p>Constant declarations are essential for defining configuration values, default settings, and immutable data structures. The <code>addVariableStatement</code> method provides flexible options for creating various types of variable declarations with proper export handling.</p>
+<p>To export a constant in <code>ts-morph</code>, you can utilize the <code>addVariableStatement</code> method on a <code>SourceFile</code> object. This method allows you to add a variable declaration to the file, including the capability to export the declaration.</p>
+<pre><code class="language-javascript">import { VariableDeclarationKind } from 'ts-morph';
+
+source.addVariableStatement({
+  isExported: true,
+  declarationKind: VariableDeclarationKind.Const,
+  declarations: [{
+    name: "foo",
+    initializer: `'bar'`
+  }]
+});</code></pre>
+<p>The provided <code>ts-morph</code> script will generate the following code in the source file.</p>
+<pre><code class="language-javascript">export const foo = 'bar';</code></pre>
+<h3 id="4-6-exporting-an-object">4.6. Exporting an Object</h3>
+<p>Export declarations provide a clean way to re-export multiple entities from other modules or to export collections of related functionality. This pattern is commonly used in index files and module aggregation scenarios.</p>
+<p>To generate an export statement that directly exports multiple imported entities in a single line using <code>ts-morph</code>, you don't need to declare them as variables first. Instead, you can use the <code>addExportDeclaration</code> method directly after your imports. This approach is more straightforward and aligns with typical TypeScript import-export patterns.</p>
+<pre><code class="language-javascript">source.addExportDeclaration({
+  namedExports: ['ComponentA', 'ComponentB', 'ComponentC']
+});</code></pre>
+<h3 id="4-7-exporting-types">4.7. Exporting Types</h3>
+<p>Type exports are crucial for creating reusable type definitions that can be consumed by other modules. <code>ts-morph</code> provides dedicated methods for creating both type aliases and interfaces with proper export configurations.</p>
+<p>To export a single type, you can use the addTypeAlias or addInterface method <em>(depending on whether you are defining an alias or an interface)</em>, and set the isExported property to true. An example of exporting a type alias looks like the following:</p>
+<pre><code class="language-javascript">source.addTypeAlias({
+  name: "ExampleType",
+  isExported: true,
+  type: "string | number"
+});</code></pre>
+<p>This will generate a file with the following content.</p>
+<pre><code class="language-javascript">export type ExampleType = string | number;</code></pre>
+<p>To export multiple types at the same time, you can add multiple type declarations <em>(either type aliases or interfaces)</em> with the <code>isExported</code> property set to true for each. Alternatively, you can use the <code>addExportDeclaration</code> method to export previously declared types. An example of declaring and exporting multiple types looks like the following.</p>
+<pre><code class="language-javascript">source.addTypeAlias({
+  name: "AnotherType",
+  isExported: true,
+  type: "boolean"
+});
+
+source.addInterface({
+  name: "ExampleInterface",
+  isExported: true,
+  properties: [
+    { name: "id", type: "number" },
+    { name: "name", type: "string" }
+  ]
+});
+
+// Optionally, use addExportDeclaration to export all at once
+source.addExportDeclaration({
+  namedExports: ["ExampleType", "AnotherType", "ExampleInterface"]
+});</code></pre>
+<p>This will generate a file with the following content.</p>
+<pre><code class="language-javascript">export type ExampleType = string | number;
+export type AnotherType = boolean;
+export interface ExampleInterface {
+  id: number;
+  name: string;
+}</code></pre>
+<h3 id="4-8-importing-values">4.8. Importing Values</h3>
+<p>Import declarations are essential for bringing external dependencies and modules into your generated code. The <code>addImportDeclaration</code> method provides comprehensive options for creating various types of import statements including named imports, default imports, and type imports.</p>
+<p>To import a set of values from a module in <code>ts-morph</code>, you can use the <code>addImportDeclaration</code> method on a <code>SourceFile</code> object. This method allows you to add an import declaration to the code file you are working with. Here's how to use this method to import specific values from the <code>react</code> module:</p>
+<pre><code class="language-javascript">source.addImportDeclaration({
+  moduleSpecifier: 'react',
+  namedImports: [ 'useState', 'useEffect' ]
+});</code></pre>
+<p>The provided <code>ts-morph</code> script will generate the following code in the source file.</p>
+<pre><code class="language-javascript">import { useState, useEffect } from 'react';</code></pre>
+<p>You can also import types like the following.</p>
+<pre><code class="language-javascript">source.addImportDeclaration({
+  moduleSpecifier: 'next',
+  namedImports: [ 
+    'NextApiRequest as Request', 
+    'NextApiResponse as as Response' 
+  ]
+});</code></pre>
+<p>The above code renders the following.</p>
+<pre><code class="language-javascript">import type { 
+  NextApiRequest as Request, 
+  NextApiResponse as Response
+} from 'next';</code></pre>
+<h3 id="4-9-importing-defaults">4.9. Importing Defaults</h3>
+<p>Default imports are commonly used for importing the main export from a module, such as React components or utility libraries. The same <code>addImportDeclaration</code> method handles default imports with a slightly different configuration.</p>
+<p>To import a default from a module in <code>ts-morph</code>, you can also use the <code>addImportDeclaration</code> method:</p>
+<pre><code class="language-javascript">source.addImportDeclaration({
+  moduleSpecifier: 'react',
+  defaultImport: 'React'
+});</code></pre>
+<p>This would create the following code.</p>
+<pre><code class="language-javascript">import React from 'react';</code></pre>
+<h3 id="4-10-working-with-existing-code">4.10. Working with Existing Code</h3>
+<p>Working with existing code is a powerful feature of <code>ts-morph</code> that allows you to modify, extend, and refactor existing TypeScript files. This capability is essential for plugins that need to augment or update existing codebases rather than generating new files from scratch.</p>
+<pre><code class="language-typescript">// Load existing files
+project.addSourceFilesAtPaths("src/**/*.ts");
+
+// Get a specific file
+const existingFile = project.getSourceFile("src/models/User.ts");
+
+// Find and modify existing constructs
+const userInterface = existingFile?.getInterface("User");
+if (userInterface) {
+  // Add a new property
+  userInterface.addProperty({
+    name: "email",
+    type: "string",
+    hasQuestionToken: true, // Makes it optional
+  });
+  
+  // Add JSDoc comments
+  userInterface.addJsDoc({
+    description: "Represents a user in the system",
+    tags: [
+      { tagName: "example", text: "const user: User = { id: '1', name: 'John' };" },
+    ],
+  });
+}</code></pre>
+<h2 id="5-creating-your-first-plugin">5. Creating Your First Plugin</h2>
+<p>Creating your first plugin with <code>ts-morph</code> involves understanding the complete workflow from schema processing to code generation. This comprehensive example demonstrates building a TypeScript interface generator that transforms JSON schemas into properly typed interfaces with full feature support.</p>
+<p>Let's create a plugin that generates TypeScript interfaces from JSON schema definitions. This will demonstrate the core concepts of using <code>ts-morph</code> for code generation.</p>
+<h3 id="5-1-define-the-plugin-interface">5.1. Define the Plugin Interface</h3>
+<p>Defining clear interfaces for your plugin ensures type safety and provides a solid foundation for implementation. This section establishes the data structures and configuration options that will guide the entire plugin development process.</p>
+<p>First, let's define the types for our plugin:</p>
+<pre><code class="language-typescript">// src/types.ts
+export interface SchemaProperty {
+  type: string;
+  required?: boolean;
+  description?: string;
+  default?: any;
+  items?: SchemaProperty; // For arrays
+  properties?: Record&lt;string, SchemaProperty&gt;; // For objects
+}
+
+export interface Schema {
+  name: string;
+  description?: string;
+  properties: Record&lt;string, SchemaProperty&gt;;
+  required?: string[];
+}
+
+export interface PluginConfig {
+  input: string;
+  output: string;
+  namespace?: string;
+  generateComments?: boolean;
+  generateUtilityTypes?: boolean;
+  exportType?: 'named' | 'default' | 'namespace';
+}</code></pre>
+<h3 id="5-2-core-plugin-implementation">5.2. Core Plugin Implementation</h3>
+<p>The core plugin implementation orchestrates the entire code generation process, from loading input schemas to generating and saving TypeScript files. This comprehensive class demonstrates best practices for plugin architecture and error handling.</p>
+<pre><code class="language-typescript">// src/plugin.ts
+import { Project, SourceFile, InterfaceDeclaration } from "ts-morph";
+import { Schema, SchemaProperty, PluginConfig } from "./types";
+import fs from "fs/promises";
+import path from "path";
+
+export class TypeScriptInterfaceGenerator {
+  private project: Project;
+  private config: PluginConfig;
+
+  constructor(config: PluginConfig) {
+    this.config = config;
+    this.project = new Project({
+      compilerOptions: {
+        target: 99, // Latest
+        module: 1,  // CommonJS
+        declaration: true,
+        strict: true,
+      },
+    });
+  }
+
+  async generate(): Promise&lt;void&gt; {
+    try {
+      // Read input schema
+      const schemas = await this.loadSchemas();
+      
+      // Create source file
+      const sourceFile = this.project.createSourceFile(
+        this.config.output,
+        "",
+        { overwrite: true }
+      );
+
+      // Generate file header
+      this.addFileHeader(sourceFile);
+
+      // Generate interfaces for each schema
+      for (const schema of schemas) {
+        this.generateInterface(sourceFile, schema);
+      }
+
+      // Generate utility types if requested
+      if (this.config.generateUtilityTypes) {
+        this.generateUtilityTypes(sourceFile, schemas);
+      }
+
+      // Wrap in namespace if specified
+      if (this.config.namespace) {
+        this.wrapInNamespace(sourceFile);
+      }
+
+      // Save the file
+      await sourceFile.save();
+      
+      console.log(`✅ Generated TypeScript interfaces: ${this.config.output}`);
+    } catch (error) {
+      console.error("❌ Generation failed:", error);
+      throw error;
+    }
+  }
+
+  private async loadSchemas(): Promise&lt;Schema[]&gt; {
+    const content = await fs.readFile(this.config.input, "utf-8");
+    const data = JSON.parse(content);
+    
+    // Handle both single schema and array of schemas
+    return Array.isArray(data) ? data : [data];
+  }
+
+  private addFileHeader(sourceFile: SourceFile): void {
+    const timestamp = new Date().toISOString();
+    sourceFile.insertText(0, `/**
+ * Generated TypeScript interfaces
+ * Generated at: ${timestamp}
+ * Source: ${this.config.input}
+ * 
+ * This file is auto-generated. Do not edit manually.
+ */
+
+`);
+  }
+
+  private generateInterface(sourceFile: SourceFile, schema: Schema): void {
+    const interfaceDeclaration = sourceFile.addInterface({
+      name: schema.name,
+      isExported: this.config.exportType !== 'namespace',
+    });
+
+    // Add JSDoc comment if enabled
+    if (this.config.generateComments &amp;&amp; schema.description) {
+      interfaceDeclaration.addJsDoc({
+        description: schema.description,
+      });
+    }
+
+    // Add properties
+    for (const [propName, propSchema] of Object.entries(schema.properties)) {
+      this.addProperty(interfaceDeclaration, propName, propSchema, schema.required);
+    }
+  }
+
+  private addProperty(
+    interfaceDecl: InterfaceDeclaration,
+    name: string,
+    property: SchemaProperty,
+    requiredFields?: string[]
+  ): void {
+    const isRequired = requiredFields?.includes(name) ?? property.required ?? false;
+    const typeString = this.mapSchemaTypeToTypeScript(property);
+
+    const propertySignature = interfaceDecl.addProperty({
+      name,
+      type: typeString,
+      hasQuestionToken: !isRequired,
+    });
+
+    // Add JSDoc comment if enabled
+    if (this.config.generateComments) {
+      const jsdocParts: string[] = [];
+      
+      if (property.description) {
+        jsdocParts.push(property.description);
+      }
+      
+      if (property.default !== undefined) {
+        jsdocParts.push(`@default ${JSON.stringify(property.default)}`);
+      }
+
+      if (jsdocParts.length &gt; 0) {
+        propertySignature.addJsDoc({
+          description: jsdocParts.join('\n'),
+        });
+      }
+    }
+  }
+
+  private mapSchemaTypeToTypeScript(property: SchemaProperty): string {
+    switch (property.type) {
+      case 'string':
+        return 'string';
+      case 'number':
+      case 'integer':
+        return 'number';
+      case 'boolean':
+        return 'boolean';
+      case 'array':
+        if (property.items) {
+          const itemType = this.mapSchemaTypeToTypeScript(property.items);
+          return `${itemType}[]`;
+        }
+        return 'any[]';
+      case 'object':
+        if (property.properties) {
+          // Generate inline interface
+          const props = Object.entries(property.properties)
+            .map(([key, prop]) =&gt; {
+              const type = this.mapSchemaTypeToTypeScript(prop);
+              const optional = prop.required ? '' : '?';
+              return `${key}${optional}: ${type}`;
+            })
+            .join('; ');
+          return `{ ${props} }`;
+        }
+        return 'Record&lt;string, any&gt;';
+      default:
+        // Assume it's a reference to another interface
+        return property.type;
+    }
+  }
+
+  private generateUtilityTypes(sourceFile: SourceFile, schemas: Schema[]): void {
+    sourceFile.addStatements("\n// Utility Types");
+
+    for (const schema of schemas) {
+      const interfaceName = schema.name;
+
+      // Generate Create input type (omit auto-generated fields)
+      sourceFile.addTypeAlias({
+        name: `Create${interfaceName}Input`,
+        isExported: this.config.exportType !== 'namespace',
+        type: `Omit&lt;${interfaceName}, 'id' | 'createdAt' | 'updatedAt'&gt;`,
+      });
+
+      // Generate Update input type (all fields optional)
+      sourceFile.addTypeAlias({
+        name: `Update${interfaceName}Input`,
+        isExported: this.config.exportType !== 'namespace',
+        type: `Partial&lt;${interfaceName}&gt;`,
+      });
+
+      // Generate keys type
+      sourceFile.addTypeAlias({
+        name: `${interfaceName}Keys`,
+        isExported: this.config.exportType !== 'namespace',
+        type: `keyof ${interfaceName}`,
+      });
+    }
+
+    // Generate union type of all models
+    if (schemas.length &gt; 1) {
+      const allTypes = schemas.map(s =&gt; s.name).join(' | ');
+      sourceFile.addTypeAlias({
+        name: 'AnyModel',
+        isExported: this.config.exportType !== 'namespace',
+        type: allTypes,
+      });
+    }
+  }
+
+  private wrapInNamespace(sourceFile: SourceFile): void {
+    const content = sourceFile.getFullText();
+    sourceFile.removeText();
+    
+    // Extract header comments
+    const headerMatch = content.match(/^(\/\*\*[\s\S]*?\*\/\s*)/);
+    const header = headerMatch ? headerMatch[1] : '';
+    const bodyContent = content.replace(header, '');
+
+    // Add header back
+    if (header) {
+      sourceFile.insertText(0, header);
+    }
+
+    // Create namespace
+    const namespace = sourceFile.addNamespace({
+      name: this.config.namespace!,
+      isExported: this.config.exportType === 'default' ? false : true,
+    });
+
+    // Add content to namespace
+    namespace.addStatements(bodyContent.trim());
+
+    // Add default export if specified
+    if (this.config.exportType === 'default') {
+      sourceFile.addExportAssignment({
+        expression: this.config.namespace!,
+        isExportEquals: false,
+      });
+    }
+  }
+}</code></pre>
+<h3 id="5-3-plugin-entry-point">5.3. Plugin Entry Point</h3>
+<p>The plugin entry point provides a clean API for consumers and handles CLI integration. This section shows how to create both programmatic and command-line interfaces for your plugin, making it accessible in different usage scenarios.</p>
+<pre><code class="language-typescript">// src/index.ts
+import { TypeScriptInterfaceGenerator } from "./plugin";
+import { PluginConfig } from "./types";
+
+export async function generateTypeScriptInterfaces(config: PluginConfig): Promise&lt;void&gt; {
+  const generator = new TypeScriptInterfaceGenerator(config);
+  await generator.generate();
+}
+
+export * from "./types";
+export { TypeScriptInterfaceGenerator };
+
+// CLI usage
+if (require.main === module) {
+  const config: PluginConfig = {
+    input: process.argv[2] || "examples/input.json",
+    output: process.argv[3] || "examples/output.ts",
+    generateComments: true,
+    generateUtilityTypes: true,
+    exportType: 'named',
+  };
+
+  generateTypeScriptInterfaces(config).catch(console.error);
+}</code></pre>
+<h3 id="5-4-example-usage">5.4. Example Usage</h3>
+<p>Example usage demonstrates the plugin in action with realistic data structures. This comprehensive example shows how the plugin processes complex schemas with various property types, relationships, and validation rules.</p>
+<p>Create an example schema file:</p>
+<pre><code class="language-json">// examples/input.json
+[
+  {
+    "name": "User",
+    "description": "Represents a user in the system",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the user"
+      },
+      "email": {
+        "type": "string",
+        "description": "User's email address"
+      },
+      "name": {
+        "type": "string",
+        "description": "User's full name"
+      },
+      "age": {
+        "type": "number",
+        "description": "User's age in years"
+      },
+      "isActive": {
+        "type": "boolean",
+        "description": "Whether the user account is active",
+        "default": true
+      },
+      "roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "User's assigned roles"
+      },
+      "profile": {
+        "type": "object",
+        "properties": {
+          "bio": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        },
+        "description": "User's profile information"
+      },
+      "createdAt": {
+        "type": "string",
+        "description": "Account creation timestamp"
+      }
+    },
+    "required": ["id", "email", "name"]
+  },
+  {
+    "name": "Post",
+    "description": "Represents a blog post",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the post"
+      },
+      "title": {
+        "type": "string",
+        "description": "Post title"
+      },
+      "content": {
+        "type": "string",
+        "description": "Post content"
+      },
+      "authorId": {
+        "type": "string",
+        "description": "ID of the post author"
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Post tags"
+      },
+      "publishedAt": {
+        "type": "string",
+        "description": "Publication timestamp"
+      }
+    },
+    "required": ["id", "title", "content", "authorId"]
+  }
+]</code></pre>
+<p>Run the plugin:</p>
+<pre><code class="language-bash">npx ts-node src/index.ts examples/input.json examples/output.ts</code></pre>
+<p>Generated output:</p>
+<pre><code class="language-typescript">// examples/output.ts
+/**
+ * Generated TypeScript interfaces
+ * Generated at: 2024-01-15T10:30:00.000Z
+ * Source: examples/input.json
+ * 
+ * This file is auto-generated. Do not edit manually.
+ */
+
+/**
+ * Represents a user in the system
+ */
+export interface User {
+    /**
+     * Unique identifier for the user
+     */
+    id: string;
+    /**
+     * User's email address
+     */
+    email: string;
+    /**
+     * User's full name
+     */
+    name: string;
+    /**
+     * User's age in years
+     */
+    age?: number;
+    /**
+     * Whether the user account is active
+     * @default true
+     */
+    isActive?: boolean;
+    /**
+     * User's assigned roles
+     */
+    roles?: string[];
+    /**
+     * User's profile information
+     */
+    profile?: { bio?: string; avatar?: string };
+    /**
+     * Account creation timestamp
+     */
+    createdAt?: string;
+}
+
+/**
+ * Represents a blog post
+ */
+export interface Post {
+    /**
+     * Unique identifier for the post
+     */
+    id: string;
+    /**
+     * Post title
+     */
+    title: string;
+    /**
+     * Post content
+     */
+    content: string;
+    /**
+     * ID of the post author
+     */
+    authorId: string;
+    /**
+     * Post tags
+     */
+    tags?: string[];
+    /**
+     * Publication timestamp
+     */
+    publishedAt?: string;
+}
+
+// Utility Types
+export type CreateUserInput = Omit&lt;User, 'id' | 'createdAt' | 'updatedAt'&gt;;
+
+export type UpdateUserInput = Partial&lt;User&gt;;
+
+export type UserKeys = keyof User;
+
+export type CreatePostInput = Omit&lt;Post, 'id' | 'createdAt' | 'updatedAt'&gt;;
+
+export type UpdatePostInput = Partial&lt;Post&gt;;
+
+export type PostKeys = keyof Post;
+
+export type AnyModel = User | Post;</code></pre>
+<h2 id="6-advanced-ts-morph-features">6. Advanced ts-morph Features</h2>
+<p>Advanced <code>ts-morph</code> features enable sophisticated code generation scenarios including decorators, complex type systems, module declarations, and code manipulation. These features are essential for building production-ready plugins that handle enterprise-level requirements.</p>
+<h3 id="6-1-working-with-decorators">6.1. Working with Decorators</h3>
+<p>Decorators are essential for modern TypeScript applications, especially when working with frameworks like Angular, NestJS, or TypeORM. <code>ts-morph</code> provides comprehensive support for generating classes and methods with decorators.</p>
+<pre><code class="language-typescript">// Add a class with decorators
+sourceFile.addClass({
+  name: "UserController",
+  isExported: true,
+  decorators: [
+    {
+      name: "Controller",
+      arguments: ["'users'"],
+    },
+  ],
+  methods: [
+    {
+      name: "getUser",
+      decorators: [
+        {
+          name: "Get",
+          arguments: ["':id'"],
+        },
+      ],
+      parameters: [
+        {
+          name: "id",
+          type: "string",
+          decorators: [
+            {
+              name: "Param",
+              arguments: ["'id'"],
+            },
+          ],
+        },
+      ],
+      returnType: "Promise&lt;User&gt;",
+      statements: "return this.userService.findById(id);",
+    },
+  ],
+});</code></pre>
+<h3 id="6-2-generating-complex-types">6.2. Generating Complex Types</h3>
+<p>Complex type generation includes mapped types, conditional types, and template literal types that leverage TypeScript's advanced type system. These features enable the creation of sophisticated type-safe APIs and utility types.</p>
+<pre><code class="language-typescript">// Generate mapped types
+sourceFile.addTypeAlias({
+  name: "PartialUser",
+  type: "{ [K in keyof User]?: User[K] }",
+});
+
+// Generate conditional types
+sourceFile.addTypeAlias({
+  name: "NonNullable",
+  typeParameters: [{ name: "T" }],
+  type: "T extends null | undefined ? never : T",
+});
+
+// Generate template literal types
+sourceFile.addTypeAlias({
+  name: "EventName",
+  typeParameters: [{ name: "T", constraint: "string" }],
+  type: "`on${Capitalize&lt;T&gt;}`",
+});</code></pre>
+<h3 id="6-3-working-with-modules">6.3. Working with Modules</h3>
+<p>Module declarations and ambient modules are crucial for creating type definitions and extending existing libraries. This section covers both namespace-style modules and modern ES module patterns.</p>
+<pre><code class="language-typescript">// Add module declaration
+sourceFile.addModule({
+  name: "Express",
+  declarationKind: ModuleDeclarationKind.Module,
+  statements: [
+    {
+      kind: StructureKind.Interface,
+      name: "Request",
+      properties: [
+        { name: "user", type: "User", hasQuestionToken: true },
+      ],
+    },
+  ],
+});
+
+// Add ambient module
+sourceFile.addModule({
+  name: '"my-library"',
+  declarationKind: ModuleDeclarationKind.Module,
+  hasDeclareKeyword: true,
+  statements: [
+    "export function myFunction(): void;",
+  ],
+});</code></pre>
+<h3 id="6-4-manipulating-existing-code">6.4. Manipulating Existing Code</h3>
+<p>Code manipulation capabilities allow plugins to modify existing TypeScript files, add new functionality, and refactor code structures. This is particularly useful for migration tools and code modernization plugins.</p>
+<pre><code class="language-typescript">// Find and modify existing interfaces
+const existingInterface = sourceFile.getInterface("User");
+if (existingInterface) {
+  // Add new properties
+  existingInterface.addProperty({
+    name: "lastLoginAt",
+    type: "Date",
+    hasQuestionToken: true,
+  });
+
+  // Modify existing properties
+  const emailProp = existingInterface.getProperty("email");
+  if (emailProp) {
+    emailProp.setType("string &amp; { readonly brand: 'Email' }");
+  }
+
+  // Add extends clause
+  existingInterface.addExtends("BaseEntity");
+}
+
+// Remove nodes
+const deprecatedMethod = sourceFile.getFunction("oldFunction");
+deprecatedMethod?.remove();</code></pre>
+<h2 id="7-testing-your-plugin">7. Testing Your Plugin</h2>
+<p>Comprehensive testing ensures your plugin works correctly across different scenarios and maintains reliability as it evolves. This section covers unit testing, integration testing, and validation strategies for <code>ts-morph</code> plugins.</p>
+<p>Create comprehensive tests for your plugin:</p>
+<pre><code class="language-typescript">// tests/plugin.test.ts
+import { TypeScriptInterfaceGenerator } from "../src/plugin";
+import { PluginConfig, Schema } from "../src/types";
+import { Project } from "ts-morph";
+import fs from "fs/promises";
+import path from "path";
+
+describe("TypeScriptInterfaceGenerator", () =&gt; {
+  const testOutputDir = path.join(__dirname, "output");
+  
+  beforeAll(async () =&gt; {
+    await fs.mkdir(testOutputDir, { recursive: true });
+  });
+
+  afterAll(async () =&gt; {
+    await fs.rmdir(testOutputDir, { recursive: true });
+  });
+
+  test("should generate basic interface", async () =&gt; {
+    const schema: Schema = {
+      name: "TestUser",
+      properties: {
+        id: { type: "string" },
+        name: { type: "string" },
+        age: { type: "number" },
+      },
+      required: ["id", "name"],
+    };
+
+    const inputFile = path.join(testOutputDir, "test-input.json");
+    const outputFile = path.join(testOutputDir, "test-output.ts");
+
+    await fs.writeFile(inputFile, JSON.stringify(schema, null, 2));
+
+    const config: PluginConfig = {
+      input: inputFile,
+      output: outputFile,
+      generateComments: true,
+    };
+
+    const generator = new TypeScriptInterfaceGenerator(config);
+    await generator.generate();
+
+    // Verify the output
+    const generatedContent = await fs.readFile(outputFile, "utf-8");
+    
+    expect(generatedContent).toContain("export interface TestUser");
+    expect(generatedContent).toContain("id: string;");
+    expect(generatedContent).toContain("name: string;");
+    expect(generatedContent).toContain("age?: number;");
+  });
+
+  test("should generate utility types", async () =&gt; {
+    const schema: Schema = {
+      name: "Product",
+      properties: {
+        id: { type: "string" },
+        name: { type: "string" },
+        price: { type: "number" },
+      },
+      required: ["id", "name", "price"],
+    };
+
+    const inputFile = path.join(testOutputDir, "product-input.json");
+    const outputFile = path.join(testOutputDir, "product-output.ts");
+
+    await fs.writeFile(inputFile, JSON.stringify(schema, null, 2));
+
+    const config: PluginConfig = {
+      input: inputFile,
+      output: outputFile,
+      generateUtilityTypes: true,
+    };
+
+    const generator = new TypeScriptInterfaceGenerator(config);
+    await generator.generate();
+
+    const generatedContent = await fs.readFile(outputFile, "utf-8");
+    
+    expect(generatedContent).toContain("CreateProductInput");
+    expect(generatedContent).toContain("UpdateProductInput");
+    expect(generatedContent).toContain("ProductKeys");
+  });
+
+  test("should validate generated TypeScript", async () =&gt; {
+    const schema: Schema = {
+      name: "ValidatedInterface",
+      properties: {
+        id: { type: "string" },
+        data: {
+          type: "object",
+          properties: {
+            nested: { type: "boolean" },
+          },
+        },
+      },
+    };
+
+    const inputFile = path.join(testOutputDir, "validated-input.json");
+    const outputFile = path.join(testOutputDir, "validated-output.ts");
+
+    await fs.writeFile(inputFile, JSON.stringify(schema, null, 2));
+
+    const config: PluginConfig = {
+      input: inputFile,
+      output: outputFile,
+    };
+
+    const generator = new TypeScriptInterfaceGenerator(config);
+    await generator.generate();
+
+    // Validate the generated TypeScript compiles
+    const project = new Project();
+    const sourceFile = project.addSourceFileAtPath(outputFile);
+    
+    const diagnostics = sourceFile.getPreEmitDiagnostics();
+    expect(diagnostics).toHaveLength(0);
+  });
+});</code></pre>
+<p>Run tests:</p>
+<pre><code class="language-bash">npm test</code></pre>
+<h2 id="8-best-practices">8. Best Practices</h2>
+<p>Following best practices ensures your plugins are maintainable, performant, and reliable in production environments. These guidelines cover type safety, error handling, performance optimization, and code organization strategies.</p>
+<h3 id="8-1-type-safety">8.1. Type Safety</h3>
+<p>Type safety is fundamental to building reliable plugins that catch errors at compile time rather than runtime. Always use TypeScript interfaces and proper type validation throughout your plugin implementation.</p>
+<p>Always use TypeScript interfaces for your plugin configuration and data structures:</p>
+<pre><code class="language-typescript">interface PluginOptions {
+  readonly input: string;
+  readonly output: string;
+  readonly strict?: boolean;
+}
+
+function validateOptions(options: unknown): asserts options is PluginOptions {
+  if (typeof options !== 'object' || options === null) {
+    throw new Error('Options must be an object');
+  }
+  
+  const opts = options as Record&lt;string, unknown&gt;;
+  
+  if (typeof opts.input !== 'string') {
+    throw new Error('input must be a string');
+  }
+  
+  if (typeof opts.output !== 'string') {
+    throw new Error('output must be a string');
+  }
+}</code></pre>
+<h3 id="8-2-error-handling">8.2. Error Handling</h3>
+<p>Comprehensive error handling provides clear feedback to users and helps with debugging when things go wrong. Implement custom error types and meaningful error messages to improve the developer experience.</p>
+<p>Implement comprehensive error handling:</p>
+<pre><code class="language-typescript">class PluginError extends Error {
+  constructor(
+    message: string,
+    public readonly code: string,
+    public readonly details?: any
+  ) {
+    super(message);
+    this.name = 'PluginError';
+  }
+}
+
+async function safeGenerate(config: PluginConfig): Promise&lt;void&gt; {
+  try {
+    await generator.generate();
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      throw new PluginError(
+        'Invalid JSON in input file',
+        'INVALID_JSON',
+        { originalError: error.message }
+      );
+    }
+    
+    if (error.code === 'ENOENT') {
+      throw new PluginError(
+        'Input file not found',
+        'FILE_NOT_FOUND',
+        { path: config.input }
+      );
+    }
+    
+    throw error;
+  }
+}</code></pre>
+<h3 id="8-3-performance-optimization">8.3. Performance Optimization</h3>
+<p>Performance optimization becomes crucial when dealing with large schemas or generating substantial amounts of code. Implement caching strategies and batch processing to maintain reasonable execution times.</p>
+<p>For large schemas, optimize performance:</p>
+<pre><code class="language-typescript">class OptimizedGenerator {
+  private typeCache = new Map&lt;string, string&gt;();
+  private interfaceCache = new Map&lt;string, InterfaceDeclaration&gt;();
+
+  private getCachedType(property: SchemaProperty): string {
+    const cacheKey = JSON.stringify(property);
+    
+    if (this.typeCache.has(cacheKey)) {
+      return this.typeCache.get(cacheKey)!;
+    }
+    
+    const type = this.mapSchemaTypeToTypeScript(property);
+    this.typeCache.set(cacheKey, type);
+    
+    return type;
+  }
+
+  private batchAddProperties(
+    interfaceDecl: InterfaceDeclaration,
+    properties: Record&lt;string, SchemaProperty&gt;
+  ): void {
+    const propertyStructures = Object.entries(properties).map(([name, prop]) =&gt; ({
+      name,
+      type: this.getCachedType(prop),
+      hasQuestionToken: !prop.required,
+    }));
+
+    interfaceDecl.addProperties(propertyStructures);
+  }
+}</code></pre>
+<h3 id="8-4-code-organization">8.4. Code Organization</h3>
+<p>Proper code organization makes your plugin easier to maintain, test, and extend. Separate concerns into focused classes and modules that each handle specific aspects of the generation process.</p>
+<p>Structure your plugin code for maintainability:</p>
+<pre><code class="language-typescript">// generators/interface-generator.ts
+export class InterfaceGenerator {
+  generate(schema: Schema): InterfaceDeclaration {
+    // Interface-specific logic
+  }
+}
+
+// generators/type-generator.ts
+export class TypeGenerator {
+  generate(schema: Schema): TypeAliasDeclaration {
+    // Type alias-specific logic
+  }
+}
+
+// generators/enum-generator.ts
+export class EnumGenerator {
+  generate(schema: EnumSchema): EnumDeclaration {
+    // Enum-specific logic
+  }
+}
+
+// main-plugin.ts
+export class MainPlugin {
+  constructor(
+    private interfaceGenerator: InterfaceGenerator,
+    private typeGenerator: TypeGenerator,
+    private enumGenerator: EnumGenerator
+  ) {}
+
+  async generate(config: PluginConfig): Promise&lt;void&gt; {
+    // Orchestrate all generators
+  }
+}</code></pre>
+<h3 id="8-5-documentation-generation">8.5. Documentation Generation</h3>
+<p>Documentation generation ensures your generated code is self-documenting and provides valuable context for developers. Implement comprehensive JSDoc comment generation with examples and type information.</p>
+<p>Add comprehensive JSDoc comments:</p>
+<pre><code class="language-typescript">function generateJSDocComment(
+  property: SchemaProperty,
+  includeExamples: boolean = true
+): string {
+  const parts: string[] = [];
+  
+  if (property.description) {
+    parts.push(property.description);
+  }
+  
+  if (property.default !== undefined) {
+    parts.push(`@default ${JSON.stringify(property.default)}`);
+  }
+  
+  if (includeExamples &amp;&amp; property.example) {
+    parts.push(`@example ${property.example}`);
+  }
+  
+  if (property.deprecated) {
+    parts.push(`@deprecated ${property.deprecated}`);
+  }
+  
+  return parts.length &gt; 0 ? parts.join('\n') : '';
+}</code></pre>
+<h2 id="9-troubleshooting">9. Troubleshooting</h2>
+<p>Troubleshooting guides help developers quickly identify and resolve common issues encountered during plugin development. This section covers validation, debugging techniques, and solutions for typical problems.</p>
+<h3 id="9-1-common-issues">9.1. Common Issues</h3>
+<p>Common issues in <code>ts-morph</code> plugin development typically involve syntax validation, circular references, and memory management. Understanding these patterns helps prevent and resolve problems efficiently.</p>
+<h4 id="9-1-1-invalid-typescript-syntax">9.1.1. Invalid TypeScript Syntax</h4>
+<p>Invalid TypeScript syntax can break the compilation process and prevent your plugin from generating usable code. Implement validation checks to catch syntax errors early in the generation process.</p>
+<pre><code class="language-typescript">function validateGeneratedCode(sourceFile: SourceFile): void {
+  const diagnostics = sourceFile.getPreEmitDiagnostics();
+  
+  if (diagnostics.length &gt; 0) {
+    const errors = diagnostics.map(d =&gt; ({
+      message: d.getMessageText(),
+      line: d.getLineNumber(),
+      file: d.getSourceFile()?.getFilePath()
+    }));
+    
+    throw new Error(`Generated TypeScript has errors: ${JSON.stringify(errors, null, 2)}`);
+  }
+}</code></pre>
+<h4 id="9-1-2-circular-type-references">9.1.2. Circular Type References</h4>
+<p>Circular type references can cause infinite loops and compilation errors. Detecting and handling these scenarios is crucial for plugins that work with complex, interconnected data structures.</p>
+<pre><code class="language-typescript">function detectCircularReferences(schemas: Schema[]): string[] {
+  const graph = new Map&lt;string, Set&lt;string&gt;&gt;();
+  const cycles: string[] = [];
+  
+  // Build dependency graph
+  for (const schema of schemas) {
+    const deps = new Set&lt;string&gt;();
+    
+    for (const prop of Object.values(schema.properties)) {
+      if (prop.type &amp;&amp; schemas.some(s =&gt; s.name === prop.type)) {
+        deps.add(prop.type);
+      }
+    }
+    
+    graph.set(schema.name, deps);
+  }
+  
+  // Detect cycles using DFS
+  const visited = new Set&lt;string&gt;();
+  const recursionStack = new Set&lt;string&gt;();
+  
+  function hasCycle(node: string): boolean {
+    if (recursionStack.has(node)) {
+      cycles.push(node);
+      return true;
+    }
+    
+    if (visited.has(node)) {
+      return false;
+    }
+    
+    visited.add(node);
+    recursionStack.add(node);
+    
+    const deps = graph.get(node) || new Set();
+    for (const dep of deps) {
+      if (hasCycle(dep)) {
+        return true;
+      }
+    }
+    
+    recursionStack.delete(node);
+    return false;
+  }
+  
+  for (const schema of schemas) {
+    hasCycle(schema.name);
+  }
+  
+  return cycles;
+}</code></pre>
+<h4 id="9-1-3-memory-issues-with-large-schemas">9.1.3. Memory Issues with Large Schemas</h4>
+<p>Memory management becomes important when processing large schemas or generating substantial amounts of code. Implement streaming and batching strategies to handle large-scale generation efficiently.</p>
+<pre><code class="language-typescript">class StreamingGenerator {
+  async generateLargeSchema(schemas: Schema[]): Promise&lt;void&gt; {
+    const batchSize = 10;
+    
+    for (let i = 0; i &lt; schemas.length; i += batchSize) {
+      const batch = schemas.slice(i, i + batchSize);
+      
+      // Process batch
+      await this.processBatch(batch);
+      
+      // Clear memory
+      if (global.gc) {
+        global.gc();
+      }
+    }
+  }
+  
+  private async processBatch(schemas: Schema[]): Promise&lt;void&gt; {
+    // Process smaller batches to avoid memory issues
+  }
+}</code></pre>
+<h3 id="9-2-debugging-tips">9.2. Debugging Tips</h3>
+<p>Effective debugging techniques help identify issues quickly and understand the plugin's behavior during development. These tools and strategies provide visibility into the generation process.</p>
+<h4 id="9-2-1-enable-verbose-logging">9.2.1. Enable Verbose Logging</h4>
+<p>Verbose logging provides detailed information about the plugin's execution flow, helping identify where issues occur and what data is being processed at each step.</p>
+<pre><code class="language-typescript">const DEBUG = process.env.DEBUG === 'true';
+
+function debugLog(message: string, data?: any): void {
+  if (DEBUG) {
+    console.log(`[DEBUG] ${message}`, data ? JSON.stringify(data, null, 2) : '');
+  }
+}
+
+// Usage
+debugLog('Processing schema', schema);
+debugLog('Generated interface', interfaceDeclaration.getText());</code></pre>
+<h4 id="9-2-2-save-intermediate-results">9.2.2. Save Intermediate Results</h4>
+<p>Saving intermediate results allows you to inspect the code generation process at different stages, making it easier to identify where problems occur and verify that each step produces the expected output.</p>
+<pre><code class="language-typescript">async function saveIntermediateResults(
+  sourceFile: SourceFile,
+  step: string
+): Promise&lt;void&gt; {
+  if (process.env.SAVE_INTERMEDIATE === 'true') {
+    const outputPath = `debug-${step}-${Date.now()}.ts`;
+    await fs.writeFile(outputPath, sourceFile.getFullText());
+    console.log(`Saved intermediate result: ${outputPath}`);
+  }
+}</code></pre>
+<h4 id="9-2-3-validate-each-step">9.2.3. Validate Each Step</h4>
+<p>Step-by-step validation ensures that each phase of the generation process produces valid TypeScript code, helping catch issues early before they compound into larger problems.</p>
+<pre><code class="language-typescript">function validateStep(
+  sourceFile: SourceFile,
+  stepName: string
+): void {
+  try {
+    const diagnostics = sourceFile.getPreEmitDiagnostics();
+    if (diagnostics.length &gt; 0) {
+      throw new Error(`Step ${stepName} produced invalid TypeScript`);
+    }
+    console.log(`✅ Step ${stepName} completed successfully`);
+  } catch (error) {
+    console.error(`❌ Step ${stepName} failed:`, error.message);
+    throw error;
+  }
+}</code></pre>
+<h2 id="10-references">10. References</h2>
+<p>This section provides comprehensive resources for continued learning and development with <code>ts-morph</code>. These references include official documentation, community resources, and related tools that enhance the plugin development experience.</p>
+<h3 id="10-1-official-documentation">10.1. Official Documentation</h3>
+<p>Official documentation provides authoritative information about <code>ts-morph</code> APIs, TypeScript compiler internals, and AST manipulation techniques.</p>
+<ul><li><strong>ts-morph Documentation</strong>: <a href="https://ts-morph.com/" target="_blank" rel="noreferrer">https://ts-morph.com/</a></li><li><strong>TypeScript Compiler API</strong>: <a href="https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API" target="_blank" rel="noreferrer">https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API</a></li><li><strong>TypeScript AST Viewer</strong>: <a href="https://ts-ast-viewer.com/" target="_blank" rel="noreferrer">https://ts-ast-viewer.com/</a></li></ul>
+<h3 id="10-2-useful-resources">10.2. Useful Resources</h3>
+<p>Additional resources provide practical examples, community insights, and tools that complement the official documentation for comprehensive plugin development.</p>
+<ul><li><strong>ts-morph GitHub Repository</strong>: <a href="https://github.com/dsherret/ts-morph" target="_blank" rel="noreferrer">https://github.com/dsherret/ts-morph</a></li><li><strong>TypeScript Handbook</strong>: <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noreferrer">https://www.typescriptlang.org/docs/</a></li><li><strong>AST Explorer</strong>: <a href="https://astexplorer.net/" target="_blank" rel="noreferrer">https://astexplorer.net/</a></li></ul>
+<h3 id="10-3-community-examples">10.3. Community Examples</h3>
+<p>Community examples showcase real-world usage patterns and provide inspiration for advanced plugin development techniques.</p>
+<ul><li><strong>ts-morph Examples</strong>: <a href="https://github.com/dsherret/ts-morph/tree/latest/packages/ts-morph/scripts" target="_blank" rel="noreferrer">https://github.com/dsherret/ts-morph/tree/latest/packages/ts-morph/scripts</a></li><li><strong>Code Generation Patterns</strong>: <a href="https://github.com/topics/code-generation" target="_blank" rel="noreferrer">https://github.com/topics/code-generation</a></li></ul>
+<p><strong>Related Tools</strong></p>
+<ul><li><strong>TypeScript ESLint</strong>: For linting generated code</li><li><strong>Prettier</strong>: For formatting generated code</li><li><strong>ts-node</strong>: For running TypeScript directly</li><li><strong>Jest</strong>: For testing your plugins</li></ul>
+<p>This comprehensive guide provides everything you need to create powerful code generation plugins using <code>ts-morph</code>. The library's type-safe approach to code manipulation makes it an excellent choice for building robust, maintainable code generators that produce high-quality TypeScript output.</p>
+    </div>
+    <nav class="pager">
+  <a href="../test-data-plugin/index.html"><span>Previous</span>Test Data Generator Plugin Tutorial</a>
+
+  <a href="../typescript-interfaces-plugin/index.html"><span>Next</span>TypeScript Interface Generator Plugin Tutorial</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#creating-plugins-with-ts-morph-a-comprehensive-guide">Creating Plugins with ts-morph: A Comprehensive Guide</a></li>
+<li><a href="#1-introduction">1. Introduction</a></li>
+<li><a href="#2-installation">2. Installation</a></li>
+<li><a href="#3-setting-up-the-project">3. Setting Up the Project</a></li>
+<li><a href="#4-understanding-ts-morph-basics">4. Understanding ts-morph Basics</a></li>
+<li><a href="#4-1-project-and-source-files">4.1. Project and Source Files</a></li>
+<li><a href="#4-2-adding-different-constructs">4.2. Adding Different Constructs</a></li>
+<li><a href="#4-3-exporting-a-class">4.3. Exporting a Class</a></li>
+<li><a href="#4-4-exporting-a-function">4.4. Exporting a Function</a></li>
+<li><a href="#4-5-exporting-a-const">4.5. Exporting a Const</a></li>
+<li><a href="#4-6-exporting-an-object">4.6. Exporting an Object</a></li>
+<li><a href="#4-7-exporting-types">4.7. Exporting Types</a></li>
+<li><a href="#4-8-importing-values">4.8. Importing Values</a></li>
+<li><a href="#4-9-importing-defaults">4.9. Importing Defaults</a></li>
+<li><a href="#4-10-working-with-existing-code">4.10. Working with Existing Code</a></li>
+<li><a href="#5-creating-your-first-plugin">5. Creating Your First Plugin</a></li>
+<li><a href="#5-1-define-the-plugin-interface">5.1. Define the Plugin Interface</a></li>
+<li><a href="#5-2-core-plugin-implementation">5.2. Core Plugin Implementation</a></li>
+<li><a href="#5-3-plugin-entry-point">5.3. Plugin Entry Point</a></li>
+<li><a href="#5-4-example-usage">5.4. Example Usage</a></li>
+<li><a href="#6-advanced-ts-morph-features">6. Advanced ts-morph Features</a></li>
+<li><a href="#6-1-working-with-decorators">6.1. Working with Decorators</a></li>
+<li><a href="#6-2-generating-complex-types">6.2. Generating Complex Types</a></li>
+<li><a href="#6-3-working-with-modules">6.3. Working with Modules</a></li>
+<li><a href="#6-4-manipulating-existing-code">6.4. Manipulating Existing Code</a></li>
+<li><a href="#7-testing-your-plugin">7. Testing Your Plugin</a></li>
+<li><a href="#8-best-practices">8. Best Practices</a></li>
+<li><a href="#8-1-type-safety">8.1. Type Safety</a></li>
+<li><a href="#8-2-error-handling">8.2. Error Handling</a></li>
+<li><a href="#8-3-performance-optimization">8.3. Performance Optimization</a></li>
+<li><a href="#8-4-code-organization">8.4. Code Organization</a></li>
+<li><a href="#8-5-documentation-generation">8.5. Documentation Generation</a></li>
+<li><a href="#9-troubleshooting">9. Troubleshooting</a></li>
+<li><a href="#9-1-common-issues">9.1. Common Issues</a></li>
+<li><a href="#9-2-debugging-tips">9.2. Debugging Tips</a></li>
+<li><a href="#10-references">10. References</a></li>
+<li><a href="#10-1-official-documentation">10.1. Official Documentation</a></li>
+<li><a href="#10-2-useful-resources">10.2. Useful Resources</a></li>
+<li><a href="#10-3-community-examples">10.3. Community Examples</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>

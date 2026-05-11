@@ -6,6 +6,7 @@
   ],
   "scripts": {
     "build": "yarn build:parser && yarn build:transformer && yarn build:idea && yarn build:example",
+    "build:docs": "node ./scripts/build-docs.mjs",
     "build:parser": "yarn --cwd packages/idea-parser build",
     "build:language": "yarn --cwd packages/idea-language build",
     "build:transformer": "yarn --cwd packages/idea-transformer build",

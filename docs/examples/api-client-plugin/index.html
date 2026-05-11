@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Idea schema language and toolchain documentation." />
+  <title>API Client Generator Plugin Tutorial | Idea</title>
+  <link rel="icon" type="image/png" href="../../assets/brand/icon.png" />
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github.min.css" />
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.10.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="../../assets/site.css" />
+</head>
+<body class="page-doc">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="../../index.html">
+        <img src="../../assets/brand/idea.png" alt="Idea logo" />
+        <span class="brand-mark">
+          <strong>Idea</strong>
+        </span>
+      </a>
+      <div class="topbar-actions">
+        <nav class="topnav">
+          <a href="../../getting-started/index.html">Start</a>
+          <a href="../../concepts/overview/index.html">Concepts</a>
+          <a href="../../how-to/run-a-schema/index.html">How-To</a>
+          <a href="../../reference/specification/index.html">Reference</a>
+          <a href="../index.html">Examples</a>
+        </nav>
+        <a class="icon-button" href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer" aria-label="GitHub repository">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.27 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 5.72 0c2.18-1.49 3.14-1.18 3.14-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.66.41.35.78 1.04.78 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.67.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle color theme" data-theme-toggle>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.45 1 1 0 0 0-1.19-1.33A10 10 0 1 0 23 15.05 1 1 0 0 0 21.64 13Z"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="docs-layout">
+  <aside class="panel sidebar">
+    <h2>Sections</h2>
+<div class="sidebar-group">
+  <p class="kicker">Start</p>
+  <ul>
+    <li>
+  <a class="" href="../../getting-started/index.html">Getting Started</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Concepts</p>
+  <ul>
+    <li>
+  <a class="" href="../../concepts/overview/index.html">Concepts Overview</a>
+</li>
+<li>
+  <a class="" href="../../concepts/the-idea-file/index.html">The .idea File</a>
+</li>
+<li>
+  <a class="" href="../../concepts/schema-building/index.html">Schema Building</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">How-To</p>
+  <ul>
+    <li>
+  <a class="" href="../../how-to/run-a-schema/index.html">Run A Schema</a>
+</li>
+<li>
+  <a class="" href="../../how-to/split-schemas-with-use/index.html">Split Schemas With use</a>
+</li>
+<li>
+  <a class="" href="../../how-to/write-a-plugin/index.html">Write A Plugin</a>
+</li>
+<li>
+  <a class="" href="../../how-to/use-the-vscode-extension/index.html">Use The VS Code Extension</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Reference</p>
+  <ul>
+    <li>
+  <a class="" href="../../reference/specification/index.html">Specification Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/cli/index.html">CLI Reference</a>
+</li>
+<li>
+  <a class="" href="../../reference/plugin-api/index.html">Plugin API Reference</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/index.html">Parser API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Compiler/index.html">Compiler</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Exception/index.html">Exception</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Lexer/index.html">Lexer</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Tokens/index.html">Tokens</a>
+</li>
+<li>
+  <a class="" href="../../api/parser/Trees/index.html">Syntax Trees</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/index.html">Transformer API Docs</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Terminal/index.html">Terminal</a>
+</li>
+<li>
+  <a class="" href="../../api/transformer/Transformer/index.html">Transformer</a>
+</li>
+
+  </ul>
+</div>
+<div class="sidebar-group">
+  <p class="kicker">Examples</p>
+  <ul>
+    <li>
+  <a class="" href="../index.html">Examples</a>
+</li>
+<li>
+  <a class="is-active" href="./index.html">API Client Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../graphql-schema-plugin/index.html">GraphQL Schema Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../html-form-plugin/index.html">Tutorial: Creating an HTML Form Plugin</a>
+</li>
+<li>
+  <a class="" href="../markdown-docs-plugin/index.html">Tutorial: Creating a Markdown Documentation Plugin</a>
+</li>
+<li>
+  <a class="" href="../mysql-tables-plugin/index.html">Tutorial: Creating a MySQL Tables Plugin</a>
+</li>
+<li>
+  <a class="" href="../openapi-spec-plugin/index.html">OpenAPI Specification Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../test-data-plugin/index.html">Test Data Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../ts-morph-plugin-guide/index.html">Creating Plugins with ts-morph: A Comprehensive Guide</a>
+</li>
+<li>
+  <a class="" href="../typescript-interfaces-plugin/index.html">TypeScript Interface Generator Plugin Tutorial</a>
+</li>
+<li>
+  <a class="" href="../validation-plugin/index.html">Validation Schema Generator Plugin Tutorial</a>
+</li>
+
+  </ul>
+</div>
+
+
+  </aside>
+  <article class="page-card">
+    <header class="page-header">
+      <div class="breadcrumb">
+        <span>Idea docs</span>
+        <span>/</span>
+        <span>Examples</span>
+      </div>
+      <h1>API Client Generator Plugin Tutorial</h1>
+      <p>This tutorial demonstrates how to create a plugin that generates REST and GraphQL API clients from `.idea` schema files. The plugin will transform your schema models into type-safe API client libraries with full CRUD operations.</p>
+      <div class="page-meta">
+        <a href="https://github.com/stackpress/idea/blob/main/specs/examples/api-client-plugin.md">View source</a>
+        <a href="../../index.html">Home</a>
+      </div>
+    </header>
+    <div class="content">
+      <p>This tutorial demonstrates how to create a plugin that generates REST and GraphQL API clients from <code>.idea</code> schema files. The plugin will transform your schema models into type-safe API client libraries with full CRUD operations.</p>
+<ol><li><a href="#overview">Overview</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#plugin-structure">Plugin Structure</a></li><li><a href="#implementation">Implementation</a></li><li><a href="#schema-configuration">Schema Configuration</a></li><li><a href="#usage-examples">Usage Examples</a></li><li><a href="#advanced-features">Advanced Features</a></li><li><a href="#best-practices">Best Practices</a></li><li><a href="#troubleshooting">Troubleshooting</a></li></ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>API clients provide a convenient interface for interacting with backend services. This plugin generates type-safe API clients from your <code>.idea</code> schema, including:</p>
+<ul><li><strong>REST Clients</strong>: HTTP-based API clients with fetch/axios</li><li><strong>GraphQL Clients</strong>: Apollo Client or custom GraphQL clients</li><li><strong>Type Safety</strong>: Full TypeScript support with generated types</li><li><strong>CRUD Operations</strong>: Create, Read, Update, Delete methods</li><li><strong>Authentication</strong>: Built-in auth handling</li><li><strong>Error Handling</strong>: Comprehensive error management</li></ul>
+<h2 id="2-prerequisites">2. Prerequisites</h2>
+<p>Before implementing the API client generator plugin, ensure you have the necessary development environment and dependencies. This section covers the essential requirements and setup needed to successfully create and use the plugin.</p>
+<ul><li>Node.js 16+ and npm/yarn</li><li>TypeScript 4.0+</li><li>Basic understanding of REST and GraphQL APIs</li><li>Familiarity with the <code>@stackpress/idea-transformer</code> library</li><li>Understanding of <code>.idea</code> schema format</li></ul>
+<h2 id="3-plugin-structure">3. Plugin Structure</h2>
+<p>The plugin structure defines the core architecture and configuration interface for the API client generator. This includes the main plugin function, configuration types, and the overall organization of the generated client code.</p>
+<pre><code class="language-typescript">import type { PluginProps } from '@stackpress/idea-transformer/types';
+import fs from 'fs/promises';
+import path from 'path';
+
+interface APIClientConfig {
+  output: string;
+  clientType: 'rest' | 'graphql' | 'both';
+  httpLibrary?: 'fetch' | 'axios';
+  baseUrl?: string;
+  authentication?: {
+    type: 'bearer' | 'apikey' | 'basic' | 'custom';
+    headerName?: string;
+  };
+  generateTypes?: boolean;
+  includeValidation?: boolean;
+  errorHandling?: 'throw' | 'return' | 'callback';
+}
+
+export default async function generateAPIClient(
+  props: PluginProps&lt;{ config: APIClientConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  // Implementation here...
+}</code></pre>
+<h2 id="4-implementation">4. Implementation</h2>
+<p>The implementation section covers the core plugin function and supporting utilities that handle API client generation. This includes configuration validation, content generation, file writing, and error handling throughout the generation process.</p>
+<h3 id="4-1-core-plugin-function">4.1. Core Plugin Function</h3>
+<p>The core plugin function serves as the main entry point for API client generation. It orchestrates the entire process from configuration validation through content generation to file output, ensuring proper error handling and logging throughout.</p>
+<pre><code class="language-typescript">export default async function generateAPIClient(
+  props: PluginProps&lt;{ config: APIClientConfig }&gt;
+) {
+  const { config, schema, transformer } = props;
+  
+  try {
+    // Validate configuration
+    validateConfig(config);
+    
+    // Generate client content
+    let content = '';
+    
+    // Add file header and imports
+    content += generateFileHeader(config);
+    content += generateImports(config);
+    
+    // Generate types if requested
+    if (config.generateTypes) {
+      content += generateTypes(schema, config);
+    }
+    
+    // Generate base client class
+    content += generateBaseClient(config);
+    
+    // Generate model-specific clients
+    if (schema.model) {
+      if (config.clientType === 'rest' || config.clientType === 'both') {
+        content += generateRESTClients(schema.model, config);
+      }
+      
+      if (config.clientType === 'graphql' || config.clientType === 'both') {
+        content += generateGraphQLClients(schema.model, config);
+      }
+    }
+    
+    // Generate main client export
+    content += generateMainClient(schema, config);
+    
+    // Write to output file
+    const outputPath = await transformer.loader.absolute(config.output);
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+    await fs.writeFile(outputPath, content, 'utf8');
+    
+    console.log(`✅ API client generated: ${outputPath}`);
+    
+  } catch (error) {
+    console.error('❌ API client generation failed:', error.message);
+    throw error;
+  }
+}</code></pre>
+<h3 id="4-2-generation-functions">4.2. Generation Functions</h3>
+<p>The generation functions handle the creation of specific parts of the API client code. These utility functions generate file headers, imports, type definitions, base client classes, and model-specific client methods, ensuring consistent code structure and proper TypeScript typing.</p>
+<pre><code class="language-typescript">function generateFileHeader(config: APIClientConfig): string {
+  const timestamp = new Date().toISOString();
+  return `/**
+ * Generated API Client
+ * Generated at: ${timestamp}
+ * Client Type: ${config.clientType}
+ * HTTP Library: ${config.httpLibrary || 'fetch'}
+ * 
+ * This file is auto-generated. Do not edit manually.
+ */
+
+`;
+}
+
+function generateImports(config: APIClientConfig): string {
+  let imports = '';
+  
+  if (config.httpLibrary === 'axios') {
+    imports += `import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';\n`;
+  }
+  
+  if (config.clientType === 'graphql' || config.clientType === 'both') {
+    imports += `import { ApolloClient, InMemoryCache, gql, DocumentNode } from '@apollo/client';\n`;
+  }
+  
+  imports += `
+// Base types
+interface APIResponse&lt;T = any&gt; {
+  success: boolean;
+  data?: T;
+  error?: string;
+  errors?: Record&lt;string, string[]&gt;;
+}
+
+interface PaginatedResponse&lt;T&gt; extends APIResponse&lt;T[]&gt; {
+  total: number;
+  page: number;
+  limit: number;
+}
+
+interface RequestOptions {
+  headers?: Record&lt;string, string&gt;;
+  signal?: AbortSignal;
+}
+
+`;
+  
+  return imports;
+}
+
+function generateTypes(schema: any, config: APIClientConfig): string {
+  let content = '// Generated Types\n';
+  
+  // Generate enums
+  if (schema.enum) {
+    for (const [enumName, enumDef] of Object.entries(schema.enum)) {
+      content += `export enum ${enumName} {\n`;
+      for (const [key, value] of Object.entries(enumDef)) {
+        content += `  ${key} = "${value}",\n`;
+      }
+      content += '}\n\n';
+    }
+  }
+  
+  // Generate interfaces
+  if (schema.model) {
+    for (const [modelName, model] of Object.entries(schema.model)) {
+      content += `export interface ${modelName} {\n`;
+      for (const column of model.columns || []) {
+        const optional = !column.required ? '?' : '';
+        const type = mapTypeToTypeScript(column.type);
+        content += `  ${column.name}${optional}: ${type};\n`;
+      }
+      content += '}\n\n';
+      
+      // Generate input types
+      const autoFields = model.columns
+        ?.filter((col: any) =&gt; col.attributes?.id || col.attributes?.default)
+        .map((col: any) =&gt; `'${col.name}'`)
+        .join(' | ');
+      
+      if (autoFields) {
+        content += `export type Create${modelName}Input = Omit&lt;${modelName}, ${autoFields}&gt;;\n`;
+      } else {
+        content += `export type Create${modelName}Input = ${modelName};\n`;
+      }
+      
+      content += `export type Update${modelName}Input = Partial&lt;${modelName}&gt;;\n\n`;
+    }
+  }
+  
+  return content;
+}
+
+function generateBaseClient(config: APIClientConfig): string {
+  const authType = config.authentication?.type || 'bearer';
+  const headerName = config.authentication?.headerName || 'Authorization';
+  
+  return `
+// Base Client Class
+export class BaseAPIClient {
+  private baseUrl: string;
+  private authToken?: string;
+  ${config.httpLibrary === 'axios' ? 'private axiosInstance: AxiosInstance;' : ''}
+
+  constructor(baseUrl: string = '${config.baseUrl || '/api'}') {
+    this.baseUrl = baseUrl.replace(/\\/$/, '');
+    ${config.httpLibrary === 'axios' ? this.generateAxiosSetup() : ''}
+  }
+
+  setAuthToken(token: string): void {
+    this.authToken = token;
+  }
+
+  private getAuthHeaders(): Record&lt;string, string&gt; {
+    if (!this.authToken) return {};
+    
+    ${this.generateAuthHeaders(authType, headerName)}
+  }
+
+  ${config.httpLibrary === 'axios' ? this.generateAxiosMethods() : this.generateFetchMethods()}
+}
+
+`;
+}
+
+function generateAxiosSetup(): string {
+  return `
+    this.axiosInstance = axios.create({
+      baseURL: this.baseUrl,
+      timeout: 10000,
+    });
+    
+    // Request interceptor for auth
+    this.axiosInstance.interceptors.request.use((config) =&gt; {
+      const authHeaders = this.getAuthHeaders();
+      config.headers = { ...config.headers, ...authHeaders };
+      return config;
+    });
+    
+    // Response interceptor for error handling
+    this.axiosInstance.interceptors.response.use(
+      (response) =&gt; response,
+      (error: AxiosError) =&gt; {
+        throw this.handleError(error);
+      }
+    );`;
+}
+
+function generateAuthHeaders(authType: string, headerName: string): string {
+  switch (authType) {
+    case 'bearer':
+      return `return { '${headerName}': \`Bearer \${this.authToken}\` };`;
+    case 'apikey':
+      return `return { '${headerName}': this.authToken };`;
+    case 'basic':
+      return `return { '${headerName}': \`Basic \${btoa(this.authToken)}\` };`;
+    default:
+      return `return { '${headerName}': this.authToken };`;
+  }
+}
+
+function generateAxiosMethods(): string {
+  return `
+  protected async get&lt;T&gt;(url: string, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    try {
+      const response: AxiosResponse&lt;T&gt; = await this.axiosInstance.get(url, {
+        headers: options?.headers,
+        signal: options?.signal,
+      });
+      return { success: true, data: response.data };
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  protected async post&lt;T&gt;(url: string, data?: any, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    try {
+      const response: AxiosResponse&lt;T&gt; = await this.axiosInstance.post(url, data, {
+        headers: options?.headers,
+        signal: options?.signal,
+      });
+      return { success: true, data: response.data };
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  protected async put&lt;T&gt;(url: string, data?: any, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    try {
+      const response: AxiosResponse&lt;T&gt; = await this.axiosInstance.put(url, data, {
+        headers: options?.headers,
+        signal: options?.signal,
+      });
+      return { success: true, data: response.data };
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  protected async delete&lt;T&gt;(url: string, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    try {
+      const response: AxiosResponse&lt;T&gt; = await this.axiosInstance.delete(url, {
+        headers: options?.headers,
+        signal: options?.signal,
+      });
+      return { success: true, data: response.data };
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  private handleError(error: any): APIResponse {
+    if (error.response) {
+      return {
+        success: false,
+        error: error.response.data?.message || error.message,
+        errors: error.response.data?.errors,
+      };
+    }
+    return {
+      success: false,
+      error: error.message || 'Unknown error occurred',
+    };
+  }`;
+}
+
+function generateFetchMethods(): string {
+  return `
+  protected async get&lt;T&gt;(url: string, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    return this.request&lt;T&gt;('GET', url, undefined, options);
+  }
+
+  protected async post&lt;T&gt;(url: string, data?: any, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    return this.request&lt;T&gt;('POST', url, data, options);
+  }
+
+  protected async put&lt;T&gt;(url: string, data?: any, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    return this.request&lt;T&gt;('PUT', url, data, options);
+  }
+
+  protected async delete&lt;T&gt;(url: string, options?: RequestOptions): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    return this.request&lt;T&gt;('DELETE', url, undefined, options);
+  }
+
+  private async request&lt;T&gt;(
+    method: string,
+    url: string,
+    data?: any,
+    options?: RequestOptions
+  ): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    try {
+      const authHeaders = this.getAuthHeaders();
+      const headers = {
+        'Content-Type': 'application/json',
+        ...authHeaders,
+        ...options?.headers,
+      };
+
+      const response = await fetch(\`\${this.baseUrl}\${url}\`, {
+        method,
+        headers,
+        body: data ? JSON.stringify(data) : undefined,
+        signal: options?.signal,
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        return {
+          success: false,
+          error: responseData.message || 'Request failed',
+          errors: responseData.errors,
+        };
+      }
+
+      return { success: true, data: responseData };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error occurred',
+      };
+    }
+  }`;
+}
+
+function generateRESTClients(models: Record&lt;string, any&gt;, config: APIClientConfig): string {
+  let content = '// REST API Clients\n';
+  
+  for (const [modelName, model] of Object.entries(models)) {
+    const lowerName = modelName.toLowerCase();
+    const pluralName = `${lowerName}s`;
+    
+    content += `
+export class ${modelName}Client extends BaseAPIClient {
+  // Get all ${pluralName}
+  async getAll(params?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+    sort?: string;
+  }, options?: RequestOptions): Promise&lt;PaginatedResponse&lt;${modelName}&gt;&gt; {
+    const queryParams = new URLSearchParams();
+    if (params?.page) queryParams.set('page', params.page.toString());
+    if (params?.limit) queryParams.set('limit', params.limit.toString());
+    if (params?.search) queryParams.set('search', params.search);
+    if (params?.sort) queryParams.set('sort', params.sort);
+    
+    const query = queryParams.toString();
+    const url = \`/${pluralName}\${query ? \`?\${query}\` : ''}\`;
+    
+    return this.get&lt;${modelName}[]&gt;(url, options) as Promise&lt;PaginatedResponse&lt;${modelName}&gt;&gt;;
+  }
+
+  // Get single ${lowerName} by ID
+  async getById(id: string, options?: RequestOptions): Promise&lt;APIResponse&lt;${modelName}&gt;&gt; {
+    return this.get&lt;${modelName}&gt;(\`/${pluralName}/\${id}\`, options);
+  }
+
+  // Create new ${lowerName}
+  async create(data: Create${modelName}Input, options?: RequestOptions): Promise&lt;APIResponse&lt;${modelName}&gt;&gt; {
+    return this.post&lt;${modelName}&gt;(\`/${pluralName}\`, data, options);
+  }
+
+  // Update existing ${lowerName}
+  async update(id: string, data: Update${modelName}Input, options?: RequestOptions): Promise&lt;APIResponse&lt;${modelName}&gt;&gt; {
+    return this.put&lt;${modelName}&gt;(\`/${pluralName}/\${id}\`, data, options);
+  }
+
+  // Delete ${lowerName}
+  async delete(id: string, options?: RequestOptions): Promise&lt;APIResponse&lt;boolean&gt;&gt; {
+    return this.delete&lt;boolean&gt;(\`/${pluralName}/\${id}\`, options);
+  }
+}
+`;
+  }
+  
+  return content;
+}
+
+function generateGraphQLClients(models: Record&lt;string, any&gt;, config: APIClientConfig): string {
+  let content = '// GraphQL API Clients\n';
+  
+  content += `
+export class GraphQLClient extends BaseAPIClient {
+  private apolloClient: ApolloClient&lt;any&gt;;
+
+  constructor(baseUrl: string = '${config.baseUrl || '/graphql'}') {
+    super(baseUrl);
+    this.apolloClient = new ApolloClient({
+      uri: this.baseUrl,
+      cache: new InMemoryCache(),
+    });
+  }
+
+  private async executeQuery&lt;T&gt;(query: DocumentNode, variables?: any): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    try {
+      const result = await this.apolloClient.query({
+        query,
+        variables,
+      });
+      return { success: true, data: result.data };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'GraphQL query failed',
+      };
+    }
+  }
+
+  private async executeMutation&lt;T&gt;(mutation: DocumentNode, variables?: any): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    try {
+      const result = await this.apolloClient.mutate({
+        mutation,
+        variables,
+      });
+      return { success: true, data: result.data };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'GraphQL mutation failed',
+      };
+    }
+  }
+`;
+
+  for (const [modelName, model] of Object.entries(models)) {
+    const lowerName = modelName.toLowerCase();
+    const pluralName = `${lowerName}s`;
+    
+    content += `
+  // ${modelName} GraphQL operations
+  async get${pluralName}(variables?: { limit?: number; offset?: number }): Promise&lt;APIResponse&lt;${modelName}[]&gt;&gt; {
+    const query = gql\`
+      query Get${pluralName}($limit: Int, $offset: Int) {
+        ${pluralName}(limit: $limit, offset: $offset) {
+          ${generateGraphQLFields(model)}
+        }
+      }
+    \`;
+    return this.executeQuery&lt;${modelName}[]&gt;(query, variables);
+  }
+
+  async get${modelName}(id: string): Promise&lt;APIResponse&lt;${modelName}&gt;&gt; {
+    const query = gql\`
+      query Get${modelName}($id: ID!) {
+        ${lowerName}(id: $id) {
+          ${generateGraphQLFields(model)}
+        }
+      }
+    \`;
+    return this.executeQuery&lt;${modelName}&gt;(query, { id });
+  }
+
+  async create${modelName}(input: Create${modelName}Input): Promise&lt;APIResponse&lt;${modelName}&gt;&gt; {
+    const mutation = gql\`
+      mutation Create${modelName}($input: ${modelName}Input!) {
+        create${modelName}(input: $input) {
+          ${generateGraphQLFields(model)}
+        }
+      }
+    \`;
+    return this.executeMutation&lt;${modelName}&gt;(mutation, { input });
+  }
+
+  async update${modelName}(id: string, input: Update${modelName}Input): Promise&lt;APIResponse&lt;${modelName}&gt;&gt; {
+    const mutation = gql\`
+      mutation Update${modelName}($id: ID!, $input: ${modelName}UpdateInput!) {
+        update${modelName}(id: $id, input: $input) {
+          ${generateGraphQLFields(model)}
+        }
+      }
+    \`;
+    return this.executeMutation&lt;${modelName}&gt;(mutation, { id, input });
+  }
+
+  async delete${modelName}(id: string): Promise&lt;APIResponse&lt;boolean&gt;&gt; {
+    const mutation = gql\`
+      mutation Delete${modelName}($id: ID!) {
+        delete${modelName}(id: $id)
+      }
+    \`;
+    return this.executeMutation&lt;boolean&gt;(mutation, { id });
+  }
+`;
+  }
+  
+  content += '}\n';
+  return content;
+}
+
+function generateGraphQLFields(model: any): string {
+  return model.columns?.map((col: any) =&gt; col.name).join('\n          ') || 'id';
+}
+
+function generateMainClient(schema: any, config: APIClientConfig): string {
+  let content = '// Main API Client\n';
+  
+  content += `export class APIClient extends BaseAPIClient {\n`;
+  
+  if (schema.model) {
+    for (const [modelName] of Object.entries(schema.model)) {
+      const lowerName = modelName.toLowerCase();
+      
+      if (config.clientType === 'rest' || config.clientType === 'both') {
+        content += `  public ${lowerName}: ${modelName}Client;\n`;
+      }
+    }
+    
+    if (config.clientType === 'graphql' || config.clientType === 'both') {
+      content += `  public graphql: GraphQLClient;\n`;
+    }
+  }
+  
+  content += `
+  constructor(baseUrl?: string) {
+    super(baseUrl);
+`;
+
+  if (schema.model) {
+    for (const [modelName] of Object.entries(schema.model)) {
+      const lowerName = modelName.toLowerCase();
+      
+      if (config.clientType === 'rest' || config.clientType === 'both') {
+        content += `    this.${lowerName} = new ${modelName}Client(baseUrl);\n`;
+      }
+    }
+    
+    if (config.clientType === 'graphql' || config.clientType === 'both') {
+      content += `    this.graphql = new GraphQLClient(baseUrl);\n`;
+    }
+  }
+  
+  content += `  }
+
+  // Set auth token for all clients
+  setAuthToken(token: string): void {
+    super.setAuthToken(token);
+`;
+
+  if (schema.model) {
+    for (const [modelName] of Object.entries(schema.model)) {
+      const lowerName = modelName.toLowerCase();
+      
+      if (config.clientType === 'rest' || config.clientType === 'both') {
+        content += `    this.${lowerName}.setAuthToken(token);\n`;
+      }
+    }
+    
+    if (config.clientType === 'graphql' || config.clientType === 'both') {
+      content += `    this.graphql.setAuthToken(token);\n`;
+    }
+  }
+  
+  content += `  }
+}
+
+// Default export
+export default APIClient;
+`;
+  
+  return content;
+}
+
+function mapTypeToTypeScript(schemaType: string): string {
+  const typeMap: Record&lt;string, string&gt; = {
+    'String': 'string',
+    'Number': 'number',
+    'Integer': 'number',
+    'Boolean': 'boolean',
+    'Date': 'Date',
+    'JSON': 'any',
+    'ID': 'string'
+  };
+  
+  return typeMap[schemaType] || schemaType;
+}
+
+function validateConfig(config: any): asserts config is APIClientConfig {
+  if (!config.output || typeof config.output !== 'string') {
+    throw new Error('API Client plugin requires "output" configuration as string');
+  }
+  
+  if (!config.clientType || !['rest', 'graphql', 'both'].includes(config.clientType)) {
+    throw new Error('clientType must be one of: rest, graphql, both');
+  }
+  
+  if (config.httpLibrary &amp;&amp; !['fetch', 'axios'].includes(config.httpLibrary)) {
+    throw new Error('httpLibrary must be one of: fetch, axios');
+  }
+}</code></pre>
+<h2 id="5-schema-configuration">5. Schema Configuration</h2>
+<p>Add the API Client plugin to your <code>.idea</code> schema file:</p>
+<pre><code class="language-typescript">plugin "./plugins/api-client.js" {
+  output "./generated/api-client.ts"
+  clientType "rest"
+  httpLibrary "fetch"
+  baseUrl "/api/v1"
+  authentication {
+    type "bearer"
+    headerName "Authorization"
+  }
+  generateTypes true
+  includeValidation false
+  errorHandling "return"
+}</code></pre>
+<p><strong>Configuration Options</strong></p>
+
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>clientType</code></td><td>`'rest'\</td><td>'graphql'\</td><td>'both'`</td><td><strong>Required</strong></td><td>Type of client to generate</td></tr><tr><td><code>httpLibrary</code></td><td>`'fetch'\</td><td>'axios'`</td><td><code>'fetch'</code></td><td>HTTP library to use</td></tr><tr><td><code>baseUrl</code></td><td><code>string</code></td><td><code>'/api'</code></td><td>Base URL for API requests</td></tr><tr><td><code>authentication</code></td><td><code>object</code></td><td><code>undefined</code></td><td>Authentication configuration</td></tr><tr><td><code>generateTypes</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Generate TypeScript types</td></tr><tr><td><code>includeValidation</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Include request validation</td></tr><tr><td><code>errorHandling</code></td><td>`'throw'\</td><td>'return'\</td><td>'callback'`</td><td><code>'return'</code></td><td>Error handling strategy</td></tr>
+      </tbody>
+    </table>
+  
+<h2 id="6-usage-examples">6. Usage Examples</h2>
+<p>This section demonstrates practical usage of the API client generator plugin with real-world examples. The examples show how to configure the plugin in schema files and how to use the generated client code in applications.</p>
+<h3 id="6-1-basic-schema">6.1. Basic Schema</h3>
+<p>A basic schema example shows the fundamental structure needed to generate API clients. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces a functional REST API client.</p>
+<pre><code class="language-typescript">enum UserRole {
+  ADMIN "admin"
+  USER "user"
+  GUEST "guest"
+}
+
+model User {
+  id String @id @default("nanoid()")
+  email String @unique @required
+  name String @required
+  role UserRole @default("USER")
+  active Boolean @default(true)
+  createdAt Date @default("now()")
+}
+
+model Post {
+  id String @id @default("nanoid()")
+  title String @required
+  content String @required
+  authorId String @required
+  published Boolean @default(false)
+  createdAt Date @default("now()")
+}
+
+plugin "./plugins/api-client.js" {
+  output "./api-client.ts"
+  clientType "rest"
+  httpLibrary "fetch"
+  baseUrl "/api/v1"
+  generateTypes true
+}</code></pre>
+<h3 id="6-2-generated-client-usage">6.2. Generated Client Usage</h3>
+<p>The generated client provides a type-safe interface for interacting with your API endpoints. This example demonstrates how to initialize the client, set authentication, and perform common CRUD operations with proper error handling and TypeScript support.</p>
+<pre><code class="language-typescript">import APIClient from './api-client';
+
+// Initialize client
+const client = new APIClient('https://api.example.com');
+
+// Set authentication token
+client.setAuthToken('your-jwt-token');
+
+// Use the client
+async function example() {
+  // Get all users with pagination
+  const usersResponse = await client.user.getAll({
+    page: 1,
+    limit: 10,
+    search: 'john'
+  });
+  
+  if (usersResponse.success) {
+    console.log('Users:', usersResponse.data);
+    console.log('Total:', usersResponse.total);
+  }
+  
+  // Get user by ID
+  const userResponse = await client.user.getById('user-123');
+  
+  if (userResponse.success) {
+    console.log('User:', userResponse.data);
+  }
+  
+  // Create new user
+  const newUserResponse = await client.user.create({
+    email: 'john@example.com',
+    name: 'John Doe',
+    role: UserRole.USER
+  });
+  
+  if (newUserResponse.success) {
+    console.log('Created user:', newUserResponse.data);
+  }
+  
+  // Update user
+  const updateResponse = await client.user.update('user-123', {
+    name: 'John Smith'
+  });
+  
+  // Delete user
+  const deleteResponse = await client.user.delete('user-123');
+}</code></pre>
+<h2 id="7-advanced-features">7. Advanced Features</h2>
+<p>Advanced features extend the basic API client functionality with sophisticated authentication, error handling, request management, and customization options. These features enable production-ready API clients that can handle complex scenarios and enterprise requirements.</p>
+<h3 id="7-1-authentication-strategies">7.1. Authentication Strategies</h3>
+<pre><code class="language-typescript">// Bearer token authentication
+authentication: {
+  type: "bearer",
+  headerName: "Authorization"
+}
+
+// API key authentication
+authentication: {
+  type: "apikey",
+  headerName: "X-API-Key"
+}
+
+// Basic authentication
+authentication: {
+  type: "basic",
+  headerName: "Authorization"
+}
+
+// Custom authentication
+authentication: {
+  type: "custom",
+  headerName: "X-Custom-Auth"
+}</code></pre>
+<h3 id="7-2-error-handling-strategies">7.2. Error Handling Strategies</h3>
+<p>Error handling strategies determine how the API client responds to and manages different types of errors. The plugin supports multiple approaches including returning errors in responses, throwing exceptions, and using callback functions for flexible error management.</p>
+<pre><code class="language-typescript">// Return errors in response (default)
+errorHandling: "return"
+const response = await client.user.getById('123');
+if (!response.success) {
+  console.error(response.error);
+}
+
+// Throw errors as exceptions
+errorHandling: "throw"
+try {
+  const user = await client.user.getById('123');
+} catch (error) {
+  console.error(error.message);
+}
+
+// Use callback for error handling
+errorHandling: "callback"
+const response = await client.user.getById('123', {
+  onError: (error) =&gt; console.error(error)
+});</code></pre>
+<h3 id="7-3-request-cancellation">7.3. Request Cancellation</h3>
+<p>Request cancellation allows you to abort ongoing API requests when they are no longer needed. This is essential for preventing unnecessary network traffic and improving application performance, especially in scenarios with user navigation or component unmounting.</p>
+<pre><code class="language-typescript">// Using AbortController for request cancellation
+const controller = new AbortController();
+
+const response = await client.user.getAll({}, {
+  signal: controller.signal
+});
+
+// Cancel the request
+controller.abort();</code></pre>
+<h3 id="7-4-custom-headers">7.4. Custom Headers</h3>
+<p>Custom headers enable you to add additional metadata to API requests for features like localization, custom authentication, tracking, or API versioning. The client supports both global and per-request header configuration.</p>
+<pre><code class="language-typescript">// Add custom headers to requests
+const response = await client.user.getById('123', {
+  headers: {
+    'X-Custom-Header': 'value',
+    'Accept-Language': 'en-US'
+  }
+});</code></pre>
+<h2 id="8-best-practices">8. Best Practices</h2>
+<p>Best practices ensure your API client implementation is maintainable, reliable, and follows industry standards. These guidelines cover type safety, error handling, performance optimization, and code organization for production-ready applications.</p>
+<h3 id="8-1-type-safety">8.1. Type Safety</h3>
+<p>Type safety is crucial for preventing runtime errors and improving developer experience. Always use the generated TypeScript types and interfaces to ensure compile-time validation and better IDE support with autocomplete and error detection.</p>
+<pre><code class="language-typescript">// Always use generated types
+interface UserWithPosts extends User {
+  posts: Post[];
+}
+
+// Type-safe error handling
+function handleUserResponse(response: APIResponse&lt;User&gt;) {
+  if (response.success) {
+    // TypeScript knows response.data is User
+    console.log(response.data.email);
+  } else {
+    // TypeScript knows response.error exists
+    console.error(response.error);
+  }
+}</code></pre>
+<h3 id="8-2-error-handling">8.2. Error Handling</h3>
+<p>Proper error handling ensures your application can gracefully handle API failures, validation errors, and network issues. Implement centralized error handling patterns and provide meaningful feedback to users while logging appropriate details for debugging.</p>
+<pre><code class="language-typescript">// Centralized error handling
+class APIErrorHandler {
+  static handle(response: APIResponse&lt;any&gt;) {
+    if (!response.success) {
+      if (response.errors) {
+        // Handle validation errors
+        Object.entries(response.errors).forEach(([field, messages]) =&gt; {
+          console.error(`${field}: ${messages.join(', ')}`);
+        });
+      } else {
+        // Handle general errors
+        console.error(response.error);
+      }
+    }
+  }
+}
+
+// Usage
+const response = await client.user.create(userData);
+APIErrorHandler.handle(response);</code></pre>
+<h3 id="8-3-request-interceptors">8.3. Request Interceptors</h3>
+<p>Request interceptors allow you to modify requests before they are sent or responses before they are processed. This is useful for adding logging, authentication tokens, request transformation, or implementing cross-cutting concerns like analytics.</p>
+<pre><code class="language-typescript">// Extend base client for custom behavior
+class CustomAPIClient extends APIClient {
+  constructor(baseUrl?: string) {
+    super(baseUrl);
+    this.setupInterceptors();
+  }
+  
+  private setupInterceptors() {
+    // Add request logging
+    const originalRequest = this.request;
+    this.request = async (method, url, data, options) =&gt; {
+      console.log(`${method} ${url}`, data);
+      return originalRequest.call(this, method, url, data, options);
+    };
+  }
+}</code></pre>
+<h3 id="8-4-caching-strategy">8.4. Caching Strategy</h3>
+<p>Implementing a caching strategy reduces unnecessary API calls and improves application performance. Consider caching frequently accessed data with appropriate expiration times and cache invalidation strategies for data consistency.</p>
+<pre><code class="language-typescript">// Simple in-memory cache
+class CachedAPIClient extends APIClient {
+  private cache = new Map&lt;string, { data: any; timestamp: number }&gt;();
+  private cacheTimeout = 5 * 60 * 1000; // 5 minutes
+  
+  async getCached&lt;T&gt;(key: string, fetcher: () =&gt; Promise&lt;APIResponse&lt;T&gt;&gt;): Promise&lt;APIResponse&lt;T&gt;&gt; {
+    const cached = this.cache.get(key);
+    
+    if (cached &amp;&amp; Date.now() - cached.timestamp &lt; this.cacheTimeout) {
+      return { success: true, data: cached.data };
+    }
+    
+    const response = await fetcher();
+    
+    if (response.success) {
+      this.cache.set(key, {
+        data: response.data,
+        timestamp: Date.now()
+      });
+    }
+    
+    return response;
+  }
+}</code></pre>
+<h2 id="9-troubleshooting">9. Troubleshooting</h2>
+<p>This section addresses common issues and debugging techniques when working with the generated API clients. Understanding these solutions helps resolve typical problems encountered during development and deployment.</p>
+<h3 id="9-1-common-issues">9.1. Common Issues</h3>
+<p>Common issues include CORS errors, authentication failures, and network timeouts. These problems often arise from configuration mismatches, expired tokens, or network connectivity issues that can be resolved with proper debugging and configuration.</p>
+<ol><li><strong>CORS Errors</strong></li></ol>
+<pre><code class="language-typescript">   // Ensure your API server allows CORS
+   // Add appropriate headers in your API configuration
+   
+   // For development, you might need to proxy requests
+   const client = new APIClient('/api/proxy');</code></pre>
+<ol><li><strong>Authentication Failures</strong></li></ol>
+<pre><code class="language-typescript">   // Check token format and expiration
+   function isTokenValid(token: string): boolean {
+     try {
+       const payload = JSON.parse(atob(token.split('.')[1]));
+       return payload.exp * 1000 &gt; Date.now();
+     } catch {
+       return false;
+     }
+   }
+   
+   // Refresh token automatically
+   client.setAuthToken(await refreshToken());</code></pre>
+<ol><li><strong>Network Timeouts</strong></li></ol>
+<pre><code class="language-typescript">   // Implement retry logic
+   async function withRetry&lt;T&gt;(
+     operation: () =&gt; Promise&lt;APIResponse&lt;T&gt;&gt;,
+     maxRetries: number = 3
+   ): Promise&lt;APIResponse&lt;T&gt;&gt; {
+     for (let i = 0; i &lt; maxRetries; i++) {
+       try {
+         const result = await operation();
+         if (result.success) return result;
+         
+         if (i === maxRetries - 1) return result;
+         await new Promise(resolve =&gt; setTimeout(resolve, 1000 * (i + 1)));
+       } catch (error) {
+         if (i === maxRetries - 1) throw error;
+       }
+     }
+     
+     throw new Error('Max retries exceeded');
+   }</code></pre>
+<h3 id="9-2-debugging-tips">9.2. Debugging Tips</h3>
+<p>Debugging tips help identify and resolve issues during development and production. These techniques include request logging, response validation, and monitoring tools that provide visibility into API client behavior and performance.</p>
+<ol><li><strong>Enable Request Logging</strong></li></ol>
+<pre><code class="language-typescript">   // Add to base client
+   private logRequest(method: string, url: string, data?: any) {
+     if (process.env.NODE_ENV === 'development') {
+       console.group(`API ${method} ${url}`);
+       if (data) console.log('Data:', data);
+       console.groupEnd();
+     }
+   }</code></pre>
+<ol><li><strong>Response Validation</strong></li></ol>
+<pre><code class="language-typescript">   // Validate response structure
+   function validateResponse&lt;T&gt;(response: any): response is APIResponse&lt;T&gt; {
+     return (
+       typeof response === 'object' &amp;&amp;
+       typeof response.success === 'boolean' &amp;&amp;
+       (response.success ? 'data' in response : 'error' in response)
+     );
+   }</code></pre>
+<p>This tutorial provides a comprehensive foundation for creating API clients from <code>.idea</code> files. The generated clients provide type-safe, feature-rich interfaces for interacting with REST and GraphQL APIs.</p>
+    </div>
+    <nav class="pager">
+  <a href="../index.html"><span>Previous</span>Examples</a>
+
+  <a href="../graphql-schema-plugin/index.html"><span>Next</span>GraphQL Schema Generator Plugin Tutorial</a>
+
+</nav>
+
+  </article>
+  <aside class="panel toc">
+    <h2>On this page</h2>
+<ul>
+  <li><a href="#api-client-generator-plugin-tutorial">API Client Generator Plugin Tutorial</a></li>
+<li><a href="#1-overview">1. Overview</a></li>
+<li><a href="#2-prerequisites">2. Prerequisites</a></li>
+<li><a href="#3-plugin-structure">3. Plugin Structure</a></li>
+<li><a href="#4-implementation">4. Implementation</a></li>
+<li><a href="#4-1-core-plugin-function">4.1. Core Plugin Function</a></li>
+<li><a href="#4-2-generation-functions">4.2. Generation Functions</a></li>
+<li><a href="#5-schema-configuration">5. Schema Configuration</a></li>
+<li><a href="#6-usage-examples">6. Usage Examples</a></li>
+<li><a href="#6-1-basic-schema">6.1. Basic Schema</a></li>
+<li><a href="#6-2-generated-client-usage">6.2. Generated Client Usage</a></li>
+<li><a href="#7-advanced-features">7. Advanced Features</a></li>
+<li><a href="#7-1-authentication-strategies">7.1. Authentication Strategies</a></li>
+<li><a href="#7-2-error-handling-strategies">7.2. Error Handling Strategies</a></li>
+<li><a href="#7-3-request-cancellation">7.3. Request Cancellation</a></li>
+<li><a href="#7-4-custom-headers">7.4. Custom Headers</a></li>
+<li><a href="#8-best-practices">8. Best Practices</a></li>
+<li><a href="#8-1-type-safety">8.1. Type Safety</a></li>
+<li><a href="#8-2-error-handling">8.2. Error Handling</a></li>
+<li><a href="#8-3-request-interceptors">8.3. Request Interceptors</a></li>
+<li><a href="#8-4-caching-strategy">8.4. Caching Strategy</a></li>
+<li><a href="#9-troubleshooting">9. Troubleshooting</a></li>
+<li><a href="#9-1-common-issues">9.1. Common Issues</a></li>
+<li><a href="#9-2-debugging-tips">9.2. Debugging Tips</a></li>
+
+</ul>
+
+  </aside>
+</section>
+
+    </main>
+    <footer class="footer">
+      <p>By the stackpress team</p>
+      <div class="footer-links">
+        <a href="https://stackpress.io" target="_blank" rel="noreferrer">stackpress.io</a>
+        <a href="https://github.com/stackpress/idea" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/javascript.min.js"></script>
+  <script>
+    (() => {
+      const storageKey = 'idea-docs-theme';
+      const root = document.body;
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      let mermaidApi = null;
+      const lightCodeTheme = document.getElementById('hljs-light');
+      const darkCodeTheme = document.getElementById('hljs-dark');
+      const sync = (theme) => {
+        root.dataset.theme = theme;
+        if (lightCodeTheme && darkCodeTheme) {
+          lightCodeTheme.disabled = theme === 'dark';
+          darkCodeTheme.disabled = theme !== 'dark';
+        }
+      };
+      const highlightCode = () => {
+        if (window.hljs) {
+          document.querySelectorAll('pre code').forEach((block) => {
+            if (!block.closest('.mermaid-fallback') && !block.classList.contains('language-idea')) {
+              window.hljs.highlightElement(block);
+            }
+          });
+        }
+      };
+      const attachCopyButtons = () => {
+        document.querySelectorAll('pre').forEach((pre) => {
+          if (pre.closest('.mermaid-fallback') || pre.parentElement?.classList.contains('code-block')) {
+            return;
+          }
+          const code = pre.querySelector('code');
+          if (!code) {
+            return;
+          }
+          const wrapper = document.createElement('div');
+          wrapper.className = 'code-block';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-copy';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(code.textContent || '');
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1200);
+            } catch (error) {
+              console.error('Copy failed', error);
+              button.textContent = 'Failed';
+              window.setTimeout(() => {
+                button.textContent = 'Copy';
+              }, 1200);
+            }
+          });
+          wrapper.appendChild(button);
+        });
+      };
+      const renderMermaid = async () => {
+        const diagrams = [...document.querySelectorAll('[data-mermaid]')];
+        if (!diagrams.length) {
+          return;
+        }
+        if (!mermaidApi) {
+          const module = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+          mermaidApi = module.default;
+        }
+        mermaidApi.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: root.dataset.theme === 'dark' ? 'dark' : 'default'
+        });
+        for (const [index, block] of diagrams.entries()) {
+          const source = block.getAttribute('data-mermaid-source') || '';
+          const fallback = block.parentElement?.querySelector('.mermaid-fallback');
+          try {
+            const renderId = 'mermaid-diagram-' + index + '-' + root.dataset.theme;
+            const { svg } = await mermaidApi.render(renderId, source);
+            block.innerHTML = svg;
+            if (fallback) {
+              fallback.hidden = true;
+            }
+          } catch (error) {
+            console.error('Mermaid render failed', error);
+            if (fallback) {
+              fallback.hidden = false;
+            }
+          }
+        }
+      };
+      const stored = localStorage.getItem(storageKey);
+      sync(stored || (media.matches ? 'dark' : 'light'));
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(storageKey, next);
+          sync(next);
+          renderMermaid();
+        });
+      }
+      media.addEventListener('change', (event) => {
+        if (!localStorage.getItem(storageKey)) {
+          sync(event.matches ? 'dark' : 'light');
+          renderMermaid();
+        }
+      });
+      attachCopyButtons();
+      highlightCode();
+      renderMermaid();
+    })();
+  </script>
+</body>
+</html>
