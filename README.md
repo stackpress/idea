@@ -62,7 +62,8 @@ classDiagram
   }
 ```
 
-Idea can turn a schema file into generated artifacts through plugins.
+As well as database, forms, views, docs, etc... Idea can turn a schema 
+file into generated artifacts through plugins.
 
 To build this example yourself, go to
 [Getting Started](https://github.com/stackpress/idea/blob/main/docs/getting-started.md).
