@@ -536,7 +536,7 @@ Schema configuration demonstrates how to integrate the Zod validation generator 
 
 Add the Zod validation plugin to your `.idea` schema file:
 
-```idea
+```ts
 plugin "./plugins/zod-validation.js" {
   output "./generated/validation.ts"
   generateTypes true
@@ -579,7 +579,7 @@ Usage examples demonstrate practical applications of the Zod validation generato
 A basic schema example shows the fundamental structure needed to generate Zod validation schemas. This includes model definitions with proper validation attributes and plugin configuration that produces comprehensive validation rules.
 
 
-```idea
+```ts
 enum UserRole {
   ADMIN "admin"
   USER "user"

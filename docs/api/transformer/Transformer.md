@@ -3,7 +3,7 @@
 A class for loading, processing, and transforming schema files with plugin support and schema merging capabilities. The Transformer class serves as the core component of the idea-transformer library, providing comprehensive functionality for schema processing, plugin execution, and file management.
 
 ```typescript
-import Transformer from '@stackpress/idea-transformer';
+import { Transformer } from '@stackpress/idea-transformer';
 
 const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
@@ -37,7 +37,7 @@ The load method creates a new Transformer instance configured with the specified
 The following example shows how to create a new Transformer instance.
 
 ```typescript
-import Transformer from '@stackpress/idea-transformer';
+import { Transformer } from '@stackpress/idea-transformer';
 
 // Load with default options
 const transformer = await Transformer.load('./schema.idea');
@@ -176,7 +176,7 @@ This section provides practical examples of how to use the Transformer class in 
 Basic schema loading demonstrates the fundamental workflow for loading and accessing schema configurations. This example shows how to create a transformer instance and retrieve different parts of the processed schema.
 
 ```typescript
-import Transformer from '@stackpress/idea-transformer';
+import { Transformer } from '@stackpress/idea-transformer';
 
 const transformer = await Transformer.load('./schema.idea');
 const schema = await transformer.schema();
@@ -333,7 +333,7 @@ This section outlines recommended approaches for using the Transformer class eff
 
 Schema organization best practices help maintain clean, modular, and reusable schema files. This section provides guidance on structuring schema hierarchies and managing dependencies effectively.
 
-```idea
+```ts
 // Organize schemas hierarchically
 // shared/base.idea - Common types and enums
 // modules/user.idea - User-specific models
@@ -401,7 +401,7 @@ Build system integration shows how to incorporate schema transformation into aut
 
 ```typescript
 // Integration with build tools
-import Transformer from '@stackpress/idea-transformer';
+import { Transformer } from '@stackpress/idea-transformer';
 
 export async function buildSchemas(inputDir, outputDir) {
   const schemaFiles = await glob(`${inputDir}/**/*.idea`);

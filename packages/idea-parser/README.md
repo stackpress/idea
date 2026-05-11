@@ -1,7 +1,55 @@
-# Idea Parser
+# `@stackpress/idea-parser`
 
-Parses the ideas to AST and readable JSON.
+`@stackpress/idea-parser` parses `.idea` source into AST-like tokens and
+schema objects.
 
-AST follows JS AST as described [here](https://astexplorer.net/#/gist/6e328cf76a27ca85e552c9cb583cdd74/1077c8842337972509a29bc9063d17bf90a1a492).
+Use it when you want to inspect or transform the format without running
+plugins.
 
-See [https://github.com/stackpress/idea] for more info.
+## Install
+
+Idea requires Node.js 22 or newer.
+
+```bash
+npm install @stackpress/idea-parser
+```
+
+## Parse A Schema
+
+```ts
+import { parse, final } from '@stackpress/idea-parser';
+
+const code = `
+enum Role {
+  ADMIN "ADMIN"
+  USER "USER"
+}
+
+model User {
+  id String @id
+  role Role
+}
+`;
+
+const schema = parse(code);
+const normalized = final(code);
+```
+
+## `parse` Vs `final`
+
+- `parse(code)` returns the compiled schema representation.
+- `final(code)` returns the normalized final schema representation.
+
+## Main Exports
+
+- `parse`
+- `final`
+- `Compiler`
+- `Lexer`
+- `SchemaTree`
+- tree classes and token types
+
+## Learn More
+
+- [Parser API Docs](https://github.com/stackpress/idea/blob/main/docs/api/parser/README.md)
+- [Specification Reference](https://github.com/stackpress/idea/blob/main/docs/reference/specification.md)

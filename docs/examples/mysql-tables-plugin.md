@@ -411,7 +411,7 @@ To use this plugin in your schema file, add the plugin declaration with appropri
 
 **Schema Configuration**
 
-```idea
+```ts
 // schema.idea
 plugin "./plugins/mysql-tables-plugin.js" {
   output "./database/tables.sql"

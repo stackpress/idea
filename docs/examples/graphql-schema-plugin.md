@@ -347,7 +347,7 @@ Schema configuration demonstrates how to integrate the GraphQL schema generator 
 
 Add the GraphQL plugin to your `.idea` schema file:
 
-```idea
+```ts
 plugin "./plugins/graphql-schema.js" {
   output "./generated/schema.graphql"
   includeQueries true
@@ -384,7 +384,7 @@ Usage examples demonstrate practical applications of the GraphQL schema generato
 A basic schema example shows the fundamental structure needed to generate GraphQL type definitions. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces comprehensive GraphQL schemas.
 
 
-```idea
+```ts
 enum UserRole {
   ADMIN "admin"
   USER "user"

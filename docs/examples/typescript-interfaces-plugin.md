@@ -424,7 +424,7 @@ Schema configuration demonstrates how to integrate the TypeScript interface gene
 
 Add the TypeScript plugin to your `.idea` schema file:
 
-```idea
+```ts
 plugin "./plugins/typescript-interfaces.js" {
   output "./generated/types.ts"
   namespace "MyApp"
@@ -461,7 +461,7 @@ Usage examples demonstrate practical applications of the TypeScript interface ge
 A basic schema example shows the fundamental structure needed to generate TypeScript interfaces. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces clean, type-safe TypeScript code.
 
 
-```idea
+```ts
 enum UserRole {
   ADMIN "admin"
   USER "user"

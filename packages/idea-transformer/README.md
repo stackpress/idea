@@ -1,57 +1,52 @@
-# Idea Transformer
+# `@stackpress/idea-transformer`
 
-A programmatical command line interface used by projects and that calls 
-on external transformers to make relevant code.
+`@stackpress/idea-transformer` loads `.idea` schemas and executes their
+configured plugins.
+
+Use it when you want programmatic access to the runtime behind the Idea
+CLI.
 
 ## Install
 
+Idea requires Node.js 22 or newer.
+
 ```bash
-$ npm install @stackpress/idea-transformer
-
-... or ...
-
-$ yarn add @stackpress/idea-transformer
+npm install @stackpress/idea-transformer
 ```
 
-## Custom Terminal
+## Load A Schema
 
-Create a bin file and paste this basic example.
+```ts
+import { Transformer } from '@stackpress/idea-transformer';
 
-```js
+const transformer = await Transformer.load('./schema.idea');
+const schema = await transformer.schema();
+await transformer.transform();
+```
+
+## Custom CLI
+
+```ts
 #!/usr/bin/env node
+import { Terminal } from '@stackpress/idea-transformer';
 
-const { Terminal } = require('@stackpress/idea-transformer');
-new Terminal().run();
+const terminal = await Terminal.load(process.argv.slice(2));
+await terminal.run();
 ```
 
-You can whitelabel `idea` like the following. This will prefix all 
-outputs with `[MY LIB]` and schema files now need to have the 
-extension `.mylib`.
+## Plugin Contract
 
-```js
-#!/usr/bin/env node
+Plugins receive:
 
-const { Terminal } = require('@stackpress/idea-transformer');
-Terminal.brand = '[MY LIB]';
-Terminal.extension = 'mylib';
-new Terminal().run();
-```
+- `config`
+- `schema`
+- `transformer`
+- `cwd`
 
-## Programmatically Transform
+When started through the CLI, plugins also receive `cli`.
 
-You can also call the transformer manually like the following example.
+## Learn More
 
-```js
-const { Loader, Transformer } = require('@stackpress/idea-transformer');
-
-const cwd = __dirname;
-const idea = Loader.absolute('./my.idea', cwd);
-
-const transformer = new Transformer(idea, cwd);
-//read raw schema data
-const schema = transformer.schema;
-//transform schema
-transformer.transform();
-```
-
-See [https://github.com/stackpress/idea] for more info.
+- [Write a Plugin](https://github.com/stackpress/idea/blob/main/docs/how-to/write-a-plugin.md)
+- [Plugin API Reference](https://github.com/stackpress/idea/blob/main/docs/reference/plugin-api.md)
+- [Transformer API Docs](https://github.com/stackpress/idea/blob/main/docs/api/transformer/README.md)

@@ -997,7 +997,7 @@ This section demonstrates how to configure and use the HTML Form Plugin within y
 
 To use this plugin in your schema file:
 
-```idea
+```ts
 // schema.idea
 plugin "./plugins/html-form-plugin.js" {
   output "./forms/user-form.html"

@@ -4,37 +4,38 @@
 
 This repository contains the `@stackpress/idea` toolchain:
 
-- `packages/idea-parser`: parses `.idea` schemas into AST/JSON output.
-- `packages/idea-transformer`: runs transformers/plugins against parsed schemas.
-- `packages/idea`: top-level CLI package that wires parser + transformer together.
-- `example`: small workspace used to exercise the toolchain.
-- `language`: VS Code language extension for `.idea` files.
+- `packages/idea-parser`: parses `.idea` schemas into AST/JSON output
+- `packages/idea-transformer`: loads schemas and runs plugins
+- `packages/idea`: top-level CLI package
+- `example`: small workspace used to exercise the toolchain
+- `language`: VS Code extension for `.idea` files
 
 ## Working Areas
 
-Primary source files live under:
+Primary source lives in:
 
 - `packages/*/src`
 - `packages/idea-parser/tests`
 - `packages/idea-transformer/tests`
 - `language/client/src`
 - `language/server/src`
+- `docs/`
 
-Generated build output lives under package `cjs/` and `esm/` directories. Do not edit generated files by hand unless the task is explicitly about build artifacts or release packaging.
+Generated build output lives in package `cjs/` and `esm/` directories.
+Do not edit generated files by hand unless the task is explicitly about
+build artifacts or release packaging.
 
-## Install And Tooling
+## Tooling
 
-Use Node.js `>=22` for work in this repository.
+Use Node.js `>=22`.
 
-Before running install, build, lint, or test commands, check the active Node version:
+Before running install, build, lint, or test commands:
 
 ```bash
 node -v
 ```
 
-If the active version is below Node 22, try `nvm` first. Prefer resolving `nvm` from the current shell environment, then from the standard user install location.
-
-Example flow:
+If the active version is below Node 22, try `nvm` first:
 
 ```bash
 command -v nvm
@@ -44,11 +45,12 @@ nvm use 22
 node -v
 ```
 
-If Node 22+ still cannot be resolved, stop and ask the user for the correct `nvm` location or the project’s required Node binary path before continuing.
+If Node 22+ still cannot be resolved, stop and ask the user for the
+correct `nvm` location or required Node binary path.
 
 Root dependencies are managed with `yarn`.
 
-Common commands from the repository root:
+Common root commands:
 
 ```bash
 yarn build
@@ -69,9 +71,8 @@ yarn --cwd packages/idea build
 yarn --cwd example build
 ```
 
-The `language/` extension is not part of the root Yarn workspace. Install its dependencies from inside `language/`, and expect it to maintain its own `node_modules`.
-
-Language extension commands:
+The `language/` extension is not part of the root Yarn workspace. Manage
+it from inside `language/`:
 
 ```bash
 cd language && npm install
@@ -82,21 +83,45 @@ cd language && npm test
 
 ## Editing Guidance
 
-- Prefer changes in `src/` and tests first, then rebuild only the affected package if needed.
-- Keep parser and transformer changes covered by tests in their respective `tests/` directories.
-- When changing package exports or CLI behavior, verify the corresponding `package.json` entries still line up with emitted output.
-- The root workspace lists `packages/*` and `example`; `language` is managed separately and does not share the root workspace `node_modules`.
-- Do not proceed with package installs or validation on Node versions below 22.
+- Prefer changes in `src/` and tests first, then rebuild only the
+  affected package if needed.
+- Keep parser and transformer changes covered by tests in their
+  respective `tests/` directories.
+- When changing package exports or CLI behavior, verify the relevant
+  `package.json` entries still match emitted output.
+- The root workspace includes `packages/*` and `example`; `language` is
+  separate and does not share the root workspace `node_modules`.
+- Do not run installs or validation on Node versions below 22.
+
+## Documentation Guidance
+
+Check existing docs before adding new conventions:
+
+- `README.md`: landing page
+- `docs/getting-started.md`: tutorial
+- `docs/concepts/`: explanation
+- `docs/how-to/`: task guides
+- `docs/reference/`: lookup docs
+- `docs/examples/`: longer example tutorials
+- package-level `README.md` files: package-specific entry docs
+
+When updating docs:
+
+- keep the README lightweight
+- put step-by-step workflow in `docs/getting-started.md`
+- keep concept, how-to, and reference content separate
+- prefer repo-backed examples over invented ecosystem claims
 
 ## Validation Expectations
 
-- For parser changes, run `yarn test:parser`.
-- For transformer changes, run `yarn test:transformer`.
-- For cross-package runtime changes, run `yarn test` and any targeted build commands needed to confirm emitted `cjs/`/`esm/` output is still valid.
-- For extension changes under `language`, make sure `npm install` has been run in `language/`, then run the relevant `compile`, `lint`, or `test` command there.
+- Parser changes: run `yarn test:parser`
+- Transformer changes: run `yarn test:transformer`
+- Cross-package runtime changes: run `yarn test` and targeted builds as
+  needed
+- Extension changes under `language`: ensure `npm install` has been run
+  there, then run the relevant `compile`, `lint`, or `test` command
 
 ## Notes For Agents
 
 - Use `rg` for code search.
-- Keep changes scoped; this repo contains multiple related packages but most tasks should touch only one area.
-- Check for existing docs in `README.md`, `docs/`, and package-level READMEs before adding new conventions.
+- Keep changes scoped; most tasks should touch only one area.

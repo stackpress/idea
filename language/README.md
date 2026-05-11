@@ -1,79 +1,43 @@
-# 💡 Idea
+# Idea Schema VS Code Extension
 
-A meta language to express and transform your ideas to reality. 
-It all starts with an idea...
+This package provides editor support for `.idea` files.
 
-## Usage
+## Features
 
-This is an example idea schema.
+- syntax highlighting
+- formatting support
+- auto-completion
+- jump to definition
+- diagnostics from the language server
 
-```js
-//my.idea
-model Product @label("Product" "Products") @suggested("[name]") @icon("gift") {
-  name        String   @label("Name") 
-                       @field.text
-                       @is.required("Name is required")
-                       @list.detail @view.text
+## Install
 
-  image       String   @label("Image") 
-                       @field.image
-                       @list.image({ width 20 height 20 }) 
-                       @view.image({ width 100 height 100 })
+Install the published extension from the marketplace:
 
-  description String   @label("Description") 
-                       @field.textarea
-                       @list.none @view.text
-  
-  currency    String   @label("Currency")
-                       @filterable @default("USD")
-                       @field.currency
-                       @is.ceq(3 "Should be valid currency prefix")
-                       @list.text @view.text
-  
-  srp         Float?   @label("SRP")
-                       @min(0.00) @step(0.01)
-                       @field.number({ min 0.00 step 0.01 })
-                       @list.price @view.price
-  
-  price       Float?   @label("Offer Price")
-                       @min(0.00) @step(0.01)
-                       @field.number({ min 0.00 step 0.01 })
-                       @list.price @view.price
-}
-```
+- [Idea Schema](https://marketplace.visualstudio.com/items?itemName=stackpress.idea-schema)
 
-> "Ideas are worthless without execution" - Many People
+## Repository Layout
 
-To transform an idea, you need to plugin a transformer like the 
-following example.
+- [client](https://github.com/stackpress/idea/tree/main/language/client) contains the VS Code extension client.
+- [server](https://github.com/stackpress/idea/tree/main/language/server) contains the language server.
+- [config](https://github.com/stackpress/idea/tree/main/language/config) contains language and grammar configuration.
 
-```js
-//my.idea
-plugin "@stackpress/idea-typescript" {
-  ts true
-  output "./src/types.ts"
-}
-// ... your idea ...
-// model Product ...
-```
+## Local Development
 
-You can use other ideas, just import them like the following example.
+The extension is managed separately from the root Yarn workspace.
 
-```js
-//my.idea
-use "./another.idea"
-// ... your idea ...
-// model Product ...
-```
-
-To execute an idea, you just need to run the following command.
+From `language/`:
 
 ```bash
-$ npx idea -i my.idea
+npm install
+npm run compile
+npm run lint
+npm test
 ```
 
-Learn more:
+Idea repository work requires Node.js 22 or newer.
 
- - [Form an Idea](//github.com/stackpress/idea/blob/main/docs/schema.md)
- - [Transform an Idea](//github.com/stackpress/idea/blob/main/docs/transform.md)
- - [Contribute to Idea](//github.com/stackpress/idea/blob/main/docs/contribute.md)
+## Learn More
+
+- [Root README](https://github.com/stackpress/idea/blob/main/README.md)
+- [Use the VS Code Extension](https://github.com/stackpress/idea/blob/main/docs/how-to/use-the-vscode-extension.md)

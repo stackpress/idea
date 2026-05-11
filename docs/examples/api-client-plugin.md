@@ -688,7 +688,7 @@ function validateConfig(config: any): asserts config is APIClientConfig {
 
 Add the API Client plugin to your `.idea` schema file:
 
-```idea
+```ts
 plugin "./plugins/api-client.js" {
   output "./generated/api-client.ts"
   clientType "rest"
@@ -725,7 +725,7 @@ This section demonstrates practical usage of the API client generator plugin wit
 
 A basic schema example shows the fundamental structure needed to generate API clients. This includes model definitions with proper attributes, enum declarations, and plugin configuration that produces a functional REST API client.
 
-```idea
+```ts
 enum UserRole {
   ADMIN "admin"
   USER "user"

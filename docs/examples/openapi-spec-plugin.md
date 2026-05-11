@@ -304,7 +304,7 @@ function addValidationRules(property: any, attributes: any): void {
 
 Configuration options control how the OpenAPI specification is generated, including output formats, API metadata, server definitions, and security schemes. Proper configuration ensures the generated documentation meets your specific requirements and integrates with your development workflow.
 
-```idea
+```ts
 // schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec.json"
@@ -873,7 +873,7 @@ Usage examples demonstrate practical applications of the OpenAPI generator plugi
 Basic usage examples show the fundamental configuration needed to generate OpenAPI specifications from simple `.idea` schemas. This includes model definitions, plugin configuration, and the resulting API documentation structure.
 
 
-```idea
+```ts
 // schema.idea
 enum UserRole {
   ADMIN "admin"
@@ -911,7 +911,7 @@ plugin "./plugins/openapi-spec.js" {
 
 Advanced configuration demonstrates comprehensive plugin setup with multiple output formats, detailed API metadata, custom endpoints, and security schemes. This example shows how to create production-ready API documentation with full feature coverage.
 
-```idea
+```ts
 // schema.idea
 plugin "./plugins/openapi-spec.js" {
   output "./docs/api-spec"

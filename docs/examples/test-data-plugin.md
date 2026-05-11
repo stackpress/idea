@@ -589,7 +589,7 @@ The schema configuration section demonstrates how to integrate the test data plu
 
 Add the Test Data plugin to your `.idea` schema file:
 
-```idea
+```ts
 plugin "./plugins/test-data.js" {
   output "./generated/test-data.ts"
   format "typescript"
