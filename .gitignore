@@ -158,6 +158,8 @@ packages/idea-node-*/idea_node.*.node
 packages/idea-node/index.js
 packages/idea-node/index.d.ts
 packages/idea-node/loader.js
+# For benchmarks
+benchmarks
+packages/idea-parser
 .DS_Store
-
 .clinerules

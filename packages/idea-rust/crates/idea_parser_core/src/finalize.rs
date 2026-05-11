@@ -282,6 +282,11 @@ fn compile_attributes(
         let value = match &property.value {
             DataToken::Literal(literal) if literal.value == Value::Bool(true) => AttributeValue::Boolean(true),
             DataToken::Array(array) => {
+                if array.elements.is_empty() {
+                    attributes.insert(property.key.name.clone(), AttributeValue::Boolean(true));
+                    continue;
+                }
+
                 let mut compiled = Vec::with_capacity(array.elements.len());
                 for item in &array.elements {
                     compiled.push(compile_data(item, references)?);
