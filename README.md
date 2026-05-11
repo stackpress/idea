@@ -60,7 +60,6 @@ classDiagram
     String title
     String authorId
   }
-}
 ```
 
 Idea can turn a schema file into generated artifacts through plugins.
