@@ -1,0 +1,20 @@
+{
+  "name": "idea-node-linux-arm-gnueabihf",
+  "version": "0.9.2",
+  "license": "Apache-2.0",
+  "description": "Linux arm gnueabihf native binary for idea-node.",
+  "repository": "stackpress/idea",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm"
+  ],
+  "libc": [
+    "glibc"
+  ],
+  "main": "./idea_node.linux-arm-gnueabihf.node",
+  "files": [
+    "idea_node.linux-arm-gnueabihf.node"
+  ]
+}

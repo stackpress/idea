@@ -1,0 +1,17 @@
+{
+  "name": "idea-node-android-arm-eabi",
+  "version": "0.9.2",
+  "license": "Apache-2.0",
+  "description": "Android arm eabi native binary for idea-node.",
+  "repository": "stackpress/idea",
+  "os": [
+    "android"
+  ],
+  "cpu": [
+    "arm"
+  ],
+  "main": "./idea_node.android-arm-eabi.node",
+  "files": [
+    "idea_node.android-arm-eabi.node"
+  ]
+}

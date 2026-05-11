@@ -1,0 +1,20 @@
+{
+  "name": "idea-node-linux-s390x-gnu",
+  "version": "0.9.2",
+  "license": "Apache-2.0",
+  "description": "Linux s390x glibc native binary for idea-node.",
+  "repository": "stackpress/idea",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "s390x"
+  ],
+  "libc": [
+    "glibc"
+  ],
+  "main": "./idea_node.linux-s390x-gnu.node",
+  "files": [
+    "idea_node.linux-s390x-gnu.node"
+  ]
+}

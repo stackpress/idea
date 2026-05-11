@@ -1,0 +1,14 @@
+{
+  "name": "idea-node-darwin-universal",
+  "version": "0.9.2",
+  "license": "Apache-2.0",
+  "description": "macOS universal native binary for idea-node.",
+  "repository": "stackpress/idea",
+  "os": [
+    "darwin"
+  ],
+  "main": "./idea_node.darwin-universal.node",
+  "files": [
+    "idea_node.darwin-universal.node"
+  ]
+}

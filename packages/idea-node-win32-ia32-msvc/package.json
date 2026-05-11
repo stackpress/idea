@@ -1,0 +1,17 @@
+{
+  "name": "idea-node-win32-ia32-msvc",
+  "version": "0.9.2",
+  "license": "Apache-2.0",
+  "description": "Windows ia32 msvc native binary for idea-node.",
+  "repository": "stackpress/idea",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "ia32"
+  ],
+  "main": "./idea_node.win32-ia32-msvc.node",
+  "files": [
+    "idea_node.win32-ia32-msvc.node"
+  ]
+}

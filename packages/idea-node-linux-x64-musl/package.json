@@ -1,0 +1,20 @@
+{
+  "name": "idea-node-linux-x64-musl",
+  "version": "0.9.2",
+  "license": "Apache-2.0",
+  "description": "Linux x64 musl native binary for idea-node.",
+  "repository": "stackpress/idea",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "libc": [
+    "musl"
+  ],
+  "main": "./idea_node.linux-x64-musl.node",
+  "files": [
+    "idea_node.linux-x64-musl.node"
+  ]
+}

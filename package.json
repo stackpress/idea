@@ -1,25 +1,26 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*",
+    "packages/idea-node",
+    "packages/idea-rust",
     "example"
   ],
   "scripts": {
-    "build": "yarn build:parser && yarn build:transformer && yarn build:idea && yarn build:example",
-    "build:parser": "yarn --cwd packages/idea-node build",
+    "build": "yarn build:node && yarn build:example",
+    "build:node": "yarn --cwd packages/idea-node build",
+    "build:parser": "yarn build:node",
     "build:language": "yarn --cwd packages/idea-language build",
-    "build:transformer": "yarn --cwd packages/idea-transformer build",
-    "build:idea": "yarn --cwd packages/idea build",
+    "build:transformer": "yarn build:node",
+    "build:idea": "yarn build:node",
     "build:example": "yarn --cwd example build",
     "report": "yarn report:js && yarn report:rust",
     "report:env": "NODE_OPTIONS=\"--experimental-loader @istanbuljs/esm-loader-hook\"",
-    "report:js": "rm -rf .nyc_output coverage && NODE_OPTIONS=\"--experimental-loader @istanbuljs/esm-loader-hook\" ./node_modules/.bin/nyc node packages/idea-node/tests/smoke.mjs && NODE_OPTIONS=\"--experimental-loader @istanbuljs/esm-loader-hook\" ./node_modules/.bin/nyc --no-clean node ./node_modules/mocha/bin/mocha -r tsx packages/idea-transformer/tests/Transformer.test.ts && ./node_modules/.bin/nyc report -r lcov",
+    "report:js": "rm -rf .nyc_output coverage && NODE_OPTIONS=\"--experimental-loader @istanbuljs/esm-loader-hook\" ./node_modules/.bin/nyc --exclude packages/idea-node/loader.cjs node ./node_modules/mocha/bin/mocha -r tsx packages/idea-node/tests/*.test.ts && ./node_modules/.bin/nyc report -r lcov",
     "report:rust": "mkdir -p packages/idea-rust/coverage && rustup run stable cargo llvm-cov --manifest-path packages/idea-rust/Cargo.toml --workspace --lcov --output-path packages/idea-rust/coverage/lcov.info",
     "transform": "yarn --cwd example transform",
-    "test": "yarn test:rust && yarn test:parser && yarn test:transformer",
-    "test:rust": "cd packages/idea-rust && cargo test",
-    "test:parser": "yarn --cwd packages/idea-node test",
-    "test:transformer": "yarn --cwd packages/idea-transformer test"
+    "test": "yarn test:rust && yarn test:node",
+    "test:node": "yarn --cwd packages/idea-node test",
+    "test:rust": "cd packages/idea-rust && cargo test"
   },
   "devDependencies": {
     "@istanbuljs/esm-loader-hook": "0.3.0",

@@ -1,0 +1,17 @@
+{
+  "name": "idea-node-darwin-arm64",
+  "version": "0.9.2",
+  "license": "Apache-2.0",
+  "description": "macOS arm64 native binary for idea-node.",
+  "repository": "stackpress/idea",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "./idea_node.darwin-arm64.node",
+  "files": [
+    "idea_node.darwin-arm64.node"
+  ]
+}

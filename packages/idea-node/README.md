@@ -1,6 +1,6 @@
 <div align="center">
   <h1>💡 Idea</h1>
-  <a href="https://www.npmjs.com/package/@stackpress/idea-node"><img src="https://img.shields.io/npm/v/@stackpress/idea-node.svg?style=flat" /></a>
+  <a href="https://www.npmjs.com/package/idea-node"><img src="https://img.shields.io/npm/v/idea-node.svg?style=flat" /></a>
   <a href="https://github.com/stackpress/idea/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat" /></a>
   <a href="https://github.com/stackpress/idea/commits/main/"><img src="https://img.shields.io/github/last-commit/stackpress/idea" /></a>
   <a href="https://github.com/stackpress/idea/actions"><img src="https://img.shields.io/github/actions/workflow/status/stackpress/idea/test.yml" /></a>
@@ -118,11 +118,11 @@ Automatically generate:
 
 Here's how a simple e-commerce schema transforms into a full application:
 
-<<<<<<< HEAD
+<<<<<<< HEAD:packages/idea-node/README.md
 ```js
 =======
 ```idea
->>>>>>> da5198c (outlining docs)
+>>>>>>> da5198c (outlining docs):packages/idea/README.md
 // schema.idea
 enum UserRole {
   ADMIN "Administrator"
@@ -216,18 +216,18 @@ This workflow enables rapid prototyping and development, making it possible to g
 ### 1. Installation
 
 ```bash
-$ npm i -D @stackpress/idea-node
+$ npm i -D idea-node
 ```
 
 ### 2. Create Your First Schema
 
 Create a `schema.idea` file:
 
-<<<<<<< HEAD
+<<<<<<< HEAD:packages/idea-node/README.md
 ```js
 =======
 ```idea
->>>>>>> da5198c (outlining docs)
+>>>>>>> da5198c (outlining docs):packages/idea/README.md
 model User {
   id String @id @default("nanoid()")
   name String @required
@@ -257,7 +257,7 @@ This documentation is organized into several sections:
 ### 📋 [Specifications](https://github.com/stackpress/idea/blob/main/docs/Specifications.md)
 Complete reference for the `.idea` file format syntax, data types, and schema structure.
 
-<<<<<<< HEAD
+<<<<<<< HEAD:packages/idea-node/README.md
 =======
 ### 🔧 [Parser Documentation](https://github.com/stackpress/idea/blob/main/docs/api/parser/)
 Technical documentation for the parser library that processes `.idea` files.
@@ -265,7 +265,7 @@ Technical documentation for the parser library that processes `.idea` files.
 ### 🔄 [Transformer Documentation](https://github.com/stackpress/idea/blob/main/docs/api/transformer/)
 Documentation for the transformer library that executes plugins and generates code.
 
->>>>>>> da5198c (outlining docs)
+>>>>>>> da5198c (outlining docs):packages/idea/README.md
 ### 🔌 [Plugin Development](https://github.com/stackpress/idea/blob/main/docs/plugins/)
 Comprehensive guides for creating custom plugins, including tutorials for:
 - Database schema generators

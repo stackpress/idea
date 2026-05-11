@@ -1,19 +1,136 @@
 {
-  "name": "@stackpress/idea-node",
-  "version": "0.1.0",
-  "private": true,
+  "name": "idea-node",
+  "version": "0.9.2",
   "type": "module",
-  "description": "Node package wrapper for the shared Rust idea parser.",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "license": "Apache-2.0",
+  "description": "Node package for the shared Rust idea parser, transformer, and CLI.",
+  "author": "Chris <chris@incept.asia>",
+  "homepage": "https://github.com/stackpress/idea",
+  "bugs": "https://github.com/stackpress/idea/issues",
+  "repository": "stackpress/idea",
+  "keywords": [
+    "ts",
+    "typescript",
+    "cjs",
+    "esm",
+    "generator",
+    "CLI",
+    "ORM",
+    "AI",
+    "graphql",
+    "idea",
+    "stackpress"
+  ],
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./cjs/index.d.ts",
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js",
+      "default": "./esm/index.js"
+    },
+    "./types": {
+      "types": "./cjs/types.d.ts",
+      "require": "./cjs/types.js",
+      "import": "./esm/types.js",
+      "default": "./esm/types.js"
+    },
+    "./Transformer": {
+      "types": "./cjs/Transformer.d.ts",
+      "require": "./cjs/Transformer.js",
+      "import": "./esm/Transformer.js",
+      "default": "./esm/Transformer.js"
+    },
+    "./Terminal": {
+      "types": "./cjs/Terminal.d.ts",
+      "require": "./cjs/Terminal.js",
+      "import": "./esm/Terminal.js",
+      "default": "./esm/Terminal.js"
+    },
+    "./bin": {
+      "types": "./cjs/bin.d.ts",
+      "require": "./cjs/bin.js",
+      "import": "./esm/bin.js",
+      "default": "./esm/bin.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "index": [ "./esm/index.d.ts" ],
+      "types": [ "./esm/types.d.ts" ],
+      "Transformer": [ "./esm/Transformer.d.ts" ],
+      "Terminal": [ "./esm/Terminal.d.ts" ],
+      "bin": [ "./esm/bin.d.ts" ]
+    }
+  },
+  "files": [
+    "cjs",
+    "esm",
+    "loader.cjs",
+    "loader.d.cts",
+    "LICENSE",
+    "README.md"
+  ],
+  "bin": {
+    "idea": "./cjs/bin.js"
+  },
   "scripts": {
-    "build": "napi build --platform --cargo-cwd ../idea-rust/crates/idea_parser_node",
-    "test": "node ./tests/smoke.mjs"
+    "build": "yarn build:native && yarn sync:platform-package && yarn build:tsc && yarn build:pkg",
+    "build:native": "napi build --platform --cargo-cwd ../idea-rust/crates/idea_parser_node",
+    "build:pkg": "yarn build:pkg:cjs && yarn build:pkg:esm",
+    "build:pkg:cjs": "echo '{\"type\": \"commonjs\"}' > cjs/package.json",
+    "build:pkg:esm": "echo '{\"type\": \"module\"}' > esm/package.json",
+    "sync:platform-package": "node ./scripts/sync-platform-package.mjs",
+    "build:tsc": "yarn build:tsc:cjs && yarn build:tsc:esm",
+    "build:tsc:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:tsc:esm": "tsc -p ./tsconfig.esm.json",
+    "test": "yarn test:env nyc --exclude loader.cjs node ../../node_modules/mocha/bin/mocha -r tsx tests/*.test.ts",
+    "test:env": "NODE_OPTIONS=\"--disable-warning=ExperimentalWarning --experimental-loader @istanbuljs/esm-loader-hook\"",
+    "report": "nyc report -r lcov"
   },
   "napi": {
     "name": "idea_node"
   },
+  "dependencies": {
+    "@stackpress/lib": "0.9.2"
+  },
+  "optionalDependencies": {
+    "idea-node-android-arm64": "file:../idea-node-android-arm64",
+    "idea-node-android-arm-eabi": "file:../idea-node-android-arm-eabi",
+    "idea-node-darwin-universal": "file:../idea-node-darwin-universal",
+    "idea-node-darwin-x64": "file:../idea-node-darwin-x64",
+    "idea-node-darwin-arm64": "file:../idea-node-darwin-arm64",
+    "idea-node-freebsd-x64": "file:../idea-node-freebsd-x64",
+    "idea-node-linux-x64-musl": "file:../idea-node-linux-x64-musl",
+    "idea-node-linux-x64-gnu": "file:../idea-node-linux-x64-gnu",
+    "idea-node-linux-arm64-musl": "file:../idea-node-linux-arm64-musl",
+    "idea-node-linux-arm64-gnu": "file:../idea-node-linux-arm64-gnu",
+    "idea-node-linux-arm-musleabihf": "file:../idea-node-linux-arm-musleabihf",
+    "idea-node-linux-arm-gnueabihf": "file:../idea-node-linux-arm-gnueabihf",
+    "idea-node-linux-riscv64-musl": "file:../idea-node-linux-riscv64-musl",
+    "idea-node-linux-riscv64-gnu": "file:../idea-node-linux-riscv64-gnu",
+    "idea-node-linux-s390x-gnu": "file:../idea-node-linux-s390x-gnu",
+    "idea-node-win32-x64-msvc": "file:../idea-node-win32-x64-msvc",
+    "idea-node-win32-ia32-msvc": "file:../idea-node-win32-ia32-msvc",
+    "idea-node-win32-arm64-msvc": "file:../idea-node-win32-arm64-msvc"
+  },
   "devDependencies": {
-    "@napi-rs/cli": "^2.18.4"
+    "@napi-rs/cli": "^2.18.4",
+    "@types/chai": "4.3.20",
+    "@types/mocha": "10.0.10",
+    "@types/node": "25.3.5",
+    "chai": "4.5.0",
+    "mocha": "10.8.2",
+    "ts-morph": "27.0.2",
+    "ts-node": "10.9.2",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  },
+  "nyc": {
+    "exclude": [
+      "loader.cjs"
+    ]
   }
 }

@@ -1,7 +1,7 @@
 import { 
   type EnumConfig,
   type PluginWithCLIProps
-} from '@stackpress/idea';
+} from 'idea-node';
 
 import path from 'path';
 import { Project, IndentationText } from 'ts-morph';
