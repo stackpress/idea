@@ -97,6 +97,22 @@
 - The in-repo sync script only mirrors binaries that were actually built on the
   current machine; it does not cross-compile unsupported targets by itself.
 
+## Release Workflow
+
+- GitHub Actions is build-only for release artifacts.
+- The active workflow is:
+  - `.github/workflows/build-binaries.yml`
+- It currently builds these targets:
+  - `idea-node-darwin-arm64`
+  - `idea-node-darwin-x64`
+  - `idea-node-linux-x64-gnu`
+  - `idea-node-win32-x64-msvc`
+- The workflow uploads package-shaped artifacts only. It does not publish.
+- Local release prep uses:
+  - `.github/scripts/prepare-npm-release.mjs`
+- That script rewrites `packages/idea-node/package.json` optional dependencies
+  from local `file:` references to a real version string before manual publish.
+
 ## Style Notes
 
 - TypeScript should follow the repo style guide shared in chat:

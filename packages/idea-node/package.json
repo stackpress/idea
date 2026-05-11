@@ -58,11 +58,21 @@
   },
   "typesVersions": {
     "*": {
-      "index": [ "./esm/index.d.ts" ],
-      "types": [ "./esm/types.d.ts" ],
-      "Transformer": [ "./esm/Transformer.d.ts" ],
-      "Terminal": [ "./esm/Terminal.d.ts" ],
-      "bin": [ "./esm/bin.d.ts" ]
+      "index": [
+        "./esm/index.d.ts"
+      ],
+      "types": [
+        "./esm/types.d.ts"
+      ],
+      "Transformer": [
+        "./esm/Transformer.d.ts"
+      ],
+      "Terminal": [
+        "./esm/Terminal.d.ts"
+      ],
+      "bin": [
+        "./esm/bin.d.ts"
+      ]
     }
   },
   "files": [

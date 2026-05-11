@@ -1,4 +1,4 @@
-name: Build and Release Binaries
+name: Build Release Artifacts
 
 on:
   push:
@@ -6,137 +6,55 @@ on:
       - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
+    name: ${{ matrix.package }}
+    runs-on: ${{ matrix.runs_on }}
     strategy:
       fail-fast: false
       matrix:
-        settings:
-          - host: macos-latest
-            target: x86_64-apple-darwin
-            build: yarn build:rs --target x86_64-apple-darwin
-          - host: macos-latest
-            target: aarch64-apple-darwin
-            build: yarn build:rs --target aarch64-apple-darwin
-          - host: windows-latest
-            target: x86_64-pc-windows-msvc
-            build: yarn build:rs --target x86_64-pc-windows-msvc
-          - host: windows-latest
-            target: i686-pc-windows-msvc
-            build: yarn build:rs --target i686-pc-windows-msvc
-          - host: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            build: yarn build:rs --target x86_64-unknown-linux-gnu
-          - host: ubuntu-latest
-            target: x86_64-unknown-linux-musl
-            build: |
-              sudo apt-get update
-              sudo apt-get install musl-tools
-              yarn build:rs --target x86_64-unknown-linux-musl
-          - host: ubuntu-latest
-            target: aarch64-unknown-linux-gnu
-            build: |
-              sudo apt-get update
-              sudo apt-get install gcc-aarch64-linux-gnu
-              yarn build:rs --target aarch64-unknown-linux-gnu
-          - host: ubuntu-latest
-            target: i686-unknown-linux-gnu
-            build: |
-              sudo apt-get update
-              sudo apt-get install gcc-multilib
-              yarn build:rs --target i686-unknown-linux-gnu
-          - host: ubuntu-latest
-            target: armv7-unknown-linux-gnueabihf
-            build: |
-              sudo apt-get update
-              sudo apt-get install gcc-arm-linux-gnueabihf
-              yarn build:rs --target armv7-unknown-linux-gnueabihf
-          - host: ubuntu-latest
-            target: x86_64-unknown-freebsd
-            build: yarn build:rs --target x86_64-unknown-freebsd
+        include:
+          - runs_on: macos-14
+            package: idea-node-darwin-arm64
+            binary: idea_node.darwin-arm64.node
 
-    name: Build ${{ matrix.settings.target }}
-    runs-on: ${{ matrix.settings.host }}
+          - runs_on: macos-13
+            package: idea-node-darwin-x64
+            binary: idea_node.darwin-x64.node
+
+          - runs_on: ubuntu-24.04
+            package: idea-node-linux-x64-gnu
+            binary: idea_node.linux-x64-gnu.node
+
+          - runs_on: windows-2022
+            package: idea-node-win32-x64-msvc
+            binary: idea_node.win32-x64-msvc.node
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22.14.0'
           cache: 'yarn'
 
-      - name: Setup Rust
+      - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.settings.target }}
-
-      - name: Cache cargo
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            .cargo-cache
-            target/
-          key: ${{ matrix.settings.target }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --ignore-scripts
 
-      - name: Build binary
-        run: ${{ matrix.settings.build }}
+      - name: Build host binary
+        run: yarn --cwd packages/idea-node build
 
-      - name: Upload binary
+      - name: Upload platform artifact
         uses: actions/upload-artifact@v4
         with:
-          name: binaries-${{ matrix.settings.target }}
+          name: ${{ matrix.package }}
           path: |
-            *.node
-            cjs/*.node
-            esm/*.node
-
-  release:
-    name: Create Release
-    runs-on: ubuntu-latest
-    needs: build
-    if: startsWith(github.ref, 'refs/tags/')
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: artifacts
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Assets
-        run: |
-          for dir in artifacts/binaries-*; do
-            target=$(basename "$dir" | sed 's/binaries-//')
-            for file in "$dir"/*.node; do
-              if [ -f "$file" ]; then
-                asset_name="idea-parser-${target}.node"
-                echo "Uploading $file as $asset_name"
-                curl \
-                  -X POST \
-                  -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                  -H "Content-Type: application/octet-stream" \
-                  --data-binary @"$file" \
-                  "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$asset_name"
-              fi
-            done
-          done
+            packages/${{ matrix.package }}/package.json
+            packages/${{ matrix.package }}/${{ matrix.binary }}
