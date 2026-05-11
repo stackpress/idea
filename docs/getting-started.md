@@ -95,7 +95,7 @@ working directory.
 
 You should now have `generated/schema.mmd`:
 
-```text
+```mermaid
 classDiagram
   class User {
     String id

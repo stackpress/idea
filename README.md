@@ -47,7 +47,7 @@ model Post {
 
 With a plugin, it can produce a schema diagram like this:
 
-```text
+```mermaid
 classDiagram
   class User {
     String id
