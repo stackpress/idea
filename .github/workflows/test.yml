@@ -9,6 +9,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: llvm-tools-preview
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@cargo-llvm-cov
       - name: Install dependencies
         run: yarn
       - name: Building Code
@@ -18,4 +24,6 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@v2
         with:
+          files: coverage/lcov.info packages/idea-rust/coverage/lcov.info
+          format: lcov
           github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -2,7 +2,7 @@ import type { FileSystem } from '@stackpress/lib/types';
 import type { 
   PluginConfig, 
   SchemaConfig 
-} from '@stackpress/idea-parser/types';
+} from '@stackpress/idea-node';
 import type Terminal from './Terminal.js';
 import type Transformer from './Transformer.js';
 

@@ -1,14 +1,15 @@
 //test suite
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { TypeConfig } from '@stackpress/idea-parser';
+import { TypeConfig } from '@stackpress/idea-node';
 //NOTE: no extensions in tests because it's excluded in tsconfig.json and
 //we are testing in a typescript environment via `ts-mocha -r tsx` (esm)
 import Transformer from '../src/Transformer';
 //resusable variables
-const cwd = import.meta.dirname;
+const cwd = path.dirname(fileURLToPath(import.meta.url));
 const idea = path.resolve(cwd, 'schema.idea');
 const use = path.resolve(cwd, 'use.idea');
 

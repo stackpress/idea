@@ -147,6 +147,15 @@ example/src/enums.ts
 packages/idea-language/client/package-lock.json
 packages/idea-language/server/package-lock.json
 packages/idea-transformer/tests/out
+# Rust
+packages/idea-rust/target/
+packages/idea-rust/Cargo.lock
+packages/idea-rust/coverage/
+# Node native addon output
+packages/idea-node/dist/
+packages/idea-node/*.node
+packages/idea-node/index.js
+packages/idea-node/index.d.ts
 .DS_Store
 
 .clinerules

@@ -4,8 +4,7 @@
  * cross-file lookups and LSP features practical.
  */
 import {
-  Exception,
-  SchemaTree,
+  parseAst,
   type ArrayToken,
   type DataToken,
   type DeclarationToken,
@@ -15,7 +14,7 @@ import {
   type ObjectToken,
   type PropertyToken,
   type SchemaToken
-} from '@stackpress/idea-parser';
+} from '@stackpress/idea-node';
 import type {
   EnumDeclaration,
   IdeaAttribute,
@@ -248,17 +247,17 @@ function normalizeDeclaration(token: DeclarationToken): IdeaDeclaration {
 }
 
 function parseSchema(text: string): SchemaToken {
-  return SchemaTree.parse(text);
+  return parseAst(text);
 }
 
 /**
  * Syntax errors are kept as lightweight data so diagnostics can be emitted
  * even when document normalization cannot continue.
  */
-export function createSyntaxError(error: Exception) {
+export function createSyntaxError(error: { message: string, start?: number, end?: number }) {
   return {
     message: error.message,
-    range: rangeFor(error.start, error.end)
+    range: rangeFor(error.start || 0, error.end || 0)
   };
 }
 
@@ -300,7 +299,7 @@ export function createIdeaDocument(uri: string, text: string, version: number | 
       diagnostics: []
     };
   } catch (error) {
-    const exception = error as Exception;
+    const exception = error as { message: string, start?: number, end?: number };
     return {
       uri,
       version,

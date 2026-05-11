@@ -81,7 +81,7 @@
 		"test": "sh ./scripts/e2e.sh"
 	},
 	"dependencies": {
-		"@stackpress/idea-parser": "^0.9.2"
+		"@stackpress/idea-node": "^0.1.0"
 	},
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",

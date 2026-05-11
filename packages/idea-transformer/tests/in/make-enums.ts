@@ -1,10 +1,11 @@
 //types
-import type { EnumConfig } from '@stackpress/idea-parser/types';
+import type { EnumConfig } from '@stackpress/idea-node';
 import type { PluginProps } from '../../src';
 //others
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { Project, IndentationText } from 'ts-morph';
-import Exception from '@stackpress/idea-parser/Exception';
+import Exception from '@stackpress/lib/Exception';
 
 
 // plugin "./make-enums" {
@@ -13,6 +14,7 @@ import Exception from '@stackpress/idea-parser/Exception';
 // }
 
 export default function generate({ config, schema, cwd }: PluginProps<{}>) {
+  const dirnameForModule = path.dirname(fileURLToPath(import.meta.url));
   // 1. Config
   //we need to know where to put this code...
   if (!config.output) {
@@ -30,7 +32,7 @@ export default function generate({ config, schema, cwd }: PluginProps<{}>) {
   //start a ts-morph project
   const project = new Project({
     //@ts-ignore
-    tsConfigFilePath: path.resolve(import.meta.dirname, 'tsconfig.json'),
+    tsConfigFilePath: path.resolve(dirnameForModule, 'tsconfig.json'),
     skipAddingFilesFromTsConfig: true,
     compilerOptions: {
       outDir: dirname,

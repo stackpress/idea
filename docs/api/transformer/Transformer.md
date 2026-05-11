@@ -257,10 +257,10 @@ await transformer.transform({
 
 ### 5.4. Error Handling
 
-Error handling examples show how to properly catch and handle different types of errors that can occur during schema processing and transformation. This includes both expected errors from the idea-parser and unexpected runtime errors.
+Error handling examples show how to properly catch and handle different types of errors that can occur during schema processing and transformation. This includes both expected parser errors and unexpected runtime errors.
 
 ```typescript
-import { Exception } from '@stackpress/idea-parser';
+import Exception from '@stackpress/lib/Exception';
 
 try {
   const transformer = await Transformer.load('./schema.idea');

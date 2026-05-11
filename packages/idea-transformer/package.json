@@ -72,10 +72,10 @@
     "build:tsc": "yarn build:tsc:cjs && yarn build:tsc:esm",
     "build:tsc:cjs": "tsc -p ./tsconfig.cjs.json",
     "build:tsc:esm": "tsc -p ./tsconfig.esm.json",
-    "test": "ts-mocha -r tsx tests/*.test.ts"
+    "test": "node ../../node_modules/ts-mocha/bin/ts-mocha -r tsx tests/Transformer.test.ts"
   },
   "dependencies": {
-    "@stackpress/idea-parser": "0.9.2",
+    "@stackpress/idea-node": "0.1.0",
     "@stackpress/lib": "0.9.2"
   },
   "devDependencies": {

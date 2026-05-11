@@ -1,0 +1,17 @@
+[workspace]
+members = [
+  "crates/idea_parser_core",
+  "crates/idea_parser_node"
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+license = "Apache-2.0"
+repository = "https://github.com/stackpress/idea"
+homepage = "https://github.com/stackpress/idea"
+authors = ["Chris <chris@incept.asia>"]
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

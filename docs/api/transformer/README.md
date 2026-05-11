@@ -273,7 +273,7 @@ The idea-transformer library provides comprehensive error handling to help you i
 The library provides comprehensive error handling with detailed error messages:
 
 ```typescript
-import { Exception } from '@stackpress/idea-parser';
+import Exception from '@stackpress/lib/Exception';
 
 try {
   const transformer = await Transformer.load('./schema.idea');

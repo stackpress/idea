@@ -1,0 +1,19 @@
+{
+  "name": "@stackpress/idea-node",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Node package wrapper for the shared Rust idea parser.",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "scripts": {
+    "build": "napi build --platform --cargo-cwd ../idea-rust/crates/idea_parser_node",
+    "test": "node ./tests/smoke.mjs"
+  },
+  "napi": {
+    "name": "idea_node"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.18.4"
+  }
+}
