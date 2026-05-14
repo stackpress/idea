@@ -1,56 +1,53 @@
 # AGENTS.md
 
-## Purpose
+## Scope
 
-This repository contains the `@stackpress/idea` toolchain:
+This repo contains the `@stackpress/idea` toolchain:
 
-- `packages/idea-parser`: parses `.idea` schemas into AST/JSON output
+- `packages/idea-parser`: parses `.idea` files into AST/schema output
 - `packages/idea-transformer`: loads schemas and runs plugins
-- `packages/idea`: top-level CLI package
-- `example`: small workspace used to exercise the toolchain
-- `language`: VS Code extension for `.idea` files
+- `packages/idea`: CLI package
+- `example`: sample workspace
+- `language`: VS Code extension
 
-## Working Areas
+## Source Of Truth
 
-Primary source lives in:
+Edit source, not generated output:
 
-- `packages/*/src`
-- `packages/idea-parser/tests`
-- `packages/idea-transformer/tests`
-- `language/client/src`
-- `language/server/src`
-- `docs/`
+- runtime/package source: `packages/*/src`
+- parser tests: `packages/idea-parser/tests`
+- transformer tests: `packages/idea-transformer/tests`
+- extension source: `language/client/src`, `language/server/src`
+- docs source: `specs/`
+- docs site templates: `scripts/templates/`
 
-Generated build output lives in package `cjs/` and `esm/` directories.
-Do not edit generated files by hand unless the task is explicitly about
-build artifacts or release packaging.
+Generated output to avoid editing by hand:
+
+- package builds: `packages/*/cjs`, `packages/*/esm`
+- published docs site: `docs/`
+
+The docs site is published at [stackpress.io/idea](https://www.stackpress.io/idea/).
 
 ## Tooling
 
-Use Node.js `>=22`.
+Use Node.js `>=22` for work in this package.
 
-Before running install, build, lint, or test commands:
+Before running Node-based commands, verify that the selected `node` binary is version `22` or higher.
 
-```bash
-node -v
-```
+Use this lookup order:
 
-If the active version is below Node 22, try `nvm` first:
+1. Check whether `nvm` is installed.
+2. If `nvm` is installed, try to locate the NVM versions directory and prefer a Node `22+` binary from there.
+3. If the NVM directory cannot be located directly, try to use `nvm` itself to select or inspect a Node `22+` install.
+4. If `nvm` cannot be used, look for `node` in common OS-specific install paths.
+5. If common install paths do not contain Node `22+`, inspect environment variables such as `PATH`, `NVM_DIR`, and other Node-related environment variables.
+6. If Node `22+` still cannot be found, stop and ask the user for the Node binary location before proceeding.
 
-```bash
-command -v nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-nvm use 22
-node -v
-```
+Do not assume that the default `node` on `PATH` satisfies this requirement.
 
-If Node 22+ still cannot be resolved, stop and ask the user for the
-correct `nvm` location or required Node binary path.
+Root dependencies use `yarn`.
 
-Root dependencies are managed with `yarn`.
-
-Common root commands:
+Common commands:
 
 ```bash
 yarn build
@@ -58,9 +55,10 @@ yarn test
 yarn test:parser
 yarn test:transformer
 yarn transform
+yarn build:docs
 ```
 
-Package-specific commands:
+Package-specific:
 
 ```bash
 yarn --cwd packages/idea-parser build
@@ -71,8 +69,7 @@ yarn --cwd packages/idea build
 yarn --cwd example build
 ```
 
-The `language/` extension is not part of the root Yarn workspace. Manage
-it from inside `language/`:
+The `language/` extension is not part of the root workspace:
 
 ```bash
 cd language && npm install
@@ -81,47 +78,26 @@ cd language && npm run lint
 cd language && npm test
 ```
 
-## Editing Guidance
+## Docs Workflow
 
-- Prefer changes in `src/` and tests first, then rebuild only the
-  affected package if needed.
-- Keep parser and transformer changes covered by tests in their
-  respective `tests/` directories.
-- When changing package exports or CLI behavior, verify the relevant
-  `package.json` entries still match emitted output.
-- The root workspace includes `packages/*` and `example`; `language` is
-  separate and does not share the root workspace `node_modules`.
-- Do not run installs or validation on Node versions below 22.
+Docs authoring and publishing are separate:
 
-## Documentation Guidance
+- author Markdown in `specs/`
+- edit page/layout styles in `scripts/templates/`
+- regenerate the static site into `docs/` with `yarn build:docs`
 
-Check existing docs before adding new conventions:
+Keep `README.md` lightweight. Put long-form docs in `specs/`.
 
-- `README.md`: landing page
-- `docs/getting-started.md`: tutorial
-- `docs/concepts/`: explanation
-- `docs/how-to/`: task guides
-- `docs/reference/`: lookup docs
-- `docs/examples/`: longer example tutorials
-- package-level `README.md` files: package-specific entry docs
+## Validation
 
-When updating docs:
+- parser changes: `yarn test:parser`
+- transformer changes: `yarn test:transformer`
+- cross-package runtime changes: `yarn test`
+- docs generator/templates: `yarn build:docs`
+- extension changes: run the relevant `language` compile/lint/test command
 
-- keep the README lightweight
-- put step-by-step workflow in `docs/getting-started.md`
-- keep concept, how-to, and reference content separate
-- prefer repo-backed examples over invented ecosystem claims
+## Agent Notes
 
-## Validation Expectations
-
-- Parser changes: run `yarn test:parser`
-- Transformer changes: run `yarn test:transformer`
-- Cross-package runtime changes: run `yarn test` and targeted builds as
-  needed
-- Extension changes under `language`: ensure `npm install` has been run
-  there, then run the relevant `compile`, `lint`, or `test` command
-
-## Notes For Agents
-
-- Use `rg` for code search.
-- Keep changes scoped; most tasks should touch only one area.
+- Use `rg` for search.
+- Keep changes scoped.
+- Prefer changing one area end-to-end instead of mixing unrelated edits.
