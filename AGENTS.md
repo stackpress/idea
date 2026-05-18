@@ -19,7 +19,7 @@ Edit source, not generated output:
 - transformer tests: `packages/idea-transformer/tests`
 - extension source: `language/client/src`, `language/server/src`
 - docs source: `specs/`
-- docs site templates: `scripts/templates/`
+- docs site builder source: `packages/www/`
 
 Generated output to avoid editing by hand:
 
@@ -55,7 +55,9 @@ yarn test
 yarn test:parser
 yarn test:transformer
 yarn transform
-yarn build:docs
+yarn www:build
+yarn www:check
+yarn www:serve
 ```
 
 Package-specific:
@@ -83,8 +85,8 @@ cd language && npm test
 Docs authoring and publishing are separate:
 
 - author Markdown in `specs/`
-- edit page/layout styles in `scripts/templates/`
-- regenerate the static site into `docs/` with `yarn build:docs`
+- edit builder templates, fragments, styles, and assets in `packages/www/`
+- regenerate the static site into `docs/` with `yarn www:build`
 
 Keep `README.md` lightweight. Put long-form docs in `specs/`.
 
@@ -93,7 +95,7 @@ Keep `README.md` lightweight. Put long-form docs in `specs/`.
 - parser changes: `yarn test:parser`
 - transformer changes: `yarn test:transformer`
 - cross-package runtime changes: `yarn test`
-- docs generator/templates: `yarn build:docs`
+- docs generator/templates: `yarn www:build && yarn www:check`
 - extension changes: run the relevant `language` compile/lint/test command
 
 ## Agent Notes

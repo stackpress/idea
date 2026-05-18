@@ -6,7 +6,6 @@
   ],
   "scripts": {
     "build": "yarn build:parser && yarn build:transformer && yarn build:idea",
-    "build:docs": "node ./scripts/build-docs.mjs",
     "build:parser": "yarn --cwd packages/idea-parser build",
     "build:transformer": "yarn --cwd packages/idea-transformer build",
     "build:idea": "yarn --cwd packages/idea build",
@@ -16,7 +15,10 @@
     "transform": "yarn --cwd example transform",
     "test": "yarn test:parser && yarn test:transformer",
     "test:parser": "yarn --cwd packages/idea-parser test",
-    "test:transformer": "yarn --cwd packages/idea-transformer test"
+    "test:transformer": "yarn --cwd packages/idea-transformer test",
+    "www:build": "node ./packages/www/build.mjs",
+    "www:serve": "node ./packages/www/serve.mjs",
+    "www:check": "node ./packages/www/check.mjs"
   },
   "devDependencies": {
     "@istanbuljs/esm-loader-hook": "0.3.0",
