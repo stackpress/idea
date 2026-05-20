@@ -227,6 +227,18 @@ pre {
   backdrop-filter: blur(20px);
 }
 
+.hero-card .badges {
+  padding-top: 20px;
+}
+
+.hero-card .badges a {
+  text-decoration: none;
+}
+
+.hero-card .badges a img {
+  display: inline-block;
+}
+
 .hero-copy {
   padding: 42px;
 }
