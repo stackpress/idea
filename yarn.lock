@@ -604,10 +604,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@stackpress/lib@0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.10.2.tgz#38ca862e4e7ff97b31f6bf636afe7dc433603b89"
-  integrity sha512-eq9Hox135h6FODDvCAkOJu+qC+5tuTgSxBgBve+YZayUuoyDluIMV/yX6RM8cRRFltDOUvkWF09la30FTQwWJQ==
+"@stackpress/lib@0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@stackpress/lib/-/lib-0.10.3.tgz#f7b5192ccd077800f5363dcc087c523d1a4dfd9a"
+  integrity sha512-SWPLZDKADEpdUnKnOQTiLPXMBRrz4I7w1jc6IHKogAmaFvILp9ynUcHIjL4gCZ/TBRlXGN07LgGibjc/ckc8CQ==
 
 "@ts-morph/common@~0.28.1":
   version "0.28.1"
